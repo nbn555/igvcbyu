@@ -1,0 +1,30 @@
+#summary AI/PR To-do list
+#labels To-DoList
+
+= Introduction =
+
+Backlog of what needs to be worked on
+
+
+= Details =
+
+
+                         
+figuring out what have from previous Years
+API
+ideas of what we want our AI to deal with concerning objects.
+formats we would like to receive those objects in.
+looking at how things come out of opencv
+how we want the other teams to pass these objects to us.
+
+
+PR
+Ideas for website
+rules stuff
+
+
+AI
+
+Ideas for path planning
+Ideas for judging how to follow that path
+
