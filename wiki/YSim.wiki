@@ -1,0 +1,11 @@
+#summary To-Do and ideas for Simulator
+
+= Simulator =
+
+How to Allow User Created Maps?  Format for maps.
+
+Create a tool to create User Maps?
+
+C++ to allow OOP? - Trees, orange cone, white lane markers.
+
+Initial Robot Movement? - Automated, user input
