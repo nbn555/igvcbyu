@@ -1,0 +1,14 @@
+Omnistar offers 10-15 cm gps paid service
+
+WAAS - Free service with 60-70 cm service
+
+
+http://www.novatel.com/support/firmware-software-and-manuals/firmware-software-updates/oem-card-pc-utilities/
+
+webiste that provide software for the receiver.  includes:
+
+OEMV/OEM4 Family PC utilities installation with:
+	-CDU PC Utilities 3.8.0.6  ---- Needed
+	-Convert4 version 3.8.0.6  ---- Needed
+	-DL4Tool version 1.2.3.0   ---- Not needed
+	-Microsoft .NET Framework 2.0
