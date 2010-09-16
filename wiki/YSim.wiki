@@ -13,7 +13,7 @@ Initial Robot Movement? - Automated, user input
 
 
 ===Obstacles=== 
-//Lines and circles
+//Lines and circles    1 foot buffer
   * Cones
   * Potholes
   * Mesh Fencing
