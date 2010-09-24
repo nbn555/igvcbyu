@@ -1,0 +1,32 @@
+#summary One-sentence summary of this page.
+
+= Meeting Notes =
+
+== September 22, 2010 ==
+
+=== Goals ===
+  * *AI*
+    * MPRT investigation
+       * Custom Maps/Obstacle Course
+    * Check on Internet for 150 FB
+    * Install OS on all computers in 150 FB
+
+  * *Mechanical*
+    * Ben - Order Motor Controller 
+    * Eric - How to mount the Wheels
+    * Karl - Locate Treads
+    * Scott - Sand/Polish current Wheels
+      * Locate spare motor
+
+  * *Sensor*
+    * Lidar
+       * Get to know how to use the libraries
+       * Figure out the output from Lidar
+    * GPS
+       * Find power cable
+       * Call and ask about service
+    * Camera
+       * Get competition camera working with Open CV
+       * Contrast stuff
+    * Compass
+       * Thomas will begin working on this
