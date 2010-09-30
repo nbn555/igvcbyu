@@ -12,3 +12,5 @@ OEMV/OEM4 Family PC utilities installation with:
 	-Convert4 version 3.8.0.6  ---- Needed
 	-DL4Tool version 1.2.3.0   ---- Not needed
 	-Microsoft .NET Framework 2.0
+
+1-800-NOVATEL - dial "1" and then if you get a messagerie, press "1"
