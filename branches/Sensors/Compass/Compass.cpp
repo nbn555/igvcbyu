@@ -6,6 +6,7 @@
  */
 
 #include <cassert>
+#include <cstdlib>
 
 #include <mrpt/utils/CConfigFile.h>
 #include <mrpt/utils/types.h>
@@ -22,13 +23,9 @@ using namespace boost;
 Compass::Compass( const string & fileName, const int bufferLength ): yaw(0), pitch(0), roll(0) {
 	CConfigFile config(fileName);
 
-	vector_string sections;
+	this->loadConfig_sensorSpecific( config, "COMPASS" );
 
-	config.getAllSections(sections);
-
-	this->serialPort.open("/dev/ttyUSB1");
-	this->serialPort.setConfig( 19200, 0, 8, 1 );
-
+	this->initialize();
 }
 
 Compass::~Compass() {
@@ -45,7 +42,22 @@ void Compass::doProcess() {
 }
 
 
-void Compass::loadConfig_sensorSpecific(const mrpt::utils::CConfigFileBase&, const std::string&) {
+void Compass::loadConfig_sensorSpecific( const mrpt::utils::CConfigFileBase& config, const std::string& sectionName ) {
+
+	if( "COMPASS" == sectionName ) {
+		vector_string sections;
+		vector_string keys;
+
+		config.getAllSections(sections);
+		config.getAllKeys(sectionName,keys);
+
+		string value = config.read_string(sectionName, "COM_port_LIN", value );
+		this->serialPort.open(value);
+
+		value = config.read_string(sectionName, "baudRate", value);
+
+		this->serialPort.setConfig(atoi(value.c_str()), 0, 8, 1);
+	}
 
 }
 
