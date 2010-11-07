@@ -6,7 +6,6 @@
  */
 
 #include <cassert>
-#include <cstdlib>
 
 #include <mrpt/utils/CConfigFile.h>
 #include <mrpt/utils/types.h>
@@ -54,9 +53,9 @@ void Compass::loadConfig_sensorSpecific( const mrpt::utils::CConfigFileBase& con
 		string value = config.read_string(sectionName, "COM_port_LIN", value );
 		this->serialPort.open(value);
 
-		value = config.read_string(sectionName, "baudRate", value);
+		int baudRate = config.read_int(sectionName, "baudRate", 19200 );
 
-		this->serialPort.setConfig(atoi(value.c_str()), 0, 8, 1);
+		this->serialPort.setConfig( baudRate, 0, 8, 1);
 	}
 
 }
