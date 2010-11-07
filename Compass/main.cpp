@@ -7,16 +7,24 @@
 
 #include <iostream>
 
+#include <mrpt/utils/CConfigFile.h>
+
 #include "Compass.h"
 
+using namespace mrpt::utils;
 using namespace std;
 
 int main( int argc, char** argv ) {
 
-	Compass comp( "Compass.ini" );
+	Compass comp;
+	CConfigFile config( "Compass.ini" );
+
+	comp.loadConfig(config, "COMPASS" );
+	comp.initialize();
 
 	while(1) {
 		comp.doProcess();
+		//TODO make the compass class support the TObservation type.  IE we need to extend CObservation with a ObservationCompass.
 		if( comp.isYawValid() ) cout << "Yaw: " << comp.getYaw() << endl;
 		if( comp.isPitchValid() ) cout << "Pitch: " << comp.getPitch() << endl;
 		if( comp.isRollValid() ) cout << "Roll: " << comp.getRoll() << endl;

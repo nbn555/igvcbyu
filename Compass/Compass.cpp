@@ -7,8 +7,6 @@
 
 #include <cassert>
 
-#include <mrpt/utils/CConfigFile.h>
-#include <mrpt/utils/types.h>
 #include <boost/algorithm/string.hpp>
 
 #include "Compass.h"
@@ -19,12 +17,7 @@ using namespace mrpt::hwdrivers;
 using namespace mrpt::utils;
 using namespace boost;
 
-Compass::Compass( const string & fileName, const int bufferLength ): yaw(0), pitch(0), roll(0) {
-	CConfigFile config(fileName);
-
-	this->loadConfig_sensorSpecific( config );
-
-	this->initialize();
+Compass::Compass( const int bufferLength ): yaw(0), pitch(0), roll(0), yawStatus(""), pitchStatus(""), rollStatus("") {
 }
 
 Compass::~Compass() {
@@ -44,11 +37,6 @@ void Compass::doProcess() {
 void Compass::loadConfig_sensorSpecific( const mrpt::utils::CConfigFileBase& config, const std::string& sectionName ) {
 
 	if( "COMPASS" == sectionName ) {
-		vector_string sections;
-		vector_string keys;
-
-		config.getAllSections(sections);
-		config.getAllKeys(sectionName,keys);
 
 		string value = config.read_string(sectionName, "COM_port_LIN", value );
 		this->serialPort.open(value);
@@ -57,7 +45,6 @@ void Compass::loadConfig_sensorSpecific( const mrpt::utils::CConfigFileBase& con
 
 		this->serialPort.setConfig( baudRate, 0, 8, 1);
 	}
-
 }
 
 //TODO make this not return null.  I couldn't get it to work because it wants a pointer to the class constructor but the c++ standard says you cant do that.
@@ -70,6 +57,7 @@ void Compass::parseResponse( const std::string& data ) {
 	string buffer = data;
 	string header = "";
 
+	//TODO make this function call thread safe or put it in a mutex
 	this->reset();
 
 	boost::replace_all( buffer, ",", " " );//replace the commas with spaces so the stringstream parser will parse how we want
