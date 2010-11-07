@@ -23,7 +23,7 @@ using namespace boost;
 Compass::Compass( const string & fileName, const int bufferLength ): yaw(0), pitch(0), roll(0) {
 	CConfigFile config(fileName);
 
-	this->loadConfig_sensorSpecific( config, "COMPASS" );
+	this->loadConfig_sensorSpecific( config );
 
 	this->initialize();
 }

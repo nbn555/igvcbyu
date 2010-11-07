@@ -17,8 +17,8 @@ public:
 	Compass( const std::string & fileName, const int bufferLength = 500 );
 	virtual ~Compass();
 	void doProcess();
-	void loadConfig_sensorSpecific(const mrpt::utils::CConfigFileBase&, const std::string&);
-	const mrpt::hwdrivers::TSensorClassId* GetRuntimeClass() const;
+	void loadConfig_sensorSpecific(const mrpt::utils::CConfigFileBase&, const std::string& = "COMPASS" );
+	const mrpt::hwdrivers::TSensorClassId* GetRuntimeClass() const; //DONT USE THIS. DONT REGISTER THIS SENSOR. RETURNS NULL.
 
 	/**
 	 * @return The last received Yaw value in degrees
