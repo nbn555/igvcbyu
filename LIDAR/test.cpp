@@ -77,7 +77,7 @@ void TestPLS()
 #endif
 
 	// Load config:
-	//laser.loadConfig( CConfigFile( "./LASER_SCAN_TEST.ini") ,"PLS#1" );
+	//laser.loadConfig( CConfigFile( "./LASER_SCAN_TEST.ini") ,"LIDAR" );
 
 	cout << "Trying to initialize the laser..." << endl;
 	laser.initialize(); // This will raise an exception on error
