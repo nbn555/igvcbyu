@@ -8,16 +8,17 @@
 #ifndef COMPASS_H_
 #define COMPASS_H_
 
-#include <mrpt/hwdrivers/CGPSInterface.h>
+#include <mrpt/hwdrivers/CGenericSensor.h>
+#include <mrpt/hwdrivers/CSerialPort.h>
+#include <mrpt/utils/CDebugOutputCapable.h>
 #include <string>
 
 class Compass: public mrpt::hwdrivers::CGenericSensor, public mrpt::utils::CDebugOutputCapable {
 
 public:
-	Compass( const std::string & fileName, const int bufferLength = 500 );
+	Compass(const int bufferLength = 500 );//Currently buferLength isn't used std::string is.  But an optimization could be to use a buffer instead of a string.
 	virtual ~Compass();
 	void doProcess();
-	void loadConfig_sensorSpecific(const mrpt::utils::CConfigFileBase&, const std::string& = "COMPASS" );
 	const mrpt::hwdrivers::TSensorClassId* GetRuntimeClass() const; //DONT USE THIS. DONT REGISTER THIS SENSOR. RETURNS NULL.
 
 	/**
@@ -49,6 +50,9 @@ public:
 	 * returns true if the compass returned a valid roll value
 	 */
 	bool isRollValid() const { return "N" == this->rollStatus.substr(0,1); };
+
+protected:
+	void loadConfig_sensorSpecific(const mrpt::utils::CConfigFileBase&, const std::string& = "COMPASS" );
 
 private:
 	double yaw;
