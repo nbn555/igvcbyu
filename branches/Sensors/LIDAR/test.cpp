@@ -47,7 +47,7 @@ string SERIAL_NAME;	// Name of the serial port to open
 // ------------------------------------------------------
 void TestPLS()
 {
-	CSickLaserUSB	laser;
+	CSickLaserSerial	laser;
 
 	cout << "SICK LMS thru serial port test application." << endl << endl;
 
