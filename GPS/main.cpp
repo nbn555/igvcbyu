@@ -16,8 +16,11 @@
 #include <termios.h> /* POSIX terminal control definitions */
 
 #include <mrpt/hwdrivers/CGPSInterface.h>
-#include "GpsDevice.h"
+#include "GPS.h"
 using namespace std;
+
+using namespace mrpt;
+using namespace mrpt::hwdrivers;
 
 
 /*
@@ -173,11 +176,15 @@ void gps_comm() {
 
 
 int main() {
-	//init_port();
-   //printf("Attempting to open port\n");
-   //open_port(); // opens a serial port
 
-   //gps_comm(); //establishes communication with the GPS receiver
+	GPS gps;
+	CConfigFile config("GPS.ini");
+	gps.loadConfig(config, "GPS");
+	gps.initialize();
+
+	while(1) {
+		gps.doProcess();
+	}
 
    return 0;
 }
