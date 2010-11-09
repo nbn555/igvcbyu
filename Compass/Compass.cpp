@@ -36,15 +36,13 @@ void Compass::doProcess() {
 
 void Compass::loadConfig_sensorSpecific( const mrpt::utils::CConfigFileBase& config, const std::string& sectionName ) {
 
-	if( "COMPASS" == sectionName ) {
+	string value = config.read_string(sectionName, "COM_port_LIN", "/dev/ttyS1" );
+	this->serialPort.open(value);
 
-		string value = config.read_string(sectionName, "COM_port_LIN", value );
-		this->serialPort.open(value);
+	int baudRate = config.read_int(sectionName, "baudRate", 19200 );
 
-		int baudRate = config.read_int(sectionName, "baudRate", 19200 );
+	this->serialPort.setConfig( baudRate, 0, 8, 1 );
 
-		this->serialPort.setConfig( baudRate, 0, 8, 1);
-	}
 }
 
 //TODO make this not return null.  I couldn't get it to work because it wants a pointer to the class constructor but the c++ standard says you cant do that.
