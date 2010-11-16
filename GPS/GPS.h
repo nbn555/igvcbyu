@@ -16,11 +16,13 @@ public:
 	GPS(const int Buffer_Length = 500);
 	virtual ~GPS();
 	void initialize();
+	void initConfig( mrpt::utils::CConfigFileBase & configSource, const std::string & iniSection = "GPS");//mrpt doesn't make the loadConfig_sensorSpecific virtual so we have to load our specific config settings ourselves
 protected:
-	void loadConfig_sensorSpecific(mrpt::utils::CConfigFileBase & configSource, const std::string & iniSection = "GPS");
 private:
 	bool isGpggaUsed;
 	bool isGprmcUsed;
+	std::string portName;//These are needed for sending initial commands to the old GPS
+	int baudRate;
 };
 
 #endif /* GPSDEVICE_H_ */
