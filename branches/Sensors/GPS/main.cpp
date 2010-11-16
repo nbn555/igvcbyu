@@ -165,9 +165,9 @@ void gps_comm() {
 	gps.doProcess();  // opens, buffers, and tokenizes a gps stream through a port
 
 	if(gps.isGPS_connected())
-		printf("Communication established to GPS");
-	else if (!gps.isGPS_connected())
-		printf("No Communication");
+			printf("Communication established to GPS");
+		else if (!gps.isGPS_connected())
+			printf("No Communication");
 
 
 	mrpt::slam::CObservationGPS gpsOUT;
@@ -178,13 +178,22 @@ void gps_comm() {
 int main() {
 
 	GPS gps;
+	gps.setSerialPortName ( "ttyS0" );
 	CConfigFile config("GPS.ini");
 	gps.loadConfig(config, "GPS");
+	gps.initConfig(config, "GPS");
+
 	gps.initialize();
 
-	while(1) {
-		gps.doProcess();
-	}
+	cout << gps.isGPS_connected() << endl;
 
-   return 0;
+	mrpt::hwdrivers::CGenericSensor::TListObservations gpsObservations;
+	for( int i = 0; i < 10; ++i ) {
+		gps.doProcess();
+		cout << "running" << endl;
+	}
+	gps.getObservations(gpsObservations);
+	cout << gpsObservations.size() << endl;
+
+	return 0;
 }
