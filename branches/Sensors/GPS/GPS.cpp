@@ -33,8 +33,10 @@ void GPS::initConfig( mrpt::utils::CConfigFileBase & config, const std::string &
 void GPS::initialize() {
 	string writeValue;
 
+	cout << "here" << endl;
 	CSerialPort myCom(this->portName);
 	myCom.setConfig(this->baudRate,0,8,1,false);
+	cout << "Post open" << endl;
 
 	/*
 	//This code segment demonstrates how to write a command and read data from the GPS
