@@ -79,3 +79,33 @@ void Compass::reset() {
 	this->pitchStatus = "";
 	this->rollStatus = "";
 }
+
+std::string Compass::computeChecksum( const std::string & sentence ) {
+
+	const int strLen = sentence.length();
+
+	int i = 0, j = 0;
+	for( i = 0; i < strLen && '$' != sentence.at(i) && '#' != sentence.at(i); ++i );
+	if( strLen <= i ) return "";
+
+	++i;
+	for( j = i; j < strLen && '*' != sentence.at(j); ++j );
+	if( strLen <= j ) return "";
+
+	unsigned char checksum = 0;
+	for( ; i != j; ++i ) checksum ^= sentence.at(i);
+
+	unsigned char high = (checksum & 0xF0) >> 4;
+	unsigned char low = checksum & 0x0F;
+
+	if( 0 <= high && high <= 9 ) high += 0x30;
+	else if( 10 <= high && high <= 15 ) high += 0x40;
+
+	if( 0 <= low && low <= 9 ) low += 0x30;
+	else if( 10 <= low && low <= 15 ) low += 0x40;
+
+	stringstream stream;
+	stream << high;
+	stream << low;
+	return stream.str();
+}

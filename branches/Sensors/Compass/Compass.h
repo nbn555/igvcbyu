@@ -51,6 +51,8 @@ public:
 	 */
 	bool isRollValid() const { return "N" == this->rollStatus.substr(0,1); };
 
+	static std::string computeChecksum( const std::string & sentence );
+
 protected:
 	void loadConfig_sensorSpecific(const mrpt::utils::CConfigFileBase&, const std::string& = "COMPASS" );
 
