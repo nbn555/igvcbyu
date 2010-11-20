@@ -4,4 +4,4 @@
 
 USER_OBJS :=
 
-LIBS := -lmrpt-detectors -lmrpt-hmtslam -lmrpt-hwdrivers -lmrpt-gui -lmrpt-reactivenav -lmrpt-slam -lmrpt-bayes -lmrpt-maps -lmrpt-topography -lmrpt-scanmatching -lmrpt-vision -lmrpt-obs -lmrpt-opengl -lmrpt-base
+LIBS := -lmrpt-detectors -lboost_regex -lmrpt-hmtslam -lmrpt-hwdrivers -lmrpt-gui -lmrpt-reactivenav -lmrpt-slam -lmrpt-bayes -lmrpt-maps -lmrpt-topography -lmrpt-scanmatching -lmrpt-vision -lmrpt-obs -lmrpt-opengl -lmrpt-base

@@ -53,6 +53,7 @@
 <tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1603414288" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 <option id="gnu.cpp.link.option.libs.458943880" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 <listOptionValue builtIn="false" value="mrpt-detectors"/>
+<listOptionValue builtIn="false" value="boost_regex"/>
 <listOptionValue builtIn="false" value="mrpt-hmtslam"/>
 <listOptionValue builtIn="false" value="mrpt-hwdrivers"/>
 <listOptionValue builtIn="false" value="mrpt-gui"/>
