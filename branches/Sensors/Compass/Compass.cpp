@@ -29,6 +29,7 @@ void Compass::doProcess() {
 
 	bool booleanness = true;
 	data = this->serialPort.ReadString(100,&booleanness, "\n\r");
+	cout << data << endl;
 	this->parseResponse(data);
 
 }
@@ -42,6 +43,13 @@ void Compass::loadConfig_sensorSpecific( const mrpt::utils::CConfigFileBase& con
 	int baudRate = config.read_int(sectionName, "baudRate", 19200 );
 
 	this->serialPort.setConfig( baudRate, 0, 8, 1 );
+
+	string writeValue = "#FA0.3=0*27\n\r";
+	this->serialPort.WriteBuffer(writeValue.c_str(), writeValue.length());
+	string readValue;
+	bool to = false;
+	readValue = this->serialPort.ReadString(1000,&to,"\n\r");
+	cout << readValue << endl;
 
 }
 
