@@ -17,14 +17,13 @@ using namespace std;
 int main( int argc, char** argv ) {
 
 	Compass comp;
-	//CConfigFile config( "Compass.ini" );
+	CConfigFile config( "Compass.ini" );
 
-	//comp.loadConfig(config, "COMPASS" );
-	//comp.initialize();
+	comp.loadConfig(config, "COMPASS" );
+	comp.initialize();
 
-	cout << Compass::computeChecksum("#000*fd\n\r") << endl;
+	//cout << Compass::computeChecksum("#000*fd\n\r") << endl;
 
-	exit(0);
 	while(1) {
 		comp.doProcess();
 		//TODO make the compass class support the TObservation type.  IE we need to extend CObservation with a ObservationCompass.
