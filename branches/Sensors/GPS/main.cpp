@@ -8,12 +8,11 @@
 
 #include <iostream>
 
-#include <string.h>  /* String function definitions */
+#include <cstdio>   /* Standard input/output definitions */
+#include <cstring>  /* String function definitions */
 
-#include <mrpt/slam.h>
 #include <mrpt/hwdrivers/CGPSInterface.h>
 #include "GPS.h"
-
 using namespace std;
 
 using namespace mrpt;
@@ -63,4 +62,3 @@ int main() {
 
 	return 0;
 }
-

@@ -25,7 +25,7 @@ void GPS::initConfig( mrpt::utils::CConfigFileBase & config, const std::string &
 
 	this->isGpggaUsed = config.read_bool(sectionName,"use_gga", true);
 	this->isGprmcUsed = config.read_bool(sectionName,"use_rmc", false);
-	this->baudRate = config.read_int(sectionName,"baudRate", 9600);
+	this->baudRate = config.read_int(sectionName,"baudRate", 57600);
 	this->portName = config.read_string(sectionName,"COM_port_LIN","/dev/ttyS0");
 
 }
@@ -37,6 +37,20 @@ void GPS::initialize() {
 	CSerialPort myCom(this->portName);
 	myCom.setConfig(this->baudRate,0,8,1,false);
 	cout << "Post open" << endl;
+
+	if( this->isGpggaUsed ) {
+		cout << "Using gpgga" << endl;
+		//writeValue = "$jasc,gpgga,1\n\r";  for other receiver
+		writeValue = "log gpgga ontime 1\n\r";
+		myCom.Write(writeValue.c_str(),writeValue.length());//this will tell the gps to get a satellite reading once a second
+	}
+
+	if( this->isGprmcUsed ) {
+		cout << "Using gprmc" << endl;
+		//writeValue = "$jasc,gprmc,1\n\r";
+		writeValue = "log gprmc ontime 1\n\r";  // For Novatel's receiver
+		myCom.Write(writeValue.c_str(),writeValue.length());//this will tell the gps to run the nmea rmc command once a second
+	}
 
 	/*
 	//This code segment demonstrates how to write a command and read data from the GPS
@@ -50,15 +64,6 @@ void GPS::initialize() {
 	}
 	*/
 
-	if( this->isGpggaUsed ) {
-		writeValue = "$jasc,gpgga,1\n\r";
-		myCom.Write(writeValue.c_str(),writeValue.length());//this will tell the old gps to get a satellite reading once a second
-	}
-
-	if( this->isGprmcUsed ) {
-		writeValue = "$jasc,gprmc,1\n\r";
-		myCom.Write(writeValue.c_str(),writeValue.length());//this will tell the old gps to run the nmea rmc command once a second
-	}
 
 	myCom.close();
 
