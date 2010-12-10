@@ -1,4 +1,7 @@
-all: LibYclops.so Headers ReactiveNavigationDemoMain
+all: LibYclops.so Headers ReactiveNavigationDemoMain Libs
+
+Libs: link.txt
+	cp link.txt ~/mrpt-src/apps/ReactiveNavigationDemo/CMakeFiles/ReactiveNavigationDemo.dir
 
 ReactiveNavigationDemoMain: ReactiveNavigationDemoMain.cpp
 	cp ReactiveNavigationDemoMain.cpp ~/mrpt-src/apps/ReactiveNavigationDemo/
