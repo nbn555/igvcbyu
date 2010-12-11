@@ -6,10 +6,14 @@
  */
 
 #include <iostream>
+#include <mrpt/slam/CRangeBearingKFSLAM.h>
 
 using namespace std;
+using namespace mrpt;
+using namespace mrpt::slam;
 
 int main( int argc, char** argv ) {
-	cout << "Hello World!" << endl;
+
+
 	return 0;
 }
