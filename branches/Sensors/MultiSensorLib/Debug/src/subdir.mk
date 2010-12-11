@@ -5,15 +5,18 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../src/Compass.cpp \
-../src/GPS.cpp 
+../src/GPS.cpp \
+../src/MotorController.cpp 
 
 OBJS += \
 ./src/Compass.o \
-./src/GPS.o 
+./src/GPS.o \
+./src/MotorController.o 
 
 CPP_DEPS += \
 ./src/Compass.d \
-./src/GPS.d 
+./src/GPS.d \
+./src/MotorController.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
