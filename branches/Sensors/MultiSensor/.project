@@ -3,6 +3,7 @@
 	<name>MultiSensor</name>
 	<comment></comment>
 	<projects>
+		<project>MultiSensorLib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
