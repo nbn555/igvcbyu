@@ -26,6 +26,7 @@
 <option id="gnu.cpp.compiler.exe.debug.option.debugging.level.1636830107" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 <option id="gnu.cpp.compiler.option.include.paths.1739054900" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 <listOptionValue builtIn="false" value="/usr/include/mrpt/base/include/"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MultiSensorLib/inc}&quot;"/>
 <listOptionValue builtIn="false" value="/usr/include/mrpt/mrpt-config/"/>
 <listOptionValue builtIn="false" value="/usr/include/mrpt/bayes/include/"/>
 <listOptionValue builtIn="false" value="/usr/include/mrpt/detectors/include/"/>
@@ -52,6 +53,7 @@
 <tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1603414288" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 <option id="gnu.cpp.link.option.libs.458943880" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 <listOptionValue builtIn="false" value="mrpt-detectors"/>
+<listOptionValue builtIn="false" value="YClops"/>
 <listOptionValue builtIn="false" value="mrpt-hmtslam"/>
 <listOptionValue builtIn="false" value="mrpt-hwdrivers"/>
 <listOptionValue builtIn="false" value="mrpt-gui"/>
@@ -65,6 +67,9 @@
 <listOptionValue builtIn="false" value="mrpt-obs"/>
 <listOptionValue builtIn="false" value="mrpt-opengl"/>
 <listOptionValue builtIn="false" value="mrpt-base"/>
+</option>
+<option id="gnu.cpp.link.option.paths.1922157247" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MultiSensorLib/Debug}&quot;"/>
 </option>
 <inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1089587194" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 <additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
