@@ -1,0 +1,15 @@
+list of libraries used by mrpt
+mrpt-detectors
+mrpt-hmtslam
+mrpt-hwdrivers
+mrpt-gui
+mrpt-reactivenav
+mrpt-slam
+mrpt-bayes
+mrpt-maps
+mrpt-topography
+mrpt-scanmatching
+mrpt-vision
+mrpt-obs
+mrpt-opengl
+mrpt-base
