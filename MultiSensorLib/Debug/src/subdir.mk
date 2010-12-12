@@ -6,17 +6,20 @@
 CPP_SRCS += \
 ../src/Compass.cpp \
 ../src/GPS.cpp \
-../src/MotorController.cpp 
+../src/MotorController.cpp \
+../src/TSPSolver.cpp 
 
 OBJS += \
 ./src/Compass.o \
 ./src/GPS.o \
-./src/MotorController.o 
+./src/MotorController.o \
+./src/TSPSolver.o 
 
 CPP_DEPS += \
 ./src/Compass.d \
 ./src/GPS.d \
-./src/MotorController.d 
+./src/MotorController.d \
+./src/TSPSolver.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
