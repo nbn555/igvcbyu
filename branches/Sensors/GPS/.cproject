@@ -68,7 +68,7 @@
 <listOptionValue builtIn="false" value="mrpt-opengl"/>
 <listOptionValue builtIn="false" value="mrpt-base"/>
 </option>
-<option id="gnu.cpp.link.option.paths.1922157247" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
+<option id="gnu.cpp.link.option.paths.1922157247" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/MultiSensorLib/Debug}&quot;"/>
 </option>
 <inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1089587194" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
