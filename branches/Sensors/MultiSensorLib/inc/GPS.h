@@ -19,10 +19,12 @@ public:
 	void initConfig( mrpt::utils::CConfigFileBase & configSource, const std::string & iniSection = "GPS");//mrpt doesn't make the loadConfig_sensorSpecific virtual so we have to load our specific config settings ourselves
 protected:
 private:
+	std::string vendor;
 	bool isGpggaUsed;
 	bool isGprmcUsed;
 	std::string portName;//These are needed for sending initial commands to the old GPS
 	int baudRate;
+	int processRate;
 };
 
 #endif /* GPSDEVICE_H_ */
