@@ -10,9 +10,12 @@
 
 #include <cstdio>   /* Standard input/output definitions */
 #include <cstring>  /* String function definitions */
+#include <vector>
 
 #include <mrpt/hwdrivers/CGPSInterface.h>
+
 #include "GPS.h"
+#include "TSPSolver.h"
 using namespace std;
 
 using namespace mrpt;
@@ -33,8 +36,33 @@ int main() {
 
 	cout << gps.isGPS_connected() << endl;
 
-	CGenericSensor::TListObservations			lstObs;
+	CGenericSensor::TListObservations				lstObs;
 	CGenericSensor::TListObservations::iterator 	itObs;
+
+	//prime the pump with the first gps observation
+	while(!lstObs.size()) {
+		gps.doProcess();
+		mrpt::system::sleep(500);
+		gps.getObservations(lstObs);
+	}
+
+	CObservationGPSPtr gpsData=CObservationGPSPtr(lstObs.begin()->second);
+
+	CPoint2D curPos;
+	if(gps.usesGpgga()) {
+		curPos.m_coords[0] = gpsData->GGA_datum.latitude_degrees;
+		curPos.m_coords[1] = gpsData->GGA_datum.longitude_degrees;
+	} else if(gps.usesGprmc()) {
+		curPos.m_coords[0] = gpsData->RMC_datum.latitude_degrees;
+		curPos.m_coords[1] = gpsData->RMC_datum.longitude_degrees;
+	} else {
+		cerr << "Invalid GPS data" << endl;
+	}
+
+	TSPSolver solver( curPos.m_coords[0], curPos.m_coords[1] );
+	solver.loadPoints("gpsWeighpoints_raw.txt");
+	vector<CPoint2D> visitOrder = solver.solve();
+	int visitOrderIndex = 0;
 
 	while (! mrpt::system::os::kbhit())
 	{
@@ -54,6 +82,28 @@ int main() {
 				ASSERT_(itObs->second->GetRuntimeClass()==CLASS_ID(CObservationGPS));
 
 				CObservationGPSPtr gpsData=CObservationGPSPtr(itObs->second);
+
+				if(gps.usesGpgga()) {
+					curPos.m_coords[0] = gpsData->GGA_datum.latitude_degrees;
+					curPos.m_coords[1] = gpsData->GGA_datum.longitude_degrees;
+				} else if(gps.usesGprmc()) {
+					curPos.m_coords[0] = gpsData->RMC_datum.latitude_degrees;
+					curPos.m_coords[1] = gpsData->RMC_datum.longitude_degrees;
+				} else {
+					cerr << "Invalid GPS data" << endl;
+				}
+
+				if( visitOrderIndex < visitOrder.size() ) {
+					cout << "At position " << visitOrder[visitOrderIndex].m_coords[0] <<
+							"," << visitOrder[visitOrderIndex].m_coords[1] << endl;
+					if( 1 < TSPSolver::haversineDistance(
+							visitOrder[visitOrderIndex].m_coords[0],
+							visitOrder[visitOrderIndex].m_coords[1],
+							curPos.m_coords[0],curPos.m_coords[1]) ) {
+						visitOrderIndex++;
+					}
+				}
+
 				gpsData->dumpToConsole();
 			}
 			lstObs.clear();
