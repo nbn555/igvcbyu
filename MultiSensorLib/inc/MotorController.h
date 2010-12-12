@@ -2,7 +2,9 @@
  * MotorController.h
  *
  *  Created on: Dec 11, 2010
- *      Author: tallred3
+ *      Author: T. Eldon Allred
+ *      Written for the purpose of the interfacing with the RoboteQ 2440 motor controller
+ *      for the BYU 2010-2011 IGVC submission.
  */
 
 #ifndef MOTORCONTROLLER_H_

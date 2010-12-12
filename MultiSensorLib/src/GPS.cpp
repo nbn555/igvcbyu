@@ -52,19 +52,6 @@ void GPS::initialize() {
 		myCom.Write(writeValue.c_str(),writeValue.length());//this will tell the gps to run the nmea rmc command once a second
 	}
 
-	/*
-	//This code segment demonstrates how to write a command and read data from the GPS
-	bool tout = false;
-	writeValue = "$jshow\n\r";//Commands must be terminated with \n\r
-	myCom.WriteBuffer(writeValue.c_str(), writeValue.length());
-
-	while(!tout) {
-		string readString = myCom.ReadString(100,&tout,"\n\r");
-		cout << readString << endl;
-	}
-	*/
-
-
 	myCom.close();
 
 }

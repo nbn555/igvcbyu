@@ -2,7 +2,7 @@
  * MotorController.cpp
  *
  *  Created on: Dec 11, 2010
- *      Author: tallred3
+ *      Author: T. Eldon Allred
  */
 
 #include <iostream>
