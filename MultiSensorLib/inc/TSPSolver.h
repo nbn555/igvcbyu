@@ -34,6 +34,13 @@ public:
 	 * @returns The distance between two points in meters
 	 */
 	static double haversineDistance( double lat1, double lon1, double lat2, double lon2 );
+
+	/**
+	 * Bearing Calculator - is a function that computes the bearing (angle) between two points
+	 * @returns the bearing between two points in degrees
+	 */
+	static double bearingCalculator( double lat1, double lon1, double lat2, double lon2 );
+
 private:
 	std::vector<mrpt::poses::CPoint2D> toVisit;
 	std::vector<mrpt::poses::CPoint2D> visited;
