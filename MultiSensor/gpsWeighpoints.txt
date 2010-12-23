@@ -1,6 +1,5 @@
 //This file has gps weigh points for several locations near or around the fletcher building.
-40.247589,-111.648093 // roughly a few feet west of the west door of the fletcher building
-40.247347,-111.648407 // south west corner of the asphalt of the court yard west of the fletcher
-40.247073,-111.648683 // time is the monitor of life statue
-40.24704,-111.648541  // roughly the south west statue of the tau beta pi statue
-40.247806,-111.648694 // just north of the mom and dad and child statue
+40.247073 -111.648694 //Time is the monitor of life statue
+40.247124 -111.648772 //South west corner of lawn west of fletcher
+40.247618 -111.648777 //North west corner of lawn west of fletcher
+40.247804 -111.648780 //North west corner of lawn with the mom and pop statue
