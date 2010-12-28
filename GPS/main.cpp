@@ -16,7 +16,7 @@
 #include <mrpt/hwdrivers/CGPSInterface.h>
 
 #include "GPS.h"
-#include "TSPSolver.h"
+#include "WaypointPlanner.h"
 using namespace std;
 
 using namespace mrpt;
@@ -63,14 +63,14 @@ int main() {
 	}
 
 	cout << "Solving tsp " << endl;
-	TSPSolver solver( curPos.m_coords[0], curPos.m_coords[1] );
+	TSPNavigation solver( curPos.m_coords[0], curPos.m_coords[1] );
 	solver.loadPoints("gpsWeighpoints_raw.txt");
 	vector<CPoint2D> visitOrder = solver.solve();
 	cout.precision(10);
 	for(vector<CPoint2D>::iterator point = visitOrder.begin(); point != visitOrder.end(); ++point )
-		cout << point->m_coords[TSPSolver::LAT] << " " << point->m_coords[TSPSolver::LON] << endl;
+		cout << point->m_coords[TSPNavigation::LAT] << " " << point->m_coords[TSPNavigation::LON] << endl;
 
-	int visitOrderIndex = 0;
+	unsigned visitOrderIndex = 0;
 
 	while (! mrpt::system::os::kbhit())
 	{
@@ -111,7 +111,7 @@ int main() {
 					cout << "At position " << curPos.m_coords[0] << "," << curPos.m_coords[1] << endl;
 					cout << "going to " << visitOrder[visitOrderIndex].m_coords[0] <<
 					"," << visitOrder[visitOrderIndex].m_coords[1] << endl;
-					double dist = TSPSolver::haversineDistance(
+					double dist = TSPNavigation::haversineDistance(
 							visitOrder[visitOrderIndex].m_coords[0],
 							visitOrder[visitOrderIndex].m_coords[1],
 							curPos.m_coords[0],curPos.m_coords[1]);
