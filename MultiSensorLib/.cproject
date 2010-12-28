@@ -29,8 +29,8 @@
 <option id="gnu.cpp.compiler.exe.debug.option.optimization.level.879540675" name="Optimization Level" superClass="gnu.cpp.compiler.exe.debug.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
 <option id="gnu.cpp.compiler.exe.debug.option.debugging.level.1636830107" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 <option id="gnu.cpp.compiler.option.include.paths.1739054900" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/YClopsLib/inc}&quot;"/>
 <listOptionValue builtIn="false" value="/usr/include/mrpt/base/include/"/>
-<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MultiSensorLib/inc}&quot;"/>
 <listOptionValue builtIn="false" value="/usr/include/mrpt/mrpt-config/"/>
 <listOptionValue builtIn="false" value="/usr/include/mrpt/bayes/include/"/>
 <listOptionValue builtIn="false" value="/usr/include/mrpt/detectors/include/"/>
