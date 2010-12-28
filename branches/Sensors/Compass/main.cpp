@@ -22,11 +22,8 @@ int main( int argc, char** argv ) {
 	comp.loadConfig(config, "COMPASS" );
 	comp.initialize();
 
-	//cout << Compass::computeChecksum("#000*fd\n\r") << endl;
-
 	while(1) {
 		comp.doProcess();
-		//TODO make the compass class support the TObservation type.  IE we need to extend CObservation with a ObservationCompass.
 		if( comp.isYawValid() ) cout << "Yaw: " << comp.getYaw() << endl;
 		if( comp.isPitchValid() ) cout << "Pitch: " << comp.getPitch() << endl;
 		if( comp.isRollValid() ) cout << "Roll: " << comp.getRoll() << endl;
