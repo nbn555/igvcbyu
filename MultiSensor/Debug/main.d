@@ -51,7 +51,36 @@ main.d main.o: ../main.cpp \
  /usr/include/mrpt/base/include/mrpt/math/utils.h \
  /usr/include/mrpt/base/include/mrpt/math/ops_vectors.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPoseOrPoint_detail.h \
- /home/tallred3/ecen493/MultiSensorLib/inc/TSPSolver.h
+ /usr/include/mrpt/base/include/mrpt/utils/CConfigFile.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CConfigFileBase.h \
+ /usr/include/mrpt/base/include/mrpt/utils/TEnumType.h \
+ /home/tallred3/ecen493/YClopsLib/inc/Compass.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGenericSensor.h \
+ /usr/include/mrpt/obs/include/mrpt/slam/CObservation.h \
+ /usr/include/mrpt/obs/include/mrpt/obs/link_pragmas.h \
+ /usr/include/mrpt/base/include/mrpt/synch.h \
+ /usr/include/mrpt/base/include/mrpt/synch/atomic_incr.h \
+ /usr/include/mrpt/base/include/mrpt/synch/CCriticalSection.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CReferencedMemBlock.h \
+ /usr/include/mrpt/base/include/mrpt/synch/CEvent.h \
+ /usr/include/mrpt/base/include/mrpt/synch/CSemaphore.h \
+ /usr/include/mrpt/base/include/mrpt/synch/MT_buffer.h \
+ /usr/include/mrpt/base/include/mrpt/synch/CCriticalSection.h \
+ /usr/include/mrpt/base/include/mrpt/synch/CThreadSafeVariable.h \
+ /usr/include/mrpt/base/include/mrpt/system/threads.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/link_pragmas.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CTicTac.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CDebugOutputCapable.h \
+ /home/tallred3/ecen493/YClopsLib/inc/GPS.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGPSInterface.h \
+ /usr/include/mrpt/obs/include/mrpt/slam/CObservationGPS.h \
+ /usr/include/mrpt/base/include/mrpt/poses/CPose3D.h \
+ /usr/include/mrpt/base/include/mrpt/poses/CPose.h \
+ /usr/include/mrpt/base/include/mrpt/math/CQuaternion.h \
+ /usr/include/mrpt/base/include/mrpt/poses/CPose2D.h \
+ /usr/include/mrpt/base/include/mrpt/poses/CPoint3D.h \
+ /home/tallred3/ecen493/YClopsLib/inc/WaypointPlanner.h
 
 /usr/include/mrpt/base/include/mrpt/poses/CPoint2D.h:
 
@@ -157,4 +186,62 @@ main.d main.o: ../main.cpp \
 
 /usr/include/mrpt/base/include/mrpt/poses/CPoseOrPoint_detail.h:
 
-/home/tallred3/ecen493/MultiSensorLib/inc/TSPSolver.h:
+/usr/include/mrpt/base/include/mrpt/utils/CConfigFile.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/CConfigFileBase.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/TEnumType.h:
+
+/home/tallred3/ecen493/YClopsLib/inc/Compass.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGenericSensor.h:
+
+/usr/include/mrpt/obs/include/mrpt/slam/CObservation.h:
+
+/usr/include/mrpt/obs/include/mrpt/obs/link_pragmas.h:
+
+/usr/include/mrpt/base/include/mrpt/synch.h:
+
+/usr/include/mrpt/base/include/mrpt/synch/atomic_incr.h:
+
+/usr/include/mrpt/base/include/mrpt/synch/CCriticalSection.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/CReferencedMemBlock.h:
+
+/usr/include/mrpt/base/include/mrpt/synch/CEvent.h:
+
+/usr/include/mrpt/base/include/mrpt/synch/CSemaphore.h:
+
+/usr/include/mrpt/base/include/mrpt/synch/MT_buffer.h:
+
+/usr/include/mrpt/base/include/mrpt/synch/CCriticalSection.h:
+
+/usr/include/mrpt/base/include/mrpt/synch/CThreadSafeVariable.h:
+
+/usr/include/mrpt/base/include/mrpt/system/threads.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/link_pragmas.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/CTicTac.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/CDebugOutputCapable.h:
+
+/home/tallred3/ecen493/YClopsLib/inc/GPS.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGPSInterface.h:
+
+/usr/include/mrpt/obs/include/mrpt/slam/CObservationGPS.h:
+
+/usr/include/mrpt/base/include/mrpt/poses/CPose3D.h:
+
+/usr/include/mrpt/base/include/mrpt/poses/CPose.h:
+
+/usr/include/mrpt/base/include/mrpt/math/CQuaternion.h:
+
+/usr/include/mrpt/base/include/mrpt/poses/CPose2D.h:
+
+/usr/include/mrpt/base/include/mrpt/poses/CPoint3D.h:
+
+/home/tallred3/ecen493/YClopsLib/inc/WaypointPlanner.h:

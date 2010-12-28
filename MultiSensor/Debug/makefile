@@ -43,7 +43,7 @@ all: MultiSensor
 MultiSensor: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ -L"/home/tallred3/ecen493/MultiSensorLib/Debug" -o"MultiSensor" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -L"/home/tallred3/ecen493/YClopsLib/Debug" -o"MultiSensor" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
