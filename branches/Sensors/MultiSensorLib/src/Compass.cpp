@@ -17,7 +17,7 @@ using namespace mrpt::hwdrivers;
 using namespace mrpt::utils;
 using namespace boost;
 
-Compass::Compass( const int bufferLength ): yaw(0), pitch(0), roll(0), yawStatus(""), pitchStatus(""), rollStatus("") {
+Compass::Compass( bool degrees, const int bufferLength ): degrees(degrees), yaw(0), pitch(0), roll(0), yawStatus(""), pitchStatus(""), rollStatus("") {
 }
 
 Compass::~Compass() {
@@ -29,7 +29,6 @@ void Compass::doProcess() {
 
 	bool booleanness = true;
 	data = this->serialPort.ReadString(100,&booleanness, "\n\r");
-	cout << data << endl;
 	this->parseResponse(data);
 
 }
@@ -49,7 +48,6 @@ void Compass::loadConfig_sensorSpecific( const mrpt::utils::CConfigFileBase& con
 	string readValue;
 	bool to = false;
 	readValue = this->serialPort.ReadString(1000,&to,"\n\r");
-	cout << readValue << endl;
 
 }
 

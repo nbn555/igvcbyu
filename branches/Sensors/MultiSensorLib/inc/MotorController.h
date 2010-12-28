@@ -37,6 +37,31 @@ public:
 	bool setSpeed( MotorChannel channel, int value );
 
 	/**
+	 * setEncoderCounter - sets the wheel encoder count to a specific value
+	 * @param channel - the channel of the wheel encoder count to set
+	 * @param value - the value to set the encoder count
+	 * @return true upon success
+	 */
+	bool setEncoderCounter( MotorChannel channel, int value = 0 );
+
+	/**
+	 * getRelativeEncoderCount - gets the encoder count since the last time this command was used
+	 * @param ch1 - the encoder count for the first channel
+	 * @param ch2 - the encoder count for the second channel
+	 * @return true if successful
+	 */
+	bool getRelativeEncoderCount( int & ch1, int & ch2 );
+
+	/**
+	 * getTemperature - gets the temperature of the heatsinks of the motor controller
+	 * @param ch1 - the temperature in degrees C for the first channel
+	 * @param ch2 - the temperature in degrees C for the second channel
+	 * @return true if successful
+	 */
+	bool getTemperature( int & ch1, int & ch2 );
+
+
+	/**
 	 * doProcess - sends the current speed command to the motor controller
 	 */
 	void doProcess();
@@ -88,6 +113,11 @@ private:
 	 * @returns true if the value is in range
 	 */
 	bool assertValidMotorRange( int max, int min, int value ) const;
+
+	/**
+	 * assertValidVoltage - shuts off the motor controller if the voltage is out of safe operating parameters
+	 */
+	bool assertValidVoltage();
 
 	/**
 	 * sendCommand - low level function call to send a command to the motor controller

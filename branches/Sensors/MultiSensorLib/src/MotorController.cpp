@@ -8,6 +8,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <cassert>
 
 #include <MotorController.h>
 
@@ -20,11 +21,17 @@ MotorController::MotorController( string portName, bool enableEcho, int motor1Ma
 		motor1SpeedMin(motor1Min), motor2SpeedMin(motor2Min)
 {
 	this->serialPort.setConfig(115200, 0, 8, 1, false);//Non configurable port setting see the roboteq manual
+
 	if(echoEnabled) {
 		this->enableSerialEcho(); //enable the serial to echo the commands back used for error checking
 	}else {
 		this->disableSerialEcho();//disable serial port echo
 	}
+
+	this->sendCommand("!H\n\r");//Load preset values for all counters
+	this->sendCommand("!C 1 0\n\r");//clear out the first encoder counter
+	this->sendCommand("!C 2 0\n\r");//clear out the second encoder counter
+
 };
 
 bool MotorController::setSpeed( MotorChannel channel, int value ) {
@@ -63,6 +70,23 @@ bool MotorController::setSpeed( MotorChannel channel, int value ) {
 	return rval;
 }
 
+bool MotorController::setEncoderCounter( MotorChannel channel, int value ) {
+	assert(false);//TODO
+	return false;
+}
+
+bool MotorController::getRelativeEncoderCount( int & ch1, int & ch2 ) {
+	this->sendCommand("?CR\n\r");//TODO
+	assert(false);
+	return false;
+}
+
+bool MotorController::getTemperature( int & ch1, int & ch2 ) {
+	this->sendCommand("?T\n\r");//TODO
+	assert(false);
+	return false;
+}
+
 bool MotorController::emergencyStop() {
 	return this->sendCommand("!EX\n\r");
 }
@@ -91,6 +115,12 @@ void MotorController::doProcess() {
 
 bool MotorController::assertValidMotorRange( int max, int min, int value ) const {
 	return ( value > min && value < max );
+}
+
+bool MotorController::assertValidVoltage() {
+	this->sendCommand("?V\n\r");//TODO parse the voltage command and check it is safe
+	assert(false);
+	return false;
 }
 
 bool MotorController::sendCommand( std::string command ) {

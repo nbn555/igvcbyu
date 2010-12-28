@@ -16,7 +16,7 @@
 class Compass: public mrpt::hwdrivers::CGenericSensor, public mrpt::utils::CDebugOutputCapable {
 
 public:
-	Compass(const int bufferLength = 500 );//Currently buferLength isn't used std::string is.  But an optimization could be to use a buffer instead of a string.
+	Compass( bool degrees = true, const int bufferLength = 500 );//Currently buferLength isn't used std::string is.  But an optimization could be to use a buffer instead of a string.
 	virtual ~Compass();
 	void doProcess();
 	const mrpt::hwdrivers::TSensorClassId* GetRuntimeClass() const; //DONT USE THIS. DONT REGISTER THIS SENSOR. RETURNS NULL.
@@ -24,17 +24,17 @@ public:
 	/**
 	 * @return The last received Yaw value in degrees
 	 */
-	double getYaw() const { return this->yaw; };
+	double getYaw() const { return (this->degrees?this->yaw:mrpt::utils::DEG2RAD(this->yaw)); };
 
 	/**
 	 * @return The last received Pitch value in degrees
 	 */
-	double getPitch() const { return this->pitch; };
+	double getPitch() const { return (this->degrees?this->pitch:mrpt::utils::DEG2RAD(this->pitch)); };
 
 	/**
 	 * @return the last received Roll value in degrees
 	 */
-	double getRoll() const { return this->roll; };
+	double getRoll() const { return (this->degrees?this->roll:mrpt::utils::DEG2RAD(this->roll)); };
 
 	/**
 	 * returns true if the compass returned a valid yaw value
@@ -51,12 +51,18 @@ public:
 	 */
 	bool isRollValid() const { return "N" == this->rollStatus.substr(0,1); };
 
+	/**
+	 * returns true if the compass was set to output degrees
+	 */
+	bool isDegrees() const { return this->degrees; };
+
 	static std::string computeChecksum( const std::string & sentence );
 
 protected:
 	void loadConfig_sensorSpecific(const mrpt::utils::CConfigFileBase&, const std::string& = "COMPASS" );
 
 private:
+	bool degrees;
 	double yaw;
 	double pitch;
 	double roll;
