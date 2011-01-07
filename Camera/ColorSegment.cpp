@@ -10,17 +10,6 @@
 
 
 int main(int argc, char *argv[]) {
-	Mat image = imread(argv[1]);
-
-	namedWindow("window");
-	imshow("window", image);
-
-	waitKey();
-}
-
-
-/*
-int main(int argc, char *argv[]) {
 	ColorSegment segment;
 	Mat image;
 
@@ -68,7 +57,6 @@ int main(int argc, char *argv[]) {
 	//segment.TestThresholdVideo();
 
 }
-*/
 
 
 
