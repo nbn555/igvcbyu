@@ -4,12 +4,12 @@
 *Main Goals*
 
   * Jan. 25  -- Navigate within Solid Lanes
-  * 
 
 
-= Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+Weekly Assignments: Jan. 13
+Eric - Reconstruct Robot
+Karl - Create Mount for Camera and place on Robot
+Thomas - Working Wireless Control
+Phil - Camera recognition of lines
+Eldon and Justin - MRPT Camera and Integrating with Maps
