@@ -6,6 +6,7 @@
 CPP_SRCS += \
 ../src/Compass.cpp \
 ../src/GPS.cpp \
+../src/MotorCommandInterface.cpp \
 ../src/MotorController.cpp \
 ../src/PoseEstimator.cpp \
 ../src/WaypointPlanner.cpp 
@@ -13,6 +14,7 @@ CPP_SRCS += \
 OBJS += \
 ./src/Compass.o \
 ./src/GPS.o \
+./src/MotorCommandInterface.o \
 ./src/MotorController.o \
 ./src/PoseEstimator.o \
 ./src/WaypointPlanner.o 
@@ -20,6 +22,7 @@ OBJS += \
 CPP_DEPS += \
 ./src/Compass.d \
 ./src/GPS.d \
+./src/MotorCommandInterface.d \
 ./src/MotorController.d \
 ./src/PoseEstimator.d \
 ./src/WaypointPlanner.d 
