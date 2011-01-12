@@ -8,6 +8,8 @@
 #ifndef MOTORCOMMANDS_H_
 #define MOTORCOMMANDS_H_
 
+#include "MotorController.h"
+
 class MotorCommands {
 public:
 	MotorCommands();

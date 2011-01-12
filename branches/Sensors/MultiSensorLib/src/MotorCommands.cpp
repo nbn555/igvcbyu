@@ -6,17 +6,16 @@
  */
 
 #include "MotorCommands.h"
-#include "MotorController.h"
 
 MotorCommands::MotorCommands() {
 	linearConst=1;
 	angConst=.5;
 }
 
-bool Go(float linear, float angular){
+bool MotorCommands::Go(float linear, float angular){
 	int rmp1= linearConst*linear + angConst*angular;
 	int rmp2= linearConst*linear - angConst*angular;
-	if(!(motor.setSpeed(1, rmp1)&&motor.setSpeed(2, rmp2)))
+	if(!(motor.setSpeed(MotorController::Channel1, rmp1)&&motor.setSpeed(MotorController::Channel2, rmp2)))
 		return false;
 	motor.doProcess();
 	return true;
