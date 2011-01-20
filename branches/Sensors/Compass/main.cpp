@@ -6,10 +6,15 @@
  */
 
 #include <iostream>
+#include <stdlib.h>
 
 #include <mrpt/utils/CConfigFile.h>
 
 #include "Compass.h"
+#include "MotorController.h"
+#include "JoystickCommand.h"
+
+#include <mrpt/hwdrivers/CSerialPort.h>
 
 using namespace mrpt::utils;
 using namespace std;
