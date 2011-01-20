@@ -95,6 +95,16 @@ public:
 	 */
 	bool setTime( int hours, int minutes, int seconds );
 
+	/**
+	 * getMotorLimits - returns the maximum rpms for the motors
+	 * @param m1Max - a reference to where to put the motor 1 max
+	 * @param m2Max - a reference to where to put the motor 2 max
+	 * @param m1Min - a reference to where to put the motor 1 min
+	 * @param m2Min - a reference to where to put the motor 2 min
+	 * @returns true
+	 */
+	bool getMotorLimits( int & m1Max, int & m2Max, int & m1Min, int & m2Min );
+
 private:
 	mrpt::hwdrivers::CSerialPort serialPort;//! the serial port to communicate to the motor controller
 	bool echoEnabled;						//! true if the motor controller is set to echo serial commands

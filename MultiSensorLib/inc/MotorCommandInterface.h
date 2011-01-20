@@ -12,10 +12,16 @@
 
 class MotorCommandInterface {
 public:
-	MotorCommandInterface();
+	MotorCommandInterface( MotorController * motorPtr );
+
+	bool setVelocity( double linearVelocity, double angularVelocity );
+	virtual void doProcess() = 0;
+
 	virtual ~MotorCommandInterface();
 protected:
-	//MotorController motor;
+	MotorController * motorPtr;
+	double linearVelocity;
+	double angularVelocity;
 };
 
 #endif /* MOTORCOMMANDINTERFACE_H_ */
