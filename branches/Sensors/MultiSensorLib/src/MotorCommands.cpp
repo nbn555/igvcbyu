@@ -7,7 +7,7 @@
 
 #include "MotorCommands.h"
 
-MotorCommands::MotorCommands() {
+MotorCommands::MotorCommands( MotorController * mP ) : MotorCommandInterface(mP) {
 	linearConst=1;
 	angConst=.5;
 }
