@@ -11,10 +11,11 @@ MotorCommandInterface::MotorCommandInterface( MotorController * mP ): motorPtr(m
 
 }
 
+MotorCommandInterface::~MotorCommandInterface() {
+}
+
 bool MotorCommandInterface::setVelocity( double linearVelocity, double angularVelocity ) {
 	this->linearVelocity = linearVelocity;
 	this->angularVelocity = angularVelocity;
 	return true;
 }
-
-MotorCommandInterface::~MotorCommandInterface() { }

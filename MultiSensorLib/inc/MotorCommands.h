@@ -8,11 +8,11 @@
 #ifndef MOTORCOMMANDS_H_
 #define MOTORCOMMANDS_H_
 
-#include "MotorController.h"
+#include "MotorCommandInterface.h"
 
-class MotorCommands {
+class MotorCommands: public MotorCommandInterface {
 public:
-	MotorCommands();
+	MotorCommands( MotorController * mP );
 	virtual ~MotorCommands();
 
 
