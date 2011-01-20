@@ -25,17 +25,6 @@ MotorController::MotorController( string portName, bool enableEcho, int motor1Ma
 	this->serialPort.open(portName);
 	this->serialPort.setConfig(115200, 0, 8, 1, false);//Non configurable port setting see the roboteq manual
 
-/*	CSerialPort port;
-	port.open("/dev/ttyUSB0");
-	port.setConfig(115200,0,8,1,false);
-
-	while(1) {
-
-		port.Write("!M 300 300\n\r",12);
-
-	}
-*/
-
 	if(echoEnabled) {
 		this->enableSerialEcho(); //enable the serial to echo the commands back used for error checking
 	}else {
