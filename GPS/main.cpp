@@ -28,7 +28,8 @@ using namespace mrpt::hwdrivers;
 int main() {
 
 	GPS gps;
-	gps.setSerialPortName ( "ttyS0" );
+	//gps.setSerialPortName ( "ttyS0" );
+	gps.setSerialPortName ( "ttyUSB0" ); // for use of usb to serial on laptop
 	CConfigFile config("GPS.ini");
 	gps.loadConfig(config, "GPS");
 	gps.initConfig(config, "GPS");
@@ -36,22 +37,28 @@ int main() {
 	gps.initialize();
 
 	cout << gps.isGPS_connected() << endl;
-
+while(1) {
 	CGenericSensor::TListObservations				lstObs;
 	CGenericSensor::TListObservations::iterator 	itObs;
-
+	cout << "here i am" << endl;
 	//prime the pump with the first gps observation
 	while(!lstObs.size()) {
+	//while(1) {
 		gps.doProcess();
-		mrpt::system::sleep(500);
+		mrpt::system::sleep(1000);
 		gps.getObservations(lstObs);
+		//CObservationGPS().dumpToConsole();
 	}
+		//CObservationGPS(((CObservationGPS)(lstObs.begin()))).dumpToConsole();
 
-	CObservationGPSPtr gpsData=CObservationGPSPtr(lstObs.begin()->second);
+
+	CObservationGPSPtr gpsData = CObservationGPSPtr(lstObs.begin()->second);
 
 	cout << (int)gpsData->GGA_datum.fix_quality << endl;
 	cout << gpsData->RMC_datum.validity_char << endl;
+
 	CPoint2D curPos;
+
 	if(gps.usesGpgga() && 2 == gpsData->GGA_datum.fix_quality ) {
 		curPos.m_coords[0] = gpsData->GGA_datum.latitude_degrees;
 		curPos.m_coords[1] = gpsData->GGA_datum.longitude_degrees;
@@ -61,7 +68,12 @@ int main() {
 	} else {
 		cerr << "Invalid GPS data" << endl;
 	}
+	gpsData->dumpToConsole();
 
+	gps.doProcess();
+	}
+
+/*
 	cout << "Solving tsp " << endl;
 	TSPNavigation solver( curPos.m_coords[0], curPos.m_coords[1] );
 	solver.loadPoints("gpsWeighpoints_raw.txt");
@@ -127,6 +139,6 @@ int main() {
 			lstObs.clear();
 		}
 	}
-
+*/
 	return 0;
 }
