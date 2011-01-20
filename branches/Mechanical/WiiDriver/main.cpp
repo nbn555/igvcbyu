@@ -12,6 +12,7 @@
 
 #include "MotorController.h"
 #include "JoystickCommand.h"
+#include "MotorCommand.h"
 
 #include <mrpt/hwdrivers/CSerialPort.h>
 
@@ -68,14 +69,16 @@ using namespace std;
 int main( int argc, char** argv ) {
 
 	MotorController motor("/dev/ttyUSB0",true);
-	JoystickCommand js(&motor);
+	MotorCommandInterface * mci = new JoystickCommand(&motor);
 
+	mci->setVelocity(500,500);
 	while(1) {
 
-		js.doProcess();
+		mci->doProcess();
 		motor.doProcess();
 
 	}
 
+	delete mci;
 	return 0;
 }
