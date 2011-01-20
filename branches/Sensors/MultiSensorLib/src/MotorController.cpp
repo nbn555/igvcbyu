@@ -13,14 +13,28 @@
 #include <MotorController.h>
 
 using namespace std;
+using namespace mrpt;
+using namespace mrpt::hwdrivers;
 
 MotorController::MotorController( string portName, bool enableEcho, int motor1Max, int motor2Max, int motor1Min, int motor2Min ):
-		serialPort(portName), echoEnabled(enableEcho),
+		echoEnabled(enableEcho),
 		motor1Speed(0), motor2Speed(0),
 		motor1SpeedMax(motor1Max), motor2SpeedMax(motor2Max),
 		motor1SpeedMin(motor1Min), motor2SpeedMin(motor2Min)
 {
+	this->serialPort.open(portName);
 	this->serialPort.setConfig(115200, 0, 8, 1, false);//Non configurable port setting see the roboteq manual
+
+/*	CSerialPort port;
+	port.open("/dev/ttyUSB0");
+	port.setConfig(115200,0,8,1,false);
+
+	while(1) {
+
+		port.Write("!M 300 300\n\r",12);
+
+	}
+*/
 
 	if(echoEnabled) {
 		this->enableSerialEcho(); //enable the serial to echo the commands back used for error checking
@@ -107,6 +121,14 @@ bool MotorController::setTime( int hours, int minutes, int seconds) {
 	return this->sendCommand(stream.str());
 }
 
+bool MotorController::getMotorLimits( int & m1Max, int & m2Max, int & m1Min, int & m2Min ) {
+	m1Max = this->motor1SpeedMax;
+	m2Max = this->motor2SpeedMax;
+	m1Min = this->motor1SpeedMin;
+	m2Min = this->motor2SpeedMin;
+	return true;
+}
+
 void MotorController::doProcess() {
 		stringstream parser;
 		parser << "!M " << this->motor1Speed << " " << this->motor2Speed << "\n\r";
@@ -126,6 +148,7 @@ bool MotorController::assertValidVoltage() {
 bool MotorController::sendCommand( std::string command ) {
 	bool rval = false;
 	if( this->serialPort.isOpen() ) {
+		cout << "Command" << command.c_str() << endl;
 		this->serialPort.Write(command.c_str(), command.length());
 	}
 	if( this->echoEnabled ) {

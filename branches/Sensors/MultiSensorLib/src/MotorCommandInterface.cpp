@@ -7,11 +7,14 @@
 
 #include "MotorCommandInterface.h"
 
-MotorCommandInterface::MotorCommandInterface() {
-	// TODO Auto-generated constructor stub
+MotorCommandInterface::MotorCommandInterface( MotorController * mP ): motorPtr(mP) {
 
 }
 
-MotorCommandInterface::~MotorCommandInterface() {
-	// TODO Auto-generated destructor stub
+bool MotorCommandInterface::setVelocity( double linearVelocity, double angularVelocity ) {
+	this->linearVelocity = linearVelocity;
+	this->angularVelocity = angularVelocity;
+	return true;
 }
+
+MotorCommandInterface::~MotorCommandInterface() { }
