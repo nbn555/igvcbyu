@@ -34,6 +34,14 @@ using namespace std;
  *
  * Make sure permissions for /dev/uinput are 666 if not run
  * sudo chmod 666 /dev/uinput
+ * install wminput stuff with for ubuntu
+ * sudo apt-get install wminput
+ * for fedora
+ * sudo yum install wminput
+ * install joystick drivers for ubuntu
+ * sudo apt-get install joystick
+ * for fedora
+ * sudo yum install joystick
  * check the default config file is the gamepad file by typing
  * ls -lah /etc/cwiid/wminput
  * you should see something like "default -> gamepad"
@@ -42,6 +50,13 @@ using namespace std;
  * sudo ln -s gamepad default
  *
  * make sure the config file has the following
+ * #Classic.Dpad.X = ABS_X
+ * #Classic.Dpad.Y = ABS_Y
+ * Classic.LStick.X = ABS_X
+ * Classic.LStick.Y = ABS_Y
+ * Classic.RStick.X = ABS_HAT1X
+ * Classic.RStick.Y = ABS_HAT1Y
+ *
  * then run the wminput command
  * wminput
  * then press buttons 1 and 2 on the wiimote
