@@ -11,6 +11,9 @@
 #include "GPS.h"
 #include "MotorCommand.h"
 #include "PoseEstimator.h"
+#include <mrpt/hwdrivers/CCameraSensor.h>
+
+using namespace mrpt::hwdrivers;
 
 class YclopsReactiveNavInterface: CReactiveInterfaceImplementation {
 private:
@@ -18,6 +21,9 @@ private:
 	Compass& compass;
 	MotorCommand& motor;
 	AbstractPoseEstimator& poseEst;
+	mrpt::hwdrivers::CCameraSensor& camera;
+	CPose3D& robotPose;
+
 	float curV;
 	float curW;
 public:
