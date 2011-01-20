@@ -45,7 +45,8 @@ main.d main.o: ../main.cpp \
  /home/tallred3/ecen493/YClopsLib/inc/JoystickCommand.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CJoystick.h \
  /home/tallred3/ecen493/YClopsLib/inc/MotorCommandInterface.h \
- /home/tallred3/ecen493/YClopsLib/inc/MotorController.h
+ /home/tallred3/ecen493/YClopsLib/inc/MotorController.h \
+ /home/tallred3/ecen493/YClopsLib/inc/MotorCommand.h
 
 /usr/include/mrpt/base/include/mrpt/utils/CConfigFile.h:
 
@@ -140,3 +141,5 @@ main.d main.o: ../main.cpp \
 /home/tallred3/ecen493/YClopsLib/inc/MotorCommandInterface.h:
 
 /home/tallred3/ecen493/YClopsLib/inc/MotorController.h:
+
+/home/tallred3/ecen493/YClopsLib/inc/MotorCommand.h:
