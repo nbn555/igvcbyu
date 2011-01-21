@@ -1,8 +1,7 @@
-/*
- * AbstractNavigationInterface.h
- *
- *  Created on: Dec 27, 2010
- *      Author: tallred3
+/**
+ * @brief AbstractNavigationInterface.h - This file defines the classes relating to path planning
+ * @date Dec 27, 2010
+ * @author Thomas Eldon Allred
  */
 
 #ifndef WAYPOINTPLANNER_H_
@@ -12,13 +11,25 @@
 #include <vector>
 #include <mrpt/poses/CPoint2D.h>
 
+/**
+ * @brief This class is an abstract interface for path planning for the robot
+ */
 class AbstractNavigationInterface {
 public:
 
-	static const int LAT = 0;
-	static const int LON = 1;
+	static const int LAT = 0; //!Index for the Latitude in a CPoint2D
+	static const int LON = 1; //!Index for the Longitude in a CPoint2D
 
+	/**
+	 * Abstract Navigation class constructor
+	 * @param lat - representing the initial latitude
+	 * @param lon - representing the initial longitude
+	 */
 	AbstractNavigationInterface( double lat, double lon );
+
+	/**
+	 * Class destructor
+	 */
 	virtual ~AbstractNavigationInterface();
 
 	/**
@@ -49,11 +60,14 @@ public:
 	static double calcBearing( double lat1, double lon1, double lat2, double lon2 );
 
 protected:
-	std::vector<mrpt::poses::CPoint2D> toVisit;
-	std::vector<mrpt::poses::CPoint2D> visited;
+	std::vector<mrpt::poses::CPoint2D> toVisit; //! Vector of points that haven't been visited by the planning.
+	std::vector<mrpt::poses::CPoint2D> visited; //! Vector of points that have been ordered.
 
 };
 
+/**
+ * SequentialNavigation
+ */
 class SequentialNavigation: public AbstractNavigationInterface {
 public:
 	SequentialNavigation( double lat, double lon );
