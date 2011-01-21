@@ -68,7 +68,7 @@ using namespace std;
  */
 int main( int argc, char** argv ) {
 
-	MotorController motor("/dev/ttyUSB0",true);
+	MotorController motor(argv[1],true);
 	MotorCommandInterface * mci = new JoystickCommand(&motor);
 
 	mci->setVelocity(500,500);
