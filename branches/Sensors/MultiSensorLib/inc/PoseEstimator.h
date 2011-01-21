@@ -30,6 +30,7 @@ protected:
 };
 
 class NoFilterPoseEstimator: public AbstractPoseEstimator {
+	public:
 	NoFilterPoseEstimator();
 	virtual ~NoFilterPoseEstimator();
 
