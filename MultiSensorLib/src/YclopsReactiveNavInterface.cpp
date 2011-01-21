@@ -17,27 +17,29 @@ using namespace mrpt::hwdrivers;
 
 YclopsReactiveNavInterface::YclopsReactiveNavInterface(mrpt::hwdrivers::CConfigFileBase& configSource, string& motorControllerPort){
 	// TODO Auto-generated constructor stub
-/*		gps = *(new GPS());
-		gps.setSerialPortName ( "ttyS0" );
+		gps = new GPS();
+		gps->setSerialPortName ( "ttyS0" );
 		CConfigFile config("GPS.ini");
-		gps.loadConfig(config, "GPS");
-		gps.initConfig(config, "GPS");
+		gps->loadConfig(config, "GPS");
+		gps->initConfig(config, "GPS");
 
 
-	camera = *(new CCameraSensor());
+	camera = new CCameraSensor();
 	CConfigFile camconfig("camera.ini");
-	camera.loadConfig(camconfig,"CAMERA");
-	camera.initialize();
+	camera->loadConfig(camconfig,"CAMERA");
+	camera->initialize();
 
-	compass = *(new Compass());
-	compass.loadConfig(configSource,"COMPASS");
+	compass = new Compass();
+	compass->loadConfig(configSource,"COMPASS");
 
-	compass.initialize();
-	poseEst = new AbstractPoseEstimator();
+	compass->initialize();
+	poseEst = new NoFilterPoseEstimator();
 
-	motor = *(new MotorCommand(new MotorController(motorControllerPort)));
+	motor = new MotorCommand(new MotorController(motorControllerPort));
 
-*/
+	robotPose = new CPose3D();
+	robotPose->setFromValues(0,0,0,0,0,0);
+
 }
 
 YclopsReactiveNavInterface::~YclopsReactiveNavInterface() {
@@ -45,37 +47,37 @@ YclopsReactiveNavInterface::~YclopsReactiveNavInterface() {
 }
 bool YclopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &curPose, float &curV, float &curW)
 {
-/*	CGenericSensor::TListObservations	lstObs;
+	CGenericSensor::TListObservations	lstObs;
 	CGenericSensor::TListObservations::iterator 	itObs;
-	gps.doProcess();
-	compass.doProcess();
-	gps.getObservations(lstObs);
+	gps->doProcess();
+	compass->doProcess();
+	gps->getObservations(lstObs);
 	itObs = lstObs.begin();
 	CObservationGPSPtr gpsData= CObservationGPSPtr(lstObs.begin()->second);
 
-	poseEst.update(gpsData,compass.getYaw(), compass.getPitch(), compass.getRoll());
+	poseEst->update(gpsData,compass->getYaw(), compass->getPitch(), compass->getRoll());
 	mrpt::poses::CPose3D thirdDim = mrpt::poses::CPose3D(curPose);
-	this->poseEst.getPose(thirdDim);
-	this->robotPose = *(new CPose3D(thirdDim));
+	this->poseEst->getPose(thirdDim);
+	this->robotPose = new CPose3D(thirdDim);
 	this->curV = curV;
-	this->curW = curW;*/
+	this->curW = curW;
 	return true;
 }
 bool YclopsReactiveNavInterface::changeSpeeds( float v, float w )
 	{
 	//	robotSim.movementCommand(v,w);
-	/*	curV = v;
+		curV = v;
 		curW = w;
-		return motor.Go(v,w);
-		*/
+		return motor->Go(v,w);
+
 	return false;
 	}
 bool YclopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap 		&obstacles )
 	{
-	/*	CGenericSensor::TListObservations lstObs;
+		CGenericSensor::TListObservations lstObs;
 
-		camera.doProcess();
-		camera.getObservations(lstObs);
+		camera->doProcess();
+		camera->getObservations(lstObs);
 
 		//insert code to get lidar observation into lstObs
 
@@ -83,9 +85,11 @@ bool YclopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap 		
 		CGenericSensor::TListObservations::iterator done = lstObs.end();
 		obstacles.clear();
 		while( itObs != done ) {
-		  obstacles.insertObservation(*itObs, robotPose);
+			CObservationPtr observ = CObservationPtr(itObs->second);
+		  obstacles.insertObservationPtr(observ, &(*robotPose));
+
 		  ++itObs;
 		}
-*/
+
 		return true;
 	}
