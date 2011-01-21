@@ -60,7 +60,8 @@ bool MotorController::setSpeed( MotorChannel channel, int value ) {
 		}
 
 
-		if( this->assertValidMotorRange(motor2SpeedMax, motor2SpeedMin, value) ) {
+		//Need to add rval in case motor1 speed isn't in a valid range but motor 2 is
+		if( this->assertValidMotorRange(motor2SpeedMax, motor2SpeedMin, value) && rval ) {
 			this->motor2Speed = value;
 			rval = true;
 		}

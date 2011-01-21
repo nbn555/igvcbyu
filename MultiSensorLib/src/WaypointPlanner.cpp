@@ -106,7 +106,7 @@ std::vector<mrpt::poses::CPoint2D> TSPNavigation::solve() {
 void TSPNavigation::nieveTSPSolution( std::vector<CPoint2D> & toVisit, std::vector<CPoint2D> & visited ) {
 
 	while( toVisit.size() > 0 ) {
-		double shortestDistance = 10000000000000;//just a really big number
+		double shortestDistance = 10000000000000.0;//just a really big number
 		int closestIndex = 0;
 		for( unsigned index = 0; index < toVisit.size(); ++index ) {
 			double dist = haversineDistance( toVisit[index].m_coords[LAT], toVisit[index].m_coords[LON], visited.back().m_coords[LAT], visited.back().m_coords[LON] );
