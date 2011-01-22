@@ -25,6 +25,67 @@ using namespace mrpt::slam;
 using namespace mrpt::system;
 using namespace mrpt::hwdrivers;
 
+CObservationGPSPtr gpsData;
+
+/*
+ * List of funcitons.  Need to be incorporated into a GPS class
+ */
+
+/*
+ * code copied from waypointplanner.h out of mrpt database
+ */
+double HaverSineDistance( double lat1, double lon1, double lat2, double lon2 ) {
+	const double EARTH_RADIUS_AVERAGE = 6371009;//average earth radius in meters
+
+	double deltalat = lat2 - lat1;
+	double deltalon = lon2 - lon1;
+
+	//convert from degree to radian
+	deltalat *= M_PI/180.0;
+	deltalon *= M_PI/180.0;
+	lat1 *= M_PI/180.0;
+	lat2 *= M_PI/180.0;
+
+	//nasty spherical trig stuff
+	double a = pow( sin( deltalat / 2 ), 2 ) +
+			cos(lat1) * cos(lat2) * pow( sin( deltalon / 2 ), 2 );
+	double c = 2 * atan2( sqrt(a), sqrt(1-a) );
+
+	return EARTH_RADIUS_AVERAGE * c;
+}
+double GetGpsSpeed() {
+	const double knotToMph = 0.868976242;
+	if (gpsData->has_RMC_datum)
+		return (gpsData->RMC_datum.speed_knots * knotToMph);
+
+		return 0.0;
+}
+
+double GetGpsDirection() {
+	if (gpsData->has_RMC_datum)
+		return gpsData->RMC_datum.direction_degrees;
+
+	return 0.0;
+}
+
+double GetGpsLat() {
+	if (gpsData->has_GGA_datum)
+		return gpsData->GGA_datum.latitude_degrees;
+
+	return 0.0;
+}
+
+double GetGpsLon() {
+	if (gpsData->has_GGA_datum)
+		return gpsData->GGA_datum.longitude_degrees;
+
+	return 0.0;
+}
+
+double DistanceToWaypoint (double lon, double lat) {
+	return HaverSineDistance(lon, lat, gpsData->GGA_datum.longitude_degrees, gpsData->GGA_datum.latitude_degrees);
+}
+
 int main() {
 
 	GPS gps;
@@ -40,20 +101,19 @@ int main() {
 while(1) {
 	CGenericSensor::TListObservations				lstObs;
 	CGenericSensor::TListObservations::iterator 	itObs;
-	cout << "here i am" << endl;
+
 	//prime the pump with the first gps observation
 	while(!lstObs.size()) {
-	//while(1) {
 		gps.doProcess();
-		mrpt::system::sleep(1000);
+		mrpt::system::sleep(500);
 		gps.getObservations(lstObs);
-		//CObservationGPS().dumpToConsole();
 	}
 		//CObservationGPS(((CObservationGPS)(lstObs.begin()))).dumpToConsole();
-
-
-	CObservationGPSPtr gpsData = CObservationGPSPtr(lstObs.begin()->second);
-
+	gpsData = CObservationGPSPtr(lstObs.begin()->second);
+	gpsData->dumpToConsole();
+	//TSPNavigation solver(bla);
+}
+/*
 	cout << (int)gpsData->GGA_datum.fix_quality << endl;
 	cout << gpsData->RMC_datum.validity_char << endl;
 
@@ -68,14 +128,18 @@ while(1) {
 	} else {
 		cerr << "Invalid GPS data" << endl;
 	}
-	gpsData->dumpToConsole();
 
+	//CPoint2D  & curPosPass = curPos;
+	//gpsData->dumpToConsole();
+	//cout << "here i am" << endl;
 	gps.doProcess();
-	}
 
-/*
+	double lat = curPos.m_coords[0];
+	double lon = curPos.m_coords[1];
+
 	cout << "Solving tsp " << endl;
-	TSPNavigation solver( curPos.m_coords[0], curPos.m_coords[1] );
+	TSPNavigation solver( lat, lon );
+	//TSPNavigation solver( const curPos );
 	solver.loadPoints("gpsWeighpoints_raw.txt");
 	vector<CPoint2D> visitOrder = solver.solve();
 	cout.precision(10);
@@ -139,6 +203,6 @@ while(1) {
 			lstObs.clear();
 		}
 	}
-*/
+} */
 	return 0;
 }
