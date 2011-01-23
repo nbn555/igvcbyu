@@ -1,8 +1,7 @@
-/*
- * AbstractPoseEstimator.h
- *
- *  Created on: Dec 27, 2010
- *      Author: tallred3
+/**
+ * @file AbstractPoseEstimator.h
+ * @date Dec 27, 2010
+ * @author T. Eldon Allred
  */
 
 #ifndef POSEESTIMATOR_H_

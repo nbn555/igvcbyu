@@ -30,20 +30,6 @@ public:
 	};
 
 	/**
-	 * Set of possible status states in the motor controller
-	 */
-	enum MotorControllerStatus{
-		overheat,
-		overvoltage,
-		undervoltage,
-		short_circuit,
-		emergency_stop,
-		sepex_excitation_fault,
-		EEPROM_fault,
-		configuration_fault
-	};
-
-	/**
 	 * MotorController constructor
 	 * @param portName - the serial port over which the commands will be sent
 	 * @param enableEcho - set to true to check error for errors from the motor controller
@@ -61,73 +47,32 @@ public:
 	virtual ~MotorController() { };
 
 	/**
-	 * setSpeed - sets the speed for the motor control channel
-	 * @param channel - the channel to change the speed { Channel1, Channel2, BothChannels }
-	 * @param value - the speed at which to set the channel
-	 * @return true upon success
-	 */
-	bool setSpeed( MotorChannel channel, int value );
-
-	/**
-	 * setEncoderCounter - sets the wheel encoder count to a specific value
-	 * @param channel - the channel of the wheel encoder count to set
-	 * @param value - the value to set the encoder count
-	 * @return true upon success
-	 */
-	bool setEncoderCounter( MotorChannel channel, int value = 0 );
-
-	/**
-	 * getEncoderSpeed - returns the speed of the encoder for the given channel
-	 * @param channel - the motor channel to query
-	 * @param speed - the speed of the encoder
-	 * @returns - true upon success
-	 */
-	bool getEncoderSpeed( MotorChannel channel, int & speed );
-
-	/**
-	 * setEncoderPPR - sets the pulses per revolution for the encoder on the motor controller
-	 * @param ppr - the number of pulses per revolution on the wheel encoder
-	 * @returns true upon success
-	 */
-	bool setEncoderPPR( int ppr );
-
-	/**
-	 * setSerialWatchDogTimer - will set the serial watchdog timer to be equal
-	 * to the parameter where it is measured in ms
-	 * @param time - the length of the watchdog timer as measured in ms
-	 * @return true upon success
-	 */
-	bool setSerialWatchDogTimer( int time = 1000 );
-
-	/**
-	 * getRelativeEncoderCount - gets the encoder count since the last time this command was used
-	 * @param ch1 - the encoder count for the first channel
-	 * @param ch2 - the encoder count for the second channel
-	 * @return true if successful
-	 */
-	bool getRelativeEncoderCount( int & ch1, int & ch2 );
-
-	/**
-	 * getTemperature - gets the temperature of the heatsinks of the motor controller
-	 * @param ch1 - the temperature in degrees C for the first channel
-	 * @param ch2 - the temperature in degrees C for the second channel
-	 * @return true if successful
-	 */
-	bool getTemperature( int & ch1, int & ch2 );
-
-	/**
-	 * getVoltages - gets the voltages from the battery, internal motor driver
-	 * and the 5 volt usb out.
-	 * @param driverVolt - the motor driver output voltages as measured in decivolts
-	 * @param batteryVolt - the battery voltage as measured in decivolts
-	 * @param v5out - the voltage of the usb as measured in millivolts
-	 * @return true upon success.
-	 */
-	bool getVoltages( int & driverVolt, int & batteryVolt, int & v5out )
-	/**
 	 * doProcess - sends the current speed command to the motor controller
 	 */
 	void doProcess();
+
+	//////////////////////////////////////////////////////////////////
+	//Motor Controller Runtime commands
+	//////////////////////////////////////////////////////////////////
+
+	/**
+	 * SetAcceleration - sets a limit to the acceleration for the motor controller
+	 * @param channel - the motor channel for which to set the acceleration
+	 * @param acceleration - the number of rpms per second of acceleration precise
+	 * enough to one tenth of an rpm
+	 * @return true upon success
+	 */
+	bool SetAcceleration(MotorChannel channel, double acceleration);
+
+	/**
+	 * SetDeceleration - sets a limit for how fast the motor controller will slow down
+	 * a channel
+	 * @param channel - the motor channel for which to set the acceleration
+	 * @param deceleration - the number of rpms per second of deceleration precise to one
+	 * tenth of an rpm
+	 * @return true upon success
+	 */
+	bool SetDeceleration(MotorChannel channel, double deceration);
 
 	/**
 	 * emergencyStop - sends the emergency stop command to the motor controller
@@ -144,16 +89,128 @@ public:
 	bool clearEmergencyStop();
 
 	/**
+	 * setSpeed - sets the speed for the motor control channel
+	 * @param channel - the channel to change the speed { Channel1, Channel2, BothChannels }
+	 * @param value - the speed at which to set the channel
+	 * @return true upon success
+	 */
+	bool setSpeed( MotorChannel channel, int value );
+
+	/**
+	 * setEncoderCounter - sets the wheel encoder count to a specific value
+	 * @param channel - the channel of the wheel encoder count to set
+	 * @param value - the value to set the encoder count
+	 * @return true upon success
+	 */
+	bool setEncoderCounter( MotorChannel channel, int value = 0 );
+
+	//////////////////////////////////////////////////////////////////
+	//Motor Controller Runtime queries
+	//////////////////////////////////////////////////////////////////
+
+	/**
+	 * getMotorAmps - gets the amps flowing through the motors
+	 * @param motor1Amps - the number of deciamps flowing through the first channel motor
+	 * @param motor2Amps - the number of deciamps flowing through the second channel motor
+	 * @return true upon success
+	 */
+	bool getMotorAmps( int & motor1Amps, int & motor2Amps );
+
+	/**
+	 * getAnalogInputs - gets the number of millivolts on the given analog input pin
+	 * @param input - the input pin to query
+	 * @param value - reference to the number of millivolts on the analog input pin
+	 * @return true upon success
+	 */
+	bool getAnalogInputs( int input, int & value );
+
+	/**
+	 * getBatteryAmps - gets the number of deciamps flowing from the batteries
+	 * @param motor1Amps - the number of deciamps flowing into the first motor channel
+	 * @param motor2Amps - the number of deciamps flowing into the second motor channel
+	 * @return true upon success
+	 */
+	bool getBatteryAmps( int & motor1Amps, int & motor2Amps );
+
+	/**
+	 * getAbsoluteEncoderCount - gets the absolute number of encoder counts as a 32bit signed number
+	 * @param channel1Count - reference to the encoder count for channel 1
+	 * @param channel2Count - reference to the encoder count for channel 2
+	 * @return true upon success
+	 */
+	bool getAbsoluteEncoderCount( int & ch1, int & ch2 );
+
+	/**
+	 * getRelativeEncoderCount - gets the encoder count since the last time this command was used
+	 * @param ch1 - the encoder count for the first channel
+	 * @param ch2 - the encoder count for the second channel
+	 * @return true if successful
+	 */
+	bool getRelativeEncoderCount( int & ch1, int & ch2 );
+
+	/**
+	 * getEncoderSpeed - returns the speed of the encoder for the given channel
+	 * @param channel - the motor channel to query
+	 * @param speed - the speed of the encoder in RPMs
+	 * @returns - true upon success
+	 * S
+	 */
+	bool getEncoderSpeed( MotorChannel channel, int & speed );
+
+	/**
+	 * getTemperature - gets the temperature of the heatsinks of the motor controller
+	 * @param ch1 - the temperature in degrees C for the first channel
+	 * @param ch2 - the temperature in degrees C for the second channel
+	 * @return true if successful
+	 */
+	bool getTemperature( int & ch1, int & ch2 );
+
+	/**
+	 * getTime - returns the time of the motor controller
+	 * @param hours - reference to the number of hours
+	 * @param minutes - reference to the number of minutes
+	 * @param seconds - reference to the number of seconds
+	 * @return true upon success
+	 */
+	bool getTime( int & hours, int & minutes, int & seconds );
+
+	/**
+	 * getVoltages - gets the voltages from the battery, internal motor driver
+	 * and the 5 volt usb out.
+	 * @param driverVolt - the motor driver output voltages as measured in decivolts
+	 * @param batteryVolt - the battery voltage as measured in decivolts
+	 * @param v5out - the voltage of the usb as measured in millivolts
+	 * @return true upon success.
+	 */
+	bool getVoltages( int & driverVolt, int & batteryVolt, int & v5out );
+
+	//////////////////////////////////////////////////////////////////
+	//Motor Controller Maintenance commands
+	//////////////////////////////////////////////////////////////////
+
+	/**
+	 * loadEEPROMSettings - loads setting set in the eeprom back into ram and activates the settings
+	 * @return true upon success
+	 */
+	bool loadEEPROMSettings();
+
+	/**
+	 * failSafeReset - power cycles the motor controller and resets
+	 * values to their default factory settings
+	 */
+	bool failSafeReset();
+
+	/**
+	 * saveConfigSettings - saves the current settings in ram to the EEPROM
+	 * @return true upon success
+	 */
+	bool saveConfigSettings();
+
+	/**
 	 * reset - power cycles the motor controller
 	 * @returns true upon successful transmission
 	 */
 	bool reset();
-
-	/**
-	 * failSafeReset - power cycles the motor controller and resets
-	 * values to thier default factory settings
-	 */
-	bool failSafeReset();
 
 	/**
 	 * setTime - sets the local time of the motor controller to the time in the parameters
@@ -163,6 +220,93 @@ public:
 	 * @returns true upon successful transmission
 	 */
 	bool setTime( int hours, int minutes, int seconds );
+
+
+	//////////////////////////////////////////////////////////////////
+	//Motor Controller Read/Set configuration commands
+	//////////////////////////////////////////////////////////////////
+
+	/**
+	 * SetCommandLinearity - This parameter is used for applying an exponential or a
+	 * logarithmic transformation on the command input, regardless of its source
+	 * (serial, pulse or analog). There are 3 exponential and 3 logarithmic choices.
+	 * Exponential correction make the commands change less at the beginning and
+	 * become stronger at the end of the command input range. The logarithmic
+	 * correction will have a stronger effect near the start and lesser effect near
+	 * the end. The linear selection causes no change to the input. A linearity
+	 * transform is also available for all analog and pulse inputs. Both can be
+	 * enabled although in most cases, it is best to use the Command Linearity
+	 * parameter for modifying command profiles.
+	 * 0 : linear (no change)
+	 * 1 : exp weak
+	 * 2 : exp medium
+	 * 3 : exp strong
+	 * 4 : log weak
+	 * 5 : log medium
+	 * 6 : log strong
+	 */
+	bool setCommandLinearity(int linearity );
+
+	/**
+	 * setCommandPriority - This parameter contains up to 3 variables and is used to set
+	 * which type of command in priority the controller will respond to and in which order.
+	 * The first item is the first priority, second – second priority, third – third
+	 * priority. Each priority item is then one of the three command modes: Serial,
+	 * Analog or RC Pulse.
+	 * 1 : Serial
+	 * 2 : RC
+	 * 3 : Analog
+	 * @param signal - the singal to set to the priority
+	 * @param priority - the priority level to be set for the signal
+	 * @return true upon success
+	 */
+	bool setCommandPriority( int signal, int priority );
+
+	/**
+	 * setSerialWatchDogTimer - will set the serial watchdog timer to be equal
+	 * to the parameter where it is measured in ms
+	 * @param time - the length of the watchdog timer as measured in ms
+	 * @return true upon success
+	 */
+	bool setSerialWatchDogTimer( int time = 1000 );
+
+	/**
+	 * setEncoderPPR - sets the pulses per revolution for the encoder on the motor controller
+	 * @param ppr - the number of pulses per revolution on the wheel encoder
+	 * @returns true upon success
+	 */
+	bool setEncoderPPR( int ppr );
+
+	/**
+	 * setOverVoltageLimit - sets the maximum voltage value for the power stage.  Higher voltages
+	 * will cause the motor controller to turn off and signal an overvoltage fault
+	 * @param limit - the upper limit of the power stage voltage measured in volts
+	 * @return true upon success
+	 */
+	bool setOverVoltageLimit( double limit );
+
+	/**
+	 * setUnderVoltageLimit - sets the minimum voltage value for the power stage.
+	 * Lower voltages will cause the motor controller to turn off and signal an undervoltage
+	 * fault.
+	 * @param limit - the lower limit of the power stage voltage measured in volts
+	 * @return true upon success
+	 */
+	bool setUnderVoltageLimit( double limit );
+
+	/**
+	 * setShortCircuitDetectionThreshold - Short Circuit Detection Threshold
+	 * This configuration parameter sets the threshold level for the short
+	 * circuit detection. There are 4 sensitivity levels from 0 to 3.
+	 * 0 : Very high sensitivity
+	 * 1 : Medium sensitivity
+	 * 2 : Low sensitivity
+	 * 3 : Short circuit protection disabled
+	 * Using a value of 3 will cause an error
+	 * @param value - the sensitivity of the short circuit detection threshold to be used
+	 * @return true upon success
+	 */
+	bool setShortCircuitDetectionThreshold( int value );
 
 	/**
 	 * getMotorLimits - returns the maximum rpms for the motors
@@ -184,8 +328,7 @@ private:
 	const int motor2SpeedMax;				//! The hard upper limit for the second channel motor speed
 	const int motor1SpeedMin;				//! The hard lower limit for the first channel motor speed (lower limit would be the reverse speed)
 	const int motor2SpeedMin;				//! The hard lower limit for the second channel motor speed
-	int faultFlag							//! The fault flag status for the motor controller
-	MotorControllerStatus status;			//! The status of the motor controller
+	int faultFlagVector;					//! The fault flag status for the motor controller
 
 	/**
 	 * assertValidMotorRange - checks the parameters if they are in a valid range
@@ -221,6 +364,24 @@ private:
 	/**
 	 * getFaultFlags returns the status of any faults that may occour in the motor controller
 	 */
-	void getFaultFlags();
+	bool getFaultFlags();
+
+	/**
+	 * getStatusFlags returns the status of the motor controller as a bit vector
+	 */
+	bool getStatusFlags();
+
+	/**
+	 * getControlUnitType - checks to see if the attached roboteq control unit is supported
+	 * @return true upon supported control unit
+	 */
+	bool getControlUnitType();
+
+	/**
+	 * clearBufferHistory - clears the command history buffer
+	 * @return true upon success
+	 */
+	bool clearBufferHistory();
 };
+
 #endif /* MOTORCONTROLLER_H_ */
