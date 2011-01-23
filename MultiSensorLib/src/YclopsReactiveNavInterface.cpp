@@ -1,13 +1,12 @@
-/*
- * YclopsReactiveNavInterface.cpp
- *
- *  Created on: Jan 20, 2011
- *      Author: igvcbyu
+/**
+ * @file YclopsReactiveNavInterface.cpp
+ * @date Jan 20, 2011
+ * @author igvcbyu
  */
 
 #include "YclopsReactiveNavInterface.h"
 #include "MotorController.h"
-#include <mrpt/slam.h>
+//#include <mrpt/slam.h>
 
 using namespace mrpt;
 using namespace mrpt::utils;
