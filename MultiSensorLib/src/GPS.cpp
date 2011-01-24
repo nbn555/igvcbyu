@@ -53,10 +53,12 @@ void GPS::initialize() {
 
 	if( this->isGprmcUsed ) {
 		cout << "Using gprmc" << endl;
-		if( "PocketMAX")
+		if( "PocketMAX" == this->vendor) {
 			inputStream << "$jasc,gprmc," << this->processRate << "\n\r";
-		else if( "Novatel" == this->vendor )
+		}
+		else if( "Novatel" == this->vendor ) {
 			inputStream << "log gprmc ontime " << this->processRate << "\n\r";
+		}
 		else
 			cerr << "Unsupported vendor" << endl;
 		myCom.Write(inputStream.str().c_str(),inputStream.str().length());//this will tell the gps to run the nmea rmc command once a second
