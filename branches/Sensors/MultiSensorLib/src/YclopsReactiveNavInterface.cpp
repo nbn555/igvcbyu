@@ -17,7 +17,7 @@ using namespace mrpt::hwdrivers;
 YclopsReactiveNavInterface::YclopsReactiveNavInterface(mrpt::hwdrivers::CConfigFileBase& configSource, string& motorControllerPort){
 	// TODO Auto-generated constructor stub
 		gps = new GPS();
-		gps->setSerialPortName ( "ttyUSB0" );
+	//	gps->setSerialPortName ( "ttyUSB0" );
 		CConfigFile config("GPS.ini");
 		gps->loadConfig(config, "GPS");
 		gps->initConfig(config, "GPS");
@@ -29,8 +29,9 @@ YclopsReactiveNavInterface::YclopsReactiveNavInterface(mrpt::hwdrivers::CConfigF
 	camera->initialize();
 
 	compass = new Compass();
-	compass->loadConfig(configSource,"COMPASS");
+	CConfigFile config( "Compass.ini" );
 
+	compass->loadConfig(config, "COMPASS" );
 	compass->initialize();
 	poseEst = new NoFilterPoseEstimator();
 
