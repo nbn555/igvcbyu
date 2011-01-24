@@ -62,7 +62,7 @@ public:
 	 * enough to one tenth of an rpm
 	 * @return true upon success
 	 */
-	bool SetAcceleration(MotorChannel channel, double acceleration);
+	bool setAcceleration(MotorChannel channel, double acceleration);
 
 	/**
 	 * SetDeceleration - sets a limit for how fast the motor controller will slow down
@@ -72,7 +72,7 @@ public:
 	 * tenth of an rpm
 	 * @return true upon success
 	 */
-	bool SetDeceleration(MotorChannel channel, double deceration);
+	bool setDeceleration(MotorChannel channel, double deceration);
 
 	/**
 	 * emergencyStop - sends the emergency stop command to the motor controller
@@ -110,11 +110,11 @@ public:
 
 	/**
 	 * getMotorAmps - gets the amps flowing through the motors
-	 * @param motor1Amps - the number of deciamps flowing through the first channel motor
-	 * @param motor2Amps - the number of deciamps flowing through the second channel motor
+	 * @param motor1Amps - the number of amps flowing through the first channel motor
+	 * @param motor2Amps - the number of amps flowing through the second channel motor
 	 * @return true upon success
 	 */
-	bool getMotorAmps( int & motor1Amps, int & motor2Amps );
+	bool getMotorAmps( double & motor1Amps, double & motor2Amps );
 
 	/**
 	 * getAnalogInputs - gets the number of millivolts on the given analog input pin
@@ -130,7 +130,7 @@ public:
 	 * @param motor2Amps - the number of deciamps flowing into the second motor channel
 	 * @return true upon success
 	 */
-	bool getBatteryAmps( int & motor1Amps, int & motor2Amps );
+	bool getBatteryAmps( double & motor1Amps, double & motor2Amps );
 
 	/**
 	 * getAbsoluteEncoderCount - gets the absolute number of encoder counts as a 32bit signed number
@@ -161,9 +161,10 @@ public:
 	 * getTemperature - gets the temperature of the heatsinks of the motor controller
 	 * @param ch1 - the temperature in degrees C for the first channel
 	 * @param ch2 - the temperature in degrees C for the second channel
+	 * @param ic  - the temperature in degrees C of the internal IC
 	 * @return true if successful
 	 */
-	bool getTemperature( int & ch1, int & ch2 );
+	bool getTemperature( int & ch1, int & ch2, int & ic );
 
 	/**
 	 * getTime - returns the time of the motor controller
@@ -177,12 +178,12 @@ public:
 	/**
 	 * getVoltages - gets the voltages from the battery, internal motor driver
 	 * and the 5 volt usb out.
-	 * @param driverVolt - the motor driver output voltages as measured in decivolts
-	 * @param batteryVolt - the battery voltage as measured in decivolts
-	 * @param v5out - the voltage of the usb as measured in millivolts
+	 * @param driverVolt - the motor driver output voltages as measured in volts
+	 * @param batteryVolt - the battery voltage as measured in volts
+	 * @param v5out - the voltage of the usb as measured in volts
 	 * @return true upon success.
 	 */
-	bool getVoltages( int & driverVolt, int & batteryVolt, int & v5out );
+	bool getVoltages( double & driverVolt, double & batteryVolt, double & v5out );
 
 	//////////////////////////////////////////////////////////////////
 	//Motor Controller Maintenance commands
@@ -202,6 +203,7 @@ public:
 
 	/**
 	 * saveConfigSettings - saves the current settings in ram to the EEPROM
+	 * DON'T Save while motors are running
 	 * @return true upon success
 	 */
 	bool saveConfigSettings();
@@ -382,6 +384,10 @@ private:
 	 * @return true upon success
 	 */
 	bool clearBufferHistory();
+
+	bool responseParserDual( int & t1, int & t2 );
+
+	bool responseParserTrio( int & t1, int & t2, int & t3 );
 };
 
 #endif /* MOTORCONTROLLER_H_ */

@@ -47,12 +47,12 @@ void MotorController::doProcess() {
 		this->motor2Speed = 0;
 }
 
-bool MotorController::SetAcceleration(MotorChannel channel, double acceleration) {
+bool MotorController::setAcceleration(MotorChannel channel, double acceleration) {
 	assert(false);//TODO implelment Set Acceleration
 	return false;
 }
 
-bool MotorController::SetDeceleration(MotorChannel channel, double deceration) {
+bool MotorController::setDeceleration(MotorChannel channel, double deceration) {
 	assert(false);//TODO implement Set Deceleration
 	return false;
 }
@@ -88,7 +88,7 @@ bool MotorController::setSpeed( MotorChannel channel, int value ) {
 		}
 
 
-		//Need to add rval in case motor1 speed isn't in a valid range but motor 2 is
+		//Needed to add rval in case motor1 speed isn't in a valid range but motor 2 is
 		if( this->assertValidMotorRange(motor2SpeedMax, motor2SpeedMin, value) && rval ) {
 			this->motor2Speed = value;
 			rval = true;
@@ -103,13 +103,44 @@ bool MotorController::setSpeed( MotorChannel channel, int value ) {
 }
 
 bool MotorController::setEncoderCounter( MotorChannel channel, int value ) {
-	assert(false);//TODO implement set Encoder Counter
-	return false;
+	bool rval = false;
+	stringstream parser;
+
+	switch(channel) {
+	case Channel1:
+		parser << "!C 1 " << value << '\r';
+		rval = true;
+		break;
+	case Channel2:
+		parser << "!C 2 " << value << '\r';
+		rval = true;
+		break;
+	case BothChannels:
+		parser << "!C 1 " << value << '\r' << "!C 2 " << value << '\r';
+		rval = true;
+		break;
+	default:
+		cerr << "Invalid motor channel for encoder set value" << endl;
+	}
+
+	this->serialPort.WriteBuffer(parser.str().c_str(),parser.str().length());
+
+	return rval;
 }
 
-bool MotorController::getMotorAmps( int & motor1Amps, int & motor2Amps ) {
-	assert(false);//TODO implement get Motor Amps
-	return false;
+bool MotorController::getMotorAmps( double & motor1Amps, double & motor2Amps ) {
+	string command = "?A\r";
+	this->serialPort.Write(command.c_str(),command.length());
+
+	int channel1;
+	int channel2;
+
+	this->responseParserDual(channel1, channel2);
+
+	motor1Amps = channel1/10; //The value returned is in deciamps
+	motor2Amps = channel2/10;
+
+	return true;
 }
 
 bool MotorController::getAnalogInputs( int input, int & value ) {
@@ -117,20 +148,27 @@ bool MotorController::getAnalogInputs( int input, int & value ) {
 	return false;
 }
 
-bool MotorController::getBatteryAmps( int & motor1Amps, int & motor2Amps ) {
-	assert(false);//TODO implement get Battery Amps
-	return false;
+bool MotorController::getBatteryAmps( double & motor1Amps, double & motor2Amps ) {
+	int channel1;
+	int channel2;
+
+	this->sendCommand("?BA\r");
+	bool rval = this->responseParserDual(channel1, channel2);
+
+	motor1Amps = channel1/10; //The value returned is in deciamps converting to amps
+	motor2Amps = channel2/10;
+
+	return rval;
 }
 
 bool MotorController::getAbsoluteEncoderCount( int & ch1, int & ch2 ) {
-	assert(false);//TODO implement getAbsoluteEncoderCount
-	return false;
+	this->sendCommand("?C\r");
+	return this->responseParserDual(ch1, ch2);
 }
 
 bool MotorController::getRelativeEncoderCount( int & ch1, int & ch2 ) {
-	this->sendCommand("?CR\n\r");//TODO getRelativeEncoderCount
-	assert(false);
-	return false;
+	this->sendCommand("?CR\n\r");
+	return this->responseParserDual(ch1,ch2);
 }
 
 bool MotorController::getEncoderSpeed( MotorChannel channel, int & speed ) {
@@ -138,29 +176,35 @@ bool MotorController::getEncoderSpeed( MotorChannel channel, int & speed ) {
 	return false;
 }
 
-bool MotorController::getTemperature( int & ch1, int & ch2 ) {
-	this->sendCommand("?T\n\r");//TODO
-	assert(false);
-	return false;
+bool MotorController::getTemperature( int & ch1, int & ch2, int & ic ) {
+	this->sendCommand("?T 1\r");				//Could be optimized to only send one string
+	return this->responseParserTrio(ic,ch1,ch2);
 }
 
 bool MotorController::getTime( int & hours, int & minutes, int & seconds ) {
-	assert(false);//TODO implement getTime
-	return false;
+	this->sendCommand("?TM\r");
+	return this->responseParserTrio(hours,minutes,seconds);
 }
 
-bool MotorController::getVoltages( int & driverVolt, int & batteryVolt, int & v5out ) {
-	assert(false);//TODO implement getVoltages
-	return false;
+bool MotorController::getVoltages( double & driverVolt, double & batteryVolt, double & v5out ) {
+	int dV;
+	int bV;
+	int v5;
+
+	this->sendCommand("?V\r");
+	bool rval = this->responseParserTrio(dV,bV,v5);
+	driverVolt = dV/10; //returned from motor controller in decivolts
+	batteryVolt = bV/10; //returned from motor controller in decivolts
+	v5out = v5/1000; //returned from motor controller in millivolts
+	return rval;
 }
 
 bool MotorController::loadEEPROMSettings() {
-	assert(false);//TODO implement loadEEPROMSettings
-	return false;
+	return this->sendCommand("%EELD\r");
 }
 
 bool MotorController::failSafeReset() {
-	assert(false);//TODO implement failSafeReset
+	//return this->sendCommand("%EERST 321654987\r");
 	return false;
 }
 
@@ -171,13 +215,13 @@ bool MotorController::saveConfigSettings() {
 
 bool MotorController::reset() {
 	stringstream stream;
-	stream << "%RESET " << MotorController::MOTOR_SECRET_KEY << "\n\r";
+	stream << "%RESET " << MotorController::MOTOR_SECRET_KEY << "\r";
 	return this->sendCommand(stream.str());
 }
 
 bool MotorController::setTime( int hours, int minutes, int seconds) {
 	stringstream stream;
-	stream << "%STIME " << hours << ":" << minutes << ":" << seconds << "\n\r";
+	stream << "%STIME " << hours << ":" << minutes << ":" << seconds << "\r";
 	return this->sendCommand(stream.str());
 }
 
@@ -257,6 +301,7 @@ void MotorController::disableSerialEcho() {
 
 bool MotorController::getFaultFlags() {
 	assert(false);//TODO getFaultFlags
+	return false;
 }
 
 bool MotorController::getStatusFlags() {
@@ -274,3 +319,31 @@ bool MotorController::clearBufferHistory() {
 	return false;
 }
 
+bool MotorController::responseParserDual( int & t1, int & t2 ) {
+	stringstream responseParser( this->serialPort.ReadString() );
+
+	while( '=' != responseParser.get() );
+
+	responseParser >> t1;
+	responseParser.get(); //Parse off the :
+	responseParser >> t2;
+
+	return true;
+
+}
+
+bool MotorController::responseParserTrio( int & t1, int & t2, int & t3 ) {
+
+	stringstream responseParser( this->serialPort.ReadString() );
+
+	while( '=' != responseParser.get() );
+
+	responseParser >> t1;
+	responseParser.get(); //Parse off the :
+	responseParser >> t2;
+	responseParser.get(); //Parse off the :
+	responseParser >> t3;
+
+	return true;
+
+}
