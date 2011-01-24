@@ -270,7 +270,7 @@ public:
 	 * @param time - the length of the watchdog timer as measured in ms
 	 * @return true upon success
 	 */
-	bool setSerialWatchDogTimer( int time = 1000 );
+	bool setSerialWatchDogTimer( int time );
 
 	/**
 	 * setEncoderPPR - sets the pulses per revolution for the encoder on the motor controller

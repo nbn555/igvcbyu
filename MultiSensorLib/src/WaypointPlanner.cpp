@@ -91,19 +91,20 @@ SequentialNavigation::SequentialNavigation( double lat, double lon ): AbstractNa
 
 SequentialNavigation::~SequentialNavigation() { }
 
-std::vector<mrpt::poses::CPoint2D> SequentialNavigation::solve(){
+mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t SequentialNavigation::solve(){
 	this->visited.insert(this->visited.end(), this->toVisit.begin(),this->toVisit.end());
 	return this->visited;
 }
 
 TSPNavigation::TSPNavigation( double lat, double lon ): AbstractNavigationInterface(lat, lon) { }
 
-std::vector<mrpt::poses::CPoint2D> TSPNavigation::solve() {
+mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t TSPNavigation::solve() {
 	TSPNavigation::nieveTSPSolution( this->toVisit, this->visited );
 	return this->visited;
 }
 
-void TSPNavigation::nieveTSPSolution( std::vector<CPoint2D> & toVisit, std::vector<CPoint2D> & visited ) {
+void TSPNavigation::nieveTSPSolution(  mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit,
+		 mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & visited ) {
 
 	while( toVisit.size() > 0 ) {
 		double shortestDistance = 10000000000000.0;//just a really big number

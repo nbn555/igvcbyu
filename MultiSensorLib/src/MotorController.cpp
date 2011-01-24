@@ -235,7 +235,7 @@ bool MotorController::setCommandPriority( int signal, int priority ) {
 	return false;
 }
 
-bool MotorController::setSerialWatchDogTimer( int time = 1000 ) {
+bool MotorController::setSerialWatchDogTimer( int time) {
 	assert(false);//TODO setSerialWatchDogTimer
 	return false;
 }
