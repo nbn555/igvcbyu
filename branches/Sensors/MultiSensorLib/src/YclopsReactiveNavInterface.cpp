@@ -44,6 +44,7 @@ YclopsReactiveNavInterface::YclopsReactiveNavInterface(mrpt::hwdrivers::CConfigF
 YclopsReactiveNavInterface::~YclopsReactiveNavInterface() {
 
 }
+
 bool YclopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &curPose, float &curV, float &curW)
 {
 	CGenericSensor::TListObservations	lstObs;
@@ -52,7 +53,7 @@ bool YclopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 	compass->doProcess();
 	gps->getObservations(lstObs);
 	itObs = lstObs.begin();
-	CObservationGPSPtr gpsData= CObservationGPSPtr(lstObs.begin()->second);
+	CObservationGPSPtr gpsData = CObservationGPSPtr(lstObs.begin()->second);
 
 	poseEst->update(gpsData,compass->getYaw(), compass->getPitch(), compass->getRoll());
 	mrpt::poses::CPose3D thirdDim = mrpt::poses::CPose3D(curPose);
@@ -62,6 +63,7 @@ bool YclopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 	this->curW = curW;
 	return true;
 }
+
 bool YclopsReactiveNavInterface::changeSpeeds( float v, float w )
 	{
 	//	robotSim.movementCommand(v,w);
@@ -71,6 +73,7 @@ bool YclopsReactiveNavInterface::changeSpeeds( float v, float w )
 
 	return false;
 	}
+
 bool YclopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap 		&obstacles )
 	{
 		CGenericSensor::TListObservations lstObs;
@@ -85,9 +88,9 @@ bool YclopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap 		
 		obstacles.clear();
 		while( itObs != done ) {
 			CObservationPtr observ = CObservationPtr(itObs->second);
-		  obstacles.insertObservationPtr(observ, &(*robotPose));
+			obstacles.insertObservationPtr(observ, &(*robotPose));
 
-		  ++itObs;
+			++itObs;
 		}
 
 		return true;
