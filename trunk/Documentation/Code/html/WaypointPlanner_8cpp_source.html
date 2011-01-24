@@ -62,8 +62,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00011"></a>00011 <span class="keyword">using namespace </span>mrpt;
 <a name="l00012"></a>00012 <span class="keyword">using namespace </span>mrpt::poses;
 <a name="l00013"></a>00013 
-<a name="l00014"></a><a class="code" href="classAbstractNavigationInterface.html#a9cd399b0c17e87fcecdb068cb93e857b">00014</a> <a class="code" href="classAbstractNavigationInterface.html#a9cd399b0c17e87fcecdb068cb93e857b">AbstractNavigationInterface::AbstractNavigationInterface</a>( <span class="keywordtype">double</span> lat, <span class="keywordtype">double</span> lon ) {
-<a name="l00015"></a>00015         this-&gt;<a class="code" href="classAbstractNavigationInterface.html#a570a52b91dc9a80c4168ec9d96452473">visited</a>.push_back(CPoint2D(lat,lon));
+<a name="l00014"></a><a class="code" href="classAbstractNavigationInterface.html#a9cd399b0c17e87fcecdb068cb93e857b">00014</a> <a class="code" href="classAbstractNavigationInterface.html#a9cd399b0c17e87fcecdb068cb93e857b" title="Index for the Longitude in a CPoint2D.">AbstractNavigationInterface::AbstractNavigationInterface</a>( <span class="keywordtype">double</span> lat, <span class="keywordtype">double</span> lon ) {
+<a name="l00015"></a>00015         this-&gt;<a class="code" href="classAbstractNavigationInterface.html#a570a52b91dc9a80c4168ec9d96452473" title="Vector of points that haven&amp;#39;t been visited by the planning.">visited</a>.push_back(CPoint2D(lat,lon));
 <a name="l00016"></a>00016 }
 <a name="l00017"></a>00017 
 <a name="l00018"></a><a class="code" href="classAbstractNavigationInterface.html#a15063da6ef4f61cb582d5e6cb5f8ee33">00018</a> <a class="code" href="classAbstractNavigationInterface.html#a15063da6ef4f61cb582d5e6cb5f8ee33">AbstractNavigationInterface::~AbstractNavigationInterface</a>() {
@@ -77,7 +77,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00026"></a>00026         datapointSet.open(filename.c_str(), ifstream::in);
 <a name="l00027"></a>00027 
 <a name="l00028"></a>00028         <span class="keywordflow">while</span>( datapointSet.good() ) {
-<a name="l00029"></a>00029                 datapointSet &gt;&gt; tmp.m_coords[<a class="code" href="classAbstractNavigationInterface.html#a6e49d56c31bc1f6c4c0dbeddc952c9ea">LAT</a>] &gt;&gt; tmp.m_coords[<a class="code" href="classAbstractNavigationInterface.html#a11029d7331610ed66ce0d3be21ed336f">LON</a>];
+<a name="l00029"></a>00029                 datapointSet &gt;&gt; tmp.m_coords[<a class="code" href="classAbstractNavigationInterface.html#a6e49d56c31bc1f6c4c0dbeddc952c9ea">LAT</a>] &gt;&gt; tmp.m_coords[<a class="code" href="classAbstractNavigationInterface.html#a11029d7331610ed66ce0d3be21ed336f" title="Index for the Latitude in a CPoint2D.">LON</a>];
 <a name="l00030"></a>00030                 <a class="code" href="classAbstractNavigationInterface.html#a643ec47387c554a081408901d64539b1">toVisit</a>.push_back(tmp);
 <a name="l00031"></a>00031         }
 <a name="l00032"></a>00032 
@@ -138,29 +138,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00087"></a>00087         <span class="keywordflow">return</span> radBearing;
 <a name="l00088"></a>00088 }
 <a name="l00089"></a>00089 
-<a name="l00090"></a><a class="code" href="classSequentialNavigation.html#a8092a340d94a2edabbeb0ee725230d81">00090</a> <a class="code" href="classSequentialNavigation.html#a8092a340d94a2edabbeb0ee725230d81">SequentialNavigation::SequentialNavigation</a>( <span class="keywordtype">double</span> lat, <span class="keywordtype">double</span> lon ): <a class="code" href="classAbstractNavigationInterface.html">AbstractNavigationInterface</a>( lat, lon ) { }
+<a name="l00090"></a><a class="code" href="classSequentialNavigation.html#a8092a340d94a2edabbeb0ee725230d81">00090</a> <a class="code" href="classSequentialNavigation.html#a8092a340d94a2edabbeb0ee725230d81">SequentialNavigation::SequentialNavigation</a>( <span class="keywordtype">double</span> lat, <span class="keywordtype">double</span> lon ): <a class="code" href="classAbstractNavigationInterface.html" title="AbstractNavigationInterface.h - This file defines the classes relating to path planning.">AbstractNavigationInterface</a>( lat, lon ) { }
 <a name="l00091"></a>00091 
 <a name="l00092"></a><a class="code" href="classSequentialNavigation.html#ae6ca19d3d08e850b87b3922300260807">00092</a> <a class="code" href="classSequentialNavigation.html#ae6ca19d3d08e850b87b3922300260807">SequentialNavigation::~SequentialNavigation</a>() { }
 <a name="l00093"></a>00093 
 <a name="l00094"></a><a class="code" href="classSequentialNavigation.html#ac1924975929eb005bcbda432e5c7f909">00094</a> std::vector&lt;mrpt::poses::CPoint2D&gt; <a class="code" href="classSequentialNavigation.html#ac1924975929eb005bcbda432e5c7f909">SequentialNavigation::solve</a>(){
-<a name="l00095"></a>00095         this-&gt;<a class="code" href="classAbstractNavigationInterface.html#a570a52b91dc9a80c4168ec9d96452473">visited</a>.insert(this-&gt;<a class="code" href="classAbstractNavigationInterface.html#a570a52b91dc9a80c4168ec9d96452473">visited</a>.end(), this-&gt;<a class="code" href="classAbstractNavigationInterface.html#a643ec47387c554a081408901d64539b1">toVisit</a>.begin(),this-&gt;<a class="code" href="classAbstractNavigationInterface.html#a643ec47387c554a081408901d64539b1">toVisit</a>.end());
-<a name="l00096"></a>00096         <span class="keywordflow">return</span> this-&gt;<a class="code" href="classAbstractNavigationInterface.html#a570a52b91dc9a80c4168ec9d96452473">visited</a>;
+<a name="l00095"></a>00095         this-&gt;<a class="code" href="classAbstractNavigationInterface.html#a570a52b91dc9a80c4168ec9d96452473" title="Vector of points that haven&amp;#39;t been visited by the planning.">visited</a>.insert(this-&gt;<a class="code" href="classAbstractNavigationInterface.html#a570a52b91dc9a80c4168ec9d96452473" title="Vector of points that haven&amp;#39;t been visited by the planning.">visited</a>.end(), this-&gt;<a class="code" href="classAbstractNavigationInterface.html#a643ec47387c554a081408901d64539b1">toVisit</a>.begin(),this-&gt;<a class="code" href="classAbstractNavigationInterface.html#a643ec47387c554a081408901d64539b1">toVisit</a>.end());
+<a name="l00096"></a>00096         <span class="keywordflow">return</span> this-&gt;<a class="code" href="classAbstractNavigationInterface.html#a570a52b91dc9a80c4168ec9d96452473" title="Vector of points that haven&amp;#39;t been visited by the planning.">visited</a>;
 <a name="l00097"></a>00097 }
 <a name="l00098"></a>00098 
-<a name="l00099"></a><a class="code" href="classTSPNavigation.html#a33f1802085e43351738a2ab74f1ae55b">00099</a> <a class="code" href="classTSPNavigation.html#a33f1802085e43351738a2ab74f1ae55b">TSPNavigation::TSPNavigation</a>( <span class="keywordtype">double</span> lat, <span class="keywordtype">double</span> lon ): <a class="code" href="classAbstractNavigationInterface.html">AbstractNavigationInterface</a>(lat, lon) { }
+<a name="l00099"></a><a class="code" href="classTSPNavigation.html#a33f1802085e43351738a2ab74f1ae55b">00099</a> <a class="code" href="classTSPNavigation.html#a33f1802085e43351738a2ab74f1ae55b">TSPNavigation::TSPNavigation</a>( <span class="keywordtype">double</span> lat, <span class="keywordtype">double</span> lon ): <a class="code" href="classAbstractNavigationInterface.html" title="AbstractNavigationInterface.h - This file defines the classes relating to path planning.">AbstractNavigationInterface</a>(lat, lon) { }
 <a name="l00100"></a>00100 
 <a name="l00101"></a><a class="code" href="classTSPNavigation.html#a804a09a38071722734367291bbb439b0">00101</a> std::vector&lt;mrpt::poses::CPoint2D&gt; <a class="code" href="classTSPNavigation.html#a804a09a38071722734367291bbb439b0">TSPNavigation::solve</a>() {
-<a name="l00102"></a>00102         <a class="code" href="classTSPNavigation.html#aef822fbc50d006258685469898eb8d34">TSPNavigation::nieveTSPSolution</a>( this-&gt;<a class="code" href="classAbstractNavigationInterface.html#a643ec47387c554a081408901d64539b1">toVisit</a>, this-&gt;<a class="code" href="classAbstractNavigationInterface.html#a570a52b91dc9a80c4168ec9d96452473">visited</a> );
-<a name="l00103"></a>00103         <span class="keywordflow">return</span> this-&gt;<a class="code" href="classAbstractNavigationInterface.html#a570a52b91dc9a80c4168ec9d96452473">visited</a>;
+<a name="l00102"></a>00102         <a class="code" href="classTSPNavigation.html#aef822fbc50d006258685469898eb8d34">TSPNavigation::nieveTSPSolution</a>( this-&gt;<a class="code" href="classAbstractNavigationInterface.html#a643ec47387c554a081408901d64539b1">toVisit</a>, this-&gt;<a class="code" href="classAbstractNavigationInterface.html#a570a52b91dc9a80c4168ec9d96452473" title="Vector of points that haven&amp;#39;t been visited by the planning.">visited</a> );
+<a name="l00103"></a>00103         <span class="keywordflow">return</span> this-&gt;<a class="code" href="classAbstractNavigationInterface.html#a570a52b91dc9a80c4168ec9d96452473" title="Vector of points that haven&amp;#39;t been visited by the planning.">visited</a>;
 <a name="l00104"></a>00104 }
 <a name="l00105"></a>00105 
 <a name="l00106"></a>00106 <span class="keywordtype">void</span> <a class="code" href="classTSPNavigation.html#aef822fbc50d006258685469898eb8d34">TSPNavigation::nieveTSPSolution</a>( std::vector&lt;CPoint2D&gt; &amp; toVisit, std::vector&lt;CPoint2D&gt; &amp; visited ) {
 <a name="l00107"></a>00107 
 <a name="l00108"></a>00108         <span class="keywordflow">while</span>( toVisit.size() &gt; 0 ) {
-<a name="l00109"></a>00109                 <span class="keywordtype">double</span> shortestDistance = 10000000000000;<span class="comment">//just a really big number</span>
+<a name="l00109"></a>00109                 <span class="keywordtype">double</span> shortestDistance = 10000000000000.0;<span class="comment">//just a really big number</span>
 <a name="l00110"></a>00110                 <span class="keywordtype">int</span> closestIndex = 0;
 <a name="l00111"></a>00111                 <span class="keywordflow">for</span>( <span class="keywordtype">unsigned</span> index = 0; index &lt; toVisit.size(); ++index ) {
-<a name="l00112"></a>00112                         <span class="keywordtype">double</span> dist = <a class="code" href="classAbstractNavigationInterface.html#a74b18af90bad0bc1219327ae9ede672b">haversineDistance</a>( toVisit[index].m_coords[<a class="code" href="classAbstractNavigationInterface.html#a6e49d56c31bc1f6c4c0dbeddc952c9ea">LAT</a>], toVisit[index].m_coords[<a class="code" href="classAbstractNavigationInterface.html#a11029d7331610ed66ce0d3be21ed336f">LON</a>], visited.back().m_coords[LAT], visited.back().m_coords[LON] );
+<a name="l00112"></a>00112                         <span class="keywordtype">double</span> dist = <a class="code" href="classAbstractNavigationInterface.html#a74b18af90bad0bc1219327ae9ede672b">haversineDistance</a>( toVisit[index].m_coords[<a class="code" href="classAbstractNavigationInterface.html#a6e49d56c31bc1f6c4c0dbeddc952c9ea">LAT</a>], toVisit[index].m_coords[<a class="code" href="classAbstractNavigationInterface.html#a11029d7331610ed66ce0d3be21ed336f" title="Index for the Latitude in a CPoint2D.">LON</a>], visited.back().m_coords[LAT], visited.back().m_coords[LON] );
 <a name="l00113"></a>00113                         <span class="keywordflow">if</span>(shortestDistance &gt; dist &amp;&amp; dist &gt; .1 ) {     <span class="comment">//if the distance is really really small we must be checking the same point</span>
 <a name="l00114"></a>00114                                 closestIndex = index;                                   <span class="comment">//besides the gps isn&#39;t accurate to a tenth of a meter</span>
 <a name="l00115"></a>00115                                 shortestDistance = dist;                                <span class="comment">//however there ought to be a better way then this and it should be fixed</span>
@@ -188,7 +188,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 12 2011 for YClops by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 23 2011 for YClops by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

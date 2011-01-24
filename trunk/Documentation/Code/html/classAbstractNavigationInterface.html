@@ -58,6 +58,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="AbstractNavigationInterface" -->
+<p>AbstractNavigationInterface.h - This file defines the classes relating to path planning.  
+<a href="#_details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="WaypointPlanner_8h_source.html">WaypointPlanner.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for AbstractNavigationInterface:</div>
@@ -75,6 +78,7 @@ Inheritance diagram for AbstractNavigationInterface:</div>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractNavigationInterface.html#a9cd399b0c17e87fcecdb068cb93e857b">AbstractNavigationInterface</a> (double lat, double lon)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Index for the Longitude in a CPoint2D.  <a href="#a9cd399b0c17e87fcecdb068cb93e857b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractNavigationInterface.html#a15063da6ef4f61cb582d5e6cb5f8ee33">~AbstractNavigationInterface</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual std::vector<br class="typebreak"/>
 &lt; mrpt::poses::CPoint2D &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractNavigationInterface.html#a5f159f161f4bbb6ed80b17f0622c67be">solve</a> ()=0</td></tr>
@@ -87,16 +91,21 @@ Static Public Member Functions</h2></td></tr>
 Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractNavigationInterface.html#a6e49d56c31bc1f6c4c0dbeddc952c9ea">LAT</a> = 0</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractNavigationInterface.html#a11029d7331610ed66ce0d3be21ed336f">LON</a> = 1</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Index for the Latitude in a CPoint2D.  <a href="#a11029d7331610ed66ce0d3be21ed336f"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::vector<br class="typebreak"/>
 &lt; mrpt::poses::CPoint2D &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractNavigationInterface.html#a643ec47387c554a081408901d64539b1">toVisit</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::vector<br class="typebreak"/>
 &lt; mrpt::poses::CPoint2D &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractNavigationInterface.html#a570a52b91dc9a80c4168ec9d96452473">visited</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vector of points that haven't been visited by the planning.  <a href="#a570a52b91dc9a80c4168ec9d96452473"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>AbstractNavigationInterface.h - This file defines the classes relating to path planning. </p>
+<dl class="date"><dt><b>Date:</b></dt><dd>Dec 27, 2010 </dd></dl>
+<dl class="author"><dt><b>Author:</b></dt><dd>Thomas Eldon Allred This class is an abstract interface for path planning for the robot </dd></dl>
 
-<p>Definition at line <a class="el" href="WaypointPlanner_8h_source.html#l00015">15</a> of file <a class="el" href="WaypointPlanner_8h_source.html">WaypointPlanner.h</a>.</p>
+<p>Definition at line <a class="el" href="WaypointPlanner_8h_source.html#l00017">17</a> of file <a class="el" href="WaypointPlanner_8h_source.html">WaypointPlanner.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a9cd399b0c17e87fcecdb068cb93e857b"></a><!-- doxytag: member="AbstractNavigationInterface::AbstractNavigationInterface" ref="a9cd399b0c17e87fcecdb068cb93e857b" args="(double lat, double lon)" -->
 <div class="memitem">
@@ -123,9 +132,19 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Index for the Longitude in a CPoint2D. </p>
+<p>Abstract Navigation class constructor </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>lat</em>&nbsp;</td><td>- representing the initial latitude </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>lon</em>&nbsp;</td><td>- representing the initial longitude </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Definition at line <a class="el" href="WaypointPlanner_8cpp_source.html#l00014">14</a> of file <a class="el" href="WaypointPlanner_8cpp_source.html">WaypointPlanner.cpp</a>.</p>
 
-<p>References <a class="el" href="WaypointPlanner_8h_source.html#l00053">visited</a>.</p>
+<p>References <a class="el" href="WaypointPlanner_8h_source.html#l00064">visited</a>.</p>
 
 </div>
 </div>
@@ -143,6 +162,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Class destructor </p>
 
 <p>Definition at line <a class="el" href="WaypointPlanner_8cpp_source.html#l00018">18</a> of file <a class="el" href="WaypointPlanner_8cpp_source.html">WaypointPlanner.cpp</a>.</p>
 
@@ -233,7 +253,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="WaypointPlanner_8cpp_source.html#l00037">37</a> of file <a class="el" href="WaypointPlanner_8cpp_source.html">WaypointPlanner.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00028">main()</a>.</p>
+<p>Referenced by <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00061">GetDistanceToWaypoint()</a>.</p>
 
 </div>
 </div>
@@ -262,9 +282,9 @@ Protected Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="WaypointPlanner_8cpp_source.html#l00022">22</a> of file <a class="el" href="WaypointPlanner_8cpp_source.html">WaypointPlanner.cpp</a>.</p>
 
-<p>References <a class="el" href="WaypointPlanner_8h_source.html#l00018">LAT</a>, <a class="el" href="WaypointPlanner_8h_source.html#l00019">LON</a>, and <a class="el" href="WaypointPlanner_8h_source.html#l00052">toVisit</a>.</p>
+<p>References <a class="el" href="WaypointPlanner_8h_source.html#l00020">LAT</a>, <a class="el" href="WaypointPlanner_8h_source.html#l00021">LON</a>, and <a class="el" href="WaypointPlanner_8h_source.html#l00063">toVisit</a>.</p>
 
-<p>Referenced by <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00028">main()</a>.</p>
+<p>Referenced by <a class="el" href="Sensors_2MultiSensor_2main_8cpp_source.html#l00029">main()</a>.</p>
 
 </div>
 </div>
@@ -303,9 +323,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="WaypointPlanner_8h_source.html#l00018">18</a> of file <a class="el" href="WaypointPlanner_8h_source.html">WaypointPlanner.h</a>.</p>
+<p>Definition at line <a class="el" href="WaypointPlanner_8h_source.html#l00020">20</a> of file <a class="el" href="WaypointPlanner_8h_source.html">WaypointPlanner.h</a>.</p>
 
-<p>Referenced by <a class="el" href="WaypointPlanner_8cpp_source.html#l00022">loadPoints()</a>, and <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00028">main()</a>.</p>
+<p>Referenced by <a class="el" href="WaypointPlanner_8cpp_source.html#l00022">loadPoints()</a>, and <a class="el" href="Sensors_2MultiSensor_2main_8cpp_source.html#l00029">main()</a>.</p>
 
 </div>
 </div>
@@ -320,9 +340,11 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="WaypointPlanner_8h_source.html#l00019">19</a> of file <a class="el" href="WaypointPlanner_8h_source.html">WaypointPlanner.h</a>.</p>
+<p>Index for the Latitude in a CPoint2D. </p>
 
-<p>Referenced by <a class="el" href="WaypointPlanner_8cpp_source.html#l00022">loadPoints()</a>, and <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00028">main()</a>.</p>
+<p>Definition at line <a class="el" href="WaypointPlanner_8h_source.html#l00021">21</a> of file <a class="el" href="WaypointPlanner_8h_source.html">WaypointPlanner.h</a>.</p>
+
+<p>Referenced by <a class="el" href="WaypointPlanner_8cpp_source.html#l00022">loadPoints()</a>, and <a class="el" href="Sensors_2MultiSensor_2main_8cpp_source.html#l00029">main()</a>.</p>
 
 </div>
 </div>
@@ -337,7 +359,7 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="WaypointPlanner_8h_source.html#l00052">52</a> of file <a class="el" href="WaypointPlanner_8h_source.html">WaypointPlanner.h</a>.</p>
+<p>Definition at line <a class="el" href="WaypointPlanner_8h_source.html#l00063">63</a> of file <a class="el" href="WaypointPlanner_8h_source.html">WaypointPlanner.h</a>.</p>
 
 <p>Referenced by <a class="el" href="WaypointPlanner_8cpp_source.html#l00022">loadPoints()</a>, <a class="el" href="WaypointPlanner_8cpp_source.html#l00101">TSPNavigation::solve()</a>, and <a class="el" href="WaypointPlanner_8cpp_source.html#l00094">SequentialNavigation::solve()</a>.</p>
 
@@ -354,7 +376,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="WaypointPlanner_8h_source.html#l00053">53</a> of file <a class="el" href="WaypointPlanner_8h_source.html">WaypointPlanner.h</a>.</p>
+<p>Vector of points that haven't been visited by the planning. </p>
+
+<p>Definition at line <a class="el" href="WaypointPlanner_8h_source.html#l00064">64</a> of file <a class="el" href="WaypointPlanner_8h_source.html">WaypointPlanner.h</a>.</p>
 
 <p>Referenced by <a class="el" href="WaypointPlanner_8cpp_source.html#l00014">AbstractNavigationInterface()</a>, <a class="el" href="WaypointPlanner_8cpp_source.html#l00101">TSPNavigation::solve()</a>, and <a class="el" href="WaypointPlanner_8cpp_source.html#l00094">SequentialNavigation::solve()</a>.</p>
 
@@ -379,7 +403,7 @@ Protected Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 12 2011 for YClops by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 23 2011 for YClops by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

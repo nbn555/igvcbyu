@@ -66,33 +66,61 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">MotorChannel</a> { <a class="el" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2aa0ee193187b5d6e5dfe6651cc7a950cb">Channel1</a> =  1, 
-<a class="el" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2ab91fac72a389b0b45a5613a52779d21a">Channel2</a>, 
-<a class="el" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2a366377f72eb7ceb5ae5904562e6165d0">BothChannels</a>
+<a class="el" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2ab91fac72a389b0b45a5613a52779d21a">Channel2</a> =  2, 
+<a class="el" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2a366377f72eb7ceb5ae5904562e6165d0">BothChannels</a> =  3
  }</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>Motor reset key used for sensitive operations. </p>
+ <a href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#adb36c0022b7aeb68db96d544c46974fe">MotorController</a> (std::string portName, bool enableEcho=true, int motor1Max=1000, int motor2Max=1000, int motor1Min=-1000, int motor2Min=-1000)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a30a4658476a116928658ea4a1679b2b7">~MotorController</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a87b491ff25d36037e52bca36972a782a">setSpeed</a> (<a class="el" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">MotorChannel</a> channel, int value)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ac14e87ad8c57a26c4cb53b8c5ce9250e">setEncoderCounter</a> (<a class="el" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">MotorChannel</a> channel, int value=0)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#aab2c14c9ef9f08bb1036ca0b071415c7">getRelativeEncoderCount</a> (int &amp;ch1, int &amp;ch2)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ac88c77bad5ed12737b8a6157159743ab">getTemperature</a> (int &amp;ch1, int &amp;ch2)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a4260a624b364ed6c1e53f1101277cca2">doProcess</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a0a3e08c04469ae0c2c1f3e26005b81ff">setAcceleration</a> (<a class="el" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">MotorChannel</a> channel, double acceleration)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a7d09ab0272d8729997dc073d86e104f6">setDeceleration</a> (<a class="el" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">MotorChannel</a> channel, double deceration)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#af10104b90d2810d7cc831acd6d0091bd">emergencyStop</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a9e46d236d83c31b0c8d249b5e7904762">clearEmergencyStop</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a87b491ff25d36037e52bca36972a782a">setSpeed</a> (<a class="el" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">MotorChannel</a> channel, int value)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ac14e87ad8c57a26c4cb53b8c5ce9250e">setEncoderCounter</a> (<a class="el" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">MotorChannel</a> channel, int value=0)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a2c7cc06989053af014abea3a69185c17">getMotorAmps</a> (double &amp;motor1Amps, double &amp;motor2Amps)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a8f9b76755fceeeee7c066f94f092613c">getAnalogInputs</a> (int input, int &amp;value)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a3b10d48cb8e49e2c3ca1a8e0400cf309">getBatteryAmps</a> (double &amp;motor1Amps, double &amp;motor2Amps)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a61460f27210358518164ce7833480d9d">getAbsoluteEncoderCount</a> (int &amp;ch1, int &amp;ch2)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#aab2c14c9ef9f08bb1036ca0b071415c7">getRelativeEncoderCount</a> (int &amp;ch1, int &amp;ch2)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a7489d8bf6876e0a8d9982433638c98d4">getEncoderSpeed</a> (<a class="el" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">MotorChannel</a> channel, int &amp;speed)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#aa1082a5bcd935ebd5bc15600d32f621d">getTemperature</a> (int &amp;ch1, int &amp;ch2, int &amp;ic)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a8d482b3313fbe1f5eb9fdc7021d84591">getTime</a> (int &amp;hours, int &amp;minutes, int &amp;seconds)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#afc4f77bcc139958edbaa9916e4acd501">getVoltages</a> (double &amp;driverVolt, double &amp;batteryVolt, double &amp;v5out)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ab9a8b511704092f5d8c18ee2cf265a4b">loadEEPROMSettings</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#aa61317c6c5977081c03fd56de6c14f79">failSafeReset</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ab52b0ad8614ab5a34e6db257be4ab9be">saveConfigSettings</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a21d0364838e1e60441b6afacd268769d">reset</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a562d6fd1c4467b8bfaa09811c1c63d61">setTime</a> (int hours, int minutes, int seconds)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ad7e89a362c89a6635601afd7bb5a07c3">setCommandLinearity</a> (int linearity)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a01c222fdaca0c51b6dfee690519f8d5e">setCommandPriority</a> (int signal, int priority)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ae274231ec813ec00eb836d0c34925714">setSerialWatchDogTimer</a> (int time=1000)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a3e5512b31b9ce56e0f57c39833d7b520">setEncoderPPR</a> (int ppr)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a57b96decd2a22b90261c9f4526e4726c">setOverVoltageLimit</a> (double limit)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a788d68a666482683d69af3501c207fbc">setUnderVoltageLimit</a> (double limit)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a95eb6e4403440ced1351fbfaed43014d">setShortCircuitDetectionThreshold</a> (int value)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a801761aba7b2436f1314844ab4739b35">getMotorLimits</a> (int &amp;m1Max, int &amp;m2Max, int &amp;m1Min, int &amp;m2Min)</td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a805d5fc65cf6a1f0e105fac0506b81f3">MOTOR_SECRET_KEY</a> = 321654987</td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a3588f439d996a8e1205c7c63f07491c0">assertValidMotorRange</a> (int max, int min, int value) const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The hard lower limit for the second channel motor speed.  <a href="#a3588f439d996a8e1205c7c63f07491c0"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The fault flag status for the motor controller.  <a href="#a3588f439d996a8e1205c7c63f07491c0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ad9c49eacc6173b674540b85f42147bc3">assertValidVoltage</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a664d01e694d26e9eadda61cba1106904">sendCommand</a> (std::string command)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a776819f7159a2877a67ddc9b2a601f04">enableSerialEcho</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ae7514edeea060e1348252c2eefb671db">disableSerialEcho</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a3e29ed83fa4aab0929bad6ea0bd4a541">getFaultFlags</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a5722795a5fd7c063dacbc112f2eaf164">getStatusFlags</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a951a0f783502ba09f9cfefc8748b2d54">getControlUnitType</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a65bca5dbae5692790444ed022a308f8d">clearBufferHistory</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a5e0c84fb2694afd02dd247abba0cfffb">responseParserDual</a> (int &amp;t1, int &amp;t2)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a41309ac6d585cc0e96ac2e5c7369528d">responseParserTrio</a> (int &amp;t1, int &amp;t2, int &amp;t3)</td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">mrpt::hwdrivers::CSerialPort&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a965c13ed909b247aa049af8d1f81a3fa">serialPort</a></td></tr>
@@ -110,10 +138,13 @@ Private Attributes</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The hard upper limit for the second channel motor speed.  <a href="#a1503e84f2cb8161139908b00eb3b0337"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a6cc9fa102e7cfbeb3f068a6c1775ee50">motor2SpeedMin</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The hard lower limit for the first channel motor speed (lower limit would be the reverse speed).  <a href="#a6cc9fa102e7cfbeb3f068a6c1775ee50"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#aed8e1911d5e9378c57b4e196ed14803b">faultFlagVector</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The hard lower limit for the second channel motor speed.  <a href="#aed8e1911d5e9378c57b4e196ed14803b"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p><a class="el" href="classMotorController.html">MotorController</a> - interface class to the RoboteQ 2440 motor controller </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00017">17</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00019">19</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 <hr/><h2>Member Enumeration Documentation</h2>
 <a class="anchor" id="afd2d2478f27a4fdd50f375def55186e2"></a><!-- doxytag: member="MotorController::MotorChannel" ref="afd2d2478f27a4fdd50f375def55186e2" args="" -->
 <div class="memitem">
@@ -125,6 +156,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Motor reset key used for sensitive operations. </p>
+<p>Abstract representation for a channel in the motor controller </p>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
 <tr><td valign="top"><em><a class="anchor" id="afd2d2478f27a4fdd50f375def55186e2aa0ee193187b5d6e5dfe6651cc7a950cb"></a><!-- doxytag: member="Channel1" ref="afd2d2478f27a4fdd50f375def55186e2aa0ee193187b5d6e5dfe6651cc7a950cb" args="" -->Channel1</em>&nbsp;</td><td>
 </td></tr>
@@ -136,7 +170,7 @@ Private Attributes</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00020">20</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00026">26</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
 </div>
 </div>
@@ -189,6 +223,18 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p><a class="el" href="classMotorController.html">MotorController</a> constructor </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>portName</em>&nbsp;</td><td>- the serial port over which the commands will be sent </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>enableEcho</em>&nbsp;</td><td>- set to true to check error for errors from the motor controller </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>motor1Max</em>&nbsp;</td><td>- the maximum power for channel1 defined on the interval [1000,-1000] where -1000 is full reverse </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>motor2Max</em>&nbsp;</td><td>- the maximum power for channel2 defined on the interval [1000, -1000] where -1000 is full reverse </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>motor1Min</em>&nbsp;</td><td>- the minimum power for channel1 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>motor2Min</em>&nbsp;</td><td>- the minimum power for channel2 </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -206,8 +252,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Class destructor </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00029">29</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00047">47</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
 </div>
 </div>
@@ -243,7 +290,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>The hard lower limit for the second channel motor speed. </p>
+<p>The fault flag status for the motor controller. </p>
 <p>assertValidMotorRange - checks the parameters if they are in a valid range </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
@@ -255,9 +302,9 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true if the value is in range </dd></dl>
 
-<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00116">116</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00271">271</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00037">setSpeed()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00068">setSpeed()</a>.</p>
 
 </div>
 </div>
@@ -277,9 +324,30 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>assertValidVoltage - shuts off the motor controller if the voltage is out of safe operating parameters </p>
 
-<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00120">120</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00275">275</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8cpp_source.html#l00126">sendCommand()</a>.</p>
+<p>References <a class="el" href="MotorController_8cpp_source.html#l00281">sendCommand()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a65bca5dbae5692790444ed022a308f8d"></a><!-- doxytag: member="MotorController::clearBufferHistory" ref="a65bca5dbae5692790444ed022a308f8d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::clearBufferHistory </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>clearBufferHistory - clears the command history buffer </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00317">317</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
 </div>
 </div>
@@ -300,9 +368,9 @@ Private Attributes</h2></td></tr>
 <p>clearEmergencyStop - clears the emergency stop state </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon successful transmission </dd></dl>
 
-<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00094">94</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00064">64</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8cpp_source.html#l00126">sendCommand()</a>.</p>
+<p>References <a class="el" href="MotorController_8cpp_source.html#l00281">sendCommand()</a>.</p>
 
 </div>
 </div>
@@ -322,9 +390,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>disableSerialEcho - turns off the echo of commands from the motor controller </p>
 
-<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00142">142</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00298">298</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8cpp_source.html#l00126">sendCommand()</a>.</p>
+<p>References <a class="el" href="MotorController_8cpp_source.html#l00281">sendCommand()</a>.</p>
 
 </div>
 </div>
@@ -344,11 +412,11 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>doProcess - sends the current speed command to the motor controller </p>
 
-<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00110">110</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00042">42</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8h_source.html#l00101">motor1Speed</a>, <a class="el" href="MotorController_8h_source.html#l00102">motor2Speed</a>, and <a class="el" href="MotorController_8cpp_source.html#l00126">sendCommand()</a>.</p>
+<p>References <a class="el" href="MotorController_8h_source.html#l00327">motor1Speed</a>, <a class="el" href="MotorController_8h_source.html#l00328">motor2Speed</a>, and <a class="el" href="MotorController_8cpp_source.html#l00281">sendCommand()</a>.</p>
 
-<p>Referenced by <a class="el" href="MotorCommands_8cpp_source.html#l00015">MotorCommands::Go()</a>.</p>
+<p>Referenced by <a class="el" href="Mechanical_2WiiDriver_2main_8cpp_source.html#l00069">main()</a>.</p>
 
 </div>
 </div>
@@ -369,9 +437,9 @@ Private Attributes</h2></td></tr>
 <p>emergencyStop - sends the emergency stop command to the motor controller the motor controller will not start until it is power cycled or the clearEmergencyStop function is called. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon successful transmission </dd></dl>
 
-<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00090">90</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00060">60</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8cpp_source.html#l00126">sendCommand()</a>.</p>
+<p>References <a class="el" href="MotorController_8cpp_source.html#l00281">sendCommand()</a>.</p>
 
 </div>
 </div>
@@ -391,9 +459,320 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>enableSerialEcho - turns on the echo of commands from the motor controller </p>
 
-<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00138">138</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00294">294</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8cpp_source.html#l00126">sendCommand()</a>.</p>
+<p>References <a class="el" href="MotorController_8cpp_source.html#l00281">sendCommand()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa61317c6c5977081c03fd56de6c14f79"></a><!-- doxytag: member="MotorController::failSafeReset" ref="aa61317c6c5977081c03fd56de6c14f79" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::failSafeReset </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>failSafeReset - power cycles the motor controller and resets values to their default factory settings </p>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00206">206</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a61460f27210358518164ce7833480d9d"></a><!-- doxytag: member="MotorController::getAbsoluteEncoderCount" ref="a61460f27210358518164ce7833480d9d" args="(int &amp;ch1, int &amp;ch2)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::getAbsoluteEncoderCount </td>
+          <td>(</td>
+          <td class="paramtype">int &amp;&nbsp;</td>
+          <td class="paramname"> <em>ch1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&nbsp;</td>
+          <td class="paramname"> <em>ch2</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>getAbsoluteEncoderCount - gets the absolute number of encoder counts as a 32bit signed number </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>channel1Count</em>&nbsp;</td><td>- reference to the encoder count for channel 1 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>channel2Count</em>&nbsp;</td><td>- reference to the encoder count for channel 2 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00164">164</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="MotorController_8cpp_source.html#l00322">responseParserDual()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00281">sendCommand()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8f9b76755fceeeee7c066f94f092613c"></a><!-- doxytag: member="MotorController::getAnalogInputs" ref="a8f9b76755fceeeee7c066f94f092613c" args="(int input, int &amp;value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::getAnalogInputs </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>getAnalogInputs - gets the number of millivolts on the given analog input pin </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>input</em>&nbsp;</td><td>- the input pin to query </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>value</em>&nbsp;</td><td>- reference to the number of millivolts on the analog input pin </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00146">146</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3b10d48cb8e49e2c3ca1a8e0400cf309"></a><!-- doxytag: member="MotorController::getBatteryAmps" ref="a3b10d48cb8e49e2c3ca1a8e0400cf309" args="(double &amp;motor1Amps, double &amp;motor2Amps)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::getBatteryAmps </td>
+          <td>(</td>
+          <td class="paramtype">double &amp;&nbsp;</td>
+          <td class="paramname"> <em>motor1Amps</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&nbsp;</td>
+          <td class="paramname"> <em>motor2Amps</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>getBatteryAmps - gets the number of deciamps flowing from the batteries </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>motor1Amps</em>&nbsp;</td><td>- the number of deciamps flowing into the first motor channel </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>motor2Amps</em>&nbsp;</td><td>- the number of deciamps flowing into the second motor channel </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00151">151</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="MotorController_8cpp_source.html#l00322">responseParserDual()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00281">sendCommand()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a951a0f783502ba09f9cfefc8748b2d54"></a><!-- doxytag: member="MotorController::getControlUnitType" ref="a951a0f783502ba09f9cfefc8748b2d54" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::getControlUnitType </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>getControlUnitType - checks to see if the attached roboteq control unit is supported </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true upon supported control unit </dd></dl>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00312">312</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7489d8bf6876e0a8d9982433638c98d4"></a><!-- doxytag: member="MotorController::getEncoderSpeed" ref="a7489d8bf6876e0a8d9982433638c98d4" args="(MotorChannel channel, int &amp;speed)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::getEncoderSpeed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">MotorChannel</a>&nbsp;</td>
+          <td class="paramname"> <em>channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&nbsp;</td>
+          <td class="paramname"> <em>speed</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>getEncoderSpeed - returns the speed of the encoder for the given channel </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>channel</em>&nbsp;</td><td>- the motor channel to query </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>speed</em>&nbsp;</td><td>- the speed of the encoder in RPMs </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>- true upon success S </dd></dl>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00174">174</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3e29ed83fa4aab0929bad6ea0bd4a541"></a><!-- doxytag: member="MotorController::getFaultFlags" ref="a3e29ed83fa4aab0929bad6ea0bd4a541" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::getFaultFlags </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>getFaultFlags returns the status of any faults that may occour in the motor controller </p>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00302">302</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2c7cc06989053af014abea3a69185c17"></a><!-- doxytag: member="MotorController::getMotorAmps" ref="a2c7cc06989053af014abea3a69185c17" args="(double &amp;motor1Amps, double &amp;motor2Amps)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::getMotorAmps </td>
+          <td>(</td>
+          <td class="paramtype">double &amp;&nbsp;</td>
+          <td class="paramname"> <em>motor1Amps</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&nbsp;</td>
+          <td class="paramname"> <em>motor2Amps</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>getMotorAmps - gets the amps flowing through the motors </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>motor1Amps</em>&nbsp;</td><td>- the number of amps flowing through the first channel motor </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>motor2Amps</em>&nbsp;</td><td>- the number of amps flowing through the second channel motor </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00131">131</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="MotorController_8cpp_source.html#l00322">responseParserDual()</a>, and <a class="el" href="MotorController_8h_source.html#l00325">serialPort</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a801761aba7b2436f1314844ab4739b35"></a><!-- doxytag: member="MotorController::getMotorLimits" ref="a801761aba7b2436f1314844ab4739b35" args="(int &amp;m1Max, int &amp;m2Max, int &amp;m1Min, int &amp;m2Min)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::getMotorLimits </td>
+          <td>(</td>
+          <td class="paramtype">int &amp;&nbsp;</td>
+          <td class="paramname"> <em>m1Max</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&nbsp;</td>
+          <td class="paramname"> <em>m2Max</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&nbsp;</td>
+          <td class="paramname"> <em>m1Min</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&nbsp;</td>
+          <td class="paramname"> <em>m2Min</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>getMotorLimits - returns the maximum rpms for the motors </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>m1Max</em>&nbsp;</td><td>- a reference to where to put the motor 1 max </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>m2Max</em>&nbsp;</td><td>- a reference to where to put the motor 2 max </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>m1Min</em>&nbsp;</td><td>- a reference to where to put the motor 1 min </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>m2Min</em>&nbsp;</td><td>- a reference to where to put the motor 2 min </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true </dd></dl>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00263">263</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="MotorController_8h_source.html#l00329">motor1SpeedMax</a>, <a class="el" href="MotorController_8h_source.html#l00331">motor1SpeedMin</a>, <a class="el" href="MotorController_8h_source.html#l00330">motor2SpeedMax</a>, and <a class="el" href="MotorController_8h_source.html#l00332">motor2SpeedMin</a>.</p>
 
 </div>
 </div>
@@ -431,13 +810,33 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true if successful </dd></dl>
 
-<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00078">78</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00169">169</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8cpp_source.html#l00126">sendCommand()</a>.</p>
+<p>References <a class="el" href="MotorController_8cpp_source.html#l00322">responseParserDual()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00281">sendCommand()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac88c77bad5ed12737b8a6157159743ab"></a><!-- doxytag: member="MotorController::getTemperature" ref="ac88c77bad5ed12737b8a6157159743ab" args="(int &amp;ch1, int &amp;ch2)" -->
+<a class="anchor" id="a5722795a5fd7c063dacbc112f2eaf164"></a><!-- doxytag: member="MotorController::getStatusFlags" ref="a5722795a5fd7c063dacbc112f2eaf164" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::getStatusFlags </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>getStatusFlags returns the status of the motor controller as a bit vector </p>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00307">307</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa1082a5bcd935ebd5bc15600d32f621d"></a><!-- doxytag: member="MotorController::getTemperature" ref="aa1082a5bcd935ebd5bc15600d32f621d" args="(int &amp;ch1, int &amp;ch2, int &amp;ic)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -451,7 +850,13 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int &amp;&nbsp;</td>
-          <td class="paramname"> <em>ch2</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>ch2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&nbsp;</td>
+          <td class="paramname"> <em>ic</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -466,14 +871,132 @@ Private Attributes</h2></td></tr>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>ch1</em>&nbsp;</td><td>- the temperature in degrees C for the first channel </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>ch2</em>&nbsp;</td><td>- the temperature in degrees C for the second channel </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>ic</em>&nbsp;</td><td>- the temperature in degrees C of the internal IC </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true if successful </dd></dl>
 
-<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00084">84</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00179">179</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8cpp_source.html#l00126">sendCommand()</a>.</p>
+<p>References <a class="el" href="MotorController_8cpp_source.html#l00335">responseParserTrio()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00281">sendCommand()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8d482b3313fbe1f5eb9fdc7021d84591"></a><!-- doxytag: member="MotorController::getTime" ref="a8d482b3313fbe1f5eb9fdc7021d84591" args="(int &amp;hours, int &amp;minutes, int &amp;seconds)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::getTime </td>
+          <td>(</td>
+          <td class="paramtype">int &amp;&nbsp;</td>
+          <td class="paramname"> <em>hours</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&nbsp;</td>
+          <td class="paramname"> <em>minutes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&nbsp;</td>
+          <td class="paramname"> <em>seconds</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>getTime - returns the time of the motor controller </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>hours</em>&nbsp;</td><td>- reference to the number of hours </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>minutes</em>&nbsp;</td><td>- reference to the number of minutes </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>seconds</em>&nbsp;</td><td>- reference to the number of seconds </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00184">184</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="MotorController_8cpp_source.html#l00335">responseParserTrio()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00281">sendCommand()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afc4f77bcc139958edbaa9916e4acd501"></a><!-- doxytag: member="MotorController::getVoltages" ref="afc4f77bcc139958edbaa9916e4acd501" args="(double &amp;driverVolt, double &amp;batteryVolt, double &amp;v5out)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::getVoltages </td>
+          <td>(</td>
+          <td class="paramtype">double &amp;&nbsp;</td>
+          <td class="paramname"> <em>driverVolt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&nbsp;</td>
+          <td class="paramname"> <em>batteryVolt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&nbsp;</td>
+          <td class="paramname"> <em>v5out</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>getVoltages - gets the voltages from the battery, internal motor driver and the 5 volt usb out. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>driverVolt</em>&nbsp;</td><td>- the motor driver output voltages as measured in volts </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>batteryVolt</em>&nbsp;</td><td>- the battery voltage as measured in volts </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v5out</em>&nbsp;</td><td>- the voltage of the usb as measured in volts </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true upon success. </dd></dl>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00189">189</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="MotorController_8cpp_source.html#l00335">responseParserTrio()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00281">sendCommand()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab9a8b511704092f5d8c18ee2cf265a4b"></a><!-- doxytag: member="MotorController::loadEEPROMSettings" ref="ab9a8b511704092f5d8c18ee2cf265a4b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::loadEEPROMSettings </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>loadEEPROMSettings - loads setting set in the eeprom back into ram and activates the settings </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00202">202</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="MotorController_8cpp_source.html#l00281">sendCommand()</a>.</p>
 
 </div>
 </div>
@@ -494,9 +1017,102 @@ Private Attributes</h2></td></tr>
 <p>reset - power cycles the motor controller </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon successful transmission </dd></dl>
 
-<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00098">98</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00216">216</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8h_source.html#l00019">MOTOR_SECRET_KEY</a>, and <a class="el" href="MotorController_8cpp_source.html#l00126">sendCommand()</a>.</p>
+<p>References <a class="el" href="MotorController_8h_source.html#l00021">MOTOR_SECRET_KEY</a>, and <a class="el" href="MotorController_8cpp_source.html#l00281">sendCommand()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5e0c84fb2694afd02dd247abba0cfffb"></a><!-- doxytag: member="MotorController::responseParserDual" ref="a5e0c84fb2694afd02dd247abba0cfffb" args="(int &amp;t1, int &amp;t2)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::responseParserDual </td>
+          <td>(</td>
+          <td class="paramtype">int &amp;&nbsp;</td>
+          <td class="paramname"> <em>t1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&nbsp;</td>
+          <td class="paramname"> <em>t2</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00322">322</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="MotorController_8h_source.html#l00325">serialPort</a>.</p>
+
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00164">getAbsoluteEncoderCount()</a>, <a class="el" href="MotorController_8cpp_source.html#l00151">getBatteryAmps()</a>, <a class="el" href="MotorController_8cpp_source.html#l00131">getMotorAmps()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00169">getRelativeEncoderCount()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a41309ac6d585cc0e96ac2e5c7369528d"></a><!-- doxytag: member="MotorController::responseParserTrio" ref="a41309ac6d585cc0e96ac2e5c7369528d" args="(int &amp;t1, int &amp;t2, int &amp;t3)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::responseParserTrio </td>
+          <td>(</td>
+          <td class="paramtype">int &amp;&nbsp;</td>
+          <td class="paramname"> <em>t1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&nbsp;</td>
+          <td class="paramname"> <em>t2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&nbsp;</td>
+          <td class="paramname"> <em>t3</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00335">335</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="MotorController_8h_source.html#l00325">serialPort</a>.</p>
+
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00179">getTemperature()</a>, <a class="el" href="MotorController_8cpp_source.html#l00184">getTime()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00189">getVoltages()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab52b0ad8614ab5a34e6db257be4ab9be"></a><!-- doxytag: member="MotorController::saveConfigSettings" ref="ab52b0ad8614ab5a34e6db257be4ab9be" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::saveConfigSettings </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>saveConfigSettings - saves the current settings in ram to the EEPROM DON'T Save while motors are running </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00211">211</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
 </div>
 </div>
@@ -524,11 +1140,146 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon successful transmission of the command </dd></dl>
 
-<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00126">126</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00281">281</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8h_source.html#l00100">echoEnabled</a>, and <a class="el" href="MotorController_8h_source.html#l00099">serialPort</a>.</p>
+<p>References <a class="el" href="MotorController_8h_source.html#l00326">echoEnabled</a>, and <a class="el" href="MotorController_8h_source.html#l00325">serialPort</a>.</p>
 
-<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00120">assertValidVoltage()</a>, <a class="el" href="MotorController_8cpp_source.html#l00094">clearEmergencyStop()</a>, <a class="el" href="MotorController_8cpp_source.html#l00142">disableSerialEcho()</a>, <a class="el" href="MotorController_8cpp_source.html#l00110">doProcess()</a>, <a class="el" href="MotorController_8cpp_source.html#l00090">emergencyStop()</a>, <a class="el" href="MotorController_8cpp_source.html#l00138">enableSerialEcho()</a>, <a class="el" href="MotorController_8cpp_source.html#l00078">getRelativeEncoderCount()</a>, <a class="el" href="MotorController_8cpp_source.html#l00084">getTemperature()</a>, <a class="el" href="MotorController_8cpp_source.html#l00098">reset()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00104">setTime()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00275">assertValidVoltage()</a>, <a class="el" href="MotorController_8cpp_source.html#l00064">clearEmergencyStop()</a>, <a class="el" href="MotorController_8cpp_source.html#l00298">disableSerialEcho()</a>, <a class="el" href="MotorController_8cpp_source.html#l00042">doProcess()</a>, <a class="el" href="MotorController_8cpp_source.html#l00060">emergencyStop()</a>, <a class="el" href="MotorController_8cpp_source.html#l00294">enableSerialEcho()</a>, <a class="el" href="MotorController_8cpp_source.html#l00164">getAbsoluteEncoderCount()</a>, <a class="el" href="MotorController_8cpp_source.html#l00151">getBatteryAmps()</a>, <a class="el" href="MotorController_8cpp_source.html#l00169">getRelativeEncoderCount()</a>, <a class="el" href="MotorController_8cpp_source.html#l00179">getTemperature()</a>, <a class="el" href="MotorController_8cpp_source.html#l00184">getTime()</a>, <a class="el" href="MotorController_8cpp_source.html#l00189">getVoltages()</a>, <a class="el" href="MotorController_8cpp_source.html#l00202">loadEEPROMSettings()</a>, <a class="el" href="MotorController_8cpp_source.html#l00216">reset()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00222">setTime()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0a3e08c04469ae0c2c1f3e26005b81ff"></a><!-- doxytag: member="MotorController::setAcceleration" ref="a0a3e08c04469ae0c2c1f3e26005b81ff" args="(MotorChannel channel, double acceleration)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::setAcceleration </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">MotorChannel</a>&nbsp;</td>
+          <td class="paramname"> <em>channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>acceleration</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>SetAcceleration - sets a limit to the acceleration for the motor controller </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>channel</em>&nbsp;</td><td>- the motor channel for which to set the acceleration </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>acceleration</em>&nbsp;</td><td>- the number of rpms per second of acceleration precise enough to one tenth of an rpm </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00050">50</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad7e89a362c89a6635601afd7bb5a07c3"></a><!-- doxytag: member="MotorController::setCommandLinearity" ref="ad7e89a362c89a6635601afd7bb5a07c3" args="(int linearity)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::setCommandLinearity </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>linearity</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>SetCommandLinearity - This parameter is used for applying an exponential or a logarithmic transformation on the command input, regardless of its source (serial, pulse or analog). There are 3 exponential and 3 logarithmic choices. Exponential correction make the commands change less at the beginning and become stronger at the end of the command input range. The logarithmic correction will have a stronger effect near the start and lesser effect near the end. The linear selection causes no change to the input. A linearity transform is also available for all analog and pulse inputs. Both can be enabled although in most cases, it is best to use the Command Linearity parameter for modifying command profiles. 0 : linear (no change) 1 : exp weak 2 : exp medium 3 : exp strong 4 : log weak 5 : log medium 6 : log strong </p>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00228">228</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a01c222fdaca0c51b6dfee690519f8d5e"></a><!-- doxytag: member="MotorController::setCommandPriority" ref="a01c222fdaca0c51b6dfee690519f8d5e" args="(int signal, int priority)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::setCommandPriority </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>signal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>priority</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>setCommandPriority - This parameter contains up to 3 variables and is used to set which type of command in priority the controller will respond to and in which order. The first item is the first priority, second – second priority, third – third priority. Each priority item is then one of the three command modes: Serial, Analog or RC Pulse. 1 : Serial 2 : RC 3 : Analog </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>signal</em>&nbsp;</td><td>- the singal to set to the priority </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>priority</em>&nbsp;</td><td>- the priority level to be set for the signal </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00233">233</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7d09ab0272d8729997dc073d86e104f6"></a><!-- doxytag: member="MotorController::setDeceleration" ref="a7d09ab0272d8729997dc073d86e104f6" args="(MotorChannel channel, double deceration)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::setDeceleration </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">MotorChannel</a>&nbsp;</td>
+          <td class="paramname"> <em>channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>deceration</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>SetDeceleration - sets a limit for how fast the motor controller will slow down a channel </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>channel</em>&nbsp;</td><td>- the motor channel for which to set the acceleration </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>deceleration</em>&nbsp;</td><td>- the number of rpms per second of deceleration precise to one tenth of an rpm </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00055">55</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
 </div>
 </div>
@@ -566,7 +1317,121 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00073">73</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00105">105</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="MotorController_8h_source.html#l00029">BothChannels</a>, <a class="el" href="MotorController_8h_source.html#l00027">Channel1</a>, <a class="el" href="MotorController_8h_source.html#l00028">Channel2</a>, and <a class="el" href="MotorController_8h_source.html#l00325">serialPort</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3e5512b31b9ce56e0f57c39833d7b520"></a><!-- doxytag: member="MotorController::setEncoderPPR" ref="a3e5512b31b9ce56e0f57c39833d7b520" args="(int ppr)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::setEncoderPPR </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>ppr</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>setEncoderPPR - sets the pulses per revolution for the encoder on the motor controller </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>ppr</em>&nbsp;</td><td>- the number of pulses per revolution on the wheel encoder </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00243">243</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a57b96decd2a22b90261c9f4526e4726c"></a><!-- doxytag: member="MotorController::setOverVoltageLimit" ref="a57b96decd2a22b90261c9f4526e4726c" args="(double limit)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::setOverVoltageLimit </td>
+          <td>(</td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>limit</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>setOverVoltageLimit - sets the maximum voltage value for the power stage. Higher voltages will cause the motor controller to turn off and signal an overvoltage fault </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>limit</em>&nbsp;</td><td>- the upper limit of the power stage voltage measured in volts </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00248">248</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae274231ec813ec00eb836d0c34925714"></a><!-- doxytag: member="MotorController::setSerialWatchDogTimer" ref="ae274231ec813ec00eb836d0c34925714" args="(int time=1000)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::setSerialWatchDogTimer </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>time</em> = <code>1000</code></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>setSerialWatchDogTimer - will set the serial watchdog timer to be equal to the parameter where it is measured in ms </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>time</em>&nbsp;</td><td>- the length of the watchdog timer as measured in ms </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00238">238</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a95eb6e4403440ced1351fbfaed43014d"></a><!-- doxytag: member="MotorController::setShortCircuitDetectionThreshold" ref="a95eb6e4403440ced1351fbfaed43014d" args="(int value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::setShortCircuitDetectionThreshold </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>value</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>setShortCircuitDetectionThreshold - Short Circuit Detection Threshold This configuration parameter sets the threshold level for the short circuit detection. There are 4 sensitivity levels from 0 to 3. 0 : Very high sensitivity 1 : Medium sensitivity 2 : Low sensitivity 3 : Short circuit protection disabled Using a value of 3 will cause an error </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>value</em>&nbsp;</td><td>- the sensitivity of the short circuit detection threshold to be used </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00258">258</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
 </div>
 </div>
@@ -604,11 +1469,11 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00037">37</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00068">68</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8cpp_source.html#l00116">assertValidMotorRange()</a>, <a class="el" href="MotorController_8h_source.html#l00023">BothChannels</a>, <a class="el" href="MotorController_8h_source.html#l00021">Channel1</a>, <a class="el" href="MotorController_8h_source.html#l00022">Channel2</a>, <a class="el" href="MotorController_8h_source.html#l00101">motor1Speed</a>, <a class="el" href="MotorController_8h_source.html#l00103">motor1SpeedMax</a>, <a class="el" href="MotorController_8h_source.html#l00105">motor1SpeedMin</a>, <a class="el" href="MotorController_8h_source.html#l00102">motor2Speed</a>, <a class="el" href="MotorController_8h_source.html#l00104">motor2SpeedMax</a>, and <a class="el" href="MotorController_8h_source.html#l00106">motor2SpeedMin</a>.</p>
+<p>References <a class="el" href="MotorController_8cpp_source.html#l00271">assertValidMotorRange()</a>, <a class="el" href="MotorController_8h_source.html#l00029">BothChannels</a>, <a class="el" href="MotorController_8h_source.html#l00027">Channel1</a>, <a class="el" href="MotorController_8h_source.html#l00028">Channel2</a>, <a class="el" href="MotorController_8h_source.html#l00327">motor1Speed</a>, <a class="el" href="MotorController_8h_source.html#l00329">motor1SpeedMax</a>, <a class="el" href="MotorController_8h_source.html#l00331">motor1SpeedMin</a>, <a class="el" href="MotorController_8h_source.html#l00328">motor2Speed</a>, <a class="el" href="MotorController_8h_source.html#l00330">motor2SpeedMax</a>, and <a class="el" href="MotorController_8h_source.html#l00332">motor2SpeedMin</a>.</p>
 
-<p>Referenced by <a class="el" href="MotorCommands_8cpp_source.html#l00015">MotorCommands::Go()</a>.</p>
+<p>Referenced by <a class="el" href="JoystickCommand_8cpp_source.html#l00016">JoystickCommand::doProcess()</a>, and <a class="el" href="MotorCommand_8cpp_source.html#l00017">MotorCommand::Go()</a>.</p>
 
 </div>
 </div>
@@ -653,9 +1518,37 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon successful transmission </dd></dl>
 
-<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00104">104</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00222">222</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8cpp_source.html#l00126">sendCommand()</a>.</p>
+<p>References <a class="el" href="MotorController_8cpp_source.html#l00281">sendCommand()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a788d68a666482683d69af3501c207fbc"></a><!-- doxytag: member="MotorController::setUnderVoltageLimit" ref="a788d68a666482683d69af3501c207fbc" args="(double limit)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::setUnderVoltageLimit </td>
+          <td>(</td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>limit</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>setUnderVoltageLimit - sets the minimum voltage value for the power stage. Lower voltages will cause the motor controller to turn off and signal an undervoltage fault. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>limit</em>&nbsp;</td><td>- the lower limit of the power stage voltage measured in volts </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
+
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00253">253</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
 </div>
 </div>
@@ -673,9 +1566,26 @@ Private Attributes</h2></td></tr>
 
 <p>the serial port to communicate to the motor controller </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00100">100</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00326">326</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00126">sendCommand()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00281">sendCommand()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aed8e1911d5e9378c57b4e196ed14803b"></a><!-- doxytag: member="MotorController::faultFlagVector" ref="aed8e1911d5e9378c57b4e196ed14803b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="classMotorController.html#aed8e1911d5e9378c57b4e196ed14803b">MotorController::faultFlagVector</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The hard lower limit for the second channel motor speed. </p>
+
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00333">333</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
 </div>
 </div>
@@ -692,9 +1602,9 @@ Private Attributes</h2></td></tr>
 
 <p>true if the motor controller is set to echo serial commands </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00101">101</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00327">327</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00110">doProcess()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00037">setSpeed()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00042">doProcess()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00068">setSpeed()</a>.</p>
 
 </div>
 </div>
@@ -711,9 +1621,9 @@ Private Attributes</h2></td></tr>
 
 <p>the current speed for the second channel motor </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00103">103</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00329">329</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00037">setSpeed()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00263">getMotorLimits()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00068">setSpeed()</a>.</p>
 
 </div>
 </div>
@@ -730,9 +1640,9 @@ Private Attributes</h2></td></tr>
 
 <p>The hard upper limit for the second channel motor speed. </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00105">105</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00331">331</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00037">setSpeed()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00263">getMotorLimits()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00068">setSpeed()</a>.</p>
 
 </div>
 </div>
@@ -749,9 +1659,9 @@ Private Attributes</h2></td></tr>
 
 <p>the current speed for the first channel motor </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00102">102</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00328">328</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00110">doProcess()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00037">setSpeed()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00042">doProcess()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00068">setSpeed()</a>.</p>
 
 </div>
 </div>
@@ -768,9 +1678,9 @@ Private Attributes</h2></td></tr>
 
 <p>The hard upper limit for the first channel motor speed. </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00104">104</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00330">330</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00037">setSpeed()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00263">getMotorLimits()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00068">setSpeed()</a>.</p>
 
 </div>
 </div>
@@ -787,9 +1697,9 @@ Private Attributes</h2></td></tr>
 
 <p>The hard lower limit for the first channel motor speed (lower limit would be the reverse speed). </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00106">106</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00332">332</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00037">setSpeed()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00263">getMotorLimits()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00068">setSpeed()</a>.</p>
 
 </div>
 </div>
@@ -804,9 +1714,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00019">19</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00021">21</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00098">reset()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00216">reset()</a>.</p>
 
 </div>
 </div>
@@ -821,9 +1731,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00099">99</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00325">325</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00126">sendCommand()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00131">getMotorAmps()</a>, <a class="el" href="MotorController_8cpp_source.html#l00322">responseParserDual()</a>, <a class="el" href="MotorController_8cpp_source.html#l00335">responseParserTrio()</a>, <a class="el" href="MotorController_8cpp_source.html#l00281">sendCommand()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00105">setEncoderCounter()</a>.</p>
 
 </div>
 </div>
@@ -846,7 +1756,7 @@ Private Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 12 2011 for YClops by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 23 2011 for YClops by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
