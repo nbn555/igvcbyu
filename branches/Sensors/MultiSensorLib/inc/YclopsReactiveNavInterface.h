@@ -31,6 +31,7 @@ private:
 	float curV;
 	float curW;
 public:
+	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 	YclopsReactiveNavInterface(mrpt::hwdrivers::CConfigFileBase&, string&);
 	virtual ~YclopsReactiveNavInterface();
 	bool getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &curPose, float &curV, float &curW);

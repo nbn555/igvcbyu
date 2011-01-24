@@ -1,7 +1,7 @@
 src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  ../src/YclopsReactiveNavInterface.cpp \
- /home/tallred3/ecen493/YClopsLib/inc/YclopsReactiveNavInterface.h \
- /home/tallred3/ecen493/YClopsLib/inc/Compass.h \
+ /home/igvcbyu/workspace/YClopsLib/inc/YclopsReactiveNavInterface.h \
+ /home/igvcbyu/workspace/YClopsLib/inc/Compass.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGenericSensor.h \
  /usr/include/mrpt/base/include/mrpt/utils/CConfigFileBase.h \
  /usr/include/mrpt/base/include/mrpt/utils/utils_defs.h \
@@ -12,8 +12,160 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/base/include/mrpt/utils/types.h \
  /usr/include/mrpt/base/include/mrpt/utils/pstdint.h \
  /usr/include/mrpt/base/include/mrpt/math/math_frwds.h \
- /usr/include/mrpt/base/include/mrpt/utils/compiler_fixes.h \
+ /usr/include/mrpt/base/include/Eigen/Dense \
+ /usr/include/mrpt/base/include/Eigen/Core \
+ /usr/include/mrpt/base/include/Eigen/src/Core/util/DisableMSVCWarnings.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/util/Macros.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/util/Constants.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/util/ForwardDeclarations.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/util/Meta.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/util/XprHelper.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/util/StaticAssert.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/util/Memory.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/NumTraits.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/MathFunctions.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/GenericPacketMath.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/arch/Default/Settings.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/Functors.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/DenseCoeffsBase.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/DenseBase.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/../plugins/BlockMethods.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/MatrixBase.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/../plugins/CommonCwiseUnaryOps.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/../plugins/CommonCwiseBinaryOps.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/../plugins/MatrixCwiseUnaryOps.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/../plugins/MatrixCwiseBinaryOps.h \
+ /usr/include/mrpt/base/include/mrpt/math/eigen_plugins.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/EigenBase.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/Assign.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/util/BlasUtil.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/DenseStorage.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/NestByValue.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/ForceAlignedAccess.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/ReturnByValue.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/NoAlias.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/PlainObjectBase.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/Matrix.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/Array.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/CwiseBinaryOp.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/CwiseUnaryOp.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/CwiseNullaryOp.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/CwiseUnaryView.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/SelfCwiseBinaryOp.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/Dot.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/StableNorm.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/MapBase.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/Stride.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/Map.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/Block.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/VectorBlock.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/Transpose.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/DiagonalMatrix.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/Diagonal.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/DiagonalProduct.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/PermutationMatrix.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/Transpositions.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/Redux.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/Visitor.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/Fuzzy.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/IO.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/Swap.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/CommaInitializer.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/Flagged.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/ProductBase.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/Product.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/TriangularMatrix.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/SelfAdjointView.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/SolveTriangular.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/products/Parallelizer.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/products/CoeffBasedProduct.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/products/GeneralBlockPanelKernel.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/products/GeneralMatrixVector.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/products/GeneralMatrixMatrix.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/products/GeneralMatrixMatrixTriangular.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/products/SelfadjointMatrixVector.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/products/SelfadjointMatrixMatrix.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/products/SelfadjointProduct.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/products/SelfadjointRank2Update.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/products/TriangularMatrixVector.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/products/TriangularMatrixMatrix.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/products/TriangularSolverMatrix.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/products/TriangularSolverVector.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/BandMatrix.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/BooleanRedux.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/Select.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/VectorwiseOp.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/Random.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/Replicate.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/Reverse.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/ArrayBase.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/../plugins/ArrayCwiseUnaryOps.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/../plugins/ArrayCwiseBinaryOps.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/ArrayWrapper.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/GlobalFunctions.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/util/EnableMSVCWarnings.h \
+ /usr/include/mrpt/base/include/Eigen/LU \
+ /usr/include/mrpt/base/include/Eigen/src/misc/Solve.h \
+ /usr/include/mrpt/base/include/Eigen/src/misc/Kernel.h \
+ /usr/include/mrpt/base/include/Eigen/src/misc/Image.h \
+ /usr/include/mrpt/base/include/Eigen/src/LU/FullPivLU.h \
+ /usr/include/mrpt/base/include/Eigen/src/LU/PartialPivLU.h \
+ /usr/include/mrpt/base/include/Eigen/src/LU/Determinant.h \
+ /usr/include/mrpt/base/include/Eigen/src/LU/Inverse.h \
+ /usr/include/mrpt/base/include/Eigen/Cholesky \
+ /usr/include/mrpt/base/include/Eigen/src/Cholesky/LLT.h \
+ /usr/include/mrpt/base/include/Eigen/src/Cholesky/LDLT.h \
+ /usr/include/mrpt/base/include/Eigen/QR \
+ /usr/include/mrpt/base/include/Eigen/Jacobi \
+ /usr/include/mrpt/base/include/Eigen/src/Jacobi/Jacobi.h \
+ /usr/include/mrpt/base/include/Eigen/Householder \
+ /usr/include/mrpt/base/include/Eigen/src/Householder/Householder.h \
+ /usr/include/mrpt/base/include/Eigen/src/Householder/HouseholderSequence.h \
+ /usr/include/mrpt/base/include/Eigen/src/Householder/BlockHouseholder.h \
+ /usr/include/mrpt/base/include/Eigen/src/QR/HouseholderQR.h \
+ /usr/include/mrpt/base/include/Eigen/src/QR/FullPivHouseholderQR.h \
+ /usr/include/mrpt/base/include/Eigen/src/QR/ColPivHouseholderQR.h \
+ /usr/include/mrpt/base/include/Eigen/Eigenvalues \
+ /usr/include/mrpt/base/include/Eigen/src/Eigenvalues/Tridiagonalization.h \
+ /usr/include/mrpt/base/include/Eigen/src/Eigenvalues/RealSchur.h \
+ /usr/include/mrpt/base/include/Eigen/src/Eigenvalues/./EigenvaluesCommon.h \
+ /usr/include/mrpt/base/include/Eigen/src/Eigenvalues/./HessenbergDecomposition.h \
+ /usr/include/mrpt/base/include/Eigen/src/Eigenvalues/EigenSolver.h \
+ /usr/include/mrpt/base/include/Eigen/src/Eigenvalues/./RealSchur.h \
+ /usr/include/mrpt/base/include/Eigen/src/Eigenvalues/SelfAdjointEigenSolver.h \
+ /usr/include/mrpt/base/include/Eigen/src/Eigenvalues/./Tridiagonalization.h \
+ /usr/include/mrpt/base/include/Eigen/src/Eigenvalues/GeneralizedSelfAdjointEigenSolver.h \
+ /usr/include/mrpt/base/include/Eigen/src/Eigenvalues/HessenbergDecomposition.h \
+ /usr/include/mrpt/base/include/Eigen/src/Eigenvalues/ComplexSchur.h \
+ /usr/include/mrpt/base/include/Eigen/src/Eigenvalues/ComplexEigenSolver.h \
+ /usr/include/mrpt/base/include/Eigen/src/Eigenvalues/./ComplexSchur.h \
+ /usr/include/mrpt/base/include/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
+ /usr/include/mrpt/base/include/Eigen/SVD \
+ /usr/include/mrpt/base/include/Eigen/src/SVD/JacobiSVD.h \
+ /usr/include/mrpt/base/include/Eigen/src/SVD/UpperBidiagonalization.h \
+ /usr/include/mrpt/base/include/Eigen/Geometry \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/OrthoMethods.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/Homogeneous.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/RotationBase.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/Rotation2D.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/Quaternion.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/AngleAxis.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/EulerAngles.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/Transform.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/Translation.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/Scaling.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/Hyperplane.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/ParametrizedLine.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/AlignedBox.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/Umeyama.h \
+ /usr/include/mrpt/base/include/Eigen/StdVector \
+ /usr/include/mrpt/base/include/Eigen/src/StlSupport/StdVector.h \
+ /usr/include/mrpt/base/include/Eigen/src/StlSupport/details.h \
+ /usr/include/mrpt/base/include/Eigen/StdDeque \
+ /usr/include/mrpt/base/include/Eigen/src/StlSupport/StdDeque.h \
+ /usr/include/mrpt/base/include/mrpt/math/eigen_plugins_impl.h \
  /usr/include/mrpt/base/include/mrpt/utils/mrpt_macros.h \
+ /usr/include/mrpt/base/include/mrpt/utils/compiler_fixes.h \
  /usr/include/mrpt/base/include/mrpt/otherlibs/stlplus/smart_ptr.hpp \
  /usr/include/mrpt/base/include/mrpt/otherlibs/stlplus/containers_fixes.hpp \
  /usr/include/mrpt/base/include/mrpt/otherlibs/stlplus/exceptions.hpp \
@@ -37,10 +189,12 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/base/include/mrpt/math/CMatrixTemplate.h \
  /usr/include/mrpt/base/include/mrpt/system/memory.h \
  /usr/include/mrpt/base/include/mrpt/system/datetime.h \
+ /usr/include/mrpt/base/include/mrpt/math/matrix_adaptors.h \
  /usr/include/mrpt/base/include/mrpt/math/CArray.h \
  /usr/include/mrpt/base/include/mrpt/math/ops_containers.h \
  /usr/include/mrpt/base/include/mrpt/math/lightweight_geom_data.h \
  /usr/include/mrpt/base/include/mrpt/math/CHistogram.h \
+ /usr/include/mrpt/base/include/mrpt/system/string_utils.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservation.h \
  /usr/include/mrpt/obs/include/mrpt/obs/link_pragmas.h \
  /usr/include/mrpt/base/include/mrpt/synch.h \
@@ -57,22 +211,18 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h \
  /usr/include/mrpt/base/include/mrpt/utils/CTicTac.h \
  /usr/include/mrpt/base/include/mrpt/utils/CDebugOutputCapable.h \
- /home/tallred3/ecen493/YClopsLib/inc/GPS.h \
+ /home/igvcbyu/workspace/YClopsLib/inc/GPS.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGPSInterface.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationGPS.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPose3D.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPose.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPoseOrPoint.h \
  /usr/include/mrpt/base/include/mrpt/math/CMatrixFixedNumeric.h \
- /usr/include/mrpt/base/include/mrpt/math/matrices_metaprogramming.h \
- /usr/include/mrpt/base/include/mrpt/math/CMatrixViews.h \
- /usr/include/mrpt/base/include/mrpt/math/matrix_iterators.h \
  /usr/include/mrpt/base/include/mrpt/math/ops_matrices.h \
  /usr/include/mrpt/base/include/mrpt/math/CMatrix.h \
  /usr/include/mrpt/base/include/mrpt/math/CMatrixTemplateNumeric.h \
- /usr/include/mrpt/base/include/mrpt/math/CVectorTemplate.h \
+ /usr/include/mrpt/base/include/mrpt/math/matrix_iterators.h \
  /usr/include/mrpt/base/include/mrpt/math/CMatrixD.h \
- /usr/include/mrpt/base/include/mrpt/math/ops_matrices_eigen.h \
  /usr/include/mrpt/base/include/mrpt/math/utils.h \
  /usr/include/mrpt/base/include/mrpt/math/ops_vectors.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPoseOrPoint_detail.h \
@@ -81,10 +231,10 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/base/include/mrpt/poses/CPoint3D.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPoint.h \
  /usr/include/mrpt/base/include/mrpt/utils/CConfigFile.h \
- /home/tallred3/ecen493/YClopsLib/inc/MotorCommand.h \
- /home/tallred3/ecen493/YClopsLib/inc/MotorCommandInterface.h \
- /home/tallred3/ecen493/YClopsLib/inc/MotorController.h \
- /home/tallred3/ecen493/YClopsLib/inc/PoseEstimator.h \
+ /home/igvcbyu/workspace/YClopsLib/inc/MotorCommand.h \
+ /home/igvcbyu/workspace/YClopsLib/inc/MotorCommandInterface.h \
+ /home/igvcbyu/workspace/YClopsLib/inc/MotorController.h \
+ /home/igvcbyu/workspace/YClopsLib/inc/PoseEstimator.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CCameraSensor.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CFFMPEG_InputStream.h \
  /usr/include/mrpt/base/include/mrpt/utils/CImage.h \
@@ -93,11 +243,11 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/base/include/mrpt/utils/CLoadableOptions.h \
  /usr/include/mrpt/base/include/mrpt/utils/CConfigFileMemory.h \
  /usr/include/mrpt/base/include/mrpt/utils/CStringList.h \
+ /usr/include/mrpt/base/include/mrpt/poses/CPose3DQuat.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_OpenCV.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationImage.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_dc1394.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationStereoImages.h \
- /usr/include/mrpt/base/include/mrpt/poses/CPose3DQuat.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CStereoGrabber_Bumblebee.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSwissRanger3DCamera.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservation3DRangeScan.h \
@@ -108,6 +258,8 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/base/include/mrpt/utils/mrptEvent.h \
  /usr/include/mrpt/gui/include/mrpt/gui/keycodes.h \
  /usr/include/mrpt/gui/include/mrpt/gui/link_pragmas.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CKinect.h \
+ /usr/include/mrpt/obs/include/mrpt/slam/CObservationIMU.h \
  /usr/include/mrpt/base/include/mrpt/utils/CFileGZInputStream.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CStereoGrabber_SVS.h \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav.h \
@@ -153,6 +305,8 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/base/include/mrpt/otherlibs/ann/ANN.h \
  /usr/include/mrpt/base/include/mrpt/math/kmeans.h \
  /usr/include/mrpt/base/include/mrpt/math/slerp.h \
+ /usr/include/mrpt/base/include/mrpt/math/model_search.h \
+ /usr/include/mrpt/base/include/mrpt/math/model_search_impl.h \
  /usr/include/mrpt/base/include/mrpt/poses.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPose2DGridTemplate.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPointPDF.h \
@@ -189,7 +343,6 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/base/include/mrpt/utils/CThreadSafeQueue.h \
  /usr/include/mrpt/base/include/mrpt/utils/CMessage.h \
  /usr/include/mrpt/base/include/mrpt/system/filesystem.h \
- /usr/include/mrpt/base/include/mrpt/system/string_utils.h \
  /usr/include/mrpt/base/include/mrpt/utils.h \
  /usr/include/mrpt/base/include/mrpt/utils/CStartUpClassesRegister.h \
  /usr/include/mrpt/base/include/mrpt/utils/CMemoryStream.h \
@@ -201,7 +354,6 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/base/include/mrpt/utils/CServerTCPSocket.h \
  /usr/include/mrpt/base/include/mrpt/utils/CClientTCPSocket.h \
  /usr/include/mrpt/base/include/mrpt/utils/CEnhancedMetaFile.h \
- /usr/include/mrpt/base/include/mrpt/utils/CImageFloat.h \
  /usr/include/mrpt/base/include/mrpt/utils/CMappedImage.h \
  /usr/include/mrpt/base/include/mrpt/utils/CTimeLogger.h \
  /usr/include/mrpt/base/include/mrpt/utils/CSimpleDatabase.h \
@@ -222,6 +374,7 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/base/include/mrpt/utils/CObserver.h \
  /usr/include/mrpt/opengl/include/mrpt/opengl/CRenderizable.h \
  /usr/include/mrpt/opengl/include/mrpt/opengl/link_pragmas.h \
+ /usr/include/mrpt/opengl/include/mrpt/opengl/CRenderizableDisplayList.h \
  /usr/include/mrpt/opengl/include/mrpt/opengl/COpenGLScene.h \
  /usr/include/mrpt/opengl/include/mrpt/opengl/COpenGLViewport.h \
  /usr/include/mrpt/opengl/include/mrpt/opengl/CCamera.h \
@@ -237,6 +390,7 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/base/include/mrpt/utils/color_maps.h \
  /usr/include/mrpt/opengl/include/mrpt/opengl/CSetOfTriangles.h \
  /usr/include/mrpt/opengl/include/mrpt/opengl/CPointCloud.h \
+ /usr/include/mrpt/opengl/include/mrpt/opengl/COctreePointRenderer.h \
  /usr/include/mrpt/opengl/include/mrpt/opengl/CPointCloudColoured.h \
  /usr/include/mrpt/opengl/include/mrpt/opengl/CSetOfLines.h \
  /usr/include/mrpt/opengl/include/mrpt/opengl/CSetOfTexturedTriangles.h \
@@ -262,7 +416,6 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationBeaconRanges.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationGasSensors.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationBatteryState.h \
- /usr/include/mrpt/obs/include/mrpt/slam/CObservationIMU.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationOdometry.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationBearingRange.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationComment.h \
@@ -279,6 +432,7 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/maps/include/mrpt/slam/CBeaconMap.h \
  /usr/include/mrpt/maps/include/mrpt/slam/CColouredPointsMap.h \
  /usr/include/mrpt/maps/include/mrpt/slam/CPointsMap.h \
+ /usr/include/mrpt/obs/include/mrpt/slam/CSinCosLookUpTableFor2DScans.h \
  /usr/include/mrpt/maps/include/mrpt/slam/CGasConcentrationGridMap2D.h \
  /usr/include/mrpt/maps/include/mrpt/slam/CHeightGridMap2D.h \
  /usr/include/mrpt/maps/include/mrpt/slam/COccupancyGridMap2D.h \
@@ -304,11 +458,11 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG5.h \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG6.h \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG7.h \
- /home/tallred3/ecen493/YClopsLib/inc/MotorController.h
+ /home/igvcbyu/workspace/YClopsLib/inc/MotorController.h
 
-/home/tallred3/ecen493/YClopsLib/inc/YclopsReactiveNavInterface.h:
+/home/igvcbyu/workspace/YClopsLib/inc/YclopsReactiveNavInterface.h:
 
-/home/tallred3/ecen493/YClopsLib/inc/Compass.h:
+/home/igvcbyu/workspace/YClopsLib/inc/Compass.h:
 
 /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGenericSensor.h:
 
@@ -330,9 +484,313 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/base/include/mrpt/math/math_frwds.h:
 
-/usr/include/mrpt/base/include/mrpt/utils/compiler_fixes.h:
+/usr/include/mrpt/base/include/Eigen/Dense:
+
+/usr/include/mrpt/base/include/Eigen/Core:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/util/DisableMSVCWarnings.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/util/Macros.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/util/Constants.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/util/ForwardDeclarations.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/util/Meta.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/util/XprHelper.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/util/StaticAssert.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/util/Memory.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/NumTraits.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/MathFunctions.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/GenericPacketMath.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/arch/Default/Settings.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/Functors.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/DenseCoeffsBase.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/DenseBase.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/../plugins/BlockMethods.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/MatrixBase.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/../plugins/CommonCwiseUnaryOps.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/../plugins/CommonCwiseBinaryOps.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/../plugins/MatrixCwiseUnaryOps.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/../plugins/MatrixCwiseBinaryOps.h:
+
+/usr/include/mrpt/base/include/mrpt/math/eigen_plugins.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/EigenBase.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/Assign.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/util/BlasUtil.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/DenseStorage.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/NestByValue.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/ForceAlignedAccess.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/ReturnByValue.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/NoAlias.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/PlainObjectBase.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/Matrix.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/Array.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/CwiseBinaryOp.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/CwiseUnaryOp.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/CwiseNullaryOp.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/CwiseUnaryView.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/SelfCwiseBinaryOp.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/Dot.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/StableNorm.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/MapBase.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/Stride.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/Map.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/Block.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/VectorBlock.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/Transpose.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/DiagonalMatrix.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/Diagonal.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/DiagonalProduct.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/PermutationMatrix.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/Transpositions.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/Redux.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/Visitor.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/Fuzzy.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/IO.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/Swap.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/CommaInitializer.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/Flagged.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/ProductBase.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/Product.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/TriangularMatrix.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/SelfAdjointView.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/SolveTriangular.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/products/Parallelizer.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/products/CoeffBasedProduct.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/products/GeneralBlockPanelKernel.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/products/GeneralMatrixVector.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/products/GeneralMatrixMatrix.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/products/GeneralMatrixMatrixTriangular.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/products/SelfadjointMatrixVector.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/products/SelfadjointMatrixMatrix.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/products/SelfadjointProduct.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/products/SelfadjointRank2Update.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/products/TriangularMatrixVector.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/products/TriangularMatrixMatrix.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/products/TriangularSolverMatrix.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/products/TriangularSolverVector.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/BandMatrix.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/BooleanRedux.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/Select.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/VectorwiseOp.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/Random.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/Replicate.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/Reverse.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/ArrayBase.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/../plugins/ArrayCwiseUnaryOps.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/../plugins/ArrayCwiseBinaryOps.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/ArrayWrapper.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/GlobalFunctions.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/util/EnableMSVCWarnings.h:
+
+/usr/include/mrpt/base/include/Eigen/LU:
+
+/usr/include/mrpt/base/include/Eigen/src/misc/Solve.h:
+
+/usr/include/mrpt/base/include/Eigen/src/misc/Kernel.h:
+
+/usr/include/mrpt/base/include/Eigen/src/misc/Image.h:
+
+/usr/include/mrpt/base/include/Eigen/src/LU/FullPivLU.h:
+
+/usr/include/mrpt/base/include/Eigen/src/LU/PartialPivLU.h:
+
+/usr/include/mrpt/base/include/Eigen/src/LU/Determinant.h:
+
+/usr/include/mrpt/base/include/Eigen/src/LU/Inverse.h:
+
+/usr/include/mrpt/base/include/Eigen/Cholesky:
+
+/usr/include/mrpt/base/include/Eigen/src/Cholesky/LLT.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Cholesky/LDLT.h:
+
+/usr/include/mrpt/base/include/Eigen/QR:
+
+/usr/include/mrpt/base/include/Eigen/Jacobi:
+
+/usr/include/mrpt/base/include/Eigen/src/Jacobi/Jacobi.h:
+
+/usr/include/mrpt/base/include/Eigen/Householder:
+
+/usr/include/mrpt/base/include/Eigen/src/Householder/Householder.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Householder/HouseholderSequence.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Householder/BlockHouseholder.h:
+
+/usr/include/mrpt/base/include/Eigen/src/QR/HouseholderQR.h:
+
+/usr/include/mrpt/base/include/Eigen/src/QR/FullPivHouseholderQR.h:
+
+/usr/include/mrpt/base/include/Eigen/src/QR/ColPivHouseholderQR.h:
+
+/usr/include/mrpt/base/include/Eigen/Eigenvalues:
+
+/usr/include/mrpt/base/include/Eigen/src/Eigenvalues/Tridiagonalization.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Eigenvalues/RealSchur.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Eigenvalues/./EigenvaluesCommon.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Eigenvalues/./HessenbergDecomposition.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Eigenvalues/EigenSolver.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Eigenvalues/./RealSchur.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Eigenvalues/SelfAdjointEigenSolver.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Eigenvalues/./Tridiagonalization.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Eigenvalues/GeneralizedSelfAdjointEigenSolver.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Eigenvalues/HessenbergDecomposition.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Eigenvalues/ComplexSchur.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Eigenvalues/ComplexEigenSolver.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Eigenvalues/./ComplexSchur.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h:
+
+/usr/include/mrpt/base/include/Eigen/SVD:
+
+/usr/include/mrpt/base/include/Eigen/src/SVD/JacobiSVD.h:
+
+/usr/include/mrpt/base/include/Eigen/src/SVD/UpperBidiagonalization.h:
+
+/usr/include/mrpt/base/include/Eigen/Geometry:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/OrthoMethods.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/Homogeneous.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/RotationBase.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/Rotation2D.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/Quaternion.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/AngleAxis.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/EulerAngles.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/Transform.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/Translation.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/Scaling.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/Hyperplane.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/ParametrizedLine.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/AlignedBox.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/Umeyama.h:
+
+/usr/include/mrpt/base/include/Eigen/StdVector:
+
+/usr/include/mrpt/base/include/Eigen/src/StlSupport/StdVector.h:
+
+/usr/include/mrpt/base/include/Eigen/src/StlSupport/details.h:
+
+/usr/include/mrpt/base/include/Eigen/StdDeque:
+
+/usr/include/mrpt/base/include/Eigen/src/StlSupport/StdDeque.h:
+
+/usr/include/mrpt/base/include/mrpt/math/eigen_plugins_impl.h:
 
 /usr/include/mrpt/base/include/mrpt/utils/mrpt_macros.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/compiler_fixes.h:
 
 /usr/include/mrpt/base/include/mrpt/otherlibs/stlplus/smart_ptr.hpp:
 
@@ -380,6 +838,8 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/base/include/mrpt/system/datetime.h:
 
+/usr/include/mrpt/base/include/mrpt/math/matrix_adaptors.h:
+
 /usr/include/mrpt/base/include/mrpt/math/CArray.h:
 
 /usr/include/mrpt/base/include/mrpt/math/ops_containers.h:
@@ -387,6 +847,8 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 /usr/include/mrpt/base/include/mrpt/math/lightweight_geom_data.h:
 
 /usr/include/mrpt/base/include/mrpt/math/CHistogram.h:
+
+/usr/include/mrpt/base/include/mrpt/system/string_utils.h:
 
 /usr/include/mrpt/obs/include/mrpt/slam/CObservation.h:
 
@@ -420,7 +882,7 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/base/include/mrpt/utils/CDebugOutputCapable.h:
 
-/home/tallred3/ecen493/YClopsLib/inc/GPS.h:
+/home/igvcbyu/workspace/YClopsLib/inc/GPS.h:
 
 /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGPSInterface.h:
 
@@ -434,23 +896,15 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/base/include/mrpt/math/CMatrixFixedNumeric.h:
 
-/usr/include/mrpt/base/include/mrpt/math/matrices_metaprogramming.h:
-
-/usr/include/mrpt/base/include/mrpt/math/CMatrixViews.h:
-
-/usr/include/mrpt/base/include/mrpt/math/matrix_iterators.h:
-
 /usr/include/mrpt/base/include/mrpt/math/ops_matrices.h:
 
 /usr/include/mrpt/base/include/mrpt/math/CMatrix.h:
 
 /usr/include/mrpt/base/include/mrpt/math/CMatrixTemplateNumeric.h:
 
-/usr/include/mrpt/base/include/mrpt/math/CVectorTemplate.h:
+/usr/include/mrpt/base/include/mrpt/math/matrix_iterators.h:
 
 /usr/include/mrpt/base/include/mrpt/math/CMatrixD.h:
-
-/usr/include/mrpt/base/include/mrpt/math/ops_matrices_eigen.h:
 
 /usr/include/mrpt/base/include/mrpt/math/utils.h:
 
@@ -468,13 +922,13 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/base/include/mrpt/utils/CConfigFile.h:
 
-/home/tallred3/ecen493/YClopsLib/inc/MotorCommand.h:
+/home/igvcbyu/workspace/YClopsLib/inc/MotorCommand.h:
 
-/home/tallred3/ecen493/YClopsLib/inc/MotorCommandInterface.h:
+/home/igvcbyu/workspace/YClopsLib/inc/MotorCommandInterface.h:
 
-/home/tallred3/ecen493/YClopsLib/inc/MotorController.h:
+/home/igvcbyu/workspace/YClopsLib/inc/MotorController.h:
 
-/home/tallred3/ecen493/YClopsLib/inc/PoseEstimator.h:
+/home/igvcbyu/workspace/YClopsLib/inc/PoseEstimator.h:
 
 /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CCameraSensor.h:
 
@@ -492,6 +946,8 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/base/include/mrpt/utils/CStringList.h:
 
+/usr/include/mrpt/base/include/mrpt/poses/CPose3DQuat.h:
+
 /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_OpenCV.h:
 
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationImage.h:
@@ -499,8 +955,6 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_dc1394.h:
 
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationStereoImages.h:
-
-/usr/include/mrpt/base/include/mrpt/poses/CPose3DQuat.h:
 
 /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CStereoGrabber_Bumblebee.h:
 
@@ -521,6 +975,10 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 /usr/include/mrpt/gui/include/mrpt/gui/keycodes.h:
 
 /usr/include/mrpt/gui/include/mrpt/gui/link_pragmas.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CKinect.h:
+
+/usr/include/mrpt/obs/include/mrpt/slam/CObservationIMU.h:
 
 /usr/include/mrpt/base/include/mrpt/utils/CFileGZInputStream.h:
 
@@ -612,6 +1070,10 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/base/include/mrpt/math/slerp.h:
 
+/usr/include/mrpt/base/include/mrpt/math/model_search.h:
+
+/usr/include/mrpt/base/include/mrpt/math/model_search_impl.h:
+
 /usr/include/mrpt/base/include/mrpt/poses.h:
 
 /usr/include/mrpt/base/include/mrpt/poses/CPose2DGridTemplate.h:
@@ -684,8 +1146,6 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/base/include/mrpt/system/filesystem.h:
 
-/usr/include/mrpt/base/include/mrpt/system/string_utils.h:
-
 /usr/include/mrpt/base/include/mrpt/utils.h:
 
 /usr/include/mrpt/base/include/mrpt/utils/CStartUpClassesRegister.h:
@@ -707,8 +1167,6 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 /usr/include/mrpt/base/include/mrpt/utils/CClientTCPSocket.h:
 
 /usr/include/mrpt/base/include/mrpt/utils/CEnhancedMetaFile.h:
-
-/usr/include/mrpt/base/include/mrpt/utils/CImageFloat.h:
 
 /usr/include/mrpt/base/include/mrpt/utils/CMappedImage.h:
 
@@ -750,6 +1208,8 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/opengl/include/mrpt/opengl/link_pragmas.h:
 
+/usr/include/mrpt/opengl/include/mrpt/opengl/CRenderizableDisplayList.h:
+
 /usr/include/mrpt/opengl/include/mrpt/opengl/COpenGLScene.h:
 
 /usr/include/mrpt/opengl/include/mrpt/opengl/COpenGLViewport.h:
@@ -779,6 +1239,8 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 /usr/include/mrpt/opengl/include/mrpt/opengl/CSetOfTriangles.h:
 
 /usr/include/mrpt/opengl/include/mrpt/opengl/CPointCloud.h:
+
+/usr/include/mrpt/opengl/include/mrpt/opengl/COctreePointRenderer.h:
 
 /usr/include/mrpt/opengl/include/mrpt/opengl/CPointCloudColoured.h:
 
@@ -830,8 +1292,6 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationBatteryState.h:
 
-/usr/include/mrpt/obs/include/mrpt/slam/CObservationIMU.h:
-
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationOdometry.h:
 
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationBearingRange.h:
@@ -863,6 +1323,8 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 /usr/include/mrpt/maps/include/mrpt/slam/CColouredPointsMap.h:
 
 /usr/include/mrpt/maps/include/mrpt/slam/CPointsMap.h:
+
+/usr/include/mrpt/obs/include/mrpt/slam/CSinCosLookUpTableFor2DScans.h:
 
 /usr/include/mrpt/maps/include/mrpt/slam/CGasConcentrationGridMap2D.h:
 
@@ -914,4 +1376,4 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG7.h:
 
-/home/tallred3/ecen493/YClopsLib/inc/MotorController.h:
+/home/igvcbyu/workspace/YClopsLib/inc/MotorController.h:
