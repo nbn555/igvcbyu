@@ -1,0 +1,34 @@
+Data Type      Longitude            Latitude  Distance from last
+GPRMC40.247553333333    -111.64842166667              GPRMC 
+distance between last two points = 0
+
+GPRMC40.247636666667    -111.64843166667              GPRMC 
+distance between last two points = 11826063.417989
+
+GPRMC40.247538333333         -111.648435              GPRMC 
+distance between last two points = 11826061.938354
+
+GPRMC40.247616666667          -111.64843              GPRMC 
+distance between last two points = 11826064.928445
+
+GPRMC       40.24757    -111.64841666667              GPRMC 
+distance between last two points = 11826062.353755
+
+GPRMC        40.2476    -111.64844166667              GPRMC 
+distance between last two points = 11826062.546588
+
+GPRMC40.247561666667    -111.64841833333              GPRMC 
+distance between last two points = 11826063.773228
+
+GPRMC       40.24761    -111.64844333333              GPRMC 
+distance between last two points = 11826062.91378
+
+GPRMC      40.247575          -111.64844              GPRMC 
+distance between last two points = 11826063.634036
+
+GPRMC40.247638333333    -111.64842666667              GPRMC 
+distance between last two points = 11826064.326733
+
+GPRMC40.247568333333          -111.64842              GPRMC 
+distance between last two points = 11826061.481266
+
