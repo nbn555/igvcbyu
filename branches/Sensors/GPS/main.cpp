@@ -19,6 +19,9 @@
 
 #include "GPS.h"
 #include "WaypointPlanner.h"
+
+#define length 7
+
 using namespace std;
 
 using namespace mrpt;
@@ -28,12 +31,14 @@ using namespace mrpt::system;
 using namespace mrpt::hwdrivers;
 
 CObservationGPSPtr gpsData;
+
 bool TESTING = true;
+
 double PrevPosLat;
 double PrevPosLon;
-
+const double metersToFeet = 3.2808399;
 /*
- * List of unusable functions.  Should be helpful in finding information from GPS
+ * List of functions.  Should be helpful in finding information from GPS
  */
 
 double GetGpsSpeed() {
@@ -61,27 +66,22 @@ double GetGpsLon() {
 	return 0.0;
 }
 
-/*
- * Distance to a waypoint from current robot location
- */
-
 double GetDistanceToWaypoint (double lon, double lat) {
 	return AbstractNavigationInterface::haversineDistance(lon, lat, gpsData->GGA_datum.longitude_degrees, gpsData->GGA_datum.latitude_degrees);
 }
 
-double GetDistanceToWaypoint (double lon1, double lat1, double lon2, double lat2) {
-	return AbstractNavigationInterface::haversineDistance(lon1, lat1, lon2, lat2);
+double GetDistanceToWaypoint (double lat1, double lon1, double lat2, double lon2) {
+	return AbstractNavigationInterface::haversineDistance(lat1, lon1, lat2, lon2);
 }
 
+
 int main() {
+
 	cout.precision(14);
 	GPS gps;
-//<<<<<<< .mine
-	//gps.setSerialPortName ( "ttyUSB0" );
-//=======
-	//gps.setSerialPortName ( "ttyS0" );
+
 	gps.setSerialPortName ( "ttyUSB0" ); // for use of usb to serial on laptop
-//>>>>>>> .r138
+
 	CConfigFile config("GPS.ini");
 	gps.loadConfig(config, "GPS");
 	gps.initConfig(config, "GPS");
@@ -101,16 +101,9 @@ int main() {
 		gps.getObservations(lstObs);
 		PrevPosLat = 0.0;
 		PrevPosLon = 0.0;
-
-		//cout << "here I am" << endl;
-
 	}
-	cout << "here i am" << endl;
-		//CObservationGPS(((CObservationGPS)(lstObs.begin()))).dumpToConsole();
-	gpsData = CObservationGPSPtr(lstObs.begin()->second);
-	//gpsData->dumpToConsole();
-	//TSPNavigation solver(bla);
 
+	gpsData = CObservationGPSPtr(lstObs.begin()->second);
 
 	cout << (int)gpsData->GGA_datum.fix_quality << endl;
 	cout << gpsData->RMC_datum.validity_char << endl;
@@ -126,17 +119,10 @@ int main() {
 	} else {
 		cerr << "Invalid GPS data" << endl;
 	}
-	double metersToFeet = 3.2808399;
-	//gpsData->dumpToConsole();
-	/*double lon1 = 40.2471133;
-	double lat1 = -111.648745;
-	double lon2 = 40.2471167;
-	double lat2 = -111.648652;
 
-	cout << GetDistanceToWaypoint(lon1, lat1, lon2, lat2);
-	cout << "Feet Conversion = " << (GetDistanceToWaypoint(lon1, lat1, lon2, lat2)*metersToFeet)<< endl;
-	*/
-/*
+	// Commented this code out because TSPNavigation was throwing an eigen error of some sorts
+////////////////////////////////////////////////////
+	/*
 	gps.doProcess();
 
 	//double lat = curPos.m_coords[0];
@@ -152,17 +138,22 @@ int main() {
 		cout << point->m_coords[TSPNavigation::LAT] << " " << point->m_coords[TSPNavigation::LON] << endl;
 
 	unsigned visitOrderIndex = 0;
-*/
-	if (TESTING) {
+	*/
+////////////////////////////////////////////////////
+
+	//  Writes GPS latitude, longitude, and distance between both into a file.
+
 	ofstream fout("readings.txt"); // to take GPS readings for testing
 	fout.precision(12);
-	fout << "Longitude" << setw(20) << "Latitude" << setw(20) << "Distance from last"<< endl;
+
+	fout << "Latitude" << setw(20) << "Longitude" << setw(20) << "   Distance from last(ft)"<< endl;
+
 
 	while(TESTING)//while (! mrpt::system::os::kbhit())
 
 	{
-		cout << "press enter to get gps reading" << endl;
-		getchar(); // waits for a command before proceding
+		cout << "press enter to get GPS reading" << endl;
+		getchar(); // waits for a command before proceeding
 
 		gps.doProcess();
 		mrpt::system::sleep( 1000 );
@@ -192,8 +183,19 @@ int main() {
 					cerr << "Invalid GPS data" << endl;
 					exit(EXIT_FAILURE);
 				}
-				cout.precision(12);
-				cout << "coordinates = " << curPos.m_coords[0] << endl;
+
+				gpsData->dumpToConsole(); // displays MRPT form data of all GPA measurements and calculations on console
+
+				//sends data to a file for current gps location and distance from last location visited
+				fout << curPos.m_coords[0] << setw(20) << curPos.m_coords[1] << setw(20) << (metersToFeet * GetDistanceToWaypoint(curPos.m_coords[0] ,curPos.m_coords[1] ,PrevPosLat, PrevPosLon))<< endl << endl;
+
+				PrevPosLat = curPos.m_coords[0];
+				PrevPosLon = curPos.m_coords[1];
+
+
+
+				//commented out this code because it was throwing an eigen errors of some sorts
+////////////////////////////////////////////////////
 				/*
 				assert(curPos.m_coords[0] != 0 );
 				assert(curPos.m_coords[1] != 0 );
@@ -213,28 +215,52 @@ int main() {
 						visitOrderIndex++;
 						cout << "going to next weighpoint" << endl;
 					}
-				}*/
+				}
+			*/
 
-				gpsData->dumpToConsole();
-
-				//fout << "GPGGa" << setw(15) << curPos.m_coords[0] << setw(20) << curPos.m_coords[1] << setw(20) << "GPGGA " << endl;
-				fout << curPos.m_coords[0] << setw(20) << curPos.m_coords[1] << setw(20) << "GPRMC " << endl;
-				fout << "distance between last two points (feet)= " << (metersToFeet * GetDistanceToWaypoint(curPos.m_coords[1] ,curPos.m_coords[0] ,PrevPosLon, PrevPosLat)) << endl << endl;
-
-				cout << PrevPosLat << " Lat" << endl;
-				cout << PrevPosLon << " Lon" << endl;
-
-				PrevPosLat = curPos.m_coords[0];
-				PrevPosLon = curPos.m_coords[1];
-
+////////////////////////////////////////////////////
 			}
-
-
 			lstObs.clear();
 		}
-
-	}
 	fout.close();
+	}
+
+	return 0;
+}
+
+
+/*  // code for determine distances if needed
+int main() {
+
+	double lat[length] = {
+			40.24711,
+			40.2470983,
+			40.2471167,
+			40.2471133,
+			40.2471167,
+			40.2471067,
+			40.24712
+	};
+
+	double lon[length] = {
+			-111.648653,
+			-111.648753,
+			-111.648652,
+			-111.648745,
+			-111.648647,
+			-111.648757,
+			-111.648655
+	};
+
+
+	double metersToFeet = 3.2808399;
+	//gpsData->dumpToConsole();
+	int n = 1;
+	while (n < length) {
+	//cout << GetDistanceToWaypoint(lat1, lon1, lat2, lon2);
+	cout << "Feet Conversion = " << (GetDistanceToWaypoint(lat[n], lon[n], lat[n-1], lon[n-1])*metersToFeet)<< endl;
+	++n;
 	}
 	return 0;
 }
+*/
