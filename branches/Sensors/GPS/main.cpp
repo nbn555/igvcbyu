@@ -29,6 +29,8 @@ using namespace mrpt::hwdrivers;
 
 CObservationGPSPtr gpsData;
 bool TESTING = true;
+double PrevPosLat;
+double PrevPosLon;
 
 /*
  * List of unusable functions.  Should be helpful in finding information from GPS
@@ -72,7 +74,7 @@ double GetDistanceToWaypoint (double lon1, double lat1, double lon2, double lat2
 }
 
 int main() {
-
+	cout.precision(14);
 	GPS gps;
 //<<<<<<< .mine
 	//gps.setSerialPortName ( "ttyUSB0" );
@@ -97,8 +99,11 @@ int main() {
 		gps.doProcess();
 		mrpt::system::sleep(500);
 		gps.getObservations(lstObs);
+		PrevPosLat = 0.0;
+		PrevPosLon = 0.0;
 
 		//cout << "here I am" << endl;
+
 	}
 	cout << "here i am" << endl;
 		//CObservationGPS(((CObservationGPS)(lstObs.begin()))).dumpToConsole();
@@ -123,11 +128,13 @@ int main() {
 	}
 
 	//gpsData->dumpToConsole();
-	//double lon1 = 40.247589;
-	//double lat1 = -111.648093;
-	//double lon2 = 40.247347;
-	//double lat2 = -111.648407;
-	//cout << GetDistanceToWaypoint(lon1, lat1, lon2, lat2);
+//	double lon1 = 40.2476383;
+//	double lat1 = -111.648415;
+//	double lon2 = 40.247575;
+//	double lat2 = -111.648438;
+	double metersToFeet = 3.2808399;
+//	cout << GetDistanceToWaypoint(lon1, lat1, lon2, lat2);
+//	cout << "Feet Conversion = " << (GetDistanceToWaypoint(lon1, lat1, lon2, lat2)*metersToFeet)<< endl;
 /*
 	gps.doProcess();
 
@@ -145,12 +152,15 @@ int main() {
 
 	unsigned visitOrderIndex = 0;
 */
+	if (TESTING) {
 	ofstream fout("readings.txt"); // to take GPS readings for testing
-	fout << "Longitude" << setw(15) << "Latitude" << setw(15) << "Distance from last"<< endl;
+	fout.precision(9);
+	fout << "Data Type" << setw(15) << "Longitude" << setw(20) << "Latitude" << setw(20) << "Distance from last"<< endl;
+
 	while(TESTING)//while (! mrpt::system::os::kbhit())
 	{
 		cout << "press enter to get gps reading" << endl;
-		getchar();
+		getchar(); // waits for a command before proceding
 
 		gps.doProcess();
 		mrpt::system::sleep( 500 );
@@ -180,8 +190,8 @@ int main() {
 					cerr << "Invalid GPS data" << endl;
 					exit(EXIT_FAILURE);
 				}
-
-
+				cout.precision(12);
+				cout << "coordinates = " << curPos.m_coords[0] << endl;
 				/*
 				assert(curPos.m_coords[0] != 0 );
 				assert(curPos.m_coords[1] != 0 );
@@ -204,14 +214,25 @@ int main() {
 				}*/
 
 				gpsData->dumpToConsole();
-				fout << curPos.m_coords[0] << setw(15) << curPos.m_coords[1] << setw(15) << "GPGGA " << endl;
-				fout << curPos.m_coords[0] << setw(15) << curPos.m_coords[1] << setw(15) << "GPRMC " << endl;
+
+				//fout << "GPGGa" << setw(15) << curPos.m_coords[0] << setw(20) << curPos.m_coords[1] << setw(20) << "GPGGA " << endl;
+				fout << "GPRMC" << setw(15) << curPos.m_coords[0] << setw(20) << curPos.m_coords[1] << setw(20) << "GPRMC " << endl;
+				fout << "distance between last two points (feet)= " << (metersToFeet * GetDistanceToWaypoint(gpsData->GGA_datum.longitude_degrees ,gpsData->GGA_datum.latitude_degrees ,PrevPosLon, PrevPosLat)) << endl << endl;
+
+				cout << PrevPosLat << " Lat" << endl;
+				cout << PrevPosLon << " Lon" << endl;
+
+				PrevPosLat = gpsData->GGA_datum.latitude_degrees;
+				PrevPosLon = gpsData->GGA_datum.longitude_degrees;
+
 			}
 
 
 			lstObs.clear();
 		}
-		fout.close();
+
+	}
+	fout.close();
 	}
 	return 0;
 }
