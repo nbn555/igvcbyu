@@ -28,6 +28,15 @@ bool AbstractPoseEstimator::getPose( CPose3D & pose ) {
 	return true;
 }
 
+NoFilterPoseEstimator::NoFilterPoseEstimator() {
+	// TODO Auto-generated constructor stub
+
+}
+
+NoFilterPoseEstimator::~NoFilterPoseEstimator() {
+	// TODO Auto-generated destructor stub
+}
+
 void NoFilterPoseEstimator::update( mrpt::slam::CObservationGPSPtr gpsObsPtr, double yaw, double pitch, double roll ) {
 	double lat;
 	double lon;
