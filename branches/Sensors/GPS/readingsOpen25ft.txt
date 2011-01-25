@@ -1,22 +1,22 @@
-Data Type      Longitude            Latitude  Distance from last
+Data Type      Latitude            Longitude  Distance from last
 GPRMC       40.24711         -111.648653              GPRMC 
 distance between last two points (feet)= 38799523.4
 
 GPRMC     40.2470983         -111.648753              GPRMC 
-distance between last two points (feet)= 36.515101
+distance between last two points (feet)= 28.1702
 
 GPRMC     40.2471167         -111.648652              GPRMC 
-distance between last two points (feet)= 37.1713306
+distance between last two points (feet)= 28.9134
 
 GPRMC     40.2471133         -111.648745              GPRMC 
-distance between last two points (feet)= 34.0521935
+distance between last two points (feet)= 25.9255
 
 GPRMC     40.2471167         -111.648647              GPRMC 
-distance between last two points (feet)= 35.8761096
+distance between last two points (feet)= 27.3162
 
 GPRMC     40.2471067         -111.648757              GPRMC 
-distance between last two points (feet)= 40.1520214
+distance between last two points (feet)= 30.8459
 
 GPRMC       40.24712         -111.648655              GPRMC 
-distance between last two points (feet)= 37.1327337
+distance between last two points (feet)= 28.8133
 
