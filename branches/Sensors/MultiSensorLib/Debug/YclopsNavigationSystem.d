@@ -1,11 +1,14 @@
-src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
- ../src/YclopsReactiveNavInterface.cpp \
- /home/igvcbyu/workspace/YClopsLib/inc/YclopsReactiveNavInterface.h \
- /home/igvcbyu/workspace/YClopsLib/inc/Compass.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGenericSensor.h \
- /usr/include/mrpt/base/include/mrpt/utils/CConfigFileBase.h \
- /usr/include/mrpt/base/include/mrpt/utils/utils_defs.h \
+YclopsNavigationSystem.d YclopsNavigationSystem.o: \
+ ../YclopsNavigationSystem.cpp ../YclopsNavigationSystem.h \
+ /usr/include/mrpt/maps/include/mrpt/maps.h \
+ /usr/include/mrpt/obs/include/mrpt/obs.h \
+ /usr/include/mrpt/opengl/include/mrpt/opengl.h \
+ /usr/include/mrpt/base/include/mrpt/base.h \
  /usr/include/mrpt/mrpt-config/mrpt/config.h \
+ /usr/include/mrpt/mrpt-config/mrpt/version.h \
+ /usr/include/mrpt/base/include/mrpt/compress.h \
+ /usr/include/mrpt/base/include/mrpt/compress/zip.h \
+ /usr/include/mrpt/base/include/mrpt/utils/utils_defs.h \
  /usr/include/mrpt/base/include/mrpt/system/os.h \
  /usr/include/mrpt/base/include/mrpt/base/link_pragmas.h \
  /usr/include/mrpt/base/include/mrpt/utils/boost_join.h \
@@ -172,7 +175,16 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/base/include/mrpt/synch/atomic_incr.h \
  /usr/include/mrpt/base/include/mrpt/otherlibs/stlplus/smart_ptr.tpp \
  /usr/include/mrpt/base/include/mrpt/utils/bits.h \
- /usr/include/mrpt/base/include/mrpt/utils/TEnumType.h \
+ /usr/include/mrpt/base/include/mrpt/math.h \
+ /usr/include/mrpt/base/include/mrpt/math/distributions.h \
+ /usr/include/mrpt/base/include/mrpt/math/CMatrixTemplateNumeric.h \
+ /usr/include/mrpt/base/include/mrpt/math/CMatrixTemplate.h \
+ /usr/include/mrpt/base/include/mrpt/system/memory.h \
+ /usr/include/mrpt/base/include/mrpt/system/datetime.h \
+ /usr/include/mrpt/base/include/mrpt/math/matrix_adaptors.h \
+ /usr/include/mrpt/base/include/mrpt/math/CArray.h \
+ /usr/include/mrpt/base/include/mrpt/math/ops_containers.h \
+ /usr/include/mrpt/base/include/mrpt/math/lightweight_geom_data.h \
  /usr/include/mrpt/base/include/mrpt/utils/stl_extensions.h \
  /usr/include/mrpt/base/include/mrpt/utils/CSerializable.h \
  /usr/include/mrpt/base/include/mrpt/utils/CObject.h \
@@ -186,119 +198,51 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/base/include/mrpt/utils/bimap.h \
  /usr/include/mrpt/base/include/mrpt/utils/map_as_vector.h \
  /usr/include/mrpt/base/include/mrpt/utils/traits_map.h \
- /usr/include/mrpt/base/include/mrpt/math/CMatrixTemplate.h \
- /usr/include/mrpt/base/include/mrpt/system/memory.h \
- /usr/include/mrpt/base/include/mrpt/system/datetime.h \
- /usr/include/mrpt/base/include/mrpt/math/matrix_adaptors.h \
- /usr/include/mrpt/base/include/mrpt/math/CArray.h \
- /usr/include/mrpt/base/include/mrpt/math/ops_containers.h \
- /usr/include/mrpt/base/include/mrpt/math/lightweight_geom_data.h \
  /usr/include/mrpt/base/include/mrpt/math/CHistogram.h \
- /usr/include/mrpt/base/include/mrpt/system/string_utils.h \
- /usr/include/mrpt/obs/include/mrpt/slam/CObservation.h \
- /usr/include/mrpt/obs/include/mrpt/obs/link_pragmas.h \
- /usr/include/mrpt/base/include/mrpt/synch.h \
- /usr/include/mrpt/base/include/mrpt/synch/atomic_incr.h \
- /usr/include/mrpt/base/include/mrpt/synch/CCriticalSection.h \
- /usr/include/mrpt/base/include/mrpt/utils/CReferencedMemBlock.h \
- /usr/include/mrpt/base/include/mrpt/synch/CEvent.h \
- /usr/include/mrpt/base/include/mrpt/synch/CSemaphore.h \
- /usr/include/mrpt/base/include/mrpt/synch/MT_buffer.h \
- /usr/include/mrpt/base/include/mrpt/synch/CCriticalSection.h \
- /usr/include/mrpt/base/include/mrpt/synch/CThreadSafeVariable.h \
- /usr/include/mrpt/base/include/mrpt/system/threads.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/link_pragmas.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h \
- /usr/include/mrpt/base/include/mrpt/utils/CTicTac.h \
- /usr/include/mrpt/base/include/mrpt/utils/CDebugOutputCapable.h \
- /home/igvcbyu/workspace/YClopsLib/inc/GPS.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGPSInterface.h \
- /usr/include/mrpt/obs/include/mrpt/slam/CObservationGPS.h \
+ /usr/include/mrpt/base/include/mrpt/math/matrix_iterators.h \
+ /usr/include/mrpt/base/include/mrpt/math/ops_matrices.h \
+ /usr/include/mrpt/base/include/mrpt/math/CMatrix.h \
+ /usr/include/mrpt/base/include/mrpt/math/CMatrixFixedNumeric.h \
+ /usr/include/mrpt/base/include/mrpt/math/CMatrixD.h \
+ /usr/include/mrpt/base/include/mrpt/math/transform_gaussian.h \
+ /usr/include/mrpt/base/include/mrpt/math/jacobians.h \
+ /usr/include/mrpt/base/include/mrpt/math/CQuaternion.h \
+ /usr/include/mrpt/base/include/mrpt/math/utils.h \
+ /usr/include/mrpt/base/include/mrpt/math/ops_vectors.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPose3D.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPose.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPoseOrPoint.h \
- /usr/include/mrpt/base/include/mrpt/math/CMatrixFixedNumeric.h \
- /usr/include/mrpt/base/include/mrpt/math/ops_matrices.h \
- /usr/include/mrpt/base/include/mrpt/math/CMatrix.h \
- /usr/include/mrpt/base/include/mrpt/math/CMatrixTemplateNumeric.h \
- /usr/include/mrpt/base/include/mrpt/math/matrix_iterators.h \
- /usr/include/mrpt/base/include/mrpt/math/CMatrixD.h \
- /usr/include/mrpt/base/include/mrpt/math/utils.h \
- /usr/include/mrpt/base/include/mrpt/math/ops_vectors.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPoseOrPoint_detail.h \
- /usr/include/mrpt/base/include/mrpt/math/CQuaternion.h \
- /usr/include/mrpt/base/include/mrpt/poses/CPose2D.h \
- /usr/include/mrpt/base/include/mrpt/poses/CPoint3D.h \
- /usr/include/mrpt/base/include/mrpt/poses/CPoint.h \
- /usr/include/mrpt/base/include/mrpt/utils/CConfigFile.h \
- /home/igvcbyu/workspace/YClopsLib/inc/MotorCommand.h \
- /home/igvcbyu/workspace/YClopsLib/inc/MotorCommandInterface.h \
- /home/igvcbyu/workspace/YClopsLib/inc/MotorController.h \
- /home/igvcbyu/workspace/YClopsLib/inc/PoseEstimator.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CCameraSensor.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CFFMPEG_InputStream.h \
- /usr/include/mrpt/base/include/mrpt/utils/CImage.h \
- /usr/include/mrpt/base/include/mrpt/utils/CCanvas.h \
- /usr/include/mrpt/base/include/mrpt/utils/TCamera.h \
- /usr/include/mrpt/base/include/mrpt/utils/CLoadableOptions.h \
- /usr/include/mrpt/base/include/mrpt/utils/CConfigFileMemory.h \
- /usr/include/mrpt/base/include/mrpt/utils/CStringList.h \
- /usr/include/mrpt/base/include/mrpt/poses/CPose3DQuat.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_OpenCV.h \
- /usr/include/mrpt/obs/include/mrpt/slam/CObservationImage.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_dc1394.h \
- /usr/include/mrpt/obs/include/mrpt/slam/CObservationStereoImages.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CStereoGrabber_Bumblebee.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSwissRanger3DCamera.h \
- /usr/include/mrpt/obs/include/mrpt/slam/CObservation3DRangeScan.h \
- /usr/include/mrpt/base/include/mrpt/math/CPolygon.h \
- /usr/include/mrpt/gui/include/mrpt/gui/CDisplayWindow.h \
- /usr/include/mrpt/gui/include/mrpt/gui/CBaseGUIWindow.h \
- /usr/include/mrpt/base/include/mrpt/utils/CObservable.h \
- /usr/include/mrpt/base/include/mrpt/utils/mrptEvent.h \
- /usr/include/mrpt/gui/include/mrpt/gui/keycodes.h \
- /usr/include/mrpt/gui/include/mrpt/gui/link_pragmas.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CKinect.h \
- /usr/include/mrpt/obs/include/mrpt/slam/CObservationIMU.h \
- /usr/include/mrpt/base/include/mrpt/utils/CFileGZInputStream.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CStereoGrabber_SVS.h \
- /usr/include/mrpt/reactivenav/include/mrpt/reactivenav.h \
- /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CReactiveNavigationSystem.h \
- /usr/include/mrpt/maps/include/mrpt/maps.h \
- /usr/include/mrpt/obs/include/mrpt/obs.h \
- /usr/include/mrpt/opengl/include/mrpt/opengl.h \
- /usr/include/mrpt/base/include/mrpt/base.h \
- /usr/include/mrpt/mrpt-config/mrpt/version.h \
- /usr/include/mrpt/base/include/mrpt/compress.h \
- /usr/include/mrpt/base/include/mrpt/compress/zip.h \
- /usr/include/mrpt/base/include/mrpt/math.h \
- /usr/include/mrpt/base/include/mrpt/math/distributions.h \
- /usr/include/mrpt/base/include/mrpt/math/transform_gaussian.h \
- /usr/include/mrpt/base/include/mrpt/math/jacobians.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPose3DPDFGaussian.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPose3DPDF.h \
  /usr/include/mrpt/base/include/mrpt/utils/CProbabilityDensityFunction.h \
  /usr/include/mrpt/base/include/mrpt/poses/opengl_frwd_decl.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPosePDF.h \
+ /usr/include/mrpt/base/include/mrpt/poses/CPose2D.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPosePDFGaussian.h \
  /usr/include/mrpt/base/include/mrpt/random.h \
  /usr/include/mrpt/base/include/mrpt/random/RandomGenerators.h \
  /usr/include/mrpt/base/include/mrpt/math/fourier.h \
  /usr/include/mrpt/base/include/mrpt/math/CLevenbergMarquardt.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CDebugOutputCapable.h \
  /usr/include/mrpt/base/include/mrpt/math/ransac.h \
  /usr/include/mrpt/base/include/mrpt/math/ransac_applications.h \
  /usr/include/mrpt/base/include/mrpt/math/geometry.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPoint2D.h \
+ /usr/include/mrpt/base/include/mrpt/poses/CPoint.h \
+ /usr/include/mrpt/base/include/mrpt/poses/CPoint3D.h \
  /usr/include/mrpt/base/include/mrpt/math/CSparseMatrixTemplate.h \
  /usr/include/mrpt/base/include/mrpt/math/dijkstra.h \
  /usr/include/mrpt/base/include/mrpt/math/graphs.h \
  /usr/include/mrpt/base/include/mrpt/math/CMatrixB.h \
  /usr/include/mrpt/base/include/mrpt/math/CMatrixTemplateObjects.h \
  /usr/include/mrpt/base/include/mrpt/math/CGraphPartitioner.h \
+ /usr/include/mrpt/base/include/mrpt/math/CPolygon.h \
  /usr/include/mrpt/base/include/mrpt/math/CSplineInterpolator1D.h \
  /usr/include/mrpt/base/include/mrpt/math/CSparseMatrix.h \
  /usr/include/mrpt/base/include/mrpt/otherlibs/CSparse/cs.h \
  /usr/include/mrpt/base/include/mrpt/math/CAStarAlgorithm.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CTicTac.h \
  /usr/include/mrpt/base/include/mrpt/math/CBinaryRelation.h \
  /usr/include/mrpt/base/include/mrpt/math/CMonteCarlo.h \
  /usr/include/mrpt/base/include/mrpt/math/KDTreeCapable.h \
@@ -310,6 +254,7 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/base/include/mrpt/poses.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPose2DGridTemplate.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPointPDF.h \
+ /usr/include/mrpt/base/include/mrpt/poses/CPose3DQuat.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPosePDFGrid.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPointPDFGaussian.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPoint2DPDFGaussian.h \
@@ -318,6 +263,10 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/base/include/mrpt/poses/CPoseRandomSampler.h \
  /usr/include/mrpt/base/include/mrpt/bayes/CParticleFilterCapable.h \
  /usr/include/mrpt/base/include/mrpt/bayes/CParticleFilter.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CLoadableOptions.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CConfigFileBase.h \
+ /usr/include/mrpt/base/include/mrpt/utils/TEnumType.h \
+ /usr/include/mrpt/base/include/mrpt/system/string_utils.h \
  /usr/include/mrpt/base/include/mrpt/bayes/CParticleFilterData.h \
  /usr/include/mrpt/base/include/mrpt/bayes/CProbabilityParticle.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPointPDFParticles.h \
@@ -331,19 +280,31 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/base/include/mrpt/poses/CNetworkOfPoses.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPosePDFGaussianInf.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPose3DPDFGaussianInf.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CFileGZInputStream.h \
  /usr/include/mrpt/base/include/mrpt/utils/CFileGZOutputStream.h \
  /usr/include/mrpt/base/include/mrpt/poses/CRobot2DPoseEstimator.h \
+ /usr/include/mrpt/base/include/mrpt/synch/CCriticalSection.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CReferencedMemBlock.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPose3DQuatPDFGaussian.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPose3DQuatPDF.h \
  /usr/include/mrpt/base/include/mrpt/poses/SE_traits.h \
  /usr/include/mrpt/base/include/mrpt/poses/helper_templates.h \
+ /usr/include/mrpt/base/include/mrpt/synch.h \
+ /usr/include/mrpt/base/include/mrpt/synch/atomic_incr.h \
+ /usr/include/mrpt/base/include/mrpt/synch/CCriticalSection.h \
+ /usr/include/mrpt/base/include/mrpt/synch/CEvent.h \
+ /usr/include/mrpt/base/include/mrpt/synch/CSemaphore.h \
+ /usr/include/mrpt/base/include/mrpt/synch/MT_buffer.h \
+ /usr/include/mrpt/base/include/mrpt/synch/CThreadSafeVariable.h \
  /usr/include/mrpt/base/include/mrpt/system.h \
  /usr/include/mrpt/base/include/mrpt/system/CDirectoryExplorer.h \
  /usr/include/mrpt/base/include/mrpt/system/CFileSystemWatcher.h \
+ /usr/include/mrpt/base/include/mrpt/system/threads.h \
  /usr/include/mrpt/base/include/mrpt/utils/CThreadSafeQueue.h \
  /usr/include/mrpt/base/include/mrpt/utils/CMessage.h \
  /usr/include/mrpt/base/include/mrpt/system/filesystem.h \
  /usr/include/mrpt/base/include/mrpt/utils.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CStringList.h \
  /usr/include/mrpt/base/include/mrpt/utils/CStartUpClassesRegister.h \
  /usr/include/mrpt/base/include/mrpt/utils/CMemoryStream.h \
  /usr/include/mrpt/base/include/mrpt/utils/CMemoryChunk.h \
@@ -354,12 +315,17 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/base/include/mrpt/utils/CServerTCPSocket.h \
  /usr/include/mrpt/base/include/mrpt/utils/CClientTCPSocket.h \
  /usr/include/mrpt/base/include/mrpt/utils/CEnhancedMetaFile.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CCanvas.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CImage.h \
+ /usr/include/mrpt/base/include/mrpt/utils/TCamera.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CConfigFileMemory.h \
  /usr/include/mrpt/base/include/mrpt/utils/CMappedImage.h \
  /usr/include/mrpt/base/include/mrpt/utils/CTimeLogger.h \
  /usr/include/mrpt/base/include/mrpt/utils/CSimpleDatabase.h \
  /usr/include/mrpt/base/include/mrpt/utils/CPropertiesValuesList.h \
  /usr/include/mrpt/base/include/mrpt/utils/CMHPropertiesValuesList.h \
  /usr/include/mrpt/base/include/mrpt/utils/CTypeSelector.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CConfigFile.h \
  /usr/include/mrpt/base/include/mrpt/utils/CMessageQueue.h \
  /usr/include/mrpt/base/include/mrpt/utils/CDynamicGrid.h \
  /usr/include/mrpt/base/include/mrpt/utils/CConsoleRedirector.h \
@@ -371,6 +337,8 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/base/include/mrpt/utils/CTextFileLinesParser.h \
  /usr/include/mrpt/base/include/mrpt/utils/CRobotSimulator.h \
  /usr/include/mrpt/base/include/mrpt/utils/TMatchingPair.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CObservable.h \
+ /usr/include/mrpt/base/include/mrpt/utils/mrptEvent.h \
  /usr/include/mrpt/base/include/mrpt/utils/CObserver.h \
  /usr/include/mrpt/opengl/include/mrpt/opengl/CRenderizable.h \
  /usr/include/mrpt/opengl/include/mrpt/opengl/link_pragmas.h \
@@ -408,14 +376,21 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/opengl/include/mrpt/opengl/stock_objects.h \
  /usr/include/mrpt/opengl/include/mrpt/opengl/pose_pdfs.h \
  /usr/include/mrpt/opengl/include/mrpt/opengl/graph_tools.h \
+ /usr/include/mrpt/obs/include/mrpt/slam/CObservation.h \
+ /usr/include/mrpt/obs/include/mrpt/obs/link_pragmas.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservation2DRangeScan.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CMetricMap.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CMetricMapEvents.h \
+ /usr/include/mrpt/obs/include/mrpt/slam/CObservation3DRangeScan.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationRange.h \
+ /usr/include/mrpt/obs/include/mrpt/slam/CObservationImage.h \
+ /usr/include/mrpt/obs/include/mrpt/slam/CObservationStereoImages.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationStereoImagesFeatures.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationBeaconRanges.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationGasSensors.h \
+ /usr/include/mrpt/obs/include/mrpt/slam/CObservationGPS.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationBatteryState.h \
+ /usr/include/mrpt/obs/include/mrpt/slam/CObservationIMU.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationOdometry.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationBearingRange.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationComment.h \
@@ -439,6 +414,8 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/maps/include/mrpt/slam/CSimplePointsMap.h \
  /usr/include/mrpt/maps/include/mrpt/opengl/CAngularObservationMesh.h \
  /usr/include/mrpt/maps/include/mrpt/opengl/CPlanarLaserScan.h \
+ /usr/include/mrpt/reactivenav/include/mrpt/reactivenav.h \
+ /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CReactiveNavigationSystem.h \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/link_pragmas.h \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CAbstractReactiveNavigationSystem.h \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CParameterizedTrajectoryGenerator.h \
@@ -457,20 +434,27 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG4.h \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG5.h \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG6.h \
- /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG7.h \
- /home/igvcbyu/workspace/YClopsLib/inc/MotorController.h
+ /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG7.h
 
-/home/igvcbyu/workspace/YClopsLib/inc/YclopsReactiveNavInterface.h:
+../YclopsNavigationSystem.h:
 
-/home/igvcbyu/workspace/YClopsLib/inc/Compass.h:
+/usr/include/mrpt/maps/include/mrpt/maps.h:
 
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGenericSensor.h:
+/usr/include/mrpt/obs/include/mrpt/obs.h:
 
-/usr/include/mrpt/base/include/mrpt/utils/CConfigFileBase.h:
+/usr/include/mrpt/opengl/include/mrpt/opengl.h:
 
-/usr/include/mrpt/base/include/mrpt/utils/utils_defs.h:
+/usr/include/mrpt/base/include/mrpt/base.h:
 
 /usr/include/mrpt/mrpt-config/mrpt/config.h:
+
+/usr/include/mrpt/mrpt-config/mrpt/version.h:
+
+/usr/include/mrpt/base/include/mrpt/compress.h:
+
+/usr/include/mrpt/base/include/mrpt/compress/zip.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/utils_defs.h:
 
 /usr/include/mrpt/base/include/mrpt/system/os.h:
 
@@ -804,7 +788,25 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/base/include/mrpt/utils/bits.h:
 
-/usr/include/mrpt/base/include/mrpt/utils/TEnumType.h:
+/usr/include/mrpt/base/include/mrpt/math.h:
+
+/usr/include/mrpt/base/include/mrpt/math/distributions.h:
+
+/usr/include/mrpt/base/include/mrpt/math/CMatrixTemplateNumeric.h:
+
+/usr/include/mrpt/base/include/mrpt/math/CMatrixTemplate.h:
+
+/usr/include/mrpt/base/include/mrpt/system/memory.h:
+
+/usr/include/mrpt/base/include/mrpt/system/datetime.h:
+
+/usr/include/mrpt/base/include/mrpt/math/matrix_adaptors.h:
+
+/usr/include/mrpt/base/include/mrpt/math/CArray.h:
+
+/usr/include/mrpt/base/include/mrpt/math/ops_containers.h:
+
+/usr/include/mrpt/base/include/mrpt/math/lightweight_geom_data.h:
 
 /usr/include/mrpt/base/include/mrpt/utils/stl_extensions.h:
 
@@ -832,61 +834,27 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/base/include/mrpt/utils/traits_map.h:
 
-/usr/include/mrpt/base/include/mrpt/math/CMatrixTemplate.h:
-
-/usr/include/mrpt/base/include/mrpt/system/memory.h:
-
-/usr/include/mrpt/base/include/mrpt/system/datetime.h:
-
-/usr/include/mrpt/base/include/mrpt/math/matrix_adaptors.h:
-
-/usr/include/mrpt/base/include/mrpt/math/CArray.h:
-
-/usr/include/mrpt/base/include/mrpt/math/ops_containers.h:
-
-/usr/include/mrpt/base/include/mrpt/math/lightweight_geom_data.h:
-
 /usr/include/mrpt/base/include/mrpt/math/CHistogram.h:
 
-/usr/include/mrpt/base/include/mrpt/system/string_utils.h:
+/usr/include/mrpt/base/include/mrpt/math/matrix_iterators.h:
 
-/usr/include/mrpt/obs/include/mrpt/slam/CObservation.h:
+/usr/include/mrpt/base/include/mrpt/math/ops_matrices.h:
 
-/usr/include/mrpt/obs/include/mrpt/obs/link_pragmas.h:
+/usr/include/mrpt/base/include/mrpt/math/CMatrix.h:
 
-/usr/include/mrpt/base/include/mrpt/synch.h:
+/usr/include/mrpt/base/include/mrpt/math/CMatrixFixedNumeric.h:
 
-/usr/include/mrpt/base/include/mrpt/synch/atomic_incr.h:
+/usr/include/mrpt/base/include/mrpt/math/CMatrixD.h:
 
-/usr/include/mrpt/base/include/mrpt/synch/CCriticalSection.h:
+/usr/include/mrpt/base/include/mrpt/math/transform_gaussian.h:
 
-/usr/include/mrpt/base/include/mrpt/utils/CReferencedMemBlock.h:
+/usr/include/mrpt/base/include/mrpt/math/jacobians.h:
 
-/usr/include/mrpt/base/include/mrpt/synch/CEvent.h:
+/usr/include/mrpt/base/include/mrpt/math/CQuaternion.h:
 
-/usr/include/mrpt/base/include/mrpt/synch/CSemaphore.h:
+/usr/include/mrpt/base/include/mrpt/math/utils.h:
 
-/usr/include/mrpt/base/include/mrpt/synch/MT_buffer.h:
-
-/usr/include/mrpt/base/include/mrpt/synch/CCriticalSection.h:
-
-/usr/include/mrpt/base/include/mrpt/synch/CThreadSafeVariable.h:
-
-/usr/include/mrpt/base/include/mrpt/system/threads.h:
-
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/link_pragmas.h:
-
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h:
-
-/usr/include/mrpt/base/include/mrpt/utils/CTicTac.h:
-
-/usr/include/mrpt/base/include/mrpt/utils/CDebugOutputCapable.h:
-
-/home/igvcbyu/workspace/YClopsLib/inc/GPS.h:
-
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGPSInterface.h:
-
-/usr/include/mrpt/obs/include/mrpt/slam/CObservationGPS.h:
+/usr/include/mrpt/base/include/mrpt/math/ops_vectors.h:
 
 /usr/include/mrpt/base/include/mrpt/poses/CPose3D.h:
 
@@ -894,121 +862,7 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/base/include/mrpt/poses/CPoseOrPoint.h:
 
-/usr/include/mrpt/base/include/mrpt/math/CMatrixFixedNumeric.h:
-
-/usr/include/mrpt/base/include/mrpt/math/ops_matrices.h:
-
-/usr/include/mrpt/base/include/mrpt/math/CMatrix.h:
-
-/usr/include/mrpt/base/include/mrpt/math/CMatrixTemplateNumeric.h:
-
-/usr/include/mrpt/base/include/mrpt/math/matrix_iterators.h:
-
-/usr/include/mrpt/base/include/mrpt/math/CMatrixD.h:
-
-/usr/include/mrpt/base/include/mrpt/math/utils.h:
-
-/usr/include/mrpt/base/include/mrpt/math/ops_vectors.h:
-
 /usr/include/mrpt/base/include/mrpt/poses/CPoseOrPoint_detail.h:
-
-/usr/include/mrpt/base/include/mrpt/math/CQuaternion.h:
-
-/usr/include/mrpt/base/include/mrpt/poses/CPose2D.h:
-
-/usr/include/mrpt/base/include/mrpt/poses/CPoint3D.h:
-
-/usr/include/mrpt/base/include/mrpt/poses/CPoint.h:
-
-/usr/include/mrpt/base/include/mrpt/utils/CConfigFile.h:
-
-/home/igvcbyu/workspace/YClopsLib/inc/MotorCommand.h:
-
-/home/igvcbyu/workspace/YClopsLib/inc/MotorCommandInterface.h:
-
-/home/igvcbyu/workspace/YClopsLib/inc/MotorController.h:
-
-/home/igvcbyu/workspace/YClopsLib/inc/PoseEstimator.h:
-
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CCameraSensor.h:
-
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CFFMPEG_InputStream.h:
-
-/usr/include/mrpt/base/include/mrpt/utils/CImage.h:
-
-/usr/include/mrpt/base/include/mrpt/utils/CCanvas.h:
-
-/usr/include/mrpt/base/include/mrpt/utils/TCamera.h:
-
-/usr/include/mrpt/base/include/mrpt/utils/CLoadableOptions.h:
-
-/usr/include/mrpt/base/include/mrpt/utils/CConfigFileMemory.h:
-
-/usr/include/mrpt/base/include/mrpt/utils/CStringList.h:
-
-/usr/include/mrpt/base/include/mrpt/poses/CPose3DQuat.h:
-
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_OpenCV.h:
-
-/usr/include/mrpt/obs/include/mrpt/slam/CObservationImage.h:
-
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_dc1394.h:
-
-/usr/include/mrpt/obs/include/mrpt/slam/CObservationStereoImages.h:
-
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CStereoGrabber_Bumblebee.h:
-
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSwissRanger3DCamera.h:
-
-/usr/include/mrpt/obs/include/mrpt/slam/CObservation3DRangeScan.h:
-
-/usr/include/mrpt/base/include/mrpt/math/CPolygon.h:
-
-/usr/include/mrpt/gui/include/mrpt/gui/CDisplayWindow.h:
-
-/usr/include/mrpt/gui/include/mrpt/gui/CBaseGUIWindow.h:
-
-/usr/include/mrpt/base/include/mrpt/utils/CObservable.h:
-
-/usr/include/mrpt/base/include/mrpt/utils/mrptEvent.h:
-
-/usr/include/mrpt/gui/include/mrpt/gui/keycodes.h:
-
-/usr/include/mrpt/gui/include/mrpt/gui/link_pragmas.h:
-
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CKinect.h:
-
-/usr/include/mrpt/obs/include/mrpt/slam/CObservationIMU.h:
-
-/usr/include/mrpt/base/include/mrpt/utils/CFileGZInputStream.h:
-
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CStereoGrabber_SVS.h:
-
-/usr/include/mrpt/reactivenav/include/mrpt/reactivenav.h:
-
-/usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CReactiveNavigationSystem.h:
-
-/usr/include/mrpt/maps/include/mrpt/maps.h:
-
-/usr/include/mrpt/obs/include/mrpt/obs.h:
-
-/usr/include/mrpt/opengl/include/mrpt/opengl.h:
-
-/usr/include/mrpt/base/include/mrpt/base.h:
-
-/usr/include/mrpt/mrpt-config/mrpt/version.h:
-
-/usr/include/mrpt/base/include/mrpt/compress.h:
-
-/usr/include/mrpt/base/include/mrpt/compress/zip.h:
-
-/usr/include/mrpt/base/include/mrpt/math.h:
-
-/usr/include/mrpt/base/include/mrpt/math/distributions.h:
-
-/usr/include/mrpt/base/include/mrpt/math/transform_gaussian.h:
-
-/usr/include/mrpt/base/include/mrpt/math/jacobians.h:
 
 /usr/include/mrpt/base/include/mrpt/poses/CPose3DPDFGaussian.h:
 
@@ -1020,6 +874,8 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/base/include/mrpt/poses/CPosePDF.h:
 
+/usr/include/mrpt/base/include/mrpt/poses/CPose2D.h:
+
 /usr/include/mrpt/base/include/mrpt/poses/CPosePDFGaussian.h:
 
 /usr/include/mrpt/base/include/mrpt/random.h:
@@ -1030,6 +886,8 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/base/include/mrpt/math/CLevenbergMarquardt.h:
 
+/usr/include/mrpt/base/include/mrpt/utils/CDebugOutputCapable.h:
+
 /usr/include/mrpt/base/include/mrpt/math/ransac.h:
 
 /usr/include/mrpt/base/include/mrpt/math/ransac_applications.h:
@@ -1037,6 +895,10 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 /usr/include/mrpt/base/include/mrpt/math/geometry.h:
 
 /usr/include/mrpt/base/include/mrpt/poses/CPoint2D.h:
+
+/usr/include/mrpt/base/include/mrpt/poses/CPoint.h:
+
+/usr/include/mrpt/base/include/mrpt/poses/CPoint3D.h:
 
 /usr/include/mrpt/base/include/mrpt/math/CSparseMatrixTemplate.h:
 
@@ -1050,6 +912,8 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/base/include/mrpt/math/CGraphPartitioner.h:
 
+/usr/include/mrpt/base/include/mrpt/math/CPolygon.h:
+
 /usr/include/mrpt/base/include/mrpt/math/CSplineInterpolator1D.h:
 
 /usr/include/mrpt/base/include/mrpt/math/CSparseMatrix.h:
@@ -1057,6 +921,8 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 /usr/include/mrpt/base/include/mrpt/otherlibs/CSparse/cs.h:
 
 /usr/include/mrpt/base/include/mrpt/math/CAStarAlgorithm.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/CTicTac.h:
 
 /usr/include/mrpt/base/include/mrpt/math/CBinaryRelation.h:
 
@@ -1080,6 +946,8 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/base/include/mrpt/poses/CPointPDF.h:
 
+/usr/include/mrpt/base/include/mrpt/poses/CPose3DQuat.h:
+
 /usr/include/mrpt/base/include/mrpt/poses/CPosePDFGrid.h:
 
 /usr/include/mrpt/base/include/mrpt/poses/CPointPDFGaussian.h:
@@ -1095,6 +963,14 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 /usr/include/mrpt/base/include/mrpt/bayes/CParticleFilterCapable.h:
 
 /usr/include/mrpt/base/include/mrpt/bayes/CParticleFilter.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/CLoadableOptions.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/CConfigFileBase.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/TEnumType.h:
+
+/usr/include/mrpt/base/include/mrpt/system/string_utils.h:
 
 /usr/include/mrpt/base/include/mrpt/bayes/CParticleFilterData.h:
 
@@ -1122,9 +998,15 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/base/include/mrpt/poses/CPose3DPDFGaussianInf.h:
 
+/usr/include/mrpt/base/include/mrpt/utils/CFileGZInputStream.h:
+
 /usr/include/mrpt/base/include/mrpt/utils/CFileGZOutputStream.h:
 
 /usr/include/mrpt/base/include/mrpt/poses/CRobot2DPoseEstimator.h:
+
+/usr/include/mrpt/base/include/mrpt/synch/CCriticalSection.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/CReferencedMemBlock.h:
 
 /usr/include/mrpt/base/include/mrpt/poses/CPose3DQuatPDFGaussian.h:
 
@@ -1134,11 +1016,27 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/base/include/mrpt/poses/helper_templates.h:
 
+/usr/include/mrpt/base/include/mrpt/synch.h:
+
+/usr/include/mrpt/base/include/mrpt/synch/atomic_incr.h:
+
+/usr/include/mrpt/base/include/mrpt/synch/CCriticalSection.h:
+
+/usr/include/mrpt/base/include/mrpt/synch/CEvent.h:
+
+/usr/include/mrpt/base/include/mrpt/synch/CSemaphore.h:
+
+/usr/include/mrpt/base/include/mrpt/synch/MT_buffer.h:
+
+/usr/include/mrpt/base/include/mrpt/synch/CThreadSafeVariable.h:
+
 /usr/include/mrpt/base/include/mrpt/system.h:
 
 /usr/include/mrpt/base/include/mrpt/system/CDirectoryExplorer.h:
 
 /usr/include/mrpt/base/include/mrpt/system/CFileSystemWatcher.h:
+
+/usr/include/mrpt/base/include/mrpt/system/threads.h:
 
 /usr/include/mrpt/base/include/mrpt/utils/CThreadSafeQueue.h:
 
@@ -1147,6 +1045,8 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 /usr/include/mrpt/base/include/mrpt/system/filesystem.h:
 
 /usr/include/mrpt/base/include/mrpt/utils.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/CStringList.h:
 
 /usr/include/mrpt/base/include/mrpt/utils/CStartUpClassesRegister.h:
 
@@ -1168,6 +1068,14 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/base/include/mrpt/utils/CEnhancedMetaFile.h:
 
+/usr/include/mrpt/base/include/mrpt/utils/CCanvas.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/CImage.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/TCamera.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/CConfigFileMemory.h:
+
 /usr/include/mrpt/base/include/mrpt/utils/CMappedImage.h:
 
 /usr/include/mrpt/base/include/mrpt/utils/CTimeLogger.h:
@@ -1179,6 +1087,8 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 /usr/include/mrpt/base/include/mrpt/utils/CMHPropertiesValuesList.h:
 
 /usr/include/mrpt/base/include/mrpt/utils/CTypeSelector.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/CConfigFile.h:
 
 /usr/include/mrpt/base/include/mrpt/utils/CMessageQueue.h:
 
@@ -1201,6 +1111,10 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 /usr/include/mrpt/base/include/mrpt/utils/CRobotSimulator.h:
 
 /usr/include/mrpt/base/include/mrpt/utils/TMatchingPair.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/CObservable.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/mrptEvent.h:
 
 /usr/include/mrpt/base/include/mrpt/utils/CObserver.h:
 
@@ -1276,13 +1190,23 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/opengl/include/mrpt/opengl/graph_tools.h:
 
+/usr/include/mrpt/obs/include/mrpt/slam/CObservation.h:
+
+/usr/include/mrpt/obs/include/mrpt/obs/link_pragmas.h:
+
 /usr/include/mrpt/obs/include/mrpt/slam/CObservation2DRangeScan.h:
 
 /usr/include/mrpt/obs/include/mrpt/slam/CMetricMap.h:
 
 /usr/include/mrpt/obs/include/mrpt/slam/CMetricMapEvents.h:
 
+/usr/include/mrpt/obs/include/mrpt/slam/CObservation3DRangeScan.h:
+
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationRange.h:
+
+/usr/include/mrpt/obs/include/mrpt/slam/CObservationImage.h:
+
+/usr/include/mrpt/obs/include/mrpt/slam/CObservationStereoImages.h:
 
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationStereoImagesFeatures.h:
 
@@ -1290,7 +1214,11 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationGasSensors.h:
 
+/usr/include/mrpt/obs/include/mrpt/slam/CObservationGPS.h:
+
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationBatteryState.h:
+
+/usr/include/mrpt/obs/include/mrpt/slam/CObservationIMU.h:
 
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationOdometry.h:
 
@@ -1338,6 +1266,10 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/maps/include/mrpt/opengl/CPlanarLaserScan.h:
 
+/usr/include/mrpt/reactivenav/include/mrpt/reactivenav.h:
+
+/usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CReactiveNavigationSystem.h:
+
 /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/link_pragmas.h:
 
 /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CAbstractReactiveNavigationSystem.h:
@@ -1375,5 +1307,3 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG6.h:
 
 /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG7.h:
-
-/home/igvcbyu/workspace/YClopsLib/inc/MotorController.h:
