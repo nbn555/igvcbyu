@@ -126,15 +126,16 @@ int main() {
 	} else {
 		cerr << "Invalid GPS data" << endl;
 	}
-
-	//gpsData->dumpToConsole();
-//	double lon1 = 40.2476383;
-//	double lat1 = -111.648415;
-//	double lon2 = 40.247575;
-//	double lat2 = -111.648438;
 	double metersToFeet = 3.2808399;
-//	cout << GetDistanceToWaypoint(lon1, lat1, lon2, lat2);
-//	cout << "Feet Conversion = " << (GetDistanceToWaypoint(lon1, lat1, lon2, lat2)*metersToFeet)<< endl;
+	//gpsData->dumpToConsole();
+	/*double lon1 = 40.2471133;
+	double lat1 = -111.648745;
+	double lon2 = 40.2471167;
+	double lat2 = -111.648652;
+
+	cout << GetDistanceToWaypoint(lon1, lat1, lon2, lat2);
+	cout << "Feet Conversion = " << (GetDistanceToWaypoint(lon1, lat1, lon2, lat2)*metersToFeet)<< endl;
+	*/
 /*
 	gps.doProcess();
 
@@ -154,16 +155,17 @@ int main() {
 */
 	if (TESTING) {
 	ofstream fout("readings.txt"); // to take GPS readings for testing
-	fout.precision(9);
-	fout << "Data Type" << setw(15) << "Longitude" << setw(20) << "Latitude" << setw(20) << "Distance from last"<< endl;
+	fout.precision(12);
+	fout << "Longitude" << setw(20) << "Latitude" << setw(20) << "Distance from last"<< endl;
 
 	while(TESTING)//while (! mrpt::system::os::kbhit())
+
 	{
 		cout << "press enter to get gps reading" << endl;
 		getchar(); // waits for a command before proceding
 
 		gps.doProcess();
-		mrpt::system::sleep( 500 );
+		mrpt::system::sleep( 1000 );
 
 		gps.getObservations( lstObs );
 
@@ -216,14 +218,14 @@ int main() {
 				gpsData->dumpToConsole();
 
 				//fout << "GPGGa" << setw(15) << curPos.m_coords[0] << setw(20) << curPos.m_coords[1] << setw(20) << "GPGGA " << endl;
-				fout << "GPRMC" << setw(15) << curPos.m_coords[0] << setw(20) << curPos.m_coords[1] << setw(20) << "GPRMC " << endl;
-				fout << "distance between last two points (feet)= " << (metersToFeet * GetDistanceToWaypoint(gpsData->GGA_datum.longitude_degrees ,gpsData->GGA_datum.latitude_degrees ,PrevPosLon, PrevPosLat)) << endl << endl;
+				fout << curPos.m_coords[0] << setw(20) << curPos.m_coords[1] << setw(20) << "GPRMC " << endl;
+				fout << "distance between last two points (feet)= " << (metersToFeet * GetDistanceToWaypoint(curPos.m_coords[1] ,curPos.m_coords[0] ,PrevPosLon, PrevPosLat)) << endl << endl;
 
 				cout << PrevPosLat << " Lat" << endl;
 				cout << PrevPosLon << " Lon" << endl;
 
-				PrevPosLat = gpsData->GGA_datum.latitude_degrees;
-				PrevPosLon = gpsData->GGA_datum.longitude_degrees;
+				PrevPosLat = curPos.m_coords[0];
+				PrevPosLon = curPos.m_coords[1];
 
 			}
 
