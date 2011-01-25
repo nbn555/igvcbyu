@@ -1,1 +1,52 @@
-      Longitude       LatitudeDistance from last
+Longitude            Latitude  Distance from last
+40.2467483333      -111.648636667              GPRMC 
+distance between last two points (feet)= 38799551.6605
+
+40.2470066667          -111.64864              GPRMC 
+distance between last two points (feet)= 34.7889519463
+
+40.247005         -111.648635              GPRMC 
+distance between last two points (feet)= 1.83780628456
+
+40.2469933333      -111.648736667              GPRMC 
+distance between last two points (feet)= 37.122569838
+
+40.2469916667      -111.648738333              GPRMC 
+distance between last two points (feet)= 0.648078132912
+
+40.2468116667      -111.648731667              GPRMC 
+distance between last two points (feet)= 24.3471115788
+
+40.24683      -111.648761667              GPRMC 
+distance between last two points (feet)= 11.2190860987
+
+40.2468083333          -111.64874              GPRMC 
+distance between last two points (feet)= 8.42501633739
+
+40.2467933333      -111.648651667              GPRMC 
+distance between last two points (feet)= 32.2883439823
+
+40.2466866667      -111.648706667              GPRMC 
+distance between last two points (feet)= 24.671441333
+
+40.2465983333          -111.64857              GPRMC 
+distance between last two points (feet)= 51.2555694118
+
+40.24635      -111.648623333              GPRMC 
+distance between last two points (feet)= 38.6727186019
+
+40.2462533333         -111.648755              GPRMC 
+distance between last two points (feet)= 49.7644219273
+
+40.246605           -111.6487              GPRMC 
+distance between last two points (feet)= 51.4065937101
+
+40.2466716667      -111.648701667              GPRMC 
+distance between last two points (feet)= 8.99291041504
+
+40.2468683333         -111.648755              GPRMC 
+distance between last two points (feet)= 32.8502712186
+
+40.2470433333      -111.648701667              GPRMC 
+distance between last two points (feet)= 30.5496162315
+
