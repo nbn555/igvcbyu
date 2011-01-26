@@ -41,6 +41,8 @@ YclopsReactiveNavInterface::YclopsReactiveNavInterface(string& motorControllerPo
 	robotPose = new CPose3D();
 	robotPose->setFromValues(0,0,0,0,0,0);
 
+	this->curV = 0;
+	this->curW = 0;
 }
 
 YclopsReactiveNavInterface::~YclopsReactiveNavInterface() {
