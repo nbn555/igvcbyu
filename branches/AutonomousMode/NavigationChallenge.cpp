@@ -46,7 +46,7 @@ void NavigationChallenge::AutonomousMode(string& waypointsFile, bool challange)
 		mrpt::reactivenav::CAbstractReactiveNavigationSystem::TNavigationParams   navParams;
 		navParams.target.x = iter->x();
 		navParams.target.y = iter->y();
-		navParams.targetAllowedDistance = 0.40f;
+		navParams.targetAllowedDistance = challange ?  0.40f: 20.0f;
 		navParams.targetIsRelative = challange;
 
 		reactivenav.navigate( &navParams );
