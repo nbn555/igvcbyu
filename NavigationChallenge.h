@@ -10,7 +10,6 @@
 
 
 class NavigationChallenge{
-
 public:
 	void AutonomousMode(std::string& waypointsFile, bool challange);//0 autonomous 1 navigation
 };
