@@ -205,7 +205,10 @@ src/PoseEstimator.d src/PoseEstimator.o: ../src/PoseEstimator.cpp \
  /usr/include/mrpt/base/include/mrpt/math/ops_vectors.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPoseOrPoint_detail.h \
  /usr/include/mrpt/base/include/mrpt/math/CQuaternion.h \
- /usr/include/mrpt/base/include/mrpt/poses/CPose2D.h
+ /usr/include/mrpt/base/include/mrpt/poses/CPose2D.h \
+ /home/igvcbyu/workspace/YClopsLib/inc/WaypointPlanner.h \
+ /usr/include/mrpt/base/include/mrpt/poses/CPoint2D.h \
+ /usr/include/mrpt/base/include/mrpt/poses/CPoint.h
 
 /home/igvcbyu/workspace/YClopsLib/inc/PoseEstimator.h:
 
@@ -620,3 +623,9 @@ src/PoseEstimator.d src/PoseEstimator.o: ../src/PoseEstimator.cpp \
 /usr/include/mrpt/base/include/mrpt/math/CQuaternion.h:
 
 /usr/include/mrpt/base/include/mrpt/poses/CPose2D.h:
+
+/home/igvcbyu/workspace/YClopsLib/inc/WaypointPlanner.h:
+
+/usr/include/mrpt/base/include/mrpt/poses/CPoint2D.h:
+
+/usr/include/mrpt/base/include/mrpt/poses/CPoint.h:
