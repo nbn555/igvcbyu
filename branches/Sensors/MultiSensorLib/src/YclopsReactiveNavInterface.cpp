@@ -75,27 +75,27 @@ bool YclopsReactiveNavInterface::changeSpeeds( float v, float w )
 		curW = w;
 		return motor->Go(v,w);
 
-	return false;
+	//return false;
 	}
 
 bool YclopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap 		&obstacles )
 	{
-		CGenericSensor::TListObservations lstObs;
+		CGenericSensor::TListObservations camlstObs;
 
 		camera->doProcess();
-		camera->getObservations(lstObs);
+		camera->getObservations(camlstObs);
 
 		//insert code to get lidar observation into lstObs
 
-		CGenericSensor::TListObservations::iterator itObs = lstObs.begin();
-		CGenericSensor::TListObservations::iterator done = lstObs.end();
+		CGenericSensor::TListObservations::iterator itObs = camlstObs.begin();
+		CGenericSensor::TListObservations::iterator done = camlstObs.end();
 		obstacles.clear();
 		while( itObs != done ) {
 			CObservationPtr observ = CObservationPtr(itObs->second);
 			obstacles.insertObservationPtr(observ, &(*robotPose));
-
 			++itObs;
 		}
+
 
 		return true;
 	}

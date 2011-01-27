@@ -29,7 +29,13 @@ protected:
 };
 
 class NoFilterPoseEstimator: public AbstractPoseEstimator {
+
+
+
 	public:
+	bool started;
+	double StartLat;
+	double StartLon;
 	NoFilterPoseEstimator();
 	virtual ~NoFilterPoseEstimator();
 

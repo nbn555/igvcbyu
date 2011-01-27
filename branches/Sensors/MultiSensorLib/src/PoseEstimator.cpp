@@ -6,6 +6,7 @@
  */
 
 #include "PoseEstimator.h"
+#include "WaypointPlanner.h"
 
 using namespace std;
 using namespace mrpt;
@@ -29,8 +30,7 @@ bool AbstractPoseEstimator::getPose( CPose3D & pose ) {
 }
 
 NoFilterPoseEstimator::NoFilterPoseEstimator() {
-	// TODO Auto-generated constructor stub
-
+	started = false;
 }
 
 NoFilterPoseEstimator::~NoFilterPoseEstimator() {
@@ -55,9 +55,15 @@ void NoFilterPoseEstimator::update( mrpt::slam::CObservationGPSPtr gpsObsPtr, do
 		cerr << "No valid data found in gps observation" << endl;
 		exit(EXIT_FAILURE);
 	}
-
-	x = lon;
-	y = lat;
+	if(!started)
+	{
+		StartLat = lat;
+		StartLon = lon;
+		this->poseEstimate.setFromValues(lat, lon, z, yaw, pitch, roll);
+		return;
+	}
+	x = AbstractNavigationInterface::haversineDistance(lat, StartLon, lat, lon);
+	y = AbstractNavigationInterface::haversineDistance(StartLat, lon, lat, lon);
 
 	this->poseEstimate.setFromValues(x, y, z, yaw, pitch, roll);
 
