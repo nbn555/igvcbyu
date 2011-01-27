@@ -222,9 +222,9 @@ int main() {
 			}
 			lstObs.clear();
 		}
-	fout.close();
-	}
 
+	}
+	fout.close();
 	return 0;
 }
 
