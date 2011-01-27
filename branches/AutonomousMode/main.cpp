@@ -6,10 +6,13 @@
  */
 
 #include <iostream>
+#include "NavigationChallenge.h"
 
 using namespace std;
 
 int main( int argc, char** argv ) {
-	cout << "Hello World!" << endl;
+	NavigationChallenge nav = NavigationChallenge();
+	string file = "points.ini";
+	nav.AutonomousMode(file, true);
 	return 0;
 }
