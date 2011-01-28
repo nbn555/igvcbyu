@@ -91,14 +91,14 @@ SequentialNavigation::SequentialNavigation( double lat, double lon ): AbstractNa
 
 SequentialNavigation::~SequentialNavigation() { }
 
-mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t SequentialNavigation::solve(){
+std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > SequentialNavigation::solve(){
 	this->visited.insert(this->visited.end(), this->toVisit.begin(),this->toVisit.end());
 	return this->visited;
 }
 
 TSPNavigation::TSPNavigation( double lat, double lon ): AbstractNavigationInterface(lat, lon) { }
 
-mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t TSPNavigation::solve() {
+std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > TSPNavigation::solve() {
 	TSPNavigation::nieveTSPSolution( this->toVisit, this->visited );
 	return this->visited;
 }
