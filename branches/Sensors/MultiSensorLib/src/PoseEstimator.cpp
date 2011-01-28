@@ -24,7 +24,9 @@ AbstractPoseEstimator::~AbstractPoseEstimator() {
 
 bool AbstractPoseEstimator::getPose( CPose3D & pose ) {
 	vector_double v(6);
-	this->poseEstimate.getAsVector(v);
+	//this->poseEstimate.getAsVector(v);
+	for(int i = 0; i < 6; i++ )
+		v[i] = this->poseEstimate[i];
 	pose.setFromValues(v[0],v[1],v[2],v[3],v[4],v[5]);
 	return true;
 }
