@@ -16,7 +16,7 @@
 class Compass: public mrpt::hwdrivers::CGenericSensor, public mrpt::utils::CDebugOutputCapable {
 
 public:
-	Compass( bool degrees = true, const int bufferLength = 500 );//Currently buferLength isn't used std::string is.  But an optimization could be to use a buffer instead of a string.
+	Compass( bool degrees = false, const int bufferLength = 500 );//Currently buferLength isn't used std::string is.  But an optimization could be to use a buffer instead of a string.
 	virtual ~Compass();
 	void doProcess();
 	const mrpt::hwdrivers::TSensorClassId* GetRuntimeClass() const; //DONT USE THIS. DONT REGISTER THIS SENSOR. RETURNS NULL.
