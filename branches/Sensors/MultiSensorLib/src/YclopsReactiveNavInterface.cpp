@@ -23,7 +23,7 @@ YclopsReactiveNavInterface::YclopsReactiveNavInterface(string& motorControllerPo
 		gps->initConfig(config, "GPS");
 		gps->initialize();
 
-
+		//needs to be changed to use phils camera stuff
 	camera = new CCameraSensor();
 	CConfigFile camconfig("camera.ini");
 	camera->loadConfig(camconfig,"CAMERA");
@@ -80,6 +80,7 @@ bool YclopsReactiveNavInterface::changeSpeeds( float v, float w )
 
 bool YclopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap 		&obstacles )
 	{
+		//lidar will follow this pattern but camera will need to change to what phil is working on
 		CGenericSensor::TListObservations camlstObs;
 
 		camera->doProcess();

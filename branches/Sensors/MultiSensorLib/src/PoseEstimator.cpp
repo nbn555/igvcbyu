@@ -38,7 +38,9 @@ NoFilterPoseEstimator::NoFilterPoseEstimator() {
 NoFilterPoseEstimator::~NoFilterPoseEstimator() {
 	// TODO Auto-generated destructor stub
 }
-
+//updates the stored position to the current position
+// the first time it will return stuff in lat and lon for the
+// TSPSolver after that it returns things in meters from the start point
 void NoFilterPoseEstimator::update( mrpt::slam::CObservationGPSPtr gpsObsPtr, double yaw, double pitch, double roll ) {
 	double lat;
 	double lon;
