@@ -37,7 +37,7 @@ public:
 	 * @return - a list of gps weighpoints that need to be visited
 	 * index 0 is the first then 1 then 2 ect.
 	 */
-	virtual mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t solve() = 0;
+	virtual std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > solve() = 0;
 
 	/**
 	 * loadRawGPSPointFile - reads in a stream of ascii whitespace delimited gps
@@ -60,8 +60,8 @@ public:
 	static double calcBearing( double lat1, double lon1, double lat2, double lon2 );
 
 protected:
-	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t toVisit; //! Vector of points that haven't been visited by the planning.
-	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t visited; //! Vector of points that have been ordered.
+	std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > toVisit; //! Vector of points that haven't been visited by the planning.
+	std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > visited; //! Vector of points that have been ordered.
 
 };
 
@@ -78,7 +78,7 @@ public:
 	 * ordered list of navigation waypoints as they
 	 * are ordered in the file
 	 */
-	 mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t solve();
+	std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > solve();
 
 };
 
@@ -92,7 +92,7 @@ public:
 	 * TSPNavigation::solve - solves the TSP by calling TSPNavigation::nieveTSPSolution
 	 * @see nieveTSPSolution
 	 */
-	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t solve();
+	std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > solve();
 
 private:
 
@@ -106,8 +106,8 @@ private:
 	 * 		set of latlon_t where the first is where we are at and each subsequent
 	 * 		latlon_t is the next closest latlon_t
 	 */
-	static void nieveTSPSolution( mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit,
-			mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & visited );
+	static void nieveTSPSolution( std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > & toVisit,
+			std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > & visited );
 
 };
 
