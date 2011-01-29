@@ -27,6 +27,7 @@ void NavigationChallenge::AutonomousMode(string& waypointsFile, bool challange)
 	double lat = pose.x();
 	double lon = pose.y();
 
+	cout << "lat: " << lat << " lon: " << endl;
 	// solves the tsp problem, it autonomous challenge we need to add some code here to make it work.
 	TSPNavigation nav = TSPNavigation(lat,lon);
 
@@ -34,6 +35,7 @@ void NavigationChallenge::AutonomousMode(string& waypointsFile, bool challange)
 	//waypoints in the order we want to visit them
 	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t points = nav.solve();
 
+	cout << "TSP Solved" << endl;
 	//the reactive nav to get from the current position to the next point the tsp solver wants us to go to
 	mrpt::reactivenav::YclopsNavigationSystem reactivenav = mrpt::reactivenav::YclopsNavigationSystem(*interface, false, false);
 
@@ -41,6 +43,8 @@ void NavigationChallenge::AutonomousMode(string& waypointsFile, bool challange)
 	mrpt::utils::CConfigFile robotConfig("robotConf.ini");
 
 	reactivenav.loadConfigFile(navConfig,robotConfig);
+
+	cout << "Reactive nav intialized" << endl;
 
 	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t::iterator iter = points.begin();
 	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t::iterator end = points.end();
@@ -56,15 +60,27 @@ void NavigationChallenge::AutonomousMode(string& waypointsFile, bool challange)
 		navParams.targetAllowedDistance = challange ?  0.20f: 7.0f;
 		navParams.targetIsRelative = !challange;
 
+		cout << "navigating to " << navParams.target.x << " " << navParams.target.y << endl;
 		//gives the reactive nav the next goal
 		reactivenav.navigate( &navParams );
+		while(reactivenav.getCurrentState() !=
+						mrpt::reactivenav::CAbstractReactiveNavigationSystem::NAVIGATING);
 		//go until it makes it to the point
-		while(reactivenav.getCurrentState() ==
-				mrpt::reactivenav::CAbstractReactiveNavigationSystem::NAVIGATING)
+			while(reactivenav.getCurrentState() ==
+							mrpt::reactivenav::CAbstractReactiveNavigationSystem::NAVIGATING)
 		{
 			reactivenav.navigationStep();
 		}
 		++iter;
 	}
-	//time for a vitory dance
+	//time for a victory dance
+	for(int i = 0; i < 100; i++)
+		{
+			float v = .2;
+			float w = 40;
+			float time = 100000;
+			interface->changeSpeeds(v,w);
+			usleep(time);
+		}
+
 }
