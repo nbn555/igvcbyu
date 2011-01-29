@@ -29,7 +29,7 @@ public:
 	void loadConfig(String fileName);
 	void startCamera();
 
-	void getObjstacles(/*mrpt::slam::CSimplePointMap & map*/ void * map);
+	void getObstacles(/*mrpt::slam::CSimplePointMap & map*/ void * map);
 
 private:
 	void getFrame(Mat & image);
