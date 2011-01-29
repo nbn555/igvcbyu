@@ -13,7 +13,7 @@
 
 class MotorCommand: public MotorCommandInterface {
 public:
-	MotorCommand( MotorController * mC, double lC=1, double aC=.5 );
+	MotorCommand( MotorController * mC, double lC=700, double aC=5 );
 	virtual ~MotorCommand();
 
 	void doProcess();
