@@ -14,7 +14,7 @@
 
 void NavigationChallenge::AutonomousMode(string& waypointsFile, bool challange)
 {
-	string motorControllerPort = "ttyS000";
+	string motorControllerPort = "/dev/ttyS1";
 	//interface that will be used by the reactive nav to sense the enviroment and make the robot move
 	YclopsReactiveNavInterface* interface = new YclopsReactiveNavInterface(motorControllerPort);
 	//intial position

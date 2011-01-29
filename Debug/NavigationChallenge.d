@@ -291,8 +291,8 @@ NavigationChallenge.d NavigationChallenge.o: ../NavigationChallenge.cpp \
  /usr/include/mrpt/base/include/mrpt/utils/CObservable.h \
  /usr/include/mrpt/base/include/mrpt/utils/mrptEvent.h \
  /usr/include/mrpt/base/include/mrpt/utils/CObserver.h \
- /home/igvcbyu/workspace/YClopsLib/inc/YclopsReactiveNavInterface.h \
- /home/igvcbyu/workspace/YClopsLib/inc/Compass.h \
+ /home/yclops/workspace/YClopsLib/inc/YclopsReactiveNavInterface.h \
+ /home/yclops/workspace/YClopsLib/inc/Compass.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGenericSensor.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservation.h \
  /usr/include/mrpt/obs/include/mrpt/obs/link_pragmas.h \
@@ -306,13 +306,13 @@ NavigationChallenge.d NavigationChallenge.o: ../NavigationChallenge.cpp \
  /usr/include/mrpt/base/include/mrpt/system/threads.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/link_pragmas.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h \
- /home/igvcbyu/workspace/YClopsLib/inc/GPS.h \
+ /home/yclops/workspace/YClopsLib/inc/GPS.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGPSInterface.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationGPS.h \
- /home/igvcbyu/workspace/YClopsLib/inc/MotorCommand.h \
- /home/igvcbyu/workspace/YClopsLib/inc/MotorCommandInterface.h \
- /home/igvcbyu/workspace/YClopsLib/inc/MotorController.h \
- /home/igvcbyu/workspace/YClopsLib/inc/PoseEstimator.h \
+ /home/yclops/workspace/YClopsLib/inc/MotorCommand.h \
+ /home/yclops/workspace/YClopsLib/inc/MotorCommandInterface.h \
+ /home/yclops/workspace/YClopsLib/inc/MotorController.h \
+ /home/yclops/workspace/YClopsLib/inc/PoseEstimator.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CCameraSensor.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CFFMPEG_InputStream.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_OpenCV.h \
@@ -457,8 +457,8 @@ NavigationChallenge.d NavigationChallenge.o: ../NavigationChallenge.cpp \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG5.h \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG6.h \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG7.h \
- /home/igvcbyu/workspace/YClopsLib/inc/WaypointPlanner.h \
- /home/igvcbyu/workspace/YClopsLib/inc/../YclopsNavigationSystem.h
+ /home/yclops/workspace/YClopsLib/inc/WaypointPlanner.h \
+ /home/yclops/workspace/YClopsLib/inc/../YclopsNavigationSystem.h
 
 ../NavigationChallenge.h:
 
@@ -1046,9 +1046,9 @@ NavigationChallenge.d NavigationChallenge.o: ../NavigationChallenge.cpp \
 
 /usr/include/mrpt/base/include/mrpt/utils/CObserver.h:
 
-/home/igvcbyu/workspace/YClopsLib/inc/YclopsReactiveNavInterface.h:
+/home/yclops/workspace/YClopsLib/inc/YclopsReactiveNavInterface.h:
 
-/home/igvcbyu/workspace/YClopsLib/inc/Compass.h:
+/home/yclops/workspace/YClopsLib/inc/Compass.h:
 
 /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGenericSensor.h:
 
@@ -1076,19 +1076,19 @@ NavigationChallenge.d NavigationChallenge.o: ../NavigationChallenge.cpp \
 
 /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h:
 
-/home/igvcbyu/workspace/YClopsLib/inc/GPS.h:
+/home/yclops/workspace/YClopsLib/inc/GPS.h:
 
 /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGPSInterface.h:
 
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationGPS.h:
 
-/home/igvcbyu/workspace/YClopsLib/inc/MotorCommand.h:
+/home/yclops/workspace/YClopsLib/inc/MotorCommand.h:
 
-/home/igvcbyu/workspace/YClopsLib/inc/MotorCommandInterface.h:
+/home/yclops/workspace/YClopsLib/inc/MotorCommandInterface.h:
 
-/home/igvcbyu/workspace/YClopsLib/inc/MotorController.h:
+/home/yclops/workspace/YClopsLib/inc/MotorController.h:
 
-/home/igvcbyu/workspace/YClopsLib/inc/PoseEstimator.h:
+/home/yclops/workspace/YClopsLib/inc/PoseEstimator.h:
 
 /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CCameraSensor.h:
 
@@ -1378,6 +1378,6 @@ NavigationChallenge.d NavigationChallenge.o: ../NavigationChallenge.cpp \
 
 /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG7.h:
 
-/home/igvcbyu/workspace/YClopsLib/inc/WaypointPlanner.h:
+/home/yclops/workspace/YClopsLib/inc/WaypointPlanner.h:
 
-/home/igvcbyu/workspace/YClopsLib/inc/../YclopsNavigationSystem.h:
+/home/yclops/workspace/YClopsLib/inc/../YclopsNavigationSystem.h:
