@@ -20,3 +20,5 @@ distance between last two points (feet)= 30.8459
 GPRMC       40.24712         -111.648655              GPRMC 
 distance between last two points (feet)= 28.8133
 
+
+
