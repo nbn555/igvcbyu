@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <iostream>
 
+#include "Camera.h"
+
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -15,7 +17,7 @@ VideoCapture startCamera();
 void getFrame(VideoCapture capture, Mat & image);
 vector<Mat> convertRGBtoHSV(Mat & image);
 void getWhite(Mat & image);
-void insertObstacles(mrpt::slam::CSimplePointMap & map, int size, bool * array);
+void insertObstacles(/*mrpt::slam::CSimplePointMap & map*/ void * map, int size, bool * array);
 void initializeArray(bool * array, int dimension);
 
 
@@ -23,8 +25,8 @@ void hasObstacles(int dimension, bool * array, Mat & image){
 	int height = image.rows / dimension;
 	int width = image.cols / dimension;
 
-	int obstacleThreshold = 255 * .2;
-	namedWindow("test");
+	int obstacleThreshold = 255 * .3;
+	//namedWindow("test");
 
 	for(int i = 0; i < dimension; i++){
 		for(int j = 0; j < dimension; j++){
@@ -35,8 +37,9 @@ void hasObstacles(int dimension, bool * array, Mat & image){
 			if(value[0] > obstacleThreshold){
 				array[(i * dimension) + j] = true;
 				roi = Scalar(155);
-				imshow("test", image);
-				waitKey();
+
+				//imshow("test", image);
+				//waitKey();
 			}
 		}
 	}
@@ -79,9 +82,10 @@ void distort(Mat & src) {
 	Mat warp_matrix = getPerspectiveTransform(srcQuad, dstQuad);
 
 	warpPerspective( src, dst, warp_matrix, src.size() );
-	namedWindow( "Perspective_Warp");
-	imshow( "Perspective_Warp", dst );
-	waitKey();
+
+	//namedWindow( "Perspective_Warp");
+	//imshow( "Perspective_Warp", dst );
+	//waitKey();
 
 	src = dst.clone();
 
@@ -125,15 +129,15 @@ void getWhite(Mat & image){
 	//namedWindow("lined white");
 
 	// vect[2] seems to be the best for white
-	Mat white = convertRGBtoHSV(image)[2];
+	Mat white = convertRGBtoHSV(image)[1];
 
 	//imshow("prewhite", white.clone());
 
 	////// take out the white color //////
-	threshold(white, white, 210, 255, THRESH_BINARY);
+	threshold(white, white, 20, 255, THRESH_BINARY_INV);
 
-	erode(white, white, Mat(), Point(-1, -1), 1);
-	dilate(white, white, Mat(), Point(-1, -1), 1);
+	erode(white, white, Mat(), Point(-1, -1), 2);
+	dilate(white, white, Mat(), Point(-1, -1), 2);
 
 	//imshow("white", white);
 
@@ -158,7 +162,7 @@ void getWhite(Mat & image){
 }
 
 
-void insertObstacles(mrpt::slam::CSimplePointMap & map, int size, bool * array){
+void insertObstacles(/*mrpt::slam::CSimplePointMap & map*/ void * map, int size, bool * array){
 	int pixel_x;
 	int pixel_y;
 	double x;
@@ -175,7 +179,7 @@ void insertObstacles(mrpt::slam::CSimplePointMap & map, int size, bool * array){
 				x = ((pixel_x - 240) * .00635);
 				y = ((pixel_y * .00635) + .914);
 
-				map.insertPoints(x, y);
+				//map.insertPoints(x, y);
 
 				cout << "x = " << x << endl;
 				cout << "y = " << y << endl;
@@ -194,14 +198,20 @@ void initializeArray(bool * array, int dimension){
 	}
 }
 
+
 int main(int argc, char *argv[]) {
+	Camera camera;
+	camera.loadConfig("test");
+	camera.startCamera();
+	camera.getObjstacles(NULL);
+/*
 	Mat image;
-	int const DIMENSION = 10;
+	int const DIMENSION = 30;
 
 	bool * array = new bool[DIMENSION * DIMENSION];
 	initializeArray(array,  DIMENSION);
 
-	VideoCapture capture = startCamera();
+	//VideoCapture capture = startCamera();
 
 	while(true){
 		getFrame(capture, image);
@@ -210,9 +220,41 @@ int main(int argc, char *argv[]) {
 
 		hasObstacles(DIMENSION, array, image);
 		insertObstacles(NULL, DIMENSION, array);
+
+		cout << "DONE INSERTING POINTS INTO MAP" << endl;
 	}
+
+	CvCapture * video;
+		IplImage * frame;
+
+		// capture the camera
+		video = cvCreateCameraCapture(1);
+
+		namedWindow("window");
+
+	    while (true) {
+	    	frame = cvQueryFrame(video);
+	    	if(!frame) {
+				printf("error loading frame.\n");
+				return -1;
+	    	}
+
+	    	Mat src(frame);
+
+	    	getWhite(src);
+	    	//distort(src);
+	    	hasObstacles(DIMENSION, array, src);
+
+	    	imshow("window", src);
+
+			// press 'esc' to exit out of program
+			char c = waitKey(33);
+			if(c == 27) break;
+
+	    }
 
 
 	delete[] array;
+	*/
 }
 
