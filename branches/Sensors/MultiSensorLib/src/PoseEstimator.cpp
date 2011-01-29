@@ -68,7 +68,8 @@ void NoFilterPoseEstimator::update( mrpt::slam::CObservationGPSPtr gpsObsPtr, do
 	}
 	x = AbstractNavigationInterface::haversineDistance(lat, StartLon, lat, lon);
 	y = AbstractNavigationInterface::haversineDistance(StartLat, lon, lat, lon);
-
+	x = lon > StartLon? x : -x;
+	y = lat > StartLat ? y : -y;
 	this->poseEstimate.setFromValues(x, y, z, yaw, pitch, roll);
 
 }

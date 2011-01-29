@@ -24,10 +24,10 @@ YclopsReactiveNavInterface::YclopsReactiveNavInterface(string& motorControllerPo
 		gps->initialize();
 
 		//needs to be changed to use phils camera stuff
-	camera = new CCameraSensor();
-	CConfigFile camconfig("camera.ini");
-	camera->loadConfig(camconfig,"CAMERA");
-	camera->initialize();
+	//camera = new CCameraSensor();
+	//CConfigFile camconfig("camera.ini");
+	//camera->loadConfig(camconfig,"CAMERA");
+	//camera->initialize();
 
 	compass = new Compass();
 	CConfigFile config2( "Compass.ini" );
@@ -83,12 +83,12 @@ bool YclopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap 		
 		//lidar will follow this pattern but camera will need to change to what phil is working on
 		CGenericSensor::TListObservations camlstObs;
 
-		camera->doProcess();
-		camera->getObservations(camlstObs);
+	//	camera->doProcess();
+		//camera->getObservations(camlstObs);
 
 		//insert code to get lidar observation into lstObs
 
-		CGenericSensor::TListObservations::iterator itObs = camlstObs.begin();
+	/*	CGenericSensor::TListObservations::iterator itObs = camlstObs.begin();
 		CGenericSensor::TListObservations::iterator done = camlstObs.end();
 		obstacles.clear();
 		while( itObs != done ) {
@@ -96,7 +96,7 @@ bool YclopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap 		
 			obstacles.insertObservationPtr(observ, &(*robotPose));
 			++itObs;
 		}
-
+*/
 
 		return true;
 	}

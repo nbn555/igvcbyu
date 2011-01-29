@@ -1,5 +1,5 @@
 src/WaypointPlanner.d src/WaypointPlanner.o: ../src/WaypointPlanner.cpp \
- /home/igvcbyu/workspace/YClopsLib/inc/WaypointPlanner.h \
+ /home/yclops/workspace/YClopsLib/inc/WaypointPlanner.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPoint2D.h \
  /usr/include/mrpt/base/include/mrpt/utils/CSerializable.h \
  /usr/include/mrpt/base/include/mrpt/utils/CObject.h \
@@ -202,7 +202,7 @@ src/WaypointPlanner.d src/WaypointPlanner.o: ../src/WaypointPlanner.cpp \
  /usr/include/mrpt/base/include/mrpt/math/ops_vectors.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPoseOrPoint_detail.h
 
-/home/igvcbyu/workspace/YClopsLib/inc/WaypointPlanner.h:
+/home/yclops/workspace/YClopsLib/inc/WaypointPlanner.h:
 
 /usr/include/mrpt/base/include/mrpt/poses/CPoint2D.h:
 
