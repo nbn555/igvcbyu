@@ -51,7 +51,7 @@ void Camera::getFrame(Mat & image){
 	*capture >> image;
 }
 
-void Camera::getObjstacles(/*mrpt::slam::CSimplePointMap & map*/ void * map){
+void Camera::getObstacles(/*mrpt::slam::CSimplePointMap & map*/ void * map){
 	Mat image;
 
 	initializeArray(array);

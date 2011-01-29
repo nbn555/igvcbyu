@@ -203,7 +203,7 @@ int main(int argc, char *argv[]) {
 	Camera camera;
 	camera.loadConfig("test");
 	camera.startCamera();
-	camera.getObjstacles(NULL);
+	camera.getObstacles(NULL);
 /*
 	Mat image;
 	int const DIMENSION = 30;
