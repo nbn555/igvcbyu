@@ -33,7 +33,8 @@ void GPS::initConfig( mrpt::utils::CConfigFileBase & config, const std::string &
 }
 
 void GPS::initialize() {
-
+	// check if connection is already established, if not, reconnect
+	if (this->isGPS_connected()) {return; }
 	CSerialPort myCom(this->portName);
 	myCom.setConfig(this->baudRate,0,8,1,false);
 	cout << "Post open" << endl;
