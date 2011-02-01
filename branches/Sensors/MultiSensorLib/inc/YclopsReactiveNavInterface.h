@@ -11,6 +11,7 @@
 #include "GPS.h"
 #include "MotorCommand.h"
 #include "PoseEstimator.h"
+#include "Camera.h"
 #include <mrpt/hwdrivers/CCameraSensor.h>
 #include <mrpt/reactivenav.h>
 
@@ -25,7 +26,7 @@ private:
 	Compass* compass;
 	MotorCommand* motor;
 	AbstractPoseEstimator* poseEst;
-	mrpt::hwdrivers::CCameraSensor* camera;
+	Camera* camera;
 	CPose3D* robotPose;
 
 	float curV;
