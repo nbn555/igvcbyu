@@ -37,7 +37,7 @@ public:
 	 * @return - a list of gps weighpoints that need to be visited
 	 * index 0 is the first then 1 then 2 ect.
 	 */
-	virtual std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > solve() = 0;
+	virtual std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > solve(bool inMeters) = 0;
 
 	/**
 	 * loadRawGPSPointFile - reads in a stream of ascii whitespace delimited gps
@@ -78,7 +78,7 @@ public:
 	 * ordered list of navigation waypoints as they
 	 * are ordered in the file
 	 */
-	std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > solve();
+	std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > solve(bool inMeters);
 
 };
 
@@ -92,7 +92,7 @@ public:
 	 * TSPNavigation::solve - solves the TSP by calling TSPNavigation::nieveTSPSolution
 	 * @see nieveTSPSolution
 	 */
-	std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > solve();
+	std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > solve(bool inMeters);
 
 private:
 
@@ -107,7 +107,7 @@ private:
 	 * 		latlon_t is the next closest latlon_t
 	 */
 	static void nieveTSPSolution( std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > & toVisit,
-			std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > & visited );
+			std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > & visited, bool inMeters );
 
 };
 

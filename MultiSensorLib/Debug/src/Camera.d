@@ -1,5 +1,5 @@
 src/Camera.d src/Camera.o: ../src/Camera.cpp \
- /home/yclops/workspace/YClopsLib/inc/Camera.h \
+ /home/igvcbyu/workspace/YClopsLib/inc/Camera.h \
  /usr/include/mrpt/slam/include/mrpt/slam.h \
  /usr/include/mrpt/vision/include/mrpt/vision.h \
  /usr/include/mrpt/obs/include/mrpt/obs.h \
@@ -472,7 +472,7 @@ src/Camera.d src/Camera.o: ../src/Camera.cpp \
  /usr/include/opencv/cvcompat.h /usr/include/opencv/cxcore.h \
  /usr/include/opencv/highgui.h /usr/include/opencv/highgui.hpp
 
-/home/yclops/workspace/YClopsLib/inc/Camera.h:
+/home/igvcbyu/workspace/YClopsLib/inc/Camera.h:
 
 /usr/include/mrpt/slam/include/mrpt/slam.h:
 

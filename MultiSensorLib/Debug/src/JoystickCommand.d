@@ -1,5 +1,5 @@
 src/JoystickCommand.d src/JoystickCommand.o: ../src/JoystickCommand.cpp \
- /home/yclops/workspace/YClopsLib/inc/JoystickCommand.h \
+ /home/igvcbyu/workspace/YClopsLib/inc/JoystickCommand.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CJoystick.h \
  /usr/include/mrpt/mrpt-config/mrpt/config.h \
  /usr/include/mrpt/base/include/mrpt/utils/utils_defs.h \
@@ -170,8 +170,8 @@ src/JoystickCommand.d src/JoystickCommand.o: ../src/JoystickCommand.cpp \
  /usr/include/mrpt/base/include/mrpt/otherlibs/stlplus/smart_ptr.tpp \
  /usr/include/mrpt/base/include/mrpt/utils/bits.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/link_pragmas.h \
- /home/yclops/workspace/YClopsLib/inc/MotorCommandInterface.h \
- /home/yclops/workspace/YClopsLib/inc/MotorController.h \
+ /home/igvcbyu/workspace/YClopsLib/inc/MotorCommandInterface.h \
+ /home/igvcbyu/workspace/YClopsLib/inc/MotorController.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h \
  /usr/include/mrpt/base/include/mrpt/utils/CStream.h \
  /usr/include/mrpt/base/include/mrpt/utils/CUncopiable.h \
@@ -188,7 +188,7 @@ src/JoystickCommand.d src/JoystickCommand.o: ../src/JoystickCommand.cpp \
  /usr/include/mrpt/base/include/mrpt/utils/map_as_vector.h \
  /usr/include/mrpt/base/include/mrpt/utils/traits_map.h
 
-/home/yclops/workspace/YClopsLib/inc/JoystickCommand.h:
+/home/igvcbyu/workspace/YClopsLib/inc/JoystickCommand.h:
 
 /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CJoystick.h:
 
@@ -530,9 +530,9 @@ src/JoystickCommand.d src/JoystickCommand.o: ../src/JoystickCommand.cpp \
 
 /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/link_pragmas.h:
 
-/home/yclops/workspace/YClopsLib/inc/MotorCommandInterface.h:
+/home/igvcbyu/workspace/YClopsLib/inc/MotorCommandInterface.h:
 
-/home/yclops/workspace/YClopsLib/inc/MotorController.h:
+/home/igvcbyu/workspace/YClopsLib/inc/MotorController.h:
 
 /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h:
 

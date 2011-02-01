@@ -1,5 +1,5 @@
 src/Compass.d src/Compass.o: ../src/Compass.cpp \
- /home/yclops/workspace/YClopsLib/inc/Compass.h \
+ /home/igvcbyu/workspace/YClopsLib/inc/Compass.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGenericSensor.h \
  /usr/include/mrpt/base/include/mrpt/utils/CConfigFileBase.h \
  /usr/include/mrpt/base/include/mrpt/utils/utils_defs.h \
@@ -210,7 +210,7 @@ src/Compass.d src/Compass.o: ../src/Compass.cpp \
  /usr/include/mrpt/base/include/mrpt/utils/CTicTac.h \
  /usr/include/mrpt/base/include/mrpt/utils/CDebugOutputCapable.h
 
-/home/yclops/workspace/YClopsLib/inc/Compass.h:
+/home/igvcbyu/workspace/YClopsLib/inc/Compass.h:
 
 /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGenericSensor.h:
 
