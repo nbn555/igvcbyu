@@ -33,11 +33,11 @@ void NavigationChallenge::AutonomousMode(string& waypointsFile, bool challange)
 
 	nav.loadPoints(waypointsFile);
 	//waypoints in the order we want to visit them
-	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t points = nav.solve();
+	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t points = nav.solve(true);
 
 	cout << "TSP Solved" << endl;
 	//the reactive nav to get from the current position to the next point the tsp solver wants us to go to
-	mrpt::reactivenav::YclopsNavigationSystem reactivenav = mrpt::reactivenav::YclopsNavigationSystem(*interface, false, false);
+	mrpt::reactivenav::YclopsNavigationSystem reactivenav = mrpt::reactivenav::YclopsNavigationSystem(*interface, true, true);
 
 	mrpt::utils::CConfigFile navConfig("robot.ini");
 	mrpt::utils::CConfigFile robotConfig("robotConf.ini");
