@@ -22,7 +22,7 @@ using namespace mrpt::hwdrivers;
 
 class YclopsReactiveNavInterface: public mrpt::reactivenav::CReactiveInterfaceImplementation{
 private:
-	GPS* gps;
+	GPS gps;
 	Compass* compass;
 	MotorCommand* motor;
 	AbstractPoseEstimator* poseEst;

@@ -16,18 +16,21 @@ using namespace mrpt::hwdrivers;
 
 YclopsReactiveNavInterface::YclopsReactiveNavInterface(string& motorControllerPort) {
 	// TODO Auto-generated constructor stub
-		gps = new GPS();
 	//	gps->setSerialPortName ( "ttyUSB0" );
 		CConfigFile config("GPS.ini");
-		gps->loadConfig(config, "GPS");
-		gps->initConfig(config, "GPS");
-		gps->initialize();
+		gps.loadConfig(config, "GPS");
+		gps.initConfig(config, "GPS");
+		gps.initialize();
+		cout << "GPS  Configured" << endl;
+
+
 
 	camera = new Camera();
-	CConfigFile camconfig("camera.ini");
+	//CConfigFile camconfig("camera.ini");
 	//TODO: Change this to work with ConfigFile Object
 	camera->loadConfig("test");
 	camera->startCamera();
+
 
 
 	compass = new Compass();
@@ -35,6 +38,9 @@ YclopsReactiveNavInterface::YclopsReactiveNavInterface(string& motorControllerPo
 
 	compass->loadConfig(config2, "COMPASS" );
 	compass->initialize();
+
+	cout << "Compass configered" << endl;
+
 	poseEst = new NoFilterPoseEstimator();
 
 	motor = new MotorCommand(new MotorController(motorControllerPort));
@@ -44,6 +50,40 @@ YclopsReactiveNavInterface::YclopsReactiveNavInterface(string& motorControllerPo
 
 	this->curV = 0;
 	this->curW = 0;
+
+	CGenericSensor::TListObservations	lstObs;
+	CGenericSensor::TListObservations::iterator 	itObs;
+
+	bool done = false;
+	while(!done)
+	{
+		while(lstObs.size() == 0)
+		{
+			gps.doProcess();
+			gps.getObservations(lstObs);
+		}
+		itObs = lstObs.begin();
+		CObservationGPSPtr gpsData = CObservationGPSPtr(lstObs.begin()->second);
+		if(gpsData.pointer()->GGA_datum.latitude_degrees)
+		{
+			done = true;
+		}
+		else
+		{
+			cout << "Got Bad Data" << endl;
+		}
+
+	}
+	itObs = lstObs.begin();
+	CObservationGPSPtr gpsData = CObservationGPSPtr(lstObs.begin()->second);
+
+	poseEst->update(gpsData,compass->getYaw(), compass->getPitch(), compass->getRoll());
+
+	this->poseEst->getPose(*robotPose);
+
+
+	cout << "GPS Found observation" << endl;
+
 }
 
 YclopsReactiveNavInterface::~YclopsReactiveNavInterface() {
@@ -54,18 +94,31 @@ bool YclopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 {
 	CGenericSensor::TListObservations	lstObs;
 	CGenericSensor::TListObservations::iterator 	itObs;
-	gps->doProcess();
-	compass->doProcess();
-	gps->getObservations(lstObs);
+	gps.doProcess();
+	(*compass).doProcess();
+	gps.getObservations(lstObs);
+	if(lstObs.size() == 0)
+	{
+		//return false;
+
+		curPose.x(robotPose->x());
+		curPose.y(robotPose->y());
+		
+		return true;
+	}
 	itObs = lstObs.begin();
 	CObservationGPSPtr gpsData = CObservationGPSPtr(lstObs.begin()->second);
 
 	poseEst->update(gpsData,compass->getYaw(), compass->getPitch(), compass->getRoll());
 	mrpt::poses::CPose3D thirdDim = mrpt::poses::CPose3D(curPose);
 	this->poseEst->getPose(thirdDim);
-	this->robotPose = new CPose3D(thirdDim);
-	this->curV = curV;
-	this->curW = curW;
+	robotPose->x() = thirdDim.x();
+	robotPose->y() = thirdDim.y();
+
+	curV = this->curV;
+	curW = this->curW;
+	curPose.x(robotPose->x());
+	curPose.y(robotPose->y());
 	return true;
 }
 
@@ -82,7 +135,7 @@ bool YclopsReactiveNavInterface::changeSpeeds( float v, float w )
 bool YclopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap 		&obstacles )
 	{
 
-		camera->getObstacles(obstacles);
+		camera->getObstacles(obstacles, *robotPose);
 
 		// TODO: Do something with Map here
 

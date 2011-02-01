@@ -19,6 +19,7 @@ bool MotorCommand::Go(float linear, float angular){
 	int rmp2= linearConst*linear - angConst*angular;
 	if(!(this->motorPtr->setSpeed(MotorController::Channel1, rmp1)&&this->motorPtr->setSpeed(MotorController::Channel2, rmp2)))
 		return false;
+	motorPtr->doProcess();
 	return true;
 }
 

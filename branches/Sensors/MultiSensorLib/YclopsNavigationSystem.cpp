@@ -331,7 +331,7 @@ void  YclopsNavigationSystem::performNavigationStep()
 	static std::vector<vector_double>			TP_Obstacles;
 	float										targetDist;
 	poses::CPoint2D								relTarget;		// The target point, relative to current robot pose.
-	static std::vector<poses::CPoint2D>			TP_Targets;		// Target location (x,y) in TP-Space
+	static std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> >			TP_Targets;		// Target location (x,y) in TP-Space
 	poses::CPose2D								curPose;
 	float										curVL;			// en metros/seg
 	float										curW;			// en rad/segundo

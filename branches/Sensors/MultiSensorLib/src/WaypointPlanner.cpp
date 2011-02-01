@@ -116,11 +116,14 @@ void TSPNavigation::nieveTSPSolution(  mrpt::aligned_containers<mrpt::poses::CPo
 				shortestDistance = dist;				//however there ought to be a better way then this and it should be fixed
 			}
 		}
-		mrpt::poses::CPoint2D& point = *(new CPoint2D());
-		point.m_coords[LAT] = (haversineDistance( visited.front().m_coords[LAT],toVisit[closestIndex].m_coords[LON],
+		mrpt::poses::CPoint2D& point = (toVisit[closestIndex]);
+		int multx = point.m_coords[LON] > visited.front().m_coords[LON] ? 1 : -1;
+		int multy = point.m_coords[LAT] > visited.front().m_coords[LAT] ? 1 : -1;
+		point.m_coords[LAT] = multy * (haversineDistance( visited.front().m_coords[LAT],toVisit[closestIndex].m_coords[LON],
 				toVisit[closestIndex].m_coords[LAT], toVisit[closestIndex].m_coords[LON] ));
-		point.m_coords[LON] = (haversineDistance( toVisit[closestIndex].m_coords[LAT], visited.front().m_coords[LON],
+		point.m_coords[LON] = multx * (haversineDistance( toVisit[closestIndex].m_coords[LAT], visited.front().m_coords[LON],
 				toVisit[closestIndex].m_coords[LAT], toVisit[closestIndex].m_coords[LON] ));
+
 		visited.push_back(toVisit[closestIndex]);
 		toVisit.erase(toVisit.begin()+closestIndex);
 
