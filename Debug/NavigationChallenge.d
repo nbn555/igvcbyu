@@ -313,26 +313,9 @@ NavigationChallenge.d NavigationChallenge.o: ../NavigationChallenge.cpp \
  /home/yclops/workspace/YClopsLib/inc/MotorCommandInterface.h \
  /home/yclops/workspace/YClopsLib/inc/MotorController.h \
  /home/yclops/workspace/YClopsLib/inc/PoseEstimator.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CCameraSensor.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CFFMPEG_InputStream.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_OpenCV.h \
- /usr/include/mrpt/obs/include/mrpt/slam/CObservationImage.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_dc1394.h \
- /usr/include/mrpt/obs/include/mrpt/slam/CObservationStereoImages.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CStereoGrabber_Bumblebee.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSwissRanger3DCamera.h \
- /usr/include/mrpt/obs/include/mrpt/slam/CObservation3DRangeScan.h \
- /usr/include/mrpt/base/include/mrpt/math/CPolygon.h \
- /usr/include/mrpt/gui/include/mrpt/gui/CDisplayWindow.h \
- /usr/include/mrpt/gui/include/mrpt/gui/CBaseGUIWindow.h \
- /usr/include/mrpt/gui/include/mrpt/gui/keycodes.h \
- /usr/include/mrpt/gui/include/mrpt/gui/link_pragmas.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CKinect.h \
- /usr/include/mrpt/obs/include/mrpt/slam/CObservationIMU.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CStereoGrabber_SVS.h \
- /usr/include/mrpt/reactivenav/include/mrpt/reactivenav.h \
- /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CReactiveNavigationSystem.h \
- /usr/include/mrpt/maps/include/mrpt/maps.h \
+ /home/yclops/workspace/YClopsLib/inc/Camera.h \
+ /usr/include/mrpt/slam/include/mrpt/slam.h \
+ /usr/include/mrpt/vision/include/mrpt/vision.h \
  /usr/include/mrpt/obs/include/mrpt/obs.h \
  /usr/include/mrpt/opengl/include/mrpt/opengl.h \
  /usr/include/mrpt/base/include/mrpt/base.h \
@@ -355,6 +338,7 @@ NavigationChallenge.d NavigationChallenge.o: ../NavigationChallenge.cpp \
  /usr/include/mrpt/base/include/mrpt/math/CMatrixB.h \
  /usr/include/mrpt/base/include/mrpt/math/CMatrixTemplateObjects.h \
  /usr/include/mrpt/base/include/mrpt/math/CGraphPartitioner.h \
+ /usr/include/mrpt/base/include/mrpt/math/CPolygon.h \
  /usr/include/mrpt/base/include/mrpt/math/CSplineInterpolator1D.h \
  /usr/include/mrpt/base/include/mrpt/math/CSparseMatrix.h \
  /usr/include/mrpt/base/include/mrpt/otherlibs/CSparse/cs.h \
@@ -410,11 +394,15 @@ NavigationChallenge.d NavigationChallenge.o: ../NavigationChallenge.cpp \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservation2DRangeScan.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CMetricMap.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CMetricMapEvents.h \
+ /usr/include/mrpt/obs/include/mrpt/slam/CObservation3DRangeScan.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationRange.h \
+ /usr/include/mrpt/obs/include/mrpt/slam/CObservationImage.h \
+ /usr/include/mrpt/obs/include/mrpt/slam/CObservationStereoImages.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationStereoImagesFeatures.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationBeaconRanges.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationGasSensors.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationBatteryState.h \
+ /usr/include/mrpt/obs/include/mrpt/slam/CObservationIMU.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationOdometry.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationBearingRange.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationComment.h \
@@ -426,6 +414,24 @@ NavigationChallenge.d NavigationChallenge.o: ../NavigationChallenge.cpp \
  /usr/include/mrpt/obs/include/mrpt/slam/CRawlog.h \
  /usr/include/mrpt/obs/include/mrpt/slam/carmen_log_tools.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CSimpleMap.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/utils.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/CFeature.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/link_pragmas.h \
+ /usr/include/mrpt/vision/include/mrpt/slam/CLandmarksMap.h \
+ /usr/include/mrpt/vision/include/mrpt/slam/CLandmark.h \
+ /usr/include/mrpt/vision/include/mrpt/slam/CObservationVisualLandmarks.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/types.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/chessboard_camera_calib.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/multiDesc_utils.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/chessboard_find_corners.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/pinhole.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/CCamModel.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/CFeatureExtraction.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/CVideoFileWriter.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/tracking.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/bundle_adjustment.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/CUndistortMap.h \
+ /usr/include/mrpt/maps/include/mrpt/maps.h \
  /usr/include/mrpt/maps/include/mrpt/slam/CBeacon.h \
  /usr/include/mrpt/maps/include/mrpt/maps/link_pragmas.h \
  /usr/include/mrpt/maps/include/mrpt/slam/CBeaconMap.h \
@@ -438,6 +444,58 @@ NavigationChallenge.d NavigationChallenge.o: ../NavigationChallenge.cpp \
  /usr/include/mrpt/maps/include/mrpt/slam/CSimplePointsMap.h \
  /usr/include/mrpt/maps/include/mrpt/opengl/CAngularObservationMesh.h \
  /usr/include/mrpt/maps/include/mrpt/opengl/CPlanarLaserScan.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CMultiMetricMap.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/link_pragmas.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CMetricMapBuilderICP.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CMetricMapBuilder.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CICP.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CMetricMapsAlignmentAlgorithm.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CMetricMapBuilderRBPF.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CMultiMetricMapPDF.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/PF_implementations_data.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/TKLDParams.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CRangeBearingKFSLAM.h \
+ /usr/include/mrpt/base/include/mrpt/math/CVectorTemplate.h \
+ /usr/include/mrpt/bayes/include/mrpt/bayes/CKalmanFilterCapable.h \
+ /usr/include/mrpt/bayes/include/mrpt/bayes/link_pragmas.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CIncrementalMapPartitioner.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/data_association.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CRangeBearingKFSLAM2D.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/observations_overlap.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CMonteCarloLocalization2D.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/TMonteCarloLocalizationParams.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CMonteCarloLocalization3D.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CConsistentObservationAlignment.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CGridMapAligner.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/COccupancyGridMapFeatureExtractor.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CDetectorDoorCrossing.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CPathPlanningMethod.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CPathPlanningCircularRobot.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CRejectionSamplingRangeOnlyLocalization.h \
+ /usr/include/mrpt/bayes/include/mrpt/bayes/CRejectionSamplingCapable.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/graph_slam.h \
+ /usr/include/opencv/cv.h /usr/include/opencv/cxcore.h \
+ /usr/include/opencv/cxtypes.h /usr/include/opencv/cxerror.h \
+ /usr/include/opencv/cvver.h /usr/include/opencv/cxcore.hpp \
+ /usr/include/opencv/cxmisc.h /usr/include/opencv/cxoperations.hpp \
+ /usr/include/opencv/cxmat.hpp /usr/include/opencv/cxflann.h \
+ /usr/include/opencv/cvtypes.h /usr/include/opencv/cv.hpp \
+ /usr/include/opencv/cvcompat.h /usr/include/opencv/cxcore.h \
+ /usr/include/opencv/highgui.h /usr/include/opencv/highgui.hpp \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CCameraSensor.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CFFMPEG_InputStream.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_OpenCV.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_dc1394.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CStereoGrabber_Bumblebee.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSwissRanger3DCamera.h \
+ /usr/include/mrpt/gui/include/mrpt/gui/CDisplayWindow.h \
+ /usr/include/mrpt/gui/include/mrpt/gui/CBaseGUIWindow.h \
+ /usr/include/mrpt/gui/include/mrpt/gui/keycodes.h \
+ /usr/include/mrpt/gui/include/mrpt/gui/link_pragmas.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CKinect.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CStereoGrabber_SVS.h \
+ /usr/include/mrpt/reactivenav/include/mrpt/reactivenav.h \
+ /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CReactiveNavigationSystem.h \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/link_pragmas.h \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CAbstractReactiveNavigationSystem.h \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CParameterizedTrajectoryGenerator.h \
@@ -1090,45 +1148,11 @@ NavigationChallenge.d NavigationChallenge.o: ../NavigationChallenge.cpp \
 
 /home/yclops/workspace/YClopsLib/inc/PoseEstimator.h:
 
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CCameraSensor.h:
+/home/yclops/workspace/YClopsLib/inc/Camera.h:
 
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CFFMPEG_InputStream.h:
+/usr/include/mrpt/slam/include/mrpt/slam.h:
 
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_OpenCV.h:
-
-/usr/include/mrpt/obs/include/mrpt/slam/CObservationImage.h:
-
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_dc1394.h:
-
-/usr/include/mrpt/obs/include/mrpt/slam/CObservationStereoImages.h:
-
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CStereoGrabber_Bumblebee.h:
-
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSwissRanger3DCamera.h:
-
-/usr/include/mrpt/obs/include/mrpt/slam/CObservation3DRangeScan.h:
-
-/usr/include/mrpt/base/include/mrpt/math/CPolygon.h:
-
-/usr/include/mrpt/gui/include/mrpt/gui/CDisplayWindow.h:
-
-/usr/include/mrpt/gui/include/mrpt/gui/CBaseGUIWindow.h:
-
-/usr/include/mrpt/gui/include/mrpt/gui/keycodes.h:
-
-/usr/include/mrpt/gui/include/mrpt/gui/link_pragmas.h:
-
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CKinect.h:
-
-/usr/include/mrpt/obs/include/mrpt/slam/CObservationIMU.h:
-
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CStereoGrabber_SVS.h:
-
-/usr/include/mrpt/reactivenav/include/mrpt/reactivenav.h:
-
-/usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CReactiveNavigationSystem.h:
-
-/usr/include/mrpt/maps/include/mrpt/maps.h:
+/usr/include/mrpt/vision/include/mrpt/vision.h:
 
 /usr/include/mrpt/obs/include/mrpt/obs.h:
 
@@ -1173,6 +1197,8 @@ NavigationChallenge.d NavigationChallenge.o: ../NavigationChallenge.cpp \
 /usr/include/mrpt/base/include/mrpt/math/CMatrixTemplateObjects.h:
 
 /usr/include/mrpt/base/include/mrpt/math/CGraphPartitioner.h:
+
+/usr/include/mrpt/base/include/mrpt/math/CPolygon.h:
 
 /usr/include/mrpt/base/include/mrpt/math/CSplineInterpolator1D.h:
 
@@ -1284,7 +1310,13 @@ NavigationChallenge.d NavigationChallenge.o: ../NavigationChallenge.cpp \
 
 /usr/include/mrpt/obs/include/mrpt/slam/CMetricMapEvents.h:
 
+/usr/include/mrpt/obs/include/mrpt/slam/CObservation3DRangeScan.h:
+
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationRange.h:
+
+/usr/include/mrpt/obs/include/mrpt/slam/CObservationImage.h:
+
+/usr/include/mrpt/obs/include/mrpt/slam/CObservationStereoImages.h:
 
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationStereoImagesFeatures.h:
 
@@ -1293,6 +1325,8 @@ NavigationChallenge.d NavigationChallenge.o: ../NavigationChallenge.cpp \
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationGasSensors.h:
 
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationBatteryState.h:
+
+/usr/include/mrpt/obs/include/mrpt/slam/CObservationIMU.h:
 
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationOdometry.h:
 
@@ -1315,6 +1349,42 @@ NavigationChallenge.d NavigationChallenge.o: ../NavigationChallenge.cpp \
 /usr/include/mrpt/obs/include/mrpt/slam/carmen_log_tools.h:
 
 /usr/include/mrpt/obs/include/mrpt/slam/CSimpleMap.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/utils.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/CFeature.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/link_pragmas.h:
+
+/usr/include/mrpt/vision/include/mrpt/slam/CLandmarksMap.h:
+
+/usr/include/mrpt/vision/include/mrpt/slam/CLandmark.h:
+
+/usr/include/mrpt/vision/include/mrpt/slam/CObservationVisualLandmarks.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/types.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/chessboard_camera_calib.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/multiDesc_utils.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/chessboard_find_corners.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/pinhole.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/CCamModel.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/CFeatureExtraction.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/CVideoFileWriter.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/tracking.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/bundle_adjustment.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/CUndistortMap.h:
+
+/usr/include/mrpt/maps/include/mrpt/maps.h:
 
 /usr/include/mrpt/maps/include/mrpt/slam/CBeacon.h:
 
@@ -1339,6 +1409,126 @@ NavigationChallenge.d NavigationChallenge.o: ../NavigationChallenge.cpp \
 /usr/include/mrpt/maps/include/mrpt/opengl/CAngularObservationMesh.h:
 
 /usr/include/mrpt/maps/include/mrpt/opengl/CPlanarLaserScan.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CMultiMetricMap.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/link_pragmas.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CMetricMapBuilderICP.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CMetricMapBuilder.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CICP.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CMetricMapsAlignmentAlgorithm.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CMetricMapBuilderRBPF.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CMultiMetricMapPDF.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/PF_implementations_data.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/TKLDParams.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CRangeBearingKFSLAM.h:
+
+/usr/include/mrpt/base/include/mrpt/math/CVectorTemplate.h:
+
+/usr/include/mrpt/bayes/include/mrpt/bayes/CKalmanFilterCapable.h:
+
+/usr/include/mrpt/bayes/include/mrpt/bayes/link_pragmas.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CIncrementalMapPartitioner.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/data_association.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CRangeBearingKFSLAM2D.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/observations_overlap.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CMonteCarloLocalization2D.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/TMonteCarloLocalizationParams.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CMonteCarloLocalization3D.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CConsistentObservationAlignment.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CGridMapAligner.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/COccupancyGridMapFeatureExtractor.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CDetectorDoorCrossing.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CPathPlanningMethod.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CPathPlanningCircularRobot.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CRejectionSamplingRangeOnlyLocalization.h:
+
+/usr/include/mrpt/bayes/include/mrpt/bayes/CRejectionSamplingCapable.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/graph_slam.h:
+
+/usr/include/opencv/cv.h:
+
+/usr/include/opencv/cxcore.h:
+
+/usr/include/opencv/cxtypes.h:
+
+/usr/include/opencv/cxerror.h:
+
+/usr/include/opencv/cvver.h:
+
+/usr/include/opencv/cxcore.hpp:
+
+/usr/include/opencv/cxmisc.h:
+
+/usr/include/opencv/cxoperations.hpp:
+
+/usr/include/opencv/cxmat.hpp:
+
+/usr/include/opencv/cxflann.h:
+
+/usr/include/opencv/cvtypes.h:
+
+/usr/include/opencv/cv.hpp:
+
+/usr/include/opencv/cvcompat.h:
+
+/usr/include/opencv/cxcore.h:
+
+/usr/include/opencv/highgui.h:
+
+/usr/include/opencv/highgui.hpp:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CCameraSensor.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CFFMPEG_InputStream.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_OpenCV.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_dc1394.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CStereoGrabber_Bumblebee.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSwissRanger3DCamera.h:
+
+/usr/include/mrpt/gui/include/mrpt/gui/CDisplayWindow.h:
+
+/usr/include/mrpt/gui/include/mrpt/gui/CBaseGUIWindow.h:
+
+/usr/include/mrpt/gui/include/mrpt/gui/keycodes.h:
+
+/usr/include/mrpt/gui/include/mrpt/gui/link_pragmas.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CKinect.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CStereoGrabber_SVS.h:
+
+/usr/include/mrpt/reactivenav/include/mrpt/reactivenav.h:
+
+/usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CReactiveNavigationSystem.h:
 
 /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/link_pragmas.h:
 
