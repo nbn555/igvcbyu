@@ -26,7 +26,7 @@ private:
 	Compass* compass;
 	MotorCommand* motor;
 	AbstractPoseEstimator* poseEst;
-	Camera* camera;
+	//Camera* camera;
 	CPose3D* robotPose;
 
 	float curV;

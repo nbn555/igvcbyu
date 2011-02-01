@@ -1,7 +1,7 @@
 src/MotorCommandInterface.d src/MotorCommandInterface.o: \
  ../src/MotorCommandInterface.cpp \
- /home/yclops/workspace/YClopsLib/inc/MotorCommandInterface.h \
- /home/yclops/workspace/YClopsLib/inc/MotorController.h \
+ /home/igvcbyu/workspace/YClopsLib/inc/MotorCommandInterface.h \
+ /home/igvcbyu/workspace/YClopsLib/inc/MotorController.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h \
  /usr/include/mrpt/mrpt-config/mrpt/config.h \
  /usr/include/mrpt/base/include/mrpt/utils/CStream.h \
@@ -187,9 +187,9 @@ src/MotorCommandInterface.d src/MotorCommandInterface.o: \
  /usr/include/mrpt/base/include/mrpt/utils/traits_map.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/link_pragmas.h
 
-/home/yclops/workspace/YClopsLib/inc/MotorCommandInterface.h:
+/home/igvcbyu/workspace/YClopsLib/inc/MotorCommandInterface.h:
 
-/home/yclops/workspace/YClopsLib/inc/MotorController.h:
+/home/igvcbyu/workspace/YClopsLib/inc/MotorController.h:
 
 /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h:
 

@@ -25,11 +25,11 @@ YclopsReactiveNavInterface::YclopsReactiveNavInterface(string& motorControllerPo
 
 
 
-	camera = new Camera();
+	//camera = new Camera();
 	//CConfigFile camconfig("camera.ini");
 	//TODO: Change this to work with ConfigFile Object
-	camera->loadConfig("test");
-	camera->startCamera();
+//	camera->loadConfig("test");
+//	camera->startCamera();
 
 
 
@@ -135,7 +135,7 @@ bool YclopsReactiveNavInterface::changeSpeeds( float v, float w )
 bool YclopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap 		&obstacles )
 	{
 
-		camera->getObstacles(obstacles, *robotPose);
+	//	camera->getObstacles(obstacles, *robotPose);
 
 		// TODO: Do something with Map here
 
