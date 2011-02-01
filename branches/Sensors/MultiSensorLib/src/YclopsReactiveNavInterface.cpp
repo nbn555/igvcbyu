@@ -153,3 +153,8 @@ bool YclopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap 		
 
 		return true;
 	}
+double YclopsReactiveNavInterface::getHeading()
+{
+	return robotPose->yaw();
+}
+
