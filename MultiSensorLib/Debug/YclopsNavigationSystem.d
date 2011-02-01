@@ -434,7 +434,88 @@ YclopsNavigationSystem.d YclopsNavigationSystem.o: \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG4.h \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG5.h \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG6.h \
- /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG7.h
+ /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG7.h \
+ /home/yclops/workspace/YClopsLib/inc/YclopsReactiveNavInterface.h \
+ /home/yclops/workspace/YClopsLib/inc/Compass.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGenericSensor.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/link_pragmas.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h \
+ /home/yclops/workspace/YClopsLib/inc/GPS.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGPSInterface.h \
+ /home/yclops/workspace/YClopsLib/inc/MotorCommand.h \
+ /home/yclops/workspace/YClopsLib/inc/MotorCommandInterface.h \
+ /home/yclops/workspace/YClopsLib/inc/MotorController.h \
+ /home/yclops/workspace/YClopsLib/inc/PoseEstimator.h \
+ /home/yclops/workspace/YClopsLib/inc/Camera.h \
+ /usr/include/mrpt/slam/include/mrpt/slam.h \
+ /usr/include/mrpt/vision/include/mrpt/vision.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/utils.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/CFeature.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/link_pragmas.h \
+ /usr/include/mrpt/vision/include/mrpt/slam/CLandmarksMap.h \
+ /usr/include/mrpt/vision/include/mrpt/slam/CLandmark.h \
+ /usr/include/mrpt/vision/include/mrpt/slam/CObservationVisualLandmarks.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/types.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/chessboard_camera_calib.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/multiDesc_utils.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/chessboard_find_corners.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/pinhole.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/CCamModel.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/CFeatureExtraction.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/CVideoFileWriter.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/tracking.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/bundle_adjustment.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/CUndistortMap.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CMultiMetricMap.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/link_pragmas.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CMetricMapBuilderICP.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CMetricMapBuilder.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CICP.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CMetricMapsAlignmentAlgorithm.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CMetricMapBuilderRBPF.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CMultiMetricMapPDF.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/PF_implementations_data.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/TKLDParams.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CRangeBearingKFSLAM.h \
+ /usr/include/mrpt/base/include/mrpt/math/CVectorTemplate.h \
+ /usr/include/mrpt/bayes/include/mrpt/bayes/CKalmanFilterCapable.h \
+ /usr/include/mrpt/bayes/include/mrpt/bayes/link_pragmas.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CIncrementalMapPartitioner.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/data_association.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CRangeBearingKFSLAM2D.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/observations_overlap.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CMonteCarloLocalization2D.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/TMonteCarloLocalizationParams.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CMonteCarloLocalization3D.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CConsistentObservationAlignment.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CGridMapAligner.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/COccupancyGridMapFeatureExtractor.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CDetectorDoorCrossing.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CPathPlanningMethod.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CPathPlanningCircularRobot.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/CRejectionSamplingRangeOnlyLocalization.h \
+ /usr/include/mrpt/bayes/include/mrpt/bayes/CRejectionSamplingCapable.h \
+ /usr/include/mrpt/slam/include/mrpt/slam/graph_slam.h \
+ /usr/include/opencv/cv.h /usr/include/opencv/cxcore.h \
+ /usr/include/opencv/cxtypes.h /usr/include/opencv/cxerror.h \
+ /usr/include/opencv/cvver.h /usr/include/opencv/cxcore.hpp \
+ /usr/include/opencv/cxmisc.h /usr/include/opencv/cxoperations.hpp \
+ /usr/include/opencv/cxmat.hpp /usr/include/opencv/cxflann.h \
+ /usr/include/opencv/cvtypes.h /usr/include/opencv/cv.hpp \
+ /usr/include/opencv/cvcompat.h /usr/include/opencv/cxcore.h \
+ /usr/include/opencv/highgui.h /usr/include/opencv/highgui.hpp \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CCameraSensor.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CFFMPEG_InputStream.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_OpenCV.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_dc1394.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CStereoGrabber_Bumblebee.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSwissRanger3DCamera.h \
+ /usr/include/mrpt/gui/include/mrpt/gui/CDisplayWindow.h \
+ /usr/include/mrpt/gui/include/mrpt/gui/CBaseGUIWindow.h \
+ /usr/include/mrpt/gui/include/mrpt/gui/keycodes.h \
+ /usr/include/mrpt/gui/include/mrpt/gui/link_pragmas.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CKinect.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CStereoGrabber_SVS.h
 
 ../YclopsNavigationSystem.h:
 
@@ -1307,3 +1388,181 @@ YclopsNavigationSystem.d YclopsNavigationSystem.o: \
 /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG6.h:
 
 /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG7.h:
+
+/home/yclops/workspace/YClopsLib/inc/YclopsReactiveNavInterface.h:
+
+/home/yclops/workspace/YClopsLib/inc/Compass.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGenericSensor.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/link_pragmas.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h:
+
+/home/yclops/workspace/YClopsLib/inc/GPS.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGPSInterface.h:
+
+/home/yclops/workspace/YClopsLib/inc/MotorCommand.h:
+
+/home/yclops/workspace/YClopsLib/inc/MotorCommandInterface.h:
+
+/home/yclops/workspace/YClopsLib/inc/MotorController.h:
+
+/home/yclops/workspace/YClopsLib/inc/PoseEstimator.h:
+
+/home/yclops/workspace/YClopsLib/inc/Camera.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/utils.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/CFeature.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/link_pragmas.h:
+
+/usr/include/mrpt/vision/include/mrpt/slam/CLandmarksMap.h:
+
+/usr/include/mrpt/vision/include/mrpt/slam/CLandmark.h:
+
+/usr/include/mrpt/vision/include/mrpt/slam/CObservationVisualLandmarks.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/types.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/chessboard_camera_calib.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/multiDesc_utils.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/chessboard_find_corners.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/pinhole.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/CCamModel.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/CFeatureExtraction.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/CVideoFileWriter.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/tracking.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/bundle_adjustment.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/CUndistortMap.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CMultiMetricMap.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/link_pragmas.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CMetricMapBuilderICP.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CMetricMapBuilder.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CICP.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CMetricMapsAlignmentAlgorithm.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CMetricMapBuilderRBPF.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CMultiMetricMapPDF.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/PF_implementations_data.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/TKLDParams.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CRangeBearingKFSLAM.h:
+
+/usr/include/mrpt/base/include/mrpt/math/CVectorTemplate.h:
+
+/usr/include/mrpt/bayes/include/mrpt/bayes/CKalmanFilterCapable.h:
+
+/usr/include/mrpt/bayes/include/mrpt/bayes/link_pragmas.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CIncrementalMapPartitioner.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/data_association.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CRangeBearingKFSLAM2D.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/observations_overlap.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CMonteCarloLocalization2D.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/TMonteCarloLocalizationParams.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CMonteCarloLocalization3D.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CConsistentObservationAlignment.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CGridMapAligner.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/COccupancyGridMapFeatureExtractor.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CDetectorDoorCrossing.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CPathPlanningMethod.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CPathPlanningCircularRobot.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/CRejectionSamplingRangeOnlyLocalization.h:
+
+/usr/include/mrpt/bayes/include/mrpt/bayes/CRejectionSamplingCapable.h:
+
+/usr/include/mrpt/slam/include/mrpt/slam/graph_slam.h:
+
+/usr/include/opencv/cv.h:
+
+/usr/include/opencv/cxcore.h:
+
+/usr/include/opencv/cxtypes.h:
+
+/usr/include/opencv/cxerror.h:
+
+/usr/include/opencv/cvver.h:
+
+/usr/include/opencv/cxcore.hpp:
+
+/usr/include/opencv/cxmisc.h:
+
+/usr/include/opencv/cxoperations.hpp:
+
+/usr/include/opencv/cxmat.hpp:
+
+/usr/include/opencv/cxflann.h:
+
+/usr/include/opencv/cvtypes.h:
+
+/usr/include/opencv/cv.hpp:
+
+/usr/include/opencv/cvcompat.h:
+
+/usr/include/opencv/cxcore.h:
+
+/usr/include/opencv/highgui.h:
+
+/usr/include/opencv/highgui.hpp:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CCameraSensor.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CFFMPEG_InputStream.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_OpenCV.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_dc1394.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CStereoGrabber_Bumblebee.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSwissRanger3DCamera.h:
+
+/usr/include/mrpt/gui/include/mrpt/gui/CDisplayWindow.h:
+
+/usr/include/mrpt/gui/include/mrpt/gui/CBaseGUIWindow.h:
+
+/usr/include/mrpt/gui/include/mrpt/gui/keycodes.h:
+
+/usr/include/mrpt/gui/include/mrpt/gui/link_pragmas.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CKinect.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CStereoGrabber_SVS.h:
