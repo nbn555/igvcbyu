@@ -38,6 +38,7 @@ public:
 	bool getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &curPose, float &curV, float &curW);
 	bool changeSpeeds( float v, float w );
 	bool senseObstacles( mrpt::slam::CSimplePointsMap 		&obstacles );
+	double getHeading();
 };
 
 #endif /* YCLOPSREACTIVENAVINTERFACE_H_ */

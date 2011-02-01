@@ -38,8 +38,8 @@ public:
 	 * @param motor1Min - the minimum power for channel1
 	 * @param motor2Min - the minimum power for channel2
 	 */
-	MotorController( std::string portName, bool enableEcho = true, int motor1Max = 500, int motor2Max = 500,
-			int motor1Min = -500, int motor2Min = -500 );
+	MotorController( std::string portName, bool enableEcho = true, int motor1Max = 800, int motor2Max = 800,
+			int motor1Min = -800, int motor2Min = -800 );
 
 	/**
 	 * Class destructor
