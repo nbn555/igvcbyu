@@ -607,32 +607,11 @@ void  YclopsNavigationSystem::performNavigationStep()
 					DW.w_max = min( DEG2RAD(robotMax_W_degps), curW + DEG2RAD(robotMax_W_accel_degpss * meanExecutionPeriod) );
 					DW.w_min = max(-DEG2RAD(robotMax_W_degps), curW - DEG2RAD(robotMax_W_accel_degpss * meanExecutionPeriod) );
 			*/
-			// Possible cases:
-			// --------------------------
-			// 1) cmd is into the DW:
-			if (1) /*( cmd_v>=DW.v_min && cmd_v<=DW.v_max &&
-				 cmd_w>=DW.w_min && cmd_w<=DW.w_max ) */
-			{
-				// OK!! Command is feasible. Let it be.
-
-			}
-			else
-			{
-				// Cmd is not feasible. Find the most similar one into the DW:
-				// ------------------------------------------------------------------
-				// Cases:
-				// 2) Desired curvature is into the reachable set:
-				//     Find cuts of constant curvature line with DW:
-				// 3) Desired curvature out of reachability: Only an
-				//     approximation can be found:
-				DW.findBestApproximation(
-				    desired_cmd_v, desired_cmd_w,	// IN
-				    cmd_v, cmd_w	// OUT
-				);
-			}
 
 		} // end of "!skipNormalReactiveNavigation"
 
+		const float min_v = .13;
+		const float min_w = .37;
 		// ---------------------------------------------------------------------
 		//				SEND MOVEMENT COMMAND TO THE ROBOT
 		// ---------------------------------------------------------------------
@@ -640,8 +619,12 @@ void  YclopsNavigationSystem::performNavigationStep()
 		{
 			m_robot.stop();
 		}
+
+
 		else
 		{
+			cmd_v = abs(cmd_v) < min_v && cmd_v != 0 ? min_v * cmd_v/abs(cmd_v) : cmd_v;
+			cmd_w = abs(cmd_w) < min_w && cmd_w != 0 ? min_w * cmd_w/abs(cmd_w) : cmd_w;
 			if ( !m_robot.changeSpeeds( cmd_v, cmd_w ) )
 			{
 				Error_ParadaDeEmergencia("\nERROR calling RobotMotionControl::changeSpeeds!! Stopping robot and finishing navigation\n");
