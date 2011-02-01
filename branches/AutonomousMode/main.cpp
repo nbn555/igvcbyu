@@ -7,14 +7,17 @@
 
 #include <iostream>
 #include "NavigationChallenge.h"
+#include "SimpleNavigation.h"
 
 using namespace std;
 
 int main( int argc, char** argv ) {
 	//this makes a navigation challenge go, by loading the ini files and using points.txt + startPoint as waypoints.
-	NavigationChallenge nav = NavigationChallenge();
+	/*NavigationChallenge nav = NavigationChallenge();*/
 	string file = "points.txt";
+	SimpleNavigation nav = SimpleNavigation(file);
+	nav.go();
 	//true means it is a navigation challenge, needs some work for the false to work
-	nav.AutonomousMode(file, true);
+	//nav.AutonomousMode(file, true);
 	return 0;
 }
