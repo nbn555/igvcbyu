@@ -51,7 +51,7 @@ void Camera::getFrame(Mat & image){
 	*capture >> image;
 }
 
-void Camera::getObstacles(/*mrpt::slam::CSimplePointMap & map*/ void * map){
+void Camera::getObstacles(mrpt::slam::CSimplePointsMap & map){
 	Mat image;
 
 	initializeArray(array);
@@ -73,12 +73,12 @@ void Camera::getObstacles(/*mrpt::slam::CSimplePointMap & map*/ void * map){
 	hasObstacles(array, image);
 	DEBUG("Checked for obstacles...");
 
-	insertObstacles(NULL, GRID_SIZE, array);
+	insertObstacles(map, GRID_SIZE, array);
 	DEBUG("Inserted obstacles into map...");
 
 }
 
-void Camera::insertObstacles(/*mrpt::slam::CSimplePointMap & map*/ void * map, int size, bool * array){
+void Camera::insertObstacles(mrpt::slam::CSimplePointsMap & map, int size, bool * array){
 	int pixel_x;
 	int pixel_y;
 	double x;
@@ -95,7 +95,7 @@ void Camera::insertObstacles(/*mrpt::slam::CSimplePointMap & map*/ void * map, i
 				x = ((pixel_x - 240) * .00635);
 				y = ((pixel_y * .00635) + .914);
 
-				//map.insertPoints(x, y);
+				map.insertPoint(x, y);
 
 				DEBUG("\tx = " << x);
 				DEBUG("\ty = " << y << "\n");

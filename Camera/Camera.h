@@ -12,9 +12,15 @@
 #include <stdlib.h>
 #include <iostream>
 
+/*
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
+*/
+
+#include <highgui.h>
+#include <cv.h>
+#include <cxcore.h>
 
 using namespace std;
 using namespace cv;
@@ -29,11 +35,11 @@ public:
 	void loadConfig(String fileName);
 	void startCamera();
 
-	void getObstacles(/*mrpt::slam::CSimplePointMap & map*/ void * map);
+	void getObstacles(mrpt::slam::CSimplePointsMap & map);
 
 private:
 	void getFrame(Mat & image);
-	void insertObstacles(/*mrpt::slam::CSimplePointMap & map*/ void * map, int size, bool * array);
+	void insertObstacles(mrpt::slam::CSimplePointsMap & map, int size, bool * array);
 	void hasObstacles(bool * array, Mat & image);
 	void getWhite(Mat & image);
 	void distort(Mat & src);
