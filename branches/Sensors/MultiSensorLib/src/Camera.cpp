@@ -1,7 +1,7 @@
 #include "Camera.h"
 
-#define DEBUG_CONTROL_WINDOW
-#define DEBUG_CONTROL_CONSOLE
+//#define DEBUG_CONTROL_WINDOW
+//#define DEBUG_CONTROL_CONSOLE
 
 #ifdef DEBUG_CONTROL_CONSOLE
 	#define DEBUG(str) cout << str << endl;
