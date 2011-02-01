@@ -6,6 +6,7 @@
  */
 
 #include "YclopsNavigationSystem.h"  // Precomp header
+#include "YclopsReactiveNavInterface.h"
 
 #include <mrpt/reactivenav.h>
 
@@ -456,7 +457,6 @@ void  YclopsNavigationSystem::performNavigationStep()
 		{
 			// Clip obstacles by "z" axis coordinates:
 			WS_Obstacles.clipOutOfRangeInZ( minObstaclesHeight, maxObstaclesHeight );
-
 			// Clip obstacles out of the reactive method range:
 			CPoint2D    dumm(0,0);
 			WS_Obstacles.clipOutOfRange( dumm, refDistance+1.5f );
@@ -585,8 +585,8 @@ void  YclopsNavigationSystem::performNavigationStep()
 					float p,t;
 					selectedHolonomicMovement.PTG->getCPointWhen_d_Is(2.0, selectedHolonomicMovement.PTG->alfa2index(selectedHolonomicMovement.direction),x,y,p,t);
 
-					cur_approx_heading_dir = atan2(y,x);
-					m_robot.notifyHeadingDirection(cur_approx_heading_dir);
+					cur_approx_heading_dir = ((YclopsReactiveNavInterface&)m_robot).getHeading();
+					//m_robot.notifyHeadingDirection(cur_approx_heading_dir);
 				}
 			}
 
@@ -610,8 +610,8 @@ void  YclopsNavigationSystem::performNavigationStep()
 
 		} // end of "!skipNormalReactiveNavigation"
 
-		const float min_v = .13;
-		const float min_w = .37;
+		const float min_v = .3;
+		const float min_w = 2;
 		// ---------------------------------------------------------------------
 		//				SEND MOVEMENT COMMAND TO THE ROBOT
 		// ---------------------------------------------------------------------
