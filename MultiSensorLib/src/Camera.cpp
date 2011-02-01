@@ -51,7 +51,7 @@ void Camera::getFrame(Mat & image){
 	*capture >> image;
 }
 
-void Camera::getObstacles(/*mrpt::slam::CSimplePointMap & map*/ void * map){
+void Camera::getObstacles(mrpt::slam::CSimplePointsMap & map, mrpt::poses::CPose3D pose){
 	Mat image;
 	DEBUG_COMMAND(namedWindow("test", 1));
 
@@ -77,12 +77,12 @@ void Camera::getObstacles(/*mrpt::slam::CSimplePointMap & map*/ void * map){
 	hasObstacles(array, image);
 	DEBUG("Checked for obstacles...");
 
-	insertObstacles(NULL, GRID_SIZE, array);
+	insertObstacles(map, GRID_SIZE, array, pose);
 	DEBUG("Inserted obstacles into map...");
 
 }
 
-void Camera::insertObstacles(/*mrpt::slam::CSimplePointMap & map*/ void * map, int size, bool * array){
+void Camera::insertObstacles(mrpt::slam::CSimplePointsMap & map, int size, bool * array, mrpt::poses::CPose3D pose ){
 	int pixel_x;
 	int pixel_y;
 	double x;
@@ -99,10 +99,17 @@ void Camera::insertObstacles(/*mrpt::slam::CSimplePointMap & map*/ void * map, i
 				x = ((pixel_x - 240) * .00635);
 				y = ((pixel_y * .00635) + .914);
 
-				//map.insertPoints(x, y);
+				double tempx = x;
+				double tempy = y;
+				double yaw = pose.yaw();
+
+				x = tempy * sin(yaw) + tempx * cos(yaw) + pose.x();
+				y = tempx * sin(yaw) + tempy * cos(yaw) + pose.y();
+
+				map.insertPoint(x, y);
 
 				DEBUG("\tx = " << x);
-				DEBUG("\ty = " << y << "\n");
+				DEBUG("\ty = " << y << endl);
 
 			}
 		}
@@ -117,7 +124,7 @@ void Camera::hasObstacles(bool * array, Mat & image){
 
 	int obstacleThreshold = 255 * PERCENT_FILLED;
 	DEBUG("\tObstacle threshold: " << obstacleThreshold);
-	DEBUG_COMMAND(namedWindow("test"));
+	DEBUG_COMMAND(namedWindow("test", 1));
 
 	for(int i = 0; i < GRID_SIZE; i++){
 		for(int j = 0; j < GRID_SIZE; j++){

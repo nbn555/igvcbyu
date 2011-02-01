@@ -69,20 +69,27 @@ bool MotorController::setSpeed( MotorChannel channel, int value ) {
 	bool rval = false;
 	switch(channel) {
 	case Channel1:
-		if( this->assertValidMotorRange(motor1SpeedMax, motor1SpeedMin, value) ) {
+		/*if( this->assertValidMotorRange(motor1SpeedMax, motor1SpeedMin, value) ) {
 			this->motor1Speed = value;
 			rval = true;
-		}
-
+		}*/
+		value = value > motor1SpeedMax ? motor1SpeedMax : value;
+		value = value < motor1SpeedMin ? motor1SpeedMin : value;
+		this->motor1Speed = value;
+		rval = true;
 		break;
 	case Channel2:
-		if( this->assertValidMotorRange(motor2SpeedMax, motor2SpeedMin, value) ) {
+		/*if( this->assertValidMotorRange(motor2SpeedMax, motor2SpeedMin, value) ) {
 			this->motor2Speed = value;
 			rval = true;
-		}
+		}*/
+		value = value > motor2SpeedMax ? motor2SpeedMax : value;
+		value = value < motor2SpeedMin ? motor2SpeedMin : value;
+		this->motor2Speed = value;
+		rval = true;
 		break;
 	case BothChannels:
-		if( this->assertValidMotorRange(motor1SpeedMax, motor1SpeedMin, value) ) {
+		/*if( this->assertValidMotorRange(motor1SpeedMax, motor1SpeedMin, value) ) {
 			this->motor1Speed = value;
 			rval = true;
 		}
@@ -92,7 +99,15 @@ bool MotorController::setSpeed( MotorChannel channel, int value ) {
 		if( this->assertValidMotorRange(motor2SpeedMax, motor2SpeedMin, value) && rval ) {
 			this->motor2Speed = value;
 			rval = true;
-		}
+		}*/
+		value = value > motor1SpeedMax ? motor1SpeedMax : value;
+		value = value < motor1SpeedMin ? motor1SpeedMin : value;
+		this->motor1Speed = value;
+		//rval = true;
+		value = value > motor2SpeedMax ? motor2SpeedMax : value;
+		value = value < motor2SpeedMin ? motor2SpeedMin : value;
+		this->motor2Speed = value;
+		rval = true;
 		break;
 	default:
 		cerr << "Invalid Motor Channel" << endl;
