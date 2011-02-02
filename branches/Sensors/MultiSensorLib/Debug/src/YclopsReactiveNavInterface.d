@@ -1,7 +1,7 @@
 src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  ../src/YclopsReactiveNavInterface.cpp \
- /home/igvcbyu/workspace/YClopsLib/inc/YclopsReactiveNavInterface.h \
- /home/igvcbyu/workspace/YClopsLib/inc/Compass.h \
+ /home/tallred3/ecen493/YClopsLib/inc/YclopsReactiveNavInterface.h \
+ /home/tallred3/ecen493/YClopsLib/inc/Compass.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGenericSensor.h \
  /usr/include/mrpt/base/include/mrpt/utils/CConfigFileBase.h \
  /usr/include/mrpt/base/include/mrpt/utils/utils_defs.h \
@@ -25,6 +25,9 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/base/include/Eigen/src/Core/NumTraits.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/MathFunctions.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/GenericPacketMath.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/PacketMath.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/MathFunctions.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/Complex.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/arch/Default/Settings.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/Functors.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/DenseCoeffsBase.h \
@@ -112,6 +115,7 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/base/include/Eigen/src/LU/PartialPivLU.h \
  /usr/include/mrpt/base/include/Eigen/src/LU/Determinant.h \
  /usr/include/mrpt/base/include/Eigen/src/LU/Inverse.h \
+ /usr/include/mrpt/base/include/Eigen/src/LU/arch/Inverse_SSE.h \
  /usr/include/mrpt/base/include/Eigen/Cholesky \
  /usr/include/mrpt/base/include/Eigen/src/Cholesky/LLT.h \
  /usr/include/mrpt/base/include/Eigen/src/Cholesky/LDLT.h \
@@ -158,6 +162,7 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/base/include/Eigen/src/Geometry/ParametrizedLine.h \
  /usr/include/mrpt/base/include/Eigen/src/Geometry/AlignedBox.h \
  /usr/include/mrpt/base/include/Eigen/src/Geometry/Umeyama.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/arch/Geometry_SSE.h \
  /usr/include/mrpt/base/include/Eigen/StdVector \
  /usr/include/mrpt/base/include/Eigen/src/StlSupport/StdVector.h \
  /usr/include/mrpt/base/include/Eigen/src/StlSupport/details.h \
@@ -211,7 +216,7 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h \
  /usr/include/mrpt/base/include/mrpt/utils/CTicTac.h \
  /usr/include/mrpt/base/include/mrpt/utils/CDebugOutputCapable.h \
- /home/igvcbyu/workspace/YClopsLib/inc/GPS.h \
+ /home/tallred3/ecen493/YClopsLib/inc/GPS.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGPSInterface.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationGPS.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPose3D.h \
@@ -231,11 +236,11 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/base/include/mrpt/poses/CPoint3D.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPoint.h \
  /usr/include/mrpt/base/include/mrpt/utils/CConfigFile.h \
- /home/igvcbyu/workspace/YClopsLib/inc/MotorCommand.h \
- /home/igvcbyu/workspace/YClopsLib/inc/MotorCommandInterface.h \
- /home/igvcbyu/workspace/YClopsLib/inc/MotorController.h \
- /home/igvcbyu/workspace/YClopsLib/inc/PoseEstimator.h \
- /home/igvcbyu/workspace/YClopsLib/inc/Camera.h \
+ /home/tallred3/ecen493/YClopsLib/inc/MotorCommand.h \
+ /home/tallred3/ecen493/YClopsLib/inc/MotorCommandInterface.h \
+ /home/tallred3/ecen493/YClopsLib/inc/MotorController.h \
+ /home/tallred3/ecen493/YClopsLib/inc/PoseEstimator.h \
+ /home/tallred3/ecen493/YClopsLib/inc/Camera.h \
  /usr/include/mrpt/slam/include/mrpt/slam.h \
  /usr/include/mrpt/vision/include/mrpt/vision.h \
  /usr/include/mrpt/obs/include/mrpt/obs.h \
@@ -438,7 +443,6 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/maps/include/mrpt/slam/CBeaconMap.h \
  /usr/include/mrpt/maps/include/mrpt/slam/CColouredPointsMap.h \
  /usr/include/mrpt/maps/include/mrpt/slam/CPointsMap.h \
- /usr/include/mrpt/obs/include/mrpt/slam/CSinCosLookUpTableFor2DScans.h \
  /usr/include/mrpt/maps/include/mrpt/slam/CGasConcentrationGridMap2D.h \
  /usr/include/mrpt/maps/include/mrpt/slam/CHeightGridMap2D.h \
  /usr/include/mrpt/maps/include/mrpt/slam/COccupancyGridMap2D.h \
@@ -475,14 +479,6 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/slam/include/mrpt/slam/CRejectionSamplingRangeOnlyLocalization.h \
  /usr/include/mrpt/bayes/include/mrpt/bayes/CRejectionSamplingCapable.h \
  /usr/include/mrpt/slam/include/mrpt/slam/graph_slam.h \
- /usr/include/opencv/cv.h /usr/include/opencv/cxcore.h \
- /usr/include/opencv/cxtypes.h /usr/include/opencv/cxerror.h \
- /usr/include/opencv/cvver.h /usr/include/opencv/cxcore.hpp \
- /usr/include/opencv/cxmisc.h /usr/include/opencv/cxoperations.hpp \
- /usr/include/opencv/cxmat.hpp /usr/include/opencv/cxflann.h \
- /usr/include/opencv/cvtypes.h /usr/include/opencv/cv.hpp \
- /usr/include/opencv/cvcompat.h /usr/include/opencv/cxcore.h \
- /usr/include/opencv/highgui.h /usr/include/opencv/highgui.hpp \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CCameraSensor.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CFFMPEG_InputStream.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CImageGrabber_OpenCV.h \
@@ -516,11 +512,11 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG5.h \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG6.h \
  /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG7.h \
- /home/igvcbyu/workspace/YClopsLib/inc/MotorController.h
+ /home/tallred3/ecen493/YClopsLib/inc/MotorController.h
 
-/home/igvcbyu/workspace/YClopsLib/inc/YclopsReactiveNavInterface.h:
+/home/tallred3/ecen493/YClopsLib/inc/YclopsReactiveNavInterface.h:
 
-/home/igvcbyu/workspace/YClopsLib/inc/Compass.h:
+/home/tallred3/ecen493/YClopsLib/inc/Compass.h:
 
 /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGenericSensor.h:
 
@@ -567,6 +563,12 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 /usr/include/mrpt/base/include/Eigen/src/Core/MathFunctions.h:
 
 /usr/include/mrpt/base/include/Eigen/src/Core/GenericPacketMath.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/PacketMath.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/MathFunctions.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/Complex.h:
 
 /usr/include/mrpt/base/include/Eigen/src/Core/arch/Default/Settings.h:
 
@@ -742,6 +744,8 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/base/include/Eigen/src/LU/Inverse.h:
 
+/usr/include/mrpt/base/include/Eigen/src/LU/arch/Inverse_SSE.h:
+
 /usr/include/mrpt/base/include/Eigen/Cholesky:
 
 /usr/include/mrpt/base/include/Eigen/src/Cholesky/LLT.h:
@@ -833,6 +837,8 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 /usr/include/mrpt/base/include/Eigen/src/Geometry/AlignedBox.h:
 
 /usr/include/mrpt/base/include/Eigen/src/Geometry/Umeyama.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/arch/Geometry_SSE.h:
 
 /usr/include/mrpt/base/include/Eigen/StdVector:
 
@@ -940,7 +946,7 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/base/include/mrpt/utils/CDebugOutputCapable.h:
 
-/home/igvcbyu/workspace/YClopsLib/inc/GPS.h:
+/home/tallred3/ecen493/YClopsLib/inc/GPS.h:
 
 /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGPSInterface.h:
 
@@ -980,15 +986,15 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/base/include/mrpt/utils/CConfigFile.h:
 
-/home/igvcbyu/workspace/YClopsLib/inc/MotorCommand.h:
+/home/tallred3/ecen493/YClopsLib/inc/MotorCommand.h:
 
-/home/igvcbyu/workspace/YClopsLib/inc/MotorCommandInterface.h:
+/home/tallred3/ecen493/YClopsLib/inc/MotorCommandInterface.h:
 
-/home/igvcbyu/workspace/YClopsLib/inc/MotorController.h:
+/home/tallred3/ecen493/YClopsLib/inc/MotorController.h:
 
-/home/igvcbyu/workspace/YClopsLib/inc/PoseEstimator.h:
+/home/tallred3/ecen493/YClopsLib/inc/PoseEstimator.h:
 
-/home/igvcbyu/workspace/YClopsLib/inc/Camera.h:
+/home/tallred3/ecen493/YClopsLib/inc/Camera.h:
 
 /usr/include/mrpt/slam/include/mrpt/slam.h:
 
@@ -1394,8 +1400,6 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/maps/include/mrpt/slam/CPointsMap.h:
 
-/usr/include/mrpt/obs/include/mrpt/slam/CSinCosLookUpTableFor2DScans.h:
-
 /usr/include/mrpt/maps/include/mrpt/slam/CGasConcentrationGridMap2D.h:
 
 /usr/include/mrpt/maps/include/mrpt/slam/CHeightGridMap2D.h:
@@ -1468,38 +1472,6 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/slam/include/mrpt/slam/graph_slam.h:
 
-/usr/include/opencv/cv.h:
-
-/usr/include/opencv/cxcore.h:
-
-/usr/include/opencv/cxtypes.h:
-
-/usr/include/opencv/cxerror.h:
-
-/usr/include/opencv/cvver.h:
-
-/usr/include/opencv/cxcore.hpp:
-
-/usr/include/opencv/cxmisc.h:
-
-/usr/include/opencv/cxoperations.hpp:
-
-/usr/include/opencv/cxmat.hpp:
-
-/usr/include/opencv/cxflann.h:
-
-/usr/include/opencv/cvtypes.h:
-
-/usr/include/opencv/cv.hpp:
-
-/usr/include/opencv/cvcompat.h:
-
-/usr/include/opencv/cxcore.h:
-
-/usr/include/opencv/highgui.h:
-
-/usr/include/opencv/highgui.hpp:
-
 /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CCameraSensor.h:
 
 /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CFFMPEG_InputStream.h:
@@ -1566,4 +1538,4 @@ src/YclopsReactiveNavInterface.d src/YclopsReactiveNavInterface.o: \
 
 /usr/include/mrpt/reactivenav/include/mrpt/reactivenav/CPTG7.h:
 
-/home/igvcbyu/workspace/YClopsLib/inc/MotorController.h:
+/home/tallred3/ecen493/YClopsLib/inc/MotorController.h:

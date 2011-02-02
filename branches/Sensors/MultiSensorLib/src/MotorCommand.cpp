@@ -24,5 +24,4 @@ bool MotorCommand::Go(float linear, float angular){
 }
 
 MotorCommand::~MotorCommand() {
-	// TODO Auto-generated destructor stub
 }

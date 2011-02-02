@@ -1,5 +1,5 @@
 src/GPS.d src/GPS.o: ../src/GPS.cpp \
- /home/igvcbyu/workspace/YClopsLib/inc/GPS.h \
+ /home/tallred3/ecen493/YClopsLib/inc/GPS.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGPSInterface.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationGPS.h \
  /usr/include/mrpt/base/include/mrpt/utils/CSerializable.h \
@@ -25,6 +25,9 @@ src/GPS.d src/GPS.o: ../src/GPS.cpp \
  /usr/include/mrpt/base/include/Eigen/src/Core/NumTraits.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/MathFunctions.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/GenericPacketMath.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/PacketMath.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/MathFunctions.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/Complex.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/arch/Default/Settings.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/Functors.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/DenseCoeffsBase.h \
@@ -112,6 +115,7 @@ src/GPS.d src/GPS.o: ../src/GPS.cpp \
  /usr/include/mrpt/base/include/Eigen/src/LU/PartialPivLU.h \
  /usr/include/mrpt/base/include/Eigen/src/LU/Determinant.h \
  /usr/include/mrpt/base/include/Eigen/src/LU/Inverse.h \
+ /usr/include/mrpt/base/include/Eigen/src/LU/arch/Inverse_SSE.h \
  /usr/include/mrpt/base/include/Eigen/Cholesky \
  /usr/include/mrpt/base/include/Eigen/src/Cholesky/LLT.h \
  /usr/include/mrpt/base/include/Eigen/src/Cholesky/LDLT.h \
@@ -158,6 +162,7 @@ src/GPS.d src/GPS.o: ../src/GPS.cpp \
  /usr/include/mrpt/base/include/Eigen/src/Geometry/ParametrizedLine.h \
  /usr/include/mrpt/base/include/Eigen/src/Geometry/AlignedBox.h \
  /usr/include/mrpt/base/include/Eigen/src/Geometry/Umeyama.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/arch/Geometry_SSE.h \
  /usr/include/mrpt/base/include/Eigen/StdVector \
  /usr/include/mrpt/base/include/Eigen/src/StlSupport/StdVector.h \
  /usr/include/mrpt/base/include/Eigen/src/StlSupport/details.h \
@@ -229,7 +234,7 @@ src/GPS.d src/GPS.o: ../src/GPS.cpp \
  /usr/include/mrpt/base/include/mrpt/system/threads.h \
  /usr/include/mrpt/base/include/mrpt/utils/CConfigFile.h
 
-/home/igvcbyu/workspace/YClopsLib/inc/GPS.h:
+/home/tallred3/ecen493/YClopsLib/inc/GPS.h:
 
 /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGPSInterface.h:
 
@@ -280,6 +285,12 @@ src/GPS.d src/GPS.o: ../src/GPS.cpp \
 /usr/include/mrpt/base/include/Eigen/src/Core/MathFunctions.h:
 
 /usr/include/mrpt/base/include/Eigen/src/Core/GenericPacketMath.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/PacketMath.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/MathFunctions.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/Complex.h:
 
 /usr/include/mrpt/base/include/Eigen/src/Core/arch/Default/Settings.h:
 
@@ -455,6 +466,8 @@ src/GPS.d src/GPS.o: ../src/GPS.cpp \
 
 /usr/include/mrpt/base/include/Eigen/src/LU/Inverse.h:
 
+/usr/include/mrpt/base/include/Eigen/src/LU/arch/Inverse_SSE.h:
+
 /usr/include/mrpt/base/include/Eigen/Cholesky:
 
 /usr/include/mrpt/base/include/Eigen/src/Cholesky/LLT.h:
@@ -546,6 +559,8 @@ src/GPS.d src/GPS.o: ../src/GPS.cpp \
 /usr/include/mrpt/base/include/Eigen/src/Geometry/AlignedBox.h:
 
 /usr/include/mrpt/base/include/Eigen/src/Geometry/Umeyama.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/arch/Geometry_SSE.h:
 
 /usr/include/mrpt/base/include/Eigen/StdVector:
 

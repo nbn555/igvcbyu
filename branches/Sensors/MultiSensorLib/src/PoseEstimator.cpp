@@ -14,12 +14,9 @@ using namespace mrpt::slam;
 using namespace mrpt::poses;
 
 AbstractPoseEstimator::AbstractPoseEstimator() {
-	// TODO Auto-generated constructor stub
-
 }
 
 AbstractPoseEstimator::~AbstractPoseEstimator() {
-	// TODO Auto-generated destructor stub
 }
 
 bool AbstractPoseEstimator::getPose( CPose3D & pose ) {
@@ -36,7 +33,6 @@ NoFilterPoseEstimator::NoFilterPoseEstimator() {
 }
 
 NoFilterPoseEstimator::~NoFilterPoseEstimator() {
-	// TODO Auto-generated destructor stub
 }
 //updates the stored position to the current position
 // the first time it will return stuff in lat and lon for the

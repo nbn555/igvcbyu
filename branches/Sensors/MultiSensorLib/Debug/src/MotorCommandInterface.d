@@ -1,7 +1,7 @@
 src/MotorCommandInterface.d src/MotorCommandInterface.o: \
  ../src/MotorCommandInterface.cpp \
- /home/igvcbyu/workspace/YClopsLib/inc/MotorCommandInterface.h \
- /home/igvcbyu/workspace/YClopsLib/inc/MotorController.h \
+ /home/tallred3/ecen493/YClopsLib/inc/MotorCommandInterface.h \
+ /home/tallred3/ecen493/YClopsLib/inc/MotorController.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h \
  /usr/include/mrpt/mrpt-config/mrpt/config.h \
  /usr/include/mrpt/base/include/mrpt/utils/CStream.h \
@@ -25,6 +25,9 @@ src/MotorCommandInterface.d src/MotorCommandInterface.o: \
  /usr/include/mrpt/base/include/Eigen/src/Core/NumTraits.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/MathFunctions.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/GenericPacketMath.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/PacketMath.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/MathFunctions.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/Complex.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/arch/Default/Settings.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/Functors.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/DenseCoeffsBase.h \
@@ -112,6 +115,7 @@ src/MotorCommandInterface.d src/MotorCommandInterface.o: \
  /usr/include/mrpt/base/include/Eigen/src/LU/PartialPivLU.h \
  /usr/include/mrpt/base/include/Eigen/src/LU/Determinant.h \
  /usr/include/mrpt/base/include/Eigen/src/LU/Inverse.h \
+ /usr/include/mrpt/base/include/Eigen/src/LU/arch/Inverse_SSE.h \
  /usr/include/mrpt/base/include/Eigen/Cholesky \
  /usr/include/mrpt/base/include/Eigen/src/Cholesky/LLT.h \
  /usr/include/mrpt/base/include/Eigen/src/Cholesky/LDLT.h \
@@ -158,6 +162,7 @@ src/MotorCommandInterface.d src/MotorCommandInterface.o: \
  /usr/include/mrpt/base/include/Eigen/src/Geometry/ParametrizedLine.h \
  /usr/include/mrpt/base/include/Eigen/src/Geometry/AlignedBox.h \
  /usr/include/mrpt/base/include/Eigen/src/Geometry/Umeyama.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/arch/Geometry_SSE.h \
  /usr/include/mrpt/base/include/Eigen/StdVector \
  /usr/include/mrpt/base/include/Eigen/src/StlSupport/StdVector.h \
  /usr/include/mrpt/base/include/Eigen/src/StlSupport/details.h \
@@ -187,9 +192,9 @@ src/MotorCommandInterface.d src/MotorCommandInterface.o: \
  /usr/include/mrpt/base/include/mrpt/utils/traits_map.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/link_pragmas.h
 
-/home/igvcbyu/workspace/YClopsLib/inc/MotorCommandInterface.h:
+/home/tallred3/ecen493/YClopsLib/inc/MotorCommandInterface.h:
 
-/home/igvcbyu/workspace/YClopsLib/inc/MotorController.h:
+/home/tallred3/ecen493/YClopsLib/inc/MotorController.h:
 
 /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h:
 
@@ -236,6 +241,12 @@ src/MotorCommandInterface.d src/MotorCommandInterface.o: \
 /usr/include/mrpt/base/include/Eigen/src/Core/MathFunctions.h:
 
 /usr/include/mrpt/base/include/Eigen/src/Core/GenericPacketMath.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/PacketMath.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/MathFunctions.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/Complex.h:
 
 /usr/include/mrpt/base/include/Eigen/src/Core/arch/Default/Settings.h:
 
@@ -411,6 +422,8 @@ src/MotorCommandInterface.d src/MotorCommandInterface.o: \
 
 /usr/include/mrpt/base/include/Eigen/src/LU/Inverse.h:
 
+/usr/include/mrpt/base/include/Eigen/src/LU/arch/Inverse_SSE.h:
+
 /usr/include/mrpt/base/include/Eigen/Cholesky:
 
 /usr/include/mrpt/base/include/Eigen/src/Cholesky/LLT.h:
@@ -502,6 +515,8 @@ src/MotorCommandInterface.d src/MotorCommandInterface.o: \
 /usr/include/mrpt/base/include/Eigen/src/Geometry/AlignedBox.h:
 
 /usr/include/mrpt/base/include/Eigen/src/Geometry/Umeyama.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/arch/Geometry_SSE.h:
 
 /usr/include/mrpt/base/include/Eigen/StdVector:
 
