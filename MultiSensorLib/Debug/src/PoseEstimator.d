@@ -1,5 +1,5 @@
 src/PoseEstimator.d src/PoseEstimator.o: ../src/PoseEstimator.cpp \
- /home/igvcbyu/workspace/YClopsLib/inc/PoseEstimator.h \
+ /home/tallred3/ecen493/YClopsLib/inc/PoseEstimator.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationGPS.h \
  /usr/include/mrpt/base/include/mrpt/utils/CSerializable.h \
  /usr/include/mrpt/base/include/mrpt/utils/CObject.h \
@@ -24,6 +24,9 @@ src/PoseEstimator.d src/PoseEstimator.o: ../src/PoseEstimator.cpp \
  /usr/include/mrpt/base/include/Eigen/src/Core/NumTraits.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/MathFunctions.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/GenericPacketMath.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/PacketMath.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/MathFunctions.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/Complex.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/arch/Default/Settings.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/Functors.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/DenseCoeffsBase.h \
@@ -111,6 +114,7 @@ src/PoseEstimator.d src/PoseEstimator.o: ../src/PoseEstimator.cpp \
  /usr/include/mrpt/base/include/Eigen/src/LU/PartialPivLU.h \
  /usr/include/mrpt/base/include/Eigen/src/LU/Determinant.h \
  /usr/include/mrpt/base/include/Eigen/src/LU/Inverse.h \
+ /usr/include/mrpt/base/include/Eigen/src/LU/arch/Inverse_SSE.h \
  /usr/include/mrpt/base/include/Eigen/Cholesky \
  /usr/include/mrpt/base/include/Eigen/src/Cholesky/LLT.h \
  /usr/include/mrpt/base/include/Eigen/src/Cholesky/LDLT.h \
@@ -157,6 +161,7 @@ src/PoseEstimator.d src/PoseEstimator.o: ../src/PoseEstimator.cpp \
  /usr/include/mrpt/base/include/Eigen/src/Geometry/ParametrizedLine.h \
  /usr/include/mrpt/base/include/Eigen/src/Geometry/AlignedBox.h \
  /usr/include/mrpt/base/include/Eigen/src/Geometry/Umeyama.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/arch/Geometry_SSE.h \
  /usr/include/mrpt/base/include/Eigen/StdVector \
  /usr/include/mrpt/base/include/Eigen/src/StlSupport/StdVector.h \
  /usr/include/mrpt/base/include/Eigen/src/StlSupport/details.h \
@@ -206,11 +211,11 @@ src/PoseEstimator.d src/PoseEstimator.o: ../src/PoseEstimator.cpp \
  /usr/include/mrpt/base/include/mrpt/poses/CPoseOrPoint_detail.h \
  /usr/include/mrpt/base/include/mrpt/math/CQuaternion.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPose2D.h \
- /home/igvcbyu/workspace/YClopsLib/inc/WaypointPlanner.h \
+ /home/tallred3/ecen493/YClopsLib/inc/WaypointPlanner.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPoint2D.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPoint.h
 
-/home/igvcbyu/workspace/YClopsLib/inc/PoseEstimator.h:
+/home/tallred3/ecen493/YClopsLib/inc/PoseEstimator.h:
 
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationGPS.h:
 
@@ -259,6 +264,12 @@ src/PoseEstimator.d src/PoseEstimator.o: ../src/PoseEstimator.cpp \
 /usr/include/mrpt/base/include/Eigen/src/Core/MathFunctions.h:
 
 /usr/include/mrpt/base/include/Eigen/src/Core/GenericPacketMath.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/PacketMath.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/MathFunctions.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/Complex.h:
 
 /usr/include/mrpt/base/include/Eigen/src/Core/arch/Default/Settings.h:
 
@@ -434,6 +445,8 @@ src/PoseEstimator.d src/PoseEstimator.o: ../src/PoseEstimator.cpp \
 
 /usr/include/mrpt/base/include/Eigen/src/LU/Inverse.h:
 
+/usr/include/mrpt/base/include/Eigen/src/LU/arch/Inverse_SSE.h:
+
 /usr/include/mrpt/base/include/Eigen/Cholesky:
 
 /usr/include/mrpt/base/include/Eigen/src/Cholesky/LLT.h:
@@ -525,6 +538,8 @@ src/PoseEstimator.d src/PoseEstimator.o: ../src/PoseEstimator.cpp \
 /usr/include/mrpt/base/include/Eigen/src/Geometry/AlignedBox.h:
 
 /usr/include/mrpt/base/include/Eigen/src/Geometry/Umeyama.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/arch/Geometry_SSE.h:
 
 /usr/include/mrpt/base/include/Eigen/StdVector:
 
@@ -624,7 +639,7 @@ src/PoseEstimator.d src/PoseEstimator.o: ../src/PoseEstimator.cpp \
 
 /usr/include/mrpt/base/include/mrpt/poses/CPose2D.h:
 
-/home/igvcbyu/workspace/YClopsLib/inc/WaypointPlanner.h:
+/home/tallred3/ecen493/YClopsLib/inc/WaypointPlanner.h:
 
 /usr/include/mrpt/base/include/mrpt/poses/CPoint2D.h:
 

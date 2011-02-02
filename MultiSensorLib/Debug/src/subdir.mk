@@ -12,7 +12,9 @@ CPP_SRCS += \
 ../src/MotorCommandInterface.cpp \
 ../src/MotorController.cpp \
 ../src/PoseEstimator.cpp \
+../src/SimpleNavigation.cpp \
 ../src/WaypointPlanner.cpp \
+../src/YclopsNavigationSystem.cpp \
 ../src/YclopsReactiveNavInterface.cpp 
 
 OBJS += \
@@ -24,7 +26,9 @@ OBJS += \
 ./src/MotorCommandInterface.o \
 ./src/MotorController.o \
 ./src/PoseEstimator.o \
+./src/SimpleNavigation.o \
 ./src/WaypointPlanner.o \
+./src/YclopsNavigationSystem.o \
 ./src/YclopsReactiveNavInterface.o 
 
 CPP_DEPS += \
@@ -36,7 +40,9 @@ CPP_DEPS += \
 ./src/MotorCommandInterface.d \
 ./src/MotorController.d \
 ./src/PoseEstimator.d \
+./src/SimpleNavigation.d \
 ./src/WaypointPlanner.d \
+./src/YclopsNavigationSystem.d \
 ./src/YclopsReactiveNavInterface.d 
 
 
@@ -44,7 +50,7 @@ CPP_DEPS += \
 src/%.o: ../src/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -I"/home/yclops/workspace/YClopsLib/inc" -I/usr/include/opencv -I/usr/include/mrpt/base/include/ -I/usr/include/mrpt/mrpt-config/ -I/usr/include/mrpt/bayes/include/ -I/usr/include/mrpt/detectors/include/ -I/usr/include/mrpt/vision/include/ -I/usr/include/mrpt/maps/include/ -I/usr/include/mrpt/gui/include/ -I/usr/include/mrpt/slam/include/ -I/usr/include/mrpt/opengl/include/ -I/usr/include/mrpt/obs/include/ -I/usr/include/mrpt/scanmatching/include/ -I/usr/include/mrpt/hmtslam/include/ -I/usr/include/mrpt/hwdrivers/include/ -I/usr/include/mrpt/reactivenav/include/ -I/usr/include/mrpt/topography/include/ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o"$@" "$<"
+	g++ -I"/home/tallred3/ecen493/YClopsLib/inc" -I/usr/include/opencv -I/usr/include/mrpt/base/include/ -I/usr/include/mrpt/mrpt-config/ -I/usr/include/mrpt/bayes/include/ -I/usr/include/mrpt/detectors/include/ -I/usr/include/mrpt/vision/include/ -I/usr/include/mrpt/maps/include/ -I/usr/include/mrpt/gui/include/ -I/usr/include/mrpt/slam/include/ -I/usr/include/mrpt/opengl/include/ -I/usr/include/mrpt/obs/include/ -I/usr/include/mrpt/scanmatching/include/ -I/usr/include/mrpt/hmtslam/include/ -I/usr/include/mrpt/hwdrivers/include/ -I/usr/include/mrpt/reactivenav/include/ -I/usr/include/mrpt/topography/include/ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o"$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

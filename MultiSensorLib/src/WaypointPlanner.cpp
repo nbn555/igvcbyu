@@ -16,7 +16,6 @@ AbstractNavigationInterface::AbstractNavigationInterface( double lat, double lon
 }
 
 AbstractNavigationInterface::~AbstractNavigationInterface() {
-	// TODO Auto-generated destructor stub
 }
 
 void AbstractNavigationInterface::loadPoints(std::string filename) {

@@ -15,7 +15,6 @@ using namespace mrpt::system;
 using namespace mrpt::hwdrivers;
 
 YclopsReactiveNavInterface::YclopsReactiveNavInterface(string& motorControllerPort) {
-	// TODO Auto-generated constructor stub
 	//	gps->setSerialPortName ( "ttyUSB0" );
 		CConfigFile config("GPS.ini");
 		gps.loadConfig(config, "GPS");
