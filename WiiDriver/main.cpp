@@ -66,10 +66,21 @@ using namespace std;
  * follow the prompts
  * run the wiiDriver program
  */
+
+void myFunc(void* input) {
+
+	system((char*)input);
+}
+
 int main( int argc, char** argv ) {
 
-	MotorController motor(argv[1],true);
-	MotorCommandInterface * mci = new JoystickCommand(&motor);
+//	MotorController motor(argv[1],true);
+	JoystickCommand * mci = new JoystickCommand(&motor);
+
+//	JoystickCommand * mci = new JoystickCommand(NULL);
+
+	const char* cmd = "#!/bin/bash\ntouch file.txt";
+	mci->registerButton(0, myFunc, &cmd);
 
 	mci->setVelocity(500,500);
 	while(1) {
@@ -80,5 +91,6 @@ int main( int argc, char** argv ) {
 	}
 
 	delete mci;
+
 	return 0;
 }

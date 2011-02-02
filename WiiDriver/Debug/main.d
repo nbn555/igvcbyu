@@ -8,8 +8,9 @@ main.d main.o: ../main.cpp \
  /usr/include/mrpt/base/include/mrpt/utils/types.h \
  /usr/include/mrpt/base/include/mrpt/utils/pstdint.h \
  /usr/include/mrpt/base/include/mrpt/math/math_frwds.h \
- /usr/include/mrpt/base/include/mrpt/utils/compiler_fixes.h \
+ /usr/include/mrpt/base/include/mrpt/math/eigen_plugins_impl.h \
  /usr/include/mrpt/base/include/mrpt/utils/mrpt_macros.h \
+ /usr/include/mrpt/base/include/mrpt/utils/compiler_fixes.h \
  /usr/include/mrpt/base/include/mrpt/otherlibs/stlplus/smart_ptr.hpp \
  /usr/include/mrpt/base/include/mrpt/otherlibs/stlplus/containers_fixes.hpp \
  /usr/include/mrpt/base/include/mrpt/otherlibs/stlplus/exceptions.hpp \
@@ -34,10 +35,12 @@ main.d main.o: ../main.cpp \
  /usr/include/mrpt/base/include/mrpt/math/CMatrixTemplate.h \
  /usr/include/mrpt/base/include/mrpt/system/memory.h \
  /usr/include/mrpt/base/include/mrpt/system/datetime.h \
+ /usr/include/mrpt/base/include/mrpt/math/matrix_adaptors.h \
  /usr/include/mrpt/base/include/mrpt/math/CArray.h \
  /usr/include/mrpt/base/include/mrpt/math/ops_containers.h \
  /usr/include/mrpt/base/include/mrpt/math/lightweight_geom_data.h \
  /usr/include/mrpt/base/include/mrpt/math/CHistogram.h \
+ /usr/include/mrpt/base/include/mrpt/system/string_utils.h \
  /home/tallred3/ecen493/YClopsLib/inc/MotorController.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h \
  /usr/include/mrpt/base/include/mrpt/utils/CTicTac.h \
@@ -66,9 +69,11 @@ main.d main.o: ../main.cpp \
 
 /usr/include/mrpt/base/include/mrpt/math/math_frwds.h:
 
-/usr/include/mrpt/base/include/mrpt/utils/compiler_fixes.h:
+/usr/include/mrpt/base/include/mrpt/math/eigen_plugins_impl.h:
 
 /usr/include/mrpt/base/include/mrpt/utils/mrpt_macros.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/compiler_fixes.h:
 
 /usr/include/mrpt/base/include/mrpt/otherlibs/stlplus/smart_ptr.hpp:
 
@@ -118,6 +123,8 @@ main.d main.o: ../main.cpp \
 
 /usr/include/mrpt/base/include/mrpt/system/datetime.h:
 
+/usr/include/mrpt/base/include/mrpt/math/matrix_adaptors.h:
+
 /usr/include/mrpt/base/include/mrpt/math/CArray.h:
 
 /usr/include/mrpt/base/include/mrpt/math/ops_containers.h:
@@ -125,6 +132,8 @@ main.d main.o: ../main.cpp \
 /usr/include/mrpt/base/include/mrpt/math/lightweight_geom_data.h:
 
 /usr/include/mrpt/base/include/mrpt/math/CHistogram.h:
+
+/usr/include/mrpt/base/include/mrpt/system/string_utils.h:
 
 /home/tallred3/ecen493/YClopsLib/inc/MotorController.h:
 
