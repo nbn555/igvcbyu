@@ -1,0 +1,20 @@
+#Document to help track the debugging process with the GPS and Compass
+
+= Introduction =
+
+Please document your debugging steps and solutions to problems here. Also list the current problems that need to be fixed and which ones are completed.
+
+
+= Details =
+
+*GPS Problems*
+
+(enter problems here)
+
+*Solutions*
+
+*Compass Problems*
+
+(enter problems here)
+
+*Solutions*
