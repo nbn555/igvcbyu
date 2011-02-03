@@ -61,14 +61,17 @@ YclopsReactiveNavInterface::YclopsReactiveNavInterface() {
 		}
 		itObs = lstObs.begin();
 		CObservationGPSPtr gpsData = CObservationGPSPtr(lstObs.begin()->second);
-		if(gpsData.pointer()->GGA_datum.latitude_degrees)
+		if(gpsData.pointer()->has_GGA_datum || gpsData.pointer()->has_RMC_datum)
 		{
-			cout << "Got initial point at " << gpsData.pointer()->GGA_datum.latitude_degrees << ":" << gpsData.pointer()->GGA_datum.longitude_degrees << endl;
+			if(gpsData.pointer()->has_GGA_datum)
+				cout << "Got initial point at " << gpsData.pointer()->GGA_datum.latitude_degrees << ":" << gpsData.pointer()->GGA_datum.longitude_degrees << endl;
+			if(gpsData.pointer()->has_RMC_datum)
+				cout << "Got initial point at " << gpsData.pointer()->RMC_datum.latitude_degrees << ":" << gpsData.pointer()->RMC_datum.longitude_degrees << endl;
 			done = true;
 		}
 		else
 		{
-			cout << "ERROR: INVALID DATA" << gpsData.pointer()->GGA_datum.latitude_degrees << ":" << gpsData.pointer()->GGA_datum.longitude_degrees << endl;
+			cout << "ERROR: INVALID DATA" << endl;
 			gpsData.pointer()->dumpToConsole();
 		}
 

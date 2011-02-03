@@ -9,7 +9,6 @@
 #define MOTORCOMMANDS_H_
 
 #include "MotorCommandInterface.h"
-#include "MotorController.h"
 
 class MotorCommand: public MotorCommandInterface {
 public:

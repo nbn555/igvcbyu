@@ -6,6 +6,7 @@
  */
 
 #include "MotorCommand.h"
+#include "MotorController.h"
 
 MotorCommand::MotorCommand( double lC, double aC): linearConst(lC), angConst(aC) {
 }
