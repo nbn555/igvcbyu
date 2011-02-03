@@ -67,6 +67,8 @@ void NoFilterPoseEstimator::update( mrpt::slam::CObservationGPSPtr gpsObsPtr, do
 	y = AbstractNavigationInterface::haversineDistance(StartLat, lon, lat, lon);
 	x = lon > StartLon? x : -x;
 	y = lat > StartLat ? y : -y;
+	
+	cout << "Got yaw:" << yaw << " pitch " << pitch << " roll " << roll << endl;
 	this->poseEstimate.setFromValues(x, y, z, yaw, pitch, roll);
 
 }

@@ -38,15 +38,15 @@ YclopsReactiveNavInterface::YclopsReactiveNavInterface(string& motorControllerPo
 	compass->loadConfig(config2, "COMPASS" );
 	compass->initialize();
 
-	cout << "Compass configered" << endl;
+	cout << "Compass configured" << endl;
 
 	poseEst = new NoFilterPoseEstimator();
 
 	motor = new MotorCommand(new MotorController(motorControllerPort));
-
+	cout << "Motor Controller Configured" << endl;
 	robotPose = new CPose3D();
 	robotPose->setFromValues(0,0,0,0,0,0);
-
+	cout << "Robot Pose Configured" << endl;
 	this->curV = 0;
 	this->curW = 0;
 
@@ -60,6 +60,7 @@ YclopsReactiveNavInterface::YclopsReactiveNavInterface(string& motorControllerPo
 		{
 			gps.doProcess();
 			gps.getObservations(lstObs);
+			cout << "Getting Observation from GPS ..." << endl;
 		}
 		itObs = lstObs.begin();
 		CObservationGPSPtr gpsData = CObservationGPSPtr(lstObs.begin()->second);
@@ -78,6 +79,9 @@ YclopsReactiveNavInterface::YclopsReactiveNavInterface(string& motorControllerPo
 	itObs = lstObs.begin();
 	CObservationGPSPtr gpsData = CObservationGPSPtr(lstObs.begin()->second);
 
+	cout << "In yclops reactivenav" << compass->getYaw() << " " << compass->getPitch() << " " << compass->getRoll() << endl;
+	cout << " valid? " << compass->isYawValid() << " " << compass->isPitchValid() << " " << compass->isRollValid() << endl;
+	 
 	poseEst->update(gpsData,compass->getYaw(), compass->getPitch(), compass->getRoll());
 
 	this->poseEst->getPose(*robotPose);
