@@ -8,16 +8,17 @@
 #include "NavigationChallenge.h"
 #include "YclopsReactiveNavInterface.h"
 #include "WaypointPlanner.h"
+#include "MotorController.h"
 #include <mrpt/base.h>
 #include <mrpt/utils.h>
-#include "../YclopsNavigationSystem.h"
+#include "YclopsNavigationSystem.h"
 
 void NavigationChallenge::AutonomousMode(string& waypointsFile, bool challange)
 {
-	string motorControllerPort = "/dev/ttyS1";
-	//interface that will be used by the reactive nav to sense the enviroment and make the robot move
-	YclopsReactiveNavInterface* interface = new YclopsReactiveNavInterface(motorControllerPort);
-	//intial position
+	MotorController::setPortName("/dev/ttyS1");
+	//interface that will be used by the reactive nav to sense the environment and make the robot move
+	YclopsReactiveNavInterface* interface = new YclopsReactiveNavInterface();
+	//initial position
 	mrpt::poses::CPose2D pose = CPoint2D();
 	float v = 0;
 	float w = 0;
