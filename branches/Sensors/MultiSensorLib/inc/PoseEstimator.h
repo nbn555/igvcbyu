@@ -34,9 +34,10 @@ class NoFilterPoseEstimator: public AbstractPoseEstimator {
 
 	public:
 	bool started;
+	bool Meters;
 	double StartLat;
 	double StartLon;
-	NoFilterPoseEstimator();
+	NoFilterPoseEstimator(bool inMeters = false);
 	virtual ~NoFilterPoseEstimator();
 
 	/**
