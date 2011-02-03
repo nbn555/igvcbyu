@@ -14,7 +14,6 @@ CPP_SRCS += \
 ../src/PoseEstimator.cpp \
 ../src/SimpleNavigation.cpp \
 ../src/WaypointPlanner.cpp \
-../src/YclopsNavigationSystem.cpp \
 ../src/YclopsReactiveNavInterface.cpp 
 
 OBJS += \
@@ -28,7 +27,6 @@ OBJS += \
 ./src/PoseEstimator.o \
 ./src/SimpleNavigation.o \
 ./src/WaypointPlanner.o \
-./src/YclopsNavigationSystem.o \
 ./src/YclopsReactiveNavInterface.o 
 
 CPP_DEPS += \
@@ -42,7 +40,6 @@ CPP_DEPS += \
 ./src/PoseEstimator.d \
 ./src/SimpleNavigation.d \
 ./src/WaypointPlanner.d \
-./src/YclopsNavigationSystem.d \
 ./src/YclopsReactiveNavInterface.d 
 
 

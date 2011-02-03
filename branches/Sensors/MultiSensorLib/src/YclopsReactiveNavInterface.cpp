@@ -65,11 +65,13 @@ YclopsReactiveNavInterface::YclopsReactiveNavInterface(string& motorControllerPo
 		CObservationGPSPtr gpsData = CObservationGPSPtr(lstObs.begin()->second);
 		if(gpsData.pointer()->GGA_datum.latitude_degrees)
 		{
+			cout << "Got initial point at " << gpsData.pointer()->GGA_datum.latitude_degrees << ":" << gpsData.pointer()->GGA_datum.longitude_degrees << endl;
 			done = true;
 		}
 		else
 		{
-			cout << "Got Bad Data" << endl;
+			cout << "ERROR: INVALID DATA" << gpsData.pointer()->GGA_datum.latitude_degrees << ":" << gpsData.pointer()->GGA_datum.longitude_degrees << endl;
+			gpsData.pointer()->dumpToConsole();
 		}
 
 	}
