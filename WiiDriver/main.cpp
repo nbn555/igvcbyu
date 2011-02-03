@@ -67,11 +67,20 @@ using namespace std;
  * run the wiiDriver program
  */
 
-void myFunc(void* input) {
+#define A_BTN 0
+#define B_BTN 1
+#define X_BTN 2
+#define Y_BTN 3
+#define L_BTN 4
+#define R_BTN 5
+#define L2_BTN 6
+#define R2_BTN 7
+#define SEL_BTN 8
+#define SRT_BTN 9
+#define HOM_BTN 10
 
-	cout << "executing " << (char*)input << endl;
-	system((char*)input);
-}
+void ABtnPress(void* input);
+void BBtnPress(void* input);
 
 int main( int argc, char** argv ) {
 
@@ -85,7 +94,7 @@ int main( int argc, char** argv ) {
 		exit(EXIT_FAILURE);
 	}else {
 		//if so load the config file
-		configFile = CConfigFile(string(argv[1]));
+		configFile.setFileName(string(argv[1]));
 	}
 
 	//Set the motor controller to connect to the port name in the config file
@@ -93,8 +102,8 @@ int main( int argc, char** argv ) {
 
 	JoystickCommand * mci = new JoystickCommand();
 
-	const char* cmd = "touch file2.txt";
-	mci->registerButton(0, myFunc, (void*)cmd);
+	mci->registerButton(A_BTN, ABtnPress, NULL);
+	mci->registerButton(B_BTN, BBtnPress, NULL);
 
 	while(1) {
 
@@ -106,4 +115,14 @@ int main( int argc, char** argv ) {
 	delete mci;
 
 	return 0;
+}
+
+void ABtnPress(void* input) {
+
+	cout << "Pressed A" << endl;
+}
+
+void BBtnPress(void* input) {
+
+	cout << "Pressed B" << endl;
 }
