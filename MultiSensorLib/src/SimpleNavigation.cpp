@@ -22,10 +22,10 @@ SimpleNavigation::~SimpleNavigation() {
 
 void SimpleNavigation::go()
 {
-	string motorControllerPort = "ttyS0";
-	//interface that will be used by the reactive nav to sense the enviroment and make the robot move
-	YclopsReactiveNavInterface* interface = new YclopsReactiveNavInterface(motorControllerPort);
-	//intial position
+	MotorController::setPortName("ttyS0");
+	//interface that will be used by the reactive nav to sense the environment and make the robot move
+	YclopsReactiveNavInterface* interface = new YclopsReactiveNavInterface();
+	//initial position
 	mrpt::poses::CPose2D pose = CPoint2D();
 	float v = 0;
 	float w = 0;

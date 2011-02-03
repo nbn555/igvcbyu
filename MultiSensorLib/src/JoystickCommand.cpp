@@ -14,7 +14,7 @@ using namespace std;
 
 #define DEBUG
 
-JoystickCommand::JoystickCommand( MotorController * mP, int joystickIndex ): MotorCommandInterface( mP ), x(-1), y(-1), z(-1), joystickIndex(joystickIndex) {
+JoystickCommand::JoystickCommand( int joystickIndex ): x(-1), y(-1), z(-1), joystickIndex(joystickIndex) {
 
 	system("wminput -d &");
 
@@ -48,8 +48,8 @@ void JoystickCommand::doProcess() {
 		int m1 = this->x * 1000;
 		int m2 = this->z * 1000;
 
-//		this->motorPtr->setSpeed(MotorController::Channel1, m1);
-//		this->motorPtr->setSpeed(MotorController::Channel2, m2);
+		MotorController::instance()->setSpeed(MotorController::Channel1, m1);
+		MotorController::instance()->setSpeed(MotorController::Channel2, m2);
 
 		for( unsigned int i = 0; i < this->buttons.size(); i++ ) {
 			if(this->buttons[i]) {

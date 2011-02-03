@@ -12,11 +12,25 @@
 #include <string>
 #include <cassert>
 
-#include <MotorController.h>
+#include "MotorController.h"
 
 using namespace std;
 using namespace mrpt;
 using namespace mrpt::hwdrivers;
+
+MotorController * MotorController::mc = NULL;
+string MotorController::portName = "";
+
+MotorController * MotorController::instance() {
+	if( NULL == MotorController::mc ) {
+		MotorController::mc = new MotorController();
+	}
+	return MotorController::mc;
+}
+
+void MotorController::setPortName( std::string port ) {
+	MotorController::portName = port;
+}
 
 MotorController::MotorController( string portName, bool enableEcho, int motor1Max, int motor2Max, int motor1Min, int motor2Min ):
 		echoEnabled(enableEcho),

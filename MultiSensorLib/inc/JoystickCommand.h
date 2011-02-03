@@ -14,7 +14,7 @@
 
 class JoystickCommand: public MotorCommandInterface {
 public:
-	JoystickCommand( MotorController * mP, int joystickIndex = 0 );
+	JoystickCommand( int joystickIndex = 0 );
 	virtual ~JoystickCommand();
 
 	void doProcess();

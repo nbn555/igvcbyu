@@ -7,7 +7,7 @@
 
 #include "MotorCommandInterface.h"
 
-MotorCommandInterface::MotorCommandInterface( MotorController * mP ): motorPtr(mP) {
+MotorCommandInterface::MotorCommandInterface() {
 
 }
 
@@ -18,4 +18,8 @@ bool MotorCommandInterface::setVelocity( double linearVelocity, double angularVe
 	this->linearVelocity = linearVelocity;
 	this->angularVelocity = angularVelocity;
 	return true;
+}
+
+bool MotorCommandInterface::getSuccess() {
+	return this->success;
 }
