@@ -35,7 +35,7 @@ void SimpleNavigation::go()
 	double lat = pose.x();
 	double lon = pose.y();
 
-	// solves the tsp problem, it autonomous challenge we need to add some code here to make it work.
+	// solves the tsp problem, in autonomous challenge we need to add some code here to make it work.
 	TSPNavigation nav = TSPNavigation(lat,lon);
 
 	nav.loadPoints(fileName);
@@ -47,8 +47,10 @@ void SimpleNavigation::go()
 	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t::iterator iter = points.begin();
 	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t::iterator end = points.end();
 		//go until there aren't anymore waypoints
+	double count = 0;
 	while (iter != end)
 		{
+			cout << "Way point # " << count << endl;
 			//setting up the next waypoint
 			mrpt::reactivenav::CAbstractReactiveNavigationSystem::TNavigationParams   navParams;
 			navParams.target.x = iter->x();
@@ -65,7 +67,9 @@ void SimpleNavigation::go()
 			{
 				reactivenav.navigationStep();
 			}*/
+			++count;
 			++iter;
+
 		}
 }
 
@@ -81,24 +85,27 @@ void SimpleNavigation::navigate(YclopsReactiveNavInterface& interface, mrpt::rea
 	float distance = AbstractNavigationInterface::haversineDistance(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
 	if(distance > navParams->targetAllowedDistance)
 	{
-		while(yaw != wantedYaw)
+		while(abs((yaw-wantedYaw)/wantedYaw) > .05)
 		{
 			bool turnRight = yaw < wantedYaw;
 			if(turnRight)
 			{
 				cout << "\tTurning Right" << endl;
-				interface.changeSpeeds(.1f,2);
+				interface.changeSpeeds(.5f,2);
 			}
 		else
 			{
 				cout << "\tTurning Left" << endl;
-				interface.changeSpeeds(.1f, -2);
+				interface.changeSpeeds(.5f, -2);
 			}
 
 			usleep(100000);
 			interface.getCurrentPoseAndSpeeds(curPose, cur_v, cur_w);
 			yaw = interface.getHeading();
+			cout << "Yaw: " << yaw << endl;
 			wantedYaw = AbstractNavigationInterface::calcBearing(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
+			cout << "Wanted Yaw: " << wantedYaw << endl;
+			cout << "Difference: " << abs(yaw-wantedYaw) << endl;
 		}
 		distance = AbstractNavigationInterface::haversineDistance(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
 		while(distance > navParams->targetAllowedDistance)
