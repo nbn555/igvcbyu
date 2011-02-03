@@ -29,12 +29,7 @@ YclopsReactiveNavInterface::YclopsReactiveNavInterface() {
 //	camera->loadConfig("test");
 //	camera->startCamera();
 
-	compass = new Compass();
-	CConfigFile config2( "Compass.ini" );
-
-	compass->loadConfig(config2, "COMPASS" );
-	compass->initialize();
-
+	compass = new Compass(string("Compass.ini"));
 	cout << "Compass configured" << endl;
 
 	poseEst = new NoFilterPoseEstimator();

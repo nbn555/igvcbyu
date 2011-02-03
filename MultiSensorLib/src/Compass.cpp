@@ -8,7 +8,7 @@
 #include <cassert>
 
 #include <boost/algorithm/string.hpp>
-
+#include <mrpt/utils/CConfigFile.h>
 #include "Compass.h"
 
 using namespace std;
@@ -18,6 +18,14 @@ using namespace mrpt::utils;
 using namespace boost;
 
 Compass::Compass( bool degrees, const int bufferLength ): degrees(degrees), yaw(0), pitch(0), roll(0), yawStatus(""), pitchStatus(""), rollStatus("") {
+}
+
+Compass::Compass( std::string iniFile ): degrees(0), yaw(0), pitch(0), roll(0), yawStatus(""), pitchStatus(""), rollStatus("") {
+
+	CConfigFile config(iniFile);
+	this->loadConfig(config,"COMPASS");
+	this->loadConfig_sensorSpecific(config,"COMPASS");
+	this->initialize();
 }
 
 Compass::~Compass() {
@@ -48,6 +56,7 @@ void Compass::loadConfig_sensorSpecific( const mrpt::utils::CConfigFileBase& con
 	string readValue;
 	bool to = false;
 	readValue = this->serialPort.ReadString(1000,&to,"\n\r");
+	this->degrees = config.read_bool("COMPASS","degrees",true);
 
 }
 
