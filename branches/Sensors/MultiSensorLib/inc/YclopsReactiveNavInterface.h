@@ -22,18 +22,18 @@ using namespace mrpt::hwdrivers;
 
 class YclopsReactiveNavInterface: public mrpt::reactivenav::CReactiveInterfaceImplementation{
 private:
-	GPS gps;
-	Compass* compass;
-	MotorCommand* motor;
+	GPS * gps;
+	Compass * compass;
+	MotorCommandInterface * motor;
 	AbstractPoseEstimator* poseEst;
-	//Camera* camera;
+	Camera * camera;
 	CPose3D* robotPose;
 
 	float curV;
 	float curW;
 public:
 	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-	YclopsReactiveNavInterface(string&);
+	YclopsReactiveNavInterface();
 	virtual ~YclopsReactiveNavInterface();
 	bool getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &curPose, float &curV, float &curW);
 	bool changeSpeeds( float v, float w );

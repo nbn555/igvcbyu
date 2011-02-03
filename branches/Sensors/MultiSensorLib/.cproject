@@ -96,8 +96,8 @@
 					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.2140278698" name="Compass.h" rcbsApplicability="disable" resourcePath="inc/Compass.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.1571146982" name="PoseEstimator.h" rcbsApplicability="disable" resourcePath="inc/PoseEstimator.h" toolsToInvoke=""/>
 					<sourceEntries>
-						<entry excluding="inc/YclopsNavigationSystem.h|src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-						<entry excluding="YclopsNavigationSystem.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -677,9 +677,10 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.exe.release.250495678.279332946" name="Camera.h" rcbsApplicability="disable" resourcePath="inc/Camera.h" toolsToInvoke=""/>
 					<sourceEntries>
+						<entry excluding="inc/YclopsReactiveNavInterface.h|inc/YclopsNavigationSystem.h|inc/WaypointPlanner.h|inc/SimpleNavigation.h|inc/PoseEstimator.h|inc/GPS.h|inc/Compass.h|inc/MotorCommands.h|inc/MotorCommandInterface.h|src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry excluding="YclopsReactiveNavInterface.cpp|YclopsNavigationSystem.cpp|WaypointPlanner.cpp|SimpleNavigation.cpp|PoseEstimator.cpp|GPS.cpp|Compass.cpp|Camera.cpp|MotorCommands.cpp|MotorCommandInterface.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
-						<entry excluding="inc/YclopsReactiveNavInterface.h|inc/YclopsNavigationSystem.h|inc/WaypointPlanner.h|inc/SimpleNavigation.h|inc/PoseEstimator.h|inc/GPS.h|inc/Compass.h|inc/Camera.h|inc/MotorCommands.h|inc/MotorCommandInterface.h|src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

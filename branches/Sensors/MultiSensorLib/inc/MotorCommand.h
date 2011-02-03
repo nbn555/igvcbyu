@@ -13,12 +13,10 @@
 
 class MotorCommand: public MotorCommandInterface {
 public:
-	MotorCommand( MotorController * mC, double lC=400, double aC=200 );
+	MotorCommand( double lC=400, double aC=200 );
 	virtual ~MotorCommand();
 
 	void doProcess();
-
-	bool Go(float linear, float angular);
 
 private:
 	double linearConst, angConst;

@@ -20,6 +20,12 @@ class MotorController {
 public:
 	static const int MOTOR_SECRET_KEY = 321654987;//!Motor reset key used for sensitive operations
 
+	static std::string portName;
+
+	static MotorController * instance();
+
+	static void setPortName( std::string port );
+
 	/**
 	 * Abstract representation for a channel in the motor controller
 	 */
@@ -28,18 +34,6 @@ public:
 		Channel2 = 2,
 		BothChannels = 3
 	};
-
-	/**
-	 * MotorController constructor
-	 * @param portName - the serial port over which the commands will be sent
-	 * @param enableEcho - set to true to check error for errors from the motor controller
-	 * @param motor1Max - the maximum power for channel1 defined on the interval [1000,-1000] where -1000 is full reverse
-	 * @param motor2Max - the maximum power for channel2 defined on the interval [1000, -1000] where -1000 is full reverse
-	 * @param motor1Min - the minimum power for channel1
-	 * @param motor2Min - the minimum power for channel2
-	 */
-	MotorController( std::string portName, bool enableEcho = true, int motor1Max = 800, int motor2Max = 800,
-			int motor1Min = -800, int motor2Min = -800 );
 
 	/**
 	 * Class destructor
@@ -322,6 +316,18 @@ public:
 
 
 private:
+	/**
+	 * MotorController constructor
+	 * @param portName - the serial port over which the commands will be sent
+	 * @param enableEcho - set to true to check error for errors from the motor controller
+	 * @param motor1Max - the maximum power for channel1 defined on the interval [1000,-1000] where -1000 is full reverse
+	 * @param motor2Max - the maximum power for channel2 defined on the interval [1000, -1000] where -1000 is full reverse
+	 * @param motor1Min - the minimum power for channel1
+	 * @param motor2Min - the minimum power for channel2
+	 */
+	MotorController( std::string portName = MotorController::portName, bool enableEcho = true, int motor1Max = 800, int motor2Max = 800,
+			int motor1Min = -800, int motor2Min = -800 );
+
 	mrpt::hwdrivers::CSerialPort serialPort;//! the serial port to communicate to the motor controller
 	bool echoEnabled;						//! true if the motor controller is set to echo serial commands
 	int motor1Speed;						//! the current speed for the first channel motor
@@ -331,7 +337,10 @@ private:
 	const int motor1SpeedMin;				//! The hard lower limit for the first channel motor speed (lower limit would be the reverse speed)
 	const int motor2SpeedMin;				//! The hard lower limit for the second channel motor speed
 	int faultFlagVector;					//! The fault flag status for the motor controller
+protected:
+	static MotorController * mc;			//! The pointer to the instance of the motor controller
 
+private:
 	/**
 	 * assertValidMotorRange - checks the parameters if they are in a valid range
 	 * @param max - the max value for the range

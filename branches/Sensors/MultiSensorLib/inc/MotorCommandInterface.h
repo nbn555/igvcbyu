@@ -16,7 +16,7 @@ public:
 	 * MotorCommandInterface - abstract class to send commands to the motor controller
 	 * @param motorPtr - pointer to the MotorController
 	 */
-	MotorCommandInterface( MotorController * motorPtr );
+	MotorCommandInterface();
 
 	/**
 	 * setVelocity - sets the speed for the robot
@@ -28,15 +28,17 @@ public:
 	bool setVelocity( double linearVelocity, double angularVelocity );
 
 	/**
-	 * doProcess - abstract function implements the functionality fo the command
+	 * doProcess - abstract function implements the functionality of the command
 	 */
 	virtual void doProcess() = 0;
 
+	bool getSuccess();
+
 	virtual ~MotorCommandInterface();
 protected:
-	MotorController * motorPtr;	//!pointer to the motor controller
 	double linearVelocity;		//!The most recent linearVelocity set
 	double angularVelocity;		//!The most recent angularVelocity set
+	bool success;				//!Wether the last command was successful
 };
 
 #endif /* MOTORCOMMANDINTERFACE_H_ */
