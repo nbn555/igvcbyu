@@ -12,17 +12,26 @@
 
 using namespace std;
 
-//#define DEBUG
+#define DEBUG
 
 JoystickCommand::JoystickCommand( MotorController * mP, int joystickIndex ): MotorCommandInterface( mP ), x(-1), y(-1), z(-1), joystickIndex(joystickIndex) {
 
+	system("wminput -d &");
+
 	//spin waiting for the joystick to get initialized
-	do {
-		this->joystick.getJoystickPosition(this->joystickIndex, this->x, this->y, this->z, this->buttons );
+
+
+	while(!this->joystick.getJoysticksCount()){
 #ifdef DEBUG
-		cout << "Waiting for joystick connection" << "x" << this->x << " y" << this->y << " z" << this->z << endl;
+		cout << "Waiting for joystick connection Count:" << this->joystick.getJoysticksCount() << endl;
 #endif
-	} while( (this->x == -1) || (this->y == -1) || (this->z == -1) );
+	}
+	cout << "Joystick found" << endl;
+	//exit(0);
+//	do {
+//		this->joystick.getJoystickPosition(this->joystickIndex, this->x, this->y, this->z, this->buttons );
+
+//	} while( (this->x == -1) || (this->y == -1) || (this->z == -1) );
 
 	//once the joystick is initialized size the function pointers and their data pointers
 	cout << this->buttons.size() << " " << endl;
@@ -39,8 +48,8 @@ void JoystickCommand::doProcess() {
 		int m1 = this->x * 1000;
 		int m2 = this->z * 1000;
 
-		this->motorPtr->setSpeed(MotorController::Channel1, m1);
-		this->motorPtr->setSpeed(MotorController::Channel2, m2);
+//		this->motorPtr->setSpeed(MotorController::Channel1, m1);
+//		this->motorPtr->setSpeed(MotorController::Channel2, m2);
 
 		for( unsigned int i = 0; i < this->buttons.size(); i++ ) {
 			if(this->buttons[i]) {

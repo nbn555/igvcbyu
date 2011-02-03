@@ -43,7 +43,7 @@ void Compass::loadConfig_sensorSpecific( const mrpt::utils::CConfigFileBase& con
 
 	this->serialPort.setConfig( baudRate, 0, 8, 1 );
 
-	string writeValue = "#FA0.3=0*27\n\r";
+	string writeValue = "#FA0.3=1*26\n\r";//Command to turn on the compass
 	this->serialPort.WriteBuffer(writeValue.c_str(), writeValue.length());
 	string readValue;
 	bool to = false;
