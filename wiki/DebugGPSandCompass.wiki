@@ -8,13 +8,14 @@ Please document your debugging steps and solutions to problems here. Also list t
 = Details =
 
 *GPS Problems*
-
 (enter problems here)
 
 *Solutions*
+(enter solutions here)
+
 
 *Compass Problems*
-
 (enter problems here)
 
 *Solutions*
+(enter solutions here)
