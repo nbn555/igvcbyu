@@ -69,24 +69,37 @@ using namespace std;
 
 void myFunc(void* input) {
 
+	cout << "executing " << (char*)input << endl;
 	system((char*)input);
 }
 
 int main( int argc, char** argv ) {
 
-//	MotorController motor(argv[1],true);
-	JoystickCommand * mci = new JoystickCommand(&motor);
+	//create the config file
+	CConfigFile configFile;
 
-//	JoystickCommand * mci = new JoystickCommand(NULL);
+	//test if the config file is passed in
+	if(argc < 2) {
+		//if not print exit message and die
+		cout << "Usage: wiiDriver file.ini" << endl;
+		exit(EXIT_FAILURE);
+	}else {
+		//if so load the config file
+		configFile = CConfigFile(string(argv[1]));
+	}
 
-	const char* cmd = "#!/bin/bash\ntouch file.txt";
-	mci->registerButton(0, myFunc, &cmd);
+	//Set the motor controller to connect to the port name in the config file
+	MotorController::setPortName( configFile.read_string("MOTOR", "COM_port_LIN", "/dev/ttyS1" ) );
 
-	mci->setVelocity(500,500);
+	JoystickCommand * mci = new JoystickCommand();
+
+	const char* cmd = "touch file2.txt";
+	mci->registerButton(0, myFunc, (void*)cmd);
+
 	while(1) {
 
 		mci->doProcess();
-		motor.doProcess();
+//		MotorController::instance()->doProcess();
 
 	}
 
