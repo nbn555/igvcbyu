@@ -8,7 +8,9 @@ Please document your debugging steps and solutions to problems here. Also list t
 = Details =
 
 *GPS Problems*
+
 Why does the GPS get bad data?
+
 (enter more problems here)
 
 *Solutions*
@@ -16,7 +18,9 @@ Why does the GPS get bad data?
 
 
 *Compass Problems*
+
 Why does the compass->getYaw() return 0?
+
 (enter more problems here)
 
 *Solutions*
