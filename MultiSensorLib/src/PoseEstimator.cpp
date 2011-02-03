@@ -28,8 +28,9 @@ bool AbstractPoseEstimator::getPose( CPose3D & pose ) {
 	return true;
 }
 
-NoFilterPoseEstimator::NoFilterPoseEstimator() {
+NoFilterPoseEstimator::NoFilterPoseEstimator(bool inMeters):Meters(inMeters) {
 	started = false;
+
 }
 
 NoFilterPoseEstimator::~NoFilterPoseEstimator() {
@@ -63,6 +64,9 @@ void NoFilterPoseEstimator::update( mrpt::slam::CObservationGPSPtr gpsObsPtr, do
 		started = true;
 		return;
 	}
+	if(Meters){
+
+
 	x = AbstractNavigationInterface::haversineDistance(lat, StartLon, lat, lon);
 	y = AbstractNavigationInterface::haversineDistance(StartLat, lon, lat, lon);
 	x = lon > StartLon? x : -x;
@@ -70,5 +74,10 @@ void NoFilterPoseEstimator::update( mrpt::slam::CObservationGPSPtr gpsObsPtr, do
 	
 	cout << "Got yaw:" << yaw << " pitch " << pitch << " roll " << roll << endl;
 	this->poseEstimate.setFromValues(x, y, z, yaw, pitch, roll);
+	}
+	else
+	{
+		this->poseEstimate.setFromValues(lat, lon, z, yaw, pitch, roll);
+	}
 
 }
