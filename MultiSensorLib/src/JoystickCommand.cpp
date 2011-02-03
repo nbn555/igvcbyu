@@ -27,11 +27,8 @@ JoystickCommand::JoystickCommand( int joystickIndex ): x(-1), y(-1), z(-1), joys
 #endif
 	}
 	cout << "Joystick found" << endl;
-	//exit(0);
-//	do {
-//		this->joystick.getJoystickPosition(this->joystickIndex, this->x, this->y, this->z, this->buttons );
 
-//	} while( (this->x == -1) || (this->y == -1) || (this->z == -1) );
+	this->joystick.getJoystickPosition( this->joystickIndex, this->x, this->y, this->z, this->buttons );
 
 	//once the joystick is initialized size the function pointers and their data pointers
 	cout << this->buttons.size() << " " << endl;
@@ -48,8 +45,8 @@ void JoystickCommand::doProcess() {
 		int m1 = this->x * 1000;
 		int m2 = this->z * 1000;
 
-		MotorController::instance()->setSpeed(MotorController::Channel1, m1);
-		MotorController::instance()->setSpeed(MotorController::Channel2, m2);
+//		MotorController::instance()->setSpeed(MotorController::Channel1, m1);
+//		MotorController::instance()->setSpeed(MotorController::Channel2, m2);
 
 		for( unsigned int i = 0; i < this->buttons.size(); i++ ) {
 			if(this->buttons[i]) {
