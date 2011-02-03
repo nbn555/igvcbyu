@@ -13,6 +13,7 @@
 #include "MotorController.h"
 #include "JoystickCommand.h"
 #include "MotorCommand.h"
+#include "Compass.h"
 
 #include <mrpt/hwdrivers/CSerialPort.h>
 
@@ -79,8 +80,11 @@ using namespace std;
 #define SRT_BTN 9
 #define HOM_BTN 10
 
+bool isQuit = true;
 void ABtnPress(void* input);
 void BBtnPress(void* input);
+void CompassTest(void* input);
+void GPSTest(void* input);
 
 int main( int argc, char** argv ) {
 
@@ -104,6 +108,8 @@ int main( int argc, char** argv ) {
 
 	mci->registerButton(A_BTN, ABtnPress, NULL);
 	mci->registerButton(B_BTN, BBtnPress, NULL);
+	mci->registerButton(SEL_BTN, CompassTest, argv[1] );
+	mci->registerButton(SRT_BTN, GPSTest, argv[1] );
 
 	while(1) {
 
@@ -125,4 +131,22 @@ void ABtnPress(void* input) {
 void BBtnPress(void* input) {
 
 	cout << "Pressed B" << endl;
+}
+
+void CompassTest(void* input) {
+
+	Compass comp(string((char*)input));
+
+	while(1) {
+		comp.doProcess();
+		if( comp.isYawValid() ) cout << "Yaw: " << comp.getYaw() << endl;
+		if( comp.isPitchValid() ) cout << "Pitch: " << comp.getPitch() << endl;
+		if( comp.isRollValid() ) cout << "Roll: " << comp.getRoll() << endl;
+		cout << endl;
+	}
+}
+
+void GPSTest(void* input) {
+	//TODO put gps testing code here
+	cout << "Implement GPS Test" << endl;
 }
