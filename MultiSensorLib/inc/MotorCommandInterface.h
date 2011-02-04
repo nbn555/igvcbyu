@@ -41,4 +41,14 @@ protected:
 	bool success;				//!Wether the last command was successful
 };
 
+/**
+ * Dummy class does nothing but is a place holder when you want to send commands some other way.
+ */
+class DummyMotorCommand: public MotorCommandInterface {
+public:
+	DummyMotorCommand();
+	virtual ~DummyMotorCommand();
+	void doProcess();
+};
+
 #endif /* MOTORCOMMANDINTERFACE_H_ */
