@@ -23,3 +23,15 @@ bool MotorCommandInterface::setVelocity( double linearVelocity, double angularVe
 bool MotorCommandInterface::getSuccess() {
 	return this->success;
 }
+
+DummyMotorCommand::DummyMotorCommand() {
+
+}
+
+DummyMotorCommand::~DummyMotorCommand() {
+
+}
+
+void DummyMotorCommand::doProcess() {
+
+}
