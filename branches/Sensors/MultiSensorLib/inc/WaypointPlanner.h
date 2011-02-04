@@ -55,9 +55,9 @@ public:
 
 	/**
 	 * Bearing Calculator - is a function that computes the bearing (angle) between two points measured in degrees
-	 * @returns the bearing between two points in degrees
+	 * @returns the bearing between two points according to the parameter isDegrees
 	 */
-	static double calcBearing( double lat1, double lon1, double lat2, double lon2 );
+	static double calcBearing( double lat1, double lon1, double lat2, double lon2, bool isDegrees = false );
 
 protected:
 	std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > toVisit; //! Vector of points that haven't been visited by the planning.
