@@ -14,12 +14,16 @@ Why does the GPS get bad data?
 
 *Solutions*
 (enter solutions here)
+It never saw gga datums I had it working yesterday, I don't remember if I had to hack something or if the changes I made to the YclopsReactiveNav class did it. Eldon
 
 
 *Compass Problems*
 ------------------
-Why does the compass->getYaw() return 0?
+*Why does the compass->getYaw() return 0?
+*Compass was returning degrees and MRPT wants radians. Eldon
 (enter more problems here)
 
 *Solutions*
 (enter solutions here)
+*The compass had to have called doProcess first before any valid data will be retrieved.  I will change it so doProcess is called once in the constructor. Eldon
+*The Compass was given a default parameter of true if the value was to be returned in degrees
