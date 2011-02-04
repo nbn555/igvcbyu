@@ -9,6 +9,7 @@
 
 #include <boost/algorithm/string.hpp>
 #include <mrpt/utils/CConfigFile.h>
+#include <mrpt/utils/bits.h>
 #include "Compass.h"
 
 using namespace std;
@@ -56,7 +57,7 @@ void Compass::loadConfig_sensorSpecific( const mrpt::utils::CConfigFileBase& con
 	string readValue;
 	bool to = false;
 	readValue = this->serialPort.ReadString(1000,&to,"\n\r");
-	this->degrees = config.read_bool("COMPASS","degrees",true);
+	this->degrees = config.read_bool("COMPASS","degrees",false);
 
 }
 
@@ -70,9 +71,6 @@ void Compass::parseResponse( const std::string& data ) {
 	string buffer = data;
 	string header = "";
 
-	//TODO make this function call thread safe or put it in a mutex
-	this->reset();
-
 	boost::replace_all( buffer, ",", " " );//replace the commas with spaces so the stringstream parser will parse how we want
 	stringstream s(buffer);
 
@@ -83,6 +81,12 @@ void Compass::parseResponse( const std::string& data ) {
 	s >> this->pitchStatus;
 	s >> this->roll;
 	s >> this->rollStatus;
+
+	if(!this->degrees) {
+		this->yaw = DEG2RAD(this->yaw);
+		this->pitch = DEG2RAD(this->pitch);
+		this->roll = DEG2RAD(this->roll);
+	}
 
 }
 
