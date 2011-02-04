@@ -82,7 +82,7 @@ double AbstractNavigationInterface::calcBearing( double lat1, double lon1, doubl
 		radBearing = t5;
 	}
 	//convert outputs to degrees
-	radBearing *= 180.0/M_PI;
+	if( isDegrees )	radBearing *= 180.0/M_PI;
 	return radBearing;
 }
 
