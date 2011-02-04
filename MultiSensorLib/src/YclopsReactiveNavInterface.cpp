@@ -16,7 +16,9 @@ using namespace mrpt::hwdrivers;
 
 YclopsReactiveNavInterface::YclopsReactiveNavInterface() {
 
-	CConfigFile config("gps.ini");
+	CConfigFile config("GPS.ini");
+	cout << config.getAssociatedFile() << endl;
+	gps = new GPS();
 	gps->loadConfig(config, "GPS");
 	gps->initConfig(config, "GPS");
 	gps->initialize();
@@ -35,6 +37,7 @@ YclopsReactiveNavInterface::YclopsReactiveNavInterface() {
 	poseEst = new NoFilterPoseEstimator();
 
 	motor = new MotorCommand();
+	//motor = new DummyMotorCommand(); //A blank motor command used to send motor signals some other way
 	cout << "Motor Controller Configured" << endl;
 	robotPose = new CPose3D();
 	robotPose->setFromValues(0,0,0,0,0,0);
