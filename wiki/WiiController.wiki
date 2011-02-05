@@ -2,76 +2,10 @@
 
 = Introduction =
 
-Quick How to make sure the /dev/uinput device exists type
+Be sure you have the cwiid development libraries installed.
 
-*ls -lah /dev/uinput*
+*sudo yum install cwiid cwiid-devel* (fedora)
 
-if it doesn't exsist type
+*sudo apt-get install cwiid cwiid-devel* (ubuntu)
 
-*sudo modprobe uinput*
-
-For ubuntu
-this will only last until the next reboot
-or add the /etc/modules file by adding the following
-
-*su -c 'echo "uinput">>/etc/modules'*
-
-reboot or run the modprobe command above
-end ubuntu
-
-Make sure permissions for /dev/uinput are 666 if not run
-
-*sudo chmod 666 /dev/uinput*
-
-install wminput stuff with for ubuntu
-
-*sudo apt-get install wminput*
-
-for fedora
-
-*sudo yum install wminput*
-
-install joystick drivers for ubuntu
-
-*sudo apt-get install joystick*
-
-for fedora
-
-*sudo yum install joystick*
-
-check the default config file is the gamepad file by typing
-
-*ls -lah /etc/cwiid/wminput*
-
-you should see something like "default -> gamepad"
-if not delete the default link and create a new one with the following
-
-*sudo rm default*
-
-*sudo ln -s gamepad default*
-
-make sure the config file has the following
-
-#Classic.Dpad.X = ABS_X
-
-#Classic.Dpad.Y = ABS_Y
-
-Classic.LStick.X = ABS_X
-
-Classic.LStick.Y = ABS_Y
-
-Classic.RStick.X = ABS_HAT1X
-
-Classic.RStick.Y = ABS_HAT1Y
-
-then run the wminput command
-
-*wminput*
-
-then press buttons 1 and 2 on the wiimote
-once the bluetooth link has been established run where the astrisk is the index of the joystick (should be zero)
-
-*jscal -c /dev/input/js0*
-
-follow the prompts
-run the wiiDriver program
+*sudo apt-get install cwiid cwiid-dev* (if the above for ubuntu doesn't work)
