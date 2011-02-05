@@ -146,7 +146,7 @@ void TSPNavigation::nieveTSPSolution(  mrpt::aligned_containers<mrpt::poses::CPo
 void TSPNavigation::acoTSPSolution( mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit,
 		mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & visited ){
 
-	// May have some problem on getDistance method in TSPDriver.
+	// Need to test getDistance method in TSPDriver.
 
 	tkhl::TSPDriver TSP(toVisit);
 	TSP.GetAnt();
