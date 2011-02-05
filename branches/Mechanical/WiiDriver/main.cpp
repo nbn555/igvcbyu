@@ -7,84 +7,21 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <signal.h>
 
 #include <mrpt/utils/CConfigFile.h>
 
 #include "MotorController.h"
-#include "JoystickCommand.h"
 #include "MotorCommand.h"
 #include "Compass.h"
+#include "WiiController.h"
 
 #include <mrpt/hwdrivers/CSerialPort.h>
 
 using namespace mrpt::utils;
 using namespace std;
 
-/*
- * Quick How to
- * make sure the /dev/uinput device exsists type
- * ls -lah /dev/uinput
- * if it doesn't exsist type
- * sudo modprobe uinput
- *
- * For ubuntu
- * this will only last until the next reboot
- * or add the /etc/modules file by adding the following
- * su -c 'echo "uinput">>/etc/modules'
- * reboot or run the modprobe command above
- * end ubuntu
- *
- * Make sure permissions for /dev/uinput are 666 if not run
- * sudo chmod 666 /dev/uinput
- * install wminput stuff with for ubuntu
- * sudo apt-get install wminput
- * for fedora
- * sudo yum install wminput
- * install joystick drivers for ubuntu
- * sudo apt-get install joystick
- * for fedora
- * sudo yum install joystick
- * check the default config file is the gamepad file by typing
- * ls -lah /etc/cwiid/wminput
- * you should see something like "default -> gamepad"
- * if not delete the default link and create a new one with the following
- * sudo rm default
- * sudo ln -s gamepad default
- *
- * make sure the config file has the following
- * #Classic.Dpad.X = ABS_X
- * #Classic.Dpad.Y = ABS_Y
- * Classic.LStick.X = ABS_X
- * Classic.LStick.Y = ABS_Y
- * Classic.RStick.X = ABS_HAT1X
- * Classic.RStick.Y = ABS_HAT1Y
- *
- * then run the wminput command
- * wminput
- * then press buttons 1 and 2 on the wiimote
- * once the bluetooth link has been established run where the astrisk is the index of the joystick (should be zero)
- * jscal -c /dev/input/js*
- * follow the prompts
- * run the wiiDriver program
- */
-
-#define A_BTN 0
-#define B_BTN 1
-#define X_BTN 2
-#define Y_BTN 3
-#define L_BTN 4
-#define R_BTN 5
-#define L2_BTN 6
-#define R2_BTN 7
-#define SEL_BTN 8
-#define SRT_BTN 9
-#define HOM_BTN 10
-
-bool isQuit = true;
-void ABtnPress(void* input);
-void BBtnPress(void* input);
-void CompassTest(void* input);
-void GPSTest(void* input);
+void signal_handler( int signum );
 
 int main( int argc, char** argv ) {
 
@@ -101,52 +38,78 @@ int main( int argc, char** argv ) {
 		configFile.setFileName(string(argv[1]));
 	}
 
+	//Set up the SIGUSR1 so we know when a button is pressed
+	signal(SIGUSR1, signal_handler);
+
+	//Initialize the WiiController
+	WiiController::create();
+
 	//Set the motor controller to connect to the port name in the config file
 	MotorController::setPortName( configFile.read_string("MOTOR", "COM_port_LIN", "/dev/ttyS1" ) );
 
-	JoystickCommand * mci = new JoystickCommand();
-
-	mci->registerButton(A_BTN, ABtnPress, NULL);
-	mci->registerButton(B_BTN, BBtnPress, NULL);
-	mci->registerButton(SEL_BTN, CompassTest, argv[1] );
-	mci->registerButton(SRT_BTN, GPSTest, argv[1] );
+	MotorCommandInterface * mci = new DualMotorCommand();
 
 	while(1) {
 
 		mci->doProcess();
-//		MotorController::instance()->doProcess();
+		sleep(1);
 
 	}
-
-	delete mci;
 
 	return 0;
 }
 
-void ABtnPress(void* input) {
+void signal_handler( int signum ) {
 
-	cout << "Pressed A" << endl;
-}
+	if( SIGUSR1 == signum ) {
+		uint16_t cbuttons;
+		WiiController * controller = WiiController::getReference();
 
-void BBtnPress(void* input) {
+		controller->getClassicButtons(cbuttons);
 
-	cout << "Pressed B" << endl;
-}
+		cout << "classic buttons ";
+		for( uint16_t bitMask = (1 << (sizeof(bitMask)*8-1)); bitMask; bitMask >>= 1) {
+			if( bitMask & cbuttons ) {
+				cout << '1';
+			} else {
+				cout << '0';
+			}
+		}
+		cout << endl;
 
-void CompassTest(void* input) {
+		cout << "Classic l analog stick ";
+		uint16_t lax, lay;
 
-	Compass comp(string((char*)input));
+		controller->getLeftStick(lax,lay);
+		cout << lax << "," << lay << endl;
 
-	while(1) {
-		comp.doProcess();
-		if( comp.isYawValid() ) cout << "Yaw: " << comp.getYaw() << endl;
-		if( comp.isPitchValid() ) cout << "Pitch: " << comp.getPitch() << endl;
-		if( comp.isRollValid() ) cout << "Roll: " << comp.getRoll() << endl;
+		cout << "Classic r analog stick ";
+		uint16_t rax, ray;
+
+		controller->getRightStick(rax,ray);
+		cout << rax << "," << ray << endl;
+
+		cout << "Classic analog l ";
+		uint16_t la;
+		controller->getLeftAnalog(la);
+		cout << la << endl;
+
+		cout << "Classic analog r ";
+		uint16_t ra;
+		controller->getRightAnalog(ra);
+		cout << ra << endl;
+
+		uint16_t mbuttons;
+		controller->getMoteButtons(mbuttons);
+
+		cout << "Mote buttons ";
+		for( uint16_t bitMask = (1<<(sizeof(bitMask)*8-1));bitMask;bitMask>>=1){
+			if(bitMask & mbuttons) {
+				cout << '1';
+			} else {
+				cout << '0';
+			}
+		}
 		cout << endl;
 	}
-}
-
-void GPSTest(void* input) {
-	//TODO put gps testing code here
-	cout << "Implement GPS Test" << endl;
 }
