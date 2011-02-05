@@ -6,6 +6,7 @@
  */
 
 #include "WaypointPlanner.h"
+#include "ACO.h"
 
 using namespace std;
 using namespace mrpt;
@@ -140,4 +141,19 @@ void TSPNavigation::nieveTSPSolution(  mrpt::aligned_containers<mrpt::poses::CPo
 	}
 	mrpt::poses::CPoint2D finish = mrpt::poses::CPoint2D();
 	visited.push_back(finish);
+}
+
+void TSPNavigation::acoTSPSolution( mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit,
+		mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & visited ){
+
+	// May have some problem on getDistance method in TSPDriver.
+
+	tkhl::TSPDriver TSP(toVisit);
+	TSP.GetAnt();
+	TSP.StartSearch();
+	for (int t=0;t<tkhl::iCityCount;t++){
+		//printf(" %d ",tkhl::besttour[t]);
+		visited.push_back(tkhl::besttour[t]);
+	}
+	//printf("\n");
 }
