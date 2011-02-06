@@ -9,7 +9,6 @@
 
 #include <boost/algorithm/string.hpp>
 #include <mrpt/utils/CConfigFile.h>
-#include <mrpt/utils/bits.h>
 #include "Compass.h"
 
 using namespace std;
@@ -27,6 +26,7 @@ Compass::Compass( std::string iniFile ): degrees(0), yaw(0), pitch(0), roll(0), 
 	this->loadConfig(config,"COMPASS");
 	this->loadConfig_sensorSpecific(config,"COMPASS");
 	this->initialize();
+	this->doProcess();
 }
 
 Compass::~Compass() {
@@ -81,12 +81,6 @@ void Compass::parseResponse( const std::string& data ) {
 	s >> this->pitchStatus;
 	s >> this->roll;
 	s >> this->rollStatus;
-
-	if(!this->degrees) {
-		this->yaw = DEG2RAD(this->yaw);
-		this->pitch = DEG2RAD(this->pitch);
-		this->roll = DEG2RAD(this->roll);
-	}
 
 }
 
