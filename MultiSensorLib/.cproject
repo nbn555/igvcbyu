@@ -51,6 +51,7 @@
 									<listOptionValue builtIn="false" value="/usr/include/mrpt/reactivenav/include/"/>
 									<listOptionValue builtIn="false" value="/usr/include/mrpt/topography/include/"/>
 								</option>
+								<option id="gnu.cpp.compiler.option.other.other.1795967760" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0 -fPIC" valueType="string"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.2026486845" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.80437420" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.debug">
@@ -58,9 +59,12 @@
 								<option id="gnu.c.compiler.exe.debug.option.debugging.level.1705830354" name="Debug Level" superClass="gnu.c.compiler.exe.debug.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.413253385" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
-							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.1120156159" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug"/>
+							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.1120156159" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug">
+								<option defaultValue="true" id="gnu.c.link.option.shared.688185508" name="Shared (-shared)" superClass="gnu.c.link.option.shared" valueType="boolean"/>
+							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1603414288" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.libs.458943880" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" value="cwiid"/>
 									<listOptionValue builtIn="false" value="mrpt-detectors"/>
 									<listOptionValue builtIn="false" value="mrpt-hmtslam"/>
 									<listOptionValue builtIn="false" value="mrpt-hwdrivers"/>
@@ -76,6 +80,7 @@
 									<listOptionValue builtIn="false" value="mrpt-opengl"/>
 									<listOptionValue builtIn="false" value="mrpt-base"/>
 								</option>
+								<option defaultValue="true" id="gnu.cpp.link.option.shared.1404248502" name="Shared (-shared)" superClass="gnu.cpp.link.option.shared" valueType="boolean"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1089587194" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -90,10 +95,10 @@
 					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.688287797" name="WaypointPlanner.h" rcbsApplicability="disable" resourcePath="inc/WaypointPlanner.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.22203110" name="YclopsNavigationSystem.h" rcbsApplicability="disable" resourcePath="inc/YclopsNavigationSystem.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.1336537998" name="Camera.h" rcbsApplicability="disable" resourcePath="inc/Camera.h" toolsToInvoke=""/>
-					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.805050447" name="SimpleNavigation.h" rcbsApplicability="disable" resourcePath="inc/SimpleNavigation.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.495797830" name="MotorCommandInterface.h" rcbsApplicability="disable" resourcePath="inc/MotorCommandInterface.h" toolsToInvoke=""/>
-					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.329228520" name="GPS.h" rcbsApplicability="disable" resourcePath="inc/GPS.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.805050447" name="SimpleNavigation.h" rcbsApplicability="disable" resourcePath="inc/SimpleNavigation.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.2140278698" name="Compass.h" rcbsApplicability="disable" resourcePath="inc/Compass.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.329228520" name="GPS.h" rcbsApplicability="disable" resourcePath="inc/GPS.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.1571146982" name="PoseEstimator.h" rcbsApplicability="disable" resourcePath="inc/PoseEstimator.h" toolsToInvoke=""/>
 					<sourceEntries>
 						<entry excluding="src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
