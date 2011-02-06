@@ -54,7 +54,7 @@ double AbstractNavigationInterface::haversineDistance( double lat1, double lon1,
 	return EARTH_RADIUS_AVERAGE * c;
 }
 
-double AbstractNavigationInterface::calcBearing( double lat1, double lon1, double lat2, double lon2 ) {
+double AbstractNavigationInterface::calcBearing( double lat1, double lon1, double lat2, double lon2, bool isDegrees ) {
 	//convert inputs to radians
 	lat1 *= M_PI/180.0;
 	lon1 *= M_PI/180.0;
