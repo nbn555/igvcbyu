@@ -38,7 +38,14 @@ public:
 protected:
 	double linearVelocity;		//!The most recent linearVelocity set
 	double angularVelocity;		//!The most recent angularVelocity set
-	bool success;				//!Wether the last command was successful
+	bool success;				//!Whether the last command was successful
+};
+
+class DualMotorCommand: public MotorCommandInterface {
+public:
+	DualMotorCommand();
+	virtual ~DualMotorCommand();
+	void doProcess();
 };
 
 /**
