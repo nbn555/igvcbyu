@@ -9,9 +9,9 @@
 #define YCLOPSREACTIVENAVINTERFACE_H_
 #include "Compass.h"
 #include "GPS.h"
-#include "MotorCommand.h"
 #include "PoseEstimator.h"
 #include "Camera.h"
+#include "MotorCommandInterface.h"
 #include <mrpt/hwdrivers/CCameraSensor.h>
 #include <mrpt/reactivenav.h>
 

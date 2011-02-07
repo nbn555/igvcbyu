@@ -26,7 +26,7 @@ WiiController * WiiController::create() {
 }
 
 WiiController * WiiController::getReference( int index ) {
-		return WiiController::controllers[0];
+		return WiiController::create();
 }
 
 void WiiController::destroyReference( int index ) {
@@ -92,19 +92,21 @@ void cwiid_callback(cwiid_wiimote_t *wiimote, int mesg_count,
 //		}
 //	}
 
-	WiiController * control = NULL;
+	WiiController * control = WiiController::getReference(index);
     for ( int i=0; i < mesg_count; i++) {
     	switch (mesg[i].type) {
     	case CWIID_MESG_BTN:
+#ifdef DEBUG
     		cout << "CWIID_MESG_BTN" << endl;
-    		control = WiiController::getReference(index);
+#endif
     		control->process_btn_mesg((struct cwiid_btn_mesg*) &mesg[i]);
      		raise(SIGUSR1);
     		break;
     	case CWIID_MESG_CLASSIC:
+#ifdef DEBUG
     		cout << "CWIID_MESG_CLASSIC" << endl;
-    		control = WiiController::getReference(index);
     		cout << control << endl;
+#endif
     		control->process_classic_mesg((struct cwiid_classic_mesg *) &mesg[i]);
     		raise(SIGUSR1);
     		break;
@@ -112,7 +114,9 @@ void cwiid_callback(cwiid_wiimote_t *wiimote, int mesg_count,
    			cerr << "Unknown Message" << endl;
     		break;
     	default:
+#ifdef DEBUG
     		cout << "Unsupported message" << endl;
+#endif
     		cout << mesg[i].type << endl;
     		break;
     	}

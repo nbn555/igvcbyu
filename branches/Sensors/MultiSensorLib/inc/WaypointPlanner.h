@@ -37,7 +37,7 @@ public:
 	 * @return - a list of gps weighpoints that need to be visited
 	 * index 0 is the first then 1 then 2 ect.
 	 */
-	virtual mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t solve() = 0;
+	virtual mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t solve(bool inMeters) = 0;
 
 	/**
 	 * loadRawGPSPointFile - reads in a stream of ascii whitespace delimited gps
@@ -57,7 +57,7 @@ public:
 	 * Bearing Calculator - is a function that computes the bearing (angle) between two points measured in degrees
 	 * @returns the bearing between two points in degrees
 	 */
-	static double calcBearing( double lat1, double lon1, double lat2, double lon2 );
+	static double calcBearing( double lat1, double lon1, double lat2, double lon2, bool isDegrees = false );
 
 protected:
 	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t toVisit; //! Vector of points that haven't been visited by the planning.
@@ -78,7 +78,7 @@ public:
 	 * ordered list of navigation waypoints as they
 	 * are ordered in the file
 	 */
-	 mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t solve();
+	 mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t solve(bool inMeters);
 
 };
 
@@ -92,7 +92,7 @@ public:
 	 * TSPNavigation::solve - solves the TSP by calling TSPNavigation::nieveTSPSolution
 	 * @see nieveTSPSolution
 	 */
-	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t solve();
+	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t solve(bool inMeters);
 
 private:
 
@@ -107,7 +107,7 @@ private:
 	 * 		latlon_t is the next closest latlon_t
 	 */
 	static void nieveTSPSolution( mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit,
-			mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & visited );
+			mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & visited, bool inMeters );
 
 
 	static void acoTSPSolution( mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit,

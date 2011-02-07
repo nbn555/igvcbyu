@@ -240,7 +240,7 @@ namespace mrpt
 			std::vector<CParameterizedTrajectoryGenerator*>	PTGs;
 
 
-			// Steps for the reactive navigation sytem.
+			// Steps for the reactive navigation system.
 			// ----------------------------------------------------------------------------
 			void            STEP1_CollisionGridsBuilder();
 
