@@ -53,8 +53,11 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.1120156159" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1603414288" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.libs.458943880" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
-									<listOptionValue builtIn="false" value="mrpt-detectors"/>
+									<listOptionValue builtIn="false" value="pthread"/>
+									<listOptionValue builtIn="false" value="bluetooth"/>
+									<listOptionValue builtIn="false" value="cwiid"/>
 									<listOptionValue builtIn="false" value="YClops"/>
+									<listOptionValue builtIn="false" value="mrpt-detectors"/>
 									<listOptionValue builtIn="false" value="mrpt-hmtslam"/>
 									<listOptionValue builtIn="false" value="mrpt-hwdrivers"/>
 									<listOptionValue builtIn="false" value="mrpt-gui"/>
