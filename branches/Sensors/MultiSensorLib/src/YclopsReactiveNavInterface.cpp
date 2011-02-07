@@ -172,3 +172,17 @@ double YclopsReactiveNavInterface::getHeading()
 	return robotPose->yaw();
 }
 
+void YclopsReactiveNavInterface::useYclopsMotorCommand() {
+	delete this->motor;
+	this->motor = new MotorCommand();
+}
+
+void YclopsReactiveNavInterface::useWiiMotorCommand() {
+	delete this->motor;
+	this->motor = new DualMotorCommand();
+}
+
+void YclopsReactiveNavInterface::useNullMotorCommand() {
+	delete this->motor;
+	this->motor = new DummyMotorCommand();
+}

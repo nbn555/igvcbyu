@@ -39,6 +39,24 @@ public:
 	bool changeSpeeds( float v, float w );
 	bool senseObstacles( mrpt::slam::CSimplePointsMap 		&obstacles );
 	double getHeading();
+
+	/**
+	 * useYclopsMotorCommand - makes the YclopsReactiveNavInterface use an instance of the
+	 * MotorCommand class
+	 */
+	void useYclopsMotorCommand();
+
+	/**
+	 * useYclopsMotorCommand - makes the YclopsReactiveNavInterface use an instance of the
+	 * DualMotorCommand class
+	 */
+	void useWiiMotorCommand();
+
+	/**
+	 * useYclopsMotorCommand - makes the YclopsReactiveNavInterface use an instance of the
+	 * DummyMotorCommand class
+	 */
+	void useNullMotorCommand();
 };
 
 #endif /* YCLOPSREACTIVENAVINTERFACE_H_ */
