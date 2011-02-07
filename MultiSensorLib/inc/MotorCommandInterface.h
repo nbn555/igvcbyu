@@ -41,6 +41,17 @@ protected:
 	bool success;				//!Whether the last command was successful
 };
 
+class MotorCommand: public MotorCommandInterface {
+public:
+	MotorCommand( double lC=400, double aC=200 );
+	virtual ~MotorCommand();
+
+	void doProcess();
+
+private:
+	double linearConst, angConst;
+};
+
 class DualMotorCommand: public MotorCommandInterface {
 public:
 	DualMotorCommand();
