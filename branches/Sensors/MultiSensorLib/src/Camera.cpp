@@ -16,6 +16,8 @@
 	#define DEBUG_COMMAND(command)
 #endif
 
+extern isCameraDataShown;
+
 Camera::Camera(){
 	GRID_SIZE = 10;
 	PERCENT_FILLED = .3;
@@ -80,6 +82,7 @@ void Camera::getObstacles(mrpt::slam::CSimplePointsMap & map, mrpt::poses::CPose
 	insertObstacles(map, GRID_SIZE, array, pose);
 	DEBUG("Inserted obstacles into map...");
 
+
 }
 
 void Camera::insertObstacles(mrpt::slam::CSimplePointsMap & map, int size, bool * array, mrpt::poses::CPose3D pose ){
@@ -124,7 +127,11 @@ void Camera::hasObstacles(bool * array, Mat & image){
 
 	int obstacleThreshold = 255 * PERCENT_FILLED;
 	DEBUG("\tObstacle threshold: " << obstacleThreshold);
-	DEBUG_COMMAND(namedWindow("test", 1));
+	DEBUG_COMMAND(namedWindow("test2", 1));
+
+	if(isCameraDataShown){
+		namedWindow("test2", 1);
+	}
 
 	for(int i = 0; i < GRID_SIZE; i++){
 		for(int j = 0; j < GRID_SIZE; j++){
@@ -137,8 +144,12 @@ void Camera::hasObstacles(bool * array, Mat & image){
 				roi = Scalar(155);
 
 				DEBUG("\t\tFound an obstacle...");
-				DEBUG_COMMAND(imshow("test", image));
+				DEBUG_COMMAND(imshow("test2", image));
 				DEBUG_COMMAND(waitKey());
+
+				if(isCameraDataShown){
+					imshow("test", image);
+				}
 			}
 		}
 	}
