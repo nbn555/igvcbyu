@@ -1,6 +1,19 @@
 #summary Notes from our weekly meeting
 
 = Meeting Notes =
+== February 8, 2011==
+
+   * Continue finding openCV bug
+   * Continue testing robot - everyone
+      * gets valid data from compass and GPS
+   * Test encoder-close loop speed
+      * turn in place
+   * Re-solider connector to batteries - Ben
+
+   * Test on hill
+   * Think about testing things with Wii remote
+   * Debug PCI express card
+   * Create check list
 
 == September 22, 2010 ==
 
