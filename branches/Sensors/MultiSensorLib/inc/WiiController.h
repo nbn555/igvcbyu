@@ -58,7 +58,7 @@ public:
 private:
 	virtual ~WiiController();
 	WiiController();
-	static std::vector<WiiController*> controllers;
+	static WiiController* controller;
 
 	cwiid_wiimote_t * wiiMote;
 
