@@ -16,7 +16,7 @@
 	#define DEBUG_COMMAND(command)
 #endif
 
-extern isCameraDataShown;
+extern bool bCameraData;
 
 Camera::Camera(){
 	GRID_SIZE = 10;
@@ -85,6 +85,26 @@ void Camera::getObstacles(mrpt::slam::CSimplePointsMap & map, mrpt::poses::CPose
 
 }
 
+void Camera::doProcess() {
+
+}
+
+void Camera::dumpData( std::ostream & out ) {
+	out << "dumping camera data" << endl;
+
+	VideoCapture cap(0);
+	if(!cap.isOpened()) out << "ERROR" << endl;
+	Mat edges;
+	namedWindow("frame",1);
+	for(;;)
+	{
+	Mat frame;
+	cap >> frame;
+	imshow("frame", frame);
+	if(waitKey(30) >= 0) break;
+	}
+}
+
 void Camera::insertObstacles(mrpt::slam::CSimplePointsMap & map, int size, bool * array, mrpt::poses::CPose3D pose ){
 	int pixel_x;
 	int pixel_y;
@@ -129,7 +149,7 @@ void Camera::hasObstacles(bool * array, Mat & image){
 	DEBUG("\tObstacle threshold: " << obstacleThreshold);
 	DEBUG_COMMAND(namedWindow("test2", 1));
 
-	if(isCameraDataShown){
+	if(bCameraData){
 		namedWindow("test2", 1);
 	}
 
@@ -147,7 +167,7 @@ void Camera::hasObstacles(bool * array, Mat & image){
 				DEBUG_COMMAND(imshow("test2", image));
 				DEBUG_COMMAND(waitKey());
 
-				if(isCameraDataShown){
+				if(bCameraData){
 					imshow("test", image);
 				}
 			}
