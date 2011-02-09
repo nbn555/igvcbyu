@@ -1,3 +1,9 @@
 #summary Check list for starting up Yclops
 
 = Introduction =
+
+  # Check motor batteries connections 
+  * _nominal first battery plugged into motor controller connection with RED into + and BLACK into -_
+  # Check auxiliary battery connections
+  # Check sensor cable connections according to the wiring diagram
+  # Check motor controller status light
