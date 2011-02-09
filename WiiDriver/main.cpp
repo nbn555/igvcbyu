@@ -139,7 +139,8 @@ void signal_handler( int signum ) {
 		}
 
 		if( cbuttons & CLASSIC_SELECT ) {
-			cout << "Classic Select" << endl;
+			delete yclops;
+			exit(EXIT_SUCCESS);
 		}
 
 		if( cbuttons & CLASSIC_HOME ) {
