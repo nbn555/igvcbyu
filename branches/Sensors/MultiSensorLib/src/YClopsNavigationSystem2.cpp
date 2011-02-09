@@ -5,27 +5,37 @@
  */
 
 #include "YClopsNavigationSystem2.h"
+#include <iostream>
 
 using namespace mrpt;
 using namespace mrpt::utils;
+using namespace std;
 
 bool isGpsDataShown;
 bool isCompassDataShown;
 bool isLidarDataShown;
-bool isCameraDataShown;
 YClopsNavigationSystem2::YClopsNavigationSystem2(CConfigFile & config)
 : isGpsDataShown(false), isCompassDataShown(false), isLidarDataShown(false), isCameraDataShown(false)
 {
 	this->motor = new DualMotorCommand();
-
+	this->compass = new Compass( config );
 }
 
 YClopsNavigationSystem2::~YClopsNavigationSystem2() {
 	delete this->motor;
+	delete this->compass;
 }
 
 void YClopsNavigationSystem2::doProcess() {
-	motor->doProcess();
+	cout << "." << endl;
+
+	this->motor->doProcess();
+	this->compass->doProcess();
+
+	if( this->isCompassDataShown ) {
+		this->compass->dumpData(cout);
+	}
+
 }
 
 void YClopsNavigationSystem2::setAutonomusMode() {

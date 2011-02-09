@@ -23,16 +23,24 @@ Compass::Compass( bool degrees, const int bufferLength ): degrees(degrees), yaw(
 Compass::Compass( std::string iniFile ): degrees(0), yaw(0), pitch(0), roll(0), yawStatus(""), pitchStatus(""), rollStatus("") {
 
 	CConfigFile config(iniFile);
-	this->loadConfig(config,"COMPASS");
-	this->loadConfig_sensorSpecific(config,"COMPASS");
-	this->initialize();
-	this->doProcess();
+	this->init(config);
 }
 
+Compass::Compass( mrpt::utils::CConfigFile & config ): degrees(0), yaw(0), pitch(0), roll(0), yawStatus(""), pitchStatus(""), rollStatus("") {
+	this->init(config);
+}
 Compass::~Compass() {
 
 }
 
+void Compass::init( CConfigFile & config ) {
+
+	this->loadConfig(config,"COMPASS");
+	this->loadConfig_sensorSpecific(config,"COMPASS");
+	this->initialize();
+	this->doProcess();
+
+}
 void Compass::doProcess() {
 	string data;
 
@@ -42,6 +50,9 @@ void Compass::doProcess() {
 
 }
 
+void Compass::dumpData( std::ostream & out ) {
+	out << this->yaw << ", " << this->pitch << ", " << this->roll << "Valid: " << this->yawStatus << this->pitchStatus << this->rollStatus << endl;
+}
 
 void Compass::loadConfig_sensorSpecific( const mrpt::utils::CConfigFileBase& config, const std::string& sectionName ) {
 

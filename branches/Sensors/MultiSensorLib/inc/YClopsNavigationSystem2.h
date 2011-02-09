@@ -8,6 +8,7 @@
 #define YCLOPSNAVIGATIONSYSTEM2_H_
 
 #include "MotorCommandInterface.h"
+#include "Compass.h"
 #include <mrpt/utils/CConfigFile.h>
 
 class YClopsNavigationSystem2 {
@@ -51,6 +52,7 @@ private:
 	bool isCameraDataShown;
 
 	MotorCommandInterface * motor;
+	Compass * compass;
 };
 
 #endif /* YCLOPSNAVIGATIONSYSTEM2_H_ */

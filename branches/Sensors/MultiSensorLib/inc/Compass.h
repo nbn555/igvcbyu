@@ -11,16 +11,22 @@
 #include <mrpt/hwdrivers/CGenericSensor.h>
 #include <mrpt/hwdrivers/CSerialPort.h>
 #include <mrpt/utils/CDebugOutputCapable.h>
+#include <mrpt/utils/CConfigFile.h>
 #include <string>
+#include <iostream>
 
 class Compass: public mrpt::hwdrivers::CGenericSensor, public mrpt::utils::CDebugOutputCapable {
 
 public:
 	Compass( bool degrees = false, const int bufferLength = 500 );//Currently buferLength isn't used std::string is.  But an optimization could be to use a buffer instead of a string.
 	Compass( std::string iniFile );
+	Compass( mrpt::utils::CConfigFile & config );
 	virtual ~Compass();
 	void doProcess();
 	const mrpt::hwdrivers::TSensorClassId* GetRuntimeClass() const; //DONT USE THIS. DONT REGISTER THIS SENSOR. RETURNS NULL.
+
+	void init( mrpt::utils::CConfigFile & config );
+	void dumpData( std::ostream & out );
 
 	/**
 	 * @return The last received Yaw value in degrees
