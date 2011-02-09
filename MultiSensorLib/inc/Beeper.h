@@ -22,7 +22,7 @@ private:
 	typedef struct beep_struct {
 		int frequency;
 		int length;
-		explicit beep_struct(int frequency, int length ):frequency(frequency),length(length){};
+		explicit beep_struct(int frequency = 0, int length = 0 ):frequency(frequency),length(length){};
 	}beep_t;
 	static void * beepi( void * );
 };
