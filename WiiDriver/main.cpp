@@ -83,22 +83,22 @@ void signal_handler( int signum ) {
 
 		if( cbuttons & CLASSIC_D_UP ) {
 			cout << "Toggling camera data" << endl;
-			yclops->toggleCameraDump();
+			cout << yclops->toggleCameraDump() << endl;
 		}
 
 		if( cbuttons & CLASSIC_D_DOWN ) {
 			cout << "Toggling lidar data" << endl;
-			yclops->toggleLidarDump();
-		}
-
-		if( cbuttons & CLASSIC_D_RIGHT ) {
-			cout << "Toggling GPS data" << endl;
-			yclops->toggleGpsDump();
+			cout << yclops->toggleLidarDump() << endl;
 		}
 
 		if( cbuttons & CLASSIC_D_LEFT ) {
+			cout << "Toggling GPS data" << endl;
+			cout << yclops->toggleGpsDump() << endl;
+		}
+
+		if( cbuttons & CLASSIC_D_RIGHT ) {
 			cout << "Toggling Compass data" << endl;
-			yclops->toggleCompassDump();
+			cout << yclops->toggleCompassDump() << endl;
 		}
 
 		if( cbuttons & CLASSIC_A ) {
