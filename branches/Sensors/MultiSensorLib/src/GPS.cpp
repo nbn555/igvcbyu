@@ -6,10 +6,13 @@
  */
 
 #include <iostream>
+#include <mrpt/slam/CObservationGPS.h>
 
 #include "GPS.h"
 
 using namespace std;
+using namespace mrpt;
+using namespace mrpt::slam;
 using namespace mrpt::hwdrivers;
 using namespace mrpt::utils;
 
@@ -66,5 +69,34 @@ void GPS::initialize() {
 	}
 
 	myCom.close();
+}
+
+void GPS::dumpData(std::ostream & out ) {
+	out << "************" << endl;
+	out << "GPS" << endl;
+	out << "Connection: " << this->isGPS_connected() << " " << "Signal: " << this->isGPS_signalAcquired();
+
+	static bool isValid = false;
+	static CObservationGPSPtr gpsData;
+	CGenericSensor::TListObservations				lstObs;
+	//prime the pump with the first gps observation
+
+	this->getObservations(lstObs);
+	out << " Size: " << lstObs.size() << endl;
+	if(lstObs.size()) {
+		isValid = true;
+		gpsData = CObservationGPSPtr(lstObs.begin()->second);
+		//this->appendObservation(gpsData);//This probably wont be used
+	}
+	if(isValid) {
+		if( gpsData->has_GGA_datum ) {
+			out << "GGA: " << gpsData->GGA_datum.latitude_degrees << ", " << gpsData->GGA_datum.longitude_degrees << endl;
+		}
+
+		if( gpsData->has_RMC_datum ) {
+			out << "RMC: " << gpsData->RMC_datum.latitude_degrees << ", " << gpsData->RMC_datum.longitude_degrees << endl;
+		}
+	}
+	out << "************" << endl;
 
 }

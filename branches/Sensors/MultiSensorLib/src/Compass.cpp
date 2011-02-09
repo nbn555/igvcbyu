@@ -51,7 +51,10 @@ void Compass::doProcess() {
 }
 
 void Compass::dumpData( std::ostream & out ) {
-	out << this->yaw << ", " << this->pitch << ", " << this->roll << "Valid: " << this->yawStatus << this->pitchStatus << this->rollStatus << endl;
+	out << "************" << endl;
+	out << "Compass" << endl;
+	out << this->yaw << ", " << this->pitch << ", " << this->roll << " Valid: " << this->yawStatus << this->pitchStatus << this->rollStatus << endl;
+	out << "************" << endl;
 }
 
 void Compass::loadConfig_sensorSpecific( const mrpt::utils::CConfigFileBase& config, const std::string& sectionName ) {

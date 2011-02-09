@@ -40,6 +40,8 @@ public:
 	void startCamera();
 
 	void getObstacles(mrpt::slam::CSimplePointsMap & map, mrpt::poses::CPose3D pose);
+	void doProcess();
+	void dumpData( std::ostream & out );
 
 private:
 	void getFrame(Mat & image);
