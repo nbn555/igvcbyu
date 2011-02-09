@@ -15,14 +15,14 @@
 
 using namespace std;
 
-std::vector<WiiController*> WiiController::controllers(10,NULL);
+WiiController * WiiController::controller = NULL;
 cwiid_mesg_callback_t cwiid_callback;
 
 WiiController * WiiController::create() {
 
-	if( NULL == WiiController::controllers[0] )
-		WiiController::controllers[0] = new WiiController();
-	return WiiController::controllers[0];
+	if( NULL == WiiController::controller )
+		WiiController::controller = new WiiController();
+	return WiiController::controller;
 }
 
 WiiController * WiiController::getReference( int index ) {
@@ -30,11 +30,11 @@ WiiController * WiiController::getReference( int index ) {
 }
 
 void WiiController::destroyReference( int index ) {
-	delete WiiController::controllers[0];
+	delete WiiController::controller;
 }
 
 int WiiController::getControllerCount() {
-	return WiiController::controllers.size();
+	return 1;
 }
 
 WiiController::WiiController() {

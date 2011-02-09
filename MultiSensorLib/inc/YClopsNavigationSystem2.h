@@ -9,7 +9,11 @@
 
 #include "MotorCommandInterface.h"
 #include "Compass.h"
+#include "GPS.h"
+#include "Camera.h"
 #include <mrpt/utils/CConfigFile.h>
+#include <mrpt/hwdrivers/CSickLaserSerial.h>
+#include <mrpt/hwdrivers/CSickLaserUSB.h>
 
 class YClopsNavigationSystem2 {
 public:
@@ -50,9 +54,14 @@ private:
 	bool isCompassDataShown;
 	bool isLidarDataShown;
 	bool isCameraDataShown;
+	bool isEncoderDataShown;
 
 	MotorCommandInterface * motor;
 	Compass * compass;
+	GPS * gps;
+	Camera * camera;
+	mrpt::hwdrivers::CSickLaserSerial * lidar;
+
 };
 
 #endif /* YCLOPSNAVIGATIONSYSTEM2_H_ */
