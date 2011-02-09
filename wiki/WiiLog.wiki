@@ -24,3 +24,4 @@
   * Fix the PC speaker root access requirement
   * Make it so the camera image persists with out sitting in a while loop
   * Add support for logging to a file
+  * Add the lidar parameters to the config file
