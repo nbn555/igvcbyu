@@ -52,6 +52,7 @@ YclopsReactiveNavInterface::YclopsReactiveNavInterface() {
 	{
 		while(lstObs.size() == 0)
 		{
+			compass->doProcess();
 			gps->doProcess();
 			gps->getObservations(lstObs);
 			cout << "Getting Observation from GPS ..." << endl;
@@ -168,7 +169,7 @@ bool YclopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap 		
 	}
 double YclopsReactiveNavInterface::getHeading()
 {
-	return robotPose->yaw();
+	return poseEst->getYaw();
 }
 
 void YclopsReactiveNavInterface::useYclopsMotorCommand() {
