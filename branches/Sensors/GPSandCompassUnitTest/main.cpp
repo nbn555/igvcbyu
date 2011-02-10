@@ -15,6 +15,7 @@
 
 #include <mrpt/hwdrivers/CGPSInterface.h>
 #include <mrpt/utils/CConfigFile.h>
+#include <mrpt/hwdrivers/CGenericSensor.h>
 #include "GPS.h"
 #include "WaypointPlanner.h"
 #include "Compass.h"
@@ -59,66 +60,65 @@ bool testGPSConnection(GPS * gps)
 }
 
 
-bool testGPS(GPS * gps, CConfigFile & config )
-{
-
-
-
-	gps->setSerialPortName ( config.read_string("GPS", "COM_port_LIN", "/dev/ttyUSB1" ) );
-	gps->loadConfig(config, "GPS");
-	gps->initConfig(config, "GPS");
-	gps->initialize();
-
-
+bool testGPSShowData(GPS * gps, int numOfRecord){
 	CGenericSensor::TListObservations	lstObs;
 	CGenericSensor::TListObservations::iterator 	itObs;
-
-	bool done = false;
-	while(!done)
+	while(lstObs.size() < numOfRecord)
 	{
-		while(lstObs.size() == 0)
-		{
-
-			gps->doProcess();
-			gps->getObservations(lstObs);
-			cout << "Getting Observation from GPS ..." << endl;
-		}
-		itObs = lstObs.begin();
-		CObservationGPSPtr gpsData = CObservationGPSPtr(lstObs.begin()->second);
-		if(gpsData.pointer()->has_GGA_datum || gpsData.pointer()->has_RMC_datum)
-		{
-			if(gpsData.pointer()->has_GGA_datum)
-				cout << "Got initial point at " << gpsData.pointer()->GGA_datum.latitude_degrees << ":" << gpsData.pointer()->GGA_datum.longitude_degrees << endl;
-			if(gpsData.pointer()->has_RMC_datum)
-				cout << "Got initial point at " << gpsData.pointer()->RMC_datum.latitude_degrees << ":" << gpsData.pointer()->RMC_datum.longitude_degrees << endl;
-			done = true;
-		}
-		else
-		{
-			cout << "ERROR: INVALID DATA" << endl;
-			gpsData.pointer()->dumpToConsole();
-		}
+		gps->doProcess();
+		gps->getObservations(lstObs);
+		//cout << "Getting Observation from GPS ..." << endl;
 	}
 
+	for(itObs = lstObs.begin(); itObs != lstObs.end(); itObs++){
+		CObservationGPSPtr gpsData = CObservationGPSPtr(lstObs.begin()->second);
+		//cout << "Lat: " << gpsData.pointer()->GGA_datum.latitude_degrees << endl;
+		//cout << "Lon: " << gpsData.pointer()->GGA_datum.longitude_degrees << endl;
 
+		if(!gpsData.pointer()->has_GGA_datum)
+			cout << "gpsData.pointer()->has_GGA_datum fails" << endl;
+		if(!gpsData.pointer()->has_RMC_datum)
+			cout << "gpsData.pointer()->has_RMC_datum fails" << endl;
+	}
+	return true;
 }
 
-bool testCompass() {
-	Compass * compass = new Compass(string("Compass.ini"));
-	compass -> doProcess();
-	compass->dumpData(cout);
-
+bool testCompassConnection(Compass * compass) {
+	//mrpt::hwdrivers::TSensorState state = compass->getState();
+	//return (state == mrpt::hwdrivers::ssWorking);
 }
+
+// TODO
+bool testCompassShowData(Compass * compass, int numOfRecord){
+	return false;
+}
+
+// TODO
+bool testCompassAndGPSConnections(GPS * gps, Compass * compass){
+	return false;
+}
+
+// TODO
+bool testCompassAndGPSShowData(GPS * gps, Compass * compass){
+	return false;
+}
+
 int main( int argc, char** argv ) {
 
 	CConfigFile config("GPS.ini");
 	GPS * gps = new GPS();
+	Compass * compass = new Compass(string("Compass.ini"));
+	int showRecord = 100;
+	cout << "Start GPS and Compass unit testing" << endl;
 
-	assert(testGPSConnection(gps) == false);
-	assert(testGPS(gps, config) == false);
-	//if(assert(testGPS() == false))
-		//cout << "Error: testGPS" << endl;
+	assert(testGPSConnection(gps) == true);
+	assert(testGPSShowData(gps, showRecord) == true);
+	assert(testCompassConnection(compass) == true);
+	assert(testCompassShowData(compass, showRecord) == true);
 
-	//this->camera = new Camera();
+	assert(testCompassAndGPSConnections(gps, compass) == true);
+	assert(testCompassAndGPSShowData(gps, compass) == true);
+	cout << "Pass all the unit tests" << endl;
+
 	return 0;
 }
