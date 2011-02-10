@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include <mrpt/hwdrivers/CGPSInterface.h>
-
+#include "GPS.h"
 using namespace mrpt;
 using namespace mrpt::utils;
 using namespace mrpt::slam;
