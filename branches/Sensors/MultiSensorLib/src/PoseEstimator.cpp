@@ -44,7 +44,7 @@ void NoFilterPoseEstimator::update( mrpt::slam::CObservationGPSPtr gpsObsPtr, do
 	double x;
 	double y;
 	double z = 0;
-
+	this->yaw = yaw;
 	if( gpsObsPtr->has_GGA_datum ){
 		lat = gpsObsPtr->GGA_datum.latitude_degrees;
 		lon = gpsObsPtr->GGA_datum.longitude_degrees;

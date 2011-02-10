@@ -22,10 +22,11 @@ public:
 	 * @param roll - the rotation about the z axis measured in radians
 	 */
 	virtual void update( mrpt::slam::CObservationGPSPtr gpsObsPtr, double yaw, double pitch, double roll ) = 0;
-
+	double getYaw(void){ return yaw;}
 	bool getPose( mrpt::poses::CPose3D & pose );
 protected:
 	mrpt::poses::CPose3D poseEstimate;
+	double yaw;
 };
 
 class NoFilterPoseEstimator: public AbstractPoseEstimator {
