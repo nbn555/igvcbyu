@@ -101,7 +101,7 @@ void SimpleNavigation::navigate(YclopsReactiveNavInterface& interface, mrpt::rea
 
 			usleep(100000);
 			interface.getCurrentPoseAndSpeeds(curPose, cur_v, cur_w);
-			yaw = interface.getHeading();
+			yaw = interface.getHeading();//Robotpose returns yaw in radians
 			cout << "Yaw: " << yaw << endl;
 			wantedYaw = AbstractNavigationInterface::calcBearing(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
 			cout << "Wanted Yaw: " << wantedYaw << endl;
