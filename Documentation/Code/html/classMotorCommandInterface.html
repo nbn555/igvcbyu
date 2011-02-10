@@ -63,8 +63,9 @@ Inheritance diagram for MotorCommandInterface:</div>
  <div class="center">
   <img src="classMotorCommandInterface.png" usemap="#MotorCommandInterface_map" alt=""/>
   <map id="MotorCommandInterface_map" name="MotorCommandInterface_map">
-<area href="classJoystickCommand.html" alt="JoystickCommand" shape="rect" coords="0,56,150,80"/>
-<area href="classMotorCommand.html" alt="MotorCommand" shape="rect" coords="160,56,310,80"/>
+<area href="classDualMotorCommand.html" alt="DualMotorCommand" shape="rect" coords="0,56,150,80"/>
+<area href="classDummyMotorCommand.html" alt="DummyMotorCommand" shape="rect" coords="160,56,310,80"/>
+<area href="classMotorCommand.html" alt="MotorCommand" shape="rect" coords="320,56,470,80"/>
 </map>
 </div>
 
@@ -72,31 +73,31 @@ Inheritance diagram for MotorCommandInterface:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorCommandInterface.html#aa51b54e777a64e5627855a636bf8fe28">MotorCommandInterface</a> (<a class="el" href="classMotorController.html">MotorController</a> *<a class="el" href="classMotorCommandInterface.html#aceac1b2fac6f9670e5731e33f2e22e75">motorPtr</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorCommandInterface.html#aa36bd376e1cea915e8be95712fab2006">MotorCommandInterface</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorCommandInterface.html#a66f15bb15386c8dbf9613b51f027750e">setVelocity</a> (double <a class="el" href="classMotorCommandInterface.html#a11856d011caa8a5998b46801de06d252">linearVelocity</a>, double <a class="el" href="classMotorCommandInterface.html#a3ab67b9cbb8a35fdd4d59367cdd160a4">angularVelocity</a>)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorCommandInterface.html#a3d82fb05578478fada59a0e529581c6d">doProcess</a> ()=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorCommandInterface.html#a0e415e486d7245c7d1b2ca955b329eec">getSuccess</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorCommandInterface.html#afd87a6e30108774f5a8a4c6eab673788">~MotorCommandInterface</a> ()</td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMotorController.html">MotorController</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorCommandInterface.html#aceac1b2fac6f9670e5731e33f2e22e75">motorPtr</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorCommandInterface.html#a11856d011caa8a5998b46801de06d252">linearVelocity</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">pointer to the motor controller  <a href="#a11856d011caa8a5998b46801de06d252"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorCommandInterface.html#a3ab67b9cbb8a35fdd4d59367cdd160a4">angularVelocity</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The most recent linearVelocity set.  <a href="#a3ab67b9cbb8a35fdd4d59367cdd160a4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorCommandInterface.html#a849b5c0f6365835695f794fb575408b9">success</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The most recent angularVelocity set.  <a href="#a849b5c0f6365835695f794fb575408b9"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
 <p>Definition at line <a class="el" href="MotorCommandInterface_8h_source.html#l00013">13</a> of file <a class="el" href="MotorCommandInterface_8h_source.html">MotorCommandInterface.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="aa51b54e777a64e5627855a636bf8fe28"></a><!-- doxytag: member="MotorCommandInterface::MotorCommandInterface" ref="aa51b54e777a64e5627855a636bf8fe28" args="(MotorController *motorPtr)" -->
+<a class="anchor" id="aa36bd376e1cea915e8be95712fab2006"></a><!-- doxytag: member="MotorCommandInterface::MotorCommandInterface" ref="aa36bd376e1cea915e8be95712fab2006" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">MotorCommandInterface::MotorCommandInterface </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classMotorController.html">MotorController</a> *&nbsp;</td>
-          <td class="paramname"> <em>motorPtr</em></td>
+          <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -111,7 +112,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="MotorCommandInterface_8cpp_source.html#l00010">10</a> of file <a class="el" href="MotorCommandInterface_8cpp_source.html">MotorCommandInterface.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorCommandInterface_8cpp_source.html#l00014">14</a> of file <a class="el" href="MotorCommandInterface_8cpp_source.html">MotorCommandInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -130,7 +131,7 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="MotorCommandInterface_8cpp_source.html#l00014">14</a> of file <a class="el" href="MotorCommandInterface_8cpp_source.html">MotorCommandInterface.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorCommandInterface_8cpp_source.html#l00016">16</a> of file <a class="el" href="MotorCommandInterface_8cpp_source.html">MotorCommandInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -149,11 +150,34 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>doProcess - abstract function implements the functionality fo the command </p>
+<p>doProcess - abstract function implements the functionality of the command </p>
 
-<p>Implemented in <a class="el" href="classJoystickCommand.html#a98d12ebc6455289c2ea6cb9c9459513b">JoystickCommand</a>, and <a class="el" href="classMotorCommand.html#a385dbcf1effa4ffa37aef719eea5dd33">MotorCommand</a>.</p>
+<p>Implemented in <a class="el" href="classMotorCommand.html#a385dbcf1effa4ffa37aef719eea5dd33">MotorCommand</a>, <a class="el" href="classDualMotorCommand.html#a0271a51819dac4e7a174319397ea49f0">DualMotorCommand</a>, and <a class="el" href="classDummyMotorCommand.html#adedc4211152c5f9caf7273c612b1f061">DummyMotorCommand</a>.</p>
 
-<p>Referenced by <a class="el" href="Mechanical_2WiiDriver_2main_8cpp_source.html#l00069">main()</a>.</p>
+<p>Referenced by <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00137">YclopsReactiveNavInterface::changeSpeeds()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0e415e486d7245c7d1b2ca955b329eec"></a><!-- doxytag: member="MotorCommandInterface::getSuccess" ref="a0e415e486d7245c7d1b2ca955b329eec" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorCommandInterface::getSuccess </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="MotorCommandInterface_8cpp_source.html#l00024">24</a> of file <a class="el" href="MotorCommandInterface_8cpp_source.html">MotorCommandInterface.cpp</a>.</p>
+
+<p>References <a class="el" href="MotorCommandInterface_8h_source.html#l00041">success</a>.</p>
+
+<p>Referenced by <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00137">YclopsReactiveNavInterface::changeSpeeds()</a>.</p>
 
 </div>
 </div>
@@ -191,9 +215,9 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="MotorCommandInterface_8cpp_source.html#l00017">17</a> of file <a class="el" href="MotorCommandInterface_8cpp_source.html">MotorCommandInterface.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorCommandInterface_8cpp_source.html#l00018">18</a> of file <a class="el" href="MotorCommandInterface_8cpp_source.html">MotorCommandInterface.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="Mechanical_2WiiDriver_2main_8cpp_source.html#l00069">main()</a>.</p>
+<p>Referenced by <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00137">YclopsReactiveNavInterface::changeSpeeds()</a>.</p>
 
 </div>
 </div>
@@ -211,9 +235,9 @@ Protected Attributes</h2></td></tr>
 
 <p>The most recent linearVelocity set. </p>
 
-<p>Definition at line <a class="el" href="MotorCommandInterface_8h_source.html#l00039">39</a> of file <a class="el" href="MotorCommandInterface_8h_source.html">MotorCommandInterface.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorCommandInterface_8h_source.html#l00040">40</a> of file <a class="el" href="MotorCommandInterface_8h_source.html">MotorCommandInterface.h</a>.</p>
 
-<p>Referenced by <a class="el" href="MotorCommand_8cpp_source.html#l00013">MotorCommand::doProcess()</a>.</p>
+<p>Referenced by <a class="el" href="MotorCommand_8cpp_source.html#l00014">MotorCommand::doProcess()</a>.</p>
 
 </div>
 </div>
@@ -228,28 +252,28 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>pointer to the motor controller </p>
+<p>Definition at line <a class="el" href="MotorCommandInterface_8h_source.html#l00039">39</a> of file <a class="el" href="MotorCommandInterface_8h_source.html">MotorCommandInterface.h</a>.</p>
 
-<p>Definition at line <a class="el" href="MotorCommandInterface_8h_source.html#l00038">38</a> of file <a class="el" href="MotorCommandInterface_8h_source.html">MotorCommandInterface.h</a>.</p>
-
-<p>Referenced by <a class="el" href="MotorCommand_8cpp_source.html#l00013">MotorCommand::doProcess()</a>.</p>
+<p>Referenced by <a class="el" href="MotorCommand_8cpp_source.html#l00014">MotorCommand::doProcess()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aceac1b2fac6f9670e5731e33f2e22e75"></a><!-- doxytag: member="MotorCommandInterface::motorPtr" ref="aceac1b2fac6f9670e5731e33f2e22e75" args="" -->
+<a class="anchor" id="a849b5c0f6365835695f794fb575408b9"></a><!-- doxytag: member="MotorCommandInterface::success" ref="a849b5c0f6365835695f794fb575408b9" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMotorController.html">MotorController</a>* <a class="el" href="classMotorCommandInterface.html#aceac1b2fac6f9670e5731e33f2e22e75">MotorCommandInterface::motorPtr</a><code> [protected]</code></td>
+          <td class="memname">bool <a class="el" href="classMotorCommandInterface.html#a849b5c0f6365835695f794fb575408b9">MotorCommandInterface::success</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="MotorCommandInterface_8h_source.html#l00037">37</a> of file <a class="el" href="MotorCommandInterface_8h_source.html">MotorCommandInterface.h</a>.</p>
+<p>The most recent angularVelocity set. </p>
 
-<p>Referenced by <a class="el" href="JoystickCommand_8cpp_source.html#l00016">JoystickCommand::doProcess()</a>, and <a class="el" href="MotorCommand_8cpp_source.html#l00017">MotorCommand::Go()</a>.</p>
+<p>Definition at line <a class="el" href="MotorCommandInterface_8h_source.html#l00041">41</a> of file <a class="el" href="MotorCommandInterface_8h_source.html">MotorCommandInterface.h</a>.</p>
+
+<p>Referenced by <a class="el" href="MotorCommand_8cpp_source.html#l00014">MotorCommand::doProcess()</a>, and <a class="el" href="MotorCommandInterface_8cpp_source.html#l00024">getSuccess()</a>.</p>
 
 </div>
 </div>
@@ -263,7 +287,7 @@ Protected Attributes</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -272,7 +296,7 @@ Protected Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 23 2011 for YClops by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 10 2011 for YClops by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

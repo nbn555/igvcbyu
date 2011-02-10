@@ -61,120 +61,129 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00020"></a>00020 <span class="keyword">public</span>:
 <a name="l00021"></a><a class="code" href="classMotorController.html#a805d5fc65cf6a1f0e105fac0506b81f3">00021</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classMotorController.html#a805d5fc65cf6a1f0e105fac0506b81f3">MOTOR_SECRET_KEY</a> = 321654987;
 <a name="l00022"></a>00022 
-<a name="l00026"></a><a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">00026</a>         <span class="keyword">enum</span> <a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2" title="Motor reset key used for sensitive operations.">MotorChannel</a>{
-<a name="l00027"></a><a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2aa0ee193187b5d6e5dfe6651cc7a950cb">00027</a>                 <a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2aa0ee193187b5d6e5dfe6651cc7a950cb">Channel1</a> = 1,
-<a name="l00028"></a><a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2ab91fac72a389b0b45a5613a52779d21a">00028</a>                 <a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2ab91fac72a389b0b45a5613a52779d21a">Channel2</a> = 2,
-<a name="l00029"></a><a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2a366377f72eb7ceb5ae5904562e6165d0">00029</a>                 <a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2a366377f72eb7ceb5ae5904562e6165d0">BothChannels</a> = 3
-<a name="l00030"></a>00030         };
-<a name="l00031"></a>00031 
-<a name="l00041"></a>00041         <a class="code" href="classMotorController.html#adb36c0022b7aeb68db96d544c46974fe">MotorController</a>( std::string portName, <span class="keywordtype">bool</span> enableEcho = <span class="keyword">true</span>, <span class="keywordtype">int</span> motor1Max = 1000, <span class="keywordtype">int</span> motor2Max = 1000,
-<a name="l00042"></a>00042                         <span class="keywordtype">int</span> motor1Min = -1000, <span class="keywordtype">int</span> motor2Min = -1000 );
-<a name="l00043"></a>00043 
-<a name="l00047"></a><a class="code" href="classMotorController.html#a30a4658476a116928658ea4a1679b2b7">00047</a>         <span class="keyword">virtual</span> <a class="code" href="classMotorController.html#a30a4658476a116928658ea4a1679b2b7">~MotorController</a>() { };
-<a name="l00048"></a>00048 
-<a name="l00052"></a>00052         <span class="keywordtype">void</span> <a class="code" href="classMotorController.html#a4260a624b364ed6c1e53f1101277cca2">doProcess</a>();
-<a name="l00053"></a>00053 
-<a name="l00055"></a>00055         <span class="comment">//Motor Controller Runtime commands</span>
-<a name="l00057"></a>00057 <span class="comment"></span>
-<a name="l00065"></a>00065         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a0a3e08c04469ae0c2c1f3e26005b81ff">setAcceleration</a>(<a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2" title="Motor reset key used for sensitive operations.">MotorChannel</a> channel, <span class="keywordtype">double</span> acceleration);
-<a name="l00066"></a>00066 
-<a name="l00075"></a>00075         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a7d09ab0272d8729997dc073d86e104f6">setDeceleration</a>(<a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2" title="Motor reset key used for sensitive operations.">MotorChannel</a> channel, <span class="keywordtype">double</span> deceration);
-<a name="l00076"></a>00076 
-<a name="l00083"></a>00083         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#af10104b90d2810d7cc831acd6d0091bd">emergencyStop</a>();
+<a name="l00023"></a><a class="code" href="classMotorController.html#acb948892359c218c757a3883bdecf274">00023</a>         <span class="keyword">static</span> std::string <a class="code" href="classMotorController.html#acb948892359c218c757a3883bdecf274" title="Motor reset key used for sensitive operations.">portName</a>;
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025         <span class="keyword">static</span> <a class="code" href="classMotorController.html">MotorController</a> * <a class="code" href="classMotorController.html#aec7a1e340e34f948c255d9c9687ad5bc">instance</a>();
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classMotorController.html#a1a6539ae717482df8c4b314302c9dcbe">setPortName</a>( std::string port );
+<a name="l00028"></a>00028 
+<a name="l00032"></a><a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">00032</a>         <span class="keyword">enum</span> <a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">MotorChannel</a>{
+<a name="l00033"></a><a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2aa0ee193187b5d6e5dfe6651cc7a950cb">00033</a>                 <a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2aa0ee193187b5d6e5dfe6651cc7a950cb">Channel1</a> = 1,
+<a name="l00034"></a><a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2ab91fac72a389b0b45a5613a52779d21a">00034</a>                 <a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2ab91fac72a389b0b45a5613a52779d21a">Channel2</a> = 2,
+<a name="l00035"></a><a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2a366377f72eb7ceb5ae5904562e6165d0">00035</a>                 <a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2a366377f72eb7ceb5ae5904562e6165d0">BothChannels</a> = 3
+<a name="l00036"></a>00036         };
+<a name="l00037"></a>00037 
+<a name="l00041"></a><a class="code" href="classMotorController.html#a30a4658476a116928658ea4a1679b2b7">00041</a>         <span class="keyword">virtual</span> <a class="code" href="classMotorController.html#a30a4658476a116928658ea4a1679b2b7">~MotorController</a>() { };
+<a name="l00042"></a>00042 
+<a name="l00046"></a>00046         <span class="keywordtype">void</span> <a class="code" href="classMotorController.html#a4260a624b364ed6c1e53f1101277cca2">doProcess</a>();
+<a name="l00047"></a>00047 
+<a name="l00049"></a>00049         <span class="comment">//Motor Controller Runtime commands</span>
+<a name="l00051"></a>00051 <span class="comment"></span>
+<a name="l00059"></a>00059         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a0a3e08c04469ae0c2c1f3e26005b81ff">setAcceleration</a>(<a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">MotorChannel</a> channel, <span class="keywordtype">double</span> acceleration);
+<a name="l00060"></a>00060 
+<a name="l00069"></a>00069         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a7d09ab0272d8729997dc073d86e104f6">setDeceleration</a>(<a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">MotorChannel</a> channel, <span class="keywordtype">double</span> deceration);
+<a name="l00070"></a>00070 
+<a name="l00077"></a>00077         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#af10104b90d2810d7cc831acd6d0091bd">emergencyStop</a>();
+<a name="l00078"></a>00078 
+<a name="l00083"></a>00083         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a9e46d236d83c31b0c8d249b5e7904762">clearEmergencyStop</a>();
 <a name="l00084"></a>00084 
-<a name="l00089"></a>00089         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a9e46d236d83c31b0c8d249b5e7904762">clearEmergencyStop</a>();
-<a name="l00090"></a>00090 
-<a name="l00097"></a>00097         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a87b491ff25d36037e52bca36972a782a">setSpeed</a>( <a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2" title="Motor reset key used for sensitive operations.">MotorChannel</a> channel, <span class="keywordtype">int</span> value );
-<a name="l00098"></a>00098 
-<a name="l00105"></a>00105         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#ac14e87ad8c57a26c4cb53b8c5ce9250e">setEncoderCounter</a>( <a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2" title="Motor reset key used for sensitive operations.">MotorChannel</a> channel, <span class="keywordtype">int</span> value = 0 );
-<a name="l00106"></a>00106 
-<a name="l00108"></a>00108         <span class="comment">//Motor Controller Runtime queries</span>
-<a name="l00110"></a>00110 <span class="comment"></span>
-<a name="l00117"></a>00117         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a2c7cc06989053af014abea3a69185c17">getMotorAmps</a>( <span class="keywordtype">double</span> &amp; motor1Amps, <span class="keywordtype">double</span> &amp; motor2Amps );
-<a name="l00118"></a>00118 
-<a name="l00125"></a>00125         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a8f9b76755fceeeee7c066f94f092613c">getAnalogInputs</a>( <span class="keywordtype">int</span> input, <span class="keywordtype">int</span> &amp; value );
-<a name="l00126"></a>00126 
-<a name="l00133"></a>00133         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a3b10d48cb8e49e2c3ca1a8e0400cf309">getBatteryAmps</a>( <span class="keywordtype">double</span> &amp; motor1Amps, <span class="keywordtype">double</span> &amp; motor2Amps );
-<a name="l00134"></a>00134 
-<a name="l00141"></a>00141         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a61460f27210358518164ce7833480d9d">getAbsoluteEncoderCount</a>( <span class="keywordtype">int</span> &amp; ch1, <span class="keywordtype">int</span> &amp; ch2 );
-<a name="l00142"></a>00142 
-<a name="l00149"></a>00149         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#aab2c14c9ef9f08bb1036ca0b071415c7">getRelativeEncoderCount</a>( <span class="keywordtype">int</span> &amp; ch1, <span class="keywordtype">int</span> &amp; ch2 );
-<a name="l00150"></a>00150 
-<a name="l00158"></a>00158         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a7489d8bf6876e0a8d9982433638c98d4">getEncoderSpeed</a>( <a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2" title="Motor reset key used for sensitive operations.">MotorChannel</a> channel, <span class="keywordtype">int</span> &amp; speed );
-<a name="l00159"></a>00159 
-<a name="l00167"></a>00167         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#aa1082a5bcd935ebd5bc15600d32f621d">getTemperature</a>( <span class="keywordtype">int</span> &amp; ch1, <span class="keywordtype">int</span> &amp; ch2, <span class="keywordtype">int</span> &amp; ic );
-<a name="l00168"></a>00168 
-<a name="l00176"></a>00176         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a8d482b3313fbe1f5eb9fdc7021d84591">getTime</a>( <span class="keywordtype">int</span> &amp; hours, <span class="keywordtype">int</span> &amp; minutes, <span class="keywordtype">int</span> &amp; seconds );
-<a name="l00177"></a>00177 
-<a name="l00186"></a>00186         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#afc4f77bcc139958edbaa9916e4acd501">getVoltages</a>( <span class="keywordtype">double</span> &amp; driverVolt, <span class="keywordtype">double</span> &amp; batteryVolt, <span class="keywordtype">double</span> &amp; v5out );
-<a name="l00187"></a>00187 
-<a name="l00189"></a>00189         <span class="comment">//Motor Controller Maintenance commands</span>
-<a name="l00191"></a>00191 <span class="comment"></span>
-<a name="l00196"></a>00196         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#ab9a8b511704092f5d8c18ee2cf265a4b">loadEEPROMSettings</a>();
+<a name="l00091"></a>00091         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a87b491ff25d36037e52bca36972a782a">setSpeed</a>( <a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">MotorChannel</a> channel, <span class="keywordtype">int</span> value );
+<a name="l00092"></a>00092 
+<a name="l00099"></a>00099         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#ac14e87ad8c57a26c4cb53b8c5ce9250e">setEncoderCounter</a>( <a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">MotorChannel</a> channel, <span class="keywordtype">int</span> value = 0 );
+<a name="l00100"></a>00100 
+<a name="l00102"></a>00102         <span class="comment">//Motor Controller Runtime queries</span>
+<a name="l00104"></a>00104 <span class="comment"></span>
+<a name="l00111"></a>00111         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a2c7cc06989053af014abea3a69185c17">getMotorAmps</a>( <span class="keywordtype">double</span> &amp; motor1Amps, <span class="keywordtype">double</span> &amp; motor2Amps );
+<a name="l00112"></a>00112 
+<a name="l00119"></a>00119         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a8f9b76755fceeeee7c066f94f092613c">getAnalogInputs</a>( <span class="keywordtype">int</span> input, <span class="keywordtype">int</span> &amp; value );
+<a name="l00120"></a>00120 
+<a name="l00127"></a>00127         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a3b10d48cb8e49e2c3ca1a8e0400cf309">getBatteryAmps</a>( <span class="keywordtype">double</span> &amp; motor1Amps, <span class="keywordtype">double</span> &amp; motor2Amps );
+<a name="l00128"></a>00128 
+<a name="l00135"></a>00135         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a61460f27210358518164ce7833480d9d">getAbsoluteEncoderCount</a>( <span class="keywordtype">int</span> &amp; ch1, <span class="keywordtype">int</span> &amp; ch2 );
+<a name="l00136"></a>00136 
+<a name="l00143"></a>00143         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#aab2c14c9ef9f08bb1036ca0b071415c7">getRelativeEncoderCount</a>( <span class="keywordtype">int</span> &amp; ch1, <span class="keywordtype">int</span> &amp; ch2 );
+<a name="l00144"></a>00144 
+<a name="l00152"></a>00152         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a7489d8bf6876e0a8d9982433638c98d4">getEncoderSpeed</a>( <a class="code" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">MotorChannel</a> channel, <span class="keywordtype">int</span> &amp; speed );
+<a name="l00153"></a>00153 
+<a name="l00161"></a>00161         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#aa1082a5bcd935ebd5bc15600d32f621d">getTemperature</a>( <span class="keywordtype">int</span> &amp; ch1, <span class="keywordtype">int</span> &amp; ch2, <span class="keywordtype">int</span> &amp; ic );
+<a name="l00162"></a>00162 
+<a name="l00170"></a>00170         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a8d482b3313fbe1f5eb9fdc7021d84591">getTime</a>( <span class="keywordtype">int</span> &amp; hours, <span class="keywordtype">int</span> &amp; minutes, <span class="keywordtype">int</span> &amp; seconds );
+<a name="l00171"></a>00171 
+<a name="l00180"></a>00180         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#afc4f77bcc139958edbaa9916e4acd501">getVoltages</a>( <span class="keywordtype">double</span> &amp; driverVolt, <span class="keywordtype">double</span> &amp; batteryVolt, <span class="keywordtype">double</span> &amp; v5out );
+<a name="l00181"></a>00181 
+<a name="l00183"></a>00183         <span class="comment">//Motor Controller Maintenance commands</span>
+<a name="l00185"></a>00185 <span class="comment"></span>
+<a name="l00190"></a>00190         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#ab9a8b511704092f5d8c18ee2cf265a4b">loadEEPROMSettings</a>();
+<a name="l00191"></a>00191 
+<a name="l00196"></a>00196         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#aa61317c6c5977081c03fd56de6c14f79">failSafeReset</a>();
 <a name="l00197"></a>00197 
-<a name="l00202"></a>00202         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#aa61317c6c5977081c03fd56de6c14f79">failSafeReset</a>();
-<a name="l00203"></a>00203 
-<a name="l00209"></a>00209         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#ab52b0ad8614ab5a34e6db257be4ab9be">saveConfigSettings</a>();
+<a name="l00203"></a>00203         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#ab52b0ad8614ab5a34e6db257be4ab9be">saveConfigSettings</a>();
+<a name="l00204"></a>00204 
+<a name="l00209"></a>00209         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a21d0364838e1e60441b6afacd268769d">reset</a>();
 <a name="l00210"></a>00210 
-<a name="l00215"></a>00215         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a21d0364838e1e60441b6afacd268769d">reset</a>();
-<a name="l00216"></a>00216 
-<a name="l00224"></a>00224         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a562d6fd1c4467b8bfaa09811c1c63d61">setTime</a>( <span class="keywordtype">int</span> hours, <span class="keywordtype">int</span> minutes, <span class="keywordtype">int</span> seconds );
-<a name="l00225"></a>00225 
-<a name="l00226"></a>00226 
-<a name="l00228"></a>00228         <span class="comment">//Motor Controller Read/Set configuration commands</span>
-<a name="l00230"></a>00230 <span class="comment"></span>
-<a name="l00250"></a>00250         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#ad7e89a362c89a6635601afd7bb5a07c3">setCommandLinearity</a>(<span class="keywordtype">int</span> linearity );
-<a name="l00251"></a>00251 
-<a name="l00265"></a>00265         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a01c222fdaca0c51b6dfee690519f8d5e">setCommandPriority</a>( <span class="keywordtype">int</span> signal, <span class="keywordtype">int</span> priority );
-<a name="l00266"></a>00266 
-<a name="l00273"></a>00273         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#ae274231ec813ec00eb836d0c34925714">setSerialWatchDogTimer</a>( <span class="keywordtype">int</span> time = 1000 );
-<a name="l00274"></a>00274 
-<a name="l00280"></a>00280         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a3e5512b31b9ce56e0f57c39833d7b520">setEncoderPPR</a>( <span class="keywordtype">int</span> ppr );
-<a name="l00281"></a>00281 
-<a name="l00288"></a>00288         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a57b96decd2a22b90261c9f4526e4726c">setOverVoltageLimit</a>( <span class="keywordtype">double</span> limit );
-<a name="l00289"></a>00289 
-<a name="l00297"></a>00297         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a788d68a666482683d69af3501c207fbc">setUnderVoltageLimit</a>( <span class="keywordtype">double</span> limit );
-<a name="l00298"></a>00298 
-<a name="l00311"></a>00311         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a95eb6e4403440ced1351fbfaed43014d">setShortCircuitDetectionThreshold</a>( <span class="keywordtype">int</span> value );
-<a name="l00312"></a>00312 
-<a name="l00321"></a>00321         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a801761aba7b2436f1314844ab4739b35">getMotorLimits</a>( <span class="keywordtype">int</span> &amp; m1Max, <span class="keywordtype">int</span> &amp; m2Max, <span class="keywordtype">int</span> &amp; m1Min, <span class="keywordtype">int</span> &amp; m2Min );
-<a name="l00322"></a>00322 
-<a name="l00323"></a>00323 
-<a name="l00324"></a>00324 <span class="keyword">private</span>:
-<a name="l00325"></a><a class="code" href="classMotorController.html#a965c13ed909b247aa049af8d1f81a3fa">00325</a>         mrpt::hwdrivers::CSerialPort <a class="code" href="classMotorController.html#a965c13ed909b247aa049af8d1f81a3fa">serialPort</a>;
-<a name="l00326"></a><a class="code" href="classMotorController.html#ab07154b32f858350e79073338c5fb0a0">00326</a>         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#ab07154b32f858350e79073338c5fb0a0" title="the serial port to communicate to the motor controller">echoEnabled</a>;                                               
-<a name="l00327"></a><a class="code" href="classMotorController.html#a14675813a64dbd8a7eed157daeb1fefe">00327</a>         <span class="keywordtype">int</span> <a class="code" href="classMotorController.html#a14675813a64dbd8a7eed157daeb1fefe" title="true if the motor controller is set to echo serial commands">motor1Speed</a>;                                                
-<a name="l00328"></a><a class="code" href="classMotorController.html#a3665fcfd337744fcb390790495dc7d21">00328</a>         <span class="keywordtype">int</span> <a class="code" href="classMotorController.html#a3665fcfd337744fcb390790495dc7d21" title="the current speed for the first channel motor">motor2Speed</a>;                                                
-<a name="l00329"></a><a class="code" href="classMotorController.html#a2e161244f84a5b62d776573106a647ae">00329</a>         <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classMotorController.html#a2e161244f84a5b62d776573106a647ae" title="the current speed for the second channel motor">motor1SpeedMax</a>;                               
-<a name="l00330"></a><a class="code" href="classMotorController.html#ad14dc02971beafa85221e7b1e3169ee8">00330</a>         <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classMotorController.html#ad14dc02971beafa85221e7b1e3169ee8" title="The hard upper limit for the first channel motor speed.">motor2SpeedMax</a>;                               
-<a name="l00331"></a><a class="code" href="classMotorController.html#a1503e84f2cb8161139908b00eb3b0337">00331</a>         <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classMotorController.html#a1503e84f2cb8161139908b00eb3b0337" title="The hard upper limit for the second channel motor speed.">motor1SpeedMin</a>;                               
-<a name="l00332"></a><a class="code" href="classMotorController.html#a6cc9fa102e7cfbeb3f068a6c1775ee50">00332</a>         <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classMotorController.html#a6cc9fa102e7cfbeb3f068a6c1775ee50" title="The hard lower limit for the first channel motor speed (lower limit would be the reverse speed)...">motor2SpeedMin</a>;                               
-<a name="l00333"></a><a class="code" href="classMotorController.html#aed8e1911d5e9378c57b4e196ed14803b">00333</a>         <span class="keywordtype">int</span> <a class="code" href="classMotorController.html#aed8e1911d5e9378c57b4e196ed14803b" title="The hard lower limit for the second channel motor speed.">faultFlagVector</a>;                                    
-<a name="l00334"></a>00334 
-<a name="l00342"></a>00342         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a3588f439d996a8e1205c7c63f07491c0" title="The fault flag status for the motor controller.">assertValidMotorRange</a>( <span class="keywordtype">int</span> max, <span class="keywordtype">int</span> min, <span class="keywordtype">int</span> value ) <span class="keyword">const</span>;
-<a name="l00343"></a>00343 
-<a name="l00347"></a>00347         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#ad9c49eacc6173b674540b85f42147bc3">assertValidVoltage</a>();
-<a name="l00348"></a>00348 
-<a name="l00354"></a>00354         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a664d01e694d26e9eadda61cba1106904">sendCommand</a>( std::string command );
-<a name="l00355"></a>00355 
-<a name="l00359"></a>00359         <span class="keywordtype">void</span> <a class="code" href="classMotorController.html#a776819f7159a2877a67ddc9b2a601f04">enableSerialEcho</a>();
-<a name="l00360"></a>00360 
-<a name="l00364"></a>00364         <span class="keywordtype">void</span> <a class="code" href="classMotorController.html#ae7514edeea060e1348252c2eefb671db">disableSerialEcho</a>();
-<a name="l00365"></a>00365 
-<a name="l00369"></a>00369         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a3e29ed83fa4aab0929bad6ea0bd4a541">getFaultFlags</a>();
-<a name="l00370"></a>00370 
-<a name="l00374"></a>00374         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a5722795a5fd7c063dacbc112f2eaf164">getStatusFlags</a>();
-<a name="l00375"></a>00375 
-<a name="l00380"></a>00380         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a951a0f783502ba09f9cfefc8748b2d54">getControlUnitType</a>();
-<a name="l00381"></a>00381 
-<a name="l00386"></a>00386         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a65bca5dbae5692790444ed022a308f8d">clearBufferHistory</a>();
-<a name="l00387"></a>00387 
-<a name="l00388"></a>00388         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a5e0c84fb2694afd02dd247abba0cfffb">responseParserDual</a>( <span class="keywordtype">int</span> &amp; t1, <span class="keywordtype">int</span> &amp; t2 );
-<a name="l00389"></a>00389 
-<a name="l00390"></a>00390         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a41309ac6d585cc0e96ac2e5c7369528d">responseParserTrio</a>( <span class="keywordtype">int</span> &amp; t1, <span class="keywordtype">int</span> &amp; t2, <span class="keywordtype">int</span> &amp; t3 );
-<a name="l00391"></a>00391 };
-<a name="l00392"></a>00392 
-<a name="l00393"></a>00393 <span class="preprocessor">#endif </span><span class="comment">/* MOTORCONTROLLER_H_ */</span>
+<a name="l00218"></a>00218         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a562d6fd1c4467b8bfaa09811c1c63d61">setTime</a>( <span class="keywordtype">int</span> hours, <span class="keywordtype">int</span> minutes, <span class="keywordtype">int</span> seconds );
+<a name="l00219"></a>00219 
+<a name="l00220"></a>00220 
+<a name="l00222"></a>00222         <span class="comment">//Motor Controller Read/Set configuration commands</span>
+<a name="l00224"></a>00224 <span class="comment"></span>
+<a name="l00244"></a>00244         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#ad7e89a362c89a6635601afd7bb5a07c3">setCommandLinearity</a>(<span class="keywordtype">int</span> linearity );
+<a name="l00245"></a>00245 
+<a name="l00259"></a>00259         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a01c222fdaca0c51b6dfee690519f8d5e">setCommandPriority</a>( <span class="keywordtype">int</span> signal, <span class="keywordtype">int</span> priority );
+<a name="l00260"></a>00260 
+<a name="l00267"></a>00267         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a1bd2f01ee902ffe914138de9768f23ac">setSerialWatchDogTimer</a>( <span class="keywordtype">int</span> time );
+<a name="l00268"></a>00268 
+<a name="l00274"></a>00274         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a3e5512b31b9ce56e0f57c39833d7b520">setEncoderPPR</a>( <span class="keywordtype">int</span> ppr );
+<a name="l00275"></a>00275 
+<a name="l00282"></a>00282         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a57b96decd2a22b90261c9f4526e4726c">setOverVoltageLimit</a>( <span class="keywordtype">double</span> limit );
+<a name="l00283"></a>00283 
+<a name="l00291"></a>00291         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a788d68a666482683d69af3501c207fbc">setUnderVoltageLimit</a>( <span class="keywordtype">double</span> limit );
+<a name="l00292"></a>00292 
+<a name="l00305"></a>00305         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a95eb6e4403440ced1351fbfaed43014d">setShortCircuitDetectionThreshold</a>( <span class="keywordtype">int</span> value );
+<a name="l00306"></a>00306 
+<a name="l00315"></a>00315         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a801761aba7b2436f1314844ab4739b35">getMotorLimits</a>( <span class="keywordtype">int</span> &amp; m1Max, <span class="keywordtype">int</span> &amp; m2Max, <span class="keywordtype">int</span> &amp; m1Min, <span class="keywordtype">int</span> &amp; m2Min );
+<a name="l00316"></a>00316 
+<a name="l00317"></a>00317 
+<a name="l00318"></a>00318 <span class="keyword">private</span>:
+<a name="l00328"></a>00328         <a class="code" href="classMotorController.html#ac7fb9a79ab4c361a161858e78d21dd0f">MotorController</a>( std::string <a class="code" href="classMotorController.html#acb948892359c218c757a3883bdecf274" title="Motor reset key used for sensitive operations.">portName</a> = <a class="code" href="classMotorController.html#acb948892359c218c757a3883bdecf274" title="Motor reset key used for sensitive operations.">MotorController::portName</a>, <span class="keywordtype">bool</span> enableEcho = <span class="keyword">true</span>, <span class="keywordtype">int</span> motor1Max = 800, <span class="keywordtype">int</span> motor2Max = 800,
+<a name="l00329"></a>00329                         <span class="keywordtype">int</span> motor1Min = -800, <span class="keywordtype">int</span> motor2Min = -800 );
+<a name="l00330"></a>00330 
+<a name="l00331"></a><a class="code" href="classMotorController.html#a965c13ed909b247aa049af8d1f81a3fa">00331</a>         mrpt::hwdrivers::CSerialPort <a class="code" href="classMotorController.html#a965c13ed909b247aa049af8d1f81a3fa">serialPort</a>;
+<a name="l00332"></a><a class="code" href="classMotorController.html#ab07154b32f858350e79073338c5fb0a0">00332</a>         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#ab07154b32f858350e79073338c5fb0a0" title="the serial port to communicate to the motor controller">echoEnabled</a>;                                               
+<a name="l00333"></a><a class="code" href="classMotorController.html#a14675813a64dbd8a7eed157daeb1fefe">00333</a>         <span class="keywordtype">int</span> <a class="code" href="classMotorController.html#a14675813a64dbd8a7eed157daeb1fefe" title="true if the motor controller is set to echo serial commands">motor1Speed</a>;                                                
+<a name="l00334"></a><a class="code" href="classMotorController.html#a3665fcfd337744fcb390790495dc7d21">00334</a>         <span class="keywordtype">int</span> <a class="code" href="classMotorController.html#a3665fcfd337744fcb390790495dc7d21" title="the current speed for the first channel motor">motor2Speed</a>;                                                
+<a name="l00335"></a><a class="code" href="classMotorController.html#a2e161244f84a5b62d776573106a647ae">00335</a>         <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classMotorController.html#a2e161244f84a5b62d776573106a647ae" title="the current speed for the second channel motor">motor1SpeedMax</a>;                               
+<a name="l00336"></a><a class="code" href="classMotorController.html#ad14dc02971beafa85221e7b1e3169ee8">00336</a>         <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classMotorController.html#ad14dc02971beafa85221e7b1e3169ee8" title="The hard upper limit for the first channel motor speed.">motor2SpeedMax</a>;                               
+<a name="l00337"></a><a class="code" href="classMotorController.html#a1503e84f2cb8161139908b00eb3b0337">00337</a>         <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classMotorController.html#a1503e84f2cb8161139908b00eb3b0337" title="The hard upper limit for the second channel motor speed.">motor1SpeedMin</a>;                               
+<a name="l00338"></a><a class="code" href="classMotorController.html#a6cc9fa102e7cfbeb3f068a6c1775ee50">00338</a>         <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classMotorController.html#a6cc9fa102e7cfbeb3f068a6c1775ee50" title="The hard lower limit for the first channel motor speed (lower limit would be the reverse speed)...">motor2SpeedMin</a>;                               
+<a name="l00339"></a><a class="code" href="classMotorController.html#aed8e1911d5e9378c57b4e196ed14803b">00339</a>         <span class="keywordtype">int</span> <a class="code" href="classMotorController.html#aed8e1911d5e9378c57b4e196ed14803b" title="The hard lower limit for the second channel motor speed.">faultFlagVector</a>;                                    
+<a name="l00340"></a>00340 <span class="keyword">protected</span>:
+<a name="l00341"></a><a class="code" href="classMotorController.html#a7ad77d84bdc1cb7fdfd1e3066f582fb2">00341</a>         <span class="keyword">static</span> <a class="code" href="classMotorController.html">MotorController</a> * <a class="code" href="classMotorController.html#a7ad77d84bdc1cb7fdfd1e3066f582fb2" title="The fault flag status for the motor controller.">mc</a>;                    
+<a name="l00342"></a>00342 
+<a name="l00343"></a>00343 <span class="keyword">private</span>:
+<a name="l00351"></a>00351         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a3588f439d996a8e1205c7c63f07491c0" title="The pointer to the instance of the motor controller.">assertValidMotorRange</a>( <span class="keywordtype">int</span> max, <span class="keywordtype">int</span> min, <span class="keywordtype">int</span> value ) <span class="keyword">const</span>;
+<a name="l00352"></a>00352 
+<a name="l00356"></a>00356         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#ad9c49eacc6173b674540b85f42147bc3">assertValidVoltage</a>();
+<a name="l00357"></a>00357 
+<a name="l00363"></a>00363         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a664d01e694d26e9eadda61cba1106904">sendCommand</a>( std::string command );
+<a name="l00364"></a>00364 
+<a name="l00368"></a>00368         <span class="keywordtype">void</span> <a class="code" href="classMotorController.html#a776819f7159a2877a67ddc9b2a601f04">enableSerialEcho</a>();
+<a name="l00369"></a>00369 
+<a name="l00373"></a>00373         <span class="keywordtype">void</span> <a class="code" href="classMotorController.html#ae7514edeea060e1348252c2eefb671db">disableSerialEcho</a>();
+<a name="l00374"></a>00374 
+<a name="l00378"></a>00378         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a3e29ed83fa4aab0929bad6ea0bd4a541">getFaultFlags</a>();
+<a name="l00379"></a>00379 
+<a name="l00383"></a>00383         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a5722795a5fd7c063dacbc112f2eaf164">getStatusFlags</a>();
+<a name="l00384"></a>00384 
+<a name="l00389"></a>00389         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a951a0f783502ba09f9cfefc8748b2d54">getControlUnitType</a>();
+<a name="l00390"></a>00390 
+<a name="l00395"></a>00395         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a65bca5dbae5692790444ed022a308f8d">clearBufferHistory</a>();
+<a name="l00396"></a>00396 
+<a name="l00397"></a>00397         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a5e0c84fb2694afd02dd247abba0cfffb">responseParserDual</a>( <span class="keywordtype">int</span> &amp; t1, <span class="keywordtype">int</span> &amp; t2 );
+<a name="l00398"></a>00398 
+<a name="l00399"></a>00399         <span class="keywordtype">bool</span> <a class="code" href="classMotorController.html#a41309ac6d585cc0e96ac2e5c7369528d">responseParserTrio</a>( <span class="keywordtype">int</span> &amp; t1, <span class="keywordtype">int</span> &amp; t2, <span class="keywordtype">int</span> &amp; t3 );
+<a name="l00400"></a>00400 };
+<a name="l00401"></a>00401 
+<a name="l00402"></a>00402 <span class="preprocessor">#endif </span><span class="comment">/* MOTORCONTROLLER_H_ */</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -182,7 +191,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -191,7 +200,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 23 2011 for YClops by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 10 2011 for YClops by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

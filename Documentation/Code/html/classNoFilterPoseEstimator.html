@@ -49,7 +49,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a>  </div>
   <div class="headertitle">
 <h1>NoFilterPoseEstimator Class Reference</h1>  </div>
 </div>
@@ -70,22 +71,29 @@ Inheritance diagram for NoFilterPoseEstimator:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNoFilterPoseEstimator.html#a246d50ee0a2f5510d769a65e65960eb4">NoFilterPoseEstimator</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNoFilterPoseEstimator.html#a011cd601e63fcf071b839a0f334c9311">~NoFilterPoseEstimator</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNoFilterPoseEstimator.html#a49db8dc97bbf1fd453de98922416af9d">NoFilterPoseEstimator</a> (bool inMeters=false)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNoFilterPoseEstimator.html#a9be31b8008cbfa3f2388165e271e6280">~NoFilterPoseEstimator</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNoFilterPoseEstimator.html#a2b797a23eb15cf2bff4a07eb2b5160f7">update</a> (mrpt::slam::CObservationGPSPtr gpsObsPtr, double yaw, double pitch, double roll)</td></tr>
+<tr><td colspan="2"><h2><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNoFilterPoseEstimator.html#a79267e9f2082a4b02adde50fb18b3e92">started</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNoFilterPoseEstimator.html#a72a5517bc92eb3bd9a883c0bb7395cce">Meters</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNoFilterPoseEstimator.html#afedbe7a846152a81d7f6bbb7399be831">StartLat</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNoFilterPoseEstimator.html#afe27f1688cdacfbc6a5cc7385806b4db">StartLon</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
 <p>Definition at line <a class="el" href="PoseEstimator_8h_source.html#l00031">31</a> of file <a class="el" href="PoseEstimator_8h_source.html">PoseEstimator.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a246d50ee0a2f5510d769a65e65960eb4"></a><!-- doxytag: member="NoFilterPoseEstimator::NoFilterPoseEstimator" ref="a246d50ee0a2f5510d769a65e65960eb4" args="()" -->
+<a class="anchor" id="a49db8dc97bbf1fd453de98922416af9d"></a><!-- doxytag: member="NoFilterPoseEstimator::NoFilterPoseEstimator" ref="a49db8dc97bbf1fd453de98922416af9d" args="(bool inMeters=false)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">NoFilterPoseEstimator::NoFilterPoseEstimator </td>
           <td>(</td>
-          <td class="paramname"></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>inMeters</em> = <code>false</code></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -93,14 +101,18 @@ Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Definition at line <a class="el" href="PoseEstimator_8cpp_source.html#l00031">31</a> of file <a class="el" href="PoseEstimator_8cpp_source.html">PoseEstimator.cpp</a>.</p>
+
+<p>References <a class="el" href="PoseEstimator_8h_source.html#l00036">started</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a011cd601e63fcf071b839a0f334c9311"></a><!-- doxytag: member="NoFilterPoseEstimator::~NoFilterPoseEstimator" ref="a011cd601e63fcf071b839a0f334c9311" args="()" -->
+<a class="anchor" id="a9be31b8008cbfa3f2388165e271e6280"></a><!-- doxytag: member="NoFilterPoseEstimator::~NoFilterPoseEstimator" ref="a9be31b8008cbfa3f2388165e271e6280" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual NoFilterPoseEstimator::~NoFilterPoseEstimator </td>
+          <td class="memname">NoFilterPoseEstimator::~NoFilterPoseEstimator </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -109,6 +121,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Definition at line <a class="el" href="PoseEstimator_8cpp_source.html#l00036">36</a> of file <a class="el" href="PoseEstimator_8cpp_source.html">PoseEstimator.cpp</a>.</p>
 
 </div>
 </div>
@@ -153,9 +167,78 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="classAbstractPoseEstimator.html#a6a2648a09adc501f8219e8e0c88ef79c">AbstractPoseEstimator</a>.</p>
 
-<p>Definition at line <a class="el" href="PoseEstimator_8cpp_source.html#l00031">31</a> of file <a class="el" href="PoseEstimator_8cpp_source.html">PoseEstimator.cpp</a>.</p>
+<p>Definition at line <a class="el" href="PoseEstimator_8cpp_source.html#l00041">41</a> of file <a class="el" href="PoseEstimator_8cpp_source.html">PoseEstimator.cpp</a>.</p>
 
-<p>References <a class="el" href="PoseEstimator_8h_source.html#l00028">AbstractPoseEstimator::poseEstimate</a>.</p>
+<p>References <a class="el" href="WaypointPlanner_8cpp_source.html#l00037">AbstractNavigationInterface::haversineDistance()</a>, <a class="el" href="PoseEstimator_8h_source.html#l00037">Meters</a>, <a class="el" href="PoseEstimator_8h_source.html#l00028">AbstractPoseEstimator::poseEstimate</a>, <a class="el" href="PoseEstimator_8h_source.html#l00036">started</a>, <a class="el" href="PoseEstimator_8h_source.html#l00038">StartLat</a>, and <a class="el" href="PoseEstimator_8h_source.html#l00039">StartLon</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a72a5517bc92eb3bd9a883c0bb7395cce"></a><!-- doxytag: member="NoFilterPoseEstimator::Meters" ref="a72a5517bc92eb3bd9a883c0bb7395cce" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classNoFilterPoseEstimator.html#a72a5517bc92eb3bd9a883c0bb7395cce">NoFilterPoseEstimator::Meters</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="PoseEstimator_8h_source.html#l00037">37</a> of file <a class="el" href="PoseEstimator_8h_source.html">PoseEstimator.h</a>.</p>
+
+<p>Referenced by <a class="el" href="PoseEstimator_8cpp_source.html#l00041">update()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a79267e9f2082a4b02adde50fb18b3e92"></a><!-- doxytag: member="NoFilterPoseEstimator::started" ref="a79267e9f2082a4b02adde50fb18b3e92" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classNoFilterPoseEstimator.html#a79267e9f2082a4b02adde50fb18b3e92">NoFilterPoseEstimator::started</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="PoseEstimator_8h_source.html#l00036">36</a> of file <a class="el" href="PoseEstimator_8h_source.html">PoseEstimator.h</a>.</p>
+
+<p>Referenced by <a class="el" href="PoseEstimator_8cpp_source.html#l00031">NoFilterPoseEstimator()</a>, and <a class="el" href="PoseEstimator_8cpp_source.html#l00041">update()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afedbe7a846152a81d7f6bbb7399be831"></a><!-- doxytag: member="NoFilterPoseEstimator::StartLat" ref="afedbe7a846152a81d7f6bbb7399be831" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double <a class="el" href="classNoFilterPoseEstimator.html#afedbe7a846152a81d7f6bbb7399be831">NoFilterPoseEstimator::StartLat</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="PoseEstimator_8h_source.html#l00038">38</a> of file <a class="el" href="PoseEstimator_8h_source.html">PoseEstimator.h</a>.</p>
+
+<p>Referenced by <a class="el" href="PoseEstimator_8cpp_source.html#l00041">update()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afe27f1688cdacfbc6a5cc7385806b4db"></a><!-- doxytag: member="NoFilterPoseEstimator::StartLon" ref="afe27f1688cdacfbc6a5cc7385806b4db" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double <a class="el" href="classNoFilterPoseEstimator.html#afe27f1688cdacfbc6a5cc7385806b4db">NoFilterPoseEstimator::StartLon</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="PoseEstimator_8h_source.html#l00039">39</a> of file <a class="el" href="PoseEstimator_8h_source.html">PoseEstimator.h</a>.</p>
+
+<p>Referenced by <a class="el" href="PoseEstimator_8cpp_source.html#l00041">update()</a>.</p>
 
 </div>
 </div>
@@ -169,7 +252,7 @@ Public Member Functions</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -178,7 +261,7 @@ Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 23 2011 for YClops by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 10 2011 for YClops by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -55,20 +55,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Here are the classes, structs, unions and interfaces with brief descriptions:<table>
   <tr><td class="indexkey"><a class="el" href="classAbstractNavigationInterface.html">AbstractNavigationInterface</a></td><td class="indexvalue">AbstractNavigationInterface.h - This file defines the classes relating to path planning </td></tr>
   <tr><td class="indexkey"><a class="el" href="classAbstractPoseEstimator.html">AbstractPoseEstimator</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="classCamera.html">Camera</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html">mrpt::reactivenav::YclopsNavigationSystem::CDynamicWindow</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="classCMyReactInterface.html">CMyReactInterface</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="classColorSegment.html">ColorSegment</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="classCompass.html">Compass</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="classDualMotorCommand.html">DualMotorCommand</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="classDummyMotorCommand.html">DummyMotorCommand</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="classGPS.html">GPS</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="classJoystickCommand.html">JoystickCommand</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="classMotorCommand.html">MotorCommand</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="classMotorCommandInterface.html">MotorCommandInterface</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="classMotorController.html">MotorController</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="classMyArtProvider.html">MyArtProvider</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="classNavigationChallenge.html">NavigationChallenge</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="classNoFilterPoseEstimator.html">NoFilterPoseEstimator</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="classSequentialNavigation.html">SequentialNavigation</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="classSimpleNavigation.html">SimpleNavigation</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html">mrpt::reactivenav::YclopsNavigationSystem::THolonomicMovement</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="classtkhl_1_1TSPAnt.html">tkhl::TSPAnt</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="classtkhl_1_1TSPDriver.html">tkhl::TSPDriver</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="classtkhl_1_1TSPGInfo.html">tkhl::TSPGInfo</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="classTSPNavigation.html">TSPNavigation</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="classWiiController.html">WiiController</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html">mrpt::reactivenav::YclopsNavigationSystem</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="classYclopsReactiveNavInterface.html">YclopsReactiveNavInterface</a></td><td class="indexvalue"></td></tr>
 </table>
@@ -78,7 +86,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:<ta
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -87,7 +95,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:<ta
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 23 2011 for YClops by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 10 2011 for YClops by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

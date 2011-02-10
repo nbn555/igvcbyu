@@ -62,36 +62,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00011"></a>00011 <span class="preprocessor">#include &quot;<a class="code" href="GPS_8h.html">GPS.h</a>&quot;</span>
 <a name="l00012"></a>00012 <span class="preprocessor">#include &quot;<a class="code" href="MotorCommand_8h.html">MotorCommand.h</a>&quot;</span>
 <a name="l00013"></a>00013 <span class="preprocessor">#include &quot;<a class="code" href="PoseEstimator_8h.html">PoseEstimator.h</a>&quot;</span>
-<a name="l00014"></a>00014 <span class="preprocessor">#include &lt;mrpt/hwdrivers/CCameraSensor.h&gt;</span>
-<a name="l00015"></a>00015 <span class="preprocessor">#include &lt;mrpt/reactivenav.h&gt;</span>
-<a name="l00016"></a>00016 
-<a name="l00017"></a>00017 <span class="preprocessor">#include &lt;mrpt/utils.h&gt;</span>
-<a name="l00018"></a>00018 <span class="preprocessor">#include &lt;mrpt/system/filesystem.h&gt;</span>
-<a name="l00019"></a>00019 
-<a name="l00020"></a>00020 <span class="keyword">using namespace </span>mrpt::hwdrivers;
-<a name="l00021"></a>00021 
-<a name="l00022"></a><a class="code" href="classYclopsReactiveNavInterface.html">00022</a> <span class="keyword">class </span><a class="code" href="classYclopsReactiveNavInterface.html">YclopsReactiveNavInterface</a>: <span class="keyword">public</span> mrpt::reactivenav::CReactiveInterfaceImplementation{
-<a name="l00023"></a>00023 <span class="keyword">private</span>:
-<a name="l00024"></a><a class="code" href="classYclopsReactiveNavInterface.html#a3639861eba80b3f2f906673d5302fd74">00024</a>         <a class="code" href="classGPS.html">GPS</a>* gps;
-<a name="l00025"></a><a class="code" href="classYclopsReactiveNavInterface.html#afe0ea8b475fa0c4909efdffe27e8c23f">00025</a>         <a class="code" href="classCompass.html">Compass</a>* compass;
-<a name="l00026"></a><a class="code" href="classYclopsReactiveNavInterface.html#a7511341f07866fa184cc26dde6a5fcf5">00026</a>         <a class="code" href="classMotorCommand.html">MotorCommand</a>* motor;
-<a name="l00027"></a><a class="code" href="classYclopsReactiveNavInterface.html#a4e6a1ebd364382018487cafe5e2137b8">00027</a>         <a class="code" href="classAbstractPoseEstimator.html">AbstractPoseEstimator</a>* poseEst;
-<a name="l00028"></a><a class="code" href="classYclopsReactiveNavInterface.html#ab3eeae8f1dca19625d99ce1d25e03a61">00028</a>         mrpt::hwdrivers::CCameraSensor* camera;
-<a name="l00029"></a><a class="code" href="classYclopsReactiveNavInterface.html#af39c84a9c90405c41fa96b04ebbae079">00029</a>         CPose3D* robotPose;
-<a name="l00030"></a>00030 
-<a name="l00031"></a><a class="code" href="classYclopsReactiveNavInterface.html#a004a6fdc0d51ac6f4d58560d033d6af1">00031</a>         <span class="keywordtype">float</span> curV;
-<a name="l00032"></a><a class="code" href="classYclopsReactiveNavInterface.html#ad629e9464b35d1d2e4bc3f81747c655d">00032</a>         <span class="keywordtype">float</span> curW;
-<a name="l00033"></a>00033 <span class="keyword">public</span>:
-<a name="l00034"></a>00034         <a class="code" href="classYclopsReactiveNavInterface.html">YclopsReactiveNavInterface</a>(mrpt::hwdrivers::CConfigFileBase&amp;, <span class="keywordtype">string</span>&amp;);
-<a name="l00035"></a>00035         <span class="keyword">virtual</span> ~<a class="code" href="classYclopsReactiveNavInterface.html">YclopsReactiveNavInterface</a>();
-<a name="l00036"></a>00036         <span class="keywordtype">bool</span> getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &amp;curPose, <span class="keywordtype">float</span> &amp;curV, <span class="keywordtype">float</span> &amp;curW);
-<a name="l00037"></a>00037         <span class="keywordtype">bool</span> changeSpeeds( <span class="keywordtype">float</span> v, <span class="keywordtype">float</span> w );
-<a name="l00038"></a>00038         <span class="keywordtype">bool</span> senseObstacles( mrpt::slam::CSimplePointsMap               &amp;obstacles );
-<a name="l00039"></a>00039 };
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041 <span class="preprocessor">#endif </span><span class="comment">/* YCLOPSREACTIVENAVINTERFACE_H_ */</span>
-<a name="l00042"></a>00042 
+<a name="l00014"></a>00014 <span class="preprocessor">#include &quot;<a class="code" href="MultiSensorLib_2inc_2Camera_8h.html">Camera.h</a>&quot;</span>
+<a name="l00015"></a>00015 <span class="preprocessor">#include &lt;mrpt/hwdrivers/CCameraSensor.h&gt;</span>
+<a name="l00016"></a>00016 <span class="preprocessor">#include &lt;mrpt/reactivenav.h&gt;</span>
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018 <span class="preprocessor">#include &lt;mrpt/utils.h&gt;</span>
+<a name="l00019"></a>00019 <span class="preprocessor">#include &lt;mrpt/system/filesystem.h&gt;</span>
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 <span class="keyword">using namespace </span>mrpt::hwdrivers;
+<a name="l00022"></a>00022 
+<a name="l00023"></a><a class="code" href="classYclopsReactiveNavInterface.html">00023</a> <span class="keyword">class </span><a class="code" href="classYclopsReactiveNavInterface.html">YclopsReactiveNavInterface</a>: <span class="keyword">public</span> mrpt::reactivenav::CReactiveInterfaceImplementation{
+<a name="l00024"></a>00024 <span class="keyword">private</span>:
+<a name="l00025"></a><a class="code" href="classYclopsReactiveNavInterface.html#a3639861eba80b3f2f906673d5302fd74">00025</a>         <a class="code" href="classGPS.html">GPS</a> * gps;
+<a name="l00026"></a><a class="code" href="classYclopsReactiveNavInterface.html#afe0ea8b475fa0c4909efdffe27e8c23f">00026</a>         <a class="code" href="classCompass.html">Compass</a> * compass;
+<a name="l00027"></a><a class="code" href="classYclopsReactiveNavInterface.html#a7df17e147dd795e79d09a1c63a89e309">00027</a>         <a class="code" href="classMotorCommandInterface.html">MotorCommandInterface</a> * motor;
+<a name="l00028"></a><a class="code" href="classYclopsReactiveNavInterface.html#a4e6a1ebd364382018487cafe5e2137b8">00028</a>         <a class="code" href="classAbstractPoseEstimator.html">AbstractPoseEstimator</a>* poseEst;
+<a name="l00029"></a><a class="code" href="classYclopsReactiveNavInterface.html#ae5b90b1f21a6e2271795b416c1d61c8f">00029</a>         <a class="code" href="classCamera.html">Camera</a> * camera;
+<a name="l00030"></a><a class="code" href="classYclopsReactiveNavInterface.html#af39c84a9c90405c41fa96b04ebbae079">00030</a>         CPose3D* robotPose;
+<a name="l00031"></a>00031 
+<a name="l00032"></a><a class="code" href="classYclopsReactiveNavInterface.html#a004a6fdc0d51ac6f4d58560d033d6af1">00032</a>         <span class="keywordtype">float</span> curV;
+<a name="l00033"></a><a class="code" href="classYclopsReactiveNavInterface.html#ad629e9464b35d1d2e4bc3f81747c655d">00033</a>         <span class="keywordtype">float</span> curW;
+<a name="l00034"></a>00034 <span class="keyword">public</span>:
+<a name="l00035"></a>00035         EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+<a name="l00036"></a>00036         <a class="code" href="classYclopsReactiveNavInterface.html">YclopsReactiveNavInterface</a>();
+<a name="l00037"></a>00037         <span class="keyword">virtual</span> ~<a class="code" href="classYclopsReactiveNavInterface.html">YclopsReactiveNavInterface</a>();
+<a name="l00038"></a>00038         <span class="keywordtype">bool</span> getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &amp;curPose, <span class="keywordtype">float</span> &amp;curV, <span class="keywordtype">float</span> &amp;curW);
+<a name="l00039"></a>00039         <span class="keywordtype">bool</span> changeSpeeds( <span class="keywordtype">float</span> v, <span class="keywordtype">float</span> w );
+<a name="l00040"></a>00040         <span class="keywordtype">bool</span> senseObstacles( mrpt::slam::CSimplePointsMap               &amp;obstacles );
+<a name="l00041"></a>00041         <span class="keywordtype">double</span> getHeading();
+<a name="l00042"></a>00042 };
 <a name="l00043"></a>00043 
+<a name="l00044"></a>00044 <span class="preprocessor">#endif </span><span class="comment">/* YCLOPSREACTIVENAVINTERFACE_H_ */</span>
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046 
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -99,7 +102,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -108,7 +111,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 23 2011 for YClops by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 10 2011 for YClops by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
