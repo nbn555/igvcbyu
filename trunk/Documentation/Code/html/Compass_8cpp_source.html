@@ -59,7 +59,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00008"></a>00008 <span class="preprocessor">#include &lt;cassert&gt;</span>
 <a name="l00009"></a>00009 
 <a name="l00010"></a>00010 <span class="preprocessor">#include &lt;boost/algorithm/string.hpp&gt;</span>
-<a name="l00011"></a>00011 
+<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;mrpt/utils/CConfigFile.h&gt;</span>
 <a name="l00012"></a>00012 <span class="preprocessor">#include &quot;<a class="code" href="Compass_8h.html">Compass.h</a>&quot;</span>
 <a name="l00013"></a>00013 
 <a name="l00014"></a>00014 <span class="keyword">using namespace </span>std;
@@ -68,104 +68,111 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00017"></a>00017 <span class="keyword">using namespace </span>mrpt::utils;
 <a name="l00018"></a>00018 <span class="keyword">using namespace </span>boost;
 <a name="l00019"></a>00019 
-<a name="l00020"></a><a class="code" href="classCompass.html#a37fcb14da8cf3a0e14ee981a09245173">00020</a> <a class="code" href="classCompass.html#a37fcb14da8cf3a0e14ee981a09245173">Compass::Compass</a>( <span class="keywordtype">bool</span> degrees, <span class="keyword">const</span> <span class="keywordtype">int</span> bufferLength ): degrees(degrees), yaw(0), pitch(0), roll(0), yawStatus(<span class="stringliteral">&quot;&quot;</span>), pitchStatus(<span class="stringliteral">&quot;&quot;</span>), rollStatus(<span class="stringliteral">&quot;&quot;</span>) {
+<a name="l00020"></a><a class="code" href="classCompass.html#ab6829f1c679c447f691b8019f03da4a4">00020</a> <a class="code" href="classCompass.html#ab6829f1c679c447f691b8019f03da4a4">Compass::Compass</a>( <span class="keywordtype">bool</span> degrees, <span class="keyword">const</span> <span class="keywordtype">int</span> bufferLength ): degrees(degrees), yaw(0), pitch(0), roll(0), yawStatus(<span class="stringliteral">&quot;&quot;</span>), pitchStatus(<span class="stringliteral">&quot;&quot;</span>), rollStatus(<span class="stringliteral">&quot;&quot;</span>) {
 <a name="l00021"></a>00021 }
 <a name="l00022"></a>00022 
-<a name="l00023"></a><a class="code" href="classCompass.html#a26c27c9b7bba5b3107f1c671bd6f31c9">00023</a> <a class="code" href="classCompass.html#a26c27c9b7bba5b3107f1c671bd6f31c9">Compass::~Compass</a>() {
+<a name="l00023"></a><a class="code" href="classCompass.html#a048fd8a349df26d162c41bc55dd30f26">00023</a> <a class="code" href="classCompass.html#ab6829f1c679c447f691b8019f03da4a4">Compass::Compass</a>( std::string iniFile ): degrees(0), yaw(0), pitch(0), roll(0), yawStatus(<span class="stringliteral">&quot;&quot;</span>), pitchStatus(<span class="stringliteral">&quot;&quot;</span>), rollStatus(<span class="stringliteral">&quot;&quot;</span>) {
 <a name="l00024"></a>00024 
-<a name="l00025"></a>00025 }
-<a name="l00026"></a>00026 
-<a name="l00027"></a><a class="code" href="classCompass.html#a07b374be4d4ef0ae97c3974095577c6d">00027</a> <span class="keywordtype">void</span> <a class="code" href="classCompass.html#a07b374be4d4ef0ae97c3974095577c6d">Compass::doProcess</a>() {
-<a name="l00028"></a>00028         <span class="keywordtype">string</span> data;
-<a name="l00029"></a>00029 
-<a name="l00030"></a>00030         <span class="keywordtype">bool</span> booleanness = <span class="keyword">true</span>;
-<a name="l00031"></a>00031         data = this-&gt;<a class="code" href="classCompass.html#a81fbdf70dfa17708221a0520748fc552">serialPort</a>.ReadString(100,&amp;booleanness, <span class="stringliteral">&quot;\n\r&quot;</span>);
-<a name="l00032"></a>00032         this-&gt;<a class="code" href="classCompass.html#a2106f0e362a74920030cb73f6e856f8e">parseResponse</a>(data);
+<a name="l00025"></a>00025         CConfigFile config(iniFile);
+<a name="l00026"></a>00026         this-&gt;loadConfig(config,<span class="stringliteral">&quot;COMPASS&quot;</span>);
+<a name="l00027"></a>00027         this-&gt;<a class="code" href="classCompass.html#a60f5569bd5573429abdb05c6b56e64b3">loadConfig_sensorSpecific</a>(config,<span class="stringliteral">&quot;COMPASS&quot;</span>);
+<a name="l00028"></a>00028         this-&gt;initialize();
+<a name="l00029"></a>00029         this-&gt;<a class="code" href="classCompass.html#a07b374be4d4ef0ae97c3974095577c6d">doProcess</a>();
+<a name="l00030"></a>00030 }
+<a name="l00031"></a>00031 
+<a name="l00032"></a><a class="code" href="classCompass.html#a26c27c9b7bba5b3107f1c671bd6f31c9">00032</a> <a class="code" href="classCompass.html#a26c27c9b7bba5b3107f1c671bd6f31c9">Compass::~Compass</a>() {
 <a name="l00033"></a>00033 
 <a name="l00034"></a>00034 }
 <a name="l00035"></a>00035 
-<a name="l00036"></a>00036 
-<a name="l00037"></a><a class="code" href="classCompass.html#a60f5569bd5573429abdb05c6b56e64b3">00037</a> <span class="keywordtype">void</span> <a class="code" href="classCompass.html#a60f5569bd5573429abdb05c6b56e64b3">Compass::loadConfig_sensorSpecific</a>( <span class="keyword">const</span> mrpt::utils::CConfigFileBase&amp; config, <span class="keyword">const</span> std::string&amp; sectionName ) {
+<a name="l00036"></a><a class="code" href="classCompass.html#a07b374be4d4ef0ae97c3974095577c6d">00036</a> <span class="keywordtype">void</span> <a class="code" href="classCompass.html#a07b374be4d4ef0ae97c3974095577c6d">Compass::doProcess</a>() {
+<a name="l00037"></a>00037         <span class="keywordtype">string</span> data;
 <a name="l00038"></a>00038 
-<a name="l00039"></a>00039         <span class="keywordtype">string</span> value = config.read_string(sectionName, <span class="stringliteral">&quot;COM_port_LIN&quot;</span>, <span class="stringliteral">&quot;/dev/ttyS1&quot;</span> );
-<a name="l00040"></a>00040         this-&gt;<a class="code" href="classCompass.html#a81fbdf70dfa17708221a0520748fc552">serialPort</a>.open(value);
-<a name="l00041"></a>00041 
-<a name="l00042"></a>00042         <span class="keywordtype">int</span> baudRate = config.read_int(sectionName, <span class="stringliteral">&quot;baudRate&quot;</span>, 19200 );
-<a name="l00043"></a>00043 
-<a name="l00044"></a>00044         this-&gt;<a class="code" href="classCompass.html#a81fbdf70dfa17708221a0520748fc552">serialPort</a>.setConfig( baudRate, 0, 8, 1 );
+<a name="l00039"></a>00039         <span class="keywordtype">bool</span> booleanness = <span class="keyword">true</span>;
+<a name="l00040"></a>00040         data = this-&gt;<a class="code" href="classCompass.html#a81fbdf70dfa17708221a0520748fc552">serialPort</a>.ReadString(100,&amp;booleanness, <span class="stringliteral">&quot;\n\r&quot;</span>);
+<a name="l00041"></a>00041         this-&gt;<a class="code" href="classCompass.html#a2106f0e362a74920030cb73f6e856f8e">parseResponse</a>(data);
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043 }
+<a name="l00044"></a>00044 
 <a name="l00045"></a>00045 
-<a name="l00046"></a>00046         <span class="keywordtype">string</span> writeValue = <span class="stringliteral">&quot;#FA0.3=0*27\n\r&quot;</span>;
-<a name="l00047"></a>00047         this-&gt;<a class="code" href="classCompass.html#a81fbdf70dfa17708221a0520748fc552">serialPort</a>.WriteBuffer(writeValue.c_str(), writeValue.length());
-<a name="l00048"></a>00048         <span class="keywordtype">string</span> readValue;
-<a name="l00049"></a>00049         <span class="keywordtype">bool</span> to = <span class="keyword">false</span>;
-<a name="l00050"></a>00050         readValue = this-&gt;<a class="code" href="classCompass.html#a81fbdf70dfa17708221a0520748fc552">serialPort</a>.ReadString(1000,&amp;to,<span class="stringliteral">&quot;\n\r&quot;</span>);
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 }
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054 <span class="comment">//TODO make this not return null.  I couldn&#39;t get it to work because it wants a pointer to the class constructor but the c++ standard says you cant do that.</span>
-<a name="l00055"></a><a class="code" href="classCompass.html#a66903e8adc5f0d4df772f9763e391704">00055</a> <span class="keyword">const</span> mrpt::hwdrivers::TSensorClassId* <a class="code" href="classCompass.html#a66903e8adc5f0d4df772f9763e391704">Compass::GetRuntimeClass</a>()<span class="keyword"> const </span>{
-<a name="l00056"></a>00056         <span class="keywordflow">return</span> NULL;<span class="comment">//static_cast&lt;      const mrpt::hwdrivers::TSensorClassId*&gt;( &amp; Compass::classCompass );</span>
-<a name="l00057"></a>00057 }
-<a name="l00058"></a>00058 
-<a name="l00059"></a><a class="code" href="classCompass.html#a2106f0e362a74920030cb73f6e856f8e">00059</a> <span class="keywordtype">void</span> <a class="code" href="classCompass.html#a2106f0e362a74920030cb73f6e856f8e">Compass::parseResponse</a>( <span class="keyword">const</span> std::string&amp; data ) {
-<a name="l00060"></a>00060 
-<a name="l00061"></a>00061         <span class="keywordtype">string</span> buffer = data;
-<a name="l00062"></a>00062         <span class="keywordtype">string</span> header = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00046"></a><a class="code" href="classCompass.html#a60f5569bd5573429abdb05c6b56e64b3">00046</a> <span class="keywordtype">void</span> <a class="code" href="classCompass.html#a60f5569bd5573429abdb05c6b56e64b3">Compass::loadConfig_sensorSpecific</a>( <span class="keyword">const</span> mrpt::utils::CConfigFileBase&amp; config, <span class="keyword">const</span> std::string&amp; sectionName ) {
+<a name="l00047"></a>00047 
+<a name="l00048"></a>00048         <span class="keywordtype">string</span> value = config.read_string(sectionName, <span class="stringliteral">&quot;COM_port_LIN&quot;</span>, <span class="stringliteral">&quot;/dev/ttyS1&quot;</span> );
+<a name="l00049"></a>00049         this-&gt;<a class="code" href="classCompass.html#a81fbdf70dfa17708221a0520748fc552">serialPort</a>.open(value);
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051         <span class="keywordtype">int</span> baudRate = config.read_int(sectionName, <span class="stringliteral">&quot;baudRate&quot;</span>, 19200 );
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053         this-&gt;<a class="code" href="classCompass.html#a81fbdf70dfa17708221a0520748fc552">serialPort</a>.setConfig( baudRate, 0, 8, 1 );
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055         <span class="keywordtype">string</span> writeValue = <span class="stringliteral">&quot;#FA0.3=1*26\n\r&quot;</span>;<span class="comment">//Command to turn on the compass</span>
+<a name="l00056"></a>00056         this-&gt;<a class="code" href="classCompass.html#a81fbdf70dfa17708221a0520748fc552">serialPort</a>.WriteBuffer(writeValue.c_str(), writeValue.length());
+<a name="l00057"></a>00057         <span class="keywordtype">string</span> readValue;
+<a name="l00058"></a>00058         <span class="keywordtype">bool</span> to = <span class="keyword">false</span>;
+<a name="l00059"></a>00059         readValue = this-&gt;<a class="code" href="classCompass.html#a81fbdf70dfa17708221a0520748fc552">serialPort</a>.ReadString(1000,&amp;to,<span class="stringliteral">&quot;\n\r&quot;</span>);
+<a name="l00060"></a>00060         this-&gt;<a class="code" href="classCompass.html#a9a31b5d126d7d1030bf738452dbb7422">degrees</a> = config.read_bool(<span class="stringliteral">&quot;COMPASS&quot;</span>,<span class="stringliteral">&quot;degrees&quot;</span>,<span class="keyword">false</span>);
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062 }
 <a name="l00063"></a>00063 
-<a name="l00064"></a>00064         <span class="comment">//TODO make this function call thread safe or put it in a mutex</span>
-<a name="l00065"></a>00065         this-&gt;<a class="code" href="classCompass.html#aabf8451561e0748b6de05a2cbd6ab780">reset</a>();
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067         boost::replace_all( buffer, <span class="stringliteral">&quot;,&quot;</span>, <span class="stringliteral">&quot; &quot;</span> );<span class="comment">//replace the commas with spaces so the stringstream parser will parse how we want</span>
-<a name="l00068"></a>00068         stringstream s(buffer);
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070         s &gt;&gt; header;
-<a name="l00071"></a>00071         s &gt;&gt; this-&gt;<a class="code" href="classCompass.html#af8cb0dcf45dce81c24d2a35ada12eb45">yaw</a>;
-<a name="l00072"></a>00072         s &gt;&gt; this-&gt;<a class="code" href="classCompass.html#ad8704f2c2d923aa98475c54706a093f8">yawStatus</a>;
-<a name="l00073"></a>00073         s &gt;&gt; this-&gt;<a class="code" href="classCompass.html#aed135b2b25c109b819b72c4a8465cf87">pitch</a>;
-<a name="l00074"></a>00074         s &gt;&gt; this-&gt;<a class="code" href="classCompass.html#a1e5d01f06358b912fd5338239a3eb1a5">pitchStatus</a>;
-<a name="l00075"></a>00075         s &gt;&gt; this-&gt;<a class="code" href="classCompass.html#ade61a0b94d1234f6778a2273eae6f254">roll</a>;
-<a name="l00076"></a>00076         s &gt;&gt; this-&gt;<a class="code" href="classCompass.html#a69f0af6d7cad35ead95df91a8a1c5d83">rollStatus</a>;
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078 }
-<a name="l00079"></a>00079 
-<a name="l00080"></a><a class="code" href="classCompass.html#aabf8451561e0748b6de05a2cbd6ab780">00080</a> <span class="keywordtype">void</span> <a class="code" href="classCompass.html#aabf8451561e0748b6de05a2cbd6ab780">Compass::reset</a>() {
-<a name="l00081"></a>00081         this-&gt;<a class="code" href="classCompass.html#af8cb0dcf45dce81c24d2a35ada12eb45">yaw</a> = 0;
-<a name="l00082"></a>00082         this-&gt;<a class="code" href="classCompass.html#aed135b2b25c109b819b72c4a8465cf87">pitch</a> = 0;
-<a name="l00083"></a>00083         this-&gt;<a class="code" href="classCompass.html#ade61a0b94d1234f6778a2273eae6f254">roll</a> = 0;
-<a name="l00084"></a>00084         this-&gt;<a class="code" href="classCompass.html#ad8704f2c2d923aa98475c54706a093f8">yawStatus</a> = <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00085"></a>00085         this-&gt;<a class="code" href="classCompass.html#a1e5d01f06358b912fd5338239a3eb1a5">pitchStatus</a> = <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00086"></a>00086         this-&gt;<a class="code" href="classCompass.html#a69f0af6d7cad35ead95df91a8a1c5d83">rollStatus</a> = <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00087"></a>00087 }
-<a name="l00088"></a>00088 
-<a name="l00089"></a><a class="code" href="classCompass.html#a7378a0bf602363119e1dec72514be139">00089</a> std::string <a class="code" href="classCompass.html#a7378a0bf602363119e1dec72514be139">Compass::computeChecksum</a>( <span class="keyword">const</span> std::string &amp; sentence ) {
-<a name="l00090"></a>00090 
-<a name="l00091"></a>00091         <span class="keyword">const</span> <span class="keywordtype">int</span> strLen = sentence.length();
-<a name="l00092"></a>00092 
-<a name="l00093"></a>00093         <span class="keywordtype">int</span> i = 0, j = 0;
-<a name="l00094"></a>00094         <span class="keywordflow">for</span>( i = 0; i &lt; strLen &amp;&amp; <span class="charliteral">&#39;$&#39;</span> != sentence.at(i) &amp;&amp; <span class="charliteral">&#39;#&#39;</span> != sentence.at(i); ++i );
-<a name="l00095"></a>00095         <span class="keywordflow">if</span>( strLen &lt;= i ) <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097         ++i;
-<a name="l00098"></a>00098         <span class="keywordflow">for</span>( j = i; j &lt; strLen &amp;&amp; <span class="charliteral">&#39;*&#39;</span> != sentence.at(j); ++j );
-<a name="l00099"></a>00099         <span class="keywordflow">if</span>( strLen &lt;= j ) <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101         <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> checksum = 0;
-<a name="l00102"></a>00102         <span class="keywordflow">for</span>( ; i != j; ++i ) checksum ^= sentence.at(i);
+<a name="l00064"></a>00064 <span class="comment">//TODO make this not return null.  I couldn&#39;t get it to work because it wants a pointer to the class constructor but the c++ standard says you cant do that.</span>
+<a name="l00065"></a><a class="code" href="classCompass.html#a66903e8adc5f0d4df772f9763e391704">00065</a> <span class="keyword">const</span> mrpt::hwdrivers::TSensorClassId* <a class="code" href="classCompass.html#a66903e8adc5f0d4df772f9763e391704">Compass::GetRuntimeClass</a>()<span class="keyword"> const </span>{
+<a name="l00066"></a>00066         <span class="keywordflow">return</span> NULL;<span class="comment">//static_cast&lt;      const mrpt::hwdrivers::TSensorClassId*&gt;( &amp; Compass::classCompass );</span>
+<a name="l00067"></a>00067 }
+<a name="l00068"></a>00068 
+<a name="l00069"></a><a class="code" href="classCompass.html#a2106f0e362a74920030cb73f6e856f8e">00069</a> <span class="keywordtype">void</span> <a class="code" href="classCompass.html#a2106f0e362a74920030cb73f6e856f8e">Compass::parseResponse</a>( <span class="keyword">const</span> std::string&amp; data ) {
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071         <span class="keywordtype">string</span> buffer = data;
+<a name="l00072"></a>00072         <span class="keywordtype">string</span> header = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074         boost::replace_all( buffer, <span class="stringliteral">&quot;,&quot;</span>, <span class="stringliteral">&quot; &quot;</span> );<span class="comment">//replace the commas with spaces so the stringstream parser will parse how we want</span>
+<a name="l00075"></a>00075         stringstream s(buffer);
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077         s &gt;&gt; header;
+<a name="l00078"></a>00078         s &gt;&gt; this-&gt;<a class="code" href="classCompass.html#af8cb0dcf45dce81c24d2a35ada12eb45">yaw</a>;
+<a name="l00079"></a>00079         s &gt;&gt; this-&gt;<a class="code" href="classCompass.html#ad8704f2c2d923aa98475c54706a093f8">yawStatus</a>;
+<a name="l00080"></a>00080         s &gt;&gt; this-&gt;<a class="code" href="classCompass.html#aed135b2b25c109b819b72c4a8465cf87">pitch</a>;
+<a name="l00081"></a>00081         s &gt;&gt; this-&gt;<a class="code" href="classCompass.html#a1e5d01f06358b912fd5338239a3eb1a5">pitchStatus</a>;
+<a name="l00082"></a>00082         s &gt;&gt; this-&gt;<a class="code" href="classCompass.html#ade61a0b94d1234f6778a2273eae6f254">roll</a>;
+<a name="l00083"></a>00083         s &gt;&gt; this-&gt;<a class="code" href="classCompass.html#a69f0af6d7cad35ead95df91a8a1c5d83">rollStatus</a>;
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085 }
+<a name="l00086"></a>00086 
+<a name="l00087"></a><a class="code" href="classCompass.html#aabf8451561e0748b6de05a2cbd6ab780">00087</a> <span class="keywordtype">void</span> <a class="code" href="classCompass.html#aabf8451561e0748b6de05a2cbd6ab780">Compass::reset</a>() {
+<a name="l00088"></a>00088         this-&gt;<a class="code" href="classCompass.html#af8cb0dcf45dce81c24d2a35ada12eb45">yaw</a> = 0;
+<a name="l00089"></a>00089         this-&gt;<a class="code" href="classCompass.html#aed135b2b25c109b819b72c4a8465cf87">pitch</a> = 0;
+<a name="l00090"></a>00090         this-&gt;<a class="code" href="classCompass.html#ade61a0b94d1234f6778a2273eae6f254">roll</a> = 0;
+<a name="l00091"></a>00091         this-&gt;<a class="code" href="classCompass.html#ad8704f2c2d923aa98475c54706a093f8">yawStatus</a> = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00092"></a>00092         this-&gt;<a class="code" href="classCompass.html#a1e5d01f06358b912fd5338239a3eb1a5">pitchStatus</a> = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00093"></a>00093         this-&gt;<a class="code" href="classCompass.html#a69f0af6d7cad35ead95df91a8a1c5d83">rollStatus</a> = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00094"></a>00094 }
+<a name="l00095"></a>00095 
+<a name="l00096"></a><a class="code" href="classCompass.html#a7378a0bf602363119e1dec72514be139">00096</a> std::string <a class="code" href="classCompass.html#a7378a0bf602363119e1dec72514be139">Compass::computeChecksum</a>( <span class="keyword">const</span> std::string &amp; sentence ) {
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098         <span class="keyword">const</span> <span class="keywordtype">int</span> strLen = sentence.length();
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100         <span class="keywordtype">int</span> i = 0, j = 0;
+<a name="l00101"></a>00101         <span class="keywordflow">for</span>( i = 0; i &lt; strLen &amp;&amp; <span class="charliteral">&#39;$&#39;</span> != sentence.at(i) &amp;&amp; <span class="charliteral">&#39;#&#39;</span> != sentence.at(i); ++i );
+<a name="l00102"></a>00102         <span class="keywordflow">if</span>( strLen &lt;= i ) <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;
 <a name="l00103"></a>00103 
-<a name="l00104"></a>00104         <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> high = (checksum &amp; 0xF0) &gt;&gt; 4;
-<a name="l00105"></a>00105         <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> low = checksum &amp; 0x0F;
-<a name="l00106"></a>00106 
-<a name="l00107"></a>00107         <span class="keywordflow">if</span>( 0 &lt;= high &amp;&amp; high &lt;= 9 ) high += 0x30;
-<a name="l00108"></a>00108         <span class="keywordflow">else</span> <span class="keywordflow">if</span>( 10 &lt;= high &amp;&amp; high &lt;= 15 ) high += 0x40;
-<a name="l00109"></a>00109 
-<a name="l00110"></a>00110         <span class="keywordflow">if</span>( 0 &lt;= low &amp;&amp; low &lt;= 9 ) low += 0x30;
-<a name="l00111"></a>00111         <span class="keywordflow">else</span> <span class="keywordflow">if</span>( 10 &lt;= low &amp;&amp; low &lt;= 15 ) low += 0x40;
-<a name="l00112"></a>00112 
-<a name="l00113"></a>00113         stringstream stream;
-<a name="l00114"></a>00114         stream &lt;&lt; high;
-<a name="l00115"></a>00115         stream &lt;&lt; low;
-<a name="l00116"></a>00116         <span class="keywordflow">return</span> stream.str();
-<a name="l00117"></a>00117 }
+<a name="l00104"></a>00104         ++i;
+<a name="l00105"></a>00105         <span class="keywordflow">for</span>( j = i; j &lt; strLen &amp;&amp; <span class="charliteral">&#39;*&#39;</span> != sentence.at(j); ++j );
+<a name="l00106"></a>00106         <span class="keywordflow">if</span>( strLen &lt;= j ) <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00107"></a>00107 
+<a name="l00108"></a>00108         <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> checksum = 0;
+<a name="l00109"></a>00109         <span class="keywordflow">for</span>( ; i != j; ++i ) checksum ^= sentence.at(i);
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111         <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> high = (checksum &amp; 0xF0) &gt;&gt; 4;
+<a name="l00112"></a>00112         <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> low = checksum &amp; 0x0F;
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114         <span class="keywordflow">if</span>( 0 &lt;= high &amp;&amp; high &lt;= 9 ) high += 0x30;
+<a name="l00115"></a>00115         <span class="keywordflow">else</span> <span class="keywordflow">if</span>( 10 &lt;= high &amp;&amp; high &lt;= 15 ) high += 0x40;
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117         <span class="keywordflow">if</span>( 0 &lt;= low &amp;&amp; low &lt;= 9 ) low += 0x30;
+<a name="l00118"></a>00118         <span class="keywordflow">else</span> <span class="keywordflow">if</span>( 10 &lt;= low &amp;&amp; low &lt;= 15 ) low += 0x40;
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120         stringstream stream;
+<a name="l00121"></a>00121         stream &lt;&lt; high;
+<a name="l00122"></a>00122         stream &lt;&lt; low;
+<a name="l00123"></a>00123         <span class="keywordflow">return</span> stream.str();
+<a name="l00124"></a>00124 }
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -173,7 +180,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -182,7 +189,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 23 2011 for YClops by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 10 2011 for YClops by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

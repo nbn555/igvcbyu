@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
+<a href="#define-members">Defines</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -66,6 +67,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p><a href="Sensors_2GPS_2main_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr><td colspan="2"><h2><a name="define-members"></a>
+Defines</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sensors_2GPS_2main_8cpp.html#a0492c4557ef9b88f68d0a0bc7a2d0e97">length</a>&nbsp;&nbsp;&nbsp;7</td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sensors_2GPS_2main_8cpp.html#a57b386078eac3ec3b9964dfae91da26c">GetGpsSpeed</a> ()</td></tr>
@@ -73,12 +77,32 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sensors_2GPS_2main_8cpp.html#afe708f145486e526fb3cffd85f978552">GetGpsLat</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sensors_2GPS_2main_8cpp.html#a223f7864bc42cf23a8972574b0c8c1dc">GetGpsLon</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sensors_2GPS_2main_8cpp.html#aca23f2e105a0fe470b169654899da2a5">GetDistanceToWaypoint</a> (double lon, double lat)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sensors_2GPS_2main_8cpp.html#a420bd3a038faecfb59a43c7573a1dead">GetDistanceToWaypoint</a> (double lon1, double lat1, double lon2, double lat2)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sensors_2GPS_2main_8cpp.html#a33012a91451c27294b93bc25859fbacf">GetDistanceToWaypoint</a> (double lat1, double lon1, double lat2, double lon2)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sensors_2GPS_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">CObservationGPSPtr&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sensors_2GPS_2main_8cpp.html#a2cea241b1cb0ed880d8df9c40e582a11">gpsData</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sensors_2GPS_2main_8cpp.html#a4323e2f873a28952527e4ad226bf8e39">TESTING</a> = true</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sensors_2GPS_2main_8cpp.html#ac149583f922d78a573f3d3941e0ce499">PrevPosLat</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sensors_2GPS_2main_8cpp.html#a492a69ec36641c2fc55ab3d53e29b6aa">PrevPosLon</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sensors_2GPS_2main_8cpp.html#a164abe9af8a746141046ec32e0140900">metersToFeet</a> = 3.2808399</td></tr>
 </table>
+<hr/><h2>Define Documentation</h2>
+<a class="anchor" id="a0492c4557ef9b88f68d0a0bc7a2d0e97"></a><!-- doxytag: member="main.cpp::length" ref="a0492c4557ef9b88f68d0a0bc7a2d0e97" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define length&nbsp;&nbsp;&nbsp;7</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00023">23</a> of file <a class="el" href="Sensors_2GPS_2main_8cpp_source.html">main.cpp</a>.</p>
+
+</div>
+</div>
 <hr/><h2>Function Documentation</h2>
 <a class="anchor" id="aca23f2e105a0fe470b169654899da2a5"></a><!-- doxytag: member="main.cpp::GetDistanceToWaypoint" ref="aca23f2e105a0fe470b169654899da2a5" args="(double lon, double lat)" -->
 <div class="memitem">
@@ -105,13 +129,15 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00061">61</a> of file <a class="el" href="Sensors_2GPS_2main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00069">69</a> of file <a class="el" href="Sensors_2GPS_2main_8cpp_source.html">main.cpp</a>.</p>
 
-<p>References <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00030">gpsData</a>, and <a class="el" href="WaypointPlanner_8cpp_source.html#l00037">AbstractNavigationInterface::haversineDistance()</a>.</p>
+<p>References <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00033">gpsData</a>, and <a class="el" href="WaypointPlanner_8cpp_source.html#l00037">AbstractNavigationInterface::haversineDistance()</a>.</p>
+
+<p>Referenced by <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00078">main()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a420bd3a038faecfb59a43c7573a1dead"></a><!-- doxytag: member="main.cpp::GetDistanceToWaypoint" ref="a420bd3a038faecfb59a43c7573a1dead" args="(double lon1, double lat1, double lon2, double lat2)" -->
+<a class="anchor" id="a33012a91451c27294b93bc25859fbacf"></a><!-- doxytag: member="main.cpp::GetDistanceToWaypoint" ref="a33012a91451c27294b93bc25859fbacf" args="(double lat1, double lon1, double lat2, double lon2)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -119,25 +145,25 @@ Variables</h2></td></tr>
           <td class="memname">double GetDistanceToWaypoint </td>
           <td>(</td>
           <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>lon1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
           <td class="paramname"> <em>lat1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>lon2</em>, </td>
+          <td class="paramname"> <em>lon1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>lat2</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>lat2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>lon2</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -148,7 +174,7 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00065">65</a> of file <a class="el" href="Sensors_2GPS_2main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00073">73</a> of file <a class="el" href="Sensors_2GPS_2main_8cpp_source.html">main.cpp</a>.</p>
 
 <p>References <a class="el" href="WaypointPlanner_8cpp_source.html#l00037">AbstractNavigationInterface::haversineDistance()</a>.</p>
 
@@ -169,9 +195,9 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00041">41</a> of file <a class="el" href="Sensors_2GPS_2main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00049">49</a> of file <a class="el" href="Sensors_2GPS_2main_8cpp_source.html">main.cpp</a>.</p>
 
-<p>References <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00030">gpsData</a>.</p>
+<p>References <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00033">gpsData</a>.</p>
 
 </div>
 </div>
@@ -190,9 +216,9 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00047">47</a> of file <a class="el" href="Sensors_2GPS_2main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00055">55</a> of file <a class="el" href="Sensors_2GPS_2main_8cpp_source.html">main.cpp</a>.</p>
 
-<p>References <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00030">gpsData</a>.</p>
+<p>References <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00033">gpsData</a>.</p>
 
 </div>
 </div>
@@ -211,9 +237,9 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00054">54</a> of file <a class="el" href="Sensors_2GPS_2main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00062">62</a> of file <a class="el" href="Sensors_2GPS_2main_8cpp_source.html">main.cpp</a>.</p>
 
-<p>References <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00030">gpsData</a>.</p>
+<p>References <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00033">gpsData</a>.</p>
 
 </div>
 </div>
@@ -232,9 +258,9 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00036">36</a> of file <a class="el" href="Sensors_2GPS_2main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00044">44</a> of file <a class="el" href="Sensors_2GPS_2main_8cpp_source.html">main.cpp</a>.</p>
 
-<p>References <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00030">gpsData</a>.</p>
+<p>References <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00033">gpsData</a>.</p>
 
 </div>
 </div>
@@ -253,9 +279,9 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00069">69</a> of file <a class="el" href="Sensors_2GPS_2main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00078">78</a> of file <a class="el" href="Sensors_2GPS_2main_8cpp_source.html">main.cpp</a>.</p>
 
-<p>References <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00030">gpsData</a>, <a class="el" href="GPS_8cpp_source.html#l00024">GPS::initConfig()</a>, <a class="el" href="GPS_8cpp_source.html#l00035">GPS::initialize()</a>, <a class="el" href="GPS_8h_source.html#l00020">GPS::usesGpgga()</a>, and <a class="el" href="GPS_8h_source.html#l00021">GPS::usesGprmc()</a>.</p>
+<p>References <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00069">GetDistanceToWaypoint()</a>, <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00033">gpsData</a>, <a class="el" href="GPS_8cpp_source.html#l00024">GPS::initConfig()</a>, <a class="el" href="GPS_8cpp_source.html#l00035">GPS::initialize()</a>, <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00039">metersToFeet</a>, <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00037">PrevPosLat</a>, <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00038">PrevPosLon</a>, <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00035">TESTING</a>, <a class="el" href="GPS_8h_source.html#l00020">GPS::usesGpgga()</a>, and <a class="el" href="GPS_8h_source.html#l00021">GPS::usesGprmc()</a>.</p>
 
 </div>
 </div>
@@ -271,9 +297,77 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00030">30</a> of file <a class="el" href="Sensors_2GPS_2main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00033">33</a> of file <a class="el" href="Sensors_2GPS_2main_8cpp_source.html">main.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00047">YclopsReactiveNavInterface::getCurrentPoseAndSpeeds()</a>, <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00061">GetDistanceToWaypoint()</a>, <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00041">GetGpsDirection()</a>, <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00047">GetGpsLat()</a>, <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00054">GetGpsLon()</a>, <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00036">GetGpsSpeed()</a>, and <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00069">main()</a>.</p>
+<p>Referenced by <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00102">YclopsReactiveNavInterface::getCurrentPoseAndSpeeds()</a>, <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00069">GetDistanceToWaypoint()</a>, <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00049">GetGpsDirection()</a>, <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00055">GetGpsLat()</a>, <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00062">GetGpsLon()</a>, <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00044">GetGpsSpeed()</a>, <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00078">main()</a>, and <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00017">YclopsReactiveNavInterface::YclopsReactiveNavInterface()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a164abe9af8a746141046ec32e0140900"></a><!-- doxytag: member="main.cpp::metersToFeet" ref="a164abe9af8a746141046ec32e0140900" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double <a class="el" href="Sensors_2GPS_2main_8cpp.html#a164abe9af8a746141046ec32e0140900">metersToFeet</a> = 3.2808399</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00039">39</a> of file <a class="el" href="Sensors_2GPS_2main_8cpp_source.html">main.cpp</a>.</p>
+
+<p>Referenced by <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00078">main()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac149583f922d78a573f3d3941e0ce499"></a><!-- doxytag: member="main.cpp::PrevPosLat" ref="ac149583f922d78a573f3d3941e0ce499" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double <a class="el" href="Sensors_2GPS_2main_8cpp.html#ac149583f922d78a573f3d3941e0ce499">PrevPosLat</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00037">37</a> of file <a class="el" href="Sensors_2GPS_2main_8cpp_source.html">main.cpp</a>.</p>
+
+<p>Referenced by <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00078">main()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a492a69ec36641c2fc55ab3d53e29b6aa"></a><!-- doxytag: member="main.cpp::PrevPosLon" ref="a492a69ec36641c2fc55ab3d53e29b6aa" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double <a class="el" href="Sensors_2GPS_2main_8cpp.html#a492a69ec36641c2fc55ab3d53e29b6aa">PrevPosLon</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00038">38</a> of file <a class="el" href="Sensors_2GPS_2main_8cpp_source.html">main.cpp</a>.</p>
+
+<p>Referenced by <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00078">main()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4323e2f873a28952527e4ad226bf8e39"></a><!-- doxytag: member="main.cpp::TESTING" ref="a4323e2f873a28952527e4ad226bf8e39" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="Sensors_2GPS_2main_8cpp.html#a4323e2f873a28952527e4ad226bf8e39">TESTING</a> = true</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00035">35</a> of file <a class="el" href="Sensors_2GPS_2main_8cpp_source.html">main.cpp</a>.</p>
+
+<p>Referenced by <a class="el" href="Sensors_2GPS_2main_8cpp_source.html#l00078">main()</a>.</p>
 
 </div>
 </div>
@@ -283,7 +377,7 @@ Variables</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -292,7 +386,7 @@ Variables</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 23 2011 for YClops by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 10 2011 for YClops by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

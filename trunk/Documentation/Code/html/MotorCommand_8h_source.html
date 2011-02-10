@@ -60,22 +60,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00009"></a>00009 <span class="preprocessor"></span><span class="preprocessor">#define MOTORCOMMANDS_H_</span>
 <a name="l00010"></a>00010 <span class="preprocessor"></span>
 <a name="l00011"></a>00011 <span class="preprocessor">#include &quot;<a class="code" href="MotorCommandInterface_8h.html" title=": an interface for the a device that sends commands to the motor controller.">MotorCommandInterface.h</a>&quot;</span>
-<a name="l00012"></a>00012 <span class="preprocessor">#include &quot;<a class="code" href="MotorController_8h.html" title="Written for the purpose of the interfacing with the RoboteQ 2440 motor controller for the BYU 2010-20...">MotorController.h</a>&quot;</span>
-<a name="l00013"></a>00013 
-<a name="l00014"></a><a class="code" href="classMotorCommand.html">00014</a> <span class="keyword">class </span><a class="code" href="classMotorCommand.html">MotorCommand</a>: <span class="keyword">public</span> <a class="code" href="classMotorCommandInterface.html">MotorCommandInterface</a> {
-<a name="l00015"></a>00015 <span class="keyword">public</span>:
-<a name="l00016"></a>00016         <a class="code" href="classMotorCommand.html#a1775ddae9525730269b07c0512389340">MotorCommand</a>( <a class="code" href="classMotorController.html">MotorController</a> * mC, <span class="keywordtype">double</span> lC=1, <span class="keywordtype">double</span> aC=.5 );
-<a name="l00017"></a>00017         <span class="keyword">virtual</span> <a class="code" href="classMotorCommand.html#a250ba2bca307505d137ce7ff5f572e95">~MotorCommand</a>();
-<a name="l00018"></a>00018 
-<a name="l00019"></a>00019         <span class="keywordtype">void</span> <a class="code" href="classMotorCommand.html#a385dbcf1effa4ffa37aef719eea5dd33">doProcess</a>();
-<a name="l00020"></a>00020 
-<a name="l00021"></a>00021         <span class="keywordtype">bool</span> <a class="code" href="classMotorCommand.html#a5cece72d3ee25f0c2732f8a206668766">Go</a>(<span class="keywordtype">float</span> linear, <span class="keywordtype">float</span> angular);
-<a name="l00022"></a>00022 
-<a name="l00023"></a>00023 <span class="keyword">private</span>:
-<a name="l00024"></a><a class="code" href="classMotorCommand.html#a9e43a7c6107fbe9368e5adac28120ee5">00024</a>         <span class="keywordtype">double</span> <a class="code" href="classMotorCommand.html#a9e43a7c6107fbe9368e5adac28120ee5">linearConst</a>, <a class="code" href="classMotorCommand.html#ab7979132991866be724233f4ddbb6187">angConst</a>;
-<a name="l00025"></a>00025 };
-<a name="l00026"></a>00026 
-<a name="l00027"></a>00027 <span class="preprocessor">#endif </span><span class="comment">/* MOTORCOMMANDS_H_ */</span>
+<a name="l00012"></a>00012 
+<a name="l00013"></a><a class="code" href="classMotorCommand.html">00013</a> <span class="keyword">class </span><a class="code" href="classMotorCommand.html">MotorCommand</a>: <span class="keyword">public</span> <a class="code" href="classMotorCommandInterface.html">MotorCommandInterface</a> {
+<a name="l00014"></a>00014 <span class="keyword">public</span>:
+<a name="l00015"></a>00015         <a class="code" href="classMotorCommand.html#a774a185c24a6b6bb8f21ded7e95ebc31">MotorCommand</a>( <span class="keywordtype">double</span> lC=400, <span class="keywordtype">double</span> aC=200 );
+<a name="l00016"></a>00016         <span class="keyword">virtual</span> <a class="code" href="classMotorCommand.html#a250ba2bca307505d137ce7ff5f572e95">~MotorCommand</a>();
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018         <span class="keywordtype">void</span> <a class="code" href="classMotorCommand.html#a385dbcf1effa4ffa37aef719eea5dd33">doProcess</a>();
+<a name="l00019"></a>00019 
+<a name="l00020"></a><a class="code" href="classMotorCommand.html#a9e43a7c6107fbe9368e5adac28120ee5">00020</a> <span class="keyword">private</span>:
+<a name="l00021"></a>00021         <span class="keywordtype">double</span> <a class="code" href="classMotorCommand.html#a9e43a7c6107fbe9368e5adac28120ee5">linearConst</a>, <a class="code" href="classMotorCommand.html#ab7979132991866be724233f4ddbb6187">angConst</a>;
+<a name="l00022"></a>00022 };
+<a name="l00023"></a>00023 
+<a name="l00024"></a>00024 <span class="preprocessor">#endif </span><span class="comment">/* MOTORCOMMANDS_H_ */</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -83,7 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -92,7 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 23 2011 for YClops by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 10 2011 for YClops by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

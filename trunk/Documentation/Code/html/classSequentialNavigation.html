@@ -72,8 +72,9 @@ Inheritance diagram for SequentialNavigation:</div>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequentialNavigation.html#a8092a340d94a2edabbeb0ee725230d81">SequentialNavigation</a> (double lat, double lon)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequentialNavigation.html#ae6ca19d3d08e850b87b3922300260807">~SequentialNavigation</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::vector<br class="typebreak"/>
-&lt; mrpt::poses::CPoint2D &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequentialNavigation.html#ac1924975929eb005bcbda432e5c7f909">solve</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">mrpt::aligned_containers<br class="typebreak"/>
+&lt; mrpt::poses::CPoint2D &gt;<br class="typebreak"/>
+::vector_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequentialNavigation.html#abd30d7bd15795d06165914de367f4bdd">solve</a> ()</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p><a class="el" href="classSequentialNavigation.html">SequentialNavigation</a> </p>
@@ -129,12 +130,12 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="ac1924975929eb005bcbda432e5c7f909"></a><!-- doxytag: member="SequentialNavigation::solve" ref="ac1924975929eb005bcbda432e5c7f909" args="()" -->
+<a class="anchor" id="abd30d7bd15795d06165914de367f4bdd"></a><!-- doxytag: member="SequentialNavigation::solve" ref="abd30d7bd15795d06165914de367f4bdd" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; mrpt::poses::CPoint2D &gt; SequentialNavigation::solve </td>
+          <td class="memname">mrpt::aligned_containers&lt;mrpt::poses::CPoint2D&gt;::vector_t SequentialNavigation::solve </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -143,13 +144,9 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p><a class="el" href="classSequentialNavigation.html#ac1924975929eb005bcbda432e5c7f909">SequentialNavigation::solve</a> - returns the ordered list of navigation waypoints as they are ordered in the file </p>
+<p><a class="el" href="classSequentialNavigation.html#abd30d7bd15795d06165914de367f4bdd">SequentialNavigation::solve</a> - returns the ordered list of navigation waypoints as they are ordered in the file </p>
 
-<p>Implements <a class="el" href="classAbstractNavigationInterface.html#a5f159f161f4bbb6ed80b17f0622c67be">AbstractNavigationInterface</a>.</p>
-
-<p>Definition at line <a class="el" href="WaypointPlanner_8cpp_source.html#l00094">94</a> of file <a class="el" href="WaypointPlanner_8cpp_source.html">WaypointPlanner.cpp</a>.</p>
-
-<p>References <a class="el" href="WaypointPlanner_8h_source.html#l00063">AbstractNavigationInterface::toVisit</a>, and <a class="el" href="WaypointPlanner_8h_source.html#l00064">AbstractNavigationInterface::visited</a>.</p>
+<p>Implements <a class="el" href="classAbstractNavigationInterface.html#aff8ec4eebd297e0e5391bed2bacc9d60">AbstractNavigationInterface</a>.</p>
 
 </div>
 </div>
@@ -163,7 +160,7 @@ Public Member Functions</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -172,7 +169,7 @@ Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 23 2011 for YClops by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 10 2011 for YClops by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

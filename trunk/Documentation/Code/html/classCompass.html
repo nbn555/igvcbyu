@@ -65,7 +65,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#a37fcb14da8cf3a0e14ee981a09245173">Compass</a> (bool <a class="el" href="classCompass.html#a9a31b5d126d7d1030bf738452dbb7422">degrees</a>=true, const int bufferLength=500)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#ab6829f1c679c447f691b8019f03da4a4">Compass</a> (bool <a class="el" href="classCompass.html#a9a31b5d126d7d1030bf738452dbb7422">degrees</a>=false, const int bufferLength=500)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#a048fd8a349df26d162c41bc55dd30f26">Compass</a> (std::string iniFile)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#a26c27c9b7bba5b3107f1c671bd6f31c9">~Compass</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#a07b374be4d4ef0ae97c3974095577c6d">doProcess</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <br class="typebreak"/>
@@ -102,7 +103,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="Compass_8h_source.html#l00016">16</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a37fcb14da8cf3a0e14ee981a09245173"></a><!-- doxytag: member="Compass::Compass" ref="a37fcb14da8cf3a0e14ee981a09245173" args="(bool degrees=true, const int bufferLength=500)" -->
+<a class="anchor" id="ab6829f1c679c447f691b8019f03da4a4"></a><!-- doxytag: member="Compass::Compass" ref="ab6829f1c679c447f691b8019f03da4a4" args="(bool degrees=false, const int bufferLength=500)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -110,7 +111,7 @@ Private Attributes</h2></td></tr>
           <td class="memname">Compass::Compass </td>
           <td>(</td>
           <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>degrees</em> = <code>true</code>, </td>
+          <td class="paramname"> <em>degrees</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -131,6 +132,28 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a048fd8a349df26d162c41bc55dd30f26"></a><!-- doxytag: member="Compass::Compass" ref="a048fd8a349df26d162c41bc55dd30f26" args="(std::string iniFile)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Compass::Compass </td>
+          <td>(</td>
+          <td class="paramtype">std::string&nbsp;</td>
+          <td class="paramname"> <em>iniFile</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="Compass_8cpp_source.html#l00023">23</a> of file <a class="el" href="Compass_8cpp_source.html">Compass.cpp</a>.</p>
+
+<p>References <a class="el" href="Compass_8cpp_source.html#l00036">doProcess()</a>, and <a class="el" href="Compass_8cpp_source.html#l00046">loadConfig_sensorSpecific()</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a26c27c9b7bba5b3107f1c671bd6f31c9"></a><!-- doxytag: member="Compass::~Compass" ref="a26c27c9b7bba5b3107f1c671bd6f31c9" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -146,7 +169,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Compass_8cpp_source.html#l00023">23</a> of file <a class="el" href="Compass_8cpp_source.html">Compass.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8cpp_source.html#l00032">32</a> of file <a class="el" href="Compass_8cpp_source.html">Compass.cpp</a>.</p>
 
 </div>
 </div>
@@ -167,7 +190,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Compass_8cpp_source.html#l00089">89</a> of file <a class="el" href="Compass_8cpp_source.html">Compass.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8cpp_source.html#l00096">96</a> of file <a class="el" href="Compass_8cpp_source.html">Compass.cpp</a>.</p>
 
 </div>
 </div>
@@ -186,11 +209,11 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Compass_8cpp_source.html#l00027">27</a> of file <a class="el" href="Compass_8cpp_source.html">Compass.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8cpp_source.html#l00036">36</a> of file <a class="el" href="Compass_8cpp_source.html">Compass.cpp</a>.</p>
 
-<p>References <a class="el" href="Compass_8cpp_source.html#l00059">parseResponse()</a>, and <a class="el" href="Compass_8h_source.html#l00074">serialPort</a>.</p>
+<p>References <a class="el" href="Compass_8cpp_source.html#l00069">parseResponse()</a>, and <a class="el" href="Compass_8h_source.html#l00075">serialPort</a>.</p>
 
-<p>Referenced by <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00047">YclopsReactiveNavInterface::getCurrentPoseAndSpeeds()</a>, and <a class="el" href="Sensors_2Compass_2main_8cpp_source.html#l00022">main()</a>.</p>
+<p>Referenced by <a class="el" href="Compass_8cpp_source.html#l00023">Compass()</a>, <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00102">YclopsReactiveNavInterface::getCurrentPoseAndSpeeds()</a>, and <a class="el" href="Sensors_2Compass_2main_8cpp_source.html#l00022">main()</a>.</p>
 
 </div>
 </div>
@@ -210,11 +233,11 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <dl class="return"><dt><b>Returns:</b></dt><dd>The last received Pitch value in degrees </dd></dl>
 
-<p>Definition at line <a class="el" href="Compass_8h_source.html#l00032">32</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8h_source.html#l00033">33</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
 
-<p>References <a class="el" href="Compass_8h_source.html#l00065">degrees</a>, and <a class="el" href="Compass_8h_source.html#l00067">pitch</a>.</p>
+<p>References <a class="el" href="Compass_8h_source.html#l00066">degrees</a>, and <a class="el" href="Compass_8h_source.html#l00068">pitch</a>.</p>
 
-<p>Referenced by <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00047">YclopsReactiveNavInterface::getCurrentPoseAndSpeeds()</a>, and <a class="el" href="Sensors_2Compass_2main_8cpp_source.html#l00022">main()</a>.</p>
+<p>Referenced by <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00102">YclopsReactiveNavInterface::getCurrentPoseAndSpeeds()</a>, <a class="el" href="Sensors_2Compass_2main_8cpp_source.html#l00022">main()</a>, and <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00017">YclopsReactiveNavInterface::YclopsReactiveNavInterface()</a>.</p>
 
 </div>
 </div>
@@ -234,11 +257,11 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <dl class="return"><dt><b>Returns:</b></dt><dd>the last received Roll value in degrees </dd></dl>
 
-<p>Definition at line <a class="el" href="Compass_8h_source.html#l00037">37</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8h_source.html#l00038">38</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
 
-<p>References <a class="el" href="Compass_8h_source.html#l00065">degrees</a>, and <a class="el" href="Compass_8h_source.html#l00068">roll</a>.</p>
+<p>References <a class="el" href="Compass_8h_source.html#l00066">degrees</a>, and <a class="el" href="Compass_8h_source.html#l00069">roll</a>.</p>
 
-<p>Referenced by <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00047">YclopsReactiveNavInterface::getCurrentPoseAndSpeeds()</a>, and <a class="el" href="Sensors_2Compass_2main_8cpp_source.html#l00022">main()</a>.</p>
+<p>Referenced by <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00102">YclopsReactiveNavInterface::getCurrentPoseAndSpeeds()</a>, <a class="el" href="Sensors_2Compass_2main_8cpp_source.html#l00022">main()</a>, and <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00017">YclopsReactiveNavInterface::YclopsReactiveNavInterface()</a>.</p>
 
 </div>
 </div>
@@ -257,7 +280,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Compass_8cpp_source.html#l00055">55</a> of file <a class="el" href="Compass_8cpp_source.html">Compass.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8cpp_source.html#l00065">65</a> of file <a class="el" href="Compass_8cpp_source.html">Compass.cpp</a>.</p>
 
 </div>
 </div>
@@ -277,11 +300,11 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <dl class="return"><dt><b>Returns:</b></dt><dd>The last received Yaw value in degrees </dd></dl>
 
-<p>Definition at line <a class="el" href="Compass_8h_source.html#l00027">27</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8h_source.html#l00028">28</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
 
-<p>References <a class="el" href="Compass_8h_source.html#l00065">degrees</a>, and <a class="el" href="Compass_8h_source.html#l00066">yaw</a>.</p>
+<p>References <a class="el" href="Compass_8h_source.html#l00066">degrees</a>, and <a class="el" href="Compass_8h_source.html#l00067">yaw</a>.</p>
 
-<p>Referenced by <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00047">YclopsReactiveNavInterface::getCurrentPoseAndSpeeds()</a>, and <a class="el" href="Sensors_2Compass_2main_8cpp_source.html#l00022">main()</a>.</p>
+<p>Referenced by <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00102">YclopsReactiveNavInterface::getCurrentPoseAndSpeeds()</a>, <a class="el" href="Sensors_2Compass_2main_8cpp_source.html#l00022">main()</a>, and <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00017">YclopsReactiveNavInterface::YclopsReactiveNavInterface()</a>.</p>
 
 </div>
 </div>
@@ -301,9 +324,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>returns true if the compass was set to output degrees </p>
 
-<p>Definition at line <a class="el" href="Compass_8h_source.html#l00057">57</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8h_source.html#l00058">58</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
 
-<p>References <a class="el" href="Compass_8h_source.html#l00065">degrees</a>.</p>
+<p>References <a class="el" href="Compass_8h_source.html#l00066">degrees</a>.</p>
 
 </div>
 </div>
@@ -323,11 +346,11 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>returns true if the compass returned a valid pitch value </p>
 
-<p>Definition at line <a class="el" href="Compass_8h_source.html#l00047">47</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8h_source.html#l00048">48</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
 
-<p>References <a class="el" href="Compass_8h_source.html#l00071">pitchStatus</a>.</p>
+<p>References <a class="el" href="Compass_8h_source.html#l00072">pitchStatus</a>.</p>
 
-<p>Referenced by <a class="el" href="Sensors_2Compass_2main_8cpp_source.html#l00022">main()</a>.</p>
+<p>Referenced by <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00102">YclopsReactiveNavInterface::getCurrentPoseAndSpeeds()</a>, <a class="el" href="Sensors_2Compass_2main_8cpp_source.html#l00022">main()</a>, and <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00017">YclopsReactiveNavInterface::YclopsReactiveNavInterface()</a>.</p>
 
 </div>
 </div>
@@ -347,11 +370,11 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>returns true if the compass returned a valid roll value </p>
 
-<p>Definition at line <a class="el" href="Compass_8h_source.html#l00052">52</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8h_source.html#l00053">53</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
 
-<p>References <a class="el" href="Compass_8h_source.html#l00072">rollStatus</a>.</p>
+<p>References <a class="el" href="Compass_8h_source.html#l00073">rollStatus</a>.</p>
 
-<p>Referenced by <a class="el" href="Sensors_2Compass_2main_8cpp_source.html#l00022">main()</a>.</p>
+<p>Referenced by <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00102">YclopsReactiveNavInterface::getCurrentPoseAndSpeeds()</a>, <a class="el" href="Sensors_2Compass_2main_8cpp_source.html#l00022">main()</a>, and <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00017">YclopsReactiveNavInterface::YclopsReactiveNavInterface()</a>.</p>
 
 </div>
 </div>
@@ -371,11 +394,11 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>returns true if the compass returned a valid yaw value </p>
 
-<p>Definition at line <a class="el" href="Compass_8h_source.html#l00042">42</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8h_source.html#l00043">43</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
 
-<p>References <a class="el" href="Compass_8h_source.html#l00070">yawStatus</a>.</p>
+<p>References <a class="el" href="Compass_8h_source.html#l00071">yawStatus</a>.</p>
 
-<p>Referenced by <a class="el" href="Sensors_2Compass_2main_8cpp_source.html#l00022">main()</a>.</p>
+<p>Referenced by <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00102">YclopsReactiveNavInterface::getCurrentPoseAndSpeeds()</a>, <a class="el" href="Sensors_2Compass_2main_8cpp_source.html#l00022">main()</a>, and <a class="el" href="YclopsReactiveNavInterface_8cpp_source.html#l00017">YclopsReactiveNavInterface::YclopsReactiveNavInterface()</a>.</p>
 
 </div>
 </div>
@@ -404,9 +427,11 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Compass_8cpp_source.html#l00037">37</a> of file <a class="el" href="Compass_8cpp_source.html">Compass.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8cpp_source.html#l00046">46</a> of file <a class="el" href="Compass_8cpp_source.html">Compass.cpp</a>.</p>
 
-<p>References <a class="el" href="Compass_8h_source.html#l00074">serialPort</a>.</p>
+<p>References <a class="el" href="Compass_8h_source.html#l00066">degrees</a>, and <a class="el" href="Compass_8h_source.html#l00075">serialPort</a>.</p>
+
+<p>Referenced by <a class="el" href="Compass_8cpp_source.html#l00023">Compass()</a>.</p>
 
 </div>
 </div>
@@ -427,11 +452,11 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>parses a response from the HMR3000 <a class="el" href="classCompass.html">Compass</a> Module </p>
 
-<p>Definition at line <a class="el" href="Compass_8cpp_source.html#l00059">59</a> of file <a class="el" href="Compass_8cpp_source.html">Compass.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8cpp_source.html#l00069">69</a> of file <a class="el" href="Compass_8cpp_source.html">Compass.cpp</a>.</p>
 
-<p>References <a class="el" href="Compass_8h_source.html#l00067">pitch</a>, <a class="el" href="Compass_8h_source.html#l00071">pitchStatus</a>, <a class="el" href="Compass_8cpp_source.html#l00080">reset()</a>, <a class="el" href="Compass_8h_source.html#l00068">roll</a>, <a class="el" href="Compass_8h_source.html#l00072">rollStatus</a>, <a class="el" href="Compass_8h_source.html#l00066">yaw</a>, and <a class="el" href="Compass_8h_source.html#l00070">yawStatus</a>.</p>
+<p>References <a class="el" href="Compass_8h_source.html#l00068">pitch</a>, <a class="el" href="Compass_8h_source.html#l00072">pitchStatus</a>, <a class="el" href="Compass_8h_source.html#l00069">roll</a>, <a class="el" href="Compass_8h_source.html#l00073">rollStatus</a>, <a class="el" href="Compass_8h_source.html#l00067">yaw</a>, and <a class="el" href="Compass_8h_source.html#l00071">yawStatus</a>.</p>
 
-<p>Referenced by <a class="el" href="Compass_8cpp_source.html#l00027">doProcess()</a>.</p>
+<p>Referenced by <a class="el" href="Compass_8cpp_source.html#l00036">doProcess()</a>.</p>
 
 </div>
 </div>
@@ -451,11 +476,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>clears out the data for parsing </p>
 
-<p>Definition at line <a class="el" href="Compass_8cpp_source.html#l00080">80</a> of file <a class="el" href="Compass_8cpp_source.html">Compass.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8cpp_source.html#l00087">87</a> of file <a class="el" href="Compass_8cpp_source.html">Compass.cpp</a>.</p>
 
-<p>References <a class="el" href="Compass_8h_source.html#l00067">pitch</a>, <a class="el" href="Compass_8h_source.html#l00071">pitchStatus</a>, <a class="el" href="Compass_8h_source.html#l00068">roll</a>, <a class="el" href="Compass_8h_source.html#l00072">rollStatus</a>, <a class="el" href="Compass_8h_source.html#l00066">yaw</a>, and <a class="el" href="Compass_8h_source.html#l00070">yawStatus</a>.</p>
-
-<p>Referenced by <a class="el" href="Compass_8cpp_source.html#l00059">parseResponse()</a>.</p>
+<p>References <a class="el" href="Compass_8h_source.html#l00068">pitch</a>, <a class="el" href="Compass_8h_source.html#l00072">pitchStatus</a>, <a class="el" href="Compass_8h_source.html#l00069">roll</a>, <a class="el" href="Compass_8h_source.html#l00073">rollStatus</a>, <a class="el" href="Compass_8h_source.html#l00067">yaw</a>, and <a class="el" href="Compass_8h_source.html#l00071">yawStatus</a>.</p>
 
 </div>
 </div>
@@ -471,9 +494,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Compass_8h_source.html#l00065">65</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8h_source.html#l00066">66</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
 
-<p>Referenced by <a class="el" href="Compass_8h_source.html#l00032">getPitch()</a>, <a class="el" href="Compass_8h_source.html#l00037">getRoll()</a>, <a class="el" href="Compass_8h_source.html#l00027">getYaw()</a>, and <a class="el" href="Compass_8h_source.html#l00057">isDegrees()</a>.</p>
+<p>Referenced by <a class="el" href="Compass_8h_source.html#l00033">getPitch()</a>, <a class="el" href="Compass_8h_source.html#l00038">getRoll()</a>, <a class="el" href="Compass_8h_source.html#l00028">getYaw()</a>, <a class="el" href="Compass_8h_source.html#l00058">isDegrees()</a>, and <a class="el" href="Compass_8cpp_source.html#l00046">loadConfig_sensorSpecific()</a>.</p>
 
 </div>
 </div>
@@ -488,9 +511,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Compass_8h_source.html#l00067">67</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8h_source.html#l00068">68</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
 
-<p>Referenced by <a class="el" href="Compass_8h_source.html#l00032">getPitch()</a>, <a class="el" href="Compass_8cpp_source.html#l00059">parseResponse()</a>, and <a class="el" href="Compass_8cpp_source.html#l00080">reset()</a>.</p>
+<p>Referenced by <a class="el" href="Compass_8h_source.html#l00033">getPitch()</a>, <a class="el" href="Compass_8cpp_source.html#l00069">parseResponse()</a>, and <a class="el" href="Compass_8cpp_source.html#l00087">reset()</a>.</p>
 
 </div>
 </div>
@@ -505,9 +528,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Compass_8h_source.html#l00071">71</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8h_source.html#l00072">72</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
 
-<p>Referenced by <a class="el" href="Compass_8h_source.html#l00047">isPitchValid()</a>, <a class="el" href="Compass_8cpp_source.html#l00059">parseResponse()</a>, and <a class="el" href="Compass_8cpp_source.html#l00080">reset()</a>.</p>
+<p>Referenced by <a class="el" href="Compass_8h_source.html#l00048">isPitchValid()</a>, <a class="el" href="Compass_8cpp_source.html#l00069">parseResponse()</a>, and <a class="el" href="Compass_8cpp_source.html#l00087">reset()</a>.</p>
 
 </div>
 </div>
@@ -522,9 +545,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Compass_8h_source.html#l00068">68</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8h_source.html#l00069">69</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
 
-<p>Referenced by <a class="el" href="Compass_8h_source.html#l00037">getRoll()</a>, <a class="el" href="Compass_8cpp_source.html#l00059">parseResponse()</a>, and <a class="el" href="Compass_8cpp_source.html#l00080">reset()</a>.</p>
+<p>Referenced by <a class="el" href="Compass_8h_source.html#l00038">getRoll()</a>, <a class="el" href="Compass_8cpp_source.html#l00069">parseResponse()</a>, and <a class="el" href="Compass_8cpp_source.html#l00087">reset()</a>.</p>
 
 </div>
 </div>
@@ -539,9 +562,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Compass_8h_source.html#l00072">72</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8h_source.html#l00073">73</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
 
-<p>Referenced by <a class="el" href="Compass_8h_source.html#l00052">isRollValid()</a>, <a class="el" href="Compass_8cpp_source.html#l00059">parseResponse()</a>, and <a class="el" href="Compass_8cpp_source.html#l00080">reset()</a>.</p>
+<p>Referenced by <a class="el" href="Compass_8h_source.html#l00053">isRollValid()</a>, <a class="el" href="Compass_8cpp_source.html#l00069">parseResponse()</a>, and <a class="el" href="Compass_8cpp_source.html#l00087">reset()</a>.</p>
 
 </div>
 </div>
@@ -556,9 +579,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Compass_8h_source.html#l00074">74</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8h_source.html#l00075">75</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
 
-<p>Referenced by <a class="el" href="Compass_8cpp_source.html#l00027">doProcess()</a>, and <a class="el" href="Compass_8cpp_source.html#l00037">loadConfig_sensorSpecific()</a>.</p>
+<p>Referenced by <a class="el" href="Compass_8cpp_source.html#l00036">doProcess()</a>, and <a class="el" href="Compass_8cpp_source.html#l00046">loadConfig_sensorSpecific()</a>.</p>
 
 </div>
 </div>
@@ -573,9 +596,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Compass_8h_source.html#l00066">66</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8h_source.html#l00067">67</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
 
-<p>Referenced by <a class="el" href="Compass_8h_source.html#l00027">getYaw()</a>, <a class="el" href="Compass_8cpp_source.html#l00059">parseResponse()</a>, and <a class="el" href="Compass_8cpp_source.html#l00080">reset()</a>.</p>
+<p>Referenced by <a class="el" href="Compass_8h_source.html#l00028">getYaw()</a>, <a class="el" href="Compass_8cpp_source.html#l00069">parseResponse()</a>, and <a class="el" href="Compass_8cpp_source.html#l00087">reset()</a>.</p>
 
 </div>
 </div>
@@ -590,9 +613,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Compass_8h_source.html#l00070">70</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
+<p>Definition at line <a class="el" href="Compass_8h_source.html#l00071">71</a> of file <a class="el" href="Compass_8h_source.html">Compass.h</a>.</p>
 
-<p>Referenced by <a class="el" href="Compass_8h_source.html#l00042">isYawValid()</a>, <a class="el" href="Compass_8cpp_source.html#l00059">parseResponse()</a>, and <a class="el" href="Compass_8cpp_source.html#l00080">reset()</a>.</p>
+<p>Referenced by <a class="el" href="Compass_8h_source.html#l00043">isYawValid()</a>, <a class="el" href="Compass_8cpp_source.html#l00069">parseResponse()</a>, and <a class="el" href="Compass_8cpp_source.html#l00087">reset()</a>.</p>
 
 </div>
 </div>
@@ -606,7 +629,7 @@ Private Attributes</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -615,7 +638,7 @@ Private Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 23 2011 for YClops by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 10 2011 for YClops by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -54,16 +54,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <code>#include &lt;iostream&gt;</code><br/>
 <code>#include &lt;stdlib.h&gt;</code><br/>
+<code>#include &lt;signal.h&gt;</code><br/>
 <code>#include &lt;mrpt/utils/CConfigFile.h&gt;</code><br/>
 <code>#include &quot;<a class="el" href="MotorController_8h_source.html">MotorController.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="JoystickCommand_8h_source.html">JoystickCommand.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="MotorCommand_8h_source.html">MotorCommand.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Compass_8h_source.html">Compass.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="WiiController_8h_source.html">WiiController.h</a>&quot;</code><br/>
 <code>#include &lt;mrpt/hwdrivers/CSerialPort.h&gt;</code><br/>
 
 <p><a href="Mechanical_2WiiDriver_2main_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Mechanical_2WiiDriver_2main_8cpp.html#af675374954cdabdf63d036fe3c12d348">signal_handler</a> (int signum)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Mechanical_2WiiDriver_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
@@ -92,9 +95,33 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Mechanical_2WiiDriver_2main_8cpp_source.html#l00069">69</a> of file <a class="el" href="Mechanical_2WiiDriver_2main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Mechanical_2WiiDriver_2main_8cpp_source.html#l00026">26</a> of file <a class="el" href="Mechanical_2WiiDriver_2main_8cpp_source.html">main.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8cpp_source.html#l00042">MotorController::doProcess()</a>, <a class="el" href="classMotorCommandInterface.html#a3d82fb05578478fada59a0e529581c6d">MotorCommandInterface::doProcess()</a>, and <a class="el" href="MotorCommandInterface_8cpp_source.html#l00017">MotorCommandInterface::setVelocity()</a>.</p>
+<p>References <a class="el" href="WiiController_8cpp_source.html#l00021">WiiController::create()</a>, <a class="el" href="MotorController_8cpp_source.html#l00031">MotorController::setPortName()</a>, and <a class="el" href="Mechanical_2WiiDriver_2main_8cpp_source.html#l00062">signal_handler()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af675374954cdabdf63d036fe3c12d348"></a><!-- doxytag: member="main.cpp::signal_handler" ref="af675374954cdabdf63d036fe3c12d348" args="(int signum)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void signal_handler </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>signum</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="Mechanical_2WiiDriver_2main_8cpp_source.html#l00062">62</a> of file <a class="el" href="Mechanical_2WiiDriver_2main_8cpp_source.html">main.cpp</a>.</p>
+
+<p>References <a class="el" href="WiiController_8h_source.html#l00024">WiiController::getClassicButtons()</a>, <a class="el" href="WiiController_8h_source.html#l00027">WiiController::getLeftAnalog()</a>, <a class="el" href="WiiController_8h_source.html#l00025">WiiController::getLeftStick()</a>, <a class="el" href="WiiController_8h_source.html#l00023">WiiController::getMoteButtons()</a>, <a class="el" href="WiiController_8cpp_source.html#l00028">WiiController::getReference()</a>, <a class="el" href="WiiController_8h_source.html#l00028">WiiController::getRightAnalog()</a>, and <a class="el" href="WiiController_8h_source.html#l00026">WiiController::getRightStick()</a>.</p>
+
+<p>Referenced by <a class="el" href="Mechanical_2WiiDriver_2main_8cpp_source.html#l00026">main()</a>.</p>
 
 </div>
 </div>
@@ -104,7 +131,7 @@ Functions</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -113,7 +140,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 23 2011 for YClops by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 10 2011 for YClops by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
