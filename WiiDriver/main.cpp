@@ -43,6 +43,7 @@ int main( int argc, char** argv ) {
 
 	//Set up the SIGUSR1 so we know when a button is pressed
 	signal(SIGUSR1, signal_handler);
+	signal(SIGINT, signal_handler);
 
 	//Initialize the WiiController
 	WiiController::create();
@@ -64,7 +65,11 @@ int main( int argc, char** argv ) {
 
 void signal_handler( int signum ) {
 
-	if( SIGUSR1 == signum ) {
+	if( SIGINT == signum ) {
+		if( NULL == yclops ) {
+			delete yclops;
+		}
+	} else if( SIGUSR1 == signum ) {
 		uint16_t cbuttons;
 		uint16_t lax, lay;
 		uint16_t rax, ray;
@@ -139,8 +144,7 @@ void signal_handler( int signum ) {
 		}
 
 		if( cbuttons & CLASSIC_SELECT ) {
-			delete yclops;
-			exit(EXIT_SUCCESS);
+			cout << "Classic Select" << endl;
 		}
 
 		if( cbuttons & CLASSIC_HOME ) {
