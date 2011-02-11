@@ -22,7 +22,7 @@ Please document your debugging steps and solutions to problems here. Also list t
   # *Compass was returning degrees and MRPT wants radians.*
     * The Compass was given a default parameter of true if the value was to be returned in degrees
   # `done` *MRPT is trying to do a lot of math to guess at the yaw trying to make up for not having a compass which Always output a 0.*
-    * Bypass MRPT on the yaw on save it ourselves.
+    * Bypass MRPT on the yaw and store it ourselves, with a getter method for it.
   # *(enter more problems here)*
     * (enter solutions here)
 --------------
