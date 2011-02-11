@@ -325,8 +325,8 @@ private:
 	 * @param motor1Min - the minimum power for channel1
 	 * @param motor2Min - the minimum power for channel2
 	 */
-	MotorController( std::string portName = MotorController::portName, bool enableEcho = true, int motor1Max = 800, int motor2Max = 800,
-			int motor1Min = -800, int motor2Min = -800 );
+	MotorController( std::string portName = MotorController::portName, bool enableEcho = true, int motor1Max = 400, int motor2Max = 400,
+			int motor1Min = -400, int motor2Min = -400);
 
 	mrpt::hwdrivers::CSerialPort serialPort;//! the serial port to communicate to the motor controller
 	bool echoEnabled;						//! true if the motor controller is set to echo serial commands
