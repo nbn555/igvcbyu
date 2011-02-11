@@ -60,7 +60,7 @@ bool testGPSConnection(GPS * gps)
 }
 
 
-bool testGPSShowData(GPS * gps, int numOfRecord){
+bool testGPSShowData(GPS * gps, unsigned numOfRecord){
 	CGenericSensor::TListObservations	lstObs;
 	CGenericSensor::TListObservations::iterator 	itObs;
 	while(lstObs.size() < numOfRecord)
@@ -86,6 +86,7 @@ bool testGPSShowData(GPS * gps, int numOfRecord){
 bool testCompassConnection(Compass * compass) {
 	//mrpt::hwdrivers::TSensorState state = compass->getState();
 	//return (state == mrpt::hwdrivers::ssWorking);
+	return false;
 }
 
 // TODO
@@ -107,7 +108,12 @@ int main( int argc, char** argv ) {
 
 	CConfigFile config("GPS.ini");
 	GPS * gps = new GPS();
-	Compass * compass = new Compass(string("Compass.ini"));
+	Compass comp;
+	CConfigFile compassConfig( "Compass.ini" );
+
+	Compass * compass = &comp;
+
+	//Compass * compass = new Compass(string("Compass.ini"));
 	int showRecord = 100;
 	cout << "Start GPS and Compass unit testing" << endl;
 
