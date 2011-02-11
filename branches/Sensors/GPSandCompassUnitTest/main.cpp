@@ -29,11 +29,9 @@ using namespace std;
 
 
 CObservationGPSPtr gpsData;
+CGenericSensor::TListObservations	lstObs;
+CGenericSensor::TListObservations::iterator 	itObs;
 
-bool TESTING = true;
-
-double PrevPosLat;
-double PrevPosLon;
 const double metersToFeet = 3.2808399;
 
 /******************GPS Functions************************/
@@ -54,24 +52,39 @@ const double metersToFeet = 3.2808399;
 
 /***************************Main****************************/
 
-bool testGPSConnection(GPS * gps)
-{
-	return (gps->isGPS_connected());
-}
+bool testGPSInitialize(GPS * gps, CConfigFile * config) {
+	gps->loadConfig(*config, "GPS");
+	gps->initConfig(*config, "GPS");
+	gps->initialize();
 
-
-bool testGPSShowData(GPS * gps, unsigned numOfRecord){
-	CGenericSensor::TListObservations	lstObs;
-	CGenericSensor::TListObservations::iterator 	itObs;
-	while(lstObs.size() < numOfRecord)
+	int i = 20;
+	for(; !lstObs.size() && i > 0; i--) // try 10 seconds
 	{
 		gps->doProcess();
 		gps->getObservations(lstObs);
-		//cout << "Getting Observation from GPS ..." << endl;
+		mrpt::system::sleep(500);
+		cout << "Getting Observation from GPS ..." << endl;
+	}
+	if (!(i > 0))
+			cout << "no info in lstObs, testGPSInitialize Class" << endl;
+	return (i > 0); // this means it successfully got data in lstObs
+}
+bool testGPSConnection(GPS * gps)
+{
+
+	bool isConnected = false;
+	for (int i = 0; i < 10 || isConnected == false; i++) {
+		isConnected = gps->isGPS_connected();
 	}
 
-	for(itObs = lstObs.begin(); itObs != lstObs.end(); itObs++){
-		CObservationGPSPtr gpsData = CObservationGPSPtr(lstObs.begin()->second);
+	return (isConnected);
+
+}
+
+bool testGPSShowData(GPS * gps, unsigned numOfRecord){
+
+	//for(itObs = lstObs.begin(); itObs != lstObs.end(); itObs++){
+		gpsData = CObservationGPSPtr(lstObs.begin()->second);
 		//cout << "Lat: " << gpsData.pointer()->GGA_datum.latitude_degrees << endl;
 		//cout << "Lon: " << gpsData.pointer()->GGA_datum.longitude_degrees << endl;
 
@@ -79,7 +92,8 @@ bool testGPSShowData(GPS * gps, unsigned numOfRecord){
 			cout << "gpsData.pointer()->has_GGA_datum fails" << endl;
 		if(!gpsData.pointer()->has_RMC_datum)
 			cout << "gpsData.pointer()->has_RMC_datum fails" << endl;
-	}
+	//}
+	gpsData->dumpToConsole();
 	return true;
 }
 
@@ -106,8 +120,13 @@ bool testCompassAndGPSShowData(GPS * gps, Compass * compass){
 
 int main( int argc, char** argv ) {
 
-	CConfigFile config("GPS.ini");
+
+	////////////////Configure GPS
+	CConfigFile * config = new CConfigFile("GPS.ini");
 	GPS * gps = new GPS();
+
+
+	//////////////////Configure COMPASS
 	Compass comp;
 	CConfigFile compassConfig( "Compass.ini" );
 
@@ -116,7 +135,7 @@ int main( int argc, char** argv ) {
 	//Compass * compass = new Compass(string("Compass.ini"));
 	int showRecord = 100;
 	cout << "Start GPS and Compass unit testing" << endl;
-
+	assert(testGPSInitialize(gps, config) == true);
 	assert(testGPSConnection(gps) == true);
 	assert(testGPSShowData(gps, showRecord) == true);
 	assert(testCompassConnection(compass) == true);
