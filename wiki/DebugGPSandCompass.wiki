@@ -6,26 +6,23 @@ Please document your debugging steps and solutions to problems here. Also list t
 
 
 = Details =
+----
+== GPS: ==
+  # `done` *Why does the GPS get bad data?* 
+    * It never saw gga datums I had it working yesterday, I don't remember if I had to hack something or if the changes I made to the YclopsReactiveNav class did it. _--Eldon_
+  # *(enter more problems here)* 
+    * (enter solutions here)
 
-*GPS Problems*
+-------------------
+
+== Compass: ==
+
+  # `done` *Why does the compass->getYaw() return 0?*
+    * The compass had to have called doProcess first before any valid data will be retrieved.  I will change it so doProcess is called once in the constructor. _--Eldon_
+  # *Compass was returning degrees and MRPT wants radians.*
+    * The Compass was given a default parameter of true if the value was to be returned in degrees
+  # `done` *MRPT is trying to do a lot of math to guess at the yaw trying to make up for not having a compass which Always output a 0.*
+    * Bypass MRPT on the yaw on save it ourselves.
+  # *(enter more problems here)*
+    * (enter solutions here)
 --------------
-Why does the GPS get bad data?
-(enter more problems here)
-
-*Solutions*
-(enter solutions here)
-It never saw gga datums I had it working yesterday, I don't remember if I had to hack something or if the changes I made to the YclopsReactiveNav class did it. Eldon
-
-
-*Compass Problems*
-------------------
-*Why does the compass->getYaw() return 0?
-*Compass was returning degrees and MRPT wants radians. Eldon
-(enter more problems here)
-*MRPT is trying to do a lot of math to guess at the yaw trying to make up for not having a compass which Always output a 0.
-
-*Solutions*
-(enter solutions here)
-*The compass had to have called doProcess first before any valid data will be retrieved.  I will change it so doProcess is called once in the constructor. Eldon
-*The Compass was given a default parameter of true if the value was to be returned in degrees
-*Bypass MRPT on the yaw on save it ourselves. (done)
