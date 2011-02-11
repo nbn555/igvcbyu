@@ -9,7 +9,7 @@ Please document your debugging steps and solutions to problems here. Also list t
 ----
 == GPS: ==
   # `done` *Why does the GPS get bad data?* 
-    * It never saw gga datums I had it working yesterday, I don't remember if I had to hack something or if the changes I made to the YclopsReactiveNav class did it. _--Eldon_
+    * It never saw gga datums I had it working yesterday, I don't remember if I had to hack something or if the changes I made to the `YclopsReactiveNav` class did it. _--Eldon_
   # *(enter more problems here)* 
     * (enter solutions here)
 
