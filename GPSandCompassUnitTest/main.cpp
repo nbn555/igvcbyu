@@ -88,6 +88,7 @@ bool testGPSShowData(GPS * gps, unsigned numOfRecord){
 
 	gps->doProcess();
 	gps->getObservations( lstObs );
+	cout << "***************GPS DATA**************"<< endl;
 	for(itObs = lstObs.begin(); itObs != lstObs.end(); itObs++){
 
 		CObservationGPSPtr gpsData=CObservationGPSPtr(itObs->second);
@@ -98,15 +99,19 @@ bool testGPSShowData(GPS * gps, unsigned numOfRecord){
 			cout << "gpsData.pointer()->has_GGA_datum fails" << endl;
 		if(!gpsData.pointer()->has_RMC_datum)
 			cout << "gpsData.pointer()->has_RMC_datum fails" << endl;
+
 		gps->dumpData(cout);
+
 		return true;
 	}
 	cout << "No gps data to show" << endl;
+	cout << endl << endl;
 	return false;
 }
 
 bool testCompassInitialize(Compass * compass, CConfigFile * config) {
-	compass = new Compass(*config);
+
+	compass->loadConfig(*config, "COMPASS");
 	return true;
 }
 
@@ -118,31 +123,34 @@ bool testCompassConnection(Compass * compass) {
 
 // TODO
 bool testCompassShowData(Compass * compass, int numOfRecord){
+	cout << "************* COMPASS DATA ************" << endl;
 	for (int i = 0; i < numOfRecord; i++) {
 		compass->doProcess();
 		compass->dumpData(cout);
-		mrpt::system::sleep(1000);
+		//mrpt::system::sleep(1000);
 	}
+	cout << endl << endl;
+
 		return(compass->getPitch() != 0);
 	}
 
 // TODO
 bool testCompassAndGPSConnections(GPS * gps, Compass * compass){
-	return false;
+	return testGPSConnection(gps) && testCompassConnection(compass);
 }
 
 // TODO
 bool testCompassAndGPSShowData(GPS * gps, Compass * compass){
+	testGPSShowData(gps, 1);
+	testCompassShowData(compass, 3);
+
 	return false;
 }
 
 int main( int argc, char** argv ) {
-
-
 	////////////////Configure GPS
 	CConfigFile * config = new CConfigFile("GPS.ini");
 	GPS * gps = new GPS();
-
 
 	//////////////////Configure COMPASS
 	Compass comp;
@@ -151,17 +159,23 @@ int main( int argc, char** argv ) {
 	Compass * compass = &comp;
 
 	//Compass * compass = new Compass(string("Compass.ini"));
-	int showRecord = 20;
+	int showRecord = 3;
 	cout << "Start GPS and Compass unit testing" << endl;
-	//assert(testGPSInitialize(gps, config) == true);
+	assert(testGPSInitialize(gps, config) == true);
 	//assert(testGPSConnection(gps) == true);
 	//assert(testGPSShowData(gps, showRecord) == true);
 	assert(testCompassInitialize(compass, compassConfig) == true);
 	assert(testCompassConnection(compass) == true);
 	assert(testCompassShowData(compass, showRecord) == true);
 
-	assert(testCompassAndGPSConnections(gps, compass) == true);
-	assert(testCompassAndGPSShowData(gps, compass) == true);
+	while (1) {
+		//assert(testCompassAndGPSConnections(gps, compass) == true);
+		//assert(testCompassAndGPSShowData(gps, compass) == true);
+		testCompassShowData(compass, showRecord);
+		testGPSShowData(gps, showRecord);
+		mrpt::system::sleep(500);
+	}
+
 	cout << "Pass all the unit tests" << endl;
 
 	return 0;
