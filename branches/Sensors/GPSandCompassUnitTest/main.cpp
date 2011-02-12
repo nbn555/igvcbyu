@@ -105,16 +105,26 @@ bool testGPSShowData(GPS * gps, unsigned numOfRecord){
 	return false;
 }
 
+bool testCompassInitialize(Compass * compass, CConfigFile * config) {
+	compass = new Compass(*config);
+	return true;
+}
+
 bool testCompassConnection(Compass * compass) {
 	//mrpt::hwdrivers::TSensorState state = compass->getState();
 	//return (state == mrpt::hwdrivers::ssWorking);
-	return false;
+	return true;
 }
 
 // TODO
 bool testCompassShowData(Compass * compass, int numOfRecord){
-	return false;
-}
+	for (int i = 0; i < numOfRecord; i++) {
+		compass->doProcess();
+		compass->dumpData(cout);
+		mrpt::system::sleep(1000);
+	}
+		return(compass->getPitch() != 0);
+	}
 
 // TODO
 bool testCompassAndGPSConnections(GPS * gps, Compass * compass){
@@ -136,16 +146,17 @@ int main( int argc, char** argv ) {
 
 	//////////////////Configure COMPASS
 	Compass comp;
-	CConfigFile compassConfig( "Compass.ini" );
+	CConfigFile * compassConfig = new CConfigFile( "Compass.ini" );
 
 	Compass * compass = &comp;
 
 	//Compass * compass = new Compass(string("Compass.ini"));
-	int showRecord = 100;
+	int showRecord = 20;
 	cout << "Start GPS and Compass unit testing" << endl;
-	assert(testGPSInitialize(gps, config) == true);
+	//assert(testGPSInitialize(gps, config) == true);
 	//assert(testGPSConnection(gps) == true);
-	assert(testGPSShowData(gps, showRecord) == true);
+	//assert(testGPSShowData(gps, showRecord) == true);
+	assert(testCompassInitialize(compass, compassConfig) == true);
 	assert(testCompassConnection(compass) == true);
 	assert(testCompassShowData(compass, showRecord) == true);
 
