@@ -13,5 +13,5 @@
   * Compass(Serial/USB)
   * Camera(Firewire)
   * Motor Encoders(Parallel)
-  # Check GPS Power Status light
-  # Turn on Computer
+ # Check GPS Power Status light
+ # Turn on Computer
