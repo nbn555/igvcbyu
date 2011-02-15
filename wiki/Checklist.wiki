@@ -7,3 +7,11 @@
   # Check auxiliary battery connections
   # Check sensor cable connections according to the wiring diagram
   # Check motor controller status light
+ * *Connect all sensors to computer *
+  * LIDAR(Serial/USB)
+  * GPS(Serial/USB)
+  * Compass(Serial/USB)
+  * Camera(Firewire)
+  * Motor Encoders(Parallel)
+  # Check GPS Power Status light
+  # Turn on Computer
