@@ -14,4 +14,6 @@
   * Camera(Firewire)
   * Motor Encoders(Parallel)
  # Check GPS Power Status light
- # Turn on Computer
+ # Turn on Computer(Make sure she beeps)
+ # Connect wireless Network Yclops(or wired network)
+ # Connect to Y-Clops through SSH or VNC
