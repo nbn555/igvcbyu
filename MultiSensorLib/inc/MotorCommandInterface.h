@@ -43,7 +43,7 @@ protected:
 
 class MotorCommand: public MotorCommandInterface {
 public:
-	MotorCommand( double lC=100, double aC=5 );
+	MotorCommand( double lC=100, double aC=60 );
 	virtual ~MotorCommand();
 
 	void doProcess();
