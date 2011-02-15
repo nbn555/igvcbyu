@@ -46,6 +46,8 @@ void Compass::doProcess() {
 
 	bool booleanness = true;
 	data = this->serialPort.ReadString(100,&booleanness, "\n\r");
+	this->serialPort.purgeBuffers();
+	//cout << this->serialPort.getTotalBytesCount() << endl;
 	this->parseResponse(data);
 
 }
