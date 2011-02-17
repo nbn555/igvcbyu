@@ -16,12 +16,13 @@
 class SimpleNavigation {
 private:
 	string& fileName;
+	mrpt::reactivenav::CReactiveInterfaceImplementation* interface;
 public:
 
-	SimpleNavigation(string & fileName);
+	SimpleNavigation(string & fileName, mrpt::reactivenav::CReactiveInterfaceImplementation* interface);
 	virtual ~SimpleNavigation();
-
-	void navigate(YclopsReactiveNavInterface& interface, mrpt::reactivenav::CAbstractReactiveNavigationSystem::TNavigationParams *navParams );
+	void setFileName(string & fileName);
+	void navigate(mrpt::reactivenav::CReactiveInterfaceImplementation& interface, mrpt::reactivenav::CAbstractReactiveNavigationSystem::TNavigationParams *navParams );
 	void go();
 };
 

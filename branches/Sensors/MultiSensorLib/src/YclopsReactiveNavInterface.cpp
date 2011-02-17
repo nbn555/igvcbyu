@@ -131,6 +131,7 @@ bool YclopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 	curW = this->curW;
 	curPose.x(robotPose->x());
 	curPose.y(robotPose->y());
+	curPose.phi(poseEst->getYaw());
 	return true;
 }
 
@@ -167,10 +168,7 @@ bool YclopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap 		
 
 		return true;
 	}
-double YclopsReactiveNavInterface::getHeading()
-{
-	return poseEst->getYaw();
-}
+
 
 void YclopsReactiveNavInterface::useYclopsMotorCommand() {
 	delete this->motor;

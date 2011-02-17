@@ -585,7 +585,7 @@ void  YclopsNavigationSystem::performNavigationStep()
 					float p,t;
 					selectedHolonomicMovement.PTG->getCPointWhen_d_Is(2.0, selectedHolonomicMovement.PTG->alfa2index(selectedHolonomicMovement.direction),x,y,p,t);
 
-					cur_approx_heading_dir = ((YclopsReactiveNavInterface&)m_robot).getHeading();
+					cur_approx_heading_dir = curPose.phi();
 					//m_robot.notifyHeadingDirection(cur_approx_heading_dir);
 				}
 			}

@@ -11,20 +11,24 @@
 
 #include "SimpleNavigation.h"
 
-SimpleNavigation::SimpleNavigation(string & fileName): fileName(fileName) {
+SimpleNavigation::SimpleNavigation(string & fileName, mrpt::reactivenav::CReactiveInterfaceImplementation* interface): fileName(fileName), interface(interface) {
 }
 
 SimpleNavigation::~SimpleNavigation() {
 	// TODO Auto-generated destructor stub
+	delete interface;
 }
 
-
+void SimpleNavigation::setFileName(string & fileName)
+{
+	this->fileName = fileName;
+}
 
 void SimpleNavigation::go()
 {
 	MotorController::setPortName("ttyS0");
 	//interface that will be used by the reactive nav to sense the environment and make the robot move
-	YclopsReactiveNavInterface* interface = new YclopsReactiveNavInterface();
+
 	//initial position
 	mrpt::poses::CPose2D pose = CPoint2D();
 	float v = 0;
@@ -60,7 +64,7 @@ void SimpleNavigation::go()
 			//navParams.targetIsRelative = !challange; is being ignored
 
 			//gives the reactive nav the next goal
-			navigate(*interface, &navParams );
+			navigate(&navParams );
 			/*//go until it makes it to the point
 			while(reactivenav.getCurrentState() ==
 					mrpt::reactivenav::CAbstractReactiveNavigationSystem::NAVIGATING)
@@ -73,14 +77,14 @@ void SimpleNavigation::go()
 		}
 }
 
-void SimpleNavigation::navigate(YclopsReactiveNavInterface& interface, mrpt::reactivenav::CAbstractReactiveNavigationSystem::TNavigationParams *navParams )
+void SimpleNavigation::navigate(mrpt::reactivenav::CAbstractReactiveNavigationSystem::TNavigationParams *navParams )
 {
 	mrpt::poses::CPose2D curPose;
 	float cur_w;
 	float cur_v;
 	cout << "Navigating To: lat " << navParams->target.x << " lon " << navParams->target.y << endl;
-	interface.getCurrentPoseAndSpeeds(curPose, cur_v, cur_w);
-	double yaw = interface.getHeading();
+	interface->getCurrentPoseAndSpeeds(curPose, cur_v, cur_w);
+	double yaw = curPose.phi();
 	double wantedYaw = AbstractNavigationInterface::calcBearing(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
 	float distance = AbstractNavigationInterface::haversineDistance(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
 	if(distance > navParams->targetAllowedDistance)
@@ -91,17 +95,17 @@ void SimpleNavigation::navigate(YclopsReactiveNavInterface& interface, mrpt::rea
 			if(turnRight)
 			{
 				cout << "\tTurning Right" << endl;
-				interface.changeSpeeds(.5f,2);
+				interface->changeSpeeds(.5f,2);
 			}
 		else
 			{
 				cout << "\tTurning Left" << endl;
-				interface.changeSpeeds(.5f, -2);
+				interface->changeSpeeds(.5f, -2);
 			}
 
 			usleep(100000);
-			interface.getCurrentPoseAndSpeeds(curPose, cur_v, cur_w);
-			yaw = interface.getHeading();//Robotpose returns yaw in radians
+			interface->getCurrentPoseAndSpeeds(curPose, cur_v, cur_w);
+			yaw = curPose.phi();//Robotpose returns yaw in radians
 			cout << "Yaw: " << yaw << endl;
 			wantedYaw = AbstractNavigationInterface::calcBearing(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
 			cout << "Wanted Yaw: " << wantedYaw << endl;
@@ -110,7 +114,7 @@ void SimpleNavigation::navigate(YclopsReactiveNavInterface& interface, mrpt::rea
 		distance = AbstractNavigationInterface::haversineDistance(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
 		while(distance > navParams->targetAllowedDistance)
 		{
-			interface.changeSpeeds(1.4,0);
+			interface->changeSpeeds(1.4,0);
 			cout << "\tDriving Towards Target. Remaining Distance: " << distance << endl;
 			usleep(100000);
 			distance = AbstractNavigationInterface::haversineDistance(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
