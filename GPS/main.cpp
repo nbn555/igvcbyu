@@ -73,7 +73,7 @@ void accuracyTest(GPS2 * gps) {
 		preLat = gps->GetGpsLatitude();
 		preLon = gps->GetGpsLongitude();
 	}
-	fout << endl << "Accuracy for " << reps << " points taken:       " << totalSum/(reps) << " meters." << endl;
+	fout << endl << "Accuracy for " << (reps) << " points taken:       " << totalSum/(reps-stability) << " meters." << endl;
 
 	fout << "And " << stability << " readings lost" << endl;
 
