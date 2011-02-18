@@ -9,7 +9,7 @@
 #include <cstdio>
 #include <iostream>
 
-LOG_LEVEL Log::logLevel;
+LOG_LEVEL Log::logLevel = INFO;
 std::ostream * Log::outputStream = &(std::cerr);
 
 std::string Log::GetTime() {
