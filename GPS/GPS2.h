@@ -1,5 +1,7 @@
 /*
- * GpsDevice.h
+ * GpsDevice.h.  Regard
+ * http://www.gpsinformation.org/dale/nmea.htm for further information
+ * on GPGGA and GPRMC qualities.
  *
  *  Created on: Nov 3, 2010
  *      Author: igvcbyu
@@ -26,7 +28,7 @@ public:
 	/*	 In effect turns on the serial port and give commands for continous
 	 *   GPS data flow. Requires the sensors config file.
 	 */
-	void initialize(const mrpt::utils::CConfigFile * config);
+	void initialize(mrpt::utils::CConfigFile * config);
 
 	/*
 	 * Effectively a wrapper class for the mrpt doprocess call.  It will also
@@ -35,19 +37,19 @@ public:
 	void doGPSProcess();
 
 	/*
-	 * Dumps current GPS Latitude and Longitude points
+	 * Dumps current GPS Latitude and Longitude points GGA and RMC
 	 */
 	void dumpData(std::ostream & out );
 
 	/*
 	 * Returns the distance to a waypoint with respect to current
-	 * location.
+	 * location in meters.
 	 * Returns 0.0 if no data to return.
 	 */
-	double GetDistanceToWaypoint (double lon, double lat);
+	double GetDistanceToWaypoint (double lat, double lon);
 
 	/*
-	 * Returns the distance between any two locations.
+	 * Returns the distance between any two locations in meters.
 	 * Returns 0.0 if no data to return.
 	 */
 	double GetDistanceToWaypoint (double lat1, double lon1,
@@ -100,7 +102,7 @@ private:
 	void initializeCom();
 
 	// Initializes the Config File passed to it from initialize()
-	void initConfig( mrpt::utils::CConfigFileBase & configSource,
+	void initConfig(mrpt::utils::CConfigFileBase & configSource,
 					const std::string & iniSection = "GPS");
 
 	// GPGGA gives static information for GPS communication
