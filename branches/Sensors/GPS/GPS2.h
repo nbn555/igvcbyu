@@ -5,8 +5,8 @@
  *      Author: igvcbyu
  */
 
-#ifndef GPSDEVICE_H_
-#define GPSDEVICE_H_
+#ifndef GPS2DEVICE_H_
+#define GPS2DEVICE_H_
 
 #include <iostream>
 #include <mrpt/slam/CObservationGPS.h>
@@ -26,7 +26,7 @@ public:
 	/*	 In effect turns on the serial port and give commands for continous
 	 *   GPS data flow. Requires the sensors config file.
 	 */
-	void initialize(CConfigFile * config);
+	void initialize(mrpt::utils::CConfigFile * config);
 
 	/*
 	 * Effectively a wrapper class for the mrpt doprocess call.  It will also
@@ -81,7 +81,7 @@ public:
 	/*
 	 * Returns both current latitude and longitude.
 	 */
-	CPoint2D GetCurrentGpsLocation();
+	mrpt::poses::CPoint2D GetCurrentGpsLocation();
 
 protected:
 private:
@@ -94,7 +94,7 @@ private:
 	// Needed for the doProcess function call of the mrpt GPS
 	CGenericSensor::TListObservations				lstObs;
 	CGenericSensor::TListObservations::iterator 	itObs;
-	CObservationGPSPtr 								gpsData;
+	mrpt::slam::CObservationGPSPtr 					gpsData;
 
 	// Initializes the serial port with nmea commands to turn on continous GPS data flow
 	void initializeCom();
