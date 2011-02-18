@@ -17,7 +17,7 @@
 
 #include <mrpt/hwdrivers/CGPSInterface.h>
 
-#include "GPS.h"
+#include "GPS2.h"
 #include "WaypointPlanner.h"
 
 #define length 7
@@ -30,9 +30,9 @@ using namespace mrpt::slam;
 using namespace mrpt::system;
 using namespace mrpt::hwdrivers;
 
-CObservationGPSPtr gpsData;
+//CObservationGPSPtr gpsData;
 
-bool TESTING = true;
+bool TESTING = false;
 
 double PrevPosLat;
 double PrevPosLon;
@@ -41,42 +41,10 @@ const double metersToFeet = 3.2808399;
  * List of functions.  Should be helpful in finding information from GPS
  */
 
-double GetGpsSpeed() {
-	const double knotToMph = 0.868976242;
-	return (gpsData->RMC_datum.speed_knots * knotToMph);
-}
-
-double GetGpsDirection() {
-	return gpsData->RMC_datum.direction_degrees;
-
-	return 0.0;
-}
-
-double GetGpsLat() {
-	if (gpsData->has_GGA_datum)
-		return gpsData->GGA_datum.latitude_degrees;
-
-	return 0.0;
-}
-
-double GetGpsLon() {
-	if (gpsData->has_GGA_datum)
-		return gpsData->GGA_datum.longitude_degrees;
-
-	return 0.0;
-}
-
-double GetDistanceToWaypoint (double lon, double lat) {
-	return AbstractNavigationInterface::haversineDistance(lon, lat, gpsData->GGA_datum.longitude_degrees, gpsData->GGA_datum.latitude_degrees);
-}
-
-double GetDistanceToWaypoint (double lat1, double lon1, double lat2, double lon2) {
-	return AbstractNavigationInterface::haversineDistance(lat1, lon1, lat2, lon2);
-}
-
-
 int main() {
 
+	GPS2 gps;
+/*
 	cout.precision(14);
 	GPS gps;
 
@@ -120,6 +88,7 @@ int main() {
 		cerr << "Invalid GPS data" << endl;
 	}
 
+*/
 	// Commented this code out because TSPNavigation was throwing an eigen error of some sorts
 ////////////////////////////////////////////////////
 	/*
@@ -142,7 +111,7 @@ int main() {
 ////////////////////////////////////////////////////
 
 	//  Writes GPS latitude, longitude, and distance between both into a file.
-
+/*
 	ofstream fout("readings.txt"); // to take GPS readings for testing
 	fout.precision(12);
 
@@ -216,7 +185,7 @@ int main() {
 						cout << "going to next weighpoint" << endl;
 					}
 				}
-			*/
+
 
 ////////////////////////////////////////////////////
 			}
@@ -225,6 +194,8 @@ int main() {
 
 	}
 	fout.close();
+	*/
+
 	return 0;
 }
 
