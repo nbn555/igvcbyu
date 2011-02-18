@@ -42,6 +42,10 @@ int main( int argc, char** argv ) {
 		configFile.setFileName(string(argv[1]));
 	}
 
+	//Set up logging
+	Log::SetLogFile(&cout);
+	Log::SetReportLevel(DEBUG4);
+
 	//Set up the SIGUSR1 so we know when a button is pressed
 	signal(SIGUSR1, signal_handler);
 	signal(SIGINT, signal_handler);
@@ -50,7 +54,7 @@ int main( int argc, char** argv ) {
 	WiiController::create();
 
 	//Set the motor controller to connect to the port name in the config file
-	MotorController::setPortName( configFile.read_string("MOTOR", "COM_port_LIN", "/dev/ttyS1" ) );
+	MotorController::setConfigFile( configFile );
 
 	yclops = new YClopsNavigationSystem2( configFile );
 	yclops->useNullMotorCommand();
@@ -88,73 +92,73 @@ void signal_handler( int signum ) {
 		controller->getMoteButtons(mbuttons);
 
 		if( cbuttons & CLASSIC_D_UP ) {
-			cout << "Toggling camera data" << endl;
-			cout << yclops->toggleCameraDump() << endl;
+			LOG(INFO) << "Toggling camera data" << endl;
+			LOG(INFO) << yclops->toggleCameraDump() << endl;
 		}
 
 		if( cbuttons & CLASSIC_D_DOWN ) {
-			cout << "Toggling lidar data" << endl;
-			cout << yclops->toggleLidarDump() << endl;
+			LOG(INFO) << "Toggling lidar data" << endl;
+			LOG(INFO) << yclops->toggleLidarDump() << endl;
 		}
 
 		if( cbuttons & CLASSIC_D_LEFT ) {
-			cout << "Toggling GPS data" << endl;
-			cout << yclops->toggleGpsDump() << endl;
+			LOG(INFO) << "Toggling GPS data" << endl;
+			LOG(INFO) << yclops->toggleGpsDump() << endl;
 		}
 
 		if( cbuttons & CLASSIC_D_RIGHT ) {
-			cout << "Toggling Compass data" << endl;
-			cout << yclops->toggleCompassDump() << endl;
+			LOG(INFO) << "Toggling Compass data" << endl;
+			LOG(INFO) << yclops->toggleCompassDump() << endl;
 		}
 
 		if( cbuttons & CLASSIC_A ) {
-			cout << "Going into Autonomous Mode" << endl;
+			LOG(INFO) << "Going into Autonomous Mode" << endl;
 			yclops->setAutonomusMode();
 		}
 
 		if( cbuttons & CLASSIC_B ) {
-			cout << "Going into Navigation Mode" << endl;
+			LOG(INFO) << "Going into Navigation Mode" << endl;
 			yclops->setNavigationMode();
 		}
 
 		if( cbuttons & CLASSIC_X ) {
-			cout << "Idling" << endl;
+			LOG(INFO) << "Idling" << endl;
 			yclops->useNullMotorCommand();
 			yclops->setIdle();
 		}
 
 		if( cbuttons & CLASSIC_Y ) {
-			cout << "Wii Motor Control" << endl;
+			LOG(INFO) << "Wii Motor Control" << endl;
 			yclops->useWiiMotorCommand();
 		}
 
 		if( cbuttons & CLASSIC_L1 ) {
-			cout << "Classic L1" << endl;
+			LOG(INFO) << "Classic L1" << endl;
 		}
 
 		if( cbuttons & CLASSIC_L2 ) {
-			cout << "Classic L2" << endl;
+			LOG(INFO) << "Classic L2" << endl;
 		}
 
 		if( cbuttons & CLASSIC_R1 ) {
-			cout << "Classic R1" << endl;
+			LOG(INFO) << "Classic R1" << endl;
 		}
 
 		if( cbuttons & CLASSIC_R2 ) {
-			cout << "Classic R2" << endl;
+			LOG(INFO) << "Classic R2" << endl;
 		}
 
 		if( cbuttons & CLASSIC_SELECT ) {
-			cout << "Classic Select" << endl;
+			LOG(INFO) << "Classic Select" << endl;
 		}
 
 		if( cbuttons & CLASSIC_HOME ) {
-			cout << "Playing beep" << endl;
+			LOG(INFO) << "Playing beep" << endl;
 			Beeper::beep(440,1000);
 		}
 
 		if( cbuttons & CLASSIC_START ) {
-			cout << "Classic Start" << endl;
+			LOG(INFO) << "Classic Start" << endl;
 		}
 
 		if( mbuttons & MOTE_D_UP ) {
