@@ -27,15 +27,15 @@ YClopsNavigationSystem2::YClopsNavigationSystem2(CConfigFile & config)
 	gps->initialize();
 
 	this->camera = new Camera();
+
+	//Lidar initialization code
 	this->lidar = new CSickLaserSerial();
 
-	this->lidar->setSerialPort("/dev/ttyUSB2");
-	this->lidar->setBaudRate(38400);
-	this->lidar->setScanFOV(180);
-	this->lidar->setScanResolution(50);  // 25=0.25deg, 50=0.5deg, 100=1deg
-	cout << "Initializing lidar" << endl;
+	this->lidar->setSerialPort( config.read_string("LIDAR", "COM_port_LIN", "/dev/ttyUSB2" ) );
+	this->lidar->setBaudRate( config.read_int( "LIDAR", "COM_baudRate", 38400 ) );
+	this->lidar->setScanFOV( config.read_int("LIDAR", "FOV", 180 ) );
+	this->lidar->setScanResolution( config.read_int( "LIDAR", "resolution", 50 ) );  // 25=0.25deg, 50=0.5deg, 100=1deg
 	this->lidar->initialize(); // This will raise an exception on error
-	cout << "Done init lidar" << endl;
 }
 
 YClopsNavigationSystem2::~YClopsNavigationSystem2() {
@@ -70,8 +70,6 @@ void YClopsNavigationSystem2::doProcess() {
 	if( this->isLidarDataShown ) {
 
 		static mrpt::gui::CDisplayWindowPlots		win("Laser scans");
-
-
 
 		bool						thereIsObservation,hardError;
 		CObservation2DRangeScan		obs;
