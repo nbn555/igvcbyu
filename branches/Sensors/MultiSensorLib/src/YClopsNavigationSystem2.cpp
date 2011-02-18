@@ -15,27 +15,38 @@ using namespace std;
 
 bool bCameraData;
 YClopsNavigationSystem2::YClopsNavigationSystem2(CConfigFile & config)
-: isGpsDataShown(false), isCompassDataShown(false), isLidarDataShown(false), isCameraDataShown(false), isEncoderDataShown(false)
+: motor(NULL), compass(NULL), gps(NULL), camera(NULL), lidar(NULL),
+  isGpsDataShown(false), isCompassDataShown(false), isLidarDataShown(false), isCameraDataShown(false), isEncoderDataShown(false)
 {
 	this->motor = new DualMotorCommand();
-	this->compass = new Compass( config );
-	this->gps = new GPS();
 
-	gps->setSerialPortName ( config.read_string("GPS", "COM_port_LIN", "/dev/ttyUSB1" ) );
-	gps->loadConfig(config, "GPS");
-	gps->initConfig(config, "GPS");
-	gps->initialize();
+	if( config.read_bool("COMPASS", "USE", false) ) {
+		this->compass = new Compass( config );
+	}
 
-	this->camera = new Camera();
+	if( config.read_bool("GPS", "USE", false ) ) {
+		this->gps = new GPS();
 
-	//Lidar initialization code
-	this->lidar = new CSickLaserSerial();
+		gps->setSerialPortName ( config.read_string("GPS", "COM_port_LIN", "/dev/ttyUSB1" ) );
+		gps->loadConfig(config, "GPS");
+		gps->initConfig(config, "GPS");
+		gps->initialize();
+	}
 
-	this->lidar->setSerialPort( config.read_string("LIDAR", "COM_port_LIN", "/dev/ttyUSB2" ) );
-	this->lidar->setBaudRate( config.read_int( "LIDAR", "COM_baudRate", 38400 ) );
-	this->lidar->setScanFOV( config.read_int("LIDAR", "FOV", 180 ) );
-	this->lidar->setScanResolution( config.read_int( "LIDAR", "resolution", 50 ) );  // 25=0.25deg, 50=0.5deg, 100=1deg
-	this->lidar->initialize(); // This will raise an exception on error
+	if( config.read_bool("CAMERA", "USE", false ) ) {
+		this->camera = new Camera();
+	}
+
+	if( config.read_bool("LIDAR", "USE", false ) ) {
+		//Lidar initialization code
+		this->lidar = new CSickLaserSerial();
+
+		this->lidar->setSerialPort( config.read_string("LIDAR", "COM_port_LIN", "/dev/ttyUSB2" ) );
+		this->lidar->setBaudRate( config.read_int( "LIDAR", "COM_baudRate", 38400 ) );
+		this->lidar->setScanFOV( config.read_int("LIDAR", "FOV", 180 ) );
+		this->lidar->setScanResolution( config.read_int( "LIDAR", "resolution", 50 ) );  // 25=0.25deg, 50=0.5deg, 100=1deg
+		this->lidar->initialize(); // This will raise an exception on error
+	}
 }
 
 YClopsNavigationSystem2::~YClopsNavigationSystem2() {
@@ -50,56 +61,72 @@ YClopsNavigationSystem2::~YClopsNavigationSystem2() {
 void YClopsNavigationSystem2::doProcess() {
 	cout << "." << endl;
 
-	this->motor->doProcess();
-	this->compass->doProcess();
-	this->gps->doProcess();
-	this->camera->doProcess();
-
-	if( this->isCompassDataShown ) {
-		this->compass->dumpData(cout);
+	if( NULL != this->motor ) {
+		this->motor->doProcess();
 	}
 
-	if( this->isGpsDataShown ) {
-		this->gps->dumpData(cout);
-	}
+	if( NULL != this->compass ) {
 
-	if( this->isCameraDataShown ) {
-		this->camera->dumpData(cout);
-	}
+		this->compass->doProcess();
 
-	if( this->isLidarDataShown ) {
-
-		static mrpt::gui::CDisplayWindowPlots		win("Laser scans");
-
-		bool						thereIsObservation,hardError;
-		CObservation2DRangeScan		obs;
-
-		try
-		{
-			this->lidar->doProcessSimple( thereIsObservation, obs, hardError );
+		if( this->isCompassDataShown ) {
+			this->compass->dumpData(cout);
 		}
-		catch (std::exception &e)
-		{
-			cerr << e.what() << endl;
-			hardError = true;
-		}
-		if (hardError)
-			printf("[TEST] Hardware error=true!!\n");
-		if (thereIsObservation)
-		{
-			printf("[TEST] Observation received (%u ranges over %.02fdeg, mid=%.03f)!!\n",
-					(unsigned int)obs.scan.size(),
-					RAD2DEG(obs.aperture),
-					obs.scan[obs.scan.size()/2]);
-			obs.sensorPose = CPose3D(0,0,0);
-			mrpt::slam::CSimplePointsMap		theMap;
-			theMap.insertionOptions.minDistBetweenLaserPoints	= 0;
-			theMap.insertObservation( &obs );
+	}
 
-			vector_float	xs,ys,zs;
-			theMap.getAllPoints(xs,ys,zs);
-			win.plot(xs,ys,".b3");
-			win.axis_equal();
+	if( NULL != this->gps ) {
+
+		this->gps->doProcess();
+
+		if( this->isGpsDataShown ) {
+			this->gps->dumpData(cout);
+		}
+	}
+
+	if( NULL != this->camera ) {
+
+		this->camera->doProcess();
+
+		if( this->isCameraDataShown ) {
+			this->camera->dumpData(cout);
+		}
+	}
+
+	if( NULL != this->lidar ) {
+		if( this->isLidarDataShown ) {
+
+			static mrpt::gui::CDisplayWindowPlots		win("Laser scans");
+
+			bool						thereIsObservation,hardError;
+			CObservation2DRangeScan		obs;
+
+			try
+			{
+				this->lidar->doProcessSimple( thereIsObservation, obs, hardError );
+			}
+			catch (std::exception &e)
+			{
+				cerr << e.what() << endl;
+				hardError = true;
+			}
+			if (hardError)
+				printf("[TEST] Hardware error=true!!\n");
+			if (thereIsObservation)
+			{
+				printf("[TEST] Observation received (%u ranges over %.02fdeg, mid=%.03f)!!\n",
+						(unsigned int)obs.scan.size(),
+						RAD2DEG(obs.aperture),
+						obs.scan[obs.scan.size()/2]);
+				obs.sensorPose = CPose3D(0,0,0);
+				mrpt::slam::CSimplePointsMap		theMap;
+				theMap.insertionOptions.minDistBetweenLaserPoints	= 0;
+				theMap.insertObservation( &obs );
+
+				vector_float	xs,ys,zs;
+				theMap.getAllPoints(xs,ys,zs);
+				win.plot(xs,ys,".b3");
+				win.axis_equal();
+			}
 		}
 	}
 }
