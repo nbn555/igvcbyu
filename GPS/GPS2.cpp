@@ -22,7 +22,7 @@ GPS2::~GPS2() {
 
 }
 
-void GPS2::initialize(CConfigFile * config) {
+void GPS2::initialize(CConfigFile * config) { // we might change to CConfigFileBase
 	loadConfig(*config, "GPS");
 	initConfig(*config, "GPS");
 	initializeCom();
@@ -59,7 +59,6 @@ void GPS2::doGPSProcess() {
 			if(!gpsData.pointer()->has_RMC_datum)
 				cout << "gpsData.pointer()->has_RMC_datum fails" << endl;
 
-			return true;
 		}
 
 }
@@ -105,14 +104,14 @@ double GPS2::GetDistanceToWaypoint (double lat1, double lon1, double lat2, doubl
 
 double GPS2::GetGpsSpeed() {
 	const double knotToMph = 0.868976242;
-	if (gpsData->has_RMC_datum())
+	if (gpsData->has_RMC_datum)
 		return (gpsData->RMC_datum.speed_knots * knotToMph);
 	else return 0.0;
 }
 
 double GPS2::GetGpsDirection() {
 
-	if (gpsData->has_RMC_datum())
+	if (gpsData->has_RMC_datum)
 		return gpsData->RMC_datum.direction_degrees;
 
 	else
@@ -134,10 +133,10 @@ double GPS2::GetGpsLongitude() {
 	return 0.0;
 }
 
-CPoint2D GPS2::GetCurrentGPSLocation() {
+CPoint2D GPS2::GetCurrentGpsLocation() {
 	CPoint2D curPos;
-	curPos.m_coords[0] = GetGpsLat();
-	curPos.m_coords[1] = GetGpsLon();
+	curPos.m_coords[0] = GetGpsLatitude();
+	curPos.m_coords[1] = GetGpsLongitude();
 
 	return curPos;
 }
