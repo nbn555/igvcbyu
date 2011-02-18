@@ -12,6 +12,10 @@
 #include <string>
 
 #include <mrpt/hwdrivers/CSerialPort.h>
+#include <mrpt/utils/CConfigFile.h>
+
+//TODO implement Operating mode see page 136 of motor controller programming manual
+//TODO implement PID controller constants commands in initialization
 
 /**
  * MotorController - interface class to the RoboteQ 2440 motor controller
@@ -20,11 +24,11 @@ class MotorController {
 public:
 	static const int MOTOR_SECRET_KEY = 321654987;//!Motor reset key used for sensitive operations
 
-	static std::string portName;
+	static mrpt::utils::CConfigFileBase * config;
 
 	static MotorController * instance();
 
-	static void setPortName( std::string port );
+	static void setConfigFile( mrpt::utils::CConfigFileBase * configFile );
 
 	/**
 	 * Abstract representation for a channel in the motor controller
@@ -325,8 +329,7 @@ private:
 	 * @param motor1Min - the minimum power for channel1
 	 * @param motor2Min - the minimum power for channel2
 	 */
-	MotorController( std::string portName = MotorController::portName, bool enableEcho = true, int motor1Max = 400, int motor2Max = 400,
-			int motor1Min = -400, int motor2Min = -400);
+	MotorController( mrpt::utils::CConfigFileBase * conf = MotorController::config );
 
 	mrpt::hwdrivers::CSerialPort serialPort;//! the serial port to communicate to the motor controller
 	bool echoEnabled;						//! true if the motor controller is set to echo serial commands
