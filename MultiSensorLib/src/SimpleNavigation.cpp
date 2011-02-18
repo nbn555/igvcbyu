@@ -11,6 +11,8 @@
 
 #include "SimpleNavigation.h"
 
+#include <mrpt/utils/CConfigFileMemory.h>
+
 SimpleNavigation::SimpleNavigation(string & fileName, mrpt::reactivenav::CReactiveInterfaceImplementation* interface): fileName(fileName), interface(interface) {
 }
 
@@ -26,7 +28,23 @@ void SimpleNavigation::setFileName(string & fileName)
 
 void SimpleNavigation::go()
 {
-	MotorController::setPortName("ttyS0");
+
+	/*
+	 * I added this because I changed the motor controller so it requires a config file
+	 * for initialization.  CConfigFileMemory is a psudo config file so the motor controller
+	 * code should still work with SimpleNavigation.  All the writes are required values for the
+	 * motor controller.  Though this should really be brought in from a config file for the motor
+	 * controller.  Config needs to be a pointer.  Eldon
+	 */
+	mrpt::utils::CConfigFileMemory * config = new mrpt::utils::CConfigFileMemory();
+	config->write("MOTOR","COM_port_LIN","/dev/ttyS1");
+	config->write("MOTOR", "MAX_FORWARD_LEFT", 400 );
+	config->write("MOTOR", "MAX_FORWARD_RIGHT", 400 );
+	config->write("MOTOR", "MAX_REVERSE_LEFT", -400 );
+	config->write("MOTOR", "MAX_REVERSE_RIGHT", -400 );
+	MotorController::setConfigFile(config);
+
+
 	//interface that will be used by the reactive nav to sense the environment and make the robot move
 
 	//initial position
