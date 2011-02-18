@@ -44,7 +44,7 @@ int main( int argc, char** argv ) {
 
 	//Set up logging
 	Log::SetLogFile(&cout);
-	Log::SetReportLevel(DEBUG4);
+	Log::SetReportLevel(WARNING);
 
 	//Set up the SIGUSR1 so we know when a button is pressed
 	signal(SIGUSR1, signal_handler);
@@ -93,22 +93,22 @@ void signal_handler( int signum ) {
 
 		if( cbuttons & CLASSIC_D_UP ) {
 			LOG(INFO) << "Toggling camera data" << endl;
-			LOG(INFO) << yclops->toggleCameraDump() << endl;
+			yclops->toggleCameraDump();
 		}
 
 		if( cbuttons & CLASSIC_D_DOWN ) {
 			LOG(INFO) << "Toggling lidar data" << endl;
-			LOG(INFO) << yclops->toggleLidarDump() << endl;
+			yclops->toggleLidarDump();
 		}
 
 		if( cbuttons & CLASSIC_D_LEFT ) {
 			LOG(INFO) << "Toggling GPS data" << endl;
-			LOG(INFO) << yclops->toggleGpsDump() << endl;
+			yclops->toggleGpsDump();
 		}
 
 		if( cbuttons & CLASSIC_D_RIGHT ) {
 			LOG(INFO) << "Toggling Compass data" << endl;
-			LOG(INFO) << yclops->toggleCompassDump() << endl;
+			yclops->toggleCompassDump();
 		}
 
 		if( cbuttons & CLASSIC_A ) {
