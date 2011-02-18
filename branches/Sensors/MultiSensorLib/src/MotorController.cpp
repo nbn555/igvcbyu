@@ -11,6 +11,7 @@
 #include <sstream>
 #include <string>
 #include <cassert>
+#include "logging.h"
 
 #include "MotorController.h"
 
@@ -19,26 +20,35 @@ using namespace mrpt;
 using namespace mrpt::hwdrivers;
 
 MotorController * MotorController::mc = NULL;
-string MotorController::portName = "";
+CConfigFileBase * config = NULL;
 
 MotorController * MotorController::instance() {
 	if( NULL == MotorController::mc ) {
+		LOG(DEBUG4) << "Initializing Motor Controller" << endl;
 		MotorController::mc = new MotorController();
 	}
 	return MotorController::mc;
 }
 
-void MotorController::setPortName( std::string port ) {
-	MotorController::portName = port;
+void MotorController::setConfigFile( mrpt::utils::CConfigFileBase * configFile ) {
+	MotorController::config = configFile;
 }
 
-MotorController::MotorController( string portName, bool enableEcho, int motor1Max, int motor2Max, int motor1Min, int motor2Min ):
-		echoEnabled(enableEcho),
+MotorController::MotorController( mrpt::utils::CConfigFileBase * conf ):
+		echoEnabled(conf->read_bool("MOTOR", "ECHO_ENABLED", true)),
 		motor1Speed(0), motor2Speed(0),
-		motor1SpeedMax(motor1Max), motor2SpeedMax(motor2Max),
-		motor1SpeedMin(motor1Min), motor2SpeedMin(motor2Min)
+		motor1SpeedMax(conf->read_int("MOTOR", "MAX_FORWARD_LEFT", 0) ),  //If the config file isn't correct we don't want to be able to do anything for safety reasons
+		motor2SpeedMax(conf->read_int("MOTOR", "MAX_FORWARD_RIGHT", 0 ) ),
+		motor1SpeedMin(conf->read_int("MOTOR", "MIN_REVERSE_LEFT", 0 ) ),
+		motor2SpeedMin(conf->read_int("MOTOR", "MIN_REVERSE_RIGHT", 0) )
 {
+
+	string portName = conf->read_string("MOTOR", "COM_port_LIN", "/dev/ttyS1" );
+
+	LOG(DEBUG4) << "Connecting to Motor Controller on port: " << portName << endl;
+
 	this->serialPort.open(portName);
+
 	this->serialPort.setConfig(115200, 0, 8, 1, false);//Non configurable port setting see the roboteq manual
 
 	if(echoEnabled) {
@@ -47,9 +57,23 @@ MotorController::MotorController( string portName, bool enableEcho, int motor1Ma
 		this->disableSerialEcho();//disable serial port echo
 	}
 
-	this->sendCommand("!H\n\r");//Load preset values for all counters
+	this->clearEmergencyStop();		//Clearing emergency stop
+
+	this->sendCommand("!H\n\r");	//Load preset values for all counters
 	this->sendCommand("!C 1 0\n\r");//clear out the first encoder counter
 	this->sendCommand("!C 2 0\n\r");//clear out the second encoder counter
+
+	if( motor1SpeedMax <= motor1SpeedMin ) {
+		LOG(FATAL) << "Motor Controller channel 1 malconfigured motor1SpeedMax: " << motor1SpeedMax
+				<< "motor1SpeedMin: " << motor1SpeedMin << endl;
+		this->emergencyStop();
+	}
+
+	if( motor2SpeedMax <= motor2SpeedMin ) {
+		LOG(FATAL) << "Motor Controller channel 2 malconfigured motor2SpeedMax: " << motor2SpeedMax
+						<< "motor2SpeedMin: " << motor2SpeedMin << endl;
+		this->emergencyStop();
+	}
 
 };
 
@@ -72,10 +96,12 @@ bool MotorController::setDeceleration(MotorChannel channel, double deceration) {
 }
 
 bool MotorController::emergencyStop() {
+	LOG(DEBUG4) << "Setting emergency stop" << endl;
 	return this->sendCommand("!EX\n\r");
 }
 
 bool MotorController::clearEmergencyStop() {
+	LOG(DEBUG4) << "Clearing emergency stop" << endl;
 	return this->sendCommand("!MG\n\r");
 }
 
@@ -310,7 +336,7 @@ bool MotorController::assertValidVoltage() {
 bool MotorController::sendCommand( std::string command ) {
 	bool rval = false;
 	if( this->serialPort.isOpen() ) {
-		cout << "Command" << command.c_str() << endl;
+		LOG(DEBUG4) << "Command to motor controller: " << command.c_str() << endl;
 		this->serialPort.Write(command.c_str(), command.length());
 	}
 	if( this->echoEnabled ) {
@@ -321,10 +347,12 @@ bool MotorController::sendCommand( std::string command ) {
 }
 
 void MotorController::enableSerialEcho() {
+	LOG(DEBUG4) << "Enabling Echo on motor controller" << endl;
 	this->sendCommand("^ECHOF 0\n\r");
 }
 
 void MotorController::disableSerialEcho() {
+	LOG(DEBUG4) << "Disabling Echo on motor controller" << endl;
 	this->sendCommand("^ECHOF 1\n\r");
 }
 
