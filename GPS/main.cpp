@@ -30,18 +30,22 @@ using namespace mrpt::hwdrivers;
 
 //CObservationGPSPtr gpsData;
 
-#define reps 10
+#define reps 1800
 
 /*
  * List of functions.  Should be helpful in finding information from GPS
  */
 
 void accuracyTest(GPS2 * gps) {
+	ofstream fout("Accuracy Testing.txt"); // to take GPS readings for testing
+	fout.precision(12);
+
+	fout << " Simulate for " << reps << " cycles " << endl << endl;
 
 	mrpt::system::sleep(1000);
 	double totalSum = 0;
 	double stability = 0;
-	double distance = 1000;
+	double distance;
 
 	double gpsAccuracyArray[reps];
 	double preLat = gps->GetGpsLatitude();
@@ -49,17 +53,17 @@ void accuracyTest(GPS2 * gps) {
 	for (int i = 0; i < reps; i++) {
 		mrpt::system::sleep(1000);
 		gps->doGPSProcess();
-		cout.precision(14);
+		fout.precision(14);
 		distance = gps->GetDistanceToWaypoint(preLat, preLon);
 
 		// tests if no GPS data was returned or if returned too large error
 		if (distance == 0.0 || distance > 1) {
 			++stability;
-			cout << " BAD READING " << endl;
+			fout << " BAD READING " << endl;
 		}
 		else {
 			totalSum += gpsAccuracyArray[i] = distance;
-			cout << "Distance = " << gpsAccuracyArray[i] << endl;
+			fout << "Distance = " << gpsAccuracyArray[i] << endl;
 
 		}
 
@@ -69,10 +73,11 @@ void accuracyTest(GPS2 * gps) {
 		preLat = gps->GetGpsLatitude();
 		preLon = gps->GetGpsLongitude();
 	}
-	cout << endl << "Accuracy for " << reps << " points taken:       " << totalSum/(reps) << " meters." << endl;
+	fout << endl << "Accuracy for " << reps << " points taken:       " << totalSum/(reps) << " meters." << endl;
 
-	cout << "And " << stability << " readings lost" << endl;
+	fout << "And " << stability << " readings lost" << endl;
 
+	fout.close();
 }
 
 int main() {
