@@ -19,6 +19,8 @@
 
 using namespace std;
 
+Beeper::beep_t Beeper::buffer = Beeper::beep_struct(0,0);
+
 Beeper::Beeper() {
 }
 
