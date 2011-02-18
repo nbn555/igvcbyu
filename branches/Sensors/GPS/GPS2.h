@@ -26,7 +26,7 @@ public:
 	/*	 In effect turns on the serial port and give commands for continous
 	 *   GPS data flow. Requires the sensors config file.
 	 */
-	void initialize(mrpt::utils::CConfigFile * config);
+	void initialize(const mrpt::utils::CConfigFile * config);
 
 	/*
 	 * Effectively a wrapper class for the mrpt doprocess call.  It will also
