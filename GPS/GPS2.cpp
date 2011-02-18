@@ -22,7 +22,7 @@ GPS2::~GPS2() {
 
 }
 
-void GPS2::initialize(CConfigFile * config) { // we might change to CConfigFileBase
+void GPS2::initialize(const CConfigFile * config) { // we might change to CConfigFileBase
 	loadConfig(*config, "GPS");
 	initConfig(*config, "GPS");
 	initializeCom();
