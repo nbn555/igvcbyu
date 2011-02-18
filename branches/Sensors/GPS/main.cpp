@@ -20,8 +20,6 @@
 #include "GPS2.h"
 #include "WaypointPlanner.h"
 
-#define length 7
-
 using namespace std;
 
 using namespace mrpt;
@@ -32,7 +30,7 @@ using namespace mrpt::hwdrivers;
 
 //CObservationGPSPtr gpsData;
 
-#define reps 1000
+#define reps 10
 
 /*
  * List of functions.  Should be helpful in finding information from GPS
@@ -40,8 +38,10 @@ using namespace mrpt::hwdrivers;
 
 void accuracyTest(GPS2 * gps) {
 
+	mrpt::system::sleep(1000);
 	double totalSum = 0;
 	double stability = 0;
+	double distance = 1000;
 
 	double gpsAccuracyArray[reps];
 	double preLat = gps->GetGpsLatitude();
@@ -50,16 +50,26 @@ void accuracyTest(GPS2 * gps) {
 		mrpt::system::sleep(1000);
 		gps->doGPSProcess();
 		cout.precision(14);
-		totalSum += gpsAccuracyArray[i] = gps->GetDistanceToWaypoint(preLat, preLon);
-		cout << "Distance = " << gpsAccuracyArray[i] << endl;
+		distance = gps->GetDistanceToWaypoint(preLat, preLon);
 
 		// tests if no GPS data was returned or if returned too large error
-		if (gpsAccuracyArray[i] == 0.0 || gpsAccuracyArray[i] > 5) ++stability;
+		if (distance == 0.0 || distance > 1) {
+			++stability;
+			cout << " BAD READING " << endl;
+		}
+		else {
+			totalSum += gpsAccuracyArray[i] = distance;
+			cout << "Distance = " << gpsAccuracyArray[i] << endl;
+
+		}
+
+
+
 
 		preLat = gps->GetGpsLatitude();
 		preLon = gps->GetGpsLongitude();
 	}
-	cout << endl << "Accuracy for " << reps << " points taken:       " << totalSum/(reps - stability) << " meters." << endl;
+	cout << endl << "Accuracy for " << reps << " points taken:       " << totalSum/(reps) << " meters." << endl;
 
 	cout << "And " << stability << " readings lost" << endl;
 
