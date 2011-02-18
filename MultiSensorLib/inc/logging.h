@@ -1,8 +1,7 @@
 /*
- * logging.h
- *
- *  Created on: Feb 17, 2011
- *      Author: tallred3
+ * @file logging.h
+ * @date Feb 17, 2011
+ * @author Thomas Eldon Allred
  */
 
 #ifndef LOGGING_H_
@@ -12,19 +11,19 @@
 #include <iostream>
 
 typedef enum LOG_LEVEL{
-	FATAL 	= 7,
-	ERROR 	= 6,
-	WARNING	= 5,
-	INFO	= 4,
-	DEBUG	= 3,
+	DISABLE = 8,//Turn off logging completely
+	FATAL 	= 7,//Fatal or irrecoverable errors
+	ERROR 	= 6,//Error Conditions
+	WARNING	= 5,//Potential problems
+	INFO	= 4,//Standard output
+	DEBUG	= 3,//High level debugging output
 	DEBUG2	= 2,
-	DEBUG3	= 1,
-	DEBUG4	= 0
+	DEBUG3	= 1,//Raw sensor data kind of stuff
+	DEBUG4	= 0	//step by step instructions of program flow
 } LOG_LEVEL;
 
 #define LOG(level) \
-if (level < Log::ReportingLevel()) ; \
-else Log().Get(level)
+(level < Log::ReportingLevel()) ? : Log().Get(level)
 
 class Log {
 public:
@@ -35,12 +34,12 @@ public:
 	static LOG_LEVEL & ReportingLevel();
 	static void SetReportLevel( LOG_LEVEL level = INFO );
 	static void SetLogFile( std::ostream * out );
+	static std::ostream * GetOStream() { return outputStream; };
 protected:
 	std::stringstream os;
 protected:
 	static std::string GetTime();
 	static std::string ToString( LOG_LEVEL level );
-	static std::ostream * GetOStream() { return outputStream; };
 private:
 	Log(const Log&);
 	Log & operator = (const Log&);

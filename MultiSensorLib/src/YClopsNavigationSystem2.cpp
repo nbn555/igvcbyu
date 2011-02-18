@@ -5,6 +5,7 @@
  */
 
 #include "YClopsNavigationSystem2.h"
+#include "logging.h"
 #include <iostream>
 #include <mrpt/gui.h>
 
@@ -15,13 +16,15 @@ using namespace std;
 
 bool bCameraData;
 YClopsNavigationSystem2::YClopsNavigationSystem2(CConfigFile & config)
-: motor(NULL), compass(NULL), gps(NULL), camera(NULL), lidar(NULL),
-  isGpsDataShown(false), isCompassDataShown(false), isLidarDataShown(false), isCameraDataShown(false), isEncoderDataShown(false)
+: isGpsDataShown(false), isCompassDataShown(false), isLidarDataShown(false), isCameraDataShown(false), isEncoderDataShown(false),
+  motor(NULL), compass(NULL), gps(NULL), camera(NULL), lidar(NULL)
 {
 	this->motor = new DualMotorCommand();
 
 	if( config.read_bool("COMPASS", "USE", false) ) {
 		this->compass = new Compass( config );
+	} else {
+		LOG(INFO) << "Not using Compass" << endl;
 	}
 
 	if( config.read_bool("GPS", "USE", false ) ) {
@@ -31,10 +34,14 @@ YClopsNavigationSystem2::YClopsNavigationSystem2(CConfigFile & config)
 		gps->loadConfig(config, "GPS");
 		gps->initConfig(config, "GPS");
 		gps->initialize();
+	} else {
+		LOG(INFO) << "Not using GPS" << endl;
 	}
 
 	if( config.read_bool("CAMERA", "USE", false ) ) {
 		this->camera = new Camera();
+	} else {
+		LOG(INFO) << "Not using Camera" << endl;
 	}
 
 	if( config.read_bool("LIDAR", "USE", false ) ) {
@@ -46,6 +53,8 @@ YClopsNavigationSystem2::YClopsNavigationSystem2(CConfigFile & config)
 		this->lidar->setScanFOV( config.read_int("LIDAR", "FOV", 180 ) );
 		this->lidar->setScanResolution( config.read_int( "LIDAR", "resolution", 50 ) );  // 25=0.25deg, 50=0.5deg, 100=1deg
 		this->lidar->initialize(); // This will raise an exception on error
+	} else {
+		LOG(INFO) << "Not using Lidar" << endl;
 	}
 }
 
@@ -59,7 +68,7 @@ YClopsNavigationSystem2::~YClopsNavigationSystem2() {
 }
 
 void YClopsNavigationSystem2::doProcess() {
-	cout << "." << endl;
+	LOG(DEBUG) << "." << endl;
 
 	if( NULL != this->motor ) {
 		this->motor->doProcess();
@@ -110,13 +119,14 @@ void YClopsNavigationSystem2::doProcess() {
 				hardError = true;
 			}
 			if (hardError)
-				printf("[TEST] Hardware error=true!!\n");
+				LOG(ERROR) << "[TEST] Hardware error=true!!" << endl;
+
 			if (thereIsObservation)
 			{
-				printf("[TEST] Observation received (%u ranges over %.02fdeg, mid=%.03f)!!\n",
-						(unsigned int)obs.scan.size(),
-						RAD2DEG(obs.aperture),
-						obs.scan[obs.scan.size()/2]);
+				LOG(DEBUG) << "[TEST] Observation received (" << ((unsigned int)obs.scan.size())
+						<< "ranges over " << (RAD2DEG(obs.aperture))
+						<< "deg, mid=" << (obs.scan[obs.scan.size()/2])
+						<< ")!!"  << endl;
 				obs.sensorPose = CPose3D(0,0,0);
 				mrpt::slam::CSimplePointsMap		theMap;
 				theMap.insertionOptions.minDistBetweenLaserPoints	= 0;

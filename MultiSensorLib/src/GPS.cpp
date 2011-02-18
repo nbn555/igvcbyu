@@ -9,6 +9,7 @@
 #include <mrpt/slam/CObservationGPS.h>
 
 #include "GPS.h"
+#include "logging.h"
 
 using namespace std;
 using namespace mrpt;
@@ -27,36 +28,51 @@ GPS::~GPS() {
 void GPS::initConfig( mrpt::utils::CConfigFileBase & config, const std::string & sectionName) {
 
 	this->vendor = config.read_string(sectionName, "GPS_TYPE", "Novatel" );
+
+	LOG(DEBUG4) << "Using " << this->vendor << " GPS" << endl;
+
 	this->isGpggaUsed = config.read_bool(sectionName,"use_gga", true);
+
+	LOG(DEBUG4) << "Using gpgga: " << (this->isGpggaUsed?"TRUE":"FALSE") << endl;
+
 	this->isGprmcUsed = config.read_bool(sectionName,"use_rmc", false);
+
+	LOG(DEBUG4) << "Using gprmc: " << (this->isGprmcUsed?"TRUE":"FALSE") << endl;
+
 	this->baudRate = config.read_int(sectionName,"baudRate", 57600);
+
+	LOG(DEBUG4) << "Using " << this->baudRate << " baud" << endl;
+
 	this->portName = config.read_string(sectionName,"COM_port_LIN","/dev/ttyS0");
+
+	LOG(DEBUG4) << "Connecting to port " << this->portName << endl;
+
 	this->processRate = config.read_int(sectionName,"process_rate", 1);
+
+	LOG(DEBUG4) << "Using a process rate of " << this->processRate << endl;
 
 }
 
 void GPS::initialize() {
 	// check if connection is already established, if not, reconnect
 	if (this->isGPS_connected()) {return; }
-	cout << "Connecting to GPS ... (./YClopsLib/GPS)" << endl;
+	LOG(DEBUG4) << "Connecting to GPS ... (./YClopsLib/GPS)" << endl;
 	CSerialPort myCom(this->portName);
 	myCom.setConfig(this->baudRate,0,8,1,false);
-	cout << "Post open" << endl;
+	LOG(DEBUG4) << "Opened connection to GPS in initialize function" << endl;
 
 	stringstream inputStream;
 	if( this->isGpggaUsed ) {
-		cout << "Using gpgga" << endl;
 		if( "PocketMAX" == this->vendor )
 			inputStream << "$jasc,gpgga," << this->processRate << "\n\r";
 		else if( "Novatel" == this->vendor )
 			inputStream << "log gpgga ontime " << this->processRate << "\n\r";
 		else
-			cerr << "Unsupported vendor" << endl;
+			LOG(ERROR) << "Unsupported GPS vendor:" << this->vendor << endl;
 		myCom.Write(inputStream.str().c_str(),inputStream.str().length());//this will tell the gps to get a satellite reading once a second
 	}
 
 	if( this->isGprmcUsed ) {
-		cout << "Using gprmc" << endl;
 		if( "PocketMAX" == this->vendor) {
 			inputStream << "$jasc,gprmc," << this->processRate << "\n\r";
 		}
@@ -64,11 +80,13 @@ void GPS::initialize() {
 			inputStream << "log gprmc ontime " << this->processRate << "\n\r";
 		}
 		else
-			cerr << "Unsupported vendor" << endl;
+			LOG(ERROR) << "Unsupported GPS vendor:" << this->vendor << endl;
 		myCom.Write(inputStream.str().c_str(),inputStream.str().length());//this will tell the gps to run the nmea rmc command once a second
 	}
 
 	myCom.close();
+
+	LOG(DEBUG4) << "GPS initialized" << endl;
 }
 
 void GPS::dumpData(std::ostream & out ) {
