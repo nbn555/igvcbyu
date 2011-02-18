@@ -1,5 +1,4 @@
-main.d main.o: ../main.cpp \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGPSInterface.h \
+GPS2.d GPS2.o: ../GPS2.cpp ../GPS2.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationGPS.h \
  /usr/include/mrpt/base/include/mrpt/utils/CSerializable.h \
  /usr/include/mrpt/base/include/mrpt/utils/CObject.h \
@@ -206,6 +205,7 @@ main.d main.o: ../main.cpp \
  /usr/include/mrpt/base/include/mrpt/poses/CPoseOrPoint_detail.h \
  /usr/include/mrpt/base/include/mrpt/math/CQuaternion.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPose2D.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGPSInterface.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPoint3D.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPoint.h \
  /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h \
@@ -225,12 +225,12 @@ main.d main.o: ../main.cpp \
  /usr/include/mrpt/base/include/mrpt/synch/MT_buffer.h \
  /usr/include/mrpt/base/include/mrpt/synch/CCriticalSection.h \
  /usr/include/mrpt/base/include/mrpt/synch/CThreadSafeVariable.h \
- /usr/include/mrpt/base/include/mrpt/system/threads.h ../GPS2.h \
+ /usr/include/mrpt/base/include/mrpt/system/threads.h \
  /usr/include/mrpt/base/include/mrpt/utils/CConfigFile.h \
  /home/igvcbyu/workspace/YClopsLib/inc/WaypointPlanner.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPoint2D.h
 
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGPSInterface.h:
+../GPS2.h:
 
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationGPS.h:
 
@@ -644,6 +644,8 @@ main.d main.o: ../main.cpp \
 
 /usr/include/mrpt/base/include/mrpt/poses/CPose2D.h:
 
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGPSInterface.h:
+
 /usr/include/mrpt/base/include/mrpt/poses/CPoint3D.h:
 
 /usr/include/mrpt/base/include/mrpt/poses/CPoint.h:
@@ -683,8 +685,6 @@ main.d main.o: ../main.cpp \
 /usr/include/mrpt/base/include/mrpt/synch/CThreadSafeVariable.h:
 
 /usr/include/mrpt/base/include/mrpt/system/threads.h:
-
-../GPS2.h:
 
 /usr/include/mrpt/base/include/mrpt/utils/CConfigFile.h:
 

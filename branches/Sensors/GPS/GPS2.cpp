@@ -22,7 +22,7 @@ GPS2::~GPS2() {
 
 }
 
-void GPS2::initialize(const CConfigFile * config) { // we might change to CConfigFileBase
+void GPS2::initialize(CConfigFile * config) { // we might change to CConfigFileBase
 	loadConfig(*config, "GPS");
 	initConfig(*config, "GPS");
 	initializeCom();
@@ -32,6 +32,7 @@ void GPS2::initialize(const CConfigFile * config) { // we might change to CConfi
 		cout << "Getting GPS observations" << endl;
 		mrpt::system::sleep(200);
 		getObservations(lstObs);
+		//this->isGPS_signalAcquired()
 	}
 
 	gpsData = CObservationGPSPtr(lstObs.begin()->second);
@@ -69,15 +70,15 @@ void GPS2::dumpData(std::ostream & out ) {
 	out << "Connection: " << this->isGPS_connected() << " " << "Signal: " << this->isGPS_signalAcquired();
 
 	static bool isValid = false;
-	static CObservationGPSPtr gpsData;
-	CGenericSensor::TListObservations				lstObs;
+	//static CObservationGPSPtr gpsData;
+	//CGenericSensor::TListObservations				lstObs;
 	//prime the pump with the first gps observation
 
-	this->getObservations(lstObs);
+	//this->getObservations(lstObs);
 	out << " Size: " << lstObs.size() << endl;
 	if(lstObs.size()) {
 		isValid = true;
-		gpsData = CObservationGPSPtr(lstObs.begin()->second);
+		//gpsData = CObservationGPSPtr(lstObs.begin()->second);
 		//this->appendObservation(gpsData);//This probably wont be used
 	}
 	if(isValid) {
@@ -94,8 +95,8 @@ void GPS2::dumpData(std::ostream & out ) {
 }
 
 
-double GPS2::GetDistanceToWaypoint (double lon, double lat) {
-	return AbstractNavigationInterface::haversineDistance(lon, lat, gpsData->GGA_datum.longitude_degrees, gpsData->GGA_datum.latitude_degrees);
+double GPS2::GetDistanceToWaypoint (double lat, double lon) {
+	return AbstractNavigationInterface::haversineDistance(lat, lon, GetGpsLatitude(), GetGpsLongitude());
 }
 
 double GPS2::GetDistanceToWaypoint (double lat1, double lon1, double lat2, double lon2) {
@@ -182,7 +183,7 @@ void GPS2::initializeCom() {
 }
 
 //This function ought to be called after loadConfig but before initialize
-void GPS2::initConfig( mrpt::utils::CConfigFileBase & config, const std::string & sectionName) {
+void GPS2::initConfig(mrpt::utils::CConfigFileBase & config, const std::string & sectionName) {
 
 	this->vendor = config.read_string(sectionName, "GPS_TYPE", "Novatel" );
 	this->isGpggaUsed = config.read_bool(sectionName,"use_gga", true);
