@@ -16,6 +16,7 @@
 #include "WiiController.h"
 #include "YClopsNavigationSystem2.h"
 #include "Beeper.h"
+#include "logging.h"
 
 #include <mrpt/hwdrivers/CSerialPort.h>
 
