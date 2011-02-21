@@ -194,7 +194,7 @@ namespace tkhl{
 		void StartSearch();
 		TSPDriver(mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit);
 	private:
-		double getDistance( double lat1, double lon1, double lat2, double lon2 );
+		double getDistance( int mode, double lat1, double lon1, double lat2, double lon2 );
 	};
 	void TSPDriver::UpdateTrial()
 	{
@@ -297,7 +297,7 @@ namespace tkhl{
 			{
 				{
 					//Map.distance[i][j]=sqrt(pow((cc[i].x-cc[j].x),2)+pow((cc[i].y-cc[j].y),2));
-					Map.distance[i][j]=getDistance(cc[i].x, cc[i].y, cc[j].x, cc[j].y);
+					Map.distance[i][j]=getDistance(0, cc[i].x, cc[i].y, cc[j].x, cc[j].y);
 				}
 			}
 
@@ -379,23 +379,28 @@ namespace tkhl{
 		*/
 	}
 
-	double TSPDriver::getDistance( double lat1, double lon1, double lat2, double lon2 ) {
-				const double EARTH_RADIUS_AVERAGE = 6371009;//average earth radius in meters
+	double TSPDriver::getDistance(int mode, double lat1, double lon1, double lat2, double lon2 ) {
+				if(mode == 1){
+					return sqrt(pow((lat1-lat2), 2) + pow((lon1-lon2), 2));
+				}
+				else{
+					const double EARTH_RADIUS_AVERAGE = 6371009;//average earth radius in meters
 
-				double deltalat = lat2 - lat1;
-				double deltalon = lon2 - lon1;
+					double deltalat = lat2 - lat1;
+					double deltalon = lon2 - lon1;
 
-				//convert from degree to radian
-				deltalat *= M_PI/180.0;
-				deltalon *= M_PI/180.0;
-				lat1 *= M_PI/180.0;
-				lat2 *= M_PI/180.0;
+					//convert from degree to radian
+					deltalat *= M_PI/180.0;
+					deltalon *= M_PI/180.0;
+					lat1 *= M_PI/180.0;
+					lat2 *= M_PI/180.0;
 
-				//nasty spherical trig stuff
-				double a = pow( sin( deltalat / 2 ), 2 ) +
-						cos(lat1) * cos(lat2) * pow( sin( deltalon / 2 ), 2 );
-				double c = 2 * atan2( sqrt(a), sqrt(1-a) );
+					//nasty spherical trig stuff
+					double a = pow( sin( deltalat / 2 ), 2 ) +
+							cos(lat1) * cos(lat2) * pow( sin( deltalon / 2 ), 2 );
+					double c = 2 * atan2( sqrt(a), sqrt(1-a) );
 
-				return EARTH_RADIUS_AVERAGE * c;
+					return EARTH_RADIUS_AVERAGE * c;
+				}
 			}
 }
