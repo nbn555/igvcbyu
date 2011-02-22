@@ -26,9 +26,6 @@
 #include <opencv/highgui.h>
 
 
-using namespace std;
-using namespace cv;
-
 class Camera{
 
 public:
@@ -36,7 +33,7 @@ public:
 
 	~Camera();
 
-	void loadConfig(String fileName);
+	void loadConfig(const mrpt::utils::CConfigFileBase & config, const std::string & sectionName);
 	void startCamera();
 
 	void getObstacles(mrpt::slam::CSimplePointsMap & map, mrpt::poses::CPose3D pose);
@@ -44,21 +41,23 @@ public:
 	void dumpData( std::ostream & out );
 
 private:
-	void getFrame(Mat & image);
+	void getFrame(cv::Mat & image);
 	void insertObstacles(mrpt::slam::CSimplePointsMap & map, int size, bool * array, mrpt::poses::CPose3D pose);
-	void hasObstacles(bool * array, Mat & image);
-	void getWhite(Mat & image);
-	void distort(Mat & src);
+	void hasObstacles(bool * array, cv::Mat & image);
+	void getWhite(cv::Mat & image);
+	void distort(cv::Mat & src);
 	void initializeArray(bool * array);
-	vector<Mat> convertRGBtoHSV(Mat & image);
+	std::vector<cv::Mat> convertRGBtoHSV(cv::Mat & image);
 
 	// TODO: Delete me
-	VideoCapture * capture;
+	cv::VideoCapture * capture;
 	bool * array;
 
 	double PERCENT_FILLED;
 	int GRID_SIZE;
 	int THRESHOLD;
+	int ERODE_AMOUNT;
+	int HSV_VECTOR;
 
 };
 
