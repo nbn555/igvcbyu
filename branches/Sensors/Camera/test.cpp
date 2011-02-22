@@ -3,10 +3,11 @@
 #include <iostream>
 
 #include "Camera.h"
+#include "logging.h"
 
-#include "opencv2/core/core.hpp"
-#include "opencv2/imgproc/imgproc.hpp"
-#include "opencv2/highgui/highgui.hpp"
+#include <opencv/cv.h>
+#include <opencv/highgui.h>
+#include <opencv/cxcore.h>
 
 using namespace std;
 using namespace cv;
@@ -15,11 +16,10 @@ using namespace cv;
 
 
 int main(int argc, char *argv[]) {
-	cout << "Starting main method...";
 	Camera camera;
-	camera.loadConfig("test");
+	//camera.loadConfig("test");
 
-	//camera.startCamera();
+	camera.startCamera();
 	//camera.getObstacles(NULL);
 }
 
