@@ -6,6 +6,7 @@
  */
 
 #include "GPS2.h"
+#include "logging.h"
 
 using namespace std;
 using namespace mrpt;
@@ -186,11 +187,28 @@ void GPS2::initializeCom() {
 void GPS2::initConfig(mrpt::utils::CConfigFileBase & config, const std::string & sectionName) {
 
 	this->vendor = config.read_string(sectionName, "GPS_TYPE", "Novatel" );
+
+	LOG(DEBUG4) << "Using " << this->vendor << " GPS" << endl;
+
 	this->isGpggaUsed = config.read_bool(sectionName,"use_gga", true);
+
+	LOG(DEBUG4) << "Using gpgga: " << (this->isGpggaUsed?"TRUE":"FALSE") << endl;
+
 	this->isGprmcUsed = config.read_bool(sectionName,"use_rmc", false);
+
+	LOG(DEBUG4) << "Using gprmc: " << (this->isGprmcUsed?"TRUE":"FALSE") << endl;
+
 	this->baudRate = config.read_int(sectionName,"baudRate", 57600);
+
+	LOG(DEBUG4) << "Using " << this->baudRate << " baud" << endl;
+
 	this->portName = config.read_string(sectionName,"COM_port_LIN","/dev/ttyS0");
+
+	LOG(DEBUG4) << "Connecting to port " << this->portName << endl;
+
 	this->processRate = config.read_int(sectionName,"process_rate", 1);
+
+	LOG(DEBUG4) << "Using a process rate of " << this->processRate << endl;
 
 }
 
