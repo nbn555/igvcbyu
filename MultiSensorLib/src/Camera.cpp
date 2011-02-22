@@ -1,22 +1,11 @@
 #include "Camera.h"
+#include "logging.h"
 
-//#define DEBUG_CONTROL_WINDOW
-//#define DEBUG_CONTROL_CONSOLE
-
-#ifdef DEBUG_CONTROL_CONSOLE
-	#define DEBUG(str) cout << str << endl;
-#else
-	#define DEBUG(str)
-#endif
-
-
-#ifdef DEBUG_CONTROL_WINDOW
-	#define DEBUG_COMMAND(command) command
-#else
-	#define DEBUG_COMMAND(command)
-#endif
 
 extern bool bCameraData;
+
+using namespace std;
+using namespace cv;
 
 Camera::Camera(){
 	GRID_SIZE = 10;
@@ -29,13 +18,26 @@ Camera::Camera(){
 
 Camera::~Camera(){
 	delete[] array;
-	delete capture;
+	//delete capture;
 
-	DEBUG("Deleted array and video capture...");
+	LOG(DEBUG4) << "Deleted array..." << endl;
 }
 
-void Camera::loadConfig(String fileName){
-	DEBUG("Loaded config file...");
+void Camera::loadConfig(const mrpt::utils::CConfigFileBase & config, const string & sectionName){
+	GRID_SIZE = config.read_int(sectionName, "gride_size", 10);
+	PERCENT_FILLED = config.read_double(sectionName, "percent_filled", 3);
+	THRESHOLD = config.read_int(sectionName, "threshold", 20);
+	ERODE_AMOUNT = config.read_int(sectionName, "erode_amount", 2);
+	HSV_VECTOR = config.read_int(sectionName, "hsv_vector", 1);
+
+	if(GRID_SIZE <= 0) LOG(FATAL) << "Grid size is negative or zero" << endl;
+	if(PERCENT_FILLED <= 0) LOG(FATAL) << "Percent filled is negative or 0" << endl;
+	if(PERCENT_FILLED > 1) LOG(FATAL) << "Percent filled is greater than 1" << endl;
+	if(THRESHOLD < 0) LOG(FATAL) << "Threshold is negative, must be between 0 and 255" << endl;
+	if(THRESHOLD > 255) LOG(FATAL) << "Threshold is too high, must be between 0 and 255" << endl;
+	if(ERODE_AMOUNT < 0) LOG(FATAL) << "Erode amount must be greater than 0" << endl;
+	if(HSV_VECTOR < 0) LOG(FATAL) << "hsv vector is negative, must be between 0 and 3" << endl;
+	if(HSV_VECTOR > 3) LOG(FATAL) << "hsv vector is too high, must be between 0 and 3" << endl;
 }
 
 void Camera::startCamera(){
@@ -43,10 +45,10 @@ void Camera::startCamera(){
 
 	// check to see if camera was opened
 	if(!capture->isOpened()){
-		cout << "Error opening camera" << endl;
+		LOG(FATAL) << "Error opening camera" << endl;
 	}
 
-	DEBUG("Started camera...");
+	LOG(DEBUG4) << "Started camera..." << endl;
 }
 
 void Camera::getFrame(Mat & image){
@@ -55,32 +57,32 @@ void Camera::getFrame(Mat & image){
 
 void Camera::getObstacles(mrpt::slam::CSimplePointsMap & map, mrpt::poses::CPose3D pose){
 	Mat image;
-	DEBUG_COMMAND(namedWindow("test", 1));
+	//DEBUG_COMMAND(namedWindow("test", 1));
 
 	initializeArray(array);
-	DEBUG("Initialized array...");
+	LOG(DEBUG4) << "Initialized array..." << endl;
 
 	getFrame(image);
-	DEBUG("Got frame...");
+	LOG(DEBUG4) << "Got frame..." << endl;
 
-	DEBUG_COMMAND(imshow("test", image));
-	DEBUG_COMMAND(waitKey());
+	//DEBUG_COMMAND(imshow("test", image));
+	//DEBUG_COMMAND(waitKey());
 
 	getWhite(image);
-	DEBUG("Thresholded to white...");
-	DEBUG_COMMAND(imshow("test", image));
-	DEBUG_COMMAND(waitKey());
+	LOG(DEBUG4) << "Thresholded to white..." << endl;
+	//DEBUG_COMMAND(imshow("test", image));
+	//DEBUG_COMMAND(waitKey());
 
 	distort(image);
-	DEBUG("Distorted image...");
-	DEBUG_COMMAND(imshow("test", image));
-	DEBUG_COMMAND(waitKey());
+	LOG(DEBUG4) << "Distorted image..." << endl;
+	//DEBUG_COMMAND(imshow("test", image));
+	//DEBUG_COMMAND(waitKey());
 
 	hasObstacles(array, image);
-	DEBUG("Checked for obstacles...");
+	LOG(DEBUG4) << "Checked for obstacles..." << endl;
 
 	insertObstacles(map, GRID_SIZE, array, pose);
-	DEBUG("Inserted obstacles into map...");
+	LOG(DEBUG4) << "Inserted obstacles into map..." << endl;
 
 
 }
@@ -131,8 +133,8 @@ void Camera::insertObstacles(mrpt::slam::CSimplePointsMap & map, int size, bool 
 
 				map.insertPoint(x, y);
 
-				DEBUG("\tx = " << x);
-				DEBUG("\ty = " << y << endl);
+				LOG(DEBUG4) << "\tx = " << x << endl;
+				LOG(DEBUG4) << "\ty = " << y << endl;
 
 			}
 		}
@@ -146,26 +148,28 @@ void Camera::hasObstacles(bool * array, Mat & image){
 
 
 	int obstacleThreshold = 255 * PERCENT_FILLED;
-	DEBUG("\tObstacle threshold: " << obstacleThreshold);
-	DEBUG_COMMAND(namedWindow("test2", 1));
+	LOG(DEBUG4) << "\tObstacle threshold: " << obstacleThreshold << endl;
+	//DEBUG_COMMAND(namedWindow("test2", 1));
 
+	/*
 	if(bCameraData){
 		namedWindow("test2", 1);
 	}
+	*/
 
 	for(int i = 0; i < GRID_SIZE; i++){
 		for(int j = 0; j < GRID_SIZE; j++){
 			Mat roi = image(Rect(width * j, height * i, width, height));
 			Scalar value = mean(roi);
 
-			DEBUG("\tMean: " << value[0]);
+			LOG(DEBUG4) << "\tMean: " << value[0] << endl;
 			if(value[0] > obstacleThreshold){
 				array[(i * GRID_SIZE) + j] = true;
 				roi = Scalar(155);
 
-				DEBUG("\t\tFound an obstacle...");
-				DEBUG_COMMAND(imshow("test2", image));
-				DEBUG_COMMAND(waitKey());
+				LOG(DEBUG4) << "\t\tFound an obstacle..." << endl;
+				//DEBUG_COMMAND(imshow("test2", image));
+				//DEBUG_COMMAND(waitKey());
 
 				if(bCameraData){
 					imshow("test", image);
@@ -177,13 +181,13 @@ void Camera::hasObstacles(bool * array, Mat & image){
 
 void Camera::getWhite(Mat & image){
 	// vect[2] seems to be the best for white
-	Mat white = convertRGBtoHSV(image)[1];
+	Mat white = convertRGBtoHSV(image)[HSV_VECTOR];
 
 	////// take out the white color //////
 	threshold(white, white, THRESHOLD, 255, THRESH_BINARY_INV);
 
-	erode(white, white, Mat(), Point(-1, -1), 2);
-	dilate(white, white, Mat(), Point(-1, -1), 2);
+	erode(white, white, Mat(), Point(-1, -1), ERODE_AMOUNT);
+	dilate(white, white, Mat(), Point(-1, -1), ERODE_AMOUNT);
 
 
 /*
