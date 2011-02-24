@@ -17,7 +17,7 @@
 
 #include <mrpt/hwdrivers/CGPSInterface.h>
 
-#include "GPS2.h"
+#include "GPS.h"
 #include "WaypointPlanner.h"
 
 using namespace std;
@@ -36,7 +36,7 @@ using namespace mrpt::hwdrivers;
  * List of functions.  Should be helpful in finding information from GPS
  */
 
-void accuracyTest(GPS2 * gps) {
+void accuracyTest(GPS * gps) {
 	ofstream fout("Accuracy Testing.txt"); // to take GPS readings for testing
 	fout.precision(12);
 
@@ -82,7 +82,7 @@ void accuracyTest(GPS2 * gps) {
 
 int main() {
 
-	GPS2 gps;
+	GPS gps;
 	CConfigFile * config = new CConfigFile("GPS.ini");
 	gps.initialize(config);
 
