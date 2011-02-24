@@ -1,5 +1,14 @@
 #include "Camera.h"
 #include "logging.h"
+#include <cassert>
+
+#define DEBUG
+
+#ifdef DEBUG
+	#define DEBUG_COMMAND(cmd) cmd
+#else
+	#define DEBUG_COMMAND(cmd)
+#endif
 
 
 extern bool bCameraData;
@@ -8,31 +17,36 @@ using namespace std;
 using namespace cv;
 
 Camera::Camera(){
-	GRID_SIZE = 10;
-	PERCENT_FILLED = .3;
-	THRESHOLD = 20;
-
-	array = new bool[GRID_SIZE * GRID_SIZE];
-
 }
 
 Camera::~Camera(){
 	delete[] array;
-	//delete capture;
+	delete capture;
 
-	LOG(DEBUG4) << "Deleted array..." << endl;
+	LOG(DEBUG4) << "Deleted array and image capture..." << endl;
 }
 
 void Camera::loadConfig(const mrpt::utils::CConfigFileBase & config, const string & sectionName){
-	GRID_SIZE = config.read_int(sectionName, "gride_size", 10);
-	PERCENT_FILLED = config.read_double(sectionName, "percent_filled", 3);
+	LOG(DEBUG4) << "Reading config file..." << endl;
+
+	GRID_SIZE = config.read_int(sectionName, "grid_size", 10);
+	PERCENT_FILLED = config.read_double(sectionName, "percent_filled", .3);
 	THRESHOLD = config.read_int(sectionName, "threshold", 20);
 	ERODE_AMOUNT = config.read_int(sectionName, "erode_amount", 2);
 	HSV_VECTOR = config.read_int(sectionName, "hsv_vector", 1);
 
+
+
+	LOG(DEBUG4) << "Grid size: " << GRID_SIZE << endl;
+	LOG(DEBUG4) << "Percent filled: " << PERCENT_FILLED << endl;
+	LOG(DEBUG4) << "Threshold: " << THRESHOLD << endl;
+	LOG(DEBUG4) << "Erode amount: " << ERODE_AMOUNT << endl;
+	LOG(DEBUG4) << "HSV vector: " << HSV_VECTOR << endl;
+
+
 	if(GRID_SIZE <= 0) LOG(FATAL) << "Grid size is negative or zero" << endl;
 	if(PERCENT_FILLED <= 0) LOG(FATAL) << "Percent filled is negative or 0" << endl;
-	if(PERCENT_FILLED > 1) LOG(FATAL) << "Percent filled is greater than 1" << endl;
+	if(PERCENT_FILLED > 1.0) LOG(FATAL) << "Percent filled is greater than 1" << endl;
 	if(THRESHOLD < 0) LOG(FATAL) << "Threshold is negative, must be between 0 and 255" << endl;
 	if(THRESHOLD > 255) LOG(FATAL) << "Threshold is too high, must be between 0 and 255" << endl;
 	if(ERODE_AMOUNT < 0) LOG(FATAL) << "Erode amount must be greater than 0" << endl;
@@ -41,6 +55,7 @@ void Camera::loadConfig(const mrpt::utils::CConfigFileBase & config, const strin
 }
 
 void Camera::startCamera(){
+	array = new bool[GRID_SIZE * GRID_SIZE];
 	capture = new VideoCapture(0);
 
 	// check to see if camera was opened
@@ -57,7 +72,7 @@ void Camera::getFrame(Mat & image){
 
 void Camera::getObstacles(mrpt::slam::CSimplePointsMap & map, mrpt::poses::CPose3D pose){
 	Mat image;
-	//DEBUG_COMMAND(namedWindow("test", 1));
+	namedWindow("test", 1);
 
 	initializeArray(array);
 	LOG(DEBUG4) << "Initialized array..." << endl;
@@ -65,18 +80,18 @@ void Camera::getObstacles(mrpt::slam::CSimplePointsMap & map, mrpt::poses::CPose
 	getFrame(image);
 	LOG(DEBUG4) << "Got frame..." << endl;
 
-	//DEBUG_COMMAND(imshow("test", image));
-	//DEBUG_COMMAND(waitKey());
+	DEBUG_COMMAND(imshow("test", image));
+	DEBUG_COMMAND(waitKey());
 
 	getWhite(image);
 	LOG(DEBUG4) << "Thresholded to white..." << endl;
-	//DEBUG_COMMAND(imshow("test", image));
-	//DEBUG_COMMAND(waitKey());
+	DEBUG_COMMAND(imshow("test", image));
+	DEBUG_COMMAND(waitKey());
 
 	distort(image);
 	LOG(DEBUG4) << "Distorted image..." << endl;
-	//DEBUG_COMMAND(imshow("test", image));
-	//DEBUG_COMMAND(waitKey());
+	DEBUG_COMMAND(imshow("test", image));
+	DEBUG_COMMAND(waitKey());
 
 	hasObstacles(array, image);
 	LOG(DEBUG4) << "Checked for obstacles..." << endl;
@@ -151,12 +166,6 @@ void Camera::hasObstacles(bool * array, Mat & image){
 	LOG(DEBUG4) << "\tObstacle threshold: " << obstacleThreshold << endl;
 	//DEBUG_COMMAND(namedWindow("test2", 1));
 
-	/*
-	if(bCameraData){
-		namedWindow("test2", 1);
-	}
-	*/
-
 	for(int i = 0; i < GRID_SIZE; i++){
 		for(int j = 0; j < GRID_SIZE; j++){
 			Mat roi = image(Rect(width * j, height * i, width, height));
@@ -168,8 +177,8 @@ void Camera::hasObstacles(bool * array, Mat & image){
 				roi = Scalar(155);
 
 				LOG(DEBUG4) << "\t\tFound an obstacle..." << endl;
-				//DEBUG_COMMAND(imshow("test2", image));
-				//DEBUG_COMMAND(waitKey());
+				DEBUG_COMMAND(imshow("test", image));
+				DEBUG_COMMAND(waitKey());
 
 				if(bCameraData){
 					imshow("test", image);
