@@ -5,7 +5,7 @@
  *      Author: igvcbyu
  */
 
-#include "GPS2.h"
+#include "GPS.h"
 #include "logging.h"
 
 using namespace std;
@@ -16,14 +16,14 @@ using namespace mrpt::hwdrivers;
 using namespace mrpt::utils;
 
 
-GPS2::GPS2(const int Buffer_Length):CGPSInterface(Buffer_Length), isGpggaUsed(false), isGprmcUsed(false) { //fixes potential default constructor problem
+GPS::GPS(const int Buffer_Length):CGPSInterface(Buffer_Length), isGpggaUsed(false), isGprmcUsed(false) { //fixes potential default constructor problem
 }
 
-GPS2::~GPS2() {
+GPS::~GPS() {
 
 }
 
-void GPS2::initialize(CConfigFile * config) { // we might change to CConfigFileBase
+void GPS::initialize(CConfigFile * config) { // we might change to CConfigFileBase
 	loadConfig(*config, "GPS");
 	initConfig(*config, "GPS");
 	initializeCom();
@@ -45,7 +45,7 @@ void GPS2::initialize(CConfigFile * config) { // we might change to CConfigFileB
 
 }
 
-void GPS2::doGPSProcess() {
+void GPS::doGPSProcess() {
 	doProcess();
 	getObservations( lstObs );
 
@@ -65,7 +65,7 @@ void GPS2::doGPSProcess() {
 
 }
 
-void GPS2::dumpData(std::ostream & out ) {
+void GPS::dumpData(std::ostream & out ) {
 	out << "************" << endl;
 	out << "GPS" << endl;
 	out << "Connection: " << this->isGPS_connected() << " " << "Signal: " << this->isGPS_signalAcquired();
@@ -96,22 +96,22 @@ void GPS2::dumpData(std::ostream & out ) {
 }
 
 
-double GPS2::GetDistanceToWaypoint (double lat, double lon) {
+double GPS::GetDistanceToWaypoint (double lat, double lon) {
 	return AbstractNavigationInterface::haversineDistance(lat, lon, GetGpsLatitude(), GetGpsLongitude());
 }
 
-double GPS2::GetDistanceToWaypoint (double lat1, double lon1, double lat2, double lon2) {
+double GPS::GetDistanceToWaypoint (double lat1, double lon1, double lat2, double lon2) {
 	return AbstractNavigationInterface::haversineDistance(lat1, lon1, lat2, lon2);
 }
 
-double GPS2::GetGpsSpeed() {
+double GPS::GetGpsSpeed() {
 	const double knotToMph = 0.868976242;
 	if (gpsData->has_RMC_datum)
 		return (gpsData->RMC_datum.speed_knots * knotToMph);
 	else return 0.0;
 }
 
-double GPS2::GetGpsDirection() {
+double GPS::GetGpsDirection() {
 
 	if (gpsData->has_RMC_datum)
 		return gpsData->RMC_datum.direction_degrees;
@@ -121,21 +121,21 @@ double GPS2::GetGpsDirection() {
 	return 0.0;
 }
 
-double GPS2::GetGpsLatitude() {
+double GPS::GetGpsLatitude() {
 	if (gpsData->has_GGA_datum)
 		return gpsData->GGA_datum.latitude_degrees;
 
 	return 0.0;
 }
 
-double GPS2::GetGpsLongitude() {
+double GPS::GetGpsLongitude() {
 	if (gpsData->has_GGA_datum)
 		return gpsData->GGA_datum.longitude_degrees;
 
 	return 0.0;
 }
 
-CPoint2D GPS2::GetCurrentGpsLocation() {
+CPoint2D GPS::GetCurrentGpsLocation() {
 	CPoint2D curPos;
 	curPos.m_coords[0] = GetGpsLatitude();
 	curPos.m_coords[1] = GetGpsLongitude();
@@ -147,7 +147,7 @@ CPoint2D GPS2::GetCurrentGpsLocation() {
 
 //**************  PRIVATE  *****************************
 
-void GPS2::initializeCom() {
+void GPS::initializeCom() {
 	// check if connection is already established, if not, reconnect
 	if (this->isGPS_connected()) {return; }
 	cout << "Connecting to GPS ... (./YClopsLib/GPS)" << endl;
@@ -184,7 +184,7 @@ void GPS2::initializeCom() {
 }
 
 //This function ought to be called after loadConfig but before initialize
-void GPS2::initConfig(mrpt::utils::CConfigFileBase & config, const std::string & sectionName) {
+void GPS::initConfig(mrpt::utils::CConfigFileBase & config, const std::string & sectionName) {
 
 	this->vendor = config.read_string(sectionName, "GPS_TYPE", "Novatel" );
 
