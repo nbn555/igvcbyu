@@ -28,8 +28,12 @@ int main(int argc, char *argv[]) {
 
 	camera.startCamera();
 
+	mrpt::slam::CSimplePointsMap map;
+	mrpt::poses::CPose3D pose;
+
+	camera.getObstacles(map, pose);
 	cout << "Done..." << endl;
-	//camera.getObstacles(NULL);
+
 
 }
 
