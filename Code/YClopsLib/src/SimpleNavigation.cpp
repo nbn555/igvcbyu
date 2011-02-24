@@ -21,9 +21,11 @@ SimpleNavigation::~SimpleNavigation() {
 	delete interface;
 }
 
-void SimpleNavigation::setFileName(string & fileName)
+void SimpleNavigation::setFileName(string & fileName, bool inMeters)
 {
+	cout << fileName << endl;
 	this->fileName = fileName;
+	this->inMeters = inMeters;
 }
 
 void SimpleNavigation::go()
@@ -62,81 +64,107 @@ void SimpleNavigation::go()
 
 	nav.loadPoints(fileName);
 	//waypoints in the order we want to visit them
-	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t points = nav.solve(false);
+	 points =  nav.solve(false);
+
+	 gotoNextPoint();
 
 
-
-	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t::iterator iter = points.begin();
-	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t::iterator end = points.end();
-		//go until there aren't anymore waypoints
-	double count = 0;
-	while (iter != end)
-		{
-			cout << "Way point # " << count << endl;
-			//setting up the next waypoint
-			mrpt::reactivenav::CAbstractReactiveNavigationSystem::TNavigationParams   navParams;
-			navParams.target.x = iter->x();
-			navParams.target.y = iter->y();
-			//distance from the waypoint in meters before the robot considers itself at the point
-			navParams.targetAllowedDistance = 0.20f;
-			//navParams.targetIsRelative = !challange; is being ignored
-
-			//gives the reactive nav the next goal
-			navigate(&navParams );
-			/*//go until it makes it to the point
-			while(reactivenav.getCurrentState() ==
-					mrpt::reactivenav::CAbstractReactiveNavigationSystem::NAVIGATING)
-			{
-				reactivenav.navigationStep();
-			}*/
-			++count;
-			++iter;
-
-		}
 }
+void SimpleNavigation::gotoNextPoint()
+{
+	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t::iterator iter = points.begin();
 
-void SimpleNavigation::navigate(mrpt::reactivenav::CAbstractReactiveNavigationSystem::TNavigationParams *navParams )
+
+	//setting up the next waypoint
+	mrpt::reactivenav::CAbstractReactiveNavigationSystem::TNavigationParams*   navParams = new mrpt::reactivenav::CAbstractReactiveNavigationSystem::TNavigationParams();
+	navParams->target.x = iter->x();
+	navParams->target.y = iter->y();
+	//distance from the waypoint in meters before the robot considers itself at the point
+	navParams->targetAllowedDistance = .70f;
+	//navParams.targetIsRelative = !challange; is being ignored
+	//gives the reactive nav the next goal
+	navigate(navParams );
+}
+void SimpleNavigation::navigate(mrpt::reactivenav::CAbstractReactiveNavigationSystem::TNavigationParams *navParam )
+{
+	if(points.size() == 0)
+	{
+		mrpt::poses::CPoint2D* point = new CPoint2D();
+		point->x(navParam->target.x);
+		point->y(navParam->target.y);
+		points.push_back(*point);
+	}
+	state = mrpt::reactivenav::CAbstractReactiveNavigationSystem::NAVIGATING;
+
+	this->navParams = new mrpt::reactivenav::CAbstractReactiveNavigationSystem::TNavigationParams();
+	navParams->target.x = navParam->target.x;
+	navParams->target.y = navParam->target.y;
+	navParams->targetAllowedDistance = navParam->targetAllowedDistance;
+
+}
+void SimpleNavigation::navigationStep()
 {
 	mrpt::poses::CPose2D curPose;
+	double yaw;
+	double wantedYaw;
 	float cur_w;
-	float cur_v;
-	cout << "Navigating To: lat " << navParams->target.x << " lon " << navParams->target.y << endl;
+		float cur_v;
 	interface->getCurrentPoseAndSpeeds(curPose, cur_v, cur_w);
-	double yaw = curPose.phi();
-	double wantedYaw = AbstractNavigationInterface::calcBearing(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
-	float distance = AbstractNavigationInterface::haversineDistance(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
-	if(distance > navParams->targetAllowedDistance)
+	yaw = curPose.phi();//Robotpose returns yaw in radians
+	cout << "Yaw: " << yaw << endl;
+	wantedYaw = calcBearing(curPose);//AbstractNavigationInterface::calcBearing(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
+	cout << "Wanted Yaw: " << wantedYaw << endl;
+	cout << "Difference: " << abs(yaw-wantedYaw) << endl;
+	double dist = distance(curPose);
+	if(!dist > navParams->targetAllowedDistance)
 	{
-		while(abs((yaw-wantedYaw)/wantedYaw) > .05)
+		cout << "Reached Way Point" << endl;
+		points.erase(points.begin());
+		if(points.size() != 0)//this->points)
 		{
-			bool turnRight = yaw < wantedYaw;
-			if(turnRight)
-			{
-				cout << "\tTurning Right" << endl;
-				interface->changeSpeeds(.5f,2);
-			}
-		else
-			{
-				cout << "\tTurning Left" << endl;
-				interface->changeSpeeds(.5f, -2);
-			}
-
-			usleep(100000);
-			interface->getCurrentPoseAndSpeeds(curPose, cur_v, cur_w);
-			yaw = curPose.phi();//Robotpose returns yaw in radians
-			cout << "Yaw: " << yaw << endl;
-			wantedYaw = AbstractNavigationInterface::calcBearing(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
-			cout << "Wanted Yaw: " << wantedYaw << endl;
-			cout << "Difference: " << abs(yaw-wantedYaw) << endl;
+			gotoNextPoint();
 		}
-		distance = AbstractNavigationInterface::haversineDistance(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
-		while(distance > navParams->targetAllowedDistance)
+		else
 		{
-			interface->changeSpeeds(1.4,0);
-			cout << "\tDriving Towards Target. Remaining Distance: " << distance << endl;
-			usleep(100000);
-			distance = AbstractNavigationInterface::haversineDistance(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
+			state = mrpt::reactivenav::CAbstractReactiveNavigationSystem::IDLE;
 		}
 	}
-	cout << "Reached Way Point" << endl;
+	if(abs((yaw-wantedYaw)) > .2)
+	{
+		bool turnRight = yaw < wantedYaw;
+		if(turnRight)
+		{
+			cout << "\tTurning Right" << endl;
+			interface->changeSpeeds(.5f,2);
+		}
+		else
+		{
+			cout << "\tTurning Left" << endl;
+			interface->changeSpeeds(.5f, -2);
+		}
+	}
+	else
+	{
+		double dist = distance(curPose);
+		cout << "\tDriving Towards Target. Remaining Distance: " << dist << endl;//AbstractNavigationInterface::haversineDistance(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
+		if(dist > navParams->targetAllowedDistance)
+		{
+			interface->changeSpeeds(1.4,0);
+			cout << "\tDriving Towards Target. Remaining Distance: " << dist << endl;
+
+		}
+		else
+		{
+			cout << "Reached Way Point" << endl;
+			points.erase(points.begin());
+			if(points.size() != 0)//this->points)
+			{
+				gotoNextPoint();
+			}
+			else
+			{
+				state = mrpt::reactivenav::CAbstractReactiveNavigationSystem::IDLE;
+			}
+		}
+	}
 }
