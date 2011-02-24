@@ -54,7 +54,7 @@ std::stringstream& Log::Get(LOG_LEVEL level) {
 	this->os << "- " << Log::GetTime();
 	this->os << " " << Log::ToString(level) << ": ";
 
-	this->os << std::string(level > DEBUG ? 1 : level - DEBUG, '\t' );
+	this->os << std::string(level > DEBUG ? 1 :  DEBUG - level, '\t' );
 	messageLevel = level;
 	return os;
 }
