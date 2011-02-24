@@ -1,4 +1,4 @@
-/**
+/**t
  * @file MotorController.cpp
  * @brief This file contains implementation code for interfacing
  * to the roboteq 2440 motor controller
@@ -93,12 +93,12 @@ void MotorController::doProcess() {
 }
 
 bool MotorController::setAcceleration(MotorChannel channel, double acceleration) {
-	assert(false);//TODO implelment Set Acceleration
+	LOG(FATAL) << "MotorController: Set Acceleration" << endl;//TODO Set Acceleration
 	return false;
 }
 
 bool MotorController::setDeceleration(MotorChannel channel, double deceration) {
-	assert(false);//TODO implement Set Deceleration
+	LOG(FATAL) << "MotorController: Set Deceleration" << endl;//TODO Set Deceleration
 	return false;
 }
 
@@ -206,7 +206,7 @@ bool MotorController::getMotorAmps( double & motor1Amps, double & motor2Amps ) {
 }
 
 bool MotorController::getAnalogInputs( int input, int & value ) {
-	assert(false);//TODO implement getAnalogInputs
+	LOG(FATAL) << "MotorController: getAnalogInputs" << endl;//TODO getAnalogInputs
 	return false;
 }
 
@@ -234,7 +234,7 @@ bool MotorController::getRelativeEncoderCount( int & ch1, int & ch2 ) {
 }
 
 bool MotorController::getEncoderSpeed( MotorChannel channel, int & speed ) {
-	assert(false);//TODO implement getEncoderSpeed
+	LOG(FATAL) << "MotorController: getEncoderSpeed" << endl;//TODO getEncoderSpeed
 	return false;
 }
 
@@ -271,7 +271,7 @@ bool MotorController::failSafeReset() {
 }
 
 bool MotorController::saveConfigSettings() {
-	assert(false);//TODO implement saveConfigSettings
+	LOG(FATAL) << "MotorController: saveConfigSettings" << endl;//TODO saveConfigSettings
 	return false;
 }
 
@@ -288,37 +288,38 @@ bool MotorController::setTime( int hours, int minutes, int seconds) {
 }
 
 bool MotorController::setCommandLinearity(int linearity ) {
-	assert(false);//TODO setCommandLinearity
+	LOG(FATAL) << "MotorController: setCommandLinearity" << endl;//TODO setCommandLinearity
 	return false;
 }
 
 bool MotorController::setCommandPriority( int signal, int priority ) {
-	assert(false);//TODO setCommandPriority
+	LOG(FATAL) << "MotorController: setCommandPriority" << endl;//TODO setCommandPriority
 	return false;
 }
 
 bool MotorController::setSerialWatchDogTimer( int time ) {
-	assert(false);//TODO setSerialWatchDogTimer
+	LOG(FATAL) << "MotorController: setSerialWatchDogTimer" << endl;//TODO setSerialWatchDogTimer
+
 	return false;
 }
 
 bool MotorController::setEncoderPPR( int ppr ) {
-	assert(false);//TODO setEncoderPPR
+	LOG(FATAL) << "MotorController: setEncoderPPR" << endl;//TODO setEncoderPPR
 	return false;
 }
 
 bool MotorController::setOverVoltageLimit( double limit ) {
-	assert(false);//TODO setOverVoltageLimit
+	LOG(FATAL) << "MotorController: setOverVoltageLimit" << endl;//TODO setOverVoltageLimit
 	return false;
 }
 
 bool MotorController::setUnderVoltageLimit( double limit ) {
-	assert(false);//TODO setUnderVoltageLimit
+	LOG(FATAL) << "MotorController: setUnderVoltageLimit" << endl;//TODO setUnderVoltageLimit
 	return false;
 }
 
 bool MotorController::setShortCircuitDetectionThreshold( int value ) {
-	assert(false);//TODO setShortCircuitDetectionThreshold
+	LOG(FATAL) << "MotorController: setShortCircuitDetectionThreshold" << endl;//TODO setShortCircuitDetectionThreshold
 	return false;
 }
 
@@ -358,7 +359,7 @@ bool MotorController::assertValidMotorRange( int max, int min, int value ) const
 
 bool MotorController::assertValidVoltage() {
 	this->sendCommand("?V\n\r", "");//TODO parse the voltage command and check it is safe
-	assert(false);
+	LOG(FATAL) << "MotorController: assertValidVoltage not implemented" << endl;
 	return false;
 }
 
@@ -393,22 +394,22 @@ void MotorController::disableSerialEcho() {
 }
 
 bool MotorController::getFaultFlags() {
-	assert(false);//TODO getFaultFlags
+	LOG(FATAL) << "MotorController: getFaultFlags" << endl;//TODO getFaultFlags
 	return false;
 }
 
 bool MotorController::getStatusFlags() {
-	assert(false);//TODO getStatusFlags
+	LOG(FATAL) << "MotorController: getStatusFlags not implemented" << endl;//TODO getStatusFlags
 	return false;
 }
 
 bool MotorController::getControlUnitType() {
-	assert(false);//TODO getControlUnitType
+	LOG(FATAL) << "MotorController: getControlUnitType not implmented" << endl;//TODO getControlUnitType
 	return false;
 }
 
 bool MotorController::clearBufferHistory() {
-	assert(false);//TODO clearBufferHistory
+	LOG(FATAL) << "MotorController: clear Buffer History not implemented" << endl;//TODO clearBufferHistory
 	return false;
 }
 
