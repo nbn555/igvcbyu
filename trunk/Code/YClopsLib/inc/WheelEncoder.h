@@ -41,6 +41,12 @@ public:
 	void dumpData( std::ostream & out );
 
 	virtual ~WheelEncoder();
+protected:
+	unsigned int leftCount;
+	unsigned int rightCount;
+	unsigned int leftCountAbsolute;
+	unsigned int rightCountAbsolute;
+
 };
 
 #endif /* WHEELENCODER_H_ */
