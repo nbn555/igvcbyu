@@ -33,8 +33,7 @@ YClopsNavigationSystem2::YClopsNavigationSystem2(CConfigFile & config)
 	std::string gpsName = "GPS";
 	if( config.read_bool(gpsName, "USE", false ) ) {
 		this->gps = new GPS();
-		this->gps->loadConfiguration(config,gpsName);
-		this->gps->init();
+		gps->initialize(&config);
 	} else {
 		LOG(INFO) << "Not using GPS" << endl;
 	}
