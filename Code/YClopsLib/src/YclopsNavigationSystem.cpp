@@ -150,7 +150,7 @@ void YclopsNavigationSystem::loadConfigFile(const mrpt::utils::CConfigFileBase &
 	ASSERT_(xs.size()==ys.size());
 
 	// Add to polygon
-	for (size_t i=0;i<xs.size();i++)
+	for ( size_t i=0;((unsigned)(i))<xs.size();i++)
 		shape.AddVertex(xs[i],ys[i]);
 
 	changeRobotShape( shape );
@@ -348,7 +348,7 @@ void  YclopsNavigationSystem::performNavigationStep()
 	int											nSelectedPTG;
 	static vector_float							prevV,prevW,prevSelPTG;
 	static int									nLastSelectedPTG = -1;
-	static CDynamicWindow						DW;
+	//static CDynamicWindow						DW;
 //	static TNavigatorBehavior					lastStepBehavior;
 //	TNavigatorBehavior							saveLastBehavior;
 
@@ -692,7 +692,7 @@ void  YclopsNavigationSystem::performNavigationStep()
 		}
 
 		const size_t nVerts = robotShape.size();
-		if (newLogRec.robotShape_x.size() != nVerts)
+		if (newLogRec.robotShape_x.size() != ((unsigned)(nVerts)))
 		{
 			newLogRec.robotShape_x.resize(nVerts);
 			newLogRec.robotShape_y.resize(nVerts);
@@ -849,7 +849,7 @@ void YclopsNavigationSystem::STEP3_SpaceTransformer(
 		const size_t Ki = in_PTG->getAlfaValuesCount();
 
 		// Ver si hay espacio ya reservado en los TP-Obstacles:
-		if ( out_TPObstacles.size() != Ki )
+		if ( out_TPObstacles.size() != ((unsigned)(Ki)) )
 			out_TPObstacles.resize( Ki );
 
 		// Coger "k"s y "distances" a las que choca cada punto de obstaculo

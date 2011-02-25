@@ -17,7 +17,7 @@ public:
 	/**
 	 * load sensor specific values from the configuration file
 	 */
-	void loadConfiguration(mrpt::utils::CConfigFileBase & config, std::string & sectionName);
+	void loadConfiguration( const mrpt::utils::CConfigFileBase & config, const std::string & sectionName);
 
 	/**
 	 * initialize the sensor
@@ -38,7 +38,7 @@ public:
 	 * dumps data out to the parameter out
 	 * @param out - the stream to which to write the data
 	 */
-	void dumpData( std::ostream & out );
+	void dumpData( std::ostream & out ) const;
 
 	virtual ~WheelEncoder();
 protected:

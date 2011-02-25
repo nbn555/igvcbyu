@@ -62,4 +62,10 @@ public:
 	virtual ~CameraData() {};
 };
 
+class LidarData: public SensorData {
+public:
+	LidarData() {};
+	virtual ~CameraData() {};
+};
+
 #endif /* SENSORDATA_H_ */
