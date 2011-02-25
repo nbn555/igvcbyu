@@ -9,6 +9,8 @@
 
 #include <mrpt/slam/CObservationGPS.h>
 #include <mrpt/poses/CPose3D.h>
+#include "SensorData.h"
+#include "logging.h"
 
 class AbstractPoseEstimator {
 public:
@@ -21,7 +23,7 @@ public:
 	 * @param pitch - the rotation about the x axis measured in radians
 	 * @param roll - the rotation about the z axis measured in radians
 	 */
-	virtual void update( mrpt::slam::CObservationGPSPtr gpsObsPtr, double yaw, double pitch, double roll ) = 0;
+	virtual void update( const GPSData * gpsObsPtr, const CompassData * compassData ) = 0;
 	double getYaw(void){ return yaw;}
 	bool getPose( mrpt::poses::CPose3D & pose );
 protected:
@@ -30,10 +32,7 @@ protected:
 };
 
 class NoFilterPoseEstimator: public AbstractPoseEstimator {
-
-
-
-	public:
+public:
 	bool started;
 	bool Meters;
 	double StartLat;
@@ -45,7 +44,7 @@ class NoFilterPoseEstimator: public AbstractPoseEstimator {
 	 * NoFilterPoseEstimator::update - dummy implementation does no filtering just takes the
 	 * direct value from the sensor
 	 */
-	void update( mrpt::slam::CObservationGPSPtr gpsObsPtr, double yaw, double pitch, double roll );
+	void update( const GPSData * gpsObsPtr, const CompassData * compassData );
 };
 
 #endif /* POSEESTIMATOR_H_ */

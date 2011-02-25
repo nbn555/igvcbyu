@@ -19,18 +19,44 @@ using namespace mrpt::utils;
 GPS::GPS(const int Buffer_Length):CGPSInterface(Buffer_Length), isGpggaUsed(false), isGprmcUsed(false) { //fixes potential default constructor problem
 }
 
-GPS::~GPS() {
+void GPS::loadConfiguration( const mrpt::utils::CConfigFileBase & config, const std::string & sectionName) {
+
+	this->portName = config.read_string(sectionName,"COM_port_LIN","/dev/ttyS0");
+
+	this->setSerialPortName ( this->portName );
+
+	LOG(DEBUG4) << "Connecting to port " << this->portName << endl;
+
+	this->loadConfig(config, sectionName);
+
+	this->vendor = config.read_string(sectionName, "GPS_TYPE", "Novatel" );
+
+	LOG(DEBUG4) << "Using " << this->vendor << " GPS" << endl;
+
+	this->isGpggaUsed = config.read_bool(sectionName,"use_gga", true);
+
+	LOG(DEBUG4) << "Using gpgga: " << (this->isGpggaUsed?"TRUE":"FALSE") << endl;
+
+	this->isGprmcUsed = config.read_bool(sectionName,"use_rmc", false);
+
+	LOG(DEBUG4) << "Using gprmc: " << (this->isGprmcUsed?"TRUE":"FALSE") << endl;
+
+	this->baudRate = config.read_int(sectionName,"baudRate", 57600);
+
+	LOG(DEBUG4) << "Using " << this->baudRate << " baud" << endl;
+
+	this->processRate = config.read_int(sectionName,"process_rate", 1);
+
+	LOG(DEBUG4) << "Using a process rate of " << this->processRate << endl;
 
 }
 
-void GPS::initialize(CConfigFile * config) { // we might change to CConfigFileBase
-	loadConfig(*config, "GPS");
-	initConfig(*config, "GPS");
+void GPS::init() {
 	initializeCom();
 
 	while(!lstObs.size()) {
 		doProcess();
-		cout << "Getting GPS observations" << endl;
+		LOG(DEBUG4) << "Getting GPS observations" << endl;
 		mrpt::system::sleep(200);
 		getObservations(lstObs);
 		//this->isGPS_signalAcquired()
@@ -39,36 +65,52 @@ void GPS::initialize(CConfigFile * config) { // we might change to CConfigFileBa
 	gpsData = CObservationGPSPtr(lstObs.begin()->second);
 
 	if(!gpsData.pointer()->has_GGA_datum)
-		cout << "gpsData.pointer()->has_GGA_datum fails" << endl;
+		LOG(WARNING) << "gpsData.pointer()->has_GGA_datum fails" << endl;
 	if(!gpsData.pointer()->has_RMC_datum)
-		cout << "gpsData.pointer()->has_RMC_datum fails" << endl;
+		LOG(WARNING) << "gpsData.pointer()->has_RMC_datum fails" << endl;
 
 }
 
-void GPS::doGPSProcess() {
+void GPS::sensorProcess() {
 	doProcess();
 	getObservations( lstObs );
 
 	if (lstObs.empty())
-		printf("[Test_GPS] Waiting for data...\n");
+		LOG(DEBUG4) << "[Test_GPS] Waiting for data..." << endl;
 
 	for(itObs = lstObs.begin(); itObs != lstObs.end(); itObs++){
 
-			gpsData=CObservationGPSPtr(itObs->second);
+		gpsData=CObservationGPSPtr(itObs->second);
 
-			if(!gpsData.pointer()->has_GGA_datum)
-				cout << "gpsData.pointer()->has_GGA_datum fails" << endl;
-			if(!gpsData.pointer()->has_RMC_datum)
-				cout << "gpsData.pointer()->has_RMC_datum fails" << endl;
-
-		}
-
+		if(!gpsData.pointer()->has_GGA_datum)
+			LOG(WARNING) << "gpsData.pointer()->has_GGA_datum fails" << endl;
+		if(!gpsData.pointer()->has_RMC_datum)
+			LOG(WARNING) << "gpsData.pointer()->has_RMC_datum fails" << endl;
+	}
 }
 
-void GPS::dumpData(std::ostream & out ) {
+SensorData * GPS::getData() {
+	double lat;
+	double lon;
+	bool valid = false;
+
+	if(gpsData.pointer()->has_GGA_datum) {
+		lat = gpsData.pointer()->GGA_datum.latitude_degrees;
+		lon = gpsData.pointer()->GGA_datum.longitude_degrees;
+		valid = true;
+	} else if(gpsData.pointer()->has_RMC_datum) {
+		lat = gpsData.pointer()->RMC_datum.latitude_degrees;
+		lon = gpsData.pointer()->RMC_datum.longitude_degrees;
+		valid = true;
+	}
+
+	return new GPSData( lat, lon, valid );
+}
+
+void GPS::dumpData(std::ostream & out ) const {
 	out << "************" << endl;
 	out << "GPS" << endl;
-	out << "Connection: " << this->isGPS_connected() << " " << "Signal: " << this->isGPS_signalAcquired();
+	out << "Connection: " << ((GPS*)(this))->isGPS_connected() << " " << "Signal: " << ((GPS*)(this))->isGPS_signalAcquired();
 
 	static bool isValid = false;
 	//static CObservationGPSPtr gpsData;
@@ -92,9 +134,11 @@ void GPS::dumpData(std::ostream & out ) {
 		}
 	}
 	out << "************" << endl;
-
 }
 
+GPS::~GPS() {
+
+}
 
 double GPS::GetDistanceToWaypoint (double lat, double lon) {
 	return AbstractNavigationInterface::haversineDistance(lat, lon, GetGpsLatitude(), GetGpsLongitude());
@@ -181,35 +225,6 @@ void GPS::initializeCom() {
 	}
 
 	myCom.close();
-}
-
-//This function ought to be called after loadConfig but before initialize
-void GPS::initConfig(mrpt::utils::CConfigFileBase & config, const std::string & sectionName) {
-
-	this->vendor = config.read_string(sectionName, "GPS_TYPE", "Novatel" );
-
-	LOG(DEBUG4) << "Using " << this->vendor << " GPS" << endl;
-
-	this->isGpggaUsed = config.read_bool(sectionName,"use_gga", true);
-
-	LOG(DEBUG4) << "Using gpgga: " << (this->isGpggaUsed?"TRUE":"FALSE") << endl;
-
-	this->isGprmcUsed = config.read_bool(sectionName,"use_rmc", false);
-
-	LOG(DEBUG4) << "Using gprmc: " << (this->isGprmcUsed?"TRUE":"FALSE") << endl;
-
-	this->baudRate = config.read_int(sectionName,"baudRate", 57600);
-
-	LOG(DEBUG4) << "Using " << this->baudRate << " baud" << endl;
-
-	this->portName = config.read_string(sectionName,"COM_port_LIN","/dev/ttyS0");
-
-	LOG(DEBUG4) << "Connecting to port " << this->portName << endl;
-
-	this->processRate = config.read_int(sectionName,"process_rate", 1);
-
-	LOG(DEBUG4) << "Using a process rate of " << this->processRate << endl;
-
 }
 
 

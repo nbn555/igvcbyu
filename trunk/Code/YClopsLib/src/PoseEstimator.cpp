@@ -38,46 +38,40 @@ NoFilterPoseEstimator::~NoFilterPoseEstimator() {
 //updates the stored position to the current position
 // the first time it will return stuff in lat and lon for the
 // TSPSolver after that it returns things in meters from the start point
-void NoFilterPoseEstimator::update( mrpt::slam::CObservationGPSPtr gpsObsPtr, double yaw, double pitch, double roll ) {
+void NoFilterPoseEstimator::update( const GPSData * gpsData, const CompassData * compassData ) {
 	double lat;
 	double lon;
 	double x;
 	double y;
 	double z = 0;
-	this->yaw = yaw;
-	if( gpsObsPtr->has_GGA_datum ){
-		lat = gpsObsPtr->GGA_datum.latitude_degrees;
-		lon = gpsObsPtr->GGA_datum.longitude_degrees;
-		z = gpsObsPtr->GGA_datum.altitude_meters;
-	} else if( gpsObsPtr->has_RMC_datum ) {
-		lat = gpsObsPtr->RMC_datum.latitude_degrees;
-		lon = gpsObsPtr->RMC_datum.longitude_degrees;
+	this->yaw = compassData->yaw;
+
+	if(gpsData->valid) {
+		lat = gpsData->latitude;
+		lon = gpsData->longitude;
 	} else {
-		cerr << "No valid data found in gps observation" << endl;
-		exit(EXIT_FAILURE);
+		LOG(FATAL) << "No valid data found in gps observation" << endl;
 	}
+
 	if(!started)
 	{
 		StartLat = lat;
 		StartLon = lon;
-		this->poseEstimate.setFromValues(lat, lon, z, yaw, pitch, roll);
+		this->poseEstimate.setFromValues(lat, lon, z, compassData->yaw, compassData->pitch, compassData->roll);
 		started = true;
 		return;
 	}
 	if(Meters){
 
+		x = AbstractNavigationInterface::haversineDistance(lat, StartLon, lat, lon);
+		y = AbstractNavigationInterface::haversineDistance(StartLat, lon, lat, lon);
+		x = lon > StartLon? x : -x;
+		y = lat > StartLat ? y : -y;
 
-	x = AbstractNavigationInterface::haversineDistance(lat, StartLon, lat, lon);
-	y = AbstractNavigationInterface::haversineDistance(StartLat, lon, lat, lon);
-	x = lon > StartLon? x : -x;
-	y = lat > StartLat ? y : -y;
-	
-	cout << "Got yaw:" << yaw << " pitch " << pitch << " roll " << roll << endl;
-	this->poseEstimate.setFromValues(x, y, z, yaw, pitch, roll);
-	}
-	else
-	{
-		this->poseEstimate.setFromValues(lat, lon, z, yaw, pitch, roll);
+		LOG(DEBUG4) << "Got yaw:" << compassData->yaw << " pitch " << compassData->pitch << " roll " << compassData->roll << endl;
+		this->poseEstimate.setFromValues(x, y, z, compassData->yaw, compassData->pitch, compassData->roll);
+	} else {
+		this->poseEstimate.setFromValues(lat, lon, z, compassData->yaw, compassData->pitch, compassData->roll);
 	}
 
 }

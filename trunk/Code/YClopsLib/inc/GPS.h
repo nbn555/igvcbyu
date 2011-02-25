@@ -19,27 +19,23 @@
 #include <string>
 #include <mrpt/utils/CConfigFile.h>
 #include "WaypointPlanner.h"
+#include "YClopsSensor.h"
 
-class GPS: public mrpt::hwdrivers::CGPSInterface {
+class GPS: protected mrpt::hwdrivers::CGPSInterface, public YClopsSensor {
 public:
 	GPS(const int Buffer_Length = 500);
-	virtual ~GPS();
-
-	/*	 In effect turns on the serial port and give commands for continous
-	 *   GPS data flow. Requires the sensors config file.
-	 */
-	void initialize(mrpt::utils::CConfigFile * config);
-
-	/*
-	 * Effectively a wrapper class for the mrpt doprocess call.  It will also
-	 * get and update the listObservations received by the serial port.
-	 */
-	void doGPSProcess();
+	void loadConfiguration( const mrpt::utils::CConfigFileBase & config, const std::string & sectionName);
+	void init();
+	void sensorProcess();
+	SensorData * getData();
 
 	/*
 	 * Dumps current GPS Latitude and Longitude points GGA and RMC
+	 * @param out the ostream to which to write the data
 	 */
-	void dumpData(std::ostream & out );
+	void dumpData(std::ostream & out ) const;
+
+	virtual ~GPS();
 
 	/*
 	 * Returns the distance to a waypoint with respect to current

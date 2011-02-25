@@ -22,6 +22,10 @@ typedef enum LOG_LEVEL{
 	DEBUG4	= 0	//step by step instructions of program flow
 } LOG_LEVEL;
 
+/**
+ * LOG(level) macro allows us to not have to dump data into a stream if we aren't the log level is to low
+ * Don't put non trivial function calls in the output stream or they wont be called when the logging isn't output
+ */
 #define LOG(level) \
 (level < Log::ReportingLevel()) ? : Log().Get(level)
 
