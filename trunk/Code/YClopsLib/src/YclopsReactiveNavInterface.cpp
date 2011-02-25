@@ -22,9 +22,8 @@ YclopsReactiveNavInterface::YclopsReactiveNavInterface() {
 	LOG(INFO) << config.getAssociatedFile() << endl;
 	std::string gpsName = "GPS";
 	gps = new GPS();
-	gps->loadConfiguration(config, gpsName);
-	gps->init();
-	LOG(DEBUG4) << "GPS  Configured" << endl;
+	gps->initialize(&config);
+	cout << "GPS  Configured" << endl;
 
 	camera = NULL;
 	//camera = new Camera();
