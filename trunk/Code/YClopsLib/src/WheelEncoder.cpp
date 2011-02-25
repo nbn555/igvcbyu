@@ -14,7 +14,7 @@ using namespace std;
 
 WheelEncoder::WheelEncoder(): leftCount(0), rightCount(0), leftCountAbsolute(0), rightCountAbsolute(0) { }
 
-void WheelEncoder::loadConfiguration(mrpt::utils::CConfigFileBase & config, std::string & sectionName) {
+void WheelEncoder::loadConfiguration( const mrpt::utils::CConfigFileBase & config, const std::string & sectionName) {
 
 }
 
@@ -37,7 +37,7 @@ SensorData * WheelEncoder::getData() {
 	return data;
 }
 
-void WheelEncoder::dumpData( std::ostream & out ) {
+void WheelEncoder::dumpData( std::ostream & out ) const {
 	out << "*******************************" << endl;
 	out << "Left Encoder value: " << this->leftCount << endl;
 	out << "Right Encoder value: " << this->rightCount << endl;

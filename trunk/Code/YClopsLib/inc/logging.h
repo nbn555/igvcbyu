@@ -16,10 +16,10 @@ typedef enum LOG_LEVEL{
 	ERROR 	= 6,//Error Conditions
 	WARNING	= 5,//Potential problems
 	INFO	= 4,//Standard output
-	DEBUG	= 3,//High level debugging output
-	DEBUG2	= 2,
-	DEBUG3	= 1,//Raw sensor data kind of stuff
-	DEBUG4	= 0	//step by step instructions of program flow
+	DEBUG	= 3,//High level debugging output at the main.cpp kind of level
+	DEBUG2	= 2,//At the reactive nav interface / AI algorithm level
+	DEBUG3	= 1,//step by step instructions of program flow at the sensor level
+	DEBUG4	= 0	//low level stuff
 } LOG_LEVEL;
 
 /**

@@ -11,9 +11,9 @@
 #include "Compass.h"
 #include "GPS.h"
 #include "Camera.h"
+#include "WheelEncoder.h"
+#include "Lidar.h"
 #include <mrpt/utils/CConfigFile.h>
-#include <mrpt/hwdrivers/CSickLaserSerial.h>
-#include <mrpt/hwdrivers/CSickLaserUSB.h>
 
 class YClopsNavigationSystem2 {
 public:
@@ -30,6 +30,7 @@ public:
 	bool toggleCompassDump();
 	bool toggleLidarDump();
 	bool toggleCameraDump();
+	bool toggleEncoderDump();
 
 	/**
 	 * useYclopsMotorCommand - makes the YclopsReactiveNavInterface use an instance of the
@@ -60,7 +61,8 @@ private:
 	Compass * compass;
 	GPS * gps;
 	Camera * camera;
-	mrpt::hwdrivers::CSickLaserSerial * lidar;
+	Lidar * lidar;
+	WheelEncoder * encoder;
 
 };
 

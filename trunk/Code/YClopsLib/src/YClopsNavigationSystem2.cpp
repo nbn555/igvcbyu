@@ -17,14 +17,21 @@ using namespace std;
 bool bCameraData;
 YClopsNavigationSystem2::YClopsNavigationSystem2(CConfigFile & config)
 : isGpsDataShown(false), isCompassDataShown(false), isLidarDataShown(false), isCameraDataShown(false), isEncoderDataShown(false),
-  motor(NULL), compass(NULL), gps(NULL), camera(NULL), lidar(NULL)
+  motor(NULL), compass(NULL), gps(NULL), camera(NULL), lidar(NULL), encoder(NULL)
 {
 	this->motor = new DualMotorCommand();
 
 	std::string compassName = "COMPASS";
 	if( config.read_bool(compassName, "USE", false) ) {
+		LOG(INFO) << "Using Compass" << endl;
+
+		LOG(DEBUG2) << "Creating Compass Object" << endl;
 		this->compass = new Compass();
+
+		LOG(DEBUG2) << "Loading Compass Configuration" << endl;
 		this->compass->loadConfiguration(config, compassName );
+
+		LOG(DEBUG2) << "Initializing Compass" << endl;
 		this->compass->init();
 	} else {
 		LOG(INFO) << "Not using Compass" << endl;
@@ -32,31 +39,68 @@ YClopsNavigationSystem2::YClopsNavigationSystem2(CConfigFile & config)
 
 	std::string gpsName = "GPS";
 	if( config.read_bool(gpsName, "USE", false ) ) {
+		LOG(INFO) << "Using GPS" << endl;
+
+		LOG(DEBUG2) << "Creating GPS Object" << endl;
 		this->gps = new GPS();
-		gps->initialize(&config);
+
+		LOG(DEBUG2) << "Loading GPS Configuration" << endl;
+		this->gps->loadConfiguration(config,gpsName);
+
+		LOG(DEBUG2) << "Initializing GPS" << endl;
+		this->gps->init();
 	} else {
 		LOG(INFO) << "Not using GPS" << endl;
 	}
 
 	std::string cameraName = "CAMERA";
 	if( config.read_bool(cameraName, "USE", false ) ) {
+		LOG(INFO) << "Using Camera" << endl;
+
+		LOG(DEBUG2) << "Creating Camera Object" << endl;
 		this->camera = new Camera();
+
+		LOG(DEBUG2) << "Loading Camera Configuration" << endl;
+		this->camera->loadConfiguration(config,cameraName);
+
+		LOG(DEBUG2) << "Initializing Camera" << endl;
+		this->camera->init();
 	} else {
 		LOG(INFO) << "Not using Camera" << endl;
 	}
 
-	if( config.read_bool("LIDAR", "USE", false ) ) {
-		//Lidar initialization code
-		this->lidar = new CSickLaserSerial();
+	std::string lidarName = "LIDAR";
+	if( config.read_bool(lidarName, "USE", false ) ) {
+		LOG(INFO) << "Using Lidar" << endl;
 
-		this->lidar->setSerialPort( config.read_string("LIDAR", "COM_port_LIN", "/dev/ttyUSB2" ) );
-		this->lidar->setBaudRate( config.read_int( "LIDAR", "COM_baudRate", 38400 ) );
-		this->lidar->setScanFOV( config.read_int("LIDAR", "FOV", 180 ) );
-		this->lidar->setScanResolution( config.read_int( "LIDAR", "resolution", 50 ) );  // 25=0.25deg, 50=0.5deg, 100=1deg
-		this->lidar->initialize(); // This will raise an exception on error
+		LOG(DEBUG2) << "Creating Lidar object" << endl;
+		this->lidar = new Lidar();
+
+		LOG(DEBUG2) << "Loading Lidar configuration" << endl;
+		this->lidar->loadConfiguration(config, lidarName);
+
+		LOG(DEBUG2) << "Initializing Lidar" << endl;
+		this->lidar->init();
 	} else {
 		LOG(INFO) << "Not using Lidar" << endl;
 	}
+
+	std::string encoderName = "ENCODER";
+	if( config.read_bool(encoderName, "USE", false) ) {
+		LOG(INFO) << "Using wheel encoders" << endl;
+
+		LOG(DEBUG2) << "Creating WheelEncoder Object" << endl;
+		this->encoder = new WheelEncoder();
+
+		LOG(DEBUG2) << "Loading Encoder configuration" << endl;
+		this->encoder->loadConfiguration(config,encoderName);
+
+		LOG(DEBUG2) << "Initializing wheel encoder" << endl;
+		this->encoder->init();
+	} else {
+		LOG(INFO) << "Not using wheel encoders" << endl;
+	}
+
 }
 
 YClopsNavigationSystem2::~YClopsNavigationSystem2() {
@@ -64,12 +108,12 @@ YClopsNavigationSystem2::~YClopsNavigationSystem2() {
 	delete this->compass;
 	delete this->gps;
 	delete this->camera;
-	this->lidar->turnOff();
 	delete this->lidar;
+	delete this->encoder;
 }
 
 void YClopsNavigationSystem2::doProcess() {
-	LOG(DEBUG) << "." << endl;
+	LOG(DEBUG2) << "." << endl;
 
 	if( NULL != this->motor ) {
 		this->motor->doProcess();
@@ -103,42 +147,19 @@ void YClopsNavigationSystem2::doProcess() {
 	}
 
 	if( NULL != this->lidar ) {
+		this->lidar->sensorProcess();
 		if( this->isLidarDataShown ) {
-
-			static mrpt::gui::CDisplayWindowPlots		win("Laser scans");
-
-			bool						thereIsObservation,hardError;
-			CObservation2DRangeScan		obs;
-
-			try
-			{
-				this->lidar->doProcessSimple( thereIsObservation, obs, hardError );
-			}
-			catch (std::exception &e)
-			{
-				cerr << e.what() << endl;
-				hardError = true;
-			}
-			if (hardError)
-				LOG(ERROR) << "[TEST] Hardware error=true!!" << endl;
-
-			if (thereIsObservation)
-			{
-				LOG(DEBUG) << "[TEST] Observation received (" << ((unsigned int)obs.scan.size())
-						<< "ranges over " << (RAD2DEG(obs.aperture))
-						<< "deg, mid=" << (obs.scan[obs.scan.size()/2])
-						<< ")!!"  << endl;
-				obs.sensorPose = CPose3D(0,0,0);
-				mrpt::slam::CSimplePointsMap		theMap;
-				theMap.insertionOptions.minDistBetweenLaserPoints	= 0;
-				theMap.insertObservation( &obs );
-
-				vector_float	xs,ys,zs;
-				theMap.getAllPoints(xs,ys,zs);
-				win.plot(xs,ys,".b3");
-				win.axis_equal();
-			}
+			this->lidar->dumpData(cout);
 		}
+	}
+
+	if( NULL != this->encoder ) {
+		this->encoder->sensorProcess();
+
+		if( this->isEncoderDataShown ) {
+			this->encoder->dumpData(cout);
+		}
+
 	}
 }
 
@@ -172,6 +193,11 @@ bool YClopsNavigationSystem2::toggleLidarDump() {
 bool YClopsNavigationSystem2::toggleCameraDump() {
 	this->isCameraDataShown = !this->isCameraDataShown;
 	return this->isCameraDataShown;
+}
+
+bool YClopsNavigationSystem2::toggleEncoderDump() {
+	this->isEncoderDataShown = !this->isEncoderDataShown;
+	return this->isEncoderDataShown;
 }
 
 void YClopsNavigationSystem2::useYclopsMotorCommand() {

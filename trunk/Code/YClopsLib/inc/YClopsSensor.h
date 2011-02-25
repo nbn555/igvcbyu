@@ -39,7 +39,7 @@ public:
 	 * dumps data out to the parameter out
 	 * @param out - the stream to which to write the data
 	 */
-	virtual void dumpData( std::ostream & out ) const = 0;
+	void dumpData( std::ostream & out ) const;
 
 	/**
 	 * class destructor

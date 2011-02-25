@@ -116,10 +116,10 @@ void Camera::dumpData( std::ostream & out ) const {
 	namedWindow("frame",1);
 	for(;;)
 	{
-	Mat frame;
-	cap >> frame;
-	imshow("frame", frame);
-	if(waitKey(30) >= 0) break;
+		Mat frame;
+		cap >> frame;
+		imshow("frame", frame);
+		if(waitKey(30) >= 0) break;
 	}
 }
 
