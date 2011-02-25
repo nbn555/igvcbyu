@@ -18,48 +18,11 @@ using namespace mrpt::hwdrivers;
 using namespace mrpt::utils;
 using namespace boost;
 
-Compass::Compass( bool degrees, const int bufferLength ): degrees(degrees), yaw(0), pitch(0), roll(0), yawStatus(""), pitchStatus(""), rollStatus("") {
-}
-
-Compass::Compass( std::string iniFile ): degrees(0), yaw(0), pitch(0), roll(0), yawStatus(""), pitchStatus(""), rollStatus("") {
-
-	CConfigFile config(iniFile);
-	this->init(config);
-}
-
-Compass::Compass( mrpt::utils::CConfigFile & config ): degrees(0), yaw(0), pitch(0), roll(0), yawStatus(""), pitchStatus(""), rollStatus("") {
-	this->init(config);
-}
-Compass::~Compass() {
+Compass::Compass(): degrees(false), yaw(0), pitch(0), roll(0), yawStatus(""), pitchStatus(""), rollStatus(""), serialPort() {
 
 }
 
-void Compass::init( CConfigFile & config ) {
-
-	this->loadConfig(config,"COMPASS");
-	this->loadConfig_sensorSpecific(config,"COMPASS");
-	this->initialize();
-	this->doProcess();
-
-}
-void Compass::doProcess() {
-	string data;
-
-	bool booleanness = true;
-	data = this->serialPort.ReadString(100,&booleanness, "\n\r");
-	this->serialPort.purgeBuffers();
-	this->parseResponse(data);
-
-}
-
-void Compass::dumpData( std::ostream & out ) {
-	out << "************" << endl;
-	out << "Compass" << endl;
-	out << this->yaw << ", " << this->pitch << ", " << this->roll << " Valid: " << this->yawStatus << this->pitchStatus << this->rollStatus << endl;
-	out << "************" << endl;
-}
-
-void Compass::loadConfig_sensorSpecific( const mrpt::utils::CConfigFileBase& config, const std::string& sectionName ) {
+void Compass::loadConfiguration( const mrpt::utils::CConfigFileBase & config, const std::string & sectionName ) {
 
 	string value = config.read_string(sectionName, "COM_port_LIN", "/dev/ttyS1" );
 	LOG(DEBUG4) << "Using " << value << " port for compass" << endl;
@@ -71,6 +34,14 @@ void Compass::loadConfig_sensorSpecific( const mrpt::utils::CConfigFileBase& con
 	LOG(DEBUG4) << "Using " << baudRate << " for compass baudrate" << endl;
 
 	this->serialPort.setConfig( baudRate, 0, 8, 1 );
+
+	this->degrees = config.read_bool(sectionName,"degrees",false);
+
+	LOG(DEBUG4) << "Using degrees mode: " << (this->degrees ? "TRUE" : "FALSE") << endl;
+
+}
+
+void Compass::init() {
 
 	string writeValue = "#FA0.3=1*26\n\r";//Command to turn on the compass
 
@@ -86,15 +57,31 @@ void Compass::loadConfig_sensorSpecific( const mrpt::utils::CConfigFileBase& con
 
 	LOG(DEBUG4) << "Read: " << readValue << endl;
 
-	this->degrees = config.read_bool("COMPASS","degrees",false);
+}
 
-	LOG(DEBUG4) << "Using degrees mode: " << (this->degrees ? "TRUE" : "FALSE") << endl;
+Compass::~Compass() {
 
 }
 
-//TODO make this not return null.  I couldn't get it to work because it wants a pointer to the class constructor but the c++ standard says you cant do that.
-const mrpt::hwdrivers::TSensorClassId* Compass::GetRuntimeClass() const {
-	return NULL;//static_cast<	const mrpt::hwdrivers::TSensorClassId*>( & Compass::classCompass );
+void Compass::sensorProcess() {
+	string data;
+
+	bool booleanness = true;
+	data = this->serialPort.ReadString(100,&booleanness, "\n\r");
+	this->serialPort.purgeBuffers();
+	this->parseResponse(data);
+
+}
+
+SensorData * Compass::getData() {
+	return new CompassData(this->yaw, this->pitch, this->roll, "N" == this->yawStatus.substr(0,1), "N" == this->pitchStatus.substr(0,1), "N" == this->rollStatus.substr(0,1), this->degrees );
+}
+
+void Compass::dumpData( std::ostream & out ) const {
+	out << "************" << endl;
+	out << "Compass" << endl;
+	out << this->yaw << ", " << this->pitch << ", " << this->roll << " Valid: " << this->yawStatus << this->pitchStatus << this->rollStatus << endl;
+	out << "************" << endl;
 }
 
 void Compass::parseResponse( const std::string& data ) {

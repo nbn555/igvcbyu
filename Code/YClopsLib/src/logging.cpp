@@ -14,7 +14,7 @@ std::ostream * Log::outputStream = &(std::cerr);
 
 std::string Log::GetTime() {
 	time_t t = time(NULL);
-	return std::string(asctime(gmtime(&t)));
+	return std::string(asctime(gmtime(&t))); //return a formatted string of the timestamp
 }
 
 std::string Log::ToString( LOG_LEVEL level ) {
@@ -54,7 +54,7 @@ std::stringstream& Log::Get(LOG_LEVEL level) {
 	this->os << "- " << Log::GetTime();
 	this->os << " " << Log::ToString(level) << ": ";
 
-	this->os << std::string(level > DEBUG ? 1 :  DEBUG - level, '\t' );
+	this->os << std::string(level > DEBUG ? 1 :  DEBUG - level, '\t' ); //Set increasing number of tabs for higher debug levels
 	messageLevel = level;
 	return os;
 }

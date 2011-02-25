@@ -26,7 +26,7 @@ Camera::~Camera(){
 	LOG(DEBUG4) << "Deleted array and image capture..." << endl;
 }
 
-void Camera::loadConfig(const mrpt::utils::CConfigFileBase & config, const string & sectionName){
+void Camera::loadConfiguration(const mrpt::utils::CConfigFileBase & config, const std::string & sectionName) {
 	LOG(DEBUG4) << "Reading config file..." << endl;
 
 	GRID_SIZE = config.read_int(sectionName, "grid_size", 10);
@@ -35,14 +35,11 @@ void Camera::loadConfig(const mrpt::utils::CConfigFileBase & config, const strin
 	ERODE_AMOUNT = config.read_int(sectionName, "erode_amount", 2);
 	HSV_VECTOR = config.read_int(sectionName, "hsv_vector", 1);
 
-
-
 	LOG(DEBUG4) << "Grid size: " << GRID_SIZE << endl;
 	LOG(DEBUG4) << "Percent filled: " << PERCENT_FILLED << endl;
 	LOG(DEBUG4) << "Threshold: " << THRESHOLD << endl;
 	LOG(DEBUG4) << "Erode amount: " << ERODE_AMOUNT << endl;
 	LOG(DEBUG4) << "HSV vector: " << HSV_VECTOR << endl;
-
 
 	if(GRID_SIZE <= 0) LOG(FATAL) << "Grid size is negative or zero" << endl;
 	if(PERCENT_FILLED <= 0) LOG(FATAL) << "Percent filled is negative or 0" << endl;
@@ -54,7 +51,7 @@ void Camera::loadConfig(const mrpt::utils::CConfigFileBase & config, const strin
 	if(HSV_VECTOR > 3) LOG(FATAL) << "hsv vector is too high, must be between 0 and 3" << endl;
 }
 
-void Camera::startCamera(){
+void Camera::init(){
 	array = new bool[GRID_SIZE * GRID_SIZE];
 	capture = new VideoCapture(0);
 
@@ -99,14 +96,18 @@ void Camera::getObstacles(mrpt::slam::CSimplePointsMap & map, mrpt::poses::CPose
 	insertObstacles(map, GRID_SIZE, array, pose);
 	LOG(DEBUG4) << "Inserted obstacles into map..." << endl;
 
-
 }
 
-void Camera::doProcess() {
-
+void Camera::sensorProcess() {
+	LOG(FATAL) << "Camera: sensorProcess to implement" << endl;
 }
 
-void Camera::dumpData( std::ostream & out ) {
+SensorData * Camera::getData() {
+	LOG(FATAL) << "Camera: getData to implement" << endl;
+	return new CameraData();
+}
+
+void Camera::dumpData( std::ostream & out ) const {
 	out << "dumping camera data" << endl;
 
 	VideoCapture cap(0);

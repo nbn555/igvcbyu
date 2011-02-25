@@ -13,6 +13,7 @@
 #include <iostream>
 //#include <mrpt/base.h>
 #include <mrpt/slam.h>
+#include "YClopsSensor.h"
 
 /*
 #include "opencv2/core/core.hpp"
@@ -26,19 +27,19 @@
 #include <opencv/highgui.h>
 
 
-class Camera{
+class Camera : public YClopsSensor {
 
 public:
 	Camera();
 
-	~Camera();
-
-	void loadConfig(const mrpt::utils::CConfigFileBase & config, const std::string & sectionName);
-	void startCamera();
+	virtual ~Camera();
+	void loadConfiguration(const mrpt::utils::CConfigFileBase & config, const std::string & sectionName);
+	void init();
 
 	void getObstacles(mrpt::slam::CSimplePointsMap & map, mrpt::poses::CPose3D pose);
-	void doProcess();
-	void dumpData( std::ostream & out );
+	void sensorProcess();
+	SensorData * getData();
+	void dumpData( std::ostream & out ) const;
 
 private:
 	void getFrame(cv::Mat & image);

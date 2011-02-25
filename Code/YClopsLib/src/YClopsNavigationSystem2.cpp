@@ -21,24 +21,26 @@ YClopsNavigationSystem2::YClopsNavigationSystem2(CConfigFile & config)
 {
 	this->motor = new DualMotorCommand();
 
-	if( config.read_bool("COMPASS", "USE", false) ) {
-		this->compass = new Compass( config );
+	std::string compassName = "COMPASS";
+	if( config.read_bool(compassName, "USE", false) ) {
+		this->compass = new Compass();
+		this->compass->loadConfiguration(config, compassName );
+		this->compass->init();
 	} else {
 		LOG(INFO) << "Not using Compass" << endl;
 	}
 
-	if( config.read_bool("GPS", "USE", false ) ) {
+	std::string gpsName = "GPS";
+	if( config.read_bool(gpsName, "USE", false ) ) {
 		this->gps = new GPS();
-
-		gps->setSerialPortName ( config.read_string("GPS", "COM_port_LIN", "/dev/ttyUSB1" ) );
-		gps->loadConfig(config, "GPS");
-		gps->initConfig(config, "GPS");
-		gps->initialize();
+		this->gps->loadConfiguration(config,gpsName);
+		this->gps->init();
 	} else {
 		LOG(INFO) << "Not using GPS" << endl;
 	}
 
-	if( config.read_bool("CAMERA", "USE", false ) ) {
+	std::string cameraName = "CAMERA";
+	if( config.read_bool(cameraName, "USE", false ) ) {
 		this->camera = new Camera();
 	} else {
 		LOG(INFO) << "Not using Camera" << endl;
@@ -76,7 +78,7 @@ void YClopsNavigationSystem2::doProcess() {
 
 	if( NULL != this->compass ) {
 
-		this->compass->doProcess();
+		this->compass->sensorProcess();
 
 		if( this->isCompassDataShown ) {
 			this->compass->dumpData(cout);
@@ -85,7 +87,7 @@ void YClopsNavigationSystem2::doProcess() {
 
 	if( NULL != this->gps ) {
 
-		this->gps->doProcess();
+		this->gps->sensorProcess();
 
 		if( this->isGpsDataShown ) {
 			this->gps->dumpData(cout);
@@ -94,7 +96,7 @@ void YClopsNavigationSystem2::doProcess() {
 
 	if( NULL != this->camera ) {
 
-		this->camera->doProcess();
+		this->camera->sensorProcess();
 
 		if( this->isCameraDataShown ) {
 			this->camera->dumpData(cout);
