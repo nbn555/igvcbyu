@@ -19,9 +19,11 @@
 #include <string>
 #include <mrpt/utils/CConfigFile.h>
 #include "WaypointPlanner.h"
+
 #include "YClopsSensor.h"
 
 class GPS: protected mrpt::hwdrivers::CGPSInterface, public YClopsSensor {
+
 public:
 	GPS(const int Buffer_Length = 500);
 	void loadConfiguration( const mrpt::utils::CConfigFileBase & config, const std::string & sectionName);
