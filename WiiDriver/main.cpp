@@ -54,7 +54,7 @@ int main( int argc, char** argv ) {
 	WiiController::create();
 
 	//Set the motor controller to connect to the port name in the config file
-	MotorController::setConfigFile( configFile );
+	MotorController::setConfigFile( (mrpt::utils::CConfigFileBase*)(&configFile) );
 
 	yclops = new YClopsNavigationSystem2( configFile );
 	yclops->useNullMotorCommand();
