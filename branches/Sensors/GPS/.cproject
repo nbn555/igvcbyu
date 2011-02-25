@@ -30,7 +30,7 @@
 <option id="gnu.cpp.compiler.exe.debug.option.optimization.level.879540675" name="Optimization Level" superClass="gnu.cpp.compiler.exe.debug.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
 <option id="gnu.cpp.compiler.exe.debug.option.debugging.level.1636830107" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 <option id="gnu.cpp.compiler.option.include.paths.1739054900" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-<listOptionValue builtIn="false" value="&quot;${workspace_loc:/GPSDriver/YClopsLib/inc}&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/YClopsLib/inc}&quot;"/>
 <listOptionValue builtIn="false" value="/usr/include/mrpt/base/include"/>
 <listOptionValue builtIn="false" value="/usr/include/mrpt/mrpt-config"/>
 <listOptionValue builtIn="false" value="/usr/include/mrpt/bayes/include"/>
@@ -53,7 +53,7 @@
 <option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.exe.debug.option.optimization.level.1378418684" name="Optimization Level" superClass="gnu.c.compiler.exe.debug.option.optimization.level" valueType="enumerated"/>
 <option id="gnu.c.compiler.exe.debug.option.debugging.level.1705830354" name="Debug Level" superClass="gnu.c.compiler.exe.debug.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 <option id="gnu.c.compiler.option.include.paths.1987787828" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
-<listOptionValue builtIn="false" value="&quot;${workspace_loc:/GPSDriver/YClopsLib/inc}&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/YClopsLib/inc}&quot;"/>
 <listOptionValue builtIn="false" value="/usr/include/mrpt/base/include"/>
 <listOptionValue builtIn="false" value="/usr/include/mrpt/mrpt-config"/>
 <listOptionValue builtIn="false" value="/usr/include/mrpt/bayes/include"/>
@@ -99,7 +99,6 @@
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.assembler.exe.debug.1754059444" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.debug">
 <option id="gnu.both.asm.option.include.paths.1017266759" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
-<listOptionValue builtIn="false" value="&quot;${workspace_loc:/GPSDriver/YClopsLib/inc}&quot;"/>
 <listOptionValue builtIn="false" value="/usr/include/mrpt/base/include"/>
 <listOptionValue builtIn="false" value="/usr/include/mrpt/mrpt-config"/>
 <listOptionValue builtIn="false" value="/usr/include/mrpt/bayes/include"/>
