@@ -1,8 +1,7 @@
-/*
- * WheelEncoder.cpp
- *
- *  Created on: Feb 24, 2011
- *      Author: tallred3
+/**
+ * @file WheelEncoder.cpp
+ * @date Feb 24, 2011
+ * @author Thomas Eldon Allred
  */
 
 #include "WheelEncoder.h"
@@ -13,27 +12,38 @@
 
 using namespace std;
 
-WheelEncoder::WheelEncoder() { }
+WheelEncoder::WheelEncoder(): leftCount(0), rightCount(0), leftCountAbsolute(0), rightCountAbsolute(0) { }
 
 void WheelEncoder::loadConfiguration(mrpt::utils::CConfigFileBase & config, std::string & sectionName) {
-	LOG(FATAL) << "WheelEncoder: loadConfiguration not implemented" << endl;
+
 }
 
 void WheelEncoder::init() {
-	LOG(FATAL) << "WheelEncoder: init not implemented" << endl;
+	MotorController::instance()->setEncoderCounter(MotorController::BothChannels,0);
 }
 
 void WheelEncoder::sensorProcess() {
-	LOG(FATAL) << "WheelEncoder: sensorProcess not implemented" << endl;
+	unsigned int tmp1, tmp2;
+	MotorController::instance()->getAbsoluteEncoderCount(this->leftCountAbsolute, this->rightCountAbsolute);
+	MotorController::instance()->getRelativeEncoderCount(tmp1,tmp2);
+	this->leftCount += tmp1;
+	this->rightCount += tmp2;
 }
 
 SensorData * WheelEncoder::getData() {
-	LOG(FATAL) << "WheelEncoder: getData not implemented" << endl;
-	return new EncoderData();
+	EncoderData* data = new EncoderData(this->leftCount, this->rightCount, this->leftCountAbsolute, this->rightCountAbsolute);
+	this->leftCount = 0;
+	this->rightCount = 0;
+	return data;
 }
 
 void WheelEncoder::dumpData( std::ostream & out ) {
-	LOG(FATAL) << "WheelEncoder: dumpData not implemented" << endl;
+	out << "*******************************" << endl;
+	out << "Left Encoder value: " << this->leftCount << endl;
+	out << "Right Encoder value: " << this->rightCount << endl;
+	out << "Left Absolute value: " << this->leftCountAbsolute << endl;
+	out << "Right Absolute value: " << this->rightCountAbsolute << endl;
+	out << "*******************************" << endl;
 }
 
 WheelEncoder::~WheelEncoder() { }

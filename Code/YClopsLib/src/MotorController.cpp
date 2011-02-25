@@ -164,7 +164,7 @@ bool MotorController::setSpeed( MotorChannel channel, int value ) {
 	return rval;
 }
 
-bool MotorController::setEncoderCounter( MotorChannel channel, int value ) {
+bool MotorController::setEncoderCounter( MotorChannel channel, unsigned int value ) {
 	bool rval = false;
 	stringstream parser;
 
@@ -223,13 +223,12 @@ bool MotorController::getBatteryAmps( double & motor1Amps, double & motor2Amps )
 	return rval;
 }
 
-bool MotorController::getAbsoluteEncoderCount( int & ch1, int & ch2 ) {
+bool MotorController::getAbsoluteEncoderCount(unsigned int & ch1, unsigned int & ch2 ) {
 	this->sendCommand("?C\r", "");
-	return this->responseParserDual(ch1, ch2);
+	return this->responseParserDual<unsigned int>(ch1, ch2);
 }
 
-bool MotorController::getRelativeEncoderCount( int & ch1, int & ch2 ) {
-	this->sendCommand("?CR\n\r", "");
+bool MotorController::getRelativeEncoderCount( unsigned int & ch1, unsigned int & ch2 ) {
 	return this->responseParserDual(ch1,ch2);
 }
 
@@ -411,19 +410,6 @@ bool MotorController::getControlUnitType() {
 bool MotorController::clearBufferHistory() {
 	LOG(FATAL) << "MotorController: clear Buffer History not implemented" << endl;//TODO clearBufferHistory
 	return false;
-}
-
-bool MotorController::responseParserDual( int & t1, int & t2 ) {
-	stringstream responseParser( this->serialPort.ReadString() );
-
-	while( '=' != responseParser.get() );
-
-	responseParser >> t1;
-	responseParser.get(); //Parse off the :
-	responseParser >> t2;
-
-	return true;
-
 }
 
 bool MotorController::responseParserTrio( int & t1, int & t2, int & t3 ) {

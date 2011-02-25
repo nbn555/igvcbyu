@@ -100,7 +100,7 @@ public:
 	 * @param value - the value to set the encoder count
 	 * @return true upon success
 	 */
-	bool setEncoderCounter( MotorChannel channel, int value = 0 );
+	bool setEncoderCounter( MotorChannel channel, unsigned int value = 0 );
 
 	//////////////////////////////////////////////////////////////////
 	//Motor Controller Runtime queries
@@ -136,7 +136,7 @@ public:
 	 * @param channel2Count - reference to the encoder count for channel 2
 	 * @return true upon success
 	 */
-	bool getAbsoluteEncoderCount( int & ch1, int & ch2 );
+	bool getAbsoluteEncoderCount( unsigned int & ch1, unsigned int & ch2 );
 
 	/**
 	 * getRelativeEncoderCount - gets the encoder count since the last time this command was used
@@ -144,14 +144,13 @@ public:
 	 * @param ch2 - the encoder count for the second channel
 	 * @return true if successful
 	 */
-	bool getRelativeEncoderCount( int & ch1, int & ch2 );
-
+	bool getRelativeEncoderCount( unsigned int & ch1, unsigned int & ch2 );
 	/**
 	 * getEncoderSpeed - returns the speed of the encoder for the given channel
 	 * @param channel - the motor channel to query
 	 * @param speed - the speed of the encoder in RPMs
 	 * @returns - true upon success
-	 * S
+	 *
 	 */
 	bool getEncoderSpeed( MotorChannel channel, int & speed );
 
@@ -399,7 +398,20 @@ private:
 	 */
 	bool clearBufferHistory();
 
-	bool responseParserDual( int & t1, int & t2 );
+	template<typename T>
+	bool responseParserDual( T & t1, T & t2 ) {
+		std::stringstream responseParser( this->serialPort.ReadString() );
+
+		while( '=' != responseParser.get() );
+
+		responseParser >> t1;
+		responseParser.get(); //Parse off the :
+		responseParser >> t2;
+
+		return true;
+
+	}
+
 
 	bool responseParserTrio( int & t1, int & t2, int & t3 );
 };

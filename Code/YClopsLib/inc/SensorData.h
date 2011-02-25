@@ -17,11 +17,22 @@ public:
 	time_t t;
 };
 
+class GPSData: public SensorData {
+public:
+	GPSData( double latitude, double longitude, bool valid ): latitude(latitude), longitude(longitude), valid(valid) {};
+	virtual ~GPSData() {};
+
+	double latitude;
+	double longitude;
+	bool valid;
+
+};
+
 class CompassData: public SensorData {
 public:
 	CompassData( double yaw, double pitch, double roll, bool yawValid, bool pitchValid, bool rollValid, bool degrees ):
 		yaw(yaw), pitch(pitch), roll(roll), yawValid(yawValid), pitchValid(pitchValid), rollValid(rollValid), degrees(degrees) {}
-	virtual ~CompassData();
+	virtual ~CompassData() {};
 
 	double yaw;
 	double pitch;
@@ -35,21 +46,14 @@ public:
 
 };
 
-class GPSData: public SensorData {
-public:
-	GPSData( double latitude, double longitude, bool valid ): latitude(latitude), longitude(longitude), valid(valid) {};
-	virtual ~GPSData();
-
-	double latitude;
-	double longitude;
-	bool valid;
-
-};
-
 class EncoderData: public SensorData {
 public:
-	EncoderData() {};
+	EncoderData( unsigned int leftCount, unsigned int rightCount, unsigned int leftCountAbsolute, unsigned int rightCountAbsolute ): leftCount(leftCount), rightCount(rightCount), leftCountAbsolute(leftCountAbsolute), rightCountAbsolute(rightCountAbsolute) {};
 	virtual ~EncoderData() {};
+	unsigned int leftCount;
+	unsigned int rightCount;
+	unsigned int leftCountAbsolute;
+	unsigned int rightCountAbsolute;
 };
 
 class CameraData: public SensorData {
