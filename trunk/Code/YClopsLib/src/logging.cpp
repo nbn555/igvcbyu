@@ -49,10 +49,12 @@ std::string Log::ToString( LOG_LEVEL level ) {
 	}
 }
 
-std::stringstream& Log::Get(LOG_LEVEL level) {
+std::stringstream& Log::Get(LOG_LEVEL level, bool timeStamp) {
 
-	this->os << "- " << Log::GetTime();
-	this->os << " " << Log::ToString(level) << ": ";
+	if(timeStamp) {
+		this->os << "- " << Log::GetTime();
+		this->os << " " << Log::ToString(level) << ": ";
+	}
 
 	this->os << std::string(level > DEBUG ? 1 :  DEBUG - level, '\t' ); //Set increasing number of tabs for higher debug levels
 	messageLevel = level;

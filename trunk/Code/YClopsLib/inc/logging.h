@@ -29,11 +29,18 @@ typedef enum LOG_LEVEL{
 #define LOG(level) \
 (level < Log::ReportingLevel()) ? : Log().Get(level)
 
+/**
+ * LOG_NOTS same as LOG but doesn't print out the time stamp
+ */
+#define LOG_NOTS(level) \
+(level < Log::ReportingLevel()) ? : Log().Get(level,false)
+
+
 class Log {
 public:
 	Log() {};
 	virtual ~Log();
-	std::stringstream & Get(LOG_LEVEL level = INFO );
+	std::stringstream & Get(LOG_LEVEL level = INFO, bool timeStamp = true);
 public:
 	static LOG_LEVEL & ReportingLevel();
 	static void SetReportLevel( LOG_LEVEL level = INFO );

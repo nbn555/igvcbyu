@@ -188,7 +188,10 @@ YClopsReactiveNavInterface::~YClopsReactiveNavInterface() {
 
 bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &curPose, float &curV, float &curW)
 {
-	LOG(DEBUG2) << "." << endl;
+	LOG_NOTS(DEBUG2) << "." << endl;
+
+	CompassData * compassData = NULL;
+	GPSData * gpsData = NULL;
 
 	//Get get data from the compass
 	if( NULL != this->compass ) {
@@ -197,6 +200,8 @@ bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 		if( this->isCompassDataShown ) {
 			this->compass->dumpData(cout);
 		}
+
+		compassData = (CompassData*)(compass->getData());
 	}
 
 	//Get data from the gps
@@ -207,6 +212,8 @@ bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 		if( this->isGpsDataShown ) {
 			this->gps->dumpData(cout);
 		}
+
+		gpsData = (GPSData*)(gps->getData());
 	}
 
 	//Get data from the encoders
@@ -216,43 +223,42 @@ bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 		if( this->isEncoderDataShown ) {
 			this->encoder->dumpData(cout);
 		}
-
+		//Incorporate data from the encoders to the position data
 	}
 
-	//Incorporate data from the encoders to the position data
-	GPSData * gpsData = (GPSData*)(gps->getData());
-	CompassData * compassData = (CompassData*)(compass->getData());
+	if( NULL != gpsData && NULL != compassData ) {
+		if(!gpsData->valid)
+		{
+			//return false;
 
-	if(!gpsData->valid)
-	{
-		//return false;
+			curPose.x(robotPose->x());
+			curPose.y(robotPose->y());
 
+			delete gpsData;
+			delete compassData;
+
+			return true;
+		}
+
+		LOG(DEBUG4) << "In yclops reactivenav" << compassData->yaw << " " << compassData->pitch << " " << compassData->roll << endl;
+		LOG(DEBUG4) << " valid? " << compassData->yawValid << " " << compassData->pitchValid << " " << compassData->rollValid << endl;
+
+		poseEst->update(gpsData,compassData);
+		mrpt::poses::CPose3D thirdDim = mrpt::poses::CPose3D(curPose);
+		this->poseEst->getPose(thirdDim);
+		robotPose->x() = thirdDim.x();
+		robotPose->y() = thirdDim.y();
+
+		curV = this->curV;
+		curW = this->curW;
 		curPose.x(robotPose->x());
 		curPose.y(robotPose->y());
-		
-		delete gpsData;
-		delete compassData;
+		curPose.phi(poseEst->getYaw());
 
-		return true;
 	}
 
-	LOG(DEBUG4) << "In yclops reactivenav" << compassData->yaw << " " << compassData->pitch << " " << compassData->roll << endl;
-	LOG(DEBUG4) << " valid? " << compassData->yawValid << " " << compassData->pitchValid << " " << compassData->rollValid << endl;
-
-	poseEst->update(gpsData,compassData);
-	mrpt::poses::CPose3D thirdDim = mrpt::poses::CPose3D(curPose);
-	this->poseEst->getPose(thirdDim);
-	robotPose->x() = thirdDim.x();
-	robotPose->y() = thirdDim.y();
-
-	curV = this->curV;
-	curW = this->curW;
-	curPose.x(robotPose->x());
-	curPose.y(robotPose->y());
-	curPose.phi(poseEst->getYaw());
-
-	delete gpsData;
-	delete compassData;
+	if(compassData) delete compassData;
+	if(gpsData) delete gpsData;
 
 	return true;
 }
