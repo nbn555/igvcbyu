@@ -11,12 +11,6 @@
 
 
 class UnitTest {
-	testGPS();
-
 
 
 };
-
-
-
-}
