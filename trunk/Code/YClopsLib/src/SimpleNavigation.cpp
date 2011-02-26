@@ -12,12 +12,18 @@
 #include "SimpleNavigation.h"
 
 #include <mrpt/utils/CConfigFileMemory.h>
+#include <mrpt/poses/CPose2D.h>
+#include <mrpt/poses/CPoint2D.h>
+#include <iostream>
+
+using namespace std;
+using namespace mrpt;
+using namespace mrpt::poses;
 
 SimpleNavigation::SimpleNavigation(string & fileName, mrpt::reactivenav::CReactiveInterfaceImplementation* interface): fileName(fileName), interface(interface) {
 }
 
 SimpleNavigation::~SimpleNavigation() {
-	// TODO Auto-generated destructor stub
 	delete interface;
 }
 
@@ -50,7 +56,7 @@ void SimpleNavigation::go()
 	//interface that will be used by the reactive nav to sense the environment and make the robot move
 
 	//initial position
-	mrpt::poses::CPose2D pose = CPoint2D();
+	mrpt::poses::CPose2D pose = CPose2D();
 	float v = 0;
 	float w = 0;
 
@@ -111,14 +117,14 @@ void SimpleNavigation::navigationStep()
 		float cur_v;
 	interface->getCurrentPoseAndSpeeds(curPose, cur_v, cur_w);
 	yaw = curPose.phi();//Robotpose returns yaw in radians
-	cout << "Yaw: " << yaw << endl;
+	LOG(DEBUG2) << "Yaw: " << yaw << endl;
 	wantedYaw = calcBearing(curPose);//AbstractNavigationInterface::calcBearing(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
-	cout << "Wanted Yaw: " << wantedYaw << endl;
-	cout << "Difference: " << abs(yaw-wantedYaw) << endl;
+	LOG(DEBUG2) << "Wanted Yaw: " << wantedYaw << endl;
+	LOG(DEBUG2) << "Difference: " << abs(yaw-wantedYaw) << endl;
 	double dist = distance(curPose);
 	if(!dist > navParams->targetAllowedDistance)
 	{
-		cout << "Reached Way Point" << endl;
+		LOG(DEBUG2) << "Reached Way Point" << endl;
 		points.erase(points.begin());
 		if(points.size() != 0)//this->points)
 		{
@@ -134,28 +140,28 @@ void SimpleNavigation::navigationStep()
 		bool turnRight = yaw < wantedYaw;
 		if(turnRight)
 		{
-			cout << "\tTurning Right" << endl;
+			LOG(DEBUG2) << "\tTurning Right" << endl;
 			interface->changeSpeeds(.5f,2);
 		}
 		else
 		{
-			cout << "\tTurning Left" << endl;
+			LOG(DEBUG2) << "\tTurning Left" << endl;
 			interface->changeSpeeds(.5f, -2);
 		}
 	}
 	else
 	{
 		double dist = distance(curPose);
-		cout << "\tDriving Towards Target. Remaining Distance: " << dist << endl;//AbstractNavigationInterface::haversineDistance(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
+		LOG(DEBUG2) << "\tDriving Towards Target. Remaining Distance: " << dist << endl;//AbstractNavigationInterface::haversineDistance(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
 		if(dist > navParams->targetAllowedDistance)
 		{
 			interface->changeSpeeds(1.4,0);
-			cout << "\tDriving Towards Target. Remaining Distance: " << dist << endl;
+			LOG(DEBUG2) << "\tDriving Towards Target. Remaining Distance: " << dist << endl;
 
 		}
 		else
 		{
-			cout << "Reached Way Point" << endl;
+			LOG(DEBUG2) << "Reached Way Point" << endl;
 			points.erase(points.begin());
 			if(points.size() != 0)//this->points)
 			{

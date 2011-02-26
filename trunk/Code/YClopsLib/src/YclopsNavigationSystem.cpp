@@ -6,7 +6,7 @@
  */
 
 #include "YclopsNavigationSystem.h"  // Precomp header
-#include "YclopsReactiveNavInterface.h"
+#include "YClopsReactiveNavInterface.h"
 
 #include <mrpt/reactivenav.h>
 

@@ -9,13 +9,13 @@
 #define SIMPLENAVIGATION_H_
 
 
-#include "YclopsReactiveNavInterface.h"
+#include "YClopsReactiveNavInterface.h"
 #include <mrpt/base.h>
 #include <mrpt/utils.h>
 
 class SimpleNavigation {
 private:
-	string fileName;
+	std::string fileName;
 	bool inMeters;
 	mrpt::reactivenav::CReactiveInterfaceImplementation* interface;
 	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t points;
@@ -29,7 +29,7 @@ private:
 		float x2 = navParams->target.x;
 		float y2 = navParams->target.y;
 		double dist = sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
-		cout << x1 << " " << y1 << " is a distance of " << dist << " from " << x2 << " " << y2 << endl;
+		std::cout << x1 << " " << y1 << " is a distance of " << dist << " from " << x2 << " " << y2 << std::endl;
 		return dist;
 	}
 
@@ -45,9 +45,9 @@ private:
 	}
 public:
 
-	SimpleNavigation(string & fileName, mrpt::reactivenav::CReactiveInterfaceImplementation* interface);
+	SimpleNavigation(std::string & fileName, mrpt::reactivenav::CReactiveInterfaceImplementation* interface);
 	virtual ~SimpleNavigation();
-	void setFileName(string & fileName, bool inMeters);
+	void setFileName(std::string & fileName, bool inMeters);
 	void navigate( mrpt::reactivenav::CAbstractReactiveNavigationSystem::TNavigationParams *navParams );
 	void go();
 	void navigationStep();

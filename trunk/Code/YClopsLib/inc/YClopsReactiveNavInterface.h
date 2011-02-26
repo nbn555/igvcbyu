@@ -1,11 +1,11 @@
 /**
- *  \file:YClopsNavigationSystem2.h
- *  \date: Feb 6, 2011
- *  \author: tallred3
+ * @file YclopsReactiveNavInterface.h
+ * @date Jan 20, 2011
+ * @author igvcbyu
  */
 
-#ifndef YCLOPSNAVIGATIONSYSTEM2_H_
-#define YCLOPSNAVIGATIONSYSTEM2_H_
+#ifndef YCLOPSREACTIVENAVINTERFACE_H_
+#define YCLOPSREACTIVENAVINTERFACE_H_
 
 #include "MotorCommandInterface.h"
 #include "Compass.h"
@@ -13,14 +13,24 @@
 #include "Camera.h"
 #include "WheelEncoder.h"
 #include "Lidar.h"
-#include <mrpt/utils/CConfigFile.h>
 
-class YClopsNavigationSystem2 {
+#include "PoseEstimator.h"
+
+#include <mrpt/reactivenav.h>
+
+#include <mrpt/utils.h>
+#include <mrpt/system/filesystem.h>
+
+class YClopsReactiveNavInterface: public mrpt::reactivenav::CReactiveInterfaceImplementation{
 public:
-	YClopsNavigationSystem2(mrpt::utils::CConfigFile & config);
-	virtual ~YClopsNavigationSystem2();
+	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+	YClopsReactiveNavInterface();
+	YClopsReactiveNavInterface( mrpt::utils::CConfigFileBase & config );
+	virtual ~YClopsReactiveNavInterface();
 
-	void doProcess();
+	bool getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &curPose, float &curV, float &curW);
+	bool changeSpeeds( float v, float w );
+	bool senseObstacles( mrpt::slam::CSimplePointsMap 		&obstacles );
 
 	void setAutonomusMode();
 	void setNavigationMode();
@@ -64,6 +74,11 @@ private:
 	Lidar * lidar;
 	WheelEncoder * encoder;
 
+	AbstractPoseEstimator* poseEst;
+	mrpt::poses::CPose3D* robotPose;
+
+	float curV;
+	float curW;
 };
 
-#endif /* YCLOPSNAVIGATIONSYSTEM2_H_ */
+#endif /* YCLOPSREACTIVENAVINTERFACE_H_ */
