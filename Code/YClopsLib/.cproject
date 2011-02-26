@@ -92,14 +92,13 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.504072373" name="YclopsReactiveNavInterface.h" rcbsApplicability="disable" resourcePath="inc/YclopsReactiveNavInterface.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.688287797" name="WaypointPlanner.h" rcbsApplicability="disable" resourcePath="inc/WaypointPlanner.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.22203110" name="YclopsNavigationSystem.h" rcbsApplicability="disable" resourcePath="inc/YclopsNavigationSystem.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.1336537998" name="Camera.h" rcbsApplicability="disable" resourcePath="inc/Camera.h" toolsToInvoke=""/>
-					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.805050447" name="SimpleNavigation.h" rcbsApplicability="disable" resourcePath="inc/SimpleNavigation.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.495797830" name="MotorCommandInterface.h" rcbsApplicability="disable" resourcePath="inc/MotorCommandInterface.h" toolsToInvoke=""/>
-					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.329228520" name="GPS.h" rcbsApplicability="disable" resourcePath="inc/GPS.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.805050447" name="SimpleNavigation.h" rcbsApplicability="disable" resourcePath="inc/SimpleNavigation.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.2140278698" name="Compass.h" rcbsApplicability="disable" resourcePath="inc/Compass.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.329228520" name="GPS.h" rcbsApplicability="disable" resourcePath="inc/GPS.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.1571146982" name="PoseEstimator.h" rcbsApplicability="disable" resourcePath="inc/PoseEstimator.h" toolsToInvoke=""/>
 					<sourceEntries>
 						<entry excluding="src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
