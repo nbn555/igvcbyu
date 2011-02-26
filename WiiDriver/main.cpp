@@ -14,7 +14,7 @@
 #include "MotorCommandInterface.h"
 #include "Compass.h"
 #include "WiiController.h"
-#include "YClopsNavigationSystem2.h"
+#include "YClopsReactiveNavInterface.h"
 #include "Beeper.h"
 #include "logging.h"
 
@@ -25,7 +25,7 @@ using namespace std;
 
 void signal_handler( int signum );
 
-YClopsNavigationSystem2 * yclops = NULL;
+YClopsReactiveNavInterface * yclops = NULL;
 
 int main( int argc, char** argv ) {
 
@@ -56,12 +56,17 @@ int main( int argc, char** argv ) {
 	//Set the motor controller to connect to the port name in the config file
 	MotorController::setConfigFile( (mrpt::utils::CConfigFileBase*)(&configFile) );
 
-	yclops = new YClopsNavigationSystem2( configFile );
+	yclops = new YClopsReactiveNavInterface( configFile );
 	yclops->useNullMotorCommand();
 
 	while(1) {
+		mrpt::poses::CPose2D curPose;
+		mrpt::slam::CSimplePointsMap map;
+		float curV, curW;
 
-		yclops->doProcess();
+		yclops->getCurrentPoseAndSpeeds(curPose, curV, curW);
+		yclops->changeSpeeds(curV, curW);
+		yclops->senseObstacles(map);
 
 	}
 
@@ -133,32 +138,32 @@ void signal_handler( int signum ) {
 		}
 
 		if( cbuttons & CLASSIC_L1 ) {
-			LOG(INFO) << "Classic L1" << endl;
+			LOG(DEBUG4) << "Classic L1" << endl;
 		}
 
 		if( cbuttons & CLASSIC_L2 ) {
-			LOG(INFO) << "Classic L2" << endl;
+			LOG(DEBUG4) << "Classic L2" << endl;
 		}
 
 		if( cbuttons & CLASSIC_R1 ) {
-			LOG(INFO) << "Classic R1" << endl;
+			LOG(DEBUG4) << "Classic R1" << endl;
 		}
 
 		if( cbuttons & CLASSIC_R2 ) {
-			LOG(INFO) << "Classic R2" << endl;
+			LOG(DEBUG4) << "Classic R2" << endl;
 		}
 
 		if( cbuttons & CLASSIC_SELECT ) {
-			LOG(INFO) << "Classic Select" << endl;
+			LOG(DEBUG4) << "Classic Select" << endl;
 		}
 
 		if( cbuttons & CLASSIC_HOME ) {
-			LOG(INFO) << "Playing beep" << endl;
+			LOG(DEBUG4) << "Playing beep" << endl;
 			Beeper::beep(440,1000);
 		}
 
 		if( cbuttons & CLASSIC_START ) {
-			LOG(INFO) << "Classic Start" << endl;
+			LOG(DEBUG4) << "Classic Start" << endl;
 		}
 
 		if( mbuttons & MOTE_D_UP ) {
@@ -205,15 +210,14 @@ void signal_handler( int signum ) {
 
 		}
 #ifdef DEBUG
-		cout << "classic buttons ";
+		LOG(DEBUG4) << "classic buttons ";
 		for( uint16_t bitMask = (1 << (sizeof(bitMask)*8-1)); bitMask; bitMask >>= 1) {
 			if( bitMask & cbuttons ) {
-				cout << '1';
+				LOG(DEBUG4) << '1';
 			} else {
-				cout << '0';
+				LOG(DEBUG4) << '0';
 			}
 		}
-		cout << endl;
 
 		cout << "Classic l analog stick ";
 		cout << lax << "," << lay << endl;
