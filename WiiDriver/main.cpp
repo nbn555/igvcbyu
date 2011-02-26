@@ -24,6 +24,7 @@ using namespace mrpt::utils;
 using namespace std;
 
 void signal_handler( int signum );
+LOG_LEVEL loggingLevel = INFO;
 
 YClopsReactiveNavInterface * yclops = NULL;
 
@@ -44,7 +45,7 @@ int main( int argc, char** argv ) {
 
 	//Set up logging
 	Log::SetLogFile(&cout);
-	Log::SetReportLevel(WARNING);
+	Log::SetReportLevel(loggingLevel);
 
 	//Set up the SIGUSR1 so we know when a button is pressed
 	signal(SIGUSR1, signal_handler);
@@ -76,8 +77,11 @@ int main( int argc, char** argv ) {
 void signal_handler( int signum ) {
 
 	if( SIGINT == signum ) {
-		if( NULL == yclops ) {
+		LOG(DEBUG4) << " Signal Received " << signum << endl;
+		if( NULL != yclops ) {
 			delete yclops;
+			yclops = NULL;
+			exit(EXIT_FAILURE);
 		}
 	} else if( SIGUSR1 == signum ) {
 		uint16_t cbuttons;
@@ -155,6 +159,19 @@ void signal_handler( int signum ) {
 
 		if( cbuttons & CLASSIC_SELECT ) {
 			LOG(DEBUG4) << "Classic Select" << endl;
+			switch(loggingLevel) {
+			case DISABLE:							break;
+			case FATAL: 	loggingLevel = ERROR; 	break;
+			case ERROR: 	loggingLevel = WARNING;	break;
+			case WARNING:	loggingLevel = INFO;	break;
+			case INFO:		loggingLevel = DEBUG;	break;
+			case DEBUG:		loggingLevel = DEBUG2;	break;
+			case DEBUG2:	loggingLevel = DEBUG3;	break;
+			case DEBUG3:	loggingLevel = DEBUG4;	break;
+			case DEBUG4:							break;
+			default:								break;
+			}
+			Log::SetReportLevel(loggingLevel);
 		}
 
 		if( cbuttons & CLASSIC_HOME ) {
@@ -164,6 +181,20 @@ void signal_handler( int signum ) {
 
 		if( cbuttons & CLASSIC_START ) {
 			LOG(DEBUG4) << "Classic Start" << endl;
+			switch(loggingLevel) {
+			case DISABLE:							break;
+			case FATAL: 						 	break;
+			case ERROR: 	loggingLevel = FATAL;	break;
+			case WARNING:	loggingLevel = ERROR;	break;
+			case INFO:		loggingLevel = WARNING;	break;
+			case DEBUG:		loggingLevel = INFO;	break;
+			case DEBUG2:	loggingLevel = DEBUG;	break;
+			case DEBUG3:	loggingLevel = DEBUG2;	break;
+			case DEBUG4:	loggingLevel = DEBUG3;	break;
+			default:								break;
+			}
+			Log::SetReportLevel(loggingLevel);
+
 		}
 
 		if( mbuttons & MOTE_D_UP ) {
