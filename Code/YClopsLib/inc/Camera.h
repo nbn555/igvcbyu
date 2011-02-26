@@ -35,10 +35,10 @@ public:
 	virtual ~Camera();
 	void loadConfiguration(const mrpt::utils::CConfigFileBase & config, const std::string & sectionName);
 	void init();
-
-	void getObstacles(mrpt::slam::CSimplePointsMap & map, mrpt::poses::CPose3D pose);
 	void sensorProcess();
 	SensorData * getData();
+
+	void getObstacles(mrpt::slam::CSimplePointsMap & map, mrpt::poses::CPose3D pose);
 	void dumpData( std::ostream & out ) const;
 
 private:
@@ -53,6 +53,7 @@ private:
 	// TODO: Delete me
 	cv::VideoCapture * capture;
 	bool * array;
+	mrpt::slam::CSimplePointsMap * map;
 
 	double PERCENT_FILLED;
 	int GRID_SIZE;
