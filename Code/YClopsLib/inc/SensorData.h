@@ -9,6 +9,7 @@
 #define SENSORDATA_H_
 
 #include <ctime>
+#include <mrpt/slam.h>
 
 class SensorData {
 public:
@@ -58,8 +59,9 @@ public:
 
 class CameraData: public SensorData {
 public:
-	CameraData() {};
+	CameraData(mrpt::slam::CSimplePointsMap map) : map(map) {};
 	virtual ~CameraData() {};
+	mrpt::slam::CSimplePointsMap map;
 };
 
 class LidarData: public SensorData {
