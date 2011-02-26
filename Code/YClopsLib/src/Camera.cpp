@@ -2,7 +2,7 @@
 #include "logging.h"
 #include <cassert>
 
-#define DEBUG
+//#define DEBUG
 
 #ifdef DEBUG
 	#define DEBUG_COMMAND(cmd) cmd
