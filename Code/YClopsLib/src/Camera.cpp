@@ -16,12 +16,13 @@ extern bool bCameraData;
 using namespace std;
 using namespace cv;
 
-Camera::Camera(){
+Camera::Camera() : capture(NULL), array(NULL), map(NULL){
 }
 
 Camera::~Camera(){
 	delete[] array;
 	delete capture;
+	delete map;
 
 	LOG(DEBUG4) << "Deleted array and image capture..." << endl;
 }
@@ -53,6 +54,7 @@ void Camera::loadConfiguration(const mrpt::utils::CConfigFileBase & config, cons
 
 void Camera::init(){
 	array = new bool[GRID_SIZE * GRID_SIZE];
+	map = new mrpt::slam::CSimplePointsMap;
 	capture = new VideoCapture(0);
 
 	// check to see if camera was opened
@@ -61,6 +63,27 @@ void Camera::init(){
 	}
 
 	LOG(DEBUG4) << "Started camera..." << endl;
+}
+
+void Camera::sensorProcess() {
+	// clear out old map
+	if(map != NULL){
+		delete map;
+		map = new mrpt::slam::CSimplePointsMap;
+	}
+
+
+	// TODO: Talk to Jack about what to do here
+	mrpt::poses::CPose3D pose;
+
+	// Putting data in map
+	getObstacles(*map, pose);
+
+}
+
+SensorData * Camera::getData() {
+	// Wrapping data in CameraData object
+	return new CameraData(*map);
 }
 
 void Camera::getFrame(Mat & image){
@@ -96,15 +119,6 @@ void Camera::getObstacles(mrpt::slam::CSimplePointsMap & map, mrpt::poses::CPose
 	insertObstacles(map, GRID_SIZE, array, pose);
 	LOG(DEBUG4) << "Inserted obstacles into map..." << endl;
 
-}
-
-void Camera::sensorProcess() {
-	LOG(FATAL) << "Camera: sensorProcess to implement" << endl;
-}
-
-SensorData * Camera::getData() {
-	LOG(FATAL) << "Camera: getData to implement" << endl;
-	return new CameraData();
 }
 
 void Camera::dumpData( std::ostream & out ) const {
