@@ -24,9 +24,9 @@ int main(int argc, char *argv[]) {
 
 	Camera camera;
 
-	camera.loadConfig(config, "CAMERA");
+	camera.loadConfiguration(config, "CAMERA");
 
-	camera.startCamera();
+	camera.init();
 
 	mrpt::slam::CSimplePointsMap map;
 	mrpt::poses::CPose3D pose;

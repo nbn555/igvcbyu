@@ -465,6 +465,8 @@ test.d test.o: ../test.cpp /home/yclops/workspace/YClopsLib/inc/Camera.h \
  /usr/include/mrpt/slam/include/mrpt/slam/CRejectionSamplingRangeOnlyLocalization.h \
  /usr/include/mrpt/bayes/include/mrpt/bayes/CRejectionSamplingCapable.h \
  /usr/include/mrpt/slam/include/mrpt/slam/graph_slam.h \
+ /home/yclops/workspace/YClopsLib/inc/YClopsSensor.h \
+ /home/yclops/workspace/YClopsLib/inc/SensorData.h \
  /home/yclops/workspace/YClopsLib/inc/logging.h
 
 /home/yclops/workspace/YClopsLib/inc/Camera.h:
@@ -1400,5 +1402,9 @@ test.d test.o: ../test.cpp /home/yclops/workspace/YClopsLib/inc/Camera.h \
 /usr/include/mrpt/bayes/include/mrpt/bayes/CRejectionSamplingCapable.h:
 
 /usr/include/mrpt/slam/include/mrpt/slam/graph_slam.h:
+
+/home/yclops/workspace/YClopsLib/inc/YClopsSensor.h:
+
+/home/yclops/workspace/YClopsLib/inc/SensorData.h:
 
 /home/yclops/workspace/YClopsLib/inc/logging.h:
