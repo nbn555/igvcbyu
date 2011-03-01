@@ -51,7 +51,8 @@ private:
 	std::vector<cv::Mat> convertRGBtoHSV(cv::Mat & image);
 
 	// TODO: Delete me
-	cv::VideoCapture * capture;
+	cv::VideoCapture capture;
+	cv::Mat image;
 	bool * array;
 	mrpt::slam::CSimplePointsMap * map;
 
