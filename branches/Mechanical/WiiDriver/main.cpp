@@ -7,6 +7,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <signal.h>
+#include <cassert>
 
 #include <mrpt/utils/CConfigFile.h>
 
@@ -24,51 +25,56 @@ using namespace mrpt::utils;
 using namespace std;
 
 void signal_handler( int signum );
-LOG_LEVEL loggingLevel = INFO;
+LOG_LEVEL loggingLevel = DEBUG4;
 
 YClopsReactiveNavInterface * yclops = NULL;
 
 int main( int argc, char** argv ) {
 
-	//create the config file
-	CConfigFile configFile;
+	try{
+		//create the config file
+		CConfigFile configFile;
 
-	//test if the config file is passed in
-	if(argc < 2) {
-		//if not print exit message and die
-		cout << "Usage: " << argv[0] << " file.ini" << endl;
-		exit(EXIT_FAILURE);
-	}else {
-		//if so load the config file
-		configFile.setFileName(string(argv[1]));
-	}
+		//test if the config file is passed in
+		if(argc < 2) {
+			//if not print exit message and die
+			cout << "Usage: " << argv[0] << " file.ini" << endl;
+			exit(EXIT_FAILURE);
+		}else {
+			//if so load the config file
+			configFile.setFileName(string(argv[1]));
+		}
 
-	//Set up logging
-	Log::SetLogFile(&cout);
-	Log::SetReportLevel(loggingLevel);
+		//Set up logging
+		Log::SetLogFile(&cout);
+		Log::SetReportLevel(loggingLevel);
 
-	//Set up the SIGUSR1 so we know when a button is pressed
-	signal(SIGUSR1, signal_handler);
-	signal(SIGINT, signal_handler);
+		//Set up the SIGUSR1 so we know when a button is pressed
+		signal(SIGUSR1, signal_handler);
+		signal(SIGINT, signal_handler);
 
-	//Initialize the WiiController
-	WiiController::create();
+		//Initialize the WiiController
+		WiiController::create();
 
-	//Set the motor controller to connect to the port name in the config file
-	MotorController::setConfigFile( (mrpt::utils::CConfigFileBase*)(&configFile) );
+		//Set the motor controller to connect to the port name in the config file
+		MotorController::setConfigFile( (mrpt::utils::CConfigFileBase*)(&configFile) );
 
-	yclops = new YClopsReactiveNavInterface( configFile );
-	yclops->useNullMotorCommand();
+		yclops = new YClopsReactiveNavInterface( configFile );
 
-	while(1) {
-		mrpt::poses::CPose2D curPose;
-		mrpt::slam::CSimplePointsMap map;
-		float curV, curW;
+		yclops->useNullMotorCommand();
 
-		yclops->getCurrentPoseAndSpeeds(curPose, curV, curW);
-		yclops->changeSpeeds(curV, curW);
-		yclops->senseObstacles(map);
+		while(1) {
+			mrpt::poses::CPose2D curPose;
+			mrpt::slam::CSimplePointsMap map;
+			float curV, curW;
 
+			yclops->getCurrentPoseAndSpeeds(curPose, curV, curW);
+			yclops->changeSpeeds(curV, curW);
+			yclops->senseObstacles(map);
+
+		}
+	} catch (...) {
+		delete yclops;
 	}
 
 	return 0;
@@ -132,6 +138,8 @@ void signal_handler( int signum ) {
 
 		if( cbuttons & CLASSIC_X ) {
 			LOG(INFO) << "Idling" << endl;
+			LOG(DEBUG4) << "YClops: " << yclops << endl;
+
 			yclops->useNullMotorCommand();
 			yclops->setIdle();
 		}
@@ -175,8 +183,11 @@ void signal_handler( int signum ) {
 		}
 
 		if( cbuttons & CLASSIC_HOME ) {
-			LOG(DEBUG4) << "Playing beep" << endl;
-			Beeper::beep(440,1000);
+			delete yclops;
+			yclops = NULL;
+			exit(0);
+			//LOG(DEBUG4) << "Playing beep" << endl;
+			//Beeper::beep(440,1000);
 		}
 
 		if( cbuttons & CLASSIC_START ) {
