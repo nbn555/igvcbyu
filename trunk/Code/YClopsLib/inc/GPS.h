@@ -118,6 +118,8 @@ private:
 	bool isGprmcUsed;
 	int baudRate;
 	int processRate;
+	double testLat;
+	double testLon;
 	GPSStringer * gpsStrings;
 	// Needed for the doProcess function call of the mrpt GPS
 	CGenericSensor::TListObservations				lstObs;
