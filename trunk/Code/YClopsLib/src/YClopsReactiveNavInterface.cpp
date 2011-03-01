@@ -226,7 +226,7 @@ bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 		//Incorporate data from the encoders to the position data
 	}
 
-	if( NULL != gpsData && NULL != compassData ) {
+	if( NULL == gpsData || NULL == compassData ) {
 		if(!gpsData->valid)
 		{
 			//return false;
@@ -240,8 +240,8 @@ bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 			return true;
 		}
 
-		LOG(DEBUG4) << "In yclops reactivenav" << compassData->yaw << " " << compassData->pitch << " " << compassData->roll << endl;
-		LOG(DEBUG4) << " valid? " << compassData->yawValid << " " << compassData->pitchValid << " " << compassData->rollValid << endl;
+		LOG(DEBUG4) << "In yclops compass data reactivenav: " << compassData->yaw << " " << compassData->pitch << " " << compassData->roll << endl;
+		LOG(DEBUG4) << "Compass data valid? " << compassData->yawValid << " " << compassData->pitchValid << " " << compassData->rollValid << endl;
 
 		poseEst->update(gpsData,compassData);
 		mrpt::poses::CPose3D thirdDim = mrpt::poses::CPose3D(curPose);
@@ -347,6 +347,7 @@ void YClopsReactiveNavInterface::useWiiMotorCommand() {
 }
 
 void YClopsReactiveNavInterface::useNullMotorCommand() {
+	LOG(DEBUG4) << "Motor: " << motor << endl;
 	delete this->motor;
 	this->motor = new DummyMotorCommand();
 }
