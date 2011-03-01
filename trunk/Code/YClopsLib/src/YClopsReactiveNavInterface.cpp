@@ -229,7 +229,6 @@ bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 	if( NULL == gpsData || NULL == compassData ) {
 		if(!gpsData->valid)
 		{
-			//return false;
 
 			curPose.x(robotPose->x());
 			curPose.y(robotPose->y());
@@ -277,7 +276,7 @@ bool YClopsReactiveNavInterface::changeSpeeds( float v, float w )
 	return rval;
 }
 
-bool YClopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap 		&obstacles )
+bool YClopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap &obstacles )
 {
 
 	if( NULL != this->camera ) {
@@ -312,27 +311,37 @@ void YClopsReactiveNavInterface::setIdle() {
 }
 
 bool YClopsReactiveNavInterface::toggleGpsDump() {
-	this->isGpsDataShown = !this->isGpsDataShown;
+	if( NULL != this->gps )
+		this->isGpsDataShown = !this->isGpsDataShown;
+	else this->isGpsDataShown = false;
 	return this->isGpsDataShown;
 }
 
 bool YClopsReactiveNavInterface::toggleCompassDump() {
-	this->isCompassDataShown = !this->isCompassDataShown;
+	if( NULL != this->compass )
+		this->isCompassDataShown = !this->isCompassDataShown;
+	else this->isCompassDataShown = false;
 	return this->isCompassDataShown;
 }
 
 bool YClopsReactiveNavInterface::toggleLidarDump() {
-	this->isLidarDataShown = !this->isLidarDataShown;
+	if( NULL != this->lidar )
+		this->isLidarDataShown = !this->isLidarDataShown;
+	else this->isLidarDataShown = false;
 	return this->isLidarDataShown;
 }
 
 bool YClopsReactiveNavInterface::toggleCameraDump() {
-	this->isCameraDataShown = !this->isCameraDataShown;
+	if( NULL != this->camera )
+		this->isCameraDataShown = !this->isCameraDataShown;
+	else this->isCameraDataShown = false;
 	return this->isCameraDataShown;
 }
 
 bool YClopsReactiveNavInterface::toggleEncoderDump() {
-	this->isEncoderDataShown = !this->isEncoderDataShown;
+	if( NULL != this->encoder )
+		this->isEncoderDataShown = !this->isEncoderDataShown;
+	else this->isEncoderDataShown = false;
 	return this->isEncoderDataShown;
 }
 
@@ -347,7 +356,6 @@ void YClopsReactiveNavInterface::useWiiMotorCommand() {
 }
 
 void YClopsReactiveNavInterface::useNullMotorCommand() {
-	LOG(DEBUG4) << "Motor: " << motor << endl;
 	delete this->motor;
 	this->motor = new DummyMotorCommand();
 }

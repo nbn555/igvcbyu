@@ -46,11 +46,11 @@ public:
 	static void SetReportLevel( LOG_LEVEL level = INFO );
 	static void SetLogFile( std::ostream * out );
 	static std::ostream * GetOStream() { return outputStream; };
+	static std::string ToString( LOG_LEVEL level );
 protected:
 	std::stringstream os;
 protected:
 	static std::string GetTime();
-	static std::string ToString( LOG_LEVEL level );
 private:
 	Log(const Log&);
 	Log & operator = (const Log&);

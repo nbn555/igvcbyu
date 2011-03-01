@@ -15,39 +15,46 @@ using namespace mrpt::system;
 using namespace mrpt::hwdrivers;
 using namespace mrpt::utils;
 
+const std::string GPS::GPSStringer::POCKETMAX = "PocketMAX";
+const std::string GPS::GPSStringer::NOVATEL = "Novatel";
 
 GPS::GPS(const int Buffer_Length):CGPSInterface(Buffer_Length), isGpggaUsed(false), isGprmcUsed(false) { //fixes potential default constructor problem
 }
 
 void GPS::loadConfiguration( const mrpt::utils::CConfigFileBase & config, const std::string & sectionName) {
 
-	this->portName = config.read_string(sectionName,"COM_port_LIN","/dev/ttyS0");
+	std::string portName = config.read_string(sectionName,"COM_port_LIN","/dev/ttyS0");
+	std::string vendor = config.read_string(sectionName, "GPS_TYPE", "Novatel" );
 
-	this->setSerialPortName ( this->portName );
+	if( GPSStringer::NOVATEL == vendor ) {
+		this->gpsStrings = new NovatelGPSStringer( portName );
+	} else if( GPSStringer::POCKETMAX == vendor ) {
+		this->gpsStrings = new PocketMaxGPSStringer( portName );
+	} else {
+		LOG(FATAL) << "Unsupported vendor" << endl;
+	}
 
-	LOG(DEBUG4) << "Connecting to port " << this->portName << endl;
-
+	LOG(DEBUG3) << "Connecting to port " << portName << endl;
+	this->setSerialPortName ( portName );
 	this->loadConfig(config, sectionName);
 
-	this->vendor = config.read_string(sectionName, "GPS_TYPE", "Novatel" );
-
-	LOG(DEBUG4) << "Using " << this->vendor << " GPS" << endl;
+	LOG(DEBUG3) << "Using " << vendor << " GPS" << endl;
 
 	this->isGpggaUsed = config.read_bool(sectionName,"use_gga", true);
 
-	LOG(DEBUG4) << "Using gpgga: " << (this->isGpggaUsed?"TRUE":"FALSE") << endl;
+	LOG(DEBUG3) << "Using gpgga: " << (this->isGpggaUsed?"TRUE":"FALSE") << endl;
 
 	this->isGprmcUsed = config.read_bool(sectionName,"use_rmc", false);
 
-	LOG(DEBUG4) << "Using gprmc: " << (this->isGprmcUsed?"TRUE":"FALSE") << endl;
+	LOG(DEBUG3) << "Using gprmc: " << (this->isGprmcUsed?"TRUE":"FALSE") << endl;
 
 	this->baudRate = config.read_int(sectionName,"baudRate", 57600);
 
-	LOG(DEBUG4) << "Using " << this->baudRate << " baud" << endl;
+	LOG(DEBUG3) << "Using " << this->baudRate << " baud" << endl;
 
 	this->processRate = config.read_int(sectionName,"process_rate", 1);
 
-	LOG(DEBUG4) << "Using a process rate of " << this->processRate << endl;
+	LOG(DEBUG3) << "Using a process rate of " << this->processRate << endl;
 
 }
 
@@ -56,7 +63,7 @@ void GPS::init() {
 
 	while(!lstObs.size()) {
 		doProcess();
-		LOG(DEBUG4) << "Getting GPS observations" << endl;
+		LOG(DEBUG3) << "Getting GPS observations" << endl;
 		mrpt::system::sleep(200);
 		getObservations(lstObs);
 		//this->isGPS_signalAcquired()
@@ -76,7 +83,7 @@ void GPS::sensorProcess() {
 	getObservations( lstObs );
 
 	if (lstObs.empty())
-		LOG(DEBUG4) << "[Test_GPS] Waiting for data..." << endl;
+		LOG(DEBUG3) << "[Test_GPS] Waiting for data..." << endl;
 
 	for(itObs = lstObs.begin(); itObs != lstObs.end(); itObs++){
 
@@ -137,6 +144,8 @@ void GPS::dumpData(std::ostream & out ) const {
 }
 
 GPS::~GPS() {
+	delete this->gpsStrings;
+	this->gpsStrings = NULL;
 }
 
 double GPS::GetDistanceToWaypoint (double lat, double lon) {
@@ -160,7 +169,7 @@ double GPS::GetGpsDirection() {
 		return gpsData->RMC_datum.direction_degrees;
 
 	else
-		cout << "No GPS_RMC_datum to return" << endl;
+		LOG(DEBUG3) << "No GPS_RMC_datum to return" << endl;
 	return 0.0;
 }
 
@@ -194,73 +203,43 @@ void GPS::initializeCom() {
 	// check if connection is already established, if not, reconnect
 	//if (this->isGPS_connected()) {return; }
 
-	cout << "Connecting to GPS ... (./YClopsLib/GPS)" << endl;
-	CSerialPort myCom(this->portName);
+	LOG(DEBUG3) << "Connecting to GPS ... (./YClopsLib/GPS)" << endl;
+
+	CSerialPort myCom(this->gpsStrings->portName);
+
 	myCom.setConfig(this->baudRate,0,8,1,false);
-	cout << "Post open" << endl;
+
+	LOG(DEBUG3) << "Post open" << endl;
 
 	stringstream inputStream;
-	if( "PocketMAX" == this->vendor ) {
-		bool to = false;
 
-		inputStream << "$joff\n\r";
-		myCom.Write(inputStream.str().c_str(),inputStream.str().length());
-		sleep(1);
-		myCom.purgeBuffers();
+	//clear out the commands that constantly update the gps data
+	bool to = false;
 
-		string response = myCom.ReadString( 1000, &to, "\n\r" );
-		LOG(DEBUG4) << "Response: " << response << endl;
+	inputStream << this->gpsStrings->clearCommand << "\n\r";
+	myCom.Write(inputStream.str().c_str(),inputStream.str().length());
+	sleep(1);
+	myCom.purgeBuffers();
 
-		if( "$>" != response.substr(0,2) || to ) {
-			LOG(FATAL) << "Misconfigured PocketMAX GPS" << endl;
-		}
+	string response = myCom.ReadString( 1000, &to, "\n\r" );
 
-		myCom.purgeBuffers();
+	if( this->gpsStrings->clearCommandResponse != response.substr(0,this->gpsStrings->clearCommandResponse.length()) || to ) {
+		LOG(FATAL) << "Misconfigured " << this->gpsStrings->vendor << " GPS" << endl;
 	}
-
-	if( "Novatel" == this->vendor ) {
-		//TODO implement the novatel connection checking.
-		/*
-		inputStream << "$jshow\n\r";
-		myCom.Write(inputStream.str().c_str(),inputStream.str().length());
-		bool to = false;
-		string response = myCom.readString( 1000, &to, "\n\r" );
-
-		if( "JSHOW" != response.substr(0,5) || to ) {
-			LOG(FATAL) << "Misconfigured PocketMAX GPS" << endl;
-		}
-
-		myCom.purgeBuffers();
-		*/
-	}
-
 
 	if( this->isGpggaUsed ) {
-		cout << "Using gpgga" << endl;
-		if( "PocketMAX" == this->vendor )
-			inputStream << "$jasc,gpgga," << this->processRate << "\n\r";
-		else if( "Novatel" == this->vendor )
-			inputStream << "log gpgga ontime " << this->processRate << "\n\r";
-		else
-			cerr << "Unsupported vendor" << endl;
+		LOG(DEBUG3) << "Using gpgga" << endl;
+		inputStream.str("");
+		inputStream << this->gpsStrings->ggaCommand << this->processRate << "\n\r";
 		myCom.Write(inputStream.str().c_str(),inputStream.str().length());//this will tell the gps to get a satellite reading once a second
 	}
 
 	if( this->isGprmcUsed ) {
-		cout << "Using gprmc" << endl;
-		if( "PocketMAX" == this->vendor) {
-			inputStream << "$jasc,gprmc," << this->processRate << "\n\r";
-		}
-		else if( "Novatel" == this->vendor ) {
-			inputStream << "log gprmc ontime " << this->processRate << "\n\r";
-		}
-		else
-			cerr << "Unsupported vendor" << endl;
+		LOG(DEBUG3) << "Using gprmc" << endl;
+		inputStream.str("");
+		inputStream << this->gpsStrings->rmcCommand << this->processRate << "\n\r";
 		myCom.Write(inputStream.str().c_str(),inputStream.str().length());//this will tell the gps to run the nmea rmc command once a second
 	}
 
 	myCom.close();
 }
-
-
-

@@ -8,9 +8,3 @@
 #include "UnitTest.h"
 #include "logging.h"
 #include "GPS.h"
-
-
-class UnitTest {
-
-
-};
