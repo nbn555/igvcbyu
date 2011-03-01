@@ -40,12 +40,17 @@ public:
 	virtual mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t solve(bool inMeters) = 0;
 
 	/**
+	 * convertToMeters - changes a point from latitude and longitude to meters in x (positive direction is north) and y (positive direction is east) from the
+	 * starting position
+	 */
+	void convertPointToMeters(mrpt::poses::CPoint2D& point);
+	/**
 	 * loadRawGPSPointFile - reads in a stream of ascii whitespace delimited gps
 	 * 		points from a file where the first one is the starting location and
 	 * 		all subsequent are weighpoints to travel to.
 	 * @param filename - the name of the raw gps point file
 	 */
-	void loadPoints(std::string filename);
+	void loadPoints(std::string filename, bool convertToMeters = false);
 
 	/**
 	 * "Haver Sine" Distance - is a function that computes the great circle distance of two points measured in degrees
