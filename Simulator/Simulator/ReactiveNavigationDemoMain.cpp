@@ -134,6 +134,17 @@ public:
 	bool getCurrentPoseAndSpeeds( mrpt::poses::CPose2D &curPose, float &curV, float &curW)
 	{
 		robotSim.getRealPose( curPose );
+		double phi = M_PI/2 - curPose.phi();
+		if(phi<0)
+		{
+			cout << "changing" <<phi << endl;
+			phi+= 2*M_PI;
+			cout << "to" << phi << endl;
+		}
+		curPose.phi(phi);
+		float temp = curPose.x();
+		curPose.x(curPose.y());
+		curPose.y(temp);
 		curV = robotSim.getV();
 		curW = robotSim.getW();
 		return true;
@@ -141,7 +152,7 @@ public:
 
 	bool changeSpeeds( float v, float w )
 	{
-		robotSim.movementCommand(v,w);
+		robotSim.movementCommand(v,-w);
 
 		return true;
 	}
@@ -604,8 +615,8 @@ void ReactiveNavigationDemoFrame::OnbtnNavigateClick(wxCommandEvent& event)
 	if (reacNavObj)
 	{
 		CAbstractReactiveNavigationSystem::TNavigationParams   navParams;
-		navParams.target.x = x ;
-		navParams.target.y = y ;
+		navParams.target.x = y ;
+		navParams.target.y = x ;
 		navParams.targetAllowedDistance = 0.40f;
 		navParams.targetIsRelative = false;
 
@@ -743,7 +754,7 @@ void ReactiveNavigationDemoFrame::OntimSimulateTrigger(wxTimerEvent& event)
 	lyVehicle->SetCoordinateBase(
 		robotSim.getX(),
 		robotSim.getY(),
-		robotSim.getPHI() );
+		robotSim.getPHI());
 
 
 	plot->Refresh();
