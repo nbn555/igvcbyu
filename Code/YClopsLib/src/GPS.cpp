@@ -137,7 +137,6 @@ void GPS::dumpData(std::ostream & out ) const {
 }
 
 GPS::~GPS() {
-
 }
 
 double GPS::GetDistanceToWaypoint (double lat, double lon) {
@@ -193,13 +192,49 @@ CPoint2D GPS::GetCurrentGpsLocation() {
 
 void GPS::initializeCom() {
 	// check if connection is already established, if not, reconnect
-	if (this->isGPS_connected()) {return; }
+	//if (this->isGPS_connected()) {return; }
+
 	cout << "Connecting to GPS ... (./YClopsLib/GPS)" << endl;
 	CSerialPort myCom(this->portName);
 	myCom.setConfig(this->baudRate,0,8,1,false);
 	cout << "Post open" << endl;
 
 	stringstream inputStream;
+	if( "PocketMAX" == this->vendor ) {
+		bool to = false;
+
+		inputStream << "$joff\n\r";
+		myCom.Write(inputStream.str().c_str(),inputStream.str().length());
+		sleep(1);
+		myCom.purgeBuffers();
+
+		string response = myCom.ReadString( 1000, &to, "\n\r" );
+		LOG(DEBUG4) << "Response: " << response << endl;
+
+		if( "$>" != response.substr(0,2) || to ) {
+			LOG(FATAL) << "Misconfigured PocketMAX GPS" << endl;
+		}
+
+		myCom.purgeBuffers();
+	}
+
+	if( "Novatel" == this->vendor ) {
+		//TODO implement the novatel connection checking.
+		/*
+		inputStream << "$jshow\n\r";
+		myCom.Write(inputStream.str().c_str(),inputStream.str().length());
+		bool to = false;
+		string response = myCom.readString( 1000, &to, "\n\r" );
+
+		if( "JSHOW" != response.substr(0,5) || to ) {
+			LOG(FATAL) << "Misconfigured PocketMAX GPS" << endl;
+		}
+
+		myCom.purgeBuffers();
+		*/
+	}
+
+
 	if( this->isGpggaUsed ) {
 		cout << "Using gpgga" << endl;
 		if( "PocketMAX" == this->vendor )
