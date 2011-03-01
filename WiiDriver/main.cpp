@@ -138,7 +138,6 @@ void signal_handler( int signum ) {
 
 		if( cbuttons & CLASSIC_X ) {
 			LOG(INFO) << "Idling" << endl;
-			LOG(DEBUG4) << "YClops: " << yclops << endl;
 
 			yclops->useNullMotorCommand();
 			yclops->setIdle();
@@ -169,8 +168,8 @@ void signal_handler( int signum ) {
 			LOG(DEBUG4) << "Classic Select" << endl;
 			switch(loggingLevel) {
 			case DISABLE:							break;
-			case FATAL: 	loggingLevel = ERROR; 	break;
-			case ERROR: 	loggingLevel = WARNING;	break;
+			case FATAL:		loggingLevel = ERROR; 	break;
+			case ERROR:		loggingLevel = WARNING;	break;
 			case WARNING:	loggingLevel = INFO;	break;
 			case INFO:		loggingLevel = DEBUG;	break;
 			case DEBUG:		loggingLevel = DEBUG2;	break;
@@ -179,15 +178,15 @@ void signal_handler( int signum ) {
 			case DEBUG4:							break;
 			default:								break;
 			}
+			(*Log::GetOStream()) << "Log level: " << Log::ToString( loggingLevel ) << endl;
 			Log::SetReportLevel(loggingLevel);
 		}
 
 		if( cbuttons & CLASSIC_HOME ) {
+			LOG(INFO) << "Shutting down YClops" << endl;
 			delete yclops;
 			yclops = NULL;
-			exit(0);
-			//LOG(DEBUG4) << "Playing beep" << endl;
-			//Beeper::beep(440,1000);
+			exit(EXIT_SUCCESS);
 		}
 
 		if( cbuttons & CLASSIC_START ) {
@@ -195,7 +194,7 @@ void signal_handler( int signum ) {
 			switch(loggingLevel) {
 			case DISABLE:							break;
 			case FATAL: 						 	break;
-			case ERROR: 	loggingLevel = FATAL;	break;
+			case ERROR:		loggingLevel = FATAL;	break;
 			case WARNING:	loggingLevel = ERROR;	break;
 			case INFO:		loggingLevel = WARNING;	break;
 			case DEBUG:		loggingLevel = INFO;	break;
@@ -204,84 +203,54 @@ void signal_handler( int signum ) {
 			case DEBUG4:	loggingLevel = DEBUG3;	break;
 			default:								break;
 			}
+			(*Log::GetOStream()) << "Log level: " << Log::ToString( loggingLevel ) << endl;
 			Log::SetReportLevel(loggingLevel);
 
 		}
 
 		if( mbuttons & MOTE_D_UP ) {
-
+			LOG(DEBUG4) << "Mote D Up" << endl;
 		}
 
 		if( mbuttons & MOTE_D_LEFT ) {
-
+			LOG(DEBUG4) << "Mote D Left" << endl;
 		}
 
 		if( mbuttons & MOTE_D_RIGHT ) {
-
+			LOG(DEBUG4) << "Mote D Right" << endl;
 		}
 
 		if( mbuttons & MOTE_D_DOWN ) {
-
+			LOG(DEBUG4) << "Mote D Down" << endl;
 		}
 
 		if( mbuttons & MOTE_1 ) {
-
+			LOG(DEBUG4) << "Mote 1" << endl;
 		}
 
 		if( mbuttons & MOTE_2 ) {
-
+			LOG(DEBUG4) << "Mote 2" << endl;
 		}
 
 		if( mbuttons & MOTE_PLUS ) {
-
+			LOG(DEBUG4) << "Mote Plus" << endl;
 		}
 
 		if( mbuttons & MOTE_MINUS ) {
-
+			LOG(DEBUG4) << "Mote Minus" << endl;
 		}
 
 		if( mbuttons & MOTE_HOME ) {
-
+			LOG(DEBUG4) << "Playing beep" << endl;
+			Beeper::beep(440,1000);
 		}
 
 		if( mbuttons & MOTE_A ) {
-
+			LOG(DEBUG4) << "Mote A" << endl;
 		}
 
 		if( mbuttons & MOTE_B ) {
-
+			LOG(DEBUG4) << "Mote B" << endl;
 		}
-#ifdef DEBUG
-		LOG(DEBUG4) << "classic buttons ";
-		for( uint16_t bitMask = (1 << (sizeof(bitMask)*8-1)); bitMask; bitMask >>= 1) {
-			if( bitMask & cbuttons ) {
-				LOG(DEBUG4) << '1';
-			} else {
-				LOG(DEBUG4) << '0';
-			}
-		}
-
-		cout << "Classic l analog stick ";
-		cout << lax << "," << lay << endl;
-
-		cout << "Classic r analog stick ";
-		cout << rax << "," << ray << endl;
-
-		cout << "Classic analog l ";
-		cout << la << endl;
-
-		cout << "Classic analog r ";
-		cout << ra << endl;
-
-		cout << "Mote buttons ";
-		for( uint16_t bitMask = (1<<(sizeof(bitMask)*8-1));bitMask;bitMask>>=1){
-			if(bitMask & mbuttons) {
-				cout << '1';
-			} else {
-				cout << '0';
-			}
-		}
-		cout << endl;
-#endif
 	}
 }
