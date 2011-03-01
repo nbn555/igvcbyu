@@ -25,19 +25,19 @@ Compass::Compass(): degrees(false), yaw(0), pitch(0), roll(0), yawStatus(""), pi
 void Compass::loadConfiguration( const mrpt::utils::CConfigFileBase & config, const std::string & sectionName ) {
 
 	string value = config.read_string(sectionName, "COM_port_LIN", "/dev/ttyS1" );
-	LOG(DEBUG4) << "Using " << value << " port for compass" << endl;
+	LOG(DEBUG3) << "Using " << value << " port for compass" << endl;
 
 	this->serialPort.open(value);
 
 	int baudRate = config.read_int(sectionName, "baudRate", 19200 );
 
-	LOG(DEBUG4) << "Using " << baudRate << " for compass baudrate" << endl;
+	LOG(DEBUG3) << "Using " << baudRate << " for compass baudrate" << endl;
 
 	this->serialPort.setConfig( baudRate, 0, 8, 1 );
 
 	this->degrees = config.read_bool(sectionName,"degrees",false);
 
-	LOG(DEBUG4) << "Using degrees mode: " << (this->degrees ? "TRUE" : "FALSE") << endl;
+	LOG(DEBUG3) << "Using degrees mode: " << (this->degrees ? "TRUE" : "FALSE") << endl;
 
 }
 
@@ -45,7 +45,7 @@ void Compass::init() {
 
 	string writeValue = "#FA0.3=1*26\n\r";//Command to turn on the compass
 
-	LOG(DEBUG4) << "Sending: " << writeValue << endl;
+	LOG(DEBUG3) << "Sending: " << writeValue << endl;
 
 	this->serialPort.WriteBuffer(writeValue.c_str(), writeValue.length());
 
@@ -55,7 +55,7 @@ void Compass::init() {
 
 	readValue = this->serialPort.ReadString(1000,&to,"\n\r");
 
-	LOG(DEBUG4) << "Read: " << readValue << endl;
+	LOG(DEBUG3) << "Read: " << readValue << endl;
 
 }
 

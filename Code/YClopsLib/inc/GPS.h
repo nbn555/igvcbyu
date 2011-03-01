@@ -84,13 +84,41 @@ public:
 	mrpt::poses::CPoint2D GetCurrentGpsLocation();
 
 protected:
+	class GPSStringer {
+	public:
+		static const std::string POCKETMAX;
+		static const std::string NOVATEL;
+		std::string portName;
+		const std::string vendor;
+		const std::string clearCommand;
+		const std::string clearCommandResponse;
+		const std::string ggaCommand;
+		const std::string rmcCommand;
+		virtual ~GPSStringer() {};
+	protected:
+		GPSStringer( const std::string port, const std::string vendor, const std::string clearCommand,
+				const std::string clearCommandResponse, const std::string ggaCommand,
+				const std::string rmcCommand ): portName(port), vendor(vendor), clearCommand(clearCommand),
+				clearCommandResponse(clearCommandResponse), ggaCommand(ggaCommand), rmcCommand(rmcCommand) { };
+	};
+
+	class NovatelGPSStringer: public GPSStringer {
+	public:
+		NovatelGPSStringer( std::string port ): GPSStringer(port, GPSStringer::NOVATEL, "unlogall", "", "log gpgga ontime ", "log gprmc ontime " ) {};
+		virtual ~NovatelGPSStringer() { };
+	};
+
+	class PocketMaxGPSStringer: public GPSStringer {
+	public:
+		PocketMaxGPSStringer( std::string port ): GPSStringer(port, GPSStringer::POCKETMAX, "$joff", "$>", "$jasc,gpgga,", "$jasc,gprmc,") {};
+		virtual ~PocketMaxGPSStringer() { };
+	};
 private:
-	std::string vendor;
 	bool isGpggaUsed;
 	bool isGprmcUsed;
-	std::string portName;//These are needed for sending initial commands to the old GPS
 	int baudRate;
 	int processRate;
+	GPSStringer * gpsStrings;
 	// Needed for the doProcess function call of the mrpt GPS
 	CGenericSensor::TListObservations				lstObs;
 	CGenericSensor::TListObservations::iterator 	itObs;
