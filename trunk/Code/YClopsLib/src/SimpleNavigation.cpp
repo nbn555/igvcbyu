@@ -12,18 +12,12 @@
 #include "SimpleNavigation.h"
 
 #include <mrpt/utils/CConfigFileMemory.h>
-#include <mrpt/poses/CPose2D.h>
-#include <mrpt/poses/CPoint2D.h>
-#include <iostream>
-
-using namespace std;
-using namespace mrpt;
-using namespace mrpt::poses;
 
 SimpleNavigation::SimpleNavigation(string & fileName, mrpt::reactivenav::CReactiveInterfaceImplementation* interface): fileName(fileName), interface(interface) {
 }
 
 SimpleNavigation::~SimpleNavigation() {
+	// TODO Auto-generated destructor stub
 	delete interface;
 }
 
@@ -56,7 +50,7 @@ void SimpleNavigation::go()
 	//interface that will be used by the reactive nav to sense the environment and make the robot move
 
 	//initial position
-	mrpt::poses::CPose2D pose = CPose2D();
+	mrpt::poses::CPose2D pose = CPoint2D();
 	float v = 0;
 	float w = 0;
 
@@ -68,7 +62,7 @@ void SimpleNavigation::go()
 	// solves the tsp problem, in autonomous challenge we need to add some code here to make it work.
 	TSPNavigation nav = TSPNavigation(lat,lon);
 
-	nav.loadPoints(fileName);
+	nav.loadPoints(fileName, !inMeters);
 	//waypoints in the order we want to visit them
 	 points =  nav.solve(false);
 
@@ -117,14 +111,27 @@ void SimpleNavigation::navigationStep()
 		float cur_v;
 	interface->getCurrentPoseAndSpeeds(curPose, cur_v, cur_w);
 	yaw = curPose.phi();//Robotpose returns yaw in radians
-	LOG(DEBUG2) << "Yaw: " << yaw << endl;
+	cout << "Yaw: " << yaw << endl;
 	wantedYaw = calcBearing(curPose);//AbstractNavigationInterface::calcBearing(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
-	LOG(DEBUG2) << "Wanted Yaw: " << wantedYaw << endl;
-	LOG(DEBUG2) << "Difference: " << abs(yaw-wantedYaw) << endl;
+	cout << "Wanted Yaw: " << wantedYaw << endl;
+	double standYaw = yaw > M_PI ? yaw - 2*M_PI: yaw;
 	double dist = distance(curPose);
+	double diffrence = wantedYaw - yaw;
+	double minDiff = diffrence;
+	if(diffrence > M_PI)
+	{
+		minDiff = 2*M_PI - diffrence;
+	}
+	else if(diffrence < -M_PI)
+	{
+		minDiff = 2*M_PI + diffrence;
+	}
+
+	cout << "Difference: " << minDiff << endl;
+
 	if(!dist > navParams->targetAllowedDistance)
 	{
-		LOG(DEBUG2) << "Reached Way Point" << endl;
+		cout << "Reached Way Point" << endl;
 		points.erase(points.begin());
 		if(points.size() != 0)//this->points)
 		{
@@ -135,33 +142,33 @@ void SimpleNavigation::navigationStep()
 			state = mrpt::reactivenav::CAbstractReactiveNavigationSystem::IDLE;
 		}
 	}
-	if(abs((yaw-wantedYaw)) > .2)
+	if(abs((minDiff)) > .2)
 	{
-		bool turnRight = yaw < wantedYaw;
+		bool turnRight = minDiff > 0;
 		if(turnRight)
 		{
-			LOG(DEBUG2) << "\tTurning Right" << endl;
+			cout << "\tTurning Right" << endl;
 			interface->changeSpeeds(.5f,2);
 		}
 		else
 		{
-			LOG(DEBUG2) << "\tTurning Left" << endl;
+			cout << "\tTurning Left" << endl;
 			interface->changeSpeeds(.5f, -2);
 		}
 	}
 	else
 	{
 		double dist = distance(curPose);
-		LOG(DEBUG2) << "\tDriving Towards Target. Remaining Distance: " << dist << endl;//AbstractNavigationInterface::haversineDistance(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
+		cout << "\tDriving Towards Target. Remaining Distance: " << dist << endl;//AbstractNavigationInterface::haversineDistance(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
 		if(dist > navParams->targetAllowedDistance)
 		{
 			interface->changeSpeeds(1.4,0);
-			LOG(DEBUG2) << "\tDriving Towards Target. Remaining Distance: " << dist << endl;
+			cout << "\tDriving Towards Target. Remaining Distance: " << dist << endl;
 
 		}
 		else
 		{
-			LOG(DEBUG2) << "Reached Way Point" << endl;
+			cout << "Reached Way Point" << endl;
 			points.erase(points.begin());
 			if(points.size() != 0)//this->points)
 			{
