@@ -56,6 +56,11 @@ void GPS::loadConfiguration( const mrpt::utils::CConfigFileBase & config, const 
 
 	LOG(DEBUG3) << "Using a process rate of " << this->processRate << endl;
 
+	this->testLat = config.read_int(sectionName, "testLat", 0,0);
+
+	this->testLon = config.read_int(sectionName, "testLon", 0,0);
+
+
 }
 
 void GPS::init() {
@@ -139,6 +144,10 @@ void GPS::dumpData(std::ostream & out ) const {
 		if( gpsData->has_RMC_datum ) {
 			out << "RMC: " << gpsData->RMC_datum.latitude_degrees << ", " << gpsData->RMC_datum.longitude_degrees << endl;
 		}
+
+		cout << "Distance to Test Waypoint: " << GetDistanceToWaypoint(testLat, testLon, GetGpsLatitude(), GetGpsLongitude())
+				<< " meters" << endl;
+
 	}
 	out << "************" << endl;
 }
