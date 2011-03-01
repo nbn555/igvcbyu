@@ -62,11 +62,12 @@ void NoFilterPoseEstimator::update( const GPSData * gpsData, const CompassData *
 		return;
 	}
 	if(Meters){
-
-		x = AbstractNavigationInterface::haversineDistance(lat, StartLon, lat, lon);
-		y = AbstractNavigationInterface::haversineDistance(StartLat, lon, lat, lon);
-		x = lon > StartLon? x : -x;
-		y = lat > StartLat ? y : -y;
+		double length = AbstractNavigationInterface::haversineDistance(StartLat, StartLon,
+				lat, lon);
+		double direction = AbstractNavigationInterface::calcBearing(StartLat, StartLon,
+				lat, lon);
+		x = cos(direction)*length;
+		y = sin(direction)*length;
 
 		LOG(DEBUG4) << "Got yaw:" << compassData->yaw << " pitch " << compassData->pitch << " roll " << compassData->roll << endl;
 		this->poseEstimate.setFromValues(x, y, z, compassData->yaw, compassData->pitch, compassData->roll);
