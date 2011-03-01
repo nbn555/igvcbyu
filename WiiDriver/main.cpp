@@ -25,6 +25,7 @@ using namespace mrpt::utils;
 using namespace std;
 
 void signal_handler( int signum );
+void shutdown( int exitStatus );
 LOG_LEVEL loggingLevel = DEBUG4;
 
 YClopsReactiveNavInterface * yclops = NULL;
@@ -85,9 +86,7 @@ void signal_handler( int signum ) {
 	if( SIGINT == signum ) {
 		LOG(DEBUG4) << " Signal Received " << signum << endl;
 		if( NULL != yclops ) {
-			delete yclops;
-			yclops = NULL;
-			exit(EXIT_FAILURE);
+			shutdown(EXIT_FAILURE);
 		}
 	} else if( SIGUSR1 == signum ) {
 		uint16_t cbuttons;
@@ -183,10 +182,7 @@ void signal_handler( int signum ) {
 		}
 
 		if( cbuttons & CLASSIC_HOME ) {
-			LOG(INFO) << "Shutting down YClops" << endl;
-			delete yclops;
-			yclops = NULL;
-			exit(EXIT_SUCCESS);
+			shutdown(EXIT_SUCCESS);
 		}
 
 		if( cbuttons & CLASSIC_START ) {
@@ -253,4 +249,11 @@ void signal_handler( int signum ) {
 			LOG(DEBUG4) << "Mote B" << endl;
 		}
 	}
+}
+
+void shutdown( int exitStatus ) {
+	LOG(INFO) << "Shutting down YClops" << endl;
+	delete yclops;
+	yclops = NULL;
+	exit(exitStatus);
 }
