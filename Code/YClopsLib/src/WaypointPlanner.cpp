@@ -18,8 +18,16 @@ AbstractNavigationInterface::AbstractNavigationInterface( double lat, double lon
 
 AbstractNavigationInterface::~AbstractNavigationInterface() {
 }
-
-void AbstractNavigationInterface::loadPoints(std::string filename) {
+void AbstractNavigationInterface::convertPointToMeters(CPoint2D& point)
+{
+	double length = haversineDistance(this->visited.front().m_coords[LAT], this->visited.front().m_coords[LON],
+			point.m_coords[LAT], point.m_coords[LON]);
+	double direction = calcBearing(this->visited.front().m_coords[LAT], this->visited.front().m_coords[LON],
+			point.m_coords[LAT], point.m_coords[LON]);
+	point.m_coords[LAT] = cos(direction)*length;
+	point.m_coords[LON] = sin(direction)*length;
+}
+void AbstractNavigationInterface::loadPoints(std::string filename, bool convertToMeters) {
 
 	CPoint2D tmp;
 	ifstream datapointSet;
@@ -27,6 +35,10 @@ void AbstractNavigationInterface::loadPoints(std::string filename) {
 
 	while( datapointSet.good() ) {
 		datapointSet >> tmp.m_coords[LAT] >> tmp.m_coords[LON];
+		if(convertToMeters)
+		{
+			convertPointToMeters(tmp);
+		}
 		toVisit.push_back(tmp);
 	}
 
@@ -140,6 +152,8 @@ void TSPNavigation::nieveTSPSolution(  mrpt::aligned_containers<mrpt::poses::CPo
 		visited.front().m_coords[LON] = 0;
 	}
 	mrpt::poses::CPoint2D finish = mrpt::poses::CPoint2D();
+	finish.m_coords[LAT] = visited.front().m_coords[LAT];
+	finish.m_coords[LON] = visited.front().m_coords[LON];
 	visited.push_back(finish);
 }
 
