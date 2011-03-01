@@ -39,6 +39,12 @@ void AbstractNavigationInterface::loadPoints(std::string filename, bool convertT
 		{
 			convertPointToMeters(tmp);
 		}
+		else
+		{
+			double temp_d = tmp.m_coords[LAT];
+			tmp.m_coords[LAT] = tmp.m_coords[LON];
+			tmp.m_coords[LON] = temp_d;
+		}
 		toVisit.push_back(tmp);
 	}
 

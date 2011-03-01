@@ -9,7 +9,7 @@
 #define SIMPLENAVIGATION_H_
 
 
-#include "YClopsReactiveNavInterface.h"
+#include "YclopsReactiveNavInterface.h"
 #include <mrpt/base.h>
 #include <mrpt/utils.h>
 
@@ -29,7 +29,7 @@ private:
 		float x2 = navParams->target.x;
 		float y2 = navParams->target.y;
 		double dist = sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
-		std::cout << x1 << " " << y1 << " is a distance of " << dist << " from " << x2 << " " << y2 << std::endl;
+		cout << y1 << " " << x1 << " is a distance of " << dist << " from " << y2 << " " << x2 << endl;
 		return dist;
 	}
 
