@@ -16,12 +16,12 @@ extern bool bCameraData;
 using namespace std;
 using namespace cv;
 
-Camera::Camera() : capture(NULL), array(NULL), map(NULL){
+Camera::Camera() : capture(0), array(NULL), map(NULL){
 }
 
 Camera::~Camera(){
 	delete[] array;
-	delete capture;
+	//delete capture;
 	delete map;
 
 	LOG(DEBUG4) << "Deleted array and image capture..." << endl;
@@ -53,12 +53,13 @@ void Camera::loadConfiguration(const mrpt::utils::CConfigFileBase & config, cons
 }
 
 void Camera::init(){
+	namedWindow("debug", 1);
 	array = new bool[GRID_SIZE * GRID_SIZE];
 	map = new mrpt::slam::CSimplePointsMap;
-	capture = new VideoCapture(0);
+	//capture = new VideoCapture(0);
 
 	// check to see if camera was opened
-	if(!capture->isOpened()){
+	if(!capture.isOpened()){
 		LOG(FATAL) << "Error opening camera" << endl;
 	}
 
@@ -87,12 +88,10 @@ SensorData * Camera::getData() {
 }
 
 void Camera::getFrame(Mat & image){
-	*capture >> image;
+	capture >> image;
 }
 
 void Camera::getObstacles(mrpt::slam::CSimplePointsMap & map, mrpt::poses::CPose3D pose){
-	Mat image;
-	namedWindow("test", 1);
 
 	initializeArray(array);
 	LOG(DEBUG4) << "Initialized array..." << endl;
@@ -124,17 +123,16 @@ void Camera::getObstacles(mrpt::slam::CSimplePointsMap & map, mrpt::poses::CPose
 void Camera::dumpData( std::ostream & out ) const {
 	out << "dumping camera data" << endl;
 
-	VideoCapture cap(0);
-	if(!cap.isOpened()) out << "ERROR" << endl;
-	Mat edges;
-	namedWindow("frame",1);
-	for(;;)
-	{
-		Mat frame;
-		cap >> frame;
-		imshow("frame", frame);
-		if(waitKey(30) >= 0) break;
-	}
+	if(!capture.isOpened()) out << "ERROR" << endl;
+	///namedWindow("debug",1);
+	//for(;;)
+	//{
+		//if(image){
+			imshow("debug", image);
+		//}
+
+	//	if(waitKey(30) >= 0) break;
+	//}
 }
 
 void Camera::insertObstacles(mrpt::slam::CSimplePointsMap & map, int size, bool * array, mrpt::poses::CPose3D pose ){
@@ -163,8 +161,8 @@ void Camera::insertObstacles(mrpt::slam::CSimplePointsMap & map, int size, bool 
 
 				map.insertPoint(x, y);
 
-				LOG(DEBUG4) << "\tx = " << x << endl;
-				LOG(DEBUG4) << "\ty = " << y << endl;
+				//LOG(DEBUG4) << "\tx = " << x << endl;
+				//LOG(DEBUG4) << "\ty = " << y << endl;
 
 			}
 		}
