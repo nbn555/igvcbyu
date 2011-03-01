@@ -8,9 +8,12 @@
 #include "time.h"
 #include <cstdio>
 #include <iostream>
+#include <exception>
 
 LOG_LEVEL Log::logLevel = INFO;
 std::ostream * Log::outputStream = &(std::cerr);
+
+using namespace std;
 
 std::string Log::GetTime() {
 	time_t t = time(NULL);
@@ -71,6 +74,10 @@ Log::~Log() {
 	{
 		(*Log::GetOStream()) << os.str();
 		Log::GetOStream()->flush();
+	}
+
+	if( FATAL == messageLevel ) {
+		throw new exception();
 	}
 }
 
