@@ -22,19 +22,19 @@ Lidar::Lidar() {
 void Lidar::loadConfiguration( const mrpt::utils::CConfigFileBase & config, const std::string & sectionName) {
 
 	string portName = config.read_string(sectionName, "COM_port_LIN", "/dev/ttyUSB2" );
-	LOG(DEBUG3) << sectionName << " port name: " << portName << endl;
+	LOG_LIDAR(DEBUG3) << sectionName << " port name: " << portName << endl;
 	this->setSerialPort( portName );
 
 	int baudRate = config.read_int( sectionName, "COM_baudRate", 38400 );
-	LOG(DEBUG3) << sectionName << " baudRate: " << baudRate << endl;
+	LOG_LIDAR(DEBUG3) << sectionName << " baudRate: " << baudRate << endl;
 	this->setBaudRate( baudRate );
 
 	int fov = config.read_int( sectionName, "FOV", 180 );
-	LOG(DEBUG3) << sectionName << " fov: " << fov << endl;
+	LOG_LIDAR(DEBUG3) << sectionName << " fov: " << fov << endl;
 	this->setScanFOV( fov );
 
 	int res = config.read_int( sectionName, "resolution", 50 );
-	LOG(DEBUG3) << sectionName << "resolution: " << res / 100. << endl;
+	LOG_LIDAR(DEBUG3) << sectionName << "resolution: " << res / 100. << endl;
 	this->setScanResolution( config.read_int( sectionName, "resolution", 50 ) );  // 25=0.25deg, 50=0.5deg, 100=1deg
 
 }
@@ -63,13 +63,13 @@ void Lidar::dumpData( std::ostream & out ) {
 	}
 	catch (std::exception &e)
 	{
-		LOG(ERROR) << "[TEST] Hardware error=true!!" << endl;
-		LOG(ERROR) << e.what() << endl;
+		LOG_LIDAR(ERROR) << "[TEST] Hardware error=true!!" << endl;
+		LOG_LIDAR(ERROR) << e.what() << endl;
 	}
 
 	if (thereIsObservation)
 	{
-		LOG(DEBUG3) << "[TEST] Observation received (" << ((unsigned int)obs.scan.size())
+		LOG_LIDAR(DEBUG3) << "[TEST] Observation received (" << ((unsigned int)obs.scan.size())
 				<< "ranges over " << (RAD2DEG(obs.aperture))
 				<< "deg, mid=" << (obs.scan[obs.scan.size()/2])
 				<< ")!!"  << endl;
@@ -87,6 +87,6 @@ void Lidar::dumpData( std::ostream & out ) {
 }
 
 Lidar::~Lidar() {
-	LOG(DEBUG3) << "Turning off Lidar" << endl;
+	LOG_LIDAR(DEBUG3) << "Turning off Lidar" << endl;
 	this->turnOff();
 }

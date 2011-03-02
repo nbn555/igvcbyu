@@ -53,6 +53,7 @@
 									<listOptionValue builtIn="false" value="/usr/include/mrpt/topography/include/"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.other.other.1795967760" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0 -fPIC" valueType="string"/>
+								<option id="gnu.cpp.compiler.option.preprocessor.preprocess.427427456" name="Preprocess only (-E)" superClass="gnu.cpp.compiler.option.preprocessor.preprocess" value="false" valueType="boolean"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.2026486845" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.80437420" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.debug">
@@ -95,10 +96,10 @@
 					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.688287797" name="WaypointPlanner.h" rcbsApplicability="disable" resourcePath="inc/WaypointPlanner.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.22203110" name="YclopsNavigationSystem.h" rcbsApplicability="disable" resourcePath="inc/YclopsNavigationSystem.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.1336537998" name="Camera.h" rcbsApplicability="disable" resourcePath="inc/Camera.h" toolsToInvoke=""/>
-					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.495797830" name="MotorCommandInterface.h" rcbsApplicability="disable" resourcePath="inc/MotorCommandInterface.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.805050447" name="SimpleNavigation.h" rcbsApplicability="disable" resourcePath="inc/SimpleNavigation.h" toolsToInvoke=""/>
-					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.2140278698" name="Compass.h" rcbsApplicability="disable" resourcePath="inc/Compass.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.495797830" name="MotorCommandInterface.h" rcbsApplicability="disable" resourcePath="inc/MotorCommandInterface.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.329228520" name="GPS.h" rcbsApplicability="disable" resourcePath="inc/GPS.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.2140278698" name="Compass.h" rcbsApplicability="disable" resourcePath="inc/Compass.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.611031153.1571146982" name="PoseEstimator.h" rcbsApplicability="disable" resourcePath="inc/PoseEstimator.h" toolsToInvoke=""/>
 					<sourceEntries>
 						<entry excluding="src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>

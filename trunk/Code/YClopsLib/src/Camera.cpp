@@ -24,11 +24,11 @@ Camera::~Camera(){
 	//delete capture;
 	delete map;
 
-	LOG(DEBUG3) << "Deleted array and image capture..." << endl;
+	LOG_CAMERA(DEBUG3) << "Deleted array and image capture..." << endl;
 }
 
 void Camera::loadConfiguration(const mrpt::utils::CConfigFileBase & config, const std::string & sectionName) {
-	LOG(DEBUG3) << "Reading config file..." << endl;
+	LOG_CAMERA(DEBUG3) << "Reading config file..." << endl;
 
 	GRID_SIZE = config.read_int(sectionName, "grid_size", 10);
 	PERCENT_FILLED = config.read_double(sectionName, "percent_filled", .3);
@@ -36,20 +36,20 @@ void Camera::loadConfiguration(const mrpt::utils::CConfigFileBase & config, cons
 	ERODE_AMOUNT = config.read_int(sectionName, "erode_amount", 2);
 	HSV_VECTOR = config.read_int(sectionName, "hsv_vector", 1);
 
-	LOG(DEBUG3) << "Grid size: " << GRID_SIZE << endl;
-	LOG(DEBUG3) << "Percent filled: " << PERCENT_FILLED << endl;
-	LOG(DEBUG3) << "Threshold: " << THRESHOLD << endl;
-	LOG(DEBUG3) << "Erode amount: " << ERODE_AMOUNT << endl;
-	LOG(DEBUG3) << "HSV vector: " << HSV_VECTOR << endl;
+	LOG_CAMERA(DEBUG3) << "Grid size: " << GRID_SIZE << endl;
+	LOG_CAMERA(DEBUG3) << "Percent filled: " << PERCENT_FILLED << endl;
+	LOG_CAMERA(DEBUG3) << "Threshold: " << THRESHOLD << endl;
+	LOG_CAMERA(DEBUG3) << "Erode amount: " << ERODE_AMOUNT << endl;
+	LOG_CAMERA(DEBUG3) << "HSV vector: " << HSV_VECTOR << endl;
 
-	if(GRID_SIZE <= 0) 			LOG(FATAL) << "Grid size is negative or zero" << endl;
-	if(PERCENT_FILLED <= 0) 	LOG(FATAL) << "Percent filled is negative or 0" << endl;
-	if(PERCENT_FILLED > 1.0)	LOG(FATAL) << "Percent filled is greater than 1" << endl;
-	if(THRESHOLD < 0) 			LOG(FATAL) << "Threshold is negative, must be between 0 and 255" << endl;
-	if(THRESHOLD > 255) 		LOG(FATAL) << "Threshold is too high, must be between 0 and 255" << endl;
-	if(ERODE_AMOUNT < 0) 		LOG(FATAL) << "Erode amount must be greater than 0" << endl;
-	if(HSV_VECTOR < 0) 			LOG(FATAL) << "hsv vector is negative, must be between 0 and 3" << endl;
-	if(HSV_VECTOR > 3) 			LOG(FATAL) << "hsv vector is too high, must be between 0 and 3" << endl;
+	if(GRID_SIZE <= 0) 			LOG_CAMERA(FATAL) << "Grid size is negative or zero" << endl;
+	if(PERCENT_FILLED <= 0) 	LOG_CAMERA(FATAL) << "Percent filled is negative or 0" << endl;
+	if(PERCENT_FILLED > 1.0)	LOG_CAMERA(FATAL) << "Percent filled is greater than 1" << endl;
+	if(THRESHOLD < 0) 			LOG_CAMERA(FATAL) << "Threshold is negative, must be between 0 and 255" << endl;
+	if(THRESHOLD > 255) 		LOG_CAMERA(FATAL) << "Threshold is too high, must be between 0 and 255" << endl;
+	if(ERODE_AMOUNT < 0) 		LOG_CAMERA(FATAL) << "Erode amount must be greater than 0" << endl;
+	if(HSV_VECTOR < 0) 			LOG_CAMERA(FATAL) << "hsv vector is negative, must be between 0 and 3" << endl;
+	if(HSV_VECTOR > 3) 			LOG_CAMERA(FATAL) << "hsv vector is too high, must be between 0 and 3" << endl;
 }
 
 void Camera::init(){
@@ -60,10 +60,10 @@ void Camera::init(){
 
 	// check to see if camera was opened
 	if(!capture.isOpened()){
-		LOG(FATAL) << "Error opening camera" << endl;
+		LOG_CAMERA(FATAL) << "Error opening camera" << endl;
 	}
 
-	LOG(DEBUG3) << "Started camera..." << endl;
+	LOG_CAMERA(DEBUG3) << "Started camera..." << endl;
 }
 
 void Camera::sensorProcess() {
@@ -94,29 +94,29 @@ void Camera::getFrame(Mat & image){
 void Camera::getObstacles(mrpt::slam::CSimplePointsMap & map, mrpt::poses::CPose3D pose){
 
 	initializeArray(array);
-	LOG(DEBUG3) << "Initialized array..." << endl;
+	LOG_CAMERA(DEBUG3) << "Initialized array..." << endl;
 
 	getFrame(image);
-	LOG(DEBUG3) << "Got frame..." << endl;
+	LOG_CAMERA(DEBUG3) << "Got frame..." << endl;
 
 	DEBUG_COMMAND(imshow("test", image));
 	DEBUG_COMMAND(waitKey());
 
 	getWhite(image);
-	LOG(DEBUG3) << "Thresholded to white..." << endl;
+	LOG_CAMERA(DEBUG3) << "Thresholded to white..." << endl;
 	DEBUG_COMMAND(imshow("test", image));
 	DEBUG_COMMAND(waitKey());
 
 	distort(image);
-	LOG(DEBUG3) << "Distorted image..." << endl;
+	LOG_CAMERA(DEBUG3) << "Distorted image..." << endl;
 	DEBUG_COMMAND(imshow("test", image));
 	DEBUG_COMMAND(waitKey());
 
 	hasObstacles(array, image);
-	LOG(DEBUG3) << "Checked for obstacles..." << endl;
+	LOG_CAMERA(DEBUG3) << "Checked for obstacles..." << endl;
 
 	insertObstacles(map, GRID_SIZE, array, pose);
-	LOG(DEBUG3) << "Inserted obstacles into map..." << endl;
+	LOG_CAMERA(DEBUG3) << "Inserted obstacles into map..." << endl;
 
 }
 
@@ -161,8 +161,8 @@ void Camera::insertObstacles(mrpt::slam::CSimplePointsMap & map, int size, bool 
 
 				map.insertPoint(x, y);
 
-				//LOG(DEBUG4) << "\tx = " << x << endl;
-				//LOG(DEBUG4) << "\ty = " << y << endl;
+				//LOG_CAMERA(DEBUG4) << "\tx = " << x << endl;
+				//LOG_CAMERA(DEBUG4) << "\ty = " << y << endl;
 
 			}
 		}
@@ -176,7 +176,7 @@ void Camera::hasObstacles(bool * array, Mat & image){
 
 
 	int obstacleThreshold = 255 * PERCENT_FILLED;
-	LOG(DEBUG4) << "\tObstacle threshold: " << obstacleThreshold << endl;
+	LOG_CAMERA(DEBUG4) << "\tObstacle threshold: " << obstacleThreshold << endl;
 	//DEBUG_COMMAND(namedWindow("test2", 1));
 
 	for(int i = 0; i < GRID_SIZE; i++){
@@ -184,12 +184,12 @@ void Camera::hasObstacles(bool * array, Mat & image){
 			Mat roi = image(Rect(width * j, height * i, width, height));
 			Scalar value = mean(roi);
 
-			LOG(DEBUG4) << "\tMean: " << value[0] << endl;
+			LOG_CAMERA(DEBUG4) << "\tMean: " << value[0] << endl;
 			if(value[0] > obstacleThreshold){
 				array[(i * GRID_SIZE) + j] = true;
 				roi = Scalar(155);
 
-				LOG(DEBUG4) << "\t\tFound an obstacle..." << endl;
+				LOG_CAMERA(DEBUG4) << "\t\tFound an obstacle..." << endl;
 				DEBUG_COMMAND(imshow("test", image));
 				DEBUG_COMMAND(waitKey());
 
