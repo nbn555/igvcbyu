@@ -44,44 +44,44 @@ public:
 	 * location in meters.
 	 * Returns 0.0 if no data to return.
 	 */
-	double GetDistanceToWaypoint (double lat, double lon);
+	double GetDistanceToWaypoint (double lat, double lon)const;
 
 	/*
 	 * Returns the distance between any two locations in meters.
 	 * Returns 0.0 if no data to return.
 	 */
 	double GetDistanceToWaypoint (double lat1, double lon1,
-										double lat2, double lon2);
+										double lat2, double lon2)const;
 
 	/*
 	 * Returns Speed if there is GPRMC data available. Returns 0
 	 * if not.
 	 */
-	double GetGpsSpeed();
+	double GetGpsSpeed()const;
 
 	/*
 	 * Returns directions if there is GPRMC data available. Returns 0.0
 	 * if not.
 	 */
-	double GetGpsDirection();
+	double GetGpsDirection()const;
 
 	/*
 	 * Returns current latitude.  0.0 if information not currently
 	 * available.
 	 */
-	double GetGpsLatitude();
+	double GetGpsLatitude()const;
 
 	/*
 	 * Returns current longitude. 0.0 if information not currently
 	 * available.
 	 */
 
-	double GetGpsLongitude();
+	double GetGpsLongitude() const;
 
 	/*
 	 * Returns both current latitude and longitude.
 	 */
-	mrpt::poses::CPoint2D GetCurrentGpsLocation();
+	mrpt::poses::CPoint2D GetCurrentGpsLocation() const;
 
 protected:
 	class GPSStringer {

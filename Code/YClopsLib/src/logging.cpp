@@ -12,6 +12,8 @@
 
 LOG_LEVEL Log::logLevel = INFO;
 std::ostream * Log::outputStream = &(std::cerr);
+unsigned int Log::streamBits = 0xFFFFFFFF;
+bool Log::timestamp = true;
 
 using namespace std;
 
@@ -52,19 +54,25 @@ std::string Log::ToString( LOG_LEVEL level ) {
 	}
 }
 
-std::stringstream& Log::Get(LOG_LEVEL level, bool timeStamp) {
+std::stringstream& Log::Get(LOG_LEVEL level) {
 
-	if(timeStamp) {
+	if(Log::timestamp) {
 		this->os << "- " << Log::GetTime();
-		this->os << " " << Log::ToString(level) << ": ";
 	}
 
+	this->os << " " << Log::ToString(level) << ": ";
 	this->os << std::string(level > DEBUG ? 1 :  DEBUG - level, '\t' ); //Set increasing number of tabs for higher debug levels
 	messageLevel = level;
 	return os;
 }
 
-LOG_LEVEL & Log::ReportingLevel() {	return logLevel; }
+LOG_LEVEL & Log::ReportingLevel() {	return Log::logLevel; }
+
+unsigned int Log::GetReportStreamBits() { return Log::streamBits; }
+
+void Log::SetReportStreamBits( unsigned int s ) { Log::streamBits = s; }
+
+void Log::SetTimeStampDisplay( bool ts ) { Log::timestamp = ts; }
 
 void Log::SetReportLevel( LOG_LEVEL level ) { logLevel = level; }
 

@@ -56,8 +56,8 @@ void DualMotorCommand::doProcess() {
 	double lspeed = ((lyaxis-32)/32.0)*1000; //need to divide by 32 because the l stick gives us 6 bits precision
 	double rspeed = ((ryaxis-16)/16.0)*1000; //need to divide by 16 because the r stick gives us 5 bits precision
 
-	LOG(DEBUG) << "lyaxis:" << lyaxis << "Lspeed " << (int)lspeed << endl;
-	LOG(DEBUG) << "ryaxis:" << ryaxis << "Rspeed " << (int)rspeed << endl;
+	LOG_MOTOR(DEBUG) << "lyaxis:" << lyaxis << "Lspeed " << (int)lspeed << endl;
+	LOG_MOTOR(DEBUG) << "ryaxis:" << ryaxis << "Rspeed " << (int)rspeed << endl;
 
 	MotorController::instance()->setSpeed(MotorController::Channel1, (int)lspeed);
 	MotorController::instance()->setSpeed(MotorController::Channel2, (int)rspeed);

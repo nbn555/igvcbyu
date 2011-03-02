@@ -50,7 +50,7 @@ void NoFilterPoseEstimator::update( const GPSData * gpsData, const CompassData *
 		lat = gpsData->latitude;
 		lon = gpsData->longitude;
 	} else {
-		LOG(FATAL) << "No valid data found in gps observation" << endl;
+		LOG_POSE(FATAL) << "No valid data found in gps observation" << endl;
 	}
 
 	if(!started)
@@ -69,7 +69,7 @@ void NoFilterPoseEstimator::update( const GPSData * gpsData, const CompassData *
 		x = cos(direction)*length;
 		y = sin(direction)*length;
 
-		LOG(DEBUG4) << "Got yaw:" << compassData->yaw << " pitch " << compassData->pitch << " roll " << compassData->roll << endl;
+		LOG_POSE(DEBUG4) << "Got yaw:" << compassData->yaw << " pitch " << compassData->pitch << " roll " << compassData->roll << endl;
 		this->poseEstimate.setFromValues(x, y, z, compassData->yaw, compassData->pitch, compassData->roll);
 	} else {
 		this->poseEstimate.setFromValues(lat, lon, z, compassData->yaw, compassData->pitch, compassData->roll);

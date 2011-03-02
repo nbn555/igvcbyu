@@ -9,9 +9,13 @@
 #define SIMPLENAVIGATION_H_
 
 
-#include "YclopsReactiveNavInterface.h"
+#include "YClopsReactiveNavInterface.h"
 #include <mrpt/base.h>
 #include <mrpt/utils.h>
+
+using namespace std;
+using namespace mrpt;
+using namespace mrpt::poses;
 
 class SimpleNavigation {
 private:

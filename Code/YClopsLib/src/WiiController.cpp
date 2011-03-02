@@ -31,6 +31,7 @@ WiiController * WiiController::getReference( int index ) {
 }
 
 void WiiController::destroyReference( int index ) {
+	LOG_WII(DEBUG4) << "In destroy Reference about to delete WiiController::controller" << endl;
 	delete WiiController::controller;
 }
 
@@ -44,18 +45,18 @@ WiiController::WiiController() {
 
 	this->wiiMote = NULL;
 	static int sval = 0;
-	LOG(DEBUG2) << "In constructor " << ++sval << endl;
+	LOG_WII(DEBUG2) << "In constructor " << ++sval << endl;
 
 	int dev_id = -1;
 	bool isBluetoothFound = false;
 	while(!isBluetoothFound) {
-		LOG(INFO) << "Searching for Bluetooth interface" << endl;
+		LOG_WII(INFO) << "Searching for Bluetooth interface" << endl;
 		if((dev_id = hci_get_route(NULL)) == -1) {
-			LOG(WARNING) << "Couldn't find Bluetooth interface" << endl;
+			LOG_WII(WARNING) << "Couldn't find Bluetooth interface" << endl;
 		} else isBluetoothFound = true;
 	}
 
-	LOG(INFO) << "Bluetooth found" << endl;
+	LOG_WII(INFO) << "Bluetooth found" << endl;
 
 	cout << "Press buttons 1 + 2 to put WiiMote in Discoverable mode" << endl;
 	while(-1 ==  cwiid_find_wiimote(&bdaddr, 5)) {
@@ -65,7 +66,7 @@ WiiController::WiiController() {
 	while(!this->wiiMote) {
 		this->wiiMote = cwiid_open(&(bdaddr),CWIID_FLAG_MESG_IFC);
 		if(!this->wiiMote)
-			LOG(WARNING) << "Connect Fail Retrying" << endl;
+			LOG_WII(WARNING) << "Connect Fail Retrying" << endl;
 	}
 
 	cout << "Connected WiiMote" << endl;
@@ -73,7 +74,7 @@ WiiController::WiiController() {
 	cwiid_set_mesg_callback(this->wiiMote, &cwiid_callback);
 	cwiid_command(this->wiiMote, CWIID_CMD_RPT_MODE, CWIID_RPT_BTN | CWIID_RPT_CLASSIC );
 
-	LOG(DEBUG2) << "Initialization success" << endl;
+	LOG_WII(DEBUG2) << "Initialization success" << endl;
 }
 
 WiiController::~WiiController() {
@@ -97,24 +98,24 @@ void cwiid_callback(cwiid_wiimote_t *wiimote, int mesg_count,
     for ( int i=0; i < mesg_count; i++) {
     	switch (mesg[i].type) {
     	case CWIID_MESG_BTN:
-    		LOG(DEBUG4) << "CWIID_MESG_BTN" << endl;
+    		LOG_WII(DEBUG4) << "CWIID_MESG_BTN" << endl;
 
     		control->process_btn_mesg((struct cwiid_btn_mesg*) &mesg[i]);
      		raise(SIGUSR1);
     		break;
     	case CWIID_MESG_CLASSIC:
-    		LOG(DEBUG4) << "CWIID_MESG_CLASSIC" << endl;
-    		LOG(DEBUG4) << control << endl;
+    		LOG_WII(DEBUG4) << "CWIID_MESG_CLASSIC" << endl;
+    		LOG_WII(DEBUG4) << control << endl;
 
     		control->process_classic_mesg((struct cwiid_classic_mesg *) &mesg[i]);
     		raise(SIGUSR1);
     		break;
     	case CWIID_MESG_ERROR:
-    		LOG(ERROR) << "Unknown CWIID Message" << endl;
+    		LOG_WII(ERROR) << "Unknown CWIID Message" << endl;
     		break;
     	default:
-    		LOG(ERROR) << "Unsupported message" << endl;
-    		LOG(ERROR) << mesg[i].type << endl;
+    		LOG_WII(ERROR) << "Unsupported message" << endl;
+    		LOG_WII(ERROR) << mesg[i].type << endl;
     		break;
     	}
     }

@@ -31,30 +31,30 @@ void GPS::loadConfiguration( const mrpt::utils::CConfigFileBase & config, const 
 	} else if( GPSStringer::POCKETMAX == vendor ) {
 		this->gpsStrings = new PocketMaxGPSStringer( portName );
 	} else {
-		LOG(FATAL) << "Unsupported vendor" << endl;
+		LOG_GPS(FATAL) << "Unsupported vendor" << endl;
 	}
 
-	LOG(DEBUG3) << "Connecting to port " << portName << endl;
+	LOG_GPS(DEBUG3) << "Connecting to port " << portName << endl;
 	this->setSerialPortName ( portName );
 	this->loadConfig(config, sectionName);
 
-	LOG(DEBUG3) << "Using " << vendor << " GPS" << endl;
+	LOG_GPS(DEBUG3) << "Using " << vendor << " GPS" << endl;
 
 	this->isGpggaUsed = config.read_bool(sectionName,"use_gga", true);
 
-	LOG(DEBUG3) << "Using gpgga: " << (this->isGpggaUsed?"TRUE":"FALSE") << endl;
+	LOG_GPS(DEBUG3) << "Using gpgga: " << (this->isGpggaUsed?"TRUE":"FALSE") << endl;
 
 	this->isGprmcUsed = config.read_bool(sectionName,"use_rmc", false);
 
-	LOG(DEBUG3) << "Using gprmc: " << (this->isGprmcUsed?"TRUE":"FALSE") << endl;
+	LOG_GPS(DEBUG3) << "Using gprmc: " << (this->isGprmcUsed?"TRUE":"FALSE") << endl;
 
 	this->baudRate = config.read_int(sectionName,"baudRate", 57600);
 
-	LOG(DEBUG3) << "Using " << this->baudRate << " baud" << endl;
+	LOG_GPS(DEBUG3) << "Using " << this->baudRate << " baud" << endl;
 
 	this->processRate = config.read_int(sectionName,"process_rate", 1);
 
-	LOG(DEBUG3) << "Using a process rate of " << this->processRate << endl;
+	LOG_GPS(DEBUG3) << "Using a process rate of " << this->processRate << endl;
 
 	this->testLat = config.read_int(sectionName, "testLat", 0,0);
 
@@ -68,7 +68,7 @@ void GPS::init() {
 
 	while(!lstObs.size()) {
 		doProcess();
-		LOG(DEBUG3) << "Getting GPS observations" << endl;
+		LOG_GPS(DEBUG3) << "Getting GPS observations" << endl;
 		mrpt::system::sleep(200);
 		getObservations(lstObs);
 		//this->isGPS_signalAcquired()
@@ -77,9 +77,9 @@ void GPS::init() {
 	gpsData = CObservationGPSPtr(lstObs.begin()->second);
 
 	if(!gpsData.pointer()->has_GGA_datum)
-		LOG(WARNING) << "gpsData.pointer()->has_GGA_datum fails" << endl;
+		LOG_GPS(WARNING) << "gpsData.pointer()->has_GGA_datum fails" << endl;
 	if(!gpsData.pointer()->has_RMC_datum)
-		LOG(WARNING) << "gpsData.pointer()->has_RMC_datum fails" << endl;
+		LOG_GPS(WARNING) << "gpsData.pointer()->has_RMC_datum fails" << endl;
 
 }
 
@@ -88,16 +88,16 @@ void GPS::sensorProcess() {
 	getObservations( lstObs );
 
 	if (lstObs.empty())
-		LOG(DEBUG3) << "[Test_GPS] Waiting for data..." << endl;
+		LOG_GPS(DEBUG3) << "[Test_GPS] Waiting for data..." << endl;
 
 	for(itObs = lstObs.begin(); itObs != lstObs.end(); itObs++){
 
 		gpsData=CObservationGPSPtr(itObs->second);
 
 		if(!gpsData.pointer()->has_GGA_datum)
-			LOG(WARNING) << "gpsData.pointer()->has_GGA_datum fails" << endl;
+			LOG_GPS(WARNING) << "gpsData.pointer()->has_GGA_datum fails" << endl;
 		if(!gpsData.pointer()->has_RMC_datum)
-			LOG(WARNING) << "gpsData.pointer()->has_RMC_datum fails" << endl;
+			LOG_GPS(WARNING) << "gpsData.pointer()->has_RMC_datum fails" << endl;
 	}
 }
 
@@ -157,46 +157,46 @@ GPS::~GPS() {
 	this->gpsStrings = NULL;
 }
 
-double GPS::GetDistanceToWaypoint (double lat, double lon) {
+double GPS::GetDistanceToWaypoint (double lat, double lon) const{
 	return AbstractNavigationInterface::haversineDistance(lat, lon, GetGpsLatitude(), GetGpsLongitude());
 }
 
-double GPS::GetDistanceToWaypoint (double lat1, double lon1, double lat2, double lon2) {
+double GPS::GetDistanceToWaypoint (double lat1, double lon1, double lat2, double lon2) const{
 	return AbstractNavigationInterface::haversineDistance(lat1, lon1, lat2, lon2);
 }
 
-double GPS::GetGpsSpeed() {
+double GPS::GetGpsSpeed() const{
 	const double knotToMph = 0.868976242;
 	if (gpsData->has_RMC_datum)
 		return (gpsData->RMC_datum.speed_knots * knotToMph);
 	else return 0.0;
 }
 
-double GPS::GetGpsDirection() {
+double GPS::GetGpsDirection() const{
 
 	if (gpsData->has_RMC_datum)
 		return gpsData->RMC_datum.direction_degrees;
 
 	else
-		LOG(DEBUG3) << "No GPS_RMC_datum to return" << endl;
+		LOG_GPS(DEBUG3) << "No GPS_RMC_datum to return" << endl;
 	return 0.0;
 }
 
-double GPS::GetGpsLatitude() {
+double GPS::GetGpsLatitude() const{
 	if (gpsData->has_GGA_datum)
 		return gpsData->GGA_datum.latitude_degrees;
 
 	return 0.0;
 }
 
-double GPS::GetGpsLongitude() {
+double GPS::GetGpsLongitude() const{
 	if (gpsData->has_GGA_datum)
 		return gpsData->GGA_datum.longitude_degrees;
 
 	return 0.0;
 }
 
-CPoint2D GPS::GetCurrentGpsLocation() {
+CPoint2D GPS::GetCurrentGpsLocation() const{
 	CPoint2D curPos;
 	curPos.m_coords[0] = GetGpsLatitude();
 	curPos.m_coords[1] = GetGpsLongitude();
@@ -212,13 +212,13 @@ void GPS::initializeCom() {
 	// check if connection is already established, if not, reconnect
 	//if (this->isGPS_connected()) {return; }
 
-	LOG(DEBUG3) << "Connecting to GPS ... (./YClopsLib/GPS)" << endl;
+	LOG_GPS(DEBUG3) << "Connecting to GPS ... (./YClopsLib/GPS)" << endl;
 
 	CSerialPort myCom(this->gpsStrings->portName);
 
 	myCom.setConfig(this->baudRate,0,8,1,false);
 
-	LOG(DEBUG3) << "Post open" << endl;
+	LOG_GPS(DEBUG3) << "Post open" << endl;
 
 	stringstream inputStream;
 
@@ -233,18 +233,18 @@ void GPS::initializeCom() {
 	string response = myCom.ReadString( 1000, &to, "\n\r" );
 
 	if( this->gpsStrings->clearCommandResponse != response.substr(0,this->gpsStrings->clearCommandResponse.length()) || to ) {
-		LOG(FATAL) << "Misconfigured " << this->gpsStrings->vendor << " GPS" << endl;
+		LOG_GPS(FATAL) << "Misconfigured " << this->gpsStrings->vendor << " GPS" << endl;
 	}
 
 	if( this->isGpggaUsed ) {
-		LOG(DEBUG3) << "Using gpgga" << endl;
+		LOG_GPS(DEBUG3) << "Using gpgga" << endl;
 		inputStream.str("");
 		inputStream << this->gpsStrings->ggaCommand << this->processRate << "\n\r";
 		myCom.Write(inputStream.str().c_str(),inputStream.str().length());//this will tell the gps to get a satellite reading once a second
 	}
 
 	if( this->isGprmcUsed ) {
-		LOG(DEBUG3) << "Using gprmc" << endl;
+		LOG_GPS(DEBUG3) << "Using gprmc" << endl;
 		inputStream.str("");
 		inputStream << this->gpsStrings->rmcCommand << this->processRate << "\n\r";
 		myCom.Write(inputStream.str().c_str(),inputStream.str().length());//this will tell the gps to run the nmea rmc command once a second
