@@ -105,7 +105,6 @@ void cwiid_callback(cwiid_wiimote_t *wiimote, int mesg_count,
     		break;
     	case CWIID_MESG_CLASSIC:
     		LOG_WII(DEBUG4) << "CWIID_MESG_CLASSIC" << endl;
-    		LOG_WII(DEBUG4) << control << endl;
 
     		control->process_classic_mesg((struct cwiid_classic_mesg *) &mesg[i]);
     		raise(SIGUSR1);

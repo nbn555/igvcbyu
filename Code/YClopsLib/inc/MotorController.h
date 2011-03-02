@@ -10,9 +10,12 @@
 #define MOTORCONTROLLER_H_
 
 #include <string>
+#include <stdarg.h>
 
 #include <mrpt/hwdrivers/CSerialPort.h>
 #include <mrpt/utils/CConfigFile.h>
+#include <iostream>
+#include "logging.h"
 
 //TODO implement Operating mode see page 136 of motor controller programming manual
 //TODO implement PID controller constants commands in initialization
@@ -100,7 +103,7 @@ public:
 	 * @param value - the value to set the encoder count
 	 * @return true upon success
 	 */
-	bool setEncoderCounter( MotorChannel channel, unsigned int value = 0 );
+	bool setEncoderCounter( MotorChannel channel, int value = 0 );
 
 	//////////////////////////////////////////////////////////////////
 	//Motor Controller Runtime queries
@@ -136,7 +139,7 @@ public:
 	 * @param channel2Count - reference to the encoder count for channel 2
 	 * @return true upon success
 	 */
-	bool getAbsoluteEncoderCount( unsigned int & ch1, unsigned int & ch2 );
+	bool getAbsoluteEncoderCount( int & ch1, int & ch2 );
 
 	/**
 	 * getRelativeEncoderCount - gets the encoder count since the last time this command was used
@@ -144,7 +147,7 @@ public:
 	 * @param ch2 - the encoder count for the second channel
 	 * @return true if successful
 	 */
-	bool getRelativeEncoderCount( unsigned int & ch1, unsigned int & ch2 );
+	bool getRelativeEncoderCount( int & ch1, int & ch2 );
 	/**
 	 * getEncoderSpeed - returns the speed of the encoder for the given channel
 	 * @param channel - the motor channel to query
@@ -341,6 +344,7 @@ private:
 	const int motor1SpeedMin;				//! The hard lower limit for the first channel motor speed (lower limit would be the reverse speed)
 	const int motor2SpeedMin;				//! The hard lower limit for the second channel motor speed
 	int faultFlagVector;					//! The fault flag status for the motor controller
+	std::string responseBuffer;				//! The response buffer used for response parsing
 protected:
 	static MotorController * mc;			//! The pointer to the instance of the motor controller
 
@@ -399,21 +403,22 @@ private:
 	bool clearBufferHistory();
 
 	template<typename T>
-	bool responseParserDual( T & t1, T & t2 ) {
-		std::stringstream responseParser( this->serialPort.ReadString() );
+	bool responseParser( int num, ... ) {
+		va_list args;
+		va_start( args, num);
+		std::stringstream responseParser( this->responseBuffer );
+		this->responseBuffer = "";
 
-		while( '=' != responseParser.get() );
+		while('=' != responseParser.get() );
 
-		responseParser >> t1;
-		responseParser.get(); //Parse off the :
-		responseParser >> t2;
+		responseParser >> *(va_arg( args, T* ));
+		for( int i = 1; i < num; i++) {
+			responseParser.get(); //Parse off the :
+			responseParser >> *(va_arg ( args, T* ));
+		}
 
 		return true;
-
 	}
-
-
-	bool responseParserTrio( int & t1, int & t2, int & t3 );
 };
 
 #endif /* MOTORCONTROLLER_H_ */

@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include <pthread.h>
 //#include <mrpt/base.h>
 #include <mrpt/slam.h>
 #include "YClopsSensor.h"
@@ -50,11 +51,17 @@ private:
 	void initializeArray(bool * array);
 	std::vector<cv::Mat> convertRGBtoHSV(cv::Mat & image);
 
+	static void* cameraDataShow(void*);
+
 	// TODO: Delete me
 	cv::VideoCapture capture;
 	cv::Mat image;
 	bool * array;
 	mrpt::slam::CSimplePointsMap * map;
+
+	static bool killThread;
+	pthread_t dataDumpThread;
+	pthread_attr_t dataDumpThreadAttr;
 
 	double PERCENT_FILLED;
 	int GRID_SIZE;

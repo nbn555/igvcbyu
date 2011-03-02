@@ -168,13 +168,18 @@ YClopsReactiveNavInterface::YClopsReactiveNavInterface(CConfigFileBase & config)
 
 		LOG(DEBUG2) << "Initializing wheel encoder" << endl;
 		this->encoder->init();
+
 	} else {
 		LOG(INFO) << "Not using wheel encoders" << endl;
 	}
 
 	this->robotPose = new CPose3D();
 	this->robotPose->setFromValues(0,0,0,0,0,0);
-	LOG(DEBUG4) << "Robot Pose Configured" << endl;
+	LOG(DEBUG2) << "Robot Pose Configured" << endl;
+
+	this->poseEst = new NoFilterPoseEstimator();
+	LOG(DEBUG2) << "Using NoFilterPoseEstimator" << endl;
+
 	this->curV = 0;
 	this->curW = 0;
 
@@ -232,6 +237,7 @@ bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 
 	//Get data from the encoders
 	if( NULL != this->encoder ) {
+		LOG(DEBUG4) << "Running Encoder Sensor Process in getCurrentPoseAndSpeed" << endl;
 		this->encoder->sensorProcess();
 
 		if( this->isEncoderDataShown ) {
@@ -252,6 +258,9 @@ bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 	LOG(DEBUG4) << "In yclops compass data reactivenav: " << compassData->yaw << " " << compassData->pitch << " " << compassData->roll << endl;
 	LOG(DEBUG4) << "Compass data valid? " << compassData->yawValid << " " << compassData->pitchValid << " " << compassData->rollValid << endl;
 
+	assert(NULL != poseEst);
+	assert(NULL != gpsData);
+	assert(NULL != compassData);
 	poseEst->update(gpsData,compassData);
 	mrpt::poses::CPose3D thirdDim = mrpt::poses::CPose3D(curPose);
 	this->poseEst->getPose(thirdDim);
