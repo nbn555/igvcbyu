@@ -16,7 +16,8 @@ extern bool bCameraData;
 using namespace std;
 using namespace cv;
 
-Camera::Camera() : capture(0), array(NULL), map(NULL){
+bool Camera::killThread = false;
+Camera::Camera() : capture(0), array(NULL), map(NULL) {
 }
 
 Camera::~Camera(){
@@ -24,6 +25,9 @@ Camera::~Camera(){
 	//delete capture;
 	delete map;
 
+	Camera::killThread = true;
+	void * status;
+	pthread_join(this->dataDumpThread,&status);
 	LOG_CAMERA(DEBUG3) << "Deleted array and image capture..." << endl;
 }
 
@@ -54,6 +58,7 @@ void Camera::loadConfiguration(const mrpt::utils::CConfigFileBase & config, cons
 
 void Camera::init(){
 	namedWindow("debug", 1);
+
 	array = new bool[GRID_SIZE * GRID_SIZE];
 	map = new mrpt::slam::CSimplePointsMap;
 	//capture = new VideoCapture(0);
@@ -62,6 +67,11 @@ void Camera::init(){
 	if(!capture.isOpened()){
 		LOG_CAMERA(FATAL) << "Error opening camera" << endl;
 	}
+
+	getFrame(this->image);
+	pthread_attr_init(&dataDumpThreadAttr);
+	pthread_attr_setdetachstate(&dataDumpThreadAttr, PTHREAD_CREATE_JOINABLE);
+	pthread_create( &dataDumpThread, &dataDumpThreadAttr, Camera::cameraDataShow, &image );
 
 	LOG_CAMERA(DEBUG3) << "Started camera..." << endl;
 }
@@ -121,18 +131,30 @@ void Camera::getObstacles(mrpt::slam::CSimplePointsMap & map, mrpt::poses::CPose
 }
 
 void Camera::dumpData( std::ostream & out ) const {
-	out << "dumping camera data" << endl;
 
-	if(!capture.isOpened()) out << "ERROR" << endl;
+	out << "*******************" << endl;
+	out << "dumping camera data" << endl;
+	out << "*******************" << endl;
+/*	if(!capture.isOpened()) out << "ERROR" << endl;
 	///namedWindow("debug",1);
-	//for(;;)
-	//{
+	for(;;) {
 		//if(image){
 			imshow("debug", image);
 		//}
 
-	//	if(waitKey(30) >= 0) break;
-	//}
+		if(waitKey(30) >= 0) break;
+	}
+	*/
+}
+
+void* Camera::cameraDataShow(void*dataShow) {
+
+	while(!Camera::killThread) {
+		//For some reason this causes a segfault --Eldonty\                                                                                           b
+		//imshow("debug", *((cv::Mat*)(dataShow)));
+	}
+
+	return NULL;
 }
 
 void Camera::insertObstacles(mrpt::slam::CSimplePointsMap & map, int size, bool * array, mrpt::poses::CPose3D pose ){

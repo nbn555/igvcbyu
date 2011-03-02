@@ -29,6 +29,7 @@ typedef enum LOG_LEVEL{
 #define MOTOR_LOG	(0x00000010)
 #define POSE_LOG	(0x00000020)
 #define WII_LOG		(0x00000040)
+#define ENCODER_LOG	(0x00000080)
 #define GENERIC_LOG	(0x80000000)
 #define ALL_LOG		(0xFFFFFFFF)
 /**
@@ -36,7 +37,7 @@ typedef enum LOG_LEVEL{
  * Don't put non trivial function calls in the output stream or they wont be called when the logging isn't output
  */
 #define LOG_STREAM(level,stream) \
-((level < Log::ReportingLevel()) && (stream & Log::GetReportStreamBits())) ? : Log().Get(level)
+((level < Log::ReportingLevel()) || (stream & Log::GetReportStreamBits())) ? : Log().Get(level)
 
 #define LOG_CAMERA(level)	LOG_STREAM(level,CAMERA_LOG)
 
@@ -51,6 +52,8 @@ typedef enum LOG_LEVEL{
 #define LOG_POSE(level)		LOG_STREAM(level,POSE_LOG)
 
 #define LOG_WII(level)		LOG_STREAM(level,WII_LOG)
+
+#define LOG_ENCODER(level)	LOG_STREAM(level,ENCODER_LOG)
 
 #define LOG(level)			LOG_STREAM(level,GENERIC_LOG)
 

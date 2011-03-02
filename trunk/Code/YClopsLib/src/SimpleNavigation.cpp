@@ -17,7 +17,6 @@ SimpleNavigation::SimpleNavigation(string & fileName, mrpt::reactivenav::CReacti
 }
 
 SimpleNavigation::~SimpleNavigation() {
-	// TODO Auto-generated destructor stub
 	delete interface;
 }
 

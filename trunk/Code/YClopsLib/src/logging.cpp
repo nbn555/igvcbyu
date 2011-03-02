@@ -12,7 +12,7 @@
 
 LOG_LEVEL Log::logLevel = INFO;
 std::ostream * Log::outputStream = &(std::cerr);
-unsigned int Log::streamBits = 0xFFFFFFFF;
+unsigned int Log::streamBits = ~ALL_LOG;
 bool Log::timestamp = true;
 
 using namespace std;
@@ -70,7 +70,7 @@ LOG_LEVEL & Log::ReportingLevel() {	return Log::logLevel; }
 
 unsigned int Log::GetReportStreamBits() { return Log::streamBits; }
 
-void Log::SetReportStreamBits( unsigned int s ) { Log::streamBits = s; }
+void Log::SetReportStreamBits( unsigned int s ) { Log::streamBits = ~s; }
 
 void Log::SetTimeStampDisplay( bool ts ) { Log::timestamp = ts; }
 

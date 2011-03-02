@@ -42,10 +42,10 @@ public:
 
 	virtual ~WheelEncoder();
 protected:
-	unsigned int leftCount;
-	unsigned int rightCount;
-	unsigned int leftCountAbsolute;
-	unsigned int rightCountAbsolute;
+	int leftCount;
+	int rightCount;
+	int leftCountAbsolute;
+	int rightCountAbsolute;
 
 };
 

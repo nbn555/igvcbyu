@@ -56,9 +56,9 @@ void GPS::loadConfiguration( const mrpt::utils::CConfigFileBase & config, const 
 
 	LOG_GPS(DEBUG3) << "Using a process rate of " << this->processRate << endl;
 
-	this->testLat = config.read_int(sectionName, "testLat", 0,0);
+	this->testLat = config.read_float(sectionName, "testLat", 0,0);
 
-	this->testLon = config.read_int(sectionName, "testLon", 0,0);
+	this->testLon = config.read_float(sectionName, "testLon", 0,0);
 
 
 }
@@ -136,6 +136,9 @@ void GPS::dumpData(std::ostream & out ) const {
 		//gpsData = CObservationGPSPtr(lstObs.begin()->second);
 		//this->appendObservation(gpsData);//This probably wont be used
 	}
+
+	streamsize p = out.precision();
+	out.precision(10);
 	if(isValid) {
 		if( gpsData->has_GGA_datum ) {
 			out << "GGA: " << gpsData->GGA_datum.latitude_degrees << ", " << gpsData->GGA_datum.longitude_degrees << endl;
@@ -145,10 +148,13 @@ void GPS::dumpData(std::ostream & out ) const {
 			out << "RMC: " << gpsData->RMC_datum.latitude_degrees << ", " << gpsData->RMC_datum.longitude_degrees << endl;
 		}
 
-		cout << "Distance to Test Waypoint: " << GetDistanceToWaypoint(testLat, testLon, GetGpsLatitude(), GetGpsLongitude())
+		out << "GetGpsLatitude() = " << GetGpsLatitude() << " GetGpsLongitude() = " << GetGpsLongitude() << endl;
+		out << "test lat = " << testLat << " test lon = " << testLon << endl;
+		out << "Distance to Test Waypoint: " << GetDistanceToWaypoint(testLat, testLon, GetGpsLatitude(), GetGpsLongitude())
 				<< " meters" << endl;
 
 	}
+	out.precision(p);
 	out << "************" << endl;
 }
 
@@ -233,7 +239,7 @@ void GPS::initializeCom() {
 	string response = myCom.ReadString( 1000, &to, "\n\r" );
 
 	if( this->gpsStrings->clearCommandResponse != response.substr(0,this->gpsStrings->clearCommandResponse.length()) || to ) {
-		LOG_GPS(FATAL) << "Misconfigured " << this->gpsStrings->vendor << " GPS" << endl;
+		LOG_GPS(FATAL) << "Misconfigured " << this->gpsStrings->vendor << " GPS.\nRecieved: " << response << endl;
 	}
 
 	if( this->isGpggaUsed ) {
