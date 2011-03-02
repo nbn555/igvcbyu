@@ -30,6 +30,7 @@ typedef enum LOG_LEVEL{
 #define POSE_LOG	(0x00000020)
 #define WII_LOG		(0x00000040)
 #define ENCODER_LOG	(0x00000080)
+#define AI_LOG		(0x00000100)
 #define GENERIC_LOG	(0x80000000)
 #define ALL_LOG		(0xFFFFFFFF)
 /**
@@ -54,6 +55,8 @@ typedef enum LOG_LEVEL{
 #define LOG_WII(level)		LOG_STREAM(level,WII_LOG)
 
 #define LOG_ENCODER(level)	LOG_STREAM(level,ENCODER_LOG)
+
+#define LOG_AI(level)		LOG_STREAM(level,AI_LOG)
 
 #define LOG(level)			LOG_STREAM(level,GENERIC_LOG)
 

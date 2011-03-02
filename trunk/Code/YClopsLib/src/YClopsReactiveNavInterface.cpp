@@ -78,7 +78,7 @@ YClopsReactiveNavInterface::YClopsReactiveNavInterface() {
 	LOG(DEBUG4) << "In yclops reactivenav" << compassData->yaw << " " << compassData->pitch << " " << compassData->roll << endl;
 	LOG(DEBUG4) << " valid? " << compassData->yawValid << " " << compassData->pitchValid << " " << compassData->rollValid << endl;
 	 
-	poseEst->update( gpsData, compassData);
+	poseEst->update( gpsData, compassData, NULL);
 
 	this->poseEst->getPose(*robotPose);
 
@@ -211,6 +211,7 @@ bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 
 	CompassData * compassData = NULL;
 	GPSData * gpsData = NULL;
+	EncoderData * encoderData = NULL;
 
 	//Get get data from the compass
 	if( NULL != this->compass ) {
@@ -243,25 +244,31 @@ bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 		if( this->isEncoderDataShown ) {
 			this->encoder->dumpData(cout);
 		}
-		//Incorporate data from the encoders to the position data
+
+		encoderData = (EncoderData*)(encoder->getData());
 	}
 
-	if( NULL == gpsData || NULL == compassData ) {
+	if( NULL == gpsData || NULL == compassData /*|| NULL == encoderData*/ ) {
 		curPose.x(robotPose->x());
 		curPose.y(robotPose->y());
 
 		delete gpsData;
 		delete compassData;
+		//delete encoderData;
 		return true;
 	}
-
-	LOG(DEBUG4) << "In yclops compass data reactivenav: " << compassData->yaw << " " << compassData->pitch << " " << compassData->roll << endl;
-	LOG(DEBUG4) << "Compass data valid? " << compassData->yawValid << " " << compassData->pitchValid << " " << compassData->rollValid << endl;
 
 	assert(NULL != poseEst);
 	assert(NULL != gpsData);
 	assert(NULL != compassData);
-	poseEst->update(gpsData,compassData);
+	//assert(NULL != encoderData);
+
+	LOG_AI(DEBUG4) << "In yclops compass data reactivenav: " << compassData->yaw << " " << compassData->pitch << " " << compassData->roll << endl;
+	LOG_AI(DEBUG4) << "Compass data valid? " << compassData->yawValid << " " << compassData->pitchValid << " " << compassData->rollValid << endl;
+	//LOG_AI(DEBUG4) << "Encoder Data: L " << encoderData->leftCount << " R " << encoderData->rightCount << " Absolute L " <<
+	//		encoderData->leftCountAbsolute << " Absolute R " << encoderData->rightCountAbsolute << endl;
+
+	poseEst->update(gpsData, compassData, encoderData);
 	mrpt::poses::CPose3D thirdDim = mrpt::poses::CPose3D(curPose);
 	this->poseEst->getPose(thirdDim);
 	robotPose->x() = thirdDim.x();
@@ -269,12 +276,15 @@ bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 
 	curV = this->curV;
 	curW = this->curW;
+
+	LOG_AI(DEBUG4) << "YClopsReactiveNav: Putting into curPose (" << robotPose->x() << "," << robotPose->y() << "," << poseEst->getYaw() << ")" << endl;
 	curPose.x(robotPose->x());
 	curPose.y(robotPose->y());
 	curPose.phi(poseEst->getYaw());
 
 	if(compassData) delete compassData;
 	if(gpsData) delete gpsData;
+	if(encoderData) delete encoderData;
 
 	return true;
 }

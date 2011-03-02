@@ -74,7 +74,7 @@ void Compass::sensorProcess() {
 }
 
 SensorData * Compass::getData() {
-	return new CompassData(this->yaw, this->pitch, this->roll, "N" == this->yawStatus.substr(0,1), "N" == this->pitchStatus.substr(0,1), "N" == this->rollStatus.substr(0,1), this->degrees );
+	return new CompassData(this->getYaw(), this->getPitch(), this->getRoll(), "N" == this->yawStatus.substr(0,1), "N" == this->pitchStatus.substr(0,1), "N" == this->rollStatus.substr(0,1), this->degrees );
 }
 
 void Compass::dumpData( std::ostream & out ) const {

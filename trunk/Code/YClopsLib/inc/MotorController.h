@@ -368,7 +368,7 @@ private:
 	 * @param command - the carriage return ended command to send to the motor controller
 	 * @returns true upon successful transmission of the command
 	 */
-	bool sendCommand( std::string command, std::string expectedResponse );
+	bool sendCommand( const std::string command, const std::string expectedResponse );
 
 	/**
 	 * enableSerialEcho - turns on the echo of commands from the motor controller
