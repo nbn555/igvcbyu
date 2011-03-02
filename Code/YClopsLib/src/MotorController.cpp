@@ -52,9 +52,9 @@ MotorController::MotorController( mrpt::utils::CConfigFileBase * conf ):
 
 	this->serialPort.setConfig(115200, 0, 8, 1, false);//Non configurable port setting see the roboteq manual
 
-//	if( !this->reset() ) {
-//		LOG_MOTOR(FATAL) << "Motor Controller Failed to successfully reset" << endl;
-//	}
+	if( !this->reset() ) {
+		LOG_MOTOR(FATAL) << "Motor Controller Failed to successfully reset" << endl;
+	}
 
 	if(echoEnabled) {
 		this->enableSerialEcho(); //enable the serial to echo the commands back used for error checking
@@ -235,8 +235,12 @@ bool MotorController::getRelativeEncoderCount( int & ch1, int & ch2 ) {
 }
 
 bool MotorController::getEncoderSpeed( MotorChannel channel, int & speed ) {
-	LOG_MOTOR(FATAL) << "MotorController: getEncoderSpeed" << endl;//TODO getEncoderSpeed
-	return false;
+	LOG_MOTOR(DEBUG4) << "MotorController: getEncoderSpeed" << endl;
+	bool rval = false;
+	if(Channel1 == channel) rval = this->sendCommand("?S 1\r", "S");
+	else if( Channel2 == channel ) rval = this->sendCommand("?S 2\r", "S");
+	else LOG_MOTOR(ERROR) << "MotorController getEncoderSpeed doesn't currently support both channels" << endl;
+	return rval;
 }
 
 bool MotorController::getTemperature( int & ch1, int & ch2, int & ic ) {
@@ -267,8 +271,10 @@ bool MotorController::loadEEPROMSettings() {
 }
 
 bool MotorController::failSafeReset() {
-	//return this->sendCommand("%EERST 321654987\r");
-	return false;
+	stringstream stream;
+	stream << "%EERST " << MotorController::MOTOR_SECRET_KEY << "\r";
+	bool rval = this->sendCommand(stream.str(), "Starting...");
+	return rval;
 }
 
 bool MotorController::saveConfigSettings() {
@@ -340,14 +346,14 @@ bool MotorController::setLoopMode( MotorChannel channel, std::string & loopMode 
 	LOG_MOTOR(DEBUG4) << "Setting motor controller to " << loopMode << endl;
 
 	if( "CLOSED_POSITION" == loopMode ) {
-		rval = rval && this->sendCommand("^MMOD 1 3", "+");
-		rval = rval && this->sendCommand("^MMOD 2 3", "+");
+		rval = rval && this->sendCommand("^MMOD 1 3\r", "+");
+		rval = rval && this->sendCommand("^MMOD 2 3\r", "+");
 	} else if( "CLOSED_LOOP" ==  loopMode ) {
-		rval = rval && this->sendCommand("^MMOD 1 2", "+");
-		rval = rval && this->sendCommand("^MMOD 2 2", "+");
+		rval = rval && this->sendCommand("^MMOD 1 2\r", "+");
+		rval = rval && this->sendCommand("^MMOD 2 2\r", "+");
 	} else if("OPEN_LOOP" == loopMode ){
-		rval = rval && this->sendCommand("^MMOD 1 1", "+");
-		rval = rval && this->sendCommand("^MMOD 2 1", "+");
+		rval = rval && this->sendCommand("^MMOD 1 1\r", "+");
+		rval = rval && this->sendCommand("^MMOD 2 1\r", "+");
 	} else {
 		LOG_MOTOR(FATAL) << "Invalid Loop Mode" << endl;
 		this->emergencyStop();
@@ -361,49 +367,53 @@ bool MotorController::assertValidMotorRange( int max, int min, int value ) const
 }
 
 bool MotorController::assertValidVoltage() {
-	this->sendCommand("?V\n\r", "");//TODO parse the voltage command and check it is safe
+	this->sendCommand("?V\r", "");//TODO parse the voltage command and check it is safe
 	LOG_MOTOR(FATAL) << "MotorController: assertValidVoltage not implemented" << endl;
 	return false;
 }
 
-bool MotorController::sendCommand( std::string command, std::string expectedResponse ) {
+bool MotorController::sendCommand( const std::string command, const std::string expectedResponse ) {
 	bool rval = false;
 
-	bool timeout;
+	bool timeout = false;
 	if( this->serialPort.isOpen() ) {
 		LOG_MOTOR(DEBUG4) << "Purging Motor Controller Serial Port buffers" << endl;
 		this->serialPort.purgeBuffers();
 		LOG_MOTOR(DEBUG4) << "Sending to motor controller: " << command << endl;
 		this->serialPort.Write(command.c_str(), command.length());
-		this->responseBuffer = this->serialPort.ReadString(1000, &timeout, "\r" );
 
-		if(timeout) {
-			LOG_MOTOR(FATAL) << "Command: " << command << " timed out" << endl;
-		}
+		if( 0 != expectedResponse.length() ) {
+			this->responseBuffer = this->serialPort.ReadString(1000, &timeout, "\r" );
 
-		if( 0 == this->responseBuffer.length() ) {
-			LOG_MOTOR(FATAL) << "Received a zero length response from Motor Controller" << endl;
-		}
+			if(timeout) {
+				LOG_MOTOR(FATAL) << "Command: " << command << " timed out" << endl;
+			}
 
-		LOG_MOTOR(DEBUG4) << "Response: " << this->responseBuffer << endl;
+			if( 0 == this->responseBuffer.length() ) {
+				LOG_MOTOR(FATAL) << "Received a zero length response from Motor Controller" << endl;
+			}
+
+			LOG_MOTOR(DEBUG4) << "Response: " << this->responseBuffer << endl;
+
+			if( expectedResponse == this->responseBuffer.substr(0,expectedResponse.length()) ) {
+				rval = true;
+			}
+		} else rval = true;
 	}
-	if( this->echoEnabled ) {
 
-	} else {
-
-	}
-	rval = true;//TODO change this to detect verification of the command
+	this->serialPort.purgeBuffers();
+	LOG_MOTOR(DEBUG4) << "Command sent with retval of " << (rval?"true":"false") << endl;
 	return rval;
 }
 
 void MotorController::enableSerialEcho() {
 	LOG_MOTOR(DEBUG4) << "Enabling Echo on motor controller" << endl;
-	this->sendCommand("^ECHOF 0\n\r", "+");
+	this->sendCommand("^ECHOF 0\r", "+");
 }
 
 void MotorController::disableSerialEcho() {
 	LOG_MOTOR(DEBUG4) << "Disabling Echo on motor controller" << endl;
-	this->sendCommand("^ECHOF 1\n\r", "+");
+	this->sendCommand("^ECHOF 1\r", "+");
 }
 
 bool MotorController::getFaultFlags() {
@@ -422,6 +432,6 @@ bool MotorController::getControlUnitType() {
 }
 
 bool MotorController::clearBufferHistory() {
-	LOG_MOTOR(FATAL) << "MotorController: clear Buffer History not implemented" << endl;//TODO clearBufferHistory
-	return false;
+	LOG_MOTOR(DEBUG4) << "MotorController: clear Buffer History" << endl;
+	return this->sendCommand("#C\r", "");
 }

@@ -38,13 +38,25 @@ NoFilterPoseEstimator::~NoFilterPoseEstimator() {
 //updates the stored position to the current position
 // the first time it will return stuff in lat and lon for the
 // TSPSolver after that it returns things in meters from the start point
-void NoFilterPoseEstimator::update( const GPSData * gpsData, const CompassData * compassData ) {
+void NoFilterPoseEstimator::update( const GPSData * gpsData, const CompassData * compassData, const EncoderData * encoderData ) {
 	double lat;
 	double lon;
 	double x;
 	double y;
 	double z = 0;
-	this->yaw = compassData->yaw;
+
+	if( NULL != gpsData ) {
+
+	}
+
+	if( NULL != compassData ) {
+
+	}
+
+	if( NULL != encoderData ) {
+
+	}
+
 
 	if(gpsData->valid) {
 		lat = gpsData->latitude;

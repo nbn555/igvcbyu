@@ -23,12 +23,11 @@ public:
 	 * @param pitch - the rotation about the x axis measured in radians
 	 * @param roll - the rotation about the z axis measured in radians
 	 */
-	virtual void update( const GPSData * gpsObsPtr, const CompassData * compassData ) = 0;
-	double getYaw(void){ return yaw;}
+	virtual void update( const GPSData * gpsData, const CompassData * compassData, const EncoderData * encoderData ) = 0;
+	double getYaw(void){ return this->poseEstimate.yaw(); }
 	bool getPose( mrpt::poses::CPose3D & pose );
 protected:
 	mrpt::poses::CPose3D poseEstimate;
-	double yaw;
 };
 
 class NoFilterPoseEstimator: public AbstractPoseEstimator {
@@ -44,7 +43,7 @@ public:
 	 * NoFilterPoseEstimator::update - dummy implementation does no filtering just takes the
 	 * direct value from the sensor
 	 */
-	void update( const GPSData * gpsObsPtr, const CompassData * compassData );
+	void update( const GPSData * gpsData, const CompassData * compassData, const EncoderData * encoderData );
 };
 
 #endif /* POSEESTIMATOR_H_ */

@@ -110,9 +110,9 @@ void SimpleNavigation::navigationStep()
 		float cur_v;
 	interface->getCurrentPoseAndSpeeds(curPose, cur_v, cur_w);
 	yaw = curPose.phi();//Robotpose returns yaw in radians
-	cout << "Yaw: " << yaw << endl;
+	LOG_AI(DEBUG4) << "Simple Nav Yaw: " << yaw << endl;
 	wantedYaw = calcBearing(curPose);//AbstractNavigationInterface::calcBearing(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
-	cout << "Wanted Yaw: " << wantedYaw << endl;
+	LOG_AI(DEBUG4) << "Simple Nav Wanted Yaw: " << wantedYaw << endl;
 	double standYaw = yaw > M_PI ? yaw - 2*M_PI: yaw;
 	double dist = distance(curPose);
 	double diffrence = wantedYaw - yaw;
@@ -126,11 +126,11 @@ void SimpleNavigation::navigationStep()
 		minDiff = 2*M_PI + diffrence;
 	}
 
-	cout << "Difference: " << minDiff << endl;
+	LOG_AI(DEBUG4) << "Simple Nav Angular Difference: " << minDiff << endl;
 
 	if(!dist > navParams->targetAllowedDistance)
 	{
-		cout << "Reached Way Point" << endl;
+		LOG_AI(INFO) << "Reached Way Point" << endl;
 		points.erase(points.begin());
 		if(points.size() != 0)//this->points)
 		{
@@ -146,28 +146,28 @@ void SimpleNavigation::navigationStep()
 		bool turnRight = minDiff > 0;
 		if(turnRight)
 		{
-			cout << "\tTurning Right" << endl;
+			LOG_AI(DEBUG) << "\tTurning Right" << endl;
 			interface->changeSpeeds(.5f,2);
 		}
 		else
 		{
-			cout << "\tTurning Left" << endl;
+			LOG_AI(DEBUG) << "\tTurning Left" << endl;
 			interface->changeSpeeds(.5f, -2);
 		}
 	}
 	else
 	{
 		double dist = distance(curPose);
-		cout << "\tDriving Towards Target. Remaining Distance: " << dist << endl;//AbstractNavigationInterface::haversineDistance(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
+		LOG_AI(DEBUG) << "\tDriving Towards Target. Remaining Distance: " << dist << endl;//AbstractNavigationInterface::haversineDistance(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
 		if(dist > navParams->targetAllowedDistance)
 		{
 			interface->changeSpeeds(1.4,0);
-			cout << "\tDriving Towards Target. Remaining Distance: " << dist << endl;
+			LOG_AI(DEBUG) << "\tDriving Towards Target. Remaining Distance: " << dist << endl;
 
 		}
 		else
 		{
-			cout << "Reached Way Point" << endl;
+			LOG_AI(INFO) << "Reached Way Point" << endl;
 			points.erase(points.begin());
 			if(points.size() != 0)//this->points)
 			{
