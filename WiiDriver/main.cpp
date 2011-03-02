@@ -24,9 +24,11 @@
 using namespace mrpt::utils;
 using namespace std;
 
+bool closing = false;
+
 void signal_handler( int signum );
 void shutdown( int exitStatus );
-LOG_LEVEL loggingLevel = DEBUG4;
+LOG_LEVEL loggingLevel = FATAL;
 
 YClopsReactiveNavInterface * yclops = NULL;
 
@@ -49,6 +51,8 @@ int main( int argc, char** argv ) {
 		//Set up logging
 		Log::SetLogFile(&cout);
 		Log::SetReportLevel(loggingLevel);
+		Log::SetTimeStampDisplay(false);
+		Log::SetReportStreamBits(ALL_LOG);
 
 		//Set up the SIGUSR1 so we know when a button is pressed
 		signal(SIGUSR1, signal_handler);
@@ -64,21 +68,27 @@ int main( int argc, char** argv ) {
 
 		yclops->useNullMotorCommand();
 
-		while(1) {
-			mrpt::poses::CPose2D curPose;
-			mrpt::slam::CSimplePointsMap map;
-			float curV, curW;
+		mrpt::poses::CPose2D curPose;
+		mrpt::slam::CSimplePointsMap map;
+		float curV, curW;
 
+		while(!closing) {
+
+			LOG(DEBUG4) << "Running CurrentPose and Speeds" << endl;
 			yclops->getCurrentPoseAndSpeeds(curPose, curV, curW);
+			LOG(DEBUG4) << "Running change speeds" << endl;
 			yclops->changeSpeeds(curV, curW);
+			LOG(DEBUG4) << "Running senseObstacles" << endl;
 			yclops->senseObstacles(map);
 
 		}
 	} catch (...) {
-		delete yclops;
+		closing = false; //We are closing but we close with an error see the shutdown call below
 	}
 
-	return 0;
+	shutdown((closing?EXIT_SUCCESS:EXIT_FAILURE));
+
+	return EXIT_FAILURE;
 }
 
 void signal_handler( int signum ) {
@@ -89,12 +99,12 @@ void signal_handler( int signum ) {
 			shutdown(EXIT_FAILURE);
 		}
 	} else if( SIGUSR1 == signum ) {
-		uint16_t cbuttons;
-		uint16_t lax, lay;
-		uint16_t rax, ray;
-		uint16_t la;
-		uint16_t ra;
-		uint16_t mbuttons;
+		uint16_t cbuttons = 0;
+		uint16_t lax = 0, lay = 0;
+		uint16_t rax = 0, ray = 0;
+		uint16_t la = 0;
+		uint16_t ra = 0;
+		uint16_t mbuttons = 0;
 
 		WiiController * controller = WiiController::getReference();
 
@@ -182,7 +192,7 @@ void signal_handler( int signum ) {
 		}
 
 		if( cbuttons & CLASSIC_HOME ) {
-			shutdown(EXIT_SUCCESS);
+			closing = true;
 		}
 
 		if( cbuttons & CLASSIC_START ) {
@@ -253,7 +263,14 @@ void signal_handler( int signum ) {
 
 void shutdown( int exitStatus ) {
 	LOG(INFO) << "Shutting down YClops" << endl;
+	WiiController::destroyReference();
+
+	//sleep(1);
+
 	delete yclops;
 	yclops = NULL;
+
+	//sleep(1);
+
 	exit(exitStatus);
 }
