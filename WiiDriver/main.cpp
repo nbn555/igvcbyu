@@ -54,6 +54,7 @@ int main( int argc, char** argv ) {
 		Log::SetReportLevel(loggingLevel);
 		Log::SetTimeStampDisplay(false);
 		Log::SetReportStreamBits(ALL_LOG&(~(WII_LOG)));
+		Log::GetOStream()->precision(10);
 
 		//Set up the SIGUSR1 so we know when a button is pressed
 		signal(SIGUSR1, signal_handler);
@@ -82,6 +83,8 @@ int main( int argc, char** argv ) {
 			yclops->changeSpeeds(curV, curW);
 			LOG(DEBUG4) << "Running senseObstacles" << endl;
 			yclops->senseObstacles(map);
+
+			LOG(DEBUG) << "CurPose: (" << curPose.x() << "," << curPose.y() << "," << curPose.phi()*180./M_PI << ")" << endl;
 
 		}
 	} catch (...) {
