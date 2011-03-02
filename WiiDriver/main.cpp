@@ -28,7 +28,7 @@ bool closing = false;
 
 void signal_handler( int signum );
 void shutdown( int exitStatus );
-LOG_LEVEL loggingLevel = FATAL;
+LOG_LEVEL loggingLevel = DEBUG4;
 
 YClopsReactiveNavInterface * yclops = NULL;
 
@@ -37,6 +37,7 @@ int main( int argc, char** argv ) {
 	try{
 		//create the config file
 		CConfigFile configFile;
+		string pointsFile;
 
 		//test if the config file is passed in
 		if(argc < 2) {
@@ -52,7 +53,7 @@ int main( int argc, char** argv ) {
 		Log::SetLogFile(&cout);
 		Log::SetReportLevel(loggingLevel);
 		Log::SetTimeStampDisplay(false);
-		Log::SetReportStreamBits(ALL_LOG);
+		Log::SetReportStreamBits(ALL_LOG&(~(WII_LOG)));
 
 		//Set up the SIGUSR1 so we know when a button is pressed
 		signal(SIGUSR1, signal_handler);
@@ -65,8 +66,9 @@ int main( int argc, char** argv ) {
 		MotorController::setConfigFile( (mrpt::utils::CConfigFileBase*)(&configFile) );
 
 		yclops = new YClopsReactiveNavInterface( configFile );
-
 		yclops->useNullMotorCommand();
+
+		pointsFile = configFile.read_string("ROBOT_NAME","POINTS_FILE","points.txt");
 
 		mrpt::poses::CPose2D curPose;
 		mrpt::slam::CSimplePointsMap map;
@@ -158,23 +160,23 @@ void signal_handler( int signum ) {
 		}
 
 		if( cbuttons & CLASSIC_L1 ) {
-			LOG(DEBUG4) << "Classic L1" << endl;
+			LOG_WII(DEBUG4) << "Classic L1" << endl;
 		}
 
 		if( cbuttons & CLASSIC_L2 ) {
-			LOG(DEBUG4) << "Classic L2" << endl;
+			LOG(INFO) << "Toggling Encoder data" << endl;
+			yclops->toggleEncoderDump();
 		}
 
 		if( cbuttons & CLASSIC_R1 ) {
-			LOG(DEBUG4) << "Classic R1" << endl;
+			LOG_WII(DEBUG4) << "Classic R1" << endl;
 		}
 
 		if( cbuttons & CLASSIC_R2 ) {
-			LOG(DEBUG4) << "Classic R2" << endl;
+			LOG_WII(DEBUG4) << "Classic R2" << endl;
 		}
 
 		if( cbuttons & CLASSIC_SELECT ) {
-			LOG(DEBUG4) << "Classic Select" << endl;
 			switch(loggingLevel) {
 			case DISABLE:							break;
 			case FATAL:		loggingLevel = ERROR; 	break;
@@ -196,7 +198,6 @@ void signal_handler( int signum ) {
 		}
 
 		if( cbuttons & CLASSIC_START ) {
-			LOG(DEBUG4) << "Classic Start" << endl;
 			switch(loggingLevel) {
 			case DISABLE:							break;
 			case FATAL: 						 	break;
@@ -215,35 +216,35 @@ void signal_handler( int signum ) {
 		}
 
 		if( mbuttons & MOTE_D_UP ) {
-			LOG(DEBUG4) << "Mote D Up" << endl;
+			LOG_WII(DEBUG4) << "Mote D Up" << endl;
 		}
 
 		if( mbuttons & MOTE_D_LEFT ) {
-			LOG(DEBUG4) << "Mote D Left" << endl;
+			LOG_WII(DEBUG4) << "Mote D Left" << endl;
 		}
 
 		if( mbuttons & MOTE_D_RIGHT ) {
-			LOG(DEBUG4) << "Mote D Right" << endl;
+			LOG_WII(DEBUG4) << "Mote D Right" << endl;
 		}
 
 		if( mbuttons & MOTE_D_DOWN ) {
-			LOG(DEBUG4) << "Mote D Down" << endl;
+			LOG_WII(DEBUG4) << "Mote D Down" << endl;
 		}
 
 		if( mbuttons & MOTE_1 ) {
-			LOG(DEBUG4) << "Mote 1" << endl;
+			LOG_WII(DEBUG4) << "Mote 1" << endl;
 		}
 
 		if( mbuttons & MOTE_2 ) {
-			LOG(DEBUG4) << "Mote 2" << endl;
+			LOG_WII(DEBUG4) << "Mote 2" << endl;
 		}
 
 		if( mbuttons & MOTE_PLUS ) {
-			LOG(DEBUG4) << "Mote Plus" << endl;
+			LOG_WII(DEBUG4) << "Mote Plus" << endl;
 		}
 
 		if( mbuttons & MOTE_MINUS ) {
-			LOG(DEBUG4) << "Mote Minus" << endl;
+			LOG_WII(DEBUG4) << "Mote Minus" << endl;
 		}
 
 		if( mbuttons & MOTE_HOME ) {
@@ -252,11 +253,11 @@ void signal_handler( int signum ) {
 		}
 
 		if( mbuttons & MOTE_A ) {
-			LOG(DEBUG4) << "Mote A" << endl;
+			LOG_WII(DEBUG4) << "Mote A" << endl;
 		}
 
 		if( mbuttons & MOTE_B ) {
-			LOG(DEBUG4) << "Mote B" << endl;
+			LOG_WII(DEBUG4) << "Mote B" << endl;
 		}
 	}
 }
