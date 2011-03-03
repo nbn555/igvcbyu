@@ -49,12 +49,14 @@ public:
 
 class EncoderData: public SensorData {
 public:
-	EncoderData( int leftCount, int rightCount, int leftCountAbsolute, int rightCountAbsolute ): leftCount(leftCount), rightCount(rightCount), leftCountAbsolute(leftCountAbsolute), rightCountAbsolute(rightCountAbsolute) {};
+	EncoderData( int leftCount, int rightCount, int leftCountAbsolute, int rightCountAbsolute, int leftSpeed, int rightSpeed ): leftCount(leftCount), rightCount(rightCount), leftCountAbsolute(leftCountAbsolute), rightCountAbsolute(rightCountAbsolute), leftSpeed(leftSpeed), rightSpeed(rightSpeed) {};
 	virtual ~EncoderData() {};
 	int leftCount;
 	int rightCount;
 	int leftCountAbsolute;
 	int rightCountAbsolute;
+	int leftSpeed;
+	int rightSpeed;
 };
 
 class CameraData: public SensorData {

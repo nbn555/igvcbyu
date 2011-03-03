@@ -1,4 +1,4 @@
-/**t
+/**
  * @file MotorController.cpp
  * @brief This file contains implementation code for interfacing
  * to the roboteq 2440 motor controller
@@ -22,6 +22,7 @@ using namespace mrpt::utils;
 
 MotorController * MotorController::mc = NULL;
 CConfigFileBase * MotorController::config = NULL;
+const std::string MotorController::MOTOR_BAD_COMMAND = "-";
 
 MotorController * MotorController::instance() {
 	if( NULL == MotorController::mc ) {
@@ -47,20 +48,26 @@ MotorController::MotorController( mrpt::utils::CConfigFileBase * conf ):
 	string portName = conf->read_string("MOTOR", "COM_port_LIN", "/dev/ttyS1" );
 
 	LOG_MOTOR(DEBUG4) << "Connecting to Motor Controller on port: " << portName << endl;
-
 	this->serialPort.open(portName);
+
 
 	this->serialPort.setConfig(115200, 0, 8, 1, false);//Non configurable port setting see the roboteq manual
 
-	if( !this->reset() ) {
-		LOG_MOTOR(FATAL) << "Motor Controller Failed to successfully reset" << endl;
-	}
+//	if( !this->reset() ) {
+//		LOG_MOTOR(FATAL) << "Motor Controller Failed to successfully reset" << endl;
+//	}
 
 	if(echoEnabled) {
 		this->enableSerialEcho(); //enable the serial to echo the commands back used for error checking
 	}else {
 		this->disableSerialEcho();//disable serial port echo
 	}
+
+	if(!this->clearBufferHistory()){
+		LOG_MOTOR(WARNING) << "MotorController Clear buffer history failed" << endl;
+	}
+
+
 
 	if( motor1SpeedMax <= motor1SpeedMin ) {
 		LOG_MOTOR(FATAL) << "Motor Controller channel 1 malconfigured motor1SpeedMax: " << motor1SpeedMax
@@ -180,6 +187,7 @@ bool MotorController::setEncoderCounter( MotorChannel channel, int value ) {
 	case BothChannels:
 		parser << "!C 1 " << value << '\r';
 		rval = this->sendCommand(parser.str(),"+");
+		parser.str("");
 		parser << "!C 2 " << value << '\r';
 		rval = rval && this->sendCommand(parser.str(),"+");
 		break;
@@ -190,19 +198,30 @@ bool MotorController::setEncoderCounter( MotorChannel channel, int value ) {
 	return rval;
 }
 
-bool MotorController::getMotorAmps( double & motor1Amps, double & motor2Amps ) {
-	string command = "?A\r";
-	this->serialPort.Write(command.c_str(),command.length());
+bool MotorController::setEncoderUsage( int value ) {
+	bool rval = false;
+	stringstream parser;
 
+	parser << "^EMOD 1 17\r";
+	rval = this->sendCommand(parser.str(), "+");
+	parser.str("");
+	parser << "^EMOD 2 33\r";
+	rval = rval && this->sendCommand(parser.str(), "+");
+
+	return rval;
+}
+
+bool MotorController::getMotorAmps( double & motor1Amps,	 double & motor2Amps ) {
 	int channel1;
 	int channel2;
 
-	this->responseParser<int>( 2, &channel1, &channel2);
+	bool rval = this->sendCommand("?A\r", "A=");
+	rval = rval && this->responseParser( 2, &channel1, &channel2);
 
-	motor1Amps = channel1/10; //The value returned is in deciamps
-	motor2Amps = channel2/10;
+	motor1Amps = channel1/10.; //The value returned is in deciamps
+	motor2Amps = channel2/10.;
 
-	return true;
+	return rval;
 }
 
 bool MotorController::getAnalogInputs( int input, int & value ) {
@@ -214,8 +233,8 @@ bool MotorController::getBatteryAmps( double & motor1Amps, double & motor2Amps )
 	int channel1;
 	int channel2;
 
-	this->sendCommand("?BA\r", "");
-	bool rval = this->responseParser<int>(2, &channel1, &channel2);
+	bool rval = this->sendCommand("?BA\r", "");
+	rval = rval && this->responseParser(2, &channel1, &channel2);
 
 	motor1Amps = channel1/10.; //The value returned is in deciamps converting to amps
 	motor2Amps = channel2/10.;
@@ -223,34 +242,37 @@ bool MotorController::getBatteryAmps( double & motor1Amps, double & motor2Amps )
 	return rval;
 }
 
-bool MotorController::getAbsoluteEncoderCount(int & ch1, int & ch2 ) {
+bool MotorController::getAbsoluteEncoderCount(int * ch1, int * ch2 ) {
+	bool rval = false;
 	LOG_MOTOR(DEBUG4) << "GetAbsoluteEncoderCount" << endl;
-	this->sendCommand("?C\r", "");
-	return this->responseParser<int>(2, &ch1, &ch2);
+	LOG_MOTOR(DEBUG4) << "absolute encoder count pre ch1 = " << *ch1 << " ch2 = " << *ch2 << endl;
+	rval = this->sendCommand("?C\r", "C=");
+	rval = rval && this->responseParser(2, ch1, ch2);
+	LOG_MOTOR(DEBUG4) << "absolute encoder count Got ch1 = " << *ch1 << " ch2 = " << *ch2 << endl;
+	return rval;
 }
 
 bool MotorController::getRelativeEncoderCount( int & ch1, int & ch2 ) {
-	this->sendCommand("?CR\r", "");
-	return this->responseParser<int>(2, &ch1, &ch2);
+	this->sendCommand("?CR\r", "CR=");
+	return this->responseParser(2, &ch1, &ch2);
 }
 
-bool MotorController::getEncoderSpeed( MotorChannel channel, int & speed ) {
+bool MotorController::getEncoderSpeeds( int & speed1, int & speed2 ) {
 	LOG_MOTOR(DEBUG4) << "MotorController: getEncoderSpeed" << endl;
 	bool rval = false;
-	if(Channel1 == channel) rval = this->sendCommand("?S 1\r", "S");
-	else if( Channel2 == channel ) rval = this->sendCommand("?S 2\r", "S");
-	else LOG_MOTOR(ERROR) << "MotorController getEncoderSpeed doesn't currently support both channels" << endl;
+	rval = this->sendCommand("?S\r","S=");
+	rval = rval && this->responseParser(2, &speed1, &speed2 );
 	return rval;
 }
 
 bool MotorController::getTemperature( int & ch1, int & ch2, int & ic ) {
-	this->sendCommand("?T 1\r", "");				//Could be optimized to only send one string
-	return this->responseParser<int>(3,&ic,&ch1,&ch2);
+	this->sendCommand("?T 1\r", "T=");
+	return this->responseParser(3,&ic,&ch1,&ch2);
 }
 
 bool MotorController::getTime( int & hours, int & minutes, int & seconds ) {
-	this->sendCommand("?TM\r", "");
-	return this->responseParser<int>(3,&hours,&minutes,&seconds);
+	this->sendCommand("?TM\r", "TM=");
+	return this->responseParser(3,&hours,&minutes,&seconds);
 }
 
 bool MotorController::getVoltages( double & driverVolt, double & batteryVolt, double & v5out ) {
@@ -258,8 +280,8 @@ bool MotorController::getVoltages( double & driverVolt, double & batteryVolt, do
 	int bV;
 	int v5;
 
-	this->sendCommand("?V\r", "");
-	bool rval = this->responseParser<int>(3,&dV,&bV,&v5);
+	this->sendCommand("?V\r", "V=");
+	bool rval = this->responseParser(3,&dV,&bV,&v5);
 	driverVolt = dV/10.; //returned from motor controller in decivolts
 	batteryVolt = bV/10.; //returned from motor controller in decivolts
 	v5out = v5/1000.; //returned from motor controller in millivolts
@@ -267,6 +289,8 @@ bool MotorController::getVoltages( double & driverVolt, double & batteryVolt, do
 }
 
 bool MotorController::loadEEPROMSettings() {
+	LOG_MOTOR(DEBUG4) << "MotorController: Load EEPROM settings" << endl;
+	//TODO check the timeing on this function
 	return this->sendCommand("%EELD\r", "+");
 }
 
@@ -274,6 +298,8 @@ bool MotorController::failSafeReset() {
 	stringstream stream;
 	stream << "%EERST " << MotorController::MOTOR_SECRET_KEY << "\r";
 	bool rval = this->sendCommand(stream.str(), "Starting...");
+	sleep(3);
+	this->serialPort.purgeBuffers();
 	return rval;
 }
 
@@ -286,6 +312,7 @@ bool MotorController::reset() {
 	stringstream stream;
 	stream << "%RESET " << MotorController::MOTOR_SECRET_KEY << "\r";
 	bool rval = this->sendCommand(stream.str(), "Starting...");
+	sleep(3);//need to allow the controller to power cycle
 	this->serialPort.purgeBuffers();
 	return rval;
 }
@@ -313,8 +340,15 @@ bool MotorController::setSerialWatchDogTimer( int time ) {
 }
 
 bool MotorController::setEncoderPPR( int ppr ) {
-	LOG_MOTOR(FATAL) << "MotorController: setEncoderPPR" << endl;//TODO setEncoderPPR
-	return false;
+	LOG_MOTOR(DEBUG4) << "MotorController: setEncoderPPR" << endl;
+	bool rval = false;
+	stringstream stream;
+	stream << "^EPPR 1 " << ppr << "\r";
+	rval = this->sendCommand(stream.str(), "+");
+	stream.str("");
+	stream << "^EPPR 2 " << ppr << "\r";
+	rval = rval && this->sendCommand(stream.str(),"+");
+	return rval;
 }
 
 bool MotorController::setOverVoltageLimit( double limit ) {
@@ -396,13 +430,18 @@ bool MotorController::sendCommand( const std::string command, const std::string 
 			LOG_MOTOR(DEBUG4) << "Response: " << this->responseBuffer << endl;
 
 			if( expectedResponse == this->responseBuffer.substr(0,expectedResponse.length()) ) {
+				this->responseBuffer = this->responseBuffer.substr(expectedResponse.length());
 				rval = true;
+			} else if( MotorController::MOTOR_BAD_COMMAND == this->responseBuffer.substr(0,MotorController::MOTOR_BAD_COMMAND.length())) {
+				LOG_MOTOR(ERROR) << "Misunderstood command sent to MotorController" << endl;
+			} else {
+				LOG_MOTOR(FATAL) << "Unanticipated response received from MotorController expected: " << expectedResponse << " but got " << this->responseBuffer << endl;
 			}
 		} else rval = true;
 	}
 
 	this->serialPort.purgeBuffers();
-	LOG_MOTOR(DEBUG4) << "Command sent with retval of " << (rval?"true":"false") << endl;
+	LOG_MOTOR(DEBUG4) << "Command sent, retval = " << (rval?"true":"false") << endl;
 	return rval;
 }
 
@@ -433,5 +472,5 @@ bool MotorController::getControlUnitType() {
 
 bool MotorController::clearBufferHistory() {
 	LOG_MOTOR(DEBUG4) << "MotorController: clear Buffer History" << endl;
-	return this->sendCommand("#C\r", "");
+	return this->sendCommand("# C\r", "");
 }

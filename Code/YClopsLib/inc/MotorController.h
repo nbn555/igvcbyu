@@ -11,6 +11,7 @@
 
 #include <string>
 #include <stdarg.h>
+#include <cstring>
 
 #include <mrpt/hwdrivers/CSerialPort.h>
 #include <mrpt/utils/CConfigFile.h>
@@ -26,6 +27,7 @@
 class MotorController {
 public:
 	static const int MOTOR_SECRET_KEY = 321654987;//!Motor reset key used for sensitive operations
+	static const std::string MOTOR_BAD_COMMAND;
 
 	static mrpt::utils::CConfigFileBase * config;
 
@@ -104,6 +106,7 @@ public:
 	 * @return true upon success
 	 */
 	bool setEncoderCounter( MotorChannel channel, int value = 0 );
+	bool setEncoderUsage( int value = 1 ); //0 don't use the encoder, 1 use for feedback, 2 use for command, don't know what command does
 
 	//////////////////////////////////////////////////////////////////
 	//Motor Controller Runtime queries
@@ -139,7 +142,7 @@ public:
 	 * @param channel2Count - reference to the encoder count for channel 2
 	 * @return true upon success
 	 */
-	bool getAbsoluteEncoderCount( int & ch1, int & ch2 );
+	bool getAbsoluteEncoderCount( int * ch1, int * ch2 );
 
 	/**
 	 * getRelativeEncoderCount - gets the encoder count since the last time this command was used
@@ -155,7 +158,7 @@ public:
 	 * @returns - true upon success
 	 *
 	 */
-	bool getEncoderSpeed( MotorChannel channel, int & speed );
+	bool getEncoderSpeeds( int & speed1, int & speed2 );
 
 	/**
 	 * getTemperature - gets the temperature of the heatsinks of the motor controller
@@ -402,21 +405,21 @@ private:
 	 */
 	bool clearBufferHistory();
 
-	template<typename T>
 	bool responseParser( int num, ... ) {
 		va_list args;
-		va_start( args, num);
+		va_start( args, num );
 		std::stringstream responseParser( this->responseBuffer );
-		this->responseBuffer = "";
+		this->responseBuffer = "";//clear out the response parser
 
-		while('=' != responseParser.get() );
-
-		responseParser >> *(va_arg( args, T* ));
+		int* tmp = va_arg( args, int*);
+		responseParser >> *tmp;
 		for( int i = 1; i < num; i++) {
 			responseParser.get(); //Parse off the :
-			responseParser >> *(va_arg ( args, T* ));
+			tmp = va_arg( args, int*);
+			responseParser >> *tmp;
 		}
 
+		va_end(args);
 		return true;
 	}
 };
