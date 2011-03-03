@@ -46,6 +46,9 @@ protected:
 	int rightCount;
 	int leftCountAbsolute;
 	int rightCountAbsolute;
+	int leftEncoderSpeed;
+	int rightEncoderSpeed;
+	int encoderPPR;
 
 };
 
