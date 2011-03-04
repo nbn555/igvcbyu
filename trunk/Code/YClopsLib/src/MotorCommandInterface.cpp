@@ -27,6 +27,7 @@ bool MotorCommandInterface::getSuccess() {
 }
 
 MotorCommand::MotorCommand( double lC, double aC): linearConst(lC), angConst(aC) {
+	//MotorController::instance()->restoreMixingMode();
 }
 
 void MotorCommand::doProcess() {
@@ -42,7 +43,9 @@ void MotorCommand::doProcess() {
 MotorCommand::~MotorCommand() {
 }
 
-DualMotorCommand::DualMotorCommand() { }
+DualMotorCommand::DualMotorCommand() {
+	//MotorController::instance()->setMixingMode(0);  //Set the mixing mode to 0 so the controller is in separate mode or tank Mode
+}
 
 DualMotorCommand::~DualMotorCommand() { }
 
@@ -56,8 +59,8 @@ void DualMotorCommand::doProcess() {
 	double lspeed = ((lyaxis-32)/32.0)*1000; //need to divide by 32 because the l stick gives us 6 bits precision
 	double rspeed = ((ryaxis-16)/16.0)*1000; //need to divide by 16 because the r stick gives us 5 bits precision
 
-	LOG_MOTOR(DEBUG) << "lyaxis:" << lyaxis << "Lspeed " << (int)lspeed << endl;
-	LOG_MOTOR(DEBUG) << "ryaxis:" << ryaxis << "Rspeed " << (int)rspeed << endl;
+	LOG_MOTOR(DEBUG3) << "lyaxis:" << lyaxis << " Lspeed " << (int)lspeed << endl;
+	LOG_MOTOR(DEBUG3) << "ryaxis:" << ryaxis << " Rspeed " << (int)rspeed << endl;
 
 	MotorController::instance()->setSpeed(MotorController::Channel1, (int)lspeed);
 	MotorController::instance()->setSpeed(MotorController::Channel2, (int)rspeed);
@@ -66,7 +69,7 @@ void DualMotorCommand::doProcess() {
 }
 
 DummyMotorCommand::DummyMotorCommand() {
-
+	//MotorController::instance()->restoreMixingMode();
 }
 
 DummyMotorCommand::~DummyMotorCommand() {
