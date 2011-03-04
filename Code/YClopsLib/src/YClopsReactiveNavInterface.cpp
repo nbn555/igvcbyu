@@ -373,16 +373,19 @@ bool YClopsReactiveNavInterface::toggleEncoderDump() {
 }
 
 void YClopsReactiveNavInterface::useYclopsMotorCommand() {
-	delete this->motor;
+	MotorCommandInterface * tmp = this->motor;
 	this->motor = new MotorCommand();
+	delete tmp;
 }
 
 void YClopsReactiveNavInterface::useWiiMotorCommand() {
-	delete this->motor;
+	MotorCommandInterface * tmp = this->motor;
 	this->motor = new DualMotorCommand();
+	delete tmp;
 }
 
 void YClopsReactiveNavInterface::useNullMotorCommand() {
-	delete this->motor;
+	MotorCommandInterface * tmp = this->motor;
 	this->motor = new DummyMotorCommand();
+	delete tmp;
 }

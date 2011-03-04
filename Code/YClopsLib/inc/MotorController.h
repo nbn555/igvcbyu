@@ -107,6 +107,10 @@ public:
 	 */
 	bool setEncoderCounter( MotorChannel channel, int value = 0 );
 	bool setEncoderUsage( int value = 1 ); //0 don't use the encoder, 1 use for feedback, 2 use for command, don't know what command does
+	bool setMixingMode( int value );
+	bool restoreMixingMode();
+	bool setOperatingMode( int value );
+	bool restoreOperatingMode();
 
 	//////////////////////////////////////////////////////////////////
 	//Motor Controller Runtime queries
@@ -347,7 +351,10 @@ private:
 	const int motor1SpeedMin;				//! The hard lower limit for the first channel motor speed (lower limit would be the reverse speed)
 	const int motor2SpeedMin;				//! The hard lower limit for the second channel motor speed
 	int faultFlagVector;					//! The fault flag status for the motor controller
-	std::string responseBuffer;				//! The response buffer used for response parsing
+	int mixingMode;							//! The how a !M command is interpreted.
+	int currentMixingMode;					//! How the !M command is currently interpreted
+	int operatingMode;						//! The configuration for the operating mode (open, closed, position)
+	int currentOperatingMode;				//! The current mode the controller is set to
 protected:
 	static MotorController * mc;			//! The pointer to the instance of the motor controller
 
@@ -371,7 +378,7 @@ private:
 	 * @param command - the carriage return ended command to send to the motor controller
 	 * @returns true upon successful transmission of the command
 	 */
-	bool sendCommand( const std::string command, const std::string expectedResponse );
+	bool sendCommand( const std::string command, const std::string expectedResponse, std::string * response, bool permissive = false );
 
 	/**
 	 * enableSerialEcho - turns on the echo of commands from the motor controller
@@ -405,11 +412,10 @@ private:
 	 */
 	bool clearBufferHistory();
 
-	bool responseParser( int num, ... ) {
+	bool responseParser( std::string response, int num, ... ) {
 		va_list args;
 		va_start( args, num );
-		std::stringstream responseParser( this->responseBuffer );
-		this->responseBuffer = "";//clear out the response parser
+		std::stringstream responseParser( response );
 
 		int* tmp = va_arg( args, int*);
 		responseParser >> *tmp;
