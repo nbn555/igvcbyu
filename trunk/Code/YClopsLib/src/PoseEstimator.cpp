@@ -78,8 +78,8 @@ void NoFilterPoseEstimator::update( const GPSData * gpsData, const CompassData *
 				lat, lon);
 		double direction = AbstractNavigationInterface::calcBearing(StartLat, StartLon,
 				lat, lon);
-		x = cos(direction)*length;
-		y = sin(direction)*length;
+		x = sin(direction)*length;
+		y = cos(direction)*length;
 
 		LOG_POSE(DEBUG4) << "Got yaw:" << compassData->yaw << " pitch " << compassData->pitch << " roll " << compassData->roll << endl;
 		this->poseEstimate.setFromValues(x, y, z, compassData->yaw, compassData->pitch, compassData->roll);
