@@ -70,6 +70,7 @@ class ReactiveNavigationDemoFrame: public wxFrame
         void OncbInternalParamsClick(wxCommandEvent& event);
         void OncbInternalParamsClick1(wxCommandEvent& event);
         void OnLoadPointsFileClick(wxCommandEvent& event);
+        void OnSelectMapClick(wxCommandEvent& event);
         //*)
 
 		void OnreactivenavTargetMenu(wxCommandEvent& event);
@@ -100,6 +101,8 @@ class ReactiveNavigationDemoFrame: public wxFrame
         static const long ID_TEXTCTRL1;
         static const long ID_STATUSBAR1;
         static const long ID_TIMER1;
+        static const long ID_CHECKBOX3;
+        static const long ID_BUTTON8;
         //*)
 
 		static const long ID_MENUITEM_SET_reactivenav_TARGET;
@@ -129,6 +132,8 @@ class ReactiveNavigationDemoFrame: public wxFrame
         wxCheckBox* cbInternalParams;
         wxButton* btnEditRobotParams;
         wxButton* btnLoadPointsFile;
+        wxCheckBox* cbTSP;
+        wxButton* btnLoadMapsFile;
 
         //*)
 
