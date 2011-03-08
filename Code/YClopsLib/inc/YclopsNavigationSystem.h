@@ -42,6 +42,7 @@ namespace mrpt
 		class REACTIVENAV_IMPEXP  YclopsNavigationSystem : public CAbstractReactiveNavigationSystem
 		{
 		public:
+			EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 			/** Constructor
 			 *  \param configINIFile The file to load the configuration from. See loadConfigFile
 			 *  \param robotConfigFile The file to load the robot specific configuration from.
@@ -81,6 +82,26 @@ namespace mrpt
 			/** Change current navigation params:
 			  */
 			void  setParams( TNavigationParams *params );
+
+			/**
+			 * sets filename for waypoints to be loaded from
+			 * and if the points are stored internally in meters
+			 * (for the simulator) or in gps coordinates)
+			 */
+			void setFileName(std::string & fileName, bool inMeters);
+
+			/**
+			 * loads waypoints from file and plans navigation order,
+			 * and starts navigating, so that it will
+			 * navigate from the first
+			 * point to the second until the last.
+			 */
+			void setup();
+
+			/*
+			 * choose which challenge to run, TRUE is Navigation, FALSE is Autonomous
+			 */
+			void setChallenge(bool c);
 
 			/** Selects which one from the set of available holonomic methods will be used
 			  *  into transformed TP-Space, and sets its configuration from a configuration file.
@@ -130,6 +151,14 @@ namespace mrpt
 			//					PRIVATE DEFINITIONS
 			// ------------------------------------------------------
 
+			bool NavChallenge;//TRUE is Navigation, FALSE is Autonomous
+			float					targetAllowedDistance;
+
+			mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t points;
+			/** starts navigating to next point in ordered list
+			 *
+			 */
+			void gotoNextPoint();
             /** This defines the 'behavior' of the navigator (see posible values in TNavigatorBehavior)
               */
             TNavigatorBehavior 		navigatorBehavior;
@@ -141,6 +170,9 @@ namespace mrpt
             /** Auxiliary target position, for behaviors 'beDoorCrosing1' and 'beDoorCrosing3'.
               */
             CPoint2D				m_beAuxTarget;
+
+            std::string fileName;
+            bool inMeters;
 
             /**  This is the desired "path" for passing a door (in GLOBAL coordinates!)
               */

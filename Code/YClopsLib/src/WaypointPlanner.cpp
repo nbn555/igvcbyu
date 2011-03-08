@@ -24,8 +24,8 @@ void AbstractNavigationInterface::convertPointToMeters(CPoint2D& point)
 			point.m_coords[LAT], point.m_coords[LON]);
 	double direction = calcBearing(this->visited.front().m_coords[LAT], this->visited.front().m_coords[LON],
 			point.m_coords[LAT], point.m_coords[LON]);
-	point.m_coords[LAT] = cos(direction)*length;
-	point.m_coords[LON] = sin(direction)*length;
+	point.m_coords[LAT] = sin(direction)*length;
+	point.m_coords[LON] = cos(direction)*length;
 }
 void AbstractNavigationInterface::loadPoints(std::string filename, bool convertToMeters) {
 
@@ -41,14 +41,25 @@ void AbstractNavigationInterface::loadPoints(std::string filename, bool convertT
 		}
 		else
 		{
-			double temp_d = tmp.m_coords[LAT];
-			tmp.m_coords[LAT] = tmp.m_coords[LON];
-			tmp.m_coords[LON] = temp_d;
+			//double temp_d = tmp.m_coords[LAT];
+			//tmp.m_coords[LAT] = tmp.m_coords[LON];
+			//tmp.m_coords[LON] = temp_d;
 		}
-		toVisit.push_back(tmp);
+		if(datapointSet.good())
+		{
+			toVisit.push_back(tmp);
+		}
 	}
-
+	if(convertToMeters)
+	{
+		visited.front().m_coords[LAT] = 0;
+		visited.front().m_coords[LON] = 0;
+	}
 	datapointSet.close();
+	for(int i = 0 ; i < toVisit.size(); i++)
+			{
+				cout << "after load " <<toVisit[i]<< endl;
+			}
 
 }
 
@@ -112,10 +123,11 @@ SequentialNavigation::~SequentialNavigation() { }
 std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > SequentialNavigation::solve(bool inMeters){
 
 	this->visited.insert(this->visited.end(), this->toVisit.begin(),this->toVisit.end());
-	if(inMeters)
+	/*if(inMeters)
 	{
 		//TODO convert all points to meters from start point
-	}
+	}*/
+	this->visited.push_back(this->visited.front());
 	return this->visited;
 }
 
@@ -123,13 +135,18 @@ TSPNavigation::TSPNavigation( double lat, double lon ): AbstractNavigationInterf
 
 std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > TSPNavigation::solve(bool inMeters) {
 	TSPNavigation::nieveTSPSolution( this->toVisit, this->visited , inMeters);
+	//TSPNavigation::acoTSPSolution( this->toVisit, this->visited);
+	for(int i = 0 ; i < this->visited.size(); i++)
+	{
+		cout << this->visited[i]<< endl;
+	}
 	return this->visited;
 }
 
 void TSPNavigation::nieveTSPSolution(  mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit,
 		 mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & visited , bool inMeters) {
-
 	while( toVisit.size() > 0 ) {
+
 		double shortestDistance = 10000000000000.0;//just a really big number
 		int closestIndex = 0;
 		for( unsigned index = 0; index < toVisit.size(); ++index ) {
@@ -139,24 +156,15 @@ void TSPNavigation::nieveTSPSolution(  mrpt::aligned_containers<mrpt::poses::CPo
 				shortestDistance = dist;				//however there ought to be a better way then this and it should be fixed
 			}
 		}
-		mrpt::poses::CPoint2D& point = (toVisit[closestIndex]);
-		if(inMeters)
-		{
-			int multx = point.m_coords[LON] > visited.front().m_coords[LON] ? 1 : -1;
-			int multy = point.m_coords[LAT] > visited.front().m_coords[LAT] ? 1 : -1;
-			point.m_coords[LAT] = multy * (haversineDistance( visited.front().m_coords[LAT],toVisit[closestIndex].m_coords[LON],
-					toVisit[closestIndex].m_coords[LAT], toVisit[closestIndex].m_coords[LON] ));
-			point.m_coords[LON] = multx * (haversineDistance( toVisit[closestIndex].m_coords[LAT], visited.front().m_coords[LON],
-					toVisit[closestIndex].m_coords[LAT], toVisit[closestIndex].m_coords[LON] ));
-		}
 		visited.push_back(toVisit[closestIndex]);
 		toVisit.erase(toVisit.begin()+closestIndex);
 
+
 	}
-	if(inMeters){
+	/*if(inMeters){
 		visited.front().m_coords[LAT] = 0;
 		visited.front().m_coords[LON] = 0;
-	}
+	}*/
 	mrpt::poses::CPoint2D finish = mrpt::poses::CPoint2D();
 	finish.m_coords[LAT] = visited.front().m_coords[LAT];
 	finish.m_coords[LON] = visited.front().m_coords[LON];

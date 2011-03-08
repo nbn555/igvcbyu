@@ -104,6 +104,7 @@ void YclopsNavigationSystem::loadConfigFile(const mrpt::utils::CConfigFileBase &
 	refDistance = ini.read_float(robotName,"MAX_REFERENCE_DISTANCE",5 );
 	colGridRes_x = ini.read_float(robotName,"RESOLUCION_REJILLA_X",0.02f );
 	colGridRes_y = ini.read_float(robotName,"RESOLUCION_REJILLA_Y",0.02f);
+	targetAllowedDistance = ini.read_float(robotName, "TARGET_REACH_DISTANCE", 1.00f);
 
 	MRPT_LOAD_CONFIG_VAR_NO_DEFAULT(robotMax_V_mps,float,  ini,robotName);
 	MRPT_LOAD_CONFIG_VAR_NO_DEFAULT(robotMax_W_degps,float,  ini,robotName);
@@ -383,27 +384,32 @@ void  YclopsNavigationSystem::performNavigationStep()
 		targetDist= curPose.distance2DTo( m_navigationParams.target.x, m_navigationParams.target.y );
 
 
-		// Enviar evento de final de navegacion??
-		if (!navigationEndEventSent && targetDist<DIST_TO_TARGET_FOR_SENDING_EVENT)
-		{
-			navigationEndEventSent = true;
-			m_robot.sendNavigationEndEvent();
-		}
-
 		if ( targetDist < m_navigationParams.targetAllowedDistance &&
 		        navigatorBehavior == beNormalNavigation )
 		{
-			m_robot.stop();
-			m_navigationState = IDLE;
-			printf_debug("Navigation target was reached!\n" );
 
-			if (!navigationEndEventSent)
+			cout << "Reached Way Point" << endl;
+			points.erase(points.begin());
+			if(points.size() != 0)//this->points)
 			{
-				navigationEndEventSent = true;
-				m_robot.sendNavigationEndEvent();
+				gotoNextPoint();
+			}
+			else
+			{
+				m_robot.stop();
+				m_navigationState = IDLE;
+				printf_debug("Navigation target was reached!\n" );
+
+				if (!navigationEndEventSent)
+				{
+					navigationEndEventSent = true;
+					m_robot.sendNavigationEndEvent();
+				}
+				return;
+
 			}
 
-			return;
+
 		}
 
 		// Check the "no approaching the target"-alarm:
@@ -429,6 +435,7 @@ void  YclopsNavigationSystem::performNavigationStep()
 		// Compute target location relative to current robot pose:
 		// ---------------------------------------------------------------------
 		relTarget = CPoint2D(m_navigationParams.target) - curPose;
+		cout << "at" << curPose.x() << " " << curPose.y() << " looking for " << m_navigationParams.target.x << " " << m_navigationParams.target.y << endl;
 
 		// STEP1: Collision Grids Builder.
 		// -----------------------------------------------------------------------------
@@ -610,8 +617,7 @@ void  YclopsNavigationSystem::performNavigationStep()
 
 		} // end of "!skipNormalReactiveNavigation"
 
-		const float min_v = .3;
-		const float min_w = 2;
+
 		// ---------------------------------------------------------------------
 		//				SEND MOVEMENT COMMAND TO THE ROBOT
 		// ---------------------------------------------------------------------
@@ -623,8 +629,6 @@ void  YclopsNavigationSystem::performNavigationStep()
 
 		else
 		{
-			cmd_v = abs(cmd_v) < min_v && cmd_v != 0 ? min_v * cmd_v/abs(cmd_v) : cmd_v;
-			cmd_w = abs(cmd_w) < min_w && cmd_w != 0 ? min_w * cmd_w/abs(cmd_w) : cmd_w;
 			if ( !m_robot.changeSpeeds( cmd_v, cmd_w ) )
 			{
 				Error_ParadaDeEmergencia("\nERROR calling RobotMotionControl::changeSpeeds!! Stopping robot and finishing navigation\n");
@@ -956,7 +960,8 @@ void YclopsNavigationSystem::STEP5_Evaluator(
 		float	factor1, factor2,factor3,factor4,factor5,factor6;
 
 		if (TP_Target.x()!=0 || TP_Target.y()!=0)
-			a = atan2( TP_Target.y(), TP_Target.x());
+			//a = atan2( TP_Target.y(), TP_Target.x());
+			a = atan2( TP_Target.x(), TP_Target.y());
 		else	a = 0;
 
 		DEBUG_POINT = 1;
@@ -1248,6 +1253,13 @@ float  YclopsNavigationSystem::evaluate( TNavigationParams *params )
 *************************************************************************/
 void  YclopsNavigationSystem::navigate(YclopsNavigationSystem::TNavigationParams *params )
 {
+	if(points.size() == 0)
+		{
+			mrpt::poses::CPoint2D* point = new CPoint2D();
+			point->x(params->target.x);
+			point->y(params->target.y);
+			points.push_back(*point);
+		}
 	navigationEndEventSent = false;
 
 	// Copiar datos:
@@ -1431,5 +1443,77 @@ bool  YclopsNavigationSystem::CDynamicWindow::findClosestCut( float cmd_v, float
 	out_w = ws[idx_min];
 
 	return true;
+}
+
+void YclopsNavigationSystem::gotoNextPoint()
+{
+	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t::iterator iter = points.begin();
+
+	//setting up the next waypoint
+	mrpt::reactivenav::CAbstractReactiveNavigationSystem::TNavigationParams*   navParams = new mrpt::reactivenav::CAbstractReactiveNavigationSystem::TNavigationParams();
+	navParams->target.x = iter->x();
+	navParams->target.y = iter->y();
+	//distance from the waypoint in meters before the robot considers itself at the point
+	navParams->targetAllowedDistance = targetAllowedDistance;
+	//navParams.targetIsRelative = !challange; is being ignored
+	//gives the reactive nav the next goal
+	navigate(navParams );
+}
+void YclopsNavigationSystem::setFileName(std::string & fileName, bool inMeters)
+{
+	cout << fileName << endl;
+	this->fileName = fileName;
+	this->inMeters = inMeters;
+}
+void YclopsNavigationSystem::setup()
+{
+	/*
+	 * I added this because I changed the motor controller so it requires a config file
+	 * for initialization.  CConfigFileMemory is a psudo config file so the motor controller
+	 * code should still work with SimpleNavigation.  All the writes are required values for the
+	 * motor controller.  Though this should really be brought in from a config file for the motor
+	 * controller.  Config needs to be a pointer.  Eldon
+	*/
+
+	mrpt::utils::CConfigFileMemory * config = new mrpt::utils::CConfigFileMemory();
+	config->write("MOTOR","COM_port_LIN","/dev/ttyS1");
+	config->write("MOTOR", "MAX_FORWARD_LEFT", 400 );
+	config->write("MOTOR", "MAX_FORWARD_RIGHT", 400 );
+	config->write("MOTOR", "MAX_REVERSE_LEFT", -400 );
+	config->write("MOTOR", "MAX_REVERSE_RIGHT", -400 );
+	MotorController::setConfigFile(config);
+
+	//interface that will be used by the reactive nav to sense the environment and make the robot move
+		//initial position
+	mrpt::poses::CPose2D pose = CPoint2D();
+	float v = 0;
+	float w = 0;
+	m_robot.getCurrentPoseAndSpeeds(pose, v,w);
+	double lat = pose.x();
+	double lon = pose.y();
+	AbstractNavigationInterface *nav = NULL;
+
+	if(NavChallenge)
+	{
+		// solves the tsp problem, in autonomous challenge we need to add some code here to make it work.
+		nav = new TSPNavigation(lat,lon);
+	}
+	else
+	{
+		 nav =  new SequentialNavigation(lat, lon);
+	}
+
+	nav->loadPoints(fileName, !inMeters);
+
+	//waypoints in the order we want to visit them
+	points =  nav->solve(false);
+
+	gotoNextPoint();
+
+}
+
+void YclopsNavigationSystem::setChallenge(bool c)
+{
+	NavChallenge = c;
 }
 
