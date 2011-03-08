@@ -103,6 +103,11 @@ namespace mrpt
 			 */
 			void setChallenge(bool c);
 
+			/*
+			 * get the current target from the navigation system
+			 */
+			void getTarget(mrpt::poses::TPoint2D *target);
+
 			/** Selects which one from the set of available holonomic methods will be used
 			  *  into transformed TP-Space, and sets its configuration from a configuration file.
 			  */
