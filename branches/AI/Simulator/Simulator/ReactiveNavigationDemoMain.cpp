@@ -781,6 +781,18 @@ void ReactiveNavigationDemoFrame::OntimSimulateTrigger(wxTimerEvent& event)
 		robotSim.getPHI());
 
 
+	double   x, y;
+
+
+
+
+	mrpt::poses::TPoint2D   target;
+	reacNavObj->getTarget(&target);
+	x = target.x ;
+	y = target.y ;
+	lyTarget->SetCoordinateBase( x,y );
+
+
 	plot->Refresh();
 
 	StatusBar1->SetStatusText(
