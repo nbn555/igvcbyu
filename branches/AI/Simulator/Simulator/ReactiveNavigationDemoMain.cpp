@@ -27,7 +27,7 @@
    +---------------------------------------------------------------------------+ */
 
 #include "ReactiveNavigationDemoMain.h"
-#include "SimpleNavigation.h"
+#include "YclopsNavigationSystem.h"
 #include "CIniEditor.h"
 #include <wx/msgdlg.h>
 #include <wx/filename.h>
@@ -120,7 +120,7 @@ using namespace std;
 #include <mrpt/reactivenav/CReactiveNavigationSystem.h>
 using namespace mrpt::reactivenav;
 
-SimpleNavigation		*reacNavObj=NULL;
+YclopsNavigationSystem		*reacNavObj=NULL;
 
 // The obstacles map:
 COccupancyGridMap2D		gridMap;
@@ -141,10 +141,10 @@ public:
 			phi+= 2*M_PI;
 			cout << "to" << phi << endl;
 		}
-		curPose.phi(phi);
-		float temp = curPose.x();
+		//curPose.phi(phi);
+		/*float temp = curPose.x();
 		curPose.x(curPose.y());
-		curPose.y(temp);
+		curPose.y(temp);*/
 		curV = robotSim.getV();
 		curW = robotSim.getW();
 		return true;
@@ -152,7 +152,7 @@ public:
 
 	bool changeSpeeds( float v, float w )
 	{
-		robotSim.movementCommand(v,-w);
+		robotSim.movementCommand(v,w);
 
 		return true;
 	}
@@ -223,6 +223,10 @@ const long ReactiveNavigationDemoFrame::ID_CUSTOM1 = wxNewId();
 const long ReactiveNavigationDemoFrame::ID_TEXTCTRL1 = wxNewId();
 const long ReactiveNavigationDemoFrame::ID_STATUSBAR1 = wxNewId();
 const long ReactiveNavigationDemoFrame::ID_TIMER1 = wxNewId();
+const long ReactiveNavigationDemoFrame::ID_CHECKBOX3 = wxNewId();
+const long ReactiveNavigationDemoFrame::ID_BUTTON8 = wxNewId();
+
+
 //*)
 
 const long ReactiveNavigationDemoFrame::ID_MENUITEM_SET_reactivenav_TARGET = wxNewId();
@@ -264,7 +268,7 @@ ReactiveNavigationDemoFrame::ReactiveNavigationDemoFrame(wxWindow* parent,wxWind
     wxStaticBoxSizer* StaticBoxSizer1;
     pointsFileLoaded = false;
 
-    Create(parent, id, _("Reactive Navigation Demo - Part of the MRPT project - J.L. Blanco (C) 2005-2008"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("id"));
+    Create(parent, id, _("YClops Navigation Simulator"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("id"));
     {
     wxIcon FrameIcon;
     FrameIcon.CopyFromBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("MAIN_ICON")),wxART_FRAME_ICON));
@@ -279,6 +283,7 @@ ReactiveNavigationDemoFrame::ReactiveNavigationDemoFrame(wxWindow* parent,wxWind
     FlexGridSizer3 = new wxFlexGridSizer(0, 4, 0, 0);
     FlexGridSizer3->AddGrowableCol(2);
     btnStart = new wxButton(Panel1, ID_BUTTON1, _("Simulate"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
+    btnStart->SetDefault();
     FlexGridSizer3->Add(btnStart, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     btnPause = new wxButton(Panel1, ID_BUTTON2, _("Pause"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
     btnPause->Disable();
@@ -297,8 +302,11 @@ ReactiveNavigationDemoFrame::ReactiveNavigationDemoFrame(wxWindow* parent,wxWind
     FlexGridSizer5->Add(cbExtMap, 1, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
     StaticText1 = new wxStaticText(Panel1, ID_STATICTEXT1, _("External map file:"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT1"));
     FlexGridSizer5->Add(StaticText1, 1, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
+    btnLoadMapsFile = new wxButton(Panel1, ID_BUTTON8, _("Load Maps File"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON8"));
+    btnLoadMapsFile->Disable();
     edMapFile = new wxTextCtrl(Panel1, ID_TEXTCTRL2, _("./obstacles_map.gridmap"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL2"));
     edMapFile->Disable();
+    FlexGridSizer5->Add(btnLoadMapsFile, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     FlexGridSizer5->Add(edMapFile, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     StaticBoxSizer1->Add(FlexGridSizer5, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
     FlexGridSizer4->Add(StaticBoxSizer1, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
@@ -309,7 +317,7 @@ ReactiveNavigationDemoFrame::ReactiveNavigationDemoFrame(wxWindow* parent,wxWind
     btnEditNavParams = new wxButton(Panel1, ID_BUTTON7, _("Edit navig. parameters..."), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON7"));
     FlexGridSizer7->Add(btnEditNavParams, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     cbInternalParams = new wxCheckBox(Panel1, ID_CHECKBOX2, _("Use external config files:"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX2"));
-    cbInternalParams->SetValue(false);
+    cbInternalParams->SetValue(true);
     FlexGridSizer7->Add(cbInternalParams, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     FlexGridSizer7->Add(-1,-1,1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     StaticBoxSizer3->Add(FlexGridSizer7, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
@@ -318,12 +326,12 @@ ReactiveNavigationDemoFrame::ReactiveNavigationDemoFrame(wxWindow* parent,wxWind
     StaticText5 = new wxStaticText(Panel1, ID_STATICTEXT5, _("Robot parameters:"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT5"));
     FlexGridSizer8->Add(StaticText5, 1, wxALL|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL, 5);
     edRobotCfgFile = new wxTextCtrl(Panel1, ID_TEXTCTRL5, _("./CONFIG_RobotDescription.ini"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL5"));
-    edRobotCfgFile->Disable();
+    //edRobotCfgFile->Disable();
     FlexGridSizer8->Add(edRobotCfgFile, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     StaticText6 = new wxStaticText(Panel1, ID_STATICTEXT6, _("Navigation parameters:"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT6"));
     FlexGridSizer8->Add(StaticText6, 1, wxALL|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL, 5);
     edNavCfgFile = new wxTextCtrl(Panel1, ID_TEXTCTRL6, _("./CONFIG_ReactiveNavigator.ini"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL6"));
-    edNavCfgFile->Disable();
+    //edNavCfgFile->Disable();
     FlexGridSizer8->Add(edNavCfgFile, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     StaticBoxSizer3->Add(FlexGridSizer8, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
     FlexGridSizer4->Add(StaticBoxSizer3, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
@@ -340,10 +348,13 @@ ReactiveNavigationDemoFrame::ReactiveNavigationDemoFrame(wxWindow* parent,wxWind
     edY = new wxTextCtrl(Panel1, ID_TEXTCTRL4, _("5"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL4"));
     FlexGridSizer6->Add(edY, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     btnNavigate = new wxButton(Panel1, ID_BUTTON4, _("SET TARGET"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON4"));
-    btnNavigate->SetDefault();
+    //btnNavigate->SetDefault();
     FlexGridSizer6->Add(btnNavigate, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     btnLoadPointsFile = new wxButton(Panel1, ID_BUTTON5, _("Load Points File"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON5"));
-    btnLoadPointsFile->SetDefault();
+    //btnLoadPointsFile->SetDefault();
+    cbTSP = new wxCheckBox(Panel1, ID_CHECKBOX3, _("Use TSP:"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX3"));
+    cbTSP->SetValue(false);
+    FlexGridSizer6->Add(cbTSP, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     FlexGridSizer6->Add(btnLoadPointsFile, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     StaticBoxSizer2->Add(FlexGridSizer6, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
     FlexGridSizer4->Add(StaticBoxSizer2, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
@@ -384,6 +395,7 @@ ReactiveNavigationDemoFrame::ReactiveNavigationDemoFrame(wxWindow* parent,wxWind
     Connect(ID_BUTTON5,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&ReactiveNavigationDemoFrame::OnLoadPointsFileClick);
     plot->Connect(wxEVT_MOTION,(wxObjectEventFunction)&ReactiveNavigationDemoFrame::OnplotMouseMove,0,this);
     Connect(ID_TIMER1,wxEVT_TIMER,(wxObjectEventFunction)&ReactiveNavigationDemoFrame::OntimSimulateTrigger);
+    Connect(ID_BUTTON8,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&ReactiveNavigationDemoFrame::OnSelectMapClick);
     //*)
 
 	Connect( ID_MENUITEM_SET_reactivenav_TARGET, wxEVT_COMMAND_MENU_SELECTED, (wxObjectEventFunction) &ReactiveNavigationDemoFrame::OnreactivenavTargetMenu );
@@ -494,6 +506,7 @@ void ReactiveNavigationDemoFrame::OnbtnStartClick(wxCommandEvent& event)
 	// Enable buttons:
 	btnPause->Enable(true);
 	btnStart->Enable(false);
+	plot->Fit();
 
 
 	// Set timer to start simulation:
@@ -563,7 +576,7 @@ void ReactiveNavigationDemoFrame::tryConstructReactiveNavigator()
 		{
 			// Create reactive nav. object:
 			string s = "";
-			reacNavObj = new SimpleNavigation(s,((CReactiveInterfaceImplementation*)(&myReactiveInterface)));
+			reacNavObj = new YclopsNavigationSystem(myReactiveInterface,false,false);
 			//reacNavObj = new SimpleNavigation();
 		}
 
@@ -585,7 +598,8 @@ void ReactiveNavigationDemoFrame::tryConstructReactiveNavigator()
 		cerr << e.what();
 	}
 }
-
+double targetX;
+double targetY;
 void ReactiveNavigationDemoFrame::OnbtnNavigateClick(wxCommandEvent& event)
 {
 
@@ -610,13 +624,17 @@ void ReactiveNavigationDemoFrame::OnbtnNavigateClick(wxCommandEvent& event)
 	if (!strY.ToDouble( &y )) {  wxMessageBox( _("'y' is not a valid number"), wxT("Error"), wxOK, this); return; }
 
 	lyTarget->SetCoordinateBase( x,y );
+
+	targetX = x;
+	targetY = y;
+
 	plot->Refresh();
 
 	if (reacNavObj)
 	{
 		CAbstractReactiveNavigationSystem::TNavigationParams   navParams;
-		navParams.target.x = y ;
-		navParams.target.y = x ;
+		navParams.target.x = x ;
+		navParams.target.y = y ;
 		navParams.targetAllowedDistance = 0.40f;
 		navParams.targetIsRelative = false;
 
@@ -667,7 +685,9 @@ bool ReactiveNavigationDemoFrame::reloadMap()
 
 
 		// Refresh display:
+
 		plot->Refresh();
+		//plot->Fit();
 
 		return true;
     }
@@ -746,6 +766,10 @@ void ReactiveNavigationDemoFrame::OntimSimulateTrigger(wxTimerEvent& event)
 	// Go on, simulate one time step:
 	// Robot sim:
 	robotSim.simulateInterval( 0.001 * SIMULATION_TIME_STEPS );
+	CPose2D curPose;
+	robotSim.getRealPose(curPose);
+
+	//cout << "at" << curPose.x() << " " << curPose.y() << " looking for " << targetX << " " << targetY << endl;
 
 	reacNavObj->navigationStep();
 
@@ -824,7 +848,8 @@ void ReactiveNavigationDemoFrame::OnbtnEditNavParamsClick(wxCommandEvent& event)
 
 void ReactiveNavigationDemoFrame::OnrbExtMapSelect(wxCommandEvent& event)
 {
-    edMapFile->Enable( ! cbExtMap->GetValue() );
+    //edMapFile->Enable( ! cbExtMap->GetValue() );
+    btnLoadMapsFile->Enable( ! cbExtMap->GetValue() );
 }
 
 void ReactiveNavigationDemoFrame::OncbInternalParamsClick(wxCommandEvent& event)
@@ -842,15 +867,38 @@ void ReactiveNavigationDemoFrame::OnLoadPointsFileClick(wxCommandEvent& event)
 	if(!reacNavObj){
 		tryConstructReactiveNavigator();
 	}
-    wxFileDialog * openPointsFile= new wxFileDialog(this, _("Open File"), _(""), _(""), _("*.txt"), wxOPEN, wxDefaultPosition);
+    wxFileDialog * openPointsFile= new wxFileDialog(this, _("Open File"), _(""), _(""), _("*.ywp"), wxOPEN, wxDefaultPosition);
     if(openPointsFile->ShowModal() == wxID_OK)
     {
     	wxString file = openPointsFile->GetFilename();
+    	wxString path = openPointsFile->GetPath();
     	string filestring = string(file.mb_str());
-    	cout << filestring << endl;
-    	reacNavObj->setFileName(filestring, true);
+    	string pathstring = string(path.mb_str());
+    	string fullfile = pathstring + filestring;
+    	cout << pathstring << endl;
+    	reacNavObj->setFileName(pathstring, true);
     	pointsFileLoaded = true;
-    	reacNavObj->go();
+    	reacNavObj->setChallenge(cbTSP->GetValue());
+    	reacNavObj->setup();
+    }
+}
+
+void ReactiveNavigationDemoFrame::OnSelectMapClick(wxCommandEvent& event)
+{
+
+    wxFileDialog * openPointsFile= new wxFileDialog(this, _("Open File"), _(""), _(""), _("*.ym"), wxOPEN, wxDefaultPosition);
+    if(openPointsFile->ShowModal() == wxID_OK)
+    {
+    	wxString file = openPointsFile->GetFilename();
+    	wxString path = openPointsFile->GetPath();
+    	//string filestring = string(file.mb_str());
+    	//cout << filestring << endl;
+    	edMapFile->ChangeValue(path);
+    	//reloadMap();
+    	//plot->Fit();
+
+
+
     }
 }
 
