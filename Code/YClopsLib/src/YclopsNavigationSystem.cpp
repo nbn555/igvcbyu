@@ -1517,3 +1517,8 @@ void YclopsNavigationSystem::setChallenge(bool c)
 	NavChallenge = c;
 }
 
+void YclopsNavigationSystem::getTarget(mrpt::poses::TPoint2D *target)
+{
+	*target = m_navigationParams.target;
+}
+
