@@ -116,7 +116,7 @@ private:
 
 
 	static void acoTSPSolution( mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit,
-			mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & visited );
+			mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & visited, bool inMeters);
 
 };
 
