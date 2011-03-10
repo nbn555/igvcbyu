@@ -16,6 +16,7 @@
 #include "Compass.h"
 #include "WiiController.h"
 #include "YClopsReactiveNavInterface.h"
+#include "YclopsNavigationSystem.h"
 #include "Beeper.h"
 #include "logging.h"
 
@@ -31,6 +32,8 @@ void shutdown( int exitStatus );
 LOG_LEVEL loggingLevel = DEBUG4;
 
 YClopsReactiveNavInterface * yclops = NULL;
+mrpt::reactivenav::YclopsNavigationSystem* ai = NULL;
+string filename = "points.txt";
 
 int main( int argc, char** argv ) {
 
@@ -54,6 +57,8 @@ int main( int argc, char** argv ) {
 		Log::SetReportLevel(loggingLevel);
 		Log::SetTimeStampDisplay(false);
 		Log::SetReportStreamBits(ALL_LOG&(~(WII_LOG)));
+//		Log::SetReportStreamBits(ALL_LOG);
+
 		Log::GetOStream()->precision(10);
 
 		//Set up the SIGUSR1 so we know when a button is pressed
@@ -68,23 +73,31 @@ int main( int argc, char** argv ) {
 
 		yclops = new YClopsReactiveNavInterface( configFile );
 		yclops->useNullMotorCommand();
+		ai = new mrpt::reactivenav::YclopsNavigationSystem(*yclops, false,false);
 
 		pointsFile = configFile.read_string("ROBOT_NAME","POINTS_FILE","points.txt");
 
-		mrpt::poses::CPose2D curPose;
-		mrpt::slam::CSimplePointsMap map;
-		float curV, curW;
+		//mrpt::poses::CPose2D curPose;
+		//mrpt::slam::CSimplePointsMap map;
+		//float curV, curW;
 
 		while(!closing) {
 
-			LOG(DEBUG4) << "Running CurrentPose and Speeds" << endl;
+			/*LOG(DEBUG4) << "Running CurrentPose and Speeds" << endl;
 			yclops->getCurrentPoseAndSpeeds(curPose, curV, curW);
 			LOG(DEBUG4) << "Running change speeds" << endl;
 			yclops->changeSpeeds(curV, curW);
 			LOG(DEBUG4) << "Running senseObstacles" << endl;
-			yclops->senseObstacles(map);
+			yclops->senseObstacles(map);*/
+			//usleep(1000000/20);
+			if (ai->getCurrentState() != mrpt::reactivenav::CAbstractReactiveNavigationSystem::NAVIGATING )
+			{
+				usleep(1000000/20);
+				continue;
+			}
+			ai->navigationStep();
 
-			LOG(DEBUG) << "CurPose: (" << curPose.x() << "," << curPose.y() << "," << curPose.phi()*180./M_PI << ")" << endl;
+			//LOG(DEBUG) << "CurPose: (" << curPose.x() << "," << curPose.y() << "," << curPose.phi()*180./M_PI << ")" << endl;
 
 		}
 	} catch (...) {
@@ -143,11 +156,17 @@ void signal_handler( int signum ) {
 		if( cbuttons & CLASSIC_A ) {
 			LOG(INFO) << "Going into Autonomous Mode" << endl;
 			yclops->setAutonomusMode();
+			ai->setChallenge(false);
+			ai->setFileName(filename,false);
+			ai->setup();
 		}
 
 		if( cbuttons & CLASSIC_B ) {
 			LOG(INFO) << "Going into Navigation Mode" << endl;
 			yclops->setNavigationMode();
+			ai->setChallenge(true);
+			ai->setFileName(filename,false);
+			ai->setup();
 		}
 
 		if( cbuttons & CLASSIC_X ) {
@@ -155,11 +174,13 @@ void signal_handler( int signum ) {
 
 			yclops->useNullMotorCommand();
 			yclops->setIdle();
+			ai->stop();
 		}
 
 		if( cbuttons & CLASSIC_Y ) {
 			LOG(INFO) << "Wii Motor Control" << endl;
 			yclops->useWiiMotorCommand();
+			ai->stop();
 		}
 
 		if( cbuttons & CLASSIC_L1 ) {
