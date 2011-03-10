@@ -68,8 +68,9 @@ public:
 
 class LidarData: public SensorData {
 public:
-	LidarData() {};
+	LidarData(mrpt::slam::CObservation2DRangeScan map) : map(map) {};
 	virtual ~LidarData() {};
+	mrpt::slam::CObservation2DRangeScan map;
 };
 
 #endif /* SENSORDATA_H_ */

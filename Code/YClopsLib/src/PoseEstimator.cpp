@@ -28,7 +28,7 @@ bool AbstractPoseEstimator::getPose( CPose3D & pose ) {
 	return true;
 }
 
-NoFilterPoseEstimator::NoFilterPoseEstimator(bool inMeters):Meters(inMeters) {
+NoFilterPoseEstimator::NoFilterPoseEstimator(bool convertToMeters):convertToMeters(convertToMeters) {
 	started = false;
 
 }
@@ -73,7 +73,7 @@ void NoFilterPoseEstimator::update( const GPSData * gpsData, const CompassData *
 		started = true;
 		return;
 	}
-	if(Meters){
+	if(convertToMeters){
 		double length = AbstractNavigationInterface::haversineDistance(StartLat, StartLon,
 				lat, lon);
 		double direction = AbstractNavigationInterface::calcBearing(StartLat, StartLon,

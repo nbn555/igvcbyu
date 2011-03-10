@@ -39,12 +39,12 @@ public:
 	void sensorProcess();
 	SensorData * getData();
 
-	void getObstacles(mrpt::slam::CSimplePointsMap & map, mrpt::poses::CPose3D pose);
+	void getObstacles(mrpt::slam::CSimplePointsMap & map);
 	void dumpData( std::ostream & out ) const;
 
 private:
 	void getFrame(cv::Mat & image);
-	void insertObstacles(mrpt::slam::CSimplePointsMap & map, int size, bool * array, mrpt::poses::CPose3D pose);
+	void insertObstacles(mrpt::slam::CSimplePointsMap & map, int size, bool * array);
 	void hasObstacles(bool * array, cv::Mat & image);
 	void getWhite(cv::Mat & image);
 	void distort(cv::Mat & src);

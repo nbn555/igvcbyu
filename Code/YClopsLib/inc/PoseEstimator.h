@@ -33,10 +33,10 @@ protected:
 class NoFilterPoseEstimator: public AbstractPoseEstimator {
 public:
 	bool started;
-	bool Meters;
+	bool convertToMeters;
 	double StartLat;
 	double StartLon;
-	NoFilterPoseEstimator(bool inMeters = false);
+	NoFilterPoseEstimator(bool convertToMeters = false);
 	virtual ~NoFilterPoseEstimator();
 
 	/**
