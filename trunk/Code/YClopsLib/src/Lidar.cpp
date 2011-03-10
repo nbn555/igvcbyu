@@ -44,11 +44,25 @@ void Lidar::init() {
 }
 
 void Lidar::sensorProcess() {
+	bool thereIsObservation, hardwareError=false;
+	CObservation2DRangeScan obs;
 
+	this->doProcessSimple(thereIsObservation, obs, hardwareError);
 }
 
 SensorData * Lidar::getData() {
-	return new LidarData();
+	bool						thereIsObservation, hardError;
+	CObservation2DRangeScan		obs;
+	try
+	{
+			this->doProcessSimple( thereIsObservation, obs, hardError );
+			if (thereIsObservation)
+				return new LidarData(obs);
+	}
+	catch (std::exception &e)
+	{
+	}
+	return NULL;;
 }
 
 void Lidar::dumpData( std::ostream & out ) {

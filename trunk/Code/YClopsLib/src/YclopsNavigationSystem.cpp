@@ -13,6 +13,8 @@
 #include <mrpt/utils.h>
 #include <mrpt/system/filesystem.h>
 
+#include "logging.h"
+
 using namespace mrpt;
 using namespace mrpt::poses;
 using namespace mrpt::math;
@@ -372,12 +374,13 @@ void  YclopsNavigationSystem::performNavigationStep()
 		/* ----------------------------------------------------------------
 		 	  Request current robot pose and velocities
 		   ---------------------------------------------------------------- */
+		LOG(DEBUG4) << "Running CurrentPose and Speeds" << endl;
 		if ( !m_robot.getCurrentPoseAndSpeeds(curPose, curVL, curW ) )
 		{
 			Error_ParadaDeEmergencia("ERROR calling m_robot.getCurrentPoseAndSpeeds, stopping robot and finishing navigation");
 			return;
 		}
-
+		LOG(DEBUG) << "CurPose: (" << curPose.x() << "," << curPose.y() << "," << curPose.phi()*180./M_PI << ")" << endl;
 		/* ----------------------------------------------------------------
 		 	  Have we reached the target location?
 		   ---------------------------------------------------------------- */
@@ -629,6 +632,7 @@ void  YclopsNavigationSystem::performNavigationStep()
 
 		else
 		{
+			LOG(DEBUG4) << "Running change speeds" << endl;
 			if ( !m_robot.changeSpeeds( cmd_v, cmd_w ) )
 			{
 				Error_ParadaDeEmergencia("\nERROR calling RobotMotionControl::changeSpeeds!! Stopping robot and finishing navigation\n");
@@ -819,6 +823,7 @@ bool YclopsNavigationSystem::STEP2_Sense(
 {
 	try
 	{
+		LOG(DEBUG4) << "Running senseObstacles" << endl;
 		return m_robot.senseObstacles( out_obstacles );
 	}
 	catch (std::exception &e)
@@ -1465,6 +1470,12 @@ void YclopsNavigationSystem::setFileName(std::string & fileName, bool inMeters)
 	this->fileName = fileName;
 	this->inMeters = inMeters;
 }
+void YclopsNavigationSystem::stop(){
+	points = mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t();
+	m_robot.stop();
+	m_navigationState = IDLE;
+	return;
+}
 void YclopsNavigationSystem::setup()
 {
 	/*
@@ -1475,13 +1486,7 @@ void YclopsNavigationSystem::setup()
 	 * controller.  Config needs to be a pointer.  Eldon
 	*/
 
-	mrpt::utils::CConfigFileMemory * config = new mrpt::utils::CConfigFileMemory();
-	config->write("MOTOR","COM_port_LIN","/dev/ttyS1");
-	config->write("MOTOR", "MAX_FORWARD_LEFT", 400 );
-	config->write("MOTOR", "MAX_FORWARD_RIGHT", 400 );
-	config->write("MOTOR", "MAX_REVERSE_LEFT", -400 );
-	config->write("MOTOR", "MAX_REVERSE_RIGHT", -400 );
-	MotorController::setConfigFile(config);
+
 
 	//interface that will be used by the reactive nav to sense the environment and make the robot move
 		//initial position

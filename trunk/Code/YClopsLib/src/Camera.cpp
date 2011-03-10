@@ -1,6 +1,7 @@
 #include "Camera.h"
 #include "logging.h"
 #include <cassert>
+#include <mrpt/gui.h>
 
 //#define DEBUG
 
@@ -15,6 +16,9 @@ extern bool bCameraData;
 
 using namespace std;
 using namespace cv;
+using namespace mrpt;
+using namespace mrpt::utils;
+
 
 bool Camera::killThread = false;
 Camera::Camera() : capture(0), array(NULL), map(NULL) {
@@ -81,14 +85,12 @@ void Camera::sensorProcess() {
 	if(map != NULL){
 		delete map;
 		map = new mrpt::slam::CSimplePointsMap;
+
+		LOG_CAMERA(DEBUG3) << "Deleted old map, creating new one...";
 	}
 
-
-	// TODO: Talk to Jack about what to do here
-	mrpt::poses::CPose3D pose;
-
 	// Putting data in map
-	getObstacles(*map, pose);
+	getObstacles(*map);
 
 }
 
@@ -101,7 +103,7 @@ void Camera::getFrame(Mat & image){
 	capture >> image;
 }
 
-void Camera::getObstacles(mrpt::slam::CSimplePointsMap & map, mrpt::poses::CPose3D pose){
+void Camera::getObstacles(mrpt::slam::CSimplePointsMap & map){
 
 	initializeArray(array);
 	LOG_CAMERA(DEBUG3) << "Initialized array..." << endl;
@@ -125,22 +127,30 @@ void Camera::getObstacles(mrpt::slam::CSimplePointsMap & map, mrpt::poses::CPose
 	hasObstacles(array, image);
 	LOG_CAMERA(DEBUG3) << "Checked for obstacles..." << endl;
 
-	insertObstacles(map, GRID_SIZE, array, pose);
+	insertObstacles(map, GRID_SIZE, array);
 	LOG_CAMERA(DEBUG3) << "Inserted obstacles into map..." << endl;
 
 }
 
 void Camera::dumpData( std::ostream & out ) const {
+	static mrpt::gui::CDisplayWindowPlots win("Camera scans");
 
-	out << "*******************" << endl;
-	out << "dumping camera data" << endl;
-	out << "*******************" << endl;
-/*	if(!capture.isOpened()) out << "ERROR" << endl;
-	///namedWindow("debug",1);
+
+
+	vector_float xs;
+	vector_float ys;
+	vector_float zs;
+
+	map->getAllPoints(xs,ys,zs);
+	win.plot(xs,ys,".b3");
+	win.axis_equal();
+
+	/*
+	if(!capture.isOpened()) out << "ERROR" << endl;
+	namedWindow("debug",1);
 	for(;;) {
-		//if(image){
 			imshow("debug", image);
-		//}
+
 
 		if(waitKey(30) >= 0) break;
 	}
@@ -157,7 +167,7 @@ void* Camera::cameraDataShow(void*dataShow) {
 	return NULL;
 }
 
-void Camera::insertObstacles(mrpt::slam::CSimplePointsMap & map, int size, bool * array, mrpt::poses::CPose3D pose ){
+void Camera::insertObstacles(mrpt::slam::CSimplePointsMap & map, int size, bool * array){
 	int pixel_x;
 	int pixel_y;
 	double x;
@@ -174,18 +184,7 @@ void Camera::insertObstacles(mrpt::slam::CSimplePointsMap & map, int size, bool 
 				x = ((pixel_x - 240) * .00635);
 				y = ((pixel_y * .00635) + .914);
 
-				double tempx = x;
-				double tempy = y;
-				double yaw = pose.yaw();
-
-				x = tempy * sin(yaw) + tempx * cos(yaw) + pose.x();
-				y = tempx * sin(yaw) + tempy * cos(yaw) + pose.y();
-
 				map.insertPoint(x, y);
-
-				//LOG_CAMERA(DEBUG4) << "\tx = " << x << endl;
-				//LOG_CAMERA(DEBUG4) << "\ty = " << y << endl;
-
 			}
 		}
 

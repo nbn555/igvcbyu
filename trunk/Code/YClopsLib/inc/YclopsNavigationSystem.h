@@ -98,6 +98,11 @@ namespace mrpt
 			 */
 			void setup();
 
+			/**
+			 * stops the current navigation process.
+			 */
+			void stop();
+
 			/*
 			 * choose which challenge to run, TRUE is Navigation, FALSE is Autonomous
 			 */
