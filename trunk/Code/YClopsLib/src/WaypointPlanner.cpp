@@ -135,7 +135,14 @@ TSPNavigation::TSPNavigation( double lat, double lon ): AbstractNavigationInterf
 
 std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > TSPNavigation::solve(bool inMeters) {
 	TSPNavigation::nieveTSPSolution( this->toVisit, this->visited , inMeters);
-	//TSPNavigation::acoTSPSolution( this->toVisit, this->visited);
+	//TSPNavigation::acoTSPSolution( this->toVisit, this->visited, inMeters);
+
+	cout << "toVisit input: " << endl;
+	for(int i = 0 ; i < this->toVisit.size(); i++)
+	{
+		cout << this->toVisit[i]<< endl;
+	}
+	cout << "Expected output: " << endl;
 	for(int i = 0 ; i < this->visited.size(); i++)
 	{
 		cout << this->visited[i]<< endl;
@@ -172,16 +179,17 @@ void TSPNavigation::nieveTSPSolution(  mrpt::aligned_containers<mrpt::poses::CPo
 }
 
 void TSPNavigation::acoTSPSolution( mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit,
-		mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & visited ){
+		mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & visited , bool inMeters){
 
 	// Need to test getDistance method in TSPDriver.
 
-	tkhl::TSPDriver TSP(toVisit);
+	tkhl::TSPDriver TSP(toVisit, inMeters);
 	TSP.GetAnt();
 	TSP.StartSearch();
 	for (int t=0;t<tkhl::iCityCount;t++){
 		//printf(" %d ",tkhl::besttour[t]);
-		visited.push_back(tkhl::besttour[t]);
+		//cout << tkhl::besttour[t] << endl;
+		visited.push_back(toVisit[tkhl::besttour[t]]);
 	}
 	//printf("\n");
 }

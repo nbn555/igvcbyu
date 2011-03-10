@@ -16,7 +16,7 @@ using namespace mrpt::poses;
 
 namespace tkhl{
 	const int iAntCount=34;
-	const int iCityCount=10; // total city count
+	const int iCityCount=5; // total city count
 	const int iItCount=50; // cycle count
 	const double Q=100;
 	const double alpha=1;
@@ -192,9 +192,9 @@ namespace tkhl{
 		TSPAnt ants[iAntCount];
 		void GetAnt();
 		void StartSearch();
-		TSPDriver(mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit);
+		TSPDriver(mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit, bool inMeters);
 	private:
-		double getDistance( int mode, double lat1, double lon1, double lat2, double lon2 );
+		double getDistance(double lat1, double lon1, double lat2, double lon2, bool inMeters);
 	};
 	void TSPDriver::UpdateTrial()
 	{
@@ -270,12 +270,12 @@ namespace tkhl{
 	*/
 
 	//initial map, read map information from coming vectors.
-	TSPDriver::TSPDriver(mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit)
+	TSPDriver::TSPDriver(mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit, bool inMeters)
 	{
 
 		initmap();
 		m_dLength=10e9;
-
+		//iCityCount = toVisit.size();
 
 		struct city
 		{
@@ -297,7 +297,7 @@ namespace tkhl{
 			{
 				{
 					//Map.distance[i][j]=sqrt(pow((cc[i].x-cc[j].x),2)+pow((cc[i].y-cc[j].y),2));
-					Map.distance[i][j]=getDistance(0, cc[i].x, cc[i].y, cc[j].x, cc[j].y);
+					Map.distance[i][j]=getDistance(cc[i].x, cc[i].y, cc[j].x, cc[j].y, inMeters);
 				}
 			}
 
@@ -379,8 +379,8 @@ namespace tkhl{
 		*/
 	}
 
-	double TSPDriver::getDistance(int mode, double lat1, double lon1, double lat2, double lon2 ) {
-				if(mode == 1){
+	double TSPDriver::getDistance(double lat1, double lon1, double lat2, double lon2, bool inMeters) {
+				if(inMeters){
 					return sqrt(pow((lat1-lat2), 2) + pow((lon1-lon2), 2));
 				}
 				else{
