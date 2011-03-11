@@ -17,8 +17,8 @@
 #include <mrpt/utils/CConfigFile.h>
 #include <iostream>
 #include "logging.h"
+#include <semaphore.h>
 
-//TODO implement Operating mode see page 136 of motor controller programming manual
 //TODO implement PID controller constants commands in initialization
 
 /**
@@ -29,11 +29,7 @@ public:
 	static const int MOTOR_SECRET_KEY = 321654987;//!Motor reset key used for sensitive operations
 	static const std::string MOTOR_BAD_COMMAND;
 
-	static mrpt::utils::CConfigFileBase * config;
-
 	static MotorController * instance();
-
-	static void setConfigFile( mrpt::utils::CConfigFileBase * configFile );
 
 	/**
 	 * Abstract representation for a channel in the motor controller
@@ -47,7 +43,9 @@ public:
 	/**
 	 * Class destructor
 	 */
-	virtual ~MotorController() { };
+	virtual ~MotorController() {
+		sem_destroy(&(this->serialPortSem));
+	};
 
 	/**
 	 * doProcess - sends the current speed command to the motor controller
@@ -340,7 +338,7 @@ private:
 	 * @param motor1Min - the minimum power for channel1
 	 * @param motor2Min - the minimum power for channel2
 	 */
-	MotorController( mrpt::utils::CConfigFileBase * conf = MotorController::config );
+	MotorController();
 
 	mrpt::hwdrivers::CSerialPort serialPort;//! the serial port to communicate to the motor controller
 	bool echoEnabled;						//! true if the motor controller is set to echo serial commands
@@ -355,6 +353,7 @@ private:
 	int currentMixingMode;					//! How the !M command is currently interpreted
 	int operatingMode;						//! The configuration for the operating mode (open, closed, position)
 	int currentOperatingMode;				//! The current mode the controller is set to
+	sem_t serialPortSem;						//! A semaphore to protect the serialPort
 protected:
 	static MotorController * mc;			//! The pointer to the instance of the motor controller
 

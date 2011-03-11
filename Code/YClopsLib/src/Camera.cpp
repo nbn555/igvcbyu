@@ -11,9 +11,6 @@
 	#define DEBUG_COMMAND(cmd)
 #endif
 
-
-extern bool bCameraData;
-
 using namespace std;
 using namespace cv;
 using namespace mrpt;
@@ -214,9 +211,6 @@ void Camera::hasObstacles(bool * array, Mat & image){
 				DEBUG_COMMAND(imshow("test", image));
 				DEBUG_COMMAND(waitKey());
 
-				if(bCameraData){
-					imshow("test", image);
-				}
 			}
 		}
 	}

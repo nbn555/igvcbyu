@@ -14,6 +14,7 @@
 #include "logging.h"
 
 #include "MotorController.h"
+#include "YClopsConfiguration.h"
 
 using namespace std;
 using namespace mrpt;
@@ -21,7 +22,6 @@ using namespace mrpt::hwdrivers;
 using namespace mrpt::utils;
 
 MotorController * MotorController::mc = NULL;
-CConfigFileBase * MotorController::config = NULL;
 const std::string MotorController::MOTOR_BAD_COMMAND = "-";
 
 MotorController * MotorController::instance() {
@@ -32,26 +32,26 @@ MotorController * MotorController::instance() {
 	return MotorController::mc;
 }
 
-void MotorController::setConfigFile( mrpt::utils::CConfigFileBase * configFile ) {
-	MotorController::config = configFile;
-}
-
-MotorController::MotorController( mrpt::utils::CConfigFileBase * conf ):
-		echoEnabled(conf->read_bool("MOTOR", "ECHO_ENABLED", true)),
+MotorController::MotorController():
+		echoEnabled(YClopsConfiguration::instance().read_bool("MOTOR", "ECHO_ENABLED", true)),
 		motor1Speed(0), motor2Speed(0),
-		motor1SpeedMax(conf->read_int("MOTOR", "MAX_FORWARD_LEFT", 0) ),  //If the config file isn't correct we don't want to be able to do anything for safety reasons
-		motor2SpeedMax(conf->read_int("MOTOR", "MAX_FORWARD_RIGHT", 0 ) ),
-		motor1SpeedMin(conf->read_int("MOTOR", "MAX_REVERSE_LEFT", 0 ) ),
-		motor2SpeedMin(conf->read_int("MOTOR", "MAX_REVERSE_RIGHT", 0) )
+		motor1SpeedMax(YClopsConfiguration::instance().read_int("MOTOR", "MAX_FORWARD_LEFT", 0) ),  //If the config file isn't correct we don't want to be able to do anything for safety reasons
+		motor2SpeedMax(YClopsConfiguration::instance().read_int("MOTOR", "MAX_FORWARD_RIGHT", 0 ) ),
+		motor1SpeedMin(YClopsConfiguration::instance().read_int("MOTOR", "MAX_REVERSE_LEFT", 0 ) ),
+		motor2SpeedMin(YClopsConfiguration::instance().read_int("MOTOR", "MAX_REVERSE_RIGHT", 0) )
 {
 
-	string portName = conf->read_string("MOTOR", "COM_port_LIN", "/dev/ttyS1" );
+	string portName = YClopsConfiguration::instance().read_string("MOTOR", "COM_port_LIN", "/dev/ttyS1" );
 
 	LOG_MOTOR(DEBUG4) << "Connecting to Motor Controller on port: " << portName << endl;
 	this->serialPort.open(portName);
 
 
 	this->serialPort.setConfig(115200, 0, 8, 1, false);//Non configurable port setting see the roboteq manual
+
+	if( -1 == sem_init( &(this->serialPortSem), 0, 1 ) ) {
+		LOG_MOTOR(FATAL) << "Motor Controller Serial Port Semaphore failed to initialize" << endl;
+	}
 
 //	if( !this->reset() ) {
 //		LOG_MOTOR(FATAL) << "Motor Controller Failed to successfully reset" << endl;
@@ -67,12 +67,12 @@ MotorController::MotorController( mrpt::utils::CConfigFileBase * conf ):
 		LOG_MOTOR(WARNING) << "MotorController Clear buffer history failed" << endl;
 	}
 
-	this->mixingMode = conf->read_int("MOTOR", "MIXING_MODE", 0);
+	this->mixingMode = YClopsConfiguration::instance().read_int("MOTOR", "MIXING_MODE", 0);
 	if(!this->setMixingMode(this->mixingMode)) {
 		LOG_MOTOR(WARNING) << "MotorController Mixing Mode failed" << endl;
 	}
 
-	this->operatingMode = conf->read_int( "MOTOR", "OPERATING_MODE", 1);//Default to open loop speed for safety
+	this->operatingMode = YClopsConfiguration::instance().read_int( "MOTOR", "OPERATING_MODE", 1);//Default to open loop speed for safety
 	if(!this->setOperatingMode(this->mixingMode)) {
 		LOG_MOTOR(WARNING) << "MotorController Set Operating Mode failed" << endl;
 	}
@@ -216,6 +216,8 @@ bool MotorController::restoreMixingMode() {
 bool MotorController::setOperatingMode( int value ) {
 	LOG_MOTOR(DEBUG3) << "MotorController: setOperatingMode" << endl;
 	bool rval = false;
+
+	if( 1 != value || 2 != value || 3 != value ) LOG_MOTOR(ERROR) << "MotorController: Invalid Operating Mode Value" << endl;
 
 	this->currentOperatingMode = value;
 
@@ -452,14 +454,24 @@ bool MotorController::sendCommand( const std::string command, const std::string 
 	bool timeout = false;
 
 	if( this->serialPort.isOpen() ) {
+
+		LOG_MOTOR(DEBUG4) << "Locking the serial port semaphore" << endl;
+		sem_wait(&(this->serialPortSem));
+
 		LOG_MOTOR(DEBUG4) << "Purging Motor Controller Serial Port buffers" << endl;
 		this->serialPort.purgeBuffers();
+
 		LOG_MOTOR(DEBUG3) << "Sending to motor controller: " << command << endl;
 		this->serialPort.Write(command.c_str(), command.length());
 
 		portResponse = this->serialPort.ReadString(1000, &timeout, "\r" );
-
 		LOG_MOTOR(DEBUG3) << "Response: " << portResponse << endl;
+
+		LOG_MOTOR(DEBUG4) << "Purging Motor Controller Serial Port buffers" << endl;
+		this->serialPort.purgeBuffers();
+
+		sem_post(&(this->serialPortSem));
+		LOG_MOTOR(DEBUG4) << "Unlocked Serial Port Semaphore" << endl;
 
 		if( !permissive ) {
 
@@ -489,7 +501,6 @@ bool MotorController::sendCommand( const std::string command, const std::string 
 		*response = portResponse;
 	} else rval = true;
 
-	this->serialPort.purgeBuffers();
 	LOG_MOTOR(DEBUG4) << "Command " << (rval?"success":"failure") << endl;
 	return rval;
 }

@@ -27,7 +27,8 @@ bool MotorCommandInterface::getSuccess() {
 }
 
 MotorCommand::MotorCommand( double lC, double aC): linearConst(lC), angConst(aC) {
-	//MotorController::instance()->restoreMixingMode();
+	MotorController::instance()->restoreMixingMode();
+	MotorController::instance()->restoreOperatingMode();
 }
 
 void MotorCommand::doProcess() {
@@ -44,7 +45,8 @@ MotorCommand::~MotorCommand() {
 }
 
 DualMotorCommand::DualMotorCommand() {
-	//MotorController::instance()->setMixingMode(0);  //Set the mixing mode to 0 so the controller is in separate mode or tank Mode
+	MotorController::instance()->setMixingMode(0);  //Set the mixing mode to 0 so the controller is in separate mode or tank Mode
+	MotorController::instance()->setOperatingMode(1); //Set the operating mode so the robot is in open loop in dual motor command
 }
 
 DualMotorCommand::~DualMotorCommand() { }
@@ -69,7 +71,8 @@ void DualMotorCommand::doProcess() {
 }
 
 DummyMotorCommand::DummyMotorCommand() {
-	//MotorController::instance()->restoreMixingMode();
+	MotorController::instance()->restoreMixingMode();
+	MotorController::instance()->restoreOperatingMode();
 }
 
 DummyMotorCommand::~DummyMotorCommand() {
