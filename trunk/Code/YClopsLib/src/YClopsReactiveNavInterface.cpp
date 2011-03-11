@@ -8,7 +8,7 @@
 #include "MotorController.h"
 #include "logging.h"
 #include "SensorData.h"
-//#include <mrpt/slam.h>
+#include "YClopsConfiguration.h"
 
 using namespace mrpt;
 using namespace mrpt::utils;
@@ -17,23 +17,22 @@ using namespace mrpt::system;
 using namespace mrpt::hwdrivers;
 using namespace std;
 
-bool bCameraData;
-
-YClopsReactiveNavInterface::YClopsReactiveNavInterface(CConfigFileBase & config)
+YClopsReactiveNavInterface::YClopsReactiveNavInterface()
 : isGpsDataShown(false), isCompassDataShown(false), isLidarDataShown(false), isCameraDataShown(false), isEncoderDataShown(false),
-  motor(NULL), compass(NULL), gps(NULL), camera(NULL), lidar(NULL), encoder(NULL), poseEst(NULL), robotPose(NULL), curV(0), curW(0)
+  motor(NULL), compass(NULL), gps(NULL), camera(NULL), lidar(NULL), encoder(NULL), poseEst(NULL), robotPose(NULL), nav(NULL),
+  curV(0), curW(0)
 {
 	this->motor = new DualMotorCommand();
 
 	std::string compassName = "COMPASS";
-	if( config.read_bool(compassName, "USE", false) ) {
+	if( YClopsConfiguration::instance().read_bool(compassName, "USE", false) ) {
 		LOG(INFO) << "Using Compass" << endl;
 
 		LOG(DEBUG2) << "Creating Compass Object" << endl;
 		this->compass = new Compass();
 
 		LOG(DEBUG2) << "Loading Compass Configuration" << endl;
-		this->compass->loadConfiguration(config, compassName );
+		this->compass->loadConfiguration(YClopsConfiguration::instance(), compassName );
 
 		LOG(DEBUG2) << "Initializing Compass" << endl;
 		this->compass->init();
@@ -42,14 +41,14 @@ YClopsReactiveNavInterface::YClopsReactiveNavInterface(CConfigFileBase & config)
 	}
 
 	std::string gpsName = "GPS";
-	if( config.read_bool(gpsName, "USE", false ) ) {
+	if( YClopsConfiguration::instance().read_bool(gpsName, "USE", false ) ) {
 		LOG(INFO) << "Using GPS" << endl;
 
 		LOG(DEBUG2) << "Creating GPS Object" << endl;
 		this->gps = new GPS();
 
 		LOG(DEBUG2) << "Loading GPS Configuration" << endl;
-		this->gps->loadConfiguration(config,gpsName);
+		this->gps->loadConfiguration(YClopsConfiguration::instance(),gpsName);
 
 		LOG(DEBUG2) << "Initializing GPS" << endl;
 		this->gps->init();
@@ -58,14 +57,14 @@ YClopsReactiveNavInterface::YClopsReactiveNavInterface(CConfigFileBase & config)
 	}
 
 	std::string cameraName = "CAMERA";
-	if( config.read_bool(cameraName, "USE", false ) ) {
+	if( YClopsConfiguration::instance().read_bool(cameraName, "USE", false ) ) {
 		LOG(INFO) << "Using Camera" << endl;
 
 		LOG(DEBUG2) << "Creating Camera Object" << endl;
 		this->camera = new Camera();
 
 		LOG(DEBUG2) << "Loading Camera Configuration" << endl;
-		this->camera->loadConfiguration(config,cameraName);
+		this->camera->loadConfiguration(YClopsConfiguration::instance(),cameraName);
 
 		LOG(DEBUG2) << "Initializing Camera" << endl;
 		this->camera->init();
@@ -74,14 +73,14 @@ YClopsReactiveNavInterface::YClopsReactiveNavInterface(CConfigFileBase & config)
 	}
 
 	std::string lidarName = "LIDAR";
-	if( config.read_bool(lidarName, "USE", false ) ) {
+	if( YClopsConfiguration::instance().read_bool(lidarName, "USE", false ) ) {
 		LOG(INFO) << "Using Lidar" << endl;
 
 		LOG(DEBUG2) << "Creating Lidar object" << endl;
 		this->lidar = new Lidar();
 
 		LOG(DEBUG2) << "Loading Lidar configuration" << endl;
-		this->lidar->loadConfiguration(config, lidarName);
+		this->lidar->loadConfiguration(YClopsConfiguration::instance(), lidarName);
 
 		LOG(DEBUG2) << "Initializing Lidar" << endl;
 		this->lidar->init();
@@ -90,14 +89,14 @@ YClopsReactiveNavInterface::YClopsReactiveNavInterface(CConfigFileBase & config)
 	}
 
 	std::string encoderName = "ENCODER";
-	if( config.read_bool(encoderName, "USE", false) ) {
+	if( YClopsConfiguration::instance().read_bool(encoderName, "USE", false) ) {
 		LOG(INFO) << "Using wheel encoders" << endl;
 
 		LOG(DEBUG2) << "Creating WheelEncoder Object" << endl;
 		this->encoder = new WheelEncoder();
 
 		LOG(DEBUG2) << "Loading Encoder configuration" << endl;
-		this->encoder->loadConfiguration(config,encoderName);
+		this->encoder->loadConfiguration(YClopsConfiguration::instance(),encoderName);
 
 		LOG(DEBUG2) << "Initializing wheel encoder" << endl;
 		this->encoder->init();
@@ -136,6 +135,8 @@ YClopsReactiveNavInterface::~YClopsReactiveNavInterface() {
 	delete this->poseEst;
 	LOG(DEBUG4) << "Deleting robotPose" << endl;
 	delete this->robotPose;
+	LOG(DEBUG4) << "Deleting nav interface" << endl;
+	delete this->nav;
 }
 
 bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &curPose, float &curV, float &curW)
@@ -260,14 +261,19 @@ bool YClopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap &o
 
 void YClopsReactiveNavInterface::setAutonomusMode() {
 	this->useYclopsMotorCommand();
+	if(NULL != this->nav ) delete this->nav;
+	this->nav = new SequentialNavigation(this->robotPose->x(),this->robotPose->y());
 }
 
 void YClopsReactiveNavInterface::setNavigationMode() {
 	this->useYclopsMotorCommand();
+	if(NULL != this->nav ) delete this->nav;
+	this->nav = new TSPNavigation(this->robotPose->x(), this->robotPose->y());
 }
 
 void YClopsReactiveNavInterface::setIdle() {
-
+	if( NULL != this->nav ) delete this->nav;
+	this->nav = NULL;
 }
 
 bool YClopsReactiveNavInterface::toggleGpsDump() {

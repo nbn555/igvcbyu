@@ -1466,7 +1466,7 @@ void YclopsNavigationSystem::gotoNextPoint()
 }
 void YclopsNavigationSystem::setFileName(std::string & fileName, bool inMeters)
 {
-	cout << fileName << endl;
+	LOG_AI(DEBUG3) << "Using " << fileName << " for points file."<< endl;
 	this->fileName = fileName;
 	this->inMeters = inMeters;
 }

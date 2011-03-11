@@ -56,10 +56,9 @@ void AbstractNavigationInterface::loadPoints(std::string filename, bool convertT
 		visited.front().m_coords[LON] = 0;
 	}
 	datapointSet.close();
-	for(int i = 0 ; i < toVisit.size(); i++)
-			{
-				cout << "after load " <<toVisit[i]<< endl;
-			}
+	for(unsigned int i = 0 ; i < toVisit.size(); i++) {
+		cout << "after load " <<toVisit[i]<< endl;
+	}
 
 }
 
@@ -138,12 +137,12 @@ std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2
 	//TSPNavigation::acoTSPSolution( this->toVisit, this->visited, inMeters);
 
 	cout << "toVisit input: " << endl;
-	for(int i = 0 ; i < this->toVisit.size(); i++)
+	for(unsigned int i = 0 ; i < this->toVisit.size(); i++)
 	{
 		cout << this->toVisit[i]<< endl;
 	}
 	cout << "Expected output: " << endl;
-	for(int i = 0 ; i < this->visited.size(); i++)
+	for(unsigned int i = 0 ; i < this->visited.size(); i++)
 	{
 		cout << this->visited[i]<< endl;
 	}

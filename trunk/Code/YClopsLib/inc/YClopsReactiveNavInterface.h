@@ -15,6 +15,7 @@
 #include "Lidar.h"
 
 #include "PoseEstimator.h"
+#include "WaypointPlanner.h"
 
 #include <mrpt/reactivenav.h>
 
@@ -25,7 +26,6 @@ class YClopsReactiveNavInterface: public mrpt::reactivenav::CReactiveInterfaceIm
 public:
 	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 	YClopsReactiveNavInterface();
-	YClopsReactiveNavInterface( mrpt::utils::CConfigFileBase & config );
 	virtual ~YClopsReactiveNavInterface();
 
 	bool getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &curPose, float &curV, float &curW);
@@ -76,6 +76,8 @@ private:
 
 	AbstractPoseEstimator* poseEst;
 	mrpt::poses::CPose3D* robotPose;
+
+	AbstractNavigationInterface * nav;
 
 	float curV;
 	float curW;
