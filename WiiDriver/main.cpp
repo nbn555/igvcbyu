@@ -9,8 +9,6 @@
 #include <signal.h>
 #include <cassert>
 
-#include <mrpt/utils/CConfigFile.h>
-
 #include "MotorController.h"
 #include "MotorCommandInterface.h"
 #include "Compass.h"
@@ -19,6 +17,7 @@
 #include "YclopsNavigationSystem.h"
 #include "Beeper.h"
 #include "logging.h"
+#include "YClopsConfiguration.h"
 
 #include <mrpt/hwdrivers/CSerialPort.h>
 
@@ -32,16 +31,13 @@ void shutdown( int exitStatus );
 LOG_LEVEL loggingLevel = DEBUG4;
 
 YClopsReactiveNavInterface * yclops = NULL;
-mrpt::reactivenav::YclopsNavigationSystem* ai = NULL;
-string filename = "points.txt";
+ofstream of;
+mrpt::reactivenav::YclopsNavigationSystem * ai = NULL;
+const string DEFAULT_POINTS_FILE = "points.txt";
 
 int main( int argc, char** argv ) {
 
 	try{
-		//create the config file
-		CConfigFile configFile;
-		string pointsFile;
-
 		//test if the config file is passed in
 		if(argc < 2) {
 			//if not print exit message and die
@@ -49,55 +45,55 @@ int main( int argc, char** argv ) {
 			exit(EXIT_FAILURE);
 		}else {
 			//if so load the config file
-			configFile.setFileName(string(argv[1]));
+			YClopsConfiguration::setConfigFile(string(argv[1]));
 		}
 
+		of.open("dump.txt");
+
 		//Set up logging
+		//Log::SetLogFile(&of);
 		Log::SetLogFile(&cout);
 		Log::SetReportLevel(loggingLevel);
 		Log::SetTimeStampDisplay(false);
 		Log::SetReportStreamBits(ALL_LOG&(~(WII_LOG)));
-//		Log::SetReportStreamBits(ALL_LOG);
-
+		//Log::SetReportStreamBits(ALL_LOG);
 		Log::GetOStream()->precision(10);
 
 		//Set up the SIGUSR1 so we know when a button is pressed
+		LOG(DEBUG4) << "Initializing signals" << endl;
 		signal(SIGUSR1, signal_handler);
 		signal(SIGINT, signal_handler);
 
 		//Initialize the WiiController
+		LOG(DEBUG4) << "Creating the Wii Controller" << endl;
 		WiiController::create();
 
-		//Set the motor controller to connect to the port name in the config file
-		MotorController::setConfigFile( (mrpt::utils::CConfigFileBase*)(&configFile) );
-
-		yclops = new YClopsReactiveNavInterface( configFile );
+		yclops = new YClopsReactiveNavInterface();
 		yclops->useNullMotorCommand();
 		ai = new mrpt::reactivenav::YclopsNavigationSystem(*yclops, false,false);
+		ai->loadConfigFile(YClopsConfiguration::instance(), YClopsConfiguration::instance());
 
-		pointsFile = configFile.read_string("ROBOT_NAME","POINTS_FILE","points.txt");
-
-		//mrpt::poses::CPose2D curPose;
-		//mrpt::slam::CSimplePointsMap map;
-		//float curV, curW;
+		mrpt::poses::CPose2D curPose;
+		mrpt::slam::CSimplePointsMap map;
+		float curV, curW;
 
 		while(!closing) {
 
-			/*LOG(DEBUG4) << "Running CurrentPose and Speeds" << endl;
+			LOG(DEBUG4) << "Running CurrentPose and Speeds" << endl;
 			yclops->getCurrentPoseAndSpeeds(curPose, curV, curW);
-			LOG(DEBUG4) << "Running change speeds" << endl;
+			LOG(DEBUG) << "Running change speeds" << endl;
 			yclops->changeSpeeds(curV, curW);
-			LOG(DEBUG4) << "Running senseObstacles" << endl;
-			yclops->senseObstacles(map);*/
+			LOG(DEBUG) << "Running senseObstacles" << endl;
+			yclops->senseObstacles(map);
 			//usleep(1000000/20);
-			if (ai->getCurrentState() != mrpt::reactivenav::CAbstractReactiveNavigationSystem::NAVIGATING )
+			/*if (ai->getCurrentState() != mrpt::reactivenav::CAbstractReactiveNavigationSystem::NAVIGATING )
 			{
 				usleep(1000000/20);
 				continue;
 			}
 			ai->navigationStep();
-
-			//LOG(DEBUG) << "CurPose: (" << curPose.x() << "," << curPose.y() << "," << curPose.phi()*180./M_PI << ")" << endl;
+			*/
+			LOG(DEBUG) << "CurPose: (" << curPose.x() << "," << curPose.y() << "," << curPose.phi()*180./M_PI << ")" << endl;
 
 		}
 	} catch (...) {
@@ -157,7 +153,8 @@ void signal_handler( int signum ) {
 			LOG(INFO) << "Going into Autonomous Mode" << endl;
 			yclops->setAutonomusMode();
 			ai->setChallenge(false);
-			ai->setFileName(filename,false);
+			string pointsFile = YClopsConfiguration::instance().read_string("ROBOT_NAME","POINTS_FILE","points.txt");
+			ai->setFileName(pointsFile,false);
 			ai->setup();
 		}
 
@@ -165,13 +162,13 @@ void signal_handler( int signum ) {
 			LOG(INFO) << "Going into Navigation Mode" << endl;
 			yclops->setNavigationMode();
 			ai->setChallenge(true);
-			ai->setFileName(filename,false);
+			string pointsFile = YClopsConfiguration::instance().read_string("ROBOT_NAME","POINTS_FILE","points.txt");
+			ai->setFileName(pointsFile,false);
 			ai->setup();
 		}
 
 		if( cbuttons & CLASSIC_X ) {
 			LOG(INFO) << "Idling" << endl;
-
 			yclops->useNullMotorCommand();
 			yclops->setIdle();
 			ai->stop();
