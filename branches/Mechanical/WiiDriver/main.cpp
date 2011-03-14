@@ -68,35 +68,59 @@ int main( int argc, char** argv ) {
 		LOG(DEBUG4) << "Creating the Wii Controller" << endl;
 		WiiController::create();
 
+		LOG(DEBUG4) << "Creating YClops Object" << endl;
 		yclops = new YClopsReactiveNavInterface();
-		yclops->useNullMotorCommand();
+
+		LOG(DEBUG4) << "Creating YClops Navigation System" << endl;
 		ai = new mrpt::reactivenav::YclopsNavigationSystem(*yclops, false,false);
+
+		LOG(DEBUG4) << "loading configuration for the Navigation System" << endl;
 		ai->loadConfigFile(YClopsConfiguration::instance(), YClopsConfiguration::instance());
 
 		mrpt::poses::CPose2D curPose;
 		mrpt::slam::CSimplePointsMap map;
 		float curV, curW;
 
+		LOG(DEBUG4) << "Starting main loop" << endl;
 		while(!closing) {
+			LOG(DEBUG4) << "Iteration again: " << (!closing?"true":"false") << endl;
 
-			LOG(DEBUG4) << "Running CurrentPose and Speeds" << endl;
+			/*
+			LOG(DEBUG) << "Running CurrentPose and Speeds" << endl;
 			yclops->getCurrentPoseAndSpeeds(curPose, curV, curW);
+			LOG(DEBUG) << "CurPose: (" << curPose.x() << "," << curPose.y() << "," << curPose.phi()*180./M_PI << ")" << endl;
+
+
 			LOG(DEBUG) << "Running change speeds" << endl;
 			yclops->changeSpeeds(curV, curW);
 			LOG(DEBUG) << "Running senseObstacles" << endl;
 			yclops->senseObstacles(map);
+
 			//usleep(1000000/20);
-			/*if (ai->getCurrentState() != mrpt::reactivenav::CAbstractReactiveNavigationSystem::NAVIGATING )
+			 */
+			switch(ai->getCurrentState()) {
+			case mrpt::reactivenav::CAbstractReactiveNavigationSystem::IDLE:
+				LOG(DEBUG4) << "ai state: IDLE" << endl; break;
+			case mrpt::reactivenav::CAbstractReactiveNavigationSystem::NAVIGATING:
+				LOG(DEBUG4) << "ai state: NAVIGATING" << endl; break;
+			case mrpt::reactivenav::CAbstractReactiveNavigationSystem::NAV_ERROR:
+				LOG(DEBUG4) << "ai state: NAV_ERROR" << endl; break;
+			case mrpt::reactivenav::CAbstractReactiveNavigationSystem::SUSPENDED:
+				LOG(DEBUG4) << "ai state: NAV_ERROR" << endl; break;
+			default:
+				break;
+			}
+
+			if (ai->getCurrentState() != mrpt::reactivenav::CAbstractReactiveNavigationSystem::NAVIGATING )
 			{
 				usleep(1000000/20);
 				continue;
 			}
 			ai->navigationStep();
-			*/
-			LOG(DEBUG) << "CurPose: (" << curPose.x() << "," << curPose.y() << "," << curPose.phi()*180./M_PI << ")" << endl;
 
 		}
 	} catch (...) {
+		LOG(ERROR) << "Unhandled Exception caught" << endl;
 		closing = false; //We are closing but we close with an error see the shutdown call below
 	}
 
@@ -215,6 +239,7 @@ void signal_handler( int signum ) {
 		}
 
 		if( cbuttons & CLASSIC_HOME ) {
+			LOG(DEBUG4) << "Shutdown button pressed" << endl;
 			closing = true;
 		}
 
@@ -291,6 +316,8 @@ void shutdown( int exitStatus ) {
 
 	delete yclops;
 	yclops = NULL;
+//	delete ai;
+//	ai = NULL;
 
 	//sleep(1);
 
