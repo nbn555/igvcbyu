@@ -38,7 +38,8 @@ MotorController::MotorController():
 		motor1SpeedMax(YClopsConfiguration::instance().read_int("MOTOR", "MAX_FORWARD_LEFT", 0) ),  //If the config file isn't correct we don't want to be able to do anything for safety reasons
 		motor2SpeedMax(YClopsConfiguration::instance().read_int("MOTOR", "MAX_FORWARD_RIGHT", 0 ) ),
 		motor1SpeedMin(YClopsConfiguration::instance().read_int("MOTOR", "MAX_REVERSE_LEFT", 0 ) ),
-		motor2SpeedMin(YClopsConfiguration::instance().read_int("MOTOR", "MAX_REVERSE_RIGHT", 0) )
+		motor2SpeedMin(YClopsConfiguration::instance().read_int("MOTOR", "MAX_REVERSE_RIGHT", 0) ),
+		permissiveMode(YClopsConfiguration::instance().read_bool("MOTOR", "PERMISSIVE", false))
 {
 
 	string portName = YClopsConfiguration::instance().read_string("MOTOR", "COM_port_LIN", "/dev/ttyS1" );
@@ -102,7 +103,7 @@ MotorController::MotorController():
 void MotorController::doProcess() {
 		stringstream parser;
 		parser << "!M " << this->motor1Speed << " " << this->motor2Speed << "\r";
-		this->sendCommand(parser.str(), "+", NULL);
+		this->sendCommand(parser.str(), "+", NULL, this->permissiveMode);
 		this->motor1Speed = 0;
 		this->motor2Speed = 0;
 }
@@ -119,12 +120,12 @@ bool MotorController::setDeceleration(MotorChannel channel, double deceration) {
 
 bool MotorController::emergencyStop() {
 	LOG_MOTOR(DEBUG3) << "Setting emergency stop" << endl;
-	return this->sendCommand("!EX\r", "+", NULL);
+	return this->sendCommand("!EX\r", "+", NULL, this->permissiveMode);
 }
 
 bool MotorController::clearEmergencyStop() {
 	LOG_MOTOR(DEBUG3) << "Clearing emergency stop" << endl;
-	return this->sendCommand("!MG\r", "+", NULL);
+	return this->sendCommand("!MG\r", "+", NULL, this->permissiveMode);
 }
 
 bool MotorController::setSpeed( MotorChannel channel, int value ) {
@@ -159,18 +160,18 @@ bool MotorController::setEncoderCounter( MotorChannel channel, int value ) {
 	switch(channel) {
 	case Channel1:
 		parser << "!C 1 " << value << '\r';
-		rval = this->sendCommand(parser.str(),"+", NULL);
+		rval = this->sendCommand(parser.str(),"+", NULL, this->permissiveMode);
 		break;
 	case Channel2:
 		parser << "!C 2 " << value << '\r';
-		rval = this->sendCommand(parser.str(),"+", NULL);
+		rval = this->sendCommand(parser.str(),"+", NULL, this->permissiveMode);
 		break;
 	case BothChannels:
 		parser << "!C 1 " << value << '\r';
-		rval = this->sendCommand(parser.str(),"+", NULL);
+		rval = this->sendCommand(parser.str(),"+", NULL, this->permissiveMode);
 		parser.str("");
 		parser << "!C 2 " << value << '\r';
-		rval = rval && this->sendCommand(parser.str(),"+", NULL);
+		rval = rval && this->sendCommand(parser.str(),"+", NULL, this->permissiveMode);
 		break;
 	default:
 		LOG_MOTOR(ERROR) << "Invalid motor channel for encoder set value" << endl;
@@ -185,10 +186,10 @@ bool MotorController::setEncoderUsage( int value ) {
 	stringstream parser;
 
 	parser << "^EMOD 1 17\r";
-	rval = this->sendCommand(parser.str(), "+", NULL);
+	rval = this->sendCommand(parser.str(), "+", NULL, this->permissiveMode);
 	parser.str("");
 	parser << "^EMOD 2 33\r";
-	rval = rval && this->sendCommand(parser.str(), "+", NULL);
+	rval = rval && this->sendCommand(parser.str(), "+", NULL, this->permissiveMode);
 
 	return rval;
 }
@@ -217,18 +218,18 @@ bool MotorController::setOperatingMode( int value ) {
 	LOG_MOTOR(DEBUG3) << "MotorController: setOperatingMode" << endl;
 	bool rval = false;
 
-	if( 1 != value || 2 != value || 3 != value ) LOG_MOTOR(ERROR) << "MotorController: Invalid Operating Mode Value" << endl;
+	if( (1 != value) && (2 != value) && (3 != value) ) LOG_MOTOR(ERROR) << "MotorController: Invalid Operating Mode Value:" << value << endl;
 
 	this->currentOperatingMode = value;
 
 	stringstream parser;
 	parser << "^MMOD 1 " << value << '\r';
-	rval = this->sendCommand(parser.str(), "+", NULL);
+	rval = this->sendCommand(parser.str(), "+", NULL, this->permissiveMode);
 
 	parser.str("");
 
 	parser << "^MMOD 2 " << value << '\r';
-	rval = rval && this->sendCommand(parser.str(), "+", NULL);
+	rval = rval && this->sendCommand(parser.str(), "+", NULL, this->permissiveMode);
 
 	return rval;
 }
@@ -243,7 +244,7 @@ bool MotorController::getMotorAmps( double & motor1Amps, double & motor2Amps ) {
 	int channel2;
 
 	string response;
-	bool rval = this->sendCommand("?A\r", "A=", &response);
+	bool rval = this->sendCommand("?A\r", "A=", &response, this->permissiveMode);
 	rval = rval && this->responseParser( response, 2, &channel1, &channel2);
 
 	motor1Amps = channel1/10.; //The value returned is in deciamps
@@ -263,7 +264,7 @@ bool MotorController::getBatteryAmps( double & motor1Amps, double & motor2Amps )
 	int channel2;
 
 	string response;
-	bool rval = this->sendCommand("?BA\r", "", &response);
+	bool rval = this->sendCommand("?BA\r", "", &response, this->permissiveMode);
 	rval = rval && this->responseParser(response, 2, &channel1, &channel2);
 
 	motor1Amps = channel1/10.; //The value returned is in deciamps converting to amps
@@ -277,7 +278,7 @@ bool MotorController::getAbsoluteEncoderCount(int * ch1, int * ch2 ) {
 	LOG_MOTOR(DEBUG3) << "MotorController: GetAbsoluteEncoderCount" << endl;
 	LOG_MOTOR(DEBUG4) << "absolute encoder count pre ch1 = " << *ch1 << " ch2 = " << *ch2 << endl;
 	string response;
-	rval = this->sendCommand("?C\r", "C=", &response);
+	rval = this->sendCommand("?C\r", "C=", &response, this->permissiveMode);
 	rval = rval && this->responseParser(response, 2, ch1, ch2);
 	LOG_MOTOR(DEBUG4) << "absolute encoder count Got ch1 = " << *ch1 << " ch2 = " << *ch2 << endl;
 	return rval;
@@ -286,7 +287,7 @@ bool MotorController::getAbsoluteEncoderCount(int * ch1, int * ch2 ) {
 bool MotorController::getRelativeEncoderCount( int & ch1, int & ch2 ) {
 	LOG_MOTOR(DEBUG3) << "MotorController: getRelativeEncoderCount" << endl;
 	string response;
-	this->sendCommand("?CR\r", "CR=", &response);
+	this->sendCommand("?CR\r", "CR=", &response, this->permissiveMode);
 	return this->responseParser(response, 2, &ch1, &ch2);
 }
 
@@ -294,7 +295,7 @@ bool MotorController::getEncoderSpeeds( int & speed1, int & speed2 ) {
 	LOG_MOTOR(DEBUG3) << "MotorController: getEncoderSpeed" << endl;
 	bool rval = false;
 	string response;
-	rval = this->sendCommand("?S\r","S=", &response);
+	rval = this->sendCommand("?S\r","S=", &response, this->permissiveMode);
 	rval = rval && this->responseParser( response, 2, &speed1, &speed2 );
 	return rval;
 }
@@ -302,14 +303,14 @@ bool MotorController::getEncoderSpeeds( int & speed1, int & speed2 ) {
 bool MotorController::getTemperature( int & ch1, int & ch2, int & ic ) {
 	LOG_MOTOR(DEBUG3) << "MotorController: getTemperature" << endl;
 	string response;
-	this->sendCommand("?T 1\r", "T=", &response);
+	this->sendCommand("?T 1\r", "T=", &response, this->permissiveMode);
 	return this->responseParser( response, 3,&ic,&ch1,&ch2);
 }
 
 bool MotorController::getTime( int & hours, int & minutes, int & seconds ) {
 	LOG_MOTOR(DEBUG3) << "MotorController: getTime" << endl;
 	string response;
-	this->sendCommand("?TM\r", "TM=", &response);
+	this->sendCommand("?TM\r", "TM=", &response, this->permissiveMode);
 	return this->responseParser(response, 3,&hours,&minutes,&seconds);
 }
 
@@ -320,7 +321,7 @@ bool MotorController::getVoltages( double & driverVolt, double & batteryVolt, do
 	int v5;
 
 	string response;
-	this->sendCommand("?V\r", "V=", &response);
+	this->sendCommand("?V\r", "V=", &response, this->permissiveMode);
 	bool rval = this->responseParser(response, 3,&dV,&bV,&v5);
 	driverVolt = dV/10.; //returned from motor controller in decivolts
 	batteryVolt = bV/10.; //returned from motor controller in decivolts
@@ -331,13 +332,13 @@ bool MotorController::getVoltages( double & driverVolt, double & batteryVolt, do
 bool MotorController::loadEEPROMSettings() {
 	LOG_MOTOR(DEBUG3) << "MotorController: Load EEPROM settings" << endl;
 	//TODO check the timing on this function
-	return this->sendCommand("%EELD\r", "+", NULL);
+	return this->sendCommand("%EELD\r", "+", NULL, this->permissiveMode);
 }
 
 bool MotorController::failSafeReset() {
 	stringstream stream;
 	stream << "%EERST " << MotorController::MOTOR_SECRET_KEY << "\r";
-	bool rval = this->sendCommand(stream.str(), "Starting...", NULL);
+	bool rval = this->sendCommand(stream.str(), "Starting...", NULL, this->permissiveMode);
 	sleep(3);
 	this->serialPort.purgeBuffers();
 	return rval;
@@ -351,7 +352,7 @@ bool MotorController::saveConfigSettings() {
 bool MotorController::reset() {
 	stringstream stream;
 	stream << "%RESET " << MotorController::MOTOR_SECRET_KEY << "\r";
-	bool rval = this->sendCommand(stream.str(), "Starting...", NULL);
+	bool rval = this->sendCommand(stream.str(), "Starting...", NULL, this->permissiveMode);
 	sleep(3);//need to allow the controller to power cycle
 	this->serialPort.purgeBuffers();
 	return rval;
@@ -361,7 +362,7 @@ bool MotorController::setTime( int hours, int minutes, int seconds) {
 	LOG_MOTOR(DEBUG3) << "Sending Time to MotorController" << endl;
 	stringstream stream;
 	stream << "%STIME " << hours << ":" << minutes << ":" << seconds << "\r";
-	return this->sendCommand(stream.str(), "+", NULL);
+	return this->sendCommand(stream.str(), "+", NULL, this->permissiveMode);
 }
 
 bool MotorController::setCommandLinearity(int linearity ) {
@@ -385,10 +386,10 @@ bool MotorController::setEncoderPPR( int ppr ) {
 	bool rval = false;
 	stringstream stream;
 	stream << "^EPPR 1 " << ppr << "\r";
-	rval = this->sendCommand(stream.str(), "+", NULL);
+	rval = this->sendCommand(stream.str(), "+", NULL, this->permissiveMode);
 	stream.str("");
 	stream << "^EPPR 2 " << ppr << "\r";
-	rval = rval && this->sendCommand(stream.str(),"+", NULL);
+	rval = rval && this->sendCommand(stream.str(),"+", NULL, this->permissiveMode);
 	return rval;
 }
 
@@ -421,14 +422,14 @@ bool MotorController::setLoopMode( MotorChannel channel, std::string & loopMode 
 	LOG_MOTOR(DEBUG4) << "Setting motor controller to " << loopMode << endl;
 
 	if( "CLOSED_POSITION" == loopMode ) {
-		rval = rval && this->sendCommand("^MMOD 1 3\r", "+", NULL);
-		rval = rval && this->sendCommand("^MMOD 2 3\r", "+", NULL);
+		rval = rval && this->sendCommand("^MMOD 1 3\r", "+", NULL, this->permissiveMode);
+		rval = rval && this->sendCommand("^MMOD 2 3\r", "+", NULL, this->permissiveMode);
 	} else if( "CLOSED_LOOP" ==  loopMode ) {
-		rval = rval && this->sendCommand("^MMOD 1 2\r", "+", NULL);
-		rval = rval && this->sendCommand("^MMOD 2 2\r", "+", NULL);
+		rval = rval && this->sendCommand("^MMOD 1 2\r", "+", NULL, this->permissiveMode);
+		rval = rval && this->sendCommand("^MMOD 2 2\r", "+", NULL, this->permissiveMode);
 	} else if("OPEN_LOOP" == loopMode ){
-		rval = rval && this->sendCommand("^MMOD 1 1\r", "+", NULL);
-		rval = rval && this->sendCommand("^MMOD 2 1\r", "+", NULL);
+		rval = rval && this->sendCommand("^MMOD 1 1\r", "+", NULL, this->permissiveMode);
+		rval = rval && this->sendCommand("^MMOD 2 1\r", "+", NULL, this->permissiveMode);
 	} else {
 		LOG_MOTOR(FATAL) << "Invalid Loop Mode" << endl;
 		this->emergencyStop();
@@ -442,7 +443,7 @@ bool MotorController::assertValidMotorRange( int max, int min, int value ) const
 }
 
 bool MotorController::assertValidVoltage() {
-	this->sendCommand("?V\r", "", NULL);//TODO parse the voltage command and check it is safe
+	this->sendCommand("?V\r", "", NULL, this->permissiveMode);//TODO parse the voltage command and check it is safe
 	LOG_MOTOR(FATAL) << "MotorController: assertValidVoltage not implemented" << endl;
 	return false;
 }

@@ -26,8 +26,11 @@ public:
 	virtual void update( const GPSData * gpsData, const CompassData * compassData, const EncoderData * encoderData ) = 0;
 	double getYaw(void){ return this->poseEstimate.yaw(); }
 	bool getPose( mrpt::poses::CPose3D & pose );
+	bool getSpeed( float & curV, float & curW );
 protected:
 	mrpt::poses::CPose3D poseEstimate;
+	double curV;
+	double curW;
 };
 
 class NoFilterPoseEstimator: public AbstractPoseEstimator {
@@ -36,6 +39,7 @@ public:
 	bool convertToMeters;
 	double StartLat;
 	double StartLon;
+
 	NoFilterPoseEstimator(bool convertToMeters = false);
 	virtual ~NoFilterPoseEstimator();
 

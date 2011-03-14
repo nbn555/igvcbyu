@@ -22,7 +22,7 @@ YClopsReactiveNavInterface::YClopsReactiveNavInterface()
   motor(NULL), compass(NULL), gps(NULL), camera(NULL), lidar(NULL), encoder(NULL), poseEst(NULL), robotPose(NULL), nav(NULL),
   curV(0), curW(0)
 {
-	this->motor = new DualMotorCommand();
+	this->motor = new DummyMotorCommand();
 
 	std::string compassName = "COMPASS";
 	if( YClopsConfiguration::instance().read_bool(compassName, "USE", false) ) {
@@ -197,24 +197,21 @@ bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 	assert(NULL != compassData);
 	//assert(NULL != encoderData);
 
+	LOG_AI(DEBUG4) << "GPS data: " << gpsData->latitude << "," << gpsData->longitude << endl;
 	LOG_AI(DEBUG4) << "In yclops compass data reactivenav: " << compassData->yaw << " " << compassData->pitch << " " << compassData->roll << endl;
 	LOG_AI(DEBUG4) << "Compass data valid? " << compassData->yawValid << " " << compassData->pitchValid << " " << compassData->rollValid << endl;
 	//LOG_AI(DEBUG4) << "Encoder Data: L " << encoderData->leftCount << " R " << encoderData->rightCount << " Absolute L " <<
 	//		encoderData->leftCountAbsolute << " Absolute R " << encoderData->rightCountAbsolute << endl;
 
 	poseEst->update(gpsData, compassData, encoderData);
-	mrpt::poses::CPose3D thirdDim = mrpt::poses::CPose3D(curPose);
-	this->poseEst->getPose(thirdDim);
-	robotPose->x() = thirdDim.x();
-	robotPose->y() = thirdDim.y();
+	this->poseEst->getPose(*(this->robotPose));
+	curPose = CPose2D(*(this->robotPose));
 
+	this->poseEst->getSpeed(this->curV,this->curW);
 	curV = this->curV;
 	curW = this->curW;
 
 	LOG_AI(DEBUG4) << "YClopsReactiveNav: Putting into curPose (" << robotPose->x() << "," << robotPose->y() << "," << poseEst->getYaw() << ")" << endl;
-	curPose.x(robotPose->x());
-	curPose.y(robotPose->y());
-	curPose.phi(poseEst->getYaw());
 
 	if(compassData) delete compassData;
 	if(gpsData) delete gpsData;
@@ -260,13 +257,15 @@ bool YClopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap &o
 }
 
 void YClopsReactiveNavInterface::setAutonomusMode() {
-	this->useYclopsMotorCommand();
+//	this->useYclopsMotorCommand();
+	LOG(WARNING) << "REMOVED call to useYclopsMotorCommand in setAutonomusMode" << endl;
 	if(NULL != this->nav ) delete this->nav;
 	this->nav = new SequentialNavigation(this->robotPose->x(),this->robotPose->y());
 }
 
 void YClopsReactiveNavInterface::setNavigationMode() {
-	this->useYclopsMotorCommand();
+//	this->useYclopsMotorCommand();
+	LOG(WARNING) << "REMOVED call to useYclopsMotorCommand in setNavigationMode" << endl;
 	if(NULL != this->nav ) delete this->nav;
 	this->nav = new TSPNavigation(this->robotPose->x(), this->robotPose->y());
 }

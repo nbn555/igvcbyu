@@ -71,8 +71,7 @@ void DualMotorCommand::doProcess() {
 }
 
 DummyMotorCommand::DummyMotorCommand() {
-	MotorController::instance()->restoreMixingMode();
-	MotorController::instance()->restoreOperatingMode();
+
 }
 
 DummyMotorCommand::~DummyMotorCommand() {
