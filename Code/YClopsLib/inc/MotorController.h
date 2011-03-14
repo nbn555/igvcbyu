@@ -353,7 +353,8 @@ private:
 	int currentMixingMode;					//! How the !M command is currently interpreted
 	int operatingMode;						//! The configuration for the operating mode (open, closed, position)
 	int currentOperatingMode;				//! The current mode the controller is set to
-	sem_t serialPortSem;						//! A semaphore to protect the serialPort
+	sem_t serialPortSem;					//! A semaphore to protect the serialPort
+	bool permissiveMode;					//! True if no error checking is desired
 protected:
 	static MotorController * mc;			//! The pointer to the instance of the motor controller
 
@@ -377,7 +378,7 @@ private:
 	 * @param command - the carriage return ended command to send to the motor controller
 	 * @returns true upon successful transmission of the command
 	 */
-	bool sendCommand( const std::string command, const std::string expectedResponse, std::string * response, bool permissive = false );
+	bool sendCommand( const std::string command, const std::string expectedResponse, std::string * response, bool permissive );
 
 	/**
 	 * enableSerialEcho - turns on the echo of commands from the motor controller

@@ -20,17 +20,17 @@ AbstractPoseEstimator::~AbstractPoseEstimator() {
 }
 
 bool AbstractPoseEstimator::getPose( CPose3D & pose ) {
-	vector_double v(6);
-	//this->poseEstimate.getAsVector(v);
-	for(int i = 0; i < 6; i++ )
-		v[i] = this->poseEstimate[i];
-	pose.setFromValues(v[0],v[1],v[2],v[3],v[4],v[5]);
+	pose = this->poseEstimate;
 	return true;
 }
 
-NoFilterPoseEstimator::NoFilterPoseEstimator(bool convertToMeters):convertToMeters(convertToMeters) {
-	started = false;
+bool AbstractPoseEstimator::getSpeed( float & curv, float & curw ){
+	curv = this->curV;
+	curw = this->curW;
+	return false;
+}
 
+NoFilterPoseEstimator::NoFilterPoseEstimator(bool convertToMeters):started(false), convertToMeters(convertToMeters) {
 }
 
 NoFilterPoseEstimator::~NoFilterPoseEstimator() {
@@ -46,7 +46,14 @@ void NoFilterPoseEstimator::update( const GPSData * gpsData, const CompassData *
 	double z = 0;
 
 	if( NULL != gpsData ) {
-
+		if(gpsData->valid) {
+			lat = gpsData->latitude;
+			lon = gpsData->longitude;
+		} else {
+			LOG_POSE(FATAL) << "No valid data found in gps observation" << endl;
+		}
+	} else {
+		LOG_POSE(FATAL) << "GPS Data pointer NULL" << endl;
 	}
 
 	if( NULL != compassData ) {
@@ -55,14 +62,6 @@ void NoFilterPoseEstimator::update( const GPSData * gpsData, const CompassData *
 
 	if( NULL != encoderData ) {
 
-	}
-
-
-	if(gpsData->valid) {
-		lat = gpsData->latitude;
-		lon = gpsData->longitude;
-	} else {
-		LOG_POSE(FATAL) << "No valid data found in gps observation" << endl;
 	}
 
 	if(!started)
@@ -81,7 +80,6 @@ void NoFilterPoseEstimator::update( const GPSData * gpsData, const CompassData *
 		x = sin(direction)*length;
 		y = cos(direction)*length;
 
-		LOG_POSE(DEBUG4) << "Got yaw:" << compassData->yaw << " pitch " << compassData->pitch << " roll " << compassData->roll << endl;
 		this->poseEstimate.setFromValues(x, y, z, compassData->yaw, compassData->pitch, compassData->roll);
 	} else {
 		this->poseEstimate.setFromValues(lat, lon, z, compassData->yaw, compassData->pitch, compassData->roll);
