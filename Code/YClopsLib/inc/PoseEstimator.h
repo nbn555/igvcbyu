@@ -7,8 +7,8 @@
 #ifndef POSEESTIMATOR_H_
 #define POSEESTIMATOR_H_
 
-#include <mrpt/slam/CObservationGPS.h>
 #include <mrpt/poses/CPose3D.h>
+#include <mrpt/bayes/CKalmanFilterCapable.h>
 #include "SensorData.h"
 #include "logging.h"
 
@@ -48,6 +48,20 @@ public:
 	 * direct value from the sensor
 	 */
 	void update( const GPSData * gpsData, const CompassData * compassData, const EncoderData * encoderData );
+};
+
+class RangeBearingPoseEstimator: public AbstractPoseEstimator {
+protected:
+	class RangeBearing: public mrpt::bayes::CKalmanFilterCapable<4,2,2,1>{
+
+
+
+
+	};
+
+public:
+	void update( const GPSData * gpsData, const CompassData * compassData, const EncoderData * encoderData );
+
 };
 
 #endif /* POSEESTIMATOR_H_ */
