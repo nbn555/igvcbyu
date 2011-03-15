@@ -58,8 +58,6 @@ void Camera::loadConfiguration(const mrpt::utils::CConfigFileBase & config, cons
 }
 
 void Camera::init(){
-	namedWindow("debug", 1);
-
 	array = new bool[GRID_SIZE * GRID_SIZE];
 	map = new mrpt::slam::CSimplePointsMap;
 	//capture = new VideoCapture(0);
@@ -178,8 +176,11 @@ void Camera::insertObstacles(mrpt::slam::CSimplePointsMap & map, int size, bool 
 				pixel_y = 480 - (i * (480/size));
 
 				// each pixel is .00635 meters high and wide
-				x = ((pixel_x - 240) * .00635);
-				y = ((pixel_y * .00635) + .914);
+				//x = ((pixel_x - 240) * .00635);
+				//y = ((pixel_y * .00635) + .914);
+
+				y = -((pixel_x - 240) * .00635);
+				x = ((pixel_y * .00635) + .914);
 
 				map.insertPoint(x, y);
 			}
