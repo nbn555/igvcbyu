@@ -32,6 +32,7 @@
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -63,6 +64,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#ae53c78488151f7344c99a91b7cfb7489">findBestApproximation</a> (float desV, float desW, float &amp;outV, float &amp;outW)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#adb6178eba0b278367d0afa3758b09fff">findMinMaxCurvatures</a> (float &amp;minCurv, float &amp;maxCurv)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#abadc6b0b1d6bff484ae3017e96dc3ac4">findBestApproximation</a> (float desV, float desW, float &amp;outV, float &amp;outW)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#adb6178eba0b278367d0afa3758b09fff">findMinMaxCurvatures</a> (float &amp;minCurv, float &amp;maxCurv)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#abadc6b0b1d6bff484ae3017e96dc3ac4">findBestApproximation</a> (float desV, float desW, float &amp;outV, float &amp;outW)</td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#adeb6826ed33e796669dd847d76a7c247">v_max</a></td></tr>
@@ -72,6 +75,7 @@ Public Attributes</h2></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#a40a25c5692d1d1c7cb132a398f608352">findClosestCut</a> (float cmd_v, float cmd_w, float &amp;out_v, float &amp;out_w)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#a723b047318930eb0ccddbe924082527b">findClosestCut</a> (float cmd_v, float cmd_w, float &amp;out_v, float &amp;out_w)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#a723b047318930eb0ccddbe924082527b">findClosestCut</a> (float cmd_v, float cmd_w, float &amp;out_v, float &amp;out_w)</td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -123,9 +127,49 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Returns the corner which is closer (in curvature, and abs. values) to the desired command. </p>
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01346">1346</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01346">1346</a> of file <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">mrpt::reactivenav::YclopsNavigationSystem::performNavigationStep()</a>.</p>
+<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">mrpt::reactivenav::YclopsNavigationSystem::performNavigationStep()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abadc6b0b1d6bff484ae3017e96dc3ac4"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::CDynamicWindow::findBestApproximation" ref="abadc6b0b1d6bff484ae3017e96dc3ac4" args="(float desV, float desW, float &amp;outV, float &amp;outW)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::CDynamicWindow::findBestApproximation </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>desV</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>desW</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>outV</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>outW</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Returns the corner which is closer (in curvature, and abs. values) to the desired command. </p>
 
 </div>
 </div>
@@ -209,6 +253,46 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a723b047318930eb0ccddbe924082527b"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::CDynamicWindow::findClosestCut" ref="a723b047318930eb0ccddbe924082527b" args="(float cmd_v, float cmd_w, float &amp;out_v, float &amp;out_w)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool mrpt::reactivenav::YclopsNavigationSystem::CDynamicWindow::findClosestCut </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>cmd_v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>cmd_w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>out_v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>out_w</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Find the closest cut of a line with the DW </p>
+
+</div>
+</div>
 <a class="anchor" id="a40a25c5692d1d1c7cb132a398f608352"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::CDynamicWindow::findClosestCut" ref="a40a25c5692d1d1c7cb132a398f608352" args="(float cmd_v, float cmd_w, float &amp;out_v, float &amp;out_w)" -->
 <div class="memitem">
 <div class="memproto">
@@ -247,7 +331,7 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Find the closest cut of a line with the DW </p>
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01393">1393</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01393">1393</a> of file <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
 
 </div>
 </div>
@@ -305,9 +389,37 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Finds the max/min curvatures in the DW. </p>
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01328">1328</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01328">1328</a> of file <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
 
 <p>References <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00293">c1</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00293">c2</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00293">c3</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00293">c4</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00289">v_max</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00289">v_min</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00290">w_max</a>, and <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00290">w_min</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adb6178eba0b278367d0afa3758b09fff"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::CDynamicWindow::findMinMaxCurvatures" ref="adb6178eba0b278367d0afa3758b09fff" args="(float &amp;minCurv, float &amp;maxCurv)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::CDynamicWindow::findMinMaxCurvatures </td>
+          <td>(</td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>minCurv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>maxCurv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Finds the max/min curvatures in the DW. </p>
 
 </div>
 </div>
@@ -325,7 +437,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00293">293</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01328">findMinMaxCurvatures()</a>.</p>
+<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01328">findMinMaxCurvatures()</a>.</p>
 
 </div>
 </div>
@@ -342,7 +454,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00293">293</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01328">findMinMaxCurvatures()</a>.</p>
+<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01328">findMinMaxCurvatures()</a>.</p>
 
 </div>
 </div>
@@ -359,7 +471,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00293">293</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01328">findMinMaxCurvatures()</a>.</p>
+<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01328">findMinMaxCurvatures()</a>.</p>
 
 </div>
 </div>
@@ -376,7 +488,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00293">293</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01328">findMinMaxCurvatures()</a>.</p>
+<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01328">findMinMaxCurvatures()</a>.</p>
 
 </div>
 </div>
@@ -393,7 +505,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00289">289</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01328">findMinMaxCurvatures()</a>.</p>
+<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01328">findMinMaxCurvatures()</a>.</p>
 
 </div>
 </div>
@@ -410,7 +522,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00289">289</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01328">findMinMaxCurvatures()</a>.</p>
+<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01328">findMinMaxCurvatures()</a>.</p>
 
 </div>
 </div>
@@ -427,7 +539,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00290">290</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01328">findMinMaxCurvatures()</a>.</p>
+<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01328">findMinMaxCurvatures()</a>.</p>
 
 </div>
 </div>
@@ -444,15 +556,17 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00290">290</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
 
-<p>Referenced by <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01328">findMinMaxCurvatures()</a>.</p>
+<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01328">findMinMaxCurvatures()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>AI/ReactiveNavInterface/YclopsReactiveNavigationSimulator/<a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a></li>
 <li>AI/Sim/<a class="el" href="Sim_2Yclopsnav_8h_source.html">Yclopsnav.h</a></li>
-<li>AI/ReactiveNavInterface/YclopsReactiveNavigationSimulator/<a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a></li>
-<li>AI/Sim/<a class="el" href="Sim_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a></li>
+<li>/home/tallred3/ecen493/SeniorProject/trunk/Code/YClopsLib/inc/<a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a></li>
+<li>AI/ReactiveNavInterface/YclopsReactiveNavigationSimulator/<a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a></li>
+<li>AI/Sim/<a class="el" href="branches_2AI_2Sim_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a></li>
+<li>/home/tallred3/ecen493/SeniorProject/trunk/Code/YClopsLib/src/<a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a></li>
 </ul>
 </div>
 <hr class="footer"/><address class="footer"><small>Generated on Tue Mar 15 2011 for YClops by&#160;

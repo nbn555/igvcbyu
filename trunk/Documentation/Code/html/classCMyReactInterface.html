@@ -32,6 +32,7 @@
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -52,10 +53,14 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMyReactInterface.html#aede3cbd123e445daeb5b9d4eb5d39be5">changeSpeeds</a> (float v, float w)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMyReactInterface.html#a50096765372732bdb4314986fcbfffcd">senseObstacles</a> (mrpt::slam::CSimplePointsMap &amp;obstacles)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMyReactInterface.html#a9d42538fbde3d3f70fececee0110063b">notifyHeadingDirection</a> (const double heading_dir_angle)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMyReactInterface.html#a475591e4f79bed0c2b4f2e3c896f5433">getCurrentPoseAndSpeeds</a> (mrpt::poses::CPose2D &amp;curPose, float &amp;curV, float &amp;curW)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMyReactInterface.html#aede3cbd123e445daeb5b9d4eb5d39be5">changeSpeeds</a> (float v, float w)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMyReactInterface.html#a50096765372732bdb4314986fcbfffcd">senseObstacles</a> (mrpt::slam::CSimplePointsMap &amp;obstacles)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMyReactInterface.html#a9d42538fbde3d3f70fececee0110063b">notifyHeadingDirection</a> (const double heading_dir_angle)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="ReactiveNavigationDemoMain_8cpp_source.html#l00130">130</a> of file <a class="el" href="ReactiveNavigationDemoMain_8cpp_source.html">ReactiveNavigationDemoMain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp_source.html#l00130">130</a> of file <a class="el" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp_source.html">ReactiveNavigationDemoMain.cpp</a>.</p>
 </div><hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="aede3cbd123e445daeb5b9d4eb5d39be5"></a><!-- doxytag: member="CMyReactInterface::changeSpeeds" ref="aede3cbd123e445daeb5b9d4eb5d39be5" args="(float v, float w)" -->
 <div class="memitem">
@@ -82,9 +87,40 @@ Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavigationDemoMain_8cpp_source.html#l00141">141</a> of file <a class="el" href="ReactiveNavigationDemoMain_8cpp_source.html">ReactiveNavigationDemoMain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp_source.html#l00141">141</a> of file <a class="el" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp_source.html">ReactiveNavigationDemoMain.cpp</a>.</p>
 
-<p>References <a class="el" href="ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim()</a>.</p>
+<p>References <a class="el" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aede3cbd123e445daeb5b9d4eb5d39be5"></a><!-- doxytag: member="CMyReactInterface::changeSpeeds" ref="aede3cbd123e445daeb5b9d4eb5d39be5" args="(float v, float w)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CMyReactInterface::changeSpeeds </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>w</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp_source.html#l00153">153</a> of file <a class="el" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp_source.html">ReactiveNavigationDemoMain.cpp</a>.</p>
+
+<p>References <a class="el" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim()</a>.</p>
 
 </div>
 </div>
@@ -119,9 +155,46 @@ Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavigationDemoMain_8cpp_source.html#l00133">133</a> of file <a class="el" href="ReactiveNavigationDemoMain_8cpp_source.html">ReactiveNavigationDemoMain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp_source.html#l00133">133</a> of file <a class="el" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp_source.html">ReactiveNavigationDemoMain.cpp</a>.</p>
 
-<p>References <a class="el" href="ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim()</a>.</p>
+<p>References <a class="el" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a475591e4f79bed0c2b4f2e3c896f5433"></a><!-- doxytag: member="CMyReactInterface::getCurrentPoseAndSpeeds" ref="a475591e4f79bed0c2b4f2e3c896f5433" args="(mrpt::poses::CPose2D &amp;curPose, float &amp;curV, float &amp;curW)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CMyReactInterface::getCurrentPoseAndSpeeds </td>
+          <td>(</td>
+          <td class="paramtype">mrpt::poses::CPose2D &amp;&#160;</td>
+          <td class="paramname"><em>curPose</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>curV</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>curW</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp_source.html#l00134">134</a> of file <a class="el" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp_source.html">ReactiveNavigationDemoMain.cpp</a>.</p>
+
+<p>References <a class="el" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim()</a>.</p>
 
 </div>
 </div>
@@ -140,7 +213,26 @@ Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavigationDemoMain_8cpp_source.html#l00178">178</a> of file <a class="el" href="ReactiveNavigationDemoMain_8cpp_source.html">ReactiveNavigationDemoMain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp_source.html#l00178">178</a> of file <a class="el" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp_source.html">ReactiveNavigationDemoMain.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9d42538fbde3d3f70fececee0110063b"></a><!-- doxytag: member="CMyReactInterface::notifyHeadingDirection" ref="a9d42538fbde3d3f70fececee0110063b" args="(const double heading_dir_angle)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CMyReactInterface::notifyHeadingDirection </td>
+          <td>(</td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>heading_dir_angle</em></td><td>)</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp_source.html#l00191">191</a> of file <a class="el" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp_source.html">ReactiveNavigationDemoMain.cpp</a>.</p>
 
 </div>
 </div>
@@ -159,14 +251,36 @@ Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavigationDemoMain_8cpp_source.html#l00147">147</a> of file <a class="el" href="ReactiveNavigationDemoMain_8cpp_source.html">ReactiveNavigationDemoMain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp_source.html#l00147">147</a> of file <a class="el" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp_source.html">ReactiveNavigationDemoMain.cpp</a>.</p>
 
-<p>References <a class="el" href="ReactiveNavigationDemoMain_8cpp_source.html#l00126">gridMap</a>, and <a class="el" href="ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim()</a>.</p>
+<p>References <a class="el" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp_source.html#l00126">gridMap</a>, and <a class="el" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim()</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>AI/Sim/<a class="el" href="ReactiveNavigationDemoMain_8cpp_source.html">ReactiveNavigationDemoMain.cpp</a></li>
+<a class="anchor" id="a50096765372732bdb4314986fcbfffcd"></a><!-- doxytag: member="CMyReactInterface::senseObstacles" ref="a50096765372732bdb4314986fcbfffcd" args="(mrpt::slam::CSimplePointsMap &amp;obstacles)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CMyReactInterface::senseObstacles </td>
+          <td>(</td>
+          <td class="paramtype">mrpt::slam::CSimplePointsMap &amp;&#160;</td>
+          <td class="paramname"><em>obstacles</em></td><td>)</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp_source.html#l00160">160</a> of file <a class="el" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp_source.html">ReactiveNavigationDemoMain.cpp</a>.</p>
+
+<p>References <a class="el" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp_source.html#l00126">gridMap</a>, and <a class="el" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim()</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>AI/Sim/<a class="el" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp_source.html">ReactiveNavigationDemoMain.cpp</a></li>
+<li>/home/tallred3/ecen493/SeniorProject/trunk/Code/Simulator/Simulator/<a class="el" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp_source.html">ReactiveNavigationDemoMain.cpp</a></li>
 </ul>
 </div>
 <hr class="footer"/><address class="footer"><small>Generated on Tue Mar 15 2011 for YClops by&#160;

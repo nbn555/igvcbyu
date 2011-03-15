@@ -57,22 +57,22 @@
 <a name="l00016"></a>00016 
 <a name="l00017"></a>00017 
 <a name="l00018"></a>00018 
-<a name="l00019"></a><a class="code" href="Camera_2test_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">00019</a> <span class="keywordtype">int</span> <a class="code" href="AI_2VeroniGraph_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]) {
+<a name="l00019"></a><a class="code" href="Camera_2test_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">00019</a> <span class="keywordtype">int</span> <a class="code" href="branches_2AI_2VeroniGraph_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]) {
 <a name="l00020"></a>00020         mrpt::utils::CConfigFile config(<span class="stringliteral">&quot;Camera.ini&quot;</span>);
-<a name="l00021"></a>00021         Log::SetReportLevel(DEBUG4);
-<a name="l00022"></a>00022         Log::SetLogFile(&amp;cout);
+<a name="l00021"></a>00021         <a class="code" href="classLog.html#a9f3bafdc838b4a8105b82e9fc5e5086b">Log::SetReportLevel</a>(<a class="code" href="logging_8h.html#aa5a9053636a30269210c54e734e0d583ab03d2afd0c05cf9e3b1a3f60c2545b67">DEBUG4</a>);
+<a name="l00022"></a>00022         <a class="code" href="classLog.html#a6953f3a01d169283cd943c122982360d">Log::SetLogFile</a>(&amp;cout);
 <a name="l00023"></a>00023 
 <a name="l00024"></a>00024 
-<a name="l00025"></a>00025         Camera camera;
+<a name="l00025"></a>00025         <a class="code" href="classCamera.html">Camera</a> camera;
 <a name="l00026"></a>00026 
-<a name="l00027"></a>00027         camera.loadConfiguration(config, <span class="stringliteral">&quot;CAMERA&quot;</span>);
+<a name="l00027"></a>00027         camera.<a class="code" href="classCamera.html#a08fb9fe510608d5804f2fb0cba54a965">loadConfiguration</a>(config, <span class="stringliteral">&quot;CAMERA&quot;</span>);
 <a name="l00028"></a>00028 
-<a name="l00029"></a>00029         camera.init();
+<a name="l00029"></a>00029         camera.<a class="code" href="classCamera.html#af930ce1f46c9f5af3bd5e5bbff6b5022">init</a>();
 <a name="l00030"></a>00030 
 <a name="l00031"></a>00031         mrpt::slam::CSimplePointsMap map;
 <a name="l00032"></a>00032         mrpt::poses::CPose3D pose;
 <a name="l00033"></a>00033 
-<a name="l00034"></a>00034         camera.getObstacles(map, pose);
+<a name="l00034"></a>00034         camera.<a class="code" href="classCamera.html#aee1a2e528164f280b59e1b8e11405809">getObstacles</a>(map, pose);
 <a name="l00035"></a>00035         cout &lt;&lt; <span class="stringliteral">&quot;Done...&quot;</span> &lt;&lt; endl;
 <a name="l00036"></a>00036 
 <a name="l00037"></a>00037 
