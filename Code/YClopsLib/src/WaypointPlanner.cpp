@@ -127,6 +127,7 @@ std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2
 		//TODO convert all points to meters from start point
 	}*/
 	this->visited.push_back(this->visited.front());
+	visited.erase(visited.begin());
 	return this->visited;
 }
 
@@ -175,6 +176,7 @@ void TSPNavigation::nieveTSPSolution(  mrpt::aligned_containers<mrpt::poses::CPo
 	finish.m_coords[LAT] = visited.front().m_coords[LAT];
 	finish.m_coords[LON] = visited.front().m_coords[LON];
 	visited.push_back(finish);
+	visited.erase(visited.begin());
 }
 
 void TSPNavigation::acoTSPSolution( mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit,
