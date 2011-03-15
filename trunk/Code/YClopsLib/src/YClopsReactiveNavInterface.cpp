@@ -224,12 +224,13 @@ bool YClopsReactiveNavInterface::changeSpeeds( float v, float w )
 {
 	curV = v;
 	curW = w;
-	bool rval = false;
+	bool rval = true;
 
 	if( NULL != this->motor ) {
 		motor->setVelocity(v,w);
 		motor->doProcess();
-		rval = motor->getSuccess();
+		LOG(WARNING) << "Removed the correct return falue for change speeds" << endl;
+		//rval = motor->getSuccess();
 	}
 	return rval;
 }

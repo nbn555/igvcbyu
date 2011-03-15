@@ -206,7 +206,7 @@ void YclopsNavigationSystem::loadConfigFile(const mrpt::utils::CConfigFileBase &
 	}
 	printf_debug("\n");
 
-	// Mostrar configuracion cargada de fichero:
+	// Show the loaded configuration in the console:
 	// --------------------------------------------------------
 	printf_debug("\tLOADED CONFIGURATION:\n");
 	printf_debug("-------------------------------------------------------------\n");
@@ -381,17 +381,19 @@ void  YclopsNavigationSystem::performNavigationStep()
 			return;
 		}
 		LOG(DEBUG) << "CurPose: (" << curPose.x() << "," << curPose.y() << "," << curPose.phi()*180./M_PI << ")" << endl;
+		LOG(DEBUG) << "Cur Velocity: Linear " << curVL << " Angular " << curW << endl;
 		/* ----------------------------------------------------------------
 		 	  Have we reached the target location?
 		   ---------------------------------------------------------------- */
-		targetDist= curPose.distance2DTo( m_navigationParams.target.x, m_navigationParams.target.y );
+		targetDist = curPose.distance2DTo( m_navigationParams.target.x, m_navigationParams.target.y );
 
+		LOG_AI(DEBUG) << "Range to target: " << targetDist << endl;
 
 		if ( targetDist < m_navigationParams.targetAllowedDistance &&
 		        navigatorBehavior == beNormalNavigation )
 		{
 
-			cout << "Reached Way Point" << endl;
+			LOG_AI(INFO) << "Reached Way Point" << endl;
 			points.erase(points.begin());
 			if(points.size() != 0)//this->points)
 			{
@@ -401,7 +403,7 @@ void  YclopsNavigationSystem::performNavigationStep()
 			{
 				m_robot.stop();
 				m_navigationState = IDLE;
-				printf_debug("Navigation target was reached!\n" );
+				LOG_AI(INFO) << "Navigation target was reached!" << endl;
 
 				if (!navigationEndEventSent)
 				{
@@ -409,9 +411,7 @@ void  YclopsNavigationSystem::performNavigationStep()
 					m_robot.sendNavigationEndEvent();
 				}
 				return;
-
 			}
-
 
 		}
 
@@ -427,7 +427,7 @@ void  YclopsNavigationSystem::performNavigationStep()
 			// Too much time have passed?
 			if ( system::timeDifference( badNavAlarm_lastMinDistTime, system::getCurrentTime() ) > badNavAlarm_AlarmTimeout)
 			{
-				std::cout << "\n--------------------------------------------\nWARNING: Timeout for approaching toward the target expired!! Aborting navigation!! \n---------------------------------\n";
+				LOG_AI(ERROR) << "\n--------------------------------------------\nWARNING: Timeout for approaching toward the target expired!! Aborting navigation!! \n---------------------------------" << endl;
 
 				m_navigationState = NAV_ERROR;
 				return;
@@ -438,7 +438,7 @@ void  YclopsNavigationSystem::performNavigationStep()
 		// Compute target location relative to current robot pose:
 		// ---------------------------------------------------------------------
 		relTarget = CPoint2D(m_navigationParams.target) - curPose;
-		cout << "at" << curPose.x() << " " << curPose.y() << " looking for " << m_navigationParams.target.x << " " << m_navigationParams.target.y << endl;
+		LOG_AI(INFO) << "at: " << curPose.x() << "," << curPose.y() << " looking for " << m_navigationParams.target.x << "," << m_navigationParams.target.y << endl;
 
 		// STEP1: Collision Grids Builder.
 		// -----------------------------------------------------------------------------
@@ -448,7 +448,7 @@ void  YclopsNavigationSystem::performNavigationStep()
 		// -----------------------------------------------------------------------------
 		if (! STEP2_Sense( WS_Obstacles ) )
 		{
-			printf_debug("Warning: Error while sensing obstacles. Robot will be stopped.\n");
+			LOG_AI(WARNING) << "Warning: Error while sensing obstacles. Robot will be stopped." << endl;
 			m_robot.stop();
 			m_navigationState = NAV_ERROR;
 			return;
@@ -654,9 +654,7 @@ void  YclopsNavigationSystem::performNavigationStep()
 		timerForExecutionPeriod.Tic();
 
 
-		printf_debug("CMD:%.02lfm/s,%.02lfd/s \t",
-		           (double)cmd_v,
-		           (double)RAD2DEG( cmd_w ) );
+		LOG_AI(INFO) << "CMD:" << (double)cmd_v << "m/s, " << (double)RAD2DEG( cmd_w ) << "d/s \t" << endl;
 
 		printf_debug(" T=%.01lfms Exec:%.01lfms|%.01lfms \t",
 		           1000.0*meanExecutionPeriod,
