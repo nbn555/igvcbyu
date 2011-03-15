@@ -340,22 +340,22 @@ void  YclopsNavigationSystem::performNavigationStep()
 	float										curVL;			// en metros/seg
 	float										curW;			// en rad/segundo
 	static std::vector<THolonomicMovement>		holonomicMovements;
-	THolonomicMovement							selectedHolonomicMovement;
+//	THolonomicMovement							selectedHolonomicMovement;
 	float										cmd_v=0,cmd_w=0;	// The non-holonomic command
-	float 										desired_cmd_v, desired_cmd_w;
+//	float 										desired_cmd_v, desired_cmd_w;
 	std::vector<CHolonomicLogFileRecordPtr>		HLFRs;
 	static std::vector<float>					times_TP_transformations, times_HoloNav;
 	static std::vector<bool>					valid_TP;
-	static float								meanExecutionTime = 0.1f;
-	static float								meanTotalExecutionTime= 0.1f;
-	int											nSelectedPTG;
+//	static float								meanExecutionTime = 0.1f;
+//	static float								meanTotalExecutionTime= 0.1f;
+//	int											nSelectedPTG;
 	static vector_float							prevV,prevW,prevSelPTG;
-	static int									nLastSelectedPTG = -1;
+//	static int									nLastSelectedPTG = -1;
 	//static CDynamicWindow						DW;
 //	static TNavigatorBehavior					lastStepBehavior;
 //	TNavigatorBehavior							saveLastBehavior;
 
-	float cur_approx_heading_dir = 0;
+//	float cur_approx_heading_dir = 0;
 
 	// Already closing??
 	if (CerrandoHilo) return;
@@ -371,9 +371,9 @@ void  YclopsNavigationSystem::performNavigationStep()
 		// Start timer
 		totalExecutionTime.Tic();
 
-		/* ----------------------------------------------------------------
-		 	  Request current robot pose and velocities
-		   ---------------------------------------------------------------- */
+		// ----------------------------------------------------------------
+		//	  Request current robot pose and velocities
+		// ----------------------------------------------------------------
 		LOG(DEBUG4) << "Running CurrentPose and Speeds" << endl;
 		if ( !m_robot.getCurrentPoseAndSpeeds(curPose, curVL, curW ) )
 		{
@@ -382,9 +382,9 @@ void  YclopsNavigationSystem::performNavigationStep()
 		}
 		LOG(DEBUG) << "CurPose: (" << curPose.x() << "," << curPose.y() << "," << curPose.phi()*180./M_PI << ")" << endl;
 		LOG(DEBUG) << "Cur Velocity: Linear " << curVL << " Angular " << curW << endl;
-		/* ----------------------------------------------------------------
-		 	  Have we reached the target location?
-		   ---------------------------------------------------------------- */
+		// ----------------------------------------------------------------
+		// 	  Have we reached the target location?
+		// ----------------------------------------------------------------
 		targetDist = curPose.distance2DTo( m_navigationParams.target.x, m_navigationParams.target.y );
 
 		LOG_AI(DEBUG) << "Range to target: " << targetDist << endl;
@@ -440,7 +440,7 @@ void  YclopsNavigationSystem::performNavigationStep()
 		relTarget = CPoint2D(m_navigationParams.target) - curPose;
 		LOG_AI(INFO) << "at: " << curPose.x() << "," << curPose.y() << " looking for " << m_navigationParams.target.x << "," << m_navigationParams.target.y << endl;
 
-		// STEP1: Collision Grids Builder.
+/*		// STEP1: Collision Grids Builder.
 		// -----------------------------------------------------------------------------
 		STEP1_CollisionGridsBuilder();
 
@@ -454,10 +454,10 @@ void  YclopsNavigationSystem::performNavigationStep()
 			return;
 		}
 
-
+*/
 		// Start timer
 		executionTime.Tic();
-
+/*
 		// For some behaviors:
 		//  If set to true, "cmd_v" & "cmd_w" must be set to the desired values:
 		bool		skipNormalReactiveNavigation = false;
@@ -612,34 +612,29 @@ void  YclopsNavigationSystem::performNavigationStep()
 			desired_cmd_v = cmd_v;
 			desired_cmd_w = cmd_w;
 
-			/*		DW.v_max = min( robotMax_V_mps, curVL + robotMax_V_accel_mpss * deg);
-					DW.v_min = max(-robotMax_V_mps, curVL - robotMax_V_accel_mpss * meanExecutionPeriod);
-					DW.w_max = min( DEG2RAD(robotMax_W_degps), curW + DEG2RAD(robotMax_W_accel_degpss * meanExecutionPeriod) );
-					DW.w_min = max(-DEG2RAD(robotMax_W_degps), curW - DEG2RAD(robotMax_W_accel_degpss * meanExecutionPeriod) );
-			*/
+			//		DW.v_max = min( robotMax_V_mps, curVL + robotMax_V_accel_mpss * deg);
+			//		DW.v_min = max(-robotMax_V_mps, curVL - robotMax_V_accel_mpss * meanExecutionPeriod);
+			//		DW.w_max = min( DEG2RAD(robotMax_W_degps), curW + DEG2RAD(robotMax_W_accel_degpss * meanExecutionPeriod) );
+			//		DW.w_min = max(-DEG2RAD(robotMax_W_degps), curW - DEG2RAD(robotMax_W_accel_degpss * meanExecutionPeriod) );
+
 
 		} // end of "!skipNormalReactiveNavigation"
 
-
+*/
 		// ---------------------------------------------------------------------
 		//				SEND MOVEMENT COMMAND TO THE ROBOT
 		// ---------------------------------------------------------------------
-		if ( cmd_v == 0.0 && cmd_w == 0.0 )
-		{
+		if ( cmd_v == 0.0 && cmd_w == 0.0 ) {
 			m_robot.stop();
-		}
-
-
-		else
-		{
-			LOG(DEBUG4) << "Running change speeds" << endl;
+		} else {
+			LOG(DEBUG4) << "Running change speeds to: Linear " << cmd_v << " Angular " << cmd_w << endl;
 			if ( !m_robot.changeSpeeds( cmd_v, cmd_w ) )
 			{
 				Error_ParadaDeEmergencia("\nERROR calling RobotMotionControl::changeSpeeds!! Stopping robot and finishing navigation\n");
 				return;
 			}
 		}
-
+/*
 		// Statistics:
 		// ----------------------------------------------------
 		float	executionTimeValue = (float) executionTime.Tac();
@@ -650,12 +645,12 @@ void  YclopsNavigationSystem::performNavigationStep()
 		meanExecutionPeriod = 0.3f * meanExecutionPeriod +
 		                      0.7f * min(1.0f, (float)timerForExecutionPeriod.Tac());
 
-
+*/
 		timerForExecutionPeriod.Tic();
 
 
 		LOG_AI(INFO) << "CMD:" << (double)cmd_v << "m/s, " << (double)RAD2DEG( cmd_w ) << "d/s \t" << endl;
-
+/*
 		printf_debug(" T=%.01lfms Exec:%.01lfms|%.01lfms \t",
 		           1000.0*meanExecutionPeriod,
 		           1000.0*meanExecutionTime,
@@ -750,7 +745,7 @@ void  YclopsNavigationSystem::performNavigationStep()
 		{
 			newLogRec.infoPerPTG.clear();
 		}
-
+*/
 		// --------------------------------------
 		//  Save to log file:
 		// --------------------------------------
@@ -768,12 +763,12 @@ void  YclopsNavigationSystem::performNavigationStep()
 	}
 	catch (std::exception &e)
 	{
-		std::cout << e.what();
-		std::cout << "[YclopsNavigationSystem::performNavigationStep] Exceptions!!\n";
+		LOG_AI(ERROR) << e.what();
+		LOG_AI(ERROR) << "[YclopsNavigationSystem::performNavigationStep] Exceptions!!" << endl;
 	}
 	catch (...)
 	{
-		std::cout << "[YclopsNavigationSystem::performNavigationStep] Unexpected exception!!:\n";
+		LOG_AI(ERROR) << "[YclopsNavigationSystem::performNavigationStep] Unexpected exception!!:" << endl;
 	}
 
 }
