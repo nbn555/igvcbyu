@@ -31,8 +31,8 @@ void shutdown( int exitStatus );
 LOG_LEVEL loggingLevel = DEBUG4;
 
 YClopsReactiveNavInterface * yclops = NULL;
-ofstream of;
 mrpt::reactivenav::YclopsNavigationSystem * ai = NULL;
+ofstream of;
 const string DEFAULT_POINTS_FILE = "points.txt";
 
 int main( int argc, char** argv ) {
@@ -77,27 +77,10 @@ int main( int argc, char** argv ) {
 		LOG(DEBUG4) << "loading configuration for the Navigation System" << endl;
 		ai->loadConfigFile(YClopsConfiguration::instance(), YClopsConfiguration::instance());
 
-		mrpt::poses::CPose2D curPose;
-		mrpt::slam::CSimplePointsMap map;
-		float curV, curW;
-
 		LOG(DEBUG4) << "Starting main loop" << endl;
 		while(!closing) {
-			LOG(DEBUG4) << "Iteration again: " << (!closing?"true":"false") << endl;
+			LOG(DEBUG4) << "Iterating: " << (!closing?"true":"false") << endl;
 
-			/*
-			LOG(DEBUG) << "Running CurrentPose and Speeds" << endl;
-			yclops->getCurrentPoseAndSpeeds(curPose, curV, curW);
-			LOG(DEBUG) << "CurPose: (" << curPose.x() << "," << curPose.y() << "," << curPose.phi()*180./M_PI << ")" << endl;
-
-
-			LOG(DEBUG) << "Running change speeds" << endl;
-			yclops->changeSpeeds(curV, curW);
-			LOG(DEBUG) << "Running senseObstacles" << endl;
-			yclops->senseObstacles(map);
-
-			//usleep(1000000/20);
-			 */
 			switch(ai->getCurrentState()) {
 			case mrpt::reactivenav::CAbstractReactiveNavigationSystem::IDLE:
 				LOG(DEBUG4) << "ai state: IDLE" << endl; break;
@@ -177,7 +160,7 @@ void signal_handler( int signum ) {
 			LOG(INFO) << "Going into Autonomous Mode" << endl;
 			yclops->setAutonomusMode();
 			ai->setChallenge(false);
-			string pointsFile = YClopsConfiguration::instance().read_string("ROBOT_NAME","POINTS_FILE","points.txt");
+			string pointsFile = YClopsConfiguration::instance().read_string("GLOBAL_CONFIG","POINTS_FILE","points.txt");
 			ai->setFileName(pointsFile,false);
 			ai->setup();
 		}
@@ -186,7 +169,7 @@ void signal_handler( int signum ) {
 			LOG(INFO) << "Going into Navigation Mode" << endl;
 			yclops->setNavigationMode();
 			ai->setChallenge(true);
-			string pointsFile = YClopsConfiguration::instance().read_string("ROBOT_NAME","POINTS_FILE","points.txt");
+			string pointsFile = YClopsConfiguration::instance().read_string("GLOBAL_CONFIG","POINTS_FILE","points.txt");
 			ai->setFileName(pointsFile,false);
 			ai->setup();
 		}
@@ -310,16 +293,15 @@ void signal_handler( int signum ) {
 
 void shutdown( int exitStatus ) {
 	LOG(INFO) << "Shutting down YClops" << endl;
+
+	LOG(INFO) << "Closing Wii Controller" << endl;
 	WiiController::destroyReference();
 
-	//sleep(1);
+	LOG(INFO) << "Deleting yclops" << endl;
+	delete yclops;	yclops = NULL;
 
-	delete yclops;
-	yclops = NULL;
-//	delete ai;
-//	ai = NULL;
-
-	//sleep(1);
+	LOG(INFO) << "Deleting ai" << endl;
+	delete ai;	ai = NULL;
 
 	exit(exitStatus);
 }
