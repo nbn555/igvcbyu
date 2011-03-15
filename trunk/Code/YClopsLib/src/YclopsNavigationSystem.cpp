@@ -648,7 +648,9 @@ void  YclopsNavigationSystem::performNavigationStep()
 */
 		timerForExecutionPeriod.Tic();
 
-
+		printf("CMD:%.02lfm/s,%.02lfd/s \t",
+		           (double)cmd_v,
+		           (double)RAD2DEG( cmd_w ));
 		LOG_AI(INFO) << "CMD:" << (double)cmd_v << "m/s, " << (double)RAD2DEG( cmd_w ) << "d/s \t" << endl;
 /*
 		printf_debug(" T=%.01lfms Exec:%.01lfms|%.01lfms \t",
