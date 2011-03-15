@@ -91,7 +91,6 @@ void YclopsNavigationSystem::getLastLogRecord( CLogFileRecord &o )
   ---------------------------------------------------------------*/
 void YclopsNavigationSystem::loadConfigFile(const mrpt::utils::CConfigFileBase &ini, const mrpt::utils::CConfigFileBase &robotIni )
 {
-	MRPT_START;
 	collisionGridsMustBeUpdated = true;
 
 	// Load config from INI file:
@@ -231,7 +230,6 @@ void YclopsNavigationSystem::loadConfigFile(const mrpt::utils::CConfigFileBase &
 	printf_debug("  Obstacles 'z' axis range \t= [%.03f,%.03f]\n", minObstaclesHeight, maxObstaclesHeight );
 	printf_debug("\n\n");
 
-	MRPT_END;
 }
 
 
