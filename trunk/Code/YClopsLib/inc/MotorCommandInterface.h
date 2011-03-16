@@ -40,9 +40,9 @@ public:
 
 	virtual ~MotorCommandInterface();
 protected:
-	double linearVelocity;		//!The most recent linearVelocity set
-	double angularVelocity;		//!The most recent angularVelocity set
-	bool success;				//!Whether the last command was successful
+	double linearVelocity;		//!<The most recent linearVelocity set
+	double angularVelocity;		//!<The most recent angularVelocity set
+	bool success;				//!<Whether the last command was successful
 };
 
 /**

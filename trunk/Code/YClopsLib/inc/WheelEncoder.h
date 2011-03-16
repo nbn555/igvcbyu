@@ -42,13 +42,13 @@ public:
 
 	virtual ~WheelEncoder();
 protected:
-	int leftCount;			//!The current count of the left encoder
-	int rightCount;			//!The current count of the right encoder
-	int leftCountAbsolute;	//!The total count of the left encoder
-	int rightCountAbsolute;	//!The total count of the right encoder
-	int leftEncoderSpeed;	//!The current rate of change in the count of the left encoder
-	int rightEncoderSpeed;	//!The current rate of change in the count of the right encoder
-	int encoderPPR;			//!The configured pulses per revolution in the encoder
+	int leftCount;			//!<The current count of the left encoder
+	int rightCount;			//!<The current count of the right encoder
+	int leftCountAbsolute;	//!<The total count of the left encoder
+	int rightCountAbsolute;	//!<The total count of the right encoder
+	int leftEncoderSpeed;	//!<The current rate of change in the count of the left encoder
+	int rightEncoderSpeed;	//!<The current rate of change in the count of the right encoder
+	int encoderPPR;			//!<The configured pulses per revolution in the encoder
 
 };
 

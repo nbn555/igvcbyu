@@ -14,15 +14,15 @@ using namespace mrpt::poses;
 
 namespace tkhl{
 	const int iAntCount=34;
-	const int iCityCount=5;	//! total city count
-	const int iItCount=50; 	//! cycle count
+	const int iCityCount=5;	//!< total city count
+	const int iItCount=50; 	//!< cycle count
 	const double Q=100;
 	const double alpha=1;
 	const double beta=5;
 	const double rou=0.5;
 
-	static const int LAT = 0; //!Index for the Latitude in a CPoint2D
-	static const int LON = 1; //!Index for the Longitude in a CPoint2D
+	static const int LAT = 0; //!<Index for the Latitude in a CPoint2D
+	static const int LON = 1; //!<Index for the Longitude in a CPoint2D
 
 	int besttour[iCityCount]; // best tour
 

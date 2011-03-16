@@ -42,9 +42,9 @@ public:
 	 */
 	bool getSpeed( float & curV, float & curW );
 protected:
-	mrpt::poses::CPose3D poseEstimate;	//!The current pose belief of the robot
-	double curV;						//!The current linear velocity belief of the robot
-	double curW;						//!The current angular velocity belief of the robot
+	mrpt::poses::CPose3D poseEstimate;	//!<The current pose belief of the robot
+	double curV;						//!<The current linear velocity belief of the robot
+	double curW;						//!<The current angular velocity belief of the robot
 };
 
 /**

@@ -27,8 +27,8 @@
  */
 class MotorController {
 public:
-	static const int MOTOR_SECRET_KEY = 321654987;	//!Motor reset key used for sensitive operations
-	static const std::string MOTOR_BAD_COMMAND;		//!used in error checking currently should be '-'
+	static const int MOTOR_SECRET_KEY = 321654987;	//!<Motor reset key used for sensitive operations
+	static const std::string MOTOR_BAD_COMMAND;		//!<used in error checking currently should be '-'
 
 	/**
 	 * @brief returns a reference to the motor controller
@@ -49,7 +49,7 @@ public:
 	 * @brief Class destructor
 	 */
 	virtual ~MotorController() {
-		sem_destroy(&(this->serialPortSem)); //!release the the pthread semaphore
+		sem_destroy(&(this->serialPortSem)); //!<release the the pthread semaphore
 	};
 
 	/**
@@ -349,23 +349,23 @@ private:
 	 */
 	MotorController();
 
-	mrpt::hwdrivers::CSerialPort serialPort;//! the serial port to communicate to the motor controller
-	bool echoEnabled;						//! true if the motor controller is set to echo serial commands
-	int motor1Speed;						//! the current speed for the first channel motor
-	int motor2Speed;						//! the current speed for the second channel motor
-	const int motor1SpeedMax;				//! The hard upper limit for the first channel motor speed
-	const int motor2SpeedMax;				//! The hard upper limit for the second channel motor speed
-	const int motor1SpeedMin;				//! The hard lower limit for the first channel motor speed (lower limit would be the reverse speed)
-	const int motor2SpeedMin;				//! The hard lower limit for the second channel motor speed
-	int faultFlagVector;					//! The fault flag status for the motor controller
-	int mixingMode;							//! The how a !M command is interpreted.
-	int currentMixingMode;					//! How the !M command is currently interpreted
-	int operatingMode;						//! The configuration for the operating mode (open, closed, position)
-	int currentOperatingMode;				//! The current mode the controller is set to
-	sem_t serialPortSem;					//! A semaphore to protect the serialPort
-	bool permissiveMode;					//! True if no error checking is desired
+	mrpt::hwdrivers::CSerialPort serialPort;//!< the serial port to communicate to the motor controller
+	bool echoEnabled;						//!< true if the motor controller is set to echo serial commands
+	int motor1Speed;						//!< the current speed for the first channel motor
+	int motor2Speed;						//!< the current speed for the second channel motor
+	const int motor1SpeedMax;				//!< The hard upper limit for the first channel motor speed
+	const int motor2SpeedMax;				//!< The hard upper limit for the second channel motor speed
+	const int motor1SpeedMin;				//!< The hard lower limit for the first channel motor speed (lower limit would be the reverse speed)
+	const int motor2SpeedMin;				//!< The hard lower limit for the second channel motor speed
+	int faultFlagVector;					//!< The fault flag status for the motor controller
+	int mixingMode;							//!< The how a !M command is interpreted.
+	int currentMixingMode;					//!< How the !M command is currently interpreted
+	int operatingMode;						//!< The configuration for the operating mode (open, closed, position)
+	int currentOperatingMode;				//!< The current mode the controller is set to
+	sem_t serialPortSem;					//!< A semaphore to protect the serialPort
+	bool permissiveMode;					//!< True if no error checking is desired
 protected:
-	static MotorController * mc;			//! The pointer to the instance of the motor controller
+	static MotorController * mc;			//!< The pointer to the instance of the motor controller
 
 private:
 	/**
