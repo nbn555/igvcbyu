@@ -2,6 +2,7 @@
  * @file YclopsReactiveNavInterface.cpp
  * @date Jan 20, 2011
  * @author igvcbyu
+ * @brief Creates a high level interface for controlling the motor controller and getting obstacle data
  */
 
 #include "YClopsReactiveNavInterface.h"
@@ -22,20 +23,20 @@ YClopsReactiveNavInterface::YClopsReactiveNavInterface()
   motor(NULL), compass(NULL), gps(NULL), camera(NULL), lidar(NULL), encoder(NULL), poseEst(NULL), robotPose(NULL),
   curV(0), curW(0)
 {
-	this->motor = new DummyMotorCommand();
+	this->motor = new DummyMotorCommand();	//!Initialize a motor controller that is disconnected
 
-	std::string compassName = "COMPASS";
+	std::string compassName = "COMPASS";	//!Query the config file to see if we are using the compass
 	if( YClopsConfiguration::instance().read_bool(compassName, "USE", false) ) {
 		LOG(INFO) << "Using Compass" << endl;
 
 		LOG(DEBUG2) << "Creating Compass Object" << endl;
-		this->compass = new Compass();
+		this->compass = new Compass();		//!create a compass sensor
 
-		LOG(DEBUG2) << "Loading Compass Configuration" << endl;
+		LOG(DEBUG2) << "Loading Compass Configuration" << endl;	//!Configure the compass sensor
 		this->compass->loadConfiguration(YClopsConfiguration::instance(), compassName );
 
 		LOG(DEBUG2) << "Initializing Compass" << endl;
-		this->compass->init();
+		this->compass->init();				//!Initialize the compass
 	} else {
 		LOG(INFO) << "Not using Compass" << endl;
 	}
@@ -105,12 +106,12 @@ YClopsReactiveNavInterface::YClopsReactiveNavInterface()
 		LOG(INFO) << "Not using wheel encoders" << endl;
 	}
 
-	this->robotPose = new CPose3D();
-	this->robotPose->setFromValues(0,0,0,0,0,0);
-	LOG(DEBUG2) << "Robot Pose Configured" << endl;
+	this->robotPose = new CPose3D();				//!create a new robot pose
+	this->robotPose->setFromValues(0,0,0,0,0,0);	//!Initialize the robot pose
+	LOG(DEBUG2) << "Robot Pose Configured" << endl;	//!TODO initialize the robot pose with values from the config file
 
-	this->poseEst = new NoFilterPoseEstimator(true);
-	LOG(DEBUG2) << "Using NoFilterPoseEstimator" << endl;
+	this->poseEst = new NoFilterPoseEstimator(true);//!Use a no filter pose estimator
+	LOG(DEBUG2) << "Using NoFilterPoseEstimator" << endl;	//!TODO be able to initialize the pose estimator from the config file
 
 	this->curV = 0;
 	this->curW = 0;
@@ -141,9 +142,9 @@ bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 {
 	LOG(DEBUG2) << "." << endl;
 
-	CompassData * compassData = NULL;
-	GPSData * gpsData = NULL;
-	EncoderData * encoderData = NULL;
+	CompassData * compassData	= NULL;
+	GPSData * gpsData			= NULL;
+	EncoderData * encoderData	= NULL;
 
 	//Get get data from the compass
 	if( NULL != this->compass ) {
@@ -154,6 +155,8 @@ bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 		}
 
 		compassData = (CompassData*)(compass->getData());
+		LOG_AI(DEBUG4) << "In yclops compass data reactivenav: " << compassData->yaw << " " << compassData->pitch << " " << compassData->roll << endl;
+		LOG_AI(DEBUG4) << "Compass data valid? " << compassData->yawValid << " " << compassData->pitchValid << " " << compassData->rollValid << endl;
 	}
 
 	//Get data from the gps
@@ -166,6 +169,8 @@ bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 		}
 
 		gpsData = (GPSData*)(gps->getData());
+		LOG_AI(DEBUG4) << "GPS data: " << gpsData->latitude << "," << gpsData->longitude << endl;
+
 	}
 
 	//Get data from the encoders
@@ -178,42 +183,25 @@ bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 		}
 
 		encoderData = (EncoderData*)(encoder->getData());
+		LOG_AI(DEBUG4) << "Encoder Data: L " << encoderData->leftCount << " R " << encoderData->rightCount << " Absolute L " <<
+				encoderData->leftCountAbsolute << " Absolute R " << encoderData->rightCountAbsolute << endl;
 	}
 
-	if( NULL == gpsData || NULL == compassData /*|| NULL == encoderData*/ ) {
-		curPose.x(robotPose->x());
-		curPose.y(robotPose->y());
+	poseEst->update(gpsData, compassData, encoderData);	// update the pose estimate
+	this->poseEst->getPose(*(this->robotPose));			//Get the pose out of the estimate
+	curPose = CPose2D(*(this->robotPose));				//return the pose belief state
 
-		delete gpsData;
-		delete compassData;
-		//delete encoderData;
-		return true;
-	}
-
-	assert(NULL != poseEst);
-	assert(NULL != gpsData);
-	assert(NULL != compassData);
-	//assert(NULL != encoderData);
-
-	LOG_AI(DEBUG4) << "GPS data: " << gpsData->latitude << "," << gpsData->longitude << endl;
-	LOG_AI(DEBUG4) << "In yclops compass data reactivenav: " << compassData->yaw << " " << compassData->pitch << " " << compassData->roll << endl;
-	LOG_AI(DEBUG4) << "Compass data valid? " << compassData->yawValid << " " << compassData->pitchValid << " " << compassData->rollValid << endl;
-	//LOG_AI(DEBUG4) << "Encoder Data: L " << encoderData->leftCount << " R " << encoderData->rightCount << " Absolute L " <<
-	//		encoderData->leftCountAbsolute << " Absolute R " << encoderData->rightCountAbsolute << endl;
-
-	poseEst->update(gpsData, compassData, encoderData);
-	this->poseEst->getPose(*(this->robotPose));
-	curPose = CPose2D(*(this->robotPose));
-
-	this->poseEst->getSpeed(this->curV,this->curW);
+	this->poseEst->getSpeed(this->curV,this->curW);		//Return the pose speed belief state
 	curV = this->curV;
 	curW = this->curW;
 
-	LOG_AI(DEBUG4) << "YClopsReactiveNav: Putting into curPose (" << robotPose->x() << "," << robotPose->y() << "," << poseEst->getYaw() << ")" << endl;
+	LOG_AI(DEBUG4) << "YClopsReactiveNav: Putting into curPose (" << robotPose->x()
+			<< "," << robotPose->y() << "," << robotPose->yaw() << ")" << endl;
 
-	if(compassData) delete compassData;
-	if(gpsData) delete gpsData;
-	if(encoderData) delete encoderData;
+	//Clean up
+	delete compassData;
+	delete gpsData;
+	delete encoderData;
 
 	return true;
 }
@@ -227,7 +215,7 @@ bool YClopsReactiveNavInterface::changeSpeeds( float v, float w )
 	if( NULL != this->motor ) {
 		motor->setVelocity(v,w);
 		motor->doProcess();
-		LOG(WARNING) << "Removed the correct return falue for change speeds" << endl;
+		LOG(WARNING) << "Removed the correct return value for change speeds" << endl;
 		//rval = motor->getSuccess();
 	}
 	return rval;
@@ -235,7 +223,10 @@ bool YClopsReactiveNavInterface::changeSpeeds( float v, float w )
 
 bool YClopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap &obstacles )
 {
+	CameraData * cameraData 	= NULL;
+	LidarData * lidarData 		= NULL;
 
+	//Get data out of the Camera
 	if( NULL != this->camera ) {
 
 		this->camera->sensorProcess();
@@ -243,14 +234,25 @@ bool YClopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap &o
 		if( this->isCameraDataShown ) {
 			this->camera->dumpData(cout);
 		}
+
+		cameraData = (CameraData*)this->camera->getData();
 	}
 
+	//Get data out of the lidar
 	if( NULL != this->lidar ) {
 		this->lidar->sensorProcess();
 		if( this->isLidarDataShown ) {
 			this->lidar->dumpData(cout);
 		}
+
+		lidarData = (LidarData*)this->lidar->getData();
 	}
+
+	//!TODO implement obstacle avoidance
+
+	//clean up
+	delete cameraData;
+	delete lidarData;
 
 	return true;
 }
@@ -258,20 +260,14 @@ bool YClopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap &o
 void YClopsReactiveNavInterface::setAutonomousMode() {
 //	this->useYclopsMotorCommand();
 	LOG(WARNING) << "REMOVED call to useYclopsMotorCommand in setAutonomusMode" << endl;
-	if(NULL != this->nav ) delete this->nav;
-	this->nav = new SequentialNavigation(this->robotPose->x(),this->robotPose->y());
 }
 
 void YClopsReactiveNavInterface::setNavigationMode() {
 //	this->useYclopsMotorCommand();
 	LOG(WARNING) << "REMOVED call to useYclopsMotorCommand in setNavigationMode" << endl;
-	if(NULL != this->nav ) delete this->nav;
-	this->nav = new TSPNavigation(this->robotPose->x(), this->robotPose->y());
 }
 
 void YClopsReactiveNavInterface::setIdle() {
-	if( NULL != this->nav ) delete this->nav;
-	this->nav = NULL;
 }
 
 bool YClopsReactiveNavInterface::toggleGpsDump() {

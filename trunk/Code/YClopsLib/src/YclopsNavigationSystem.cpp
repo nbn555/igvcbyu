@@ -1,8 +1,8 @@
-/*
- * YclopsnavigationSystem.cpp
- *
- *  Created on: Dec 9, 2010
- *      Author: igvcbyu
+/**
+ * @file YclopsnavigationSystem.cpp
+ * @date Dec 9, 2010
+ * @author igvcbyu
+ * @brief AI
  */
 
 #include "YclopsNavigationSystem.h"  // Precomp header
@@ -775,15 +775,10 @@ void  YclopsNavigationSystem::performNavigationStep()
 
 }
 
-/*************************************************************************
-
-                         STEP1_CollisionGridsBuilder
-
-     -> C-Paths generation.
-     -> Check de colision entre cada celda de la rejilla y el contorno
-          del robot
-
-*************************************************************************/
+/**
+ * @brief C-Paths generation. Collision Check between each grid cell and
+ * the contour of the robot
+ */
 void YclopsNavigationSystem::STEP1_CollisionGridsBuilder()
 {
 	try
@@ -806,13 +801,9 @@ void YclopsNavigationSystem::STEP1_CollisionGridsBuilder()
 	}
 }
 
-/*************************************************************************
-
-                              STEP2_Sense
-
-     Sensors adquisition and obstacle points fusion
-
-*************************************************************************/
+/**
+ * @brief Sensors adquisition and obstacle points fusion
+ */
 bool YclopsNavigationSystem::STEP2_Sense(
 	mrpt::slam::CSimplePointsMap				&out_obstacles)
 {
@@ -835,13 +826,9 @@ bool YclopsNavigationSystem::STEP2_Sense(
 
 }
 
-/*************************************************************************
-
-                              STEP3_SpaceTransformer
-
-     Transformador del espacio de obstaculos segun un PT determinado
-
-*************************************************************************/
+/**
+ * @brief Space transformer of the obstacle space according to a determined PT
+ */
 void YclopsNavigationSystem::STEP3_SpaceTransformer(
     mrpt::poses::CPointsMap					&in_obstacles,
     CParameterizedTrajectoryGenerator	*in_PTG,
@@ -852,21 +839,20 @@ void YclopsNavigationSystem::STEP3_SpaceTransformer(
 	{
 		const size_t Ki = in_PTG->getAlfaValuesCount();
 
-		// Ver si hay espacio ya reservado en los TP-Obstacles:
+		// See if there is currently reserved space in the TP-Obstacles:
 		if ( out_TPObstacles.size() != ((unsigned)(Ki)) )
 			out_TPObstacles.resize( Ki );
 
-		// Coger "k"s y "distances" a las que choca cada punto de obstaculo
-		//  de la "Rejilla" del PT dado.
-		// --------------------------------------------------------------------
+		// Choose "k"s and "Distances" with those that connect each obstacle point
+		// of the grid of the PT data.
 		const size_t nObs = in_obstacles.getPointsCount();
 
 		for (size_t k=0;k<Ki;k++)
 		{
-			// Iniciar a max. distancia o hasta que abs(phi)=pi
+			// Start the max distance until abs(phi)=pi.
 			out_TPObstacles[k] = in_PTG->refDistance;
 
-			// Si acaba girado 180deg, acabar ahi:
+			// If it stops spinning 180 degrees, end there.
 			float phi = in_PTG->GetCPathPoint_phi(k,in_PTG->getPointsCountInCPath_k(k)-1);
 
 			if (fabs(phi) >= M_PI* 0.95 )

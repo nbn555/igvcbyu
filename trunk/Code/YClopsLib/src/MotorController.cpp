@@ -273,14 +273,14 @@ bool MotorController::getBatteryAmps( double & motor1Amps, double & motor2Amps )
 	return rval;
 }
 
-bool MotorController::getAbsoluteEncoderCount(int * ch1, int * ch2 ) {
+bool MotorController::getAbsoluteEncoderCount(int & ch1, int & ch2 ) {
 	bool rval = false;
 	LOG_MOTOR(DEBUG3) << "MotorController: GetAbsoluteEncoderCount" << endl;
-	LOG_MOTOR(DEBUG4) << "absolute encoder count pre ch1 = " << *ch1 << " ch2 = " << *ch2 << endl;
+	LOG_MOTOR(DEBUG4) << "absolute encoder count pre ch1 = " << ch1 << " ch2 = " << ch2 << endl;
 	string response;
 	rval = this->sendCommand("?C\r", "C=", &response, this->permissiveMode);
-	rval = rval && this->responseParser(response, 2, ch1, ch2);
-	LOG_MOTOR(DEBUG4) << "absolute encoder count Got ch1 = " << *ch1 << " ch2 = " << *ch2 << endl;
+	rval = rval && this->responseParser(response, 2, &ch1, &ch2);
+	LOG_MOTOR(DEBUG4) << "absolute encoder count Got ch1 = " << ch1 << " ch2 = " << ch2 << endl;
 	return rval;
 }
 

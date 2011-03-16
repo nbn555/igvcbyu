@@ -13,7 +13,7 @@
 
 class YClopsSensor {
 public:
-	YClopsSensor();
+	YClopsSensor() {};
 
 	/**
 	 * @brief load sensor specific values from the configuration file
@@ -47,7 +47,7 @@ public:
 	/**
 	 * @brief class destructor
 	 */
-	virtual ~YClopsSensor();
+	virtual ~YClopsSensor() {};
 };
 
 #endif /* YCLOPSSENSOR_H_ */

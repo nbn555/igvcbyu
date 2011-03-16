@@ -16,7 +16,7 @@
 
 using namespace std;
 
-WiiController * WiiController::controller = NULL;
+WiiController * WiiController::controller = NULL; 	//!This should be a std::vector<WiiController*> to support more then one controller
 cwiid_mesg_callback_t cwiid_callback;
 
 WiiController * WiiController::create() {
@@ -41,7 +41,7 @@ int WiiController::getControllerCount() {
 
 WiiController::WiiController() {
 
-	bdaddr_t bdaddr = *BDADDR_ANY;
+	bdaddr_t bdaddr = *BDADDR_ANY;	//!Get the most unspecific bluetooth address
 
 	this->wiiMote = NULL;
 	static int sval = 0;
@@ -51,19 +51,17 @@ WiiController::WiiController() {
 	bool isBluetoothFound = false;
 	while(!isBluetoothFound) {
 		LOG_WII(INFO) << "Searching for Bluetooth interface" << endl;
-		if((dev_id = hci_get_route(NULL)) == -1) {
+		if((dev_id = hci_get_route(NULL)) == -1) {		//!Scan for bluetooth devices
 			LOG_WII(WARNING) << "Couldn't find Bluetooth interface" << endl;
-		} else isBluetoothFound = true;
+		} else isBluetoothFound = true;					//!Once we find one we assume it's a wii mote
 	}
 
 	LOG_WII(INFO) << "Bluetooth found" << endl;
 
-	cout << "Press buttons 1 + 2 to put WiiMote in Discoverable mode" << endl;
-	while(-1 ==  cwiid_find_wiimote(&bdaddr, 5)) {
-		//cout << "Waiting to "
-	}
+	cout << "Press buttons 1 + 2 to put WiiMote in Discoverable mode" << endl;//!keep this as cout or a console dump
+	while(-1 ==  cwiid_find_wiimote(&bdaddr, 5)) {}
 
-	while(!this->wiiMote) {
+	while(!this->wiiMote) {//Try to open the wii controller
 		this->wiiMote = cwiid_open(&(bdaddr),CWIID_FLAG_MESG_IFC);
 		if(!this->wiiMote)
 			LOG_WII(WARNING) << "Connect Fail Retrying" << endl;
@@ -71,8 +69,8 @@ WiiController::WiiController() {
 
 	cout << "Connected WiiMote" << endl;
 
-	cwiid_set_mesg_callback(this->wiiMote, &cwiid_callback);
-	cwiid_command(this->wiiMote, CWIID_CMD_RPT_MODE, CWIID_RPT_BTN | CWIID_RPT_CLASSIC );
+	cwiid_set_mesg_callback(this->wiiMote, &cwiid_callback);  //Set up the message call back handler
+	cwiid_command(this->wiiMote, CWIID_CMD_RPT_MODE, CWIID_RPT_BTN | CWIID_RPT_CLASSIC ); //Set up the messages we want reported
 
 	LOG_WII(DEBUG2) << "Initialization success" << endl;
 }
@@ -94,6 +92,10 @@ void cwiid_callback(cwiid_wiimote_t *wiimote, int mesg_count,
 //		}
 //	}
 
+	/**
+	 * The wii controller passes multiple types of messages via bluetooth this switch
+	 * statement handles them all
+	 */
 	WiiController * control = WiiController::getReference(index);
     for ( int i=0; i < mesg_count; i++) {
     	switch (mesg[i].type) {
