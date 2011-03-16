@@ -34,8 +34,8 @@ public:
 	 */
 	static void destroyConfig();
 protected:
-	static std::string configFileName;					//!path to the config file
-	static mrpt::utils::CConfigFileBase * configFile;	//!config file pointer
+	static std::string configFileName;					//!<path to the config file
+	static mrpt::utils::CConfigFileBase * configFile;	//!<config file pointer
 	YClopsConfiguration() {};
 	virtual ~YClopsConfiguration() {};
 

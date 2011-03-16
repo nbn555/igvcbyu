@@ -18,8 +18,8 @@
 class AbstractNavigationInterface {
 public:
 
-	static const int LAT = 0; //!Index for the Latitude in a CPoint2D
-	static const int LON = 1; //!Index for the Longitude in a CPoint2D
+	static const int LAT = 0; //!<Index for the Latitude in a CPoint2D
+	static const int LON = 1; //!<Index for the Longitude in a CPoint2D
 
 	/**
 	 * @brief Abstract Navigation class constructor
@@ -67,8 +67,8 @@ public:
 	static double calcBearing( double lat1, double lon1, double lat2, double lon2, bool isDegrees = false );
 
 protected:
-	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t toVisit; //! Vector of points that haven't been visited by the planning.
-	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t visited; //! Vector of points that have been ordered.
+	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t toVisit; //!< Vector of points that haven't been visited by the planning.
+	mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t visited; //!< Vector of points that have been ordered.
 
 };
 

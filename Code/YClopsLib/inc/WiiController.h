@@ -40,7 +40,7 @@
 #define MOTE_D_UP		(0x0800)
 #define MOTE_PLUS		(0x1000)
 
-extern cwiid_mesg_callback_t cwiid_callback; //!call back handler for interfacing messages from the wii controller
+extern cwiid_mesg_callback_t cwiid_callback; //!<call back handler for interfacing messages from the wii controller
 
 /**
  * @brief Interfaces with a single wii controller
@@ -115,9 +115,9 @@ public:
 private:
 	virtual ~WiiController();
 	WiiController();
-	static WiiController* controller;	//!Pointer to the current controller
+	static WiiController* controller;	//!<Pointer to the current controller
 
-	cwiid_wiimote_t * wiiMote;			//!pointer to the wiiMote struct of the cwiid library
+	cwiid_wiimote_t * wiiMote;			//!<pointer to the wiiMote struct of the cwiid library
 
 	/**
 	 * @brief processes a button bluetooth message
@@ -136,18 +136,18 @@ private:
 	 */
 	friend cwiid_mesg_callback_t cwiid_callback;
 
-	uint16_t motePrevButtons;		//!The previous state of the mote buttons
-	uint16_t moteButtonsPressed;	//!The true for which buttons were just pressed
-	uint16_t moteButtonsReleased;	//!True for which buttons were just released
-	uint16_t moteButtons;			//!true for which buttons are pressed
+	uint16_t motePrevButtons;		//!<The previous state of the mote buttons
+	uint16_t moteButtonsPressed;	//!<The true for which buttons were just pressed
+	uint16_t moteButtonsReleased;	//!<True for which buttons were just released
+	uint16_t moteButtons;			//!<true for which buttons are pressed
 
-	uint16_t classicButtonsPressed;	//!True for which buttons were just pressed
-	uint16_t classicButtonsReleased;//!True for which buttons were just released
-	uint16_t classicButtons;		//!True for the state of the pressed buttons
+	uint16_t classicButtonsPressed;	//!<True for which buttons were just pressed
+	uint16_t classicButtonsReleased;//!<True for which buttons were just released
+	uint16_t classicButtons;		//!<True for the state of the pressed buttons
 
-	uint16_t lXaxis, lYaxis;		//!classic controller left stick state
-	uint16_t rXaxis, rYaxis;		//!classic controller right stick state
-	uint16_t lAnalog, rAnalog;		//!classic controller analog state
+	uint16_t lXaxis, lYaxis;		//!<classic controller left stick state
+	uint16_t rXaxis, rYaxis;		//!<classic controller right stick state
+	uint16_t lAnalog, rAnalog;		//!<classic controller analog state
 
 };
 

@@ -12,12 +12,12 @@
 #include <iostream>
 
 typedef enum LOG_LEVEL{
-	DISABLE = 8,//!Turn off logging completely
-	FATAL 	= 7,//!Fatal or irrecoverable errors
-	ERROR 	= 6,//!Error Conditions
-	WARNING	= 5,//!Potential problems
-	INFO	= 4,//!Standard output
-	DEBUG	= 3,//!The general idea is the more function calls to get there the higher the debug level
+	DISABLE = 8,//!<Turn off logging completely
+	FATAL 	= 7,//!<Fatal or irrecoverable errors
+	ERROR 	= 6,//!<Error Conditions
+	WARNING	= 5,//!<Potential problems
+	INFO	= 4,//!<Standard output
+	DEBUG	= 3,//!<The general idea is the more function calls to get there the higher the debug level
 	DEBUG2	= 2,
 	DEBUG3	= 1,
 	DEBUG4	= 0
@@ -106,19 +106,19 @@ public:
 	 */
 	static std::string ToString( LOG_LEVEL level );
 protected:
-	std::stringstream os; //! The output stream where to write the log data
+	std::stringstream os; //!< The output stream where to write the log data
 protected:
-	static std::string GetTime();		//!returns a string formatted with of the time stamp
+	static std::string GetTime();		//!<returns a string formatted with of the time stamp
 private:
 	Log(const Log&);
 	Log & operator = (const Log&);
 private:
-	LOG_LEVEL messageLevel;				//!The log level of the current message
+	LOG_LEVEL messageLevel;				//!<The log level of the current message
 private:
-	static LOG_LEVEL logLevel;			//!The current logging threshold
-	static unsigned int streamBits;		//!A bit string for which logs we are using
-	static bool timestamp;				//!if we are using time stamps or not
-	static std::ostream * outputStream;	//! a pointer to the output stream we are using
+	static LOG_LEVEL logLevel;			//!<The current logging threshold
+	static unsigned int streamBits;		//!<A bit string for which logs we are using
+	static bool timestamp;				//!<if we are using time stamps or not
+	static std::ostream * outputStream;	//!< a pointer to the output stream we are using
 
 };
 

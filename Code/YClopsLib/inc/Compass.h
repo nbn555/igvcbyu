@@ -88,11 +88,11 @@ private:
 	double pitch;
 	double roll;
 
-	std::string yawStatus;	//!the current status of the yaw of compass 'N'
-	std::string pitchStatus;//!the current status of the pitch of the compass 'N'
-	std::string rollStatus;	//!the current status of the roll of the compass 'N'
+	std::string yawStatus;	//!<the current status of the yaw of compass 'N'
+	std::string pitchStatus;//!<the current status of the pitch of the compass 'N'
+	std::string rollStatus;	//!<the current status of the roll of the compass 'N'
 
-	mrpt::hwdrivers::CSerialPort serialPort;//!hardware interface to the compass serial port
+	mrpt::hwdrivers::CSerialPort serialPort;//!<hardware interface to the compass serial port
 
 	/**
 	 * parses a response from the HMR3000 Compass Module
