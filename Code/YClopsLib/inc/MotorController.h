@@ -153,7 +153,7 @@ public:
 	 * @param channel2Count - reference to the encoder count for channel 2
 	 * @return true upon success
 	 */
-	bool getAbsoluteEncoderCount( int * ch1, int * ch2 );
+	bool getAbsoluteEncoderCount( int & ch1, int & ch2 );
 
 	/**
 	 * getRelativeEncoderCount - gets the encoder count since the last time this command was used

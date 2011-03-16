@@ -43,32 +43,53 @@ void NoFilterPoseEstimator::update( const GPSData * gpsData, const CompassData *
 	double lon;
 	double x;
 	double y;
-	double z = 0;
+	double z 		= 0;
+	double yaw		= 0;
+	double pitch	= 0;
+	double roll		= 0;
 
 	if( NULL != gpsData ) {
 		if(gpsData->valid) {
 			lat = gpsData->latitude;
 			lon = gpsData->longitude;
 		} else {
-			LOG_POSE(FATAL) << "No valid data found in gps observation" << endl;
+			LOG_POSE(ERROR) << "No valid data found in gps observation" << endl;
 		}
 	} else {
-		LOG_POSE(FATAL) << "GPS Data pointer NULL" << endl;
+		LOG_POSE(ERROR) << "GPS Data pointer NULL" << endl;
 	}
 
 	if( NULL != compassData ) {
-
+		if(compassData->yawValid) {
+			yaw = compassData->yaw;
+		} else {
+			LOG_POSE(ERROR) << "No valid yaw data in compass observation" << endl;
+		}
+		if(compassData->pitchValid) {
+			pitch = compassData->pitch;
+		} else {
+			LOG_POSE(ERROR) << "No valid pitch data in compass observation" << endl;
+		}
+		if(compassData->rollValid) {
+			roll = compassData->roll;
+		} else {
+			LOG_POSE(ERROR) << "No valid roll data in compass observation" << endl;
+		}
+	} else {
+		LOG_POSE(ERROR) << "Compass Data pointer NULL" << endl;
 	}
 
 	if( NULL != encoderData ) {
-
+		//!TODO Implement encoderData in pose estimators
+	} else {
+		LOG_POSE(ERROR) << "Encoder Data pointer NULL" << endl;
 	}
 
 	if(!started)
 	{
 		StartLat = lat;
 		StartLon = lon;
-		this->poseEstimate.setFromValues(lat, lon, z, compassData->yaw, compassData->pitch, compassData->roll);
+		this->poseEstimate.setFromValues(lat, lon, z, yaw, pitch, roll);
 		started = true;
 		return;
 	}
@@ -80,9 +101,9 @@ void NoFilterPoseEstimator::update( const GPSData * gpsData, const CompassData *
 		x = sin(direction)*length;
 		y = -cos(direction)*length;
 
-		this->poseEstimate.setFromValues(x, y, z, compassData->yaw, compassData->pitch, compassData->roll);
+		this->poseEstimate.setFromValues(x, y, z, yaw, pitch, roll);
 	} else {
-		this->poseEstimate.setFromValues(lat, lon, z, compassData->yaw, compassData->pitch, compassData->roll);
+		this->poseEstimate.setFromValues(lat, lon, z, yaw, pitch, roll);
 	}
 
 }

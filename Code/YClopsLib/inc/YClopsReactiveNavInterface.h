@@ -55,7 +55,7 @@ public:
 	 * @param[out] obstacles A points map of obstacles
 	 * @return bool true on success
 	 */
-	bool senseObstacles( mrpt::slam::CSimplePointsMap 		&obstacles );
+	bool senseObstacles( mrpt::slam::CSimplePointsMap &obstacles );
 
 	/**
 	 * @brief Puts the robot into Autonomous Mode

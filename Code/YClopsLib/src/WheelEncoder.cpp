@@ -38,7 +38,7 @@ void WheelEncoder::init() {
 void WheelEncoder::sensorProcess() {
 	int tmp1 = 0, tmp2 = 0;
 	LOG_ENCODER(DEBUG4) << "Getting Absolute Encoder Values" << endl;
-	MotorController::instance()->getAbsoluteEncoderCount(&(this->leftCountAbsolute), &(this->rightCountAbsolute));
+	MotorController::instance()->getAbsoluteEncoderCount(this->leftCountAbsolute, this->rightCountAbsolute);
 	LOG_ENCODER(DEBUG4) << "Getting Relative Encoder Values" << endl;
 	MotorController::instance()->getRelativeEncoderCount(tmp1,tmp2);
 	this->leftCount += tmp1;

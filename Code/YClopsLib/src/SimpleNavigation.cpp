@@ -97,7 +97,6 @@ void SimpleNavigation::navigationStep()
 	LOG_AI(DEBUG4) << "Simple Nav Yaw: " << yaw << endl;
 	wantedYaw = calcBearing(curPose);//AbstractNavigationInterface::calcBearing(curPose.x(), curPose.y(), navParams->target.x, navParams->target.y);
 	LOG_AI(DEBUG4) << "Simple Nav Wanted Yaw: " << wantedYaw << endl;
-	double standYaw = yaw > M_PI ? yaw - 2*M_PI: yaw;
 	double dist = distance(curPose);
 	double diffrence = wantedYaw - yaw;
 	double minDiff = diffrence;
