@@ -78,19 +78,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structBeeper_1_1beep__struct.html">beep_struct</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">An internal structure to contain data that needs to be passed into the beepi function.  <a href="structBeeper_1_1beep__struct.html#_details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBeeper.html#aa840561593c7632ffb465ef9c4edeb75">beep</a> (int frequency, int length)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">play a beep through the pc_spkr  <a href="#aa840561593c7632ffb465ef9c4edeb75"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-types"></a>
 Private Types</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structBeeper_1_1beep__struct.html">Beeper::beep_struct</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBeeper.html#aa2374a2e77acff69233fb6171781b801">beep_t</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">An internal structure to contain data that needs to be passed into the beepi function.  <a href="#aa2374a2e77acff69233fb6171781b801"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBeeper.html#aa40a0979ceb8981426033098d6715f4d">Beeper</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBeeper.html#a7f87e6369c82383c37a9c977f81c3eff">~Beeper</a> ()</td></tr>
 <tr><td colspan="2"><h2><a name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBeeper.html#a4b304db97b60db69020ef963c3cdcd23">beepi</a> (void *)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBeeper.html#afa23e1decf1cd4db0f94c29490b700bf">beepi</a> (void *data)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal static method that writes values to the pc speaker.  <a href="#afa23e1decf1cd4db0f94c29490b700bf"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structBeeper_1_1beep__struct.html">beep_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBeeper.html#a397b6e46ced9bb4ae8976da94d1c35cf">buffer</a> = <a class="el" href="structBeeper_1_1beep__struct.html">Beeper::beep_struct</a>(0,0)</td></tr>
@@ -110,7 +114,8 @@ Static Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>An internal structure to contain data that needs to be passed into the beepi function </p>
+
+<p>An internal structure to contain data that needs to be passed into the beepi function. </p>
 
 </div>
 </div>
@@ -128,7 +133,6 @@ Static Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Class Constructor - not used </p>
 
 <p>Definition at line <a class="el" href="Beeper_8cpp_source.html#l00024">24</a> of file <a class="el" href="Beeper_8cpp_source.html">Beeper.cpp</a>.</p>
 
@@ -147,7 +151,6 @@ Static Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Class Destructor - not used </p>
 
 <p>Definition at line <a class="el" href="Beeper_8cpp_source.html#l00027">27</a> of file <a class="el" href="Beeper_8cpp_source.html">Beeper.cpp</a>.</p>
 
@@ -178,11 +181,12 @@ Static Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
 <p>play a beep through the pc_spkr </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">frequency</td><td>- the frequency of the sound to be played </td></tr>
-    <tr><td class="paramname">length</td><td>- the length in milliseconds to play </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">frequency</td><td>the frequency of the sound to be played </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">length</td><td>the length in milliseconds to play </td></tr>
   </table>
   </dd>
 </dl>
@@ -195,7 +199,7 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4b304db97b60db69020ef963c3cdcd23"></a><!-- doxytag: member="Beeper::beepi" ref="a4b304db97b60db69020ef963c3cdcd23" args="(void *)" -->
+<a class="anchor" id="afa23e1decf1cd4db0f94c29490b700bf"></a><!-- doxytag: member="Beeper::beepi" ref="afa23e1decf1cd4db0f94c29490b700bf" args="(void *data)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -209,10 +213,11 @@ Static Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Internal static method that writes values to the pc speaker </p>
+
+<p>Internal static method that writes values to the pc speaker. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">void</td><td>pointer to the location of the <a class="el" href="structBeeper_1_1beep__struct.html">beep_struct</a> that contains the sound to play </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>void pointer to the location of the <a class="el" href="structBeeper_1_1beep__struct.html" title="An internal structure to contain data that needs to be passed into the beepi function.">beep_struct</a> that contains the sound to play </td></tr>
   </table>
   </dd>
 </dl>
@@ -242,8 +247,8 @@ Static Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/tallred3/ecen493/SeniorProject/trunk/Code/YClopsLib/inc/<a class="el" href="Beeper_8h_source.html">Beeper.h</a></li>
-<li>/home/tallred3/ecen493/SeniorProject/trunk/Code/YClopsLib/src/<a class="el" href="Beeper_8cpp_source.html">Beeper.cpp</a></li>
+<li><a class="el" href="Beeper_8h_source.html">Beeper.h</a></li>
+<li><a class="el" href="Beeper_8cpp_source.html">Beeper.cpp</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -260,7 +265,7 @@ Static Private Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Mar 15 2011 for YClops by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Mar 16 2011 for YClops by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

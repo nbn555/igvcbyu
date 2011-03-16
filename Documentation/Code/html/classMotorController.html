@@ -87,7 +87,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a30a4658476a116928658ea4a1679b2b7">~MotorController</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a4260a624b364ed6c1e53f1101277cca2">doProcess</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a0a3e08c04469ae0c2c1f3e26005b81ff">setAcceleration</a> (<a class="el" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">MotorChannel</a> channel, double acceleration)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a7d09ab0272d8729997dc073d86e104f6">setDeceleration</a> (<a class="el" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">MotorChannel</a> channel, double deceration)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#af79ad2663399e28215a696efa0c2b3c6">setDeceleration</a> (<a class="el" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">MotorChannel</a> channel, double deceleration)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">sets a limit for how fast the motor controller will slow down a channel  <a href="#af79ad2663399e28215a696efa0c2b3c6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#af10104b90d2810d7cc831acd6d0091bd">emergencyStop</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a9e46d236d83c31b0c8d249b5e7904762">clearEmergencyStop</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a87b491ff25d36037e52bca36972a782a">setSpeed</a> (<a class="el" href="classMotorController.html#afd2d2478f27a4fdd50f375def55186e2">MotorChannel</a> channel, int value)</td></tr>
@@ -100,12 +101,17 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a2c7cc06989053af014abea3a69185c17">getMotorAmps</a> (double &amp;motor1Amps, double &amp;motor2Amps)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a8f9b76755fceeeee7c066f94f092613c">getAnalogInputs</a> (int input, int &amp;value)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a3b10d48cb8e49e2c3ca1a8e0400cf309">getBatteryAmps</a> (double &amp;motor1Amps, double &amp;motor2Amps)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a1b02202db30a5f11852280ee04ca3fd7">getAbsoluteEncoderCount</a> (int *ch1, int *ch2)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a61460f27210358518164ce7833480d9d">getAbsoluteEncoderCount</a> (int &amp;ch1, int &amp;ch2)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the absolute number of encoder counts as a 32bit signed number  <a href="#a61460f27210358518164ce7833480d9d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#aab2c14c9ef9f08bb1036ca0b071415c7">getRelativeEncoderCount</a> (int &amp;ch1, int &amp;ch2)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a5f5029758d6b467ed803c4acd4c64cbf">getEncoderSpeeds</a> (int &amp;speed1, int &amp;speed2)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the speed of the encoder speeds  <a href="#a5f5029758d6b467ed803c4acd4c64cbf"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#aa1082a5bcd935ebd5bc15600d32f621d">getTemperature</a> (int &amp;ch1, int &amp;ch2, int &amp;ic)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the temperature of the heatsinks of the motor controller  <a href="#aa1082a5bcd935ebd5bc15600d32f621d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a8d482b3313fbe1f5eb9fdc7021d84591">getTime</a> (int &amp;hours, int &amp;minutes, int &amp;seconds)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the time of the motor controller  <a href="#a8d482b3313fbe1f5eb9fdc7021d84591"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#afc4f77bcc139958edbaa9916e4acd501">getVoltages</a> (double &amp;driverVolt, double &amp;batteryVolt, double &amp;v5out)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the voltages from the battery, internal motor driver and the 5 volt usb out.  <a href="#afc4f77bcc139958edbaa9916e4acd501"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ab9a8b511704092f5d8c18ee2cf265a4b">loadEEPROMSettings</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#aa61317c6c5977081c03fd56de6c14f79">failSafeReset</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ab52b0ad8614ab5a34e6db257be4ab9be">saveConfigSettings</a> ()</td></tr>
@@ -139,6 +145,7 @@ Private Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The pointer to the instance of the motor controller.  <a href="#a3588f439d996a8e1205c7c63f07491c0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ad9c49eacc6173b674540b85f42147bc3">assertValidVoltage</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ad6ddd49cf9f405068d7e4196b57b8e7e">sendCommand</a> (const std::string command, const std::string expectedResponse, std::string *response, bool permissive=false)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">low level function call to send a command to the motor controller  <a href="#ad6ddd49cf9f405068d7e4196b57b8e7e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a776819f7159a2877a67ddc9b2a601f04">enableSerialEcho</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ae7514edeea060e1348252c2eefb671db">disableSerialEcho</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a3e29ed83fa4aab0929bad6ea0bd4a541">getFaultFlags</a> ()</td></tr>
@@ -225,7 +232,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="MotorController_8h_source.html#l00046">46</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>References <a class="el" href="MotorController_8h_source.html#l00356">serialPortSem</a>.</p>
+<p>References <a class="el" href="MotorController_8h_source.html#l00349">serialPortSem</a>.</p>
 
 </div>
 </div>
@@ -243,21 +250,10 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 <p><a class="el" href="classMotorController.html">MotorController</a> constructor </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">portName</td><td>- the serial port over which the commands will be sent </td></tr>
-    <tr><td class="paramname">enableEcho</td><td>- set to true to check error for errors from the motor controller </td></tr>
-    <tr><td class="paramname">motor1Max</td><td>- the maximum power for channel1 defined on the interval [1000,-1000] where -1000 is full reverse </td></tr>
-    <tr><td class="paramname">motor2Max</td><td>- the maximum power for channel2 defined on the interval [1000, -1000] where -1000 is full reverse </td></tr>
-    <tr><td class="paramname">motor1Min</td><td>- the minimum power for channel1 </td></tr>
-    <tr><td class="paramname">motor2Min</td><td>- the minimum power for channel2 </td></tr>
-  </table>
-  </dd>
-</dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00038">38</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00035">35</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8h_source.html#l00040">BothChannels</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00110">clearEmergencyStop()</a>, <a class="el" href="logging_8h_source.html#l00022">DEBUG4</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00390">disableSerialEcho()</a>, <a class="el" href="MotorController_8h_source.html#l00344">echoEnabled</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00105">emergencyStop()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00385">enableSerialEcho()</a>, <a class="el" href="logging_8h_source.html#l00015">FATAL</a>, <a class="el" href="logging_8h_source.html#l00061">LOG</a>, <a class="el" href="MotorController_8h_source.html#l00347">motor1SpeedMax</a>, <a class="el" href="MotorController_8h_source.html#l00349">motor1SpeedMin</a>, <a class="el" href="MotorController_8h_source.html#l00348">motor2SpeedMax</a>, <a class="el" href="MotorController_8h_source.html#l00350">motor2SpeedMin</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>, <a class="el" href="MotorController_8h_source.html#l00343">serialPort</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00333">setLoopMode()</a>.</p>
+<p>References <a class="el" href="MotorController_8cpp_source.html#l00533">clearBufferHistory()</a>, <a class="el" href="logging_8h_source.html#l00022">DEBUG4</a>, <a class="el" href="MotorController_8cpp_source.html#l00513">disableSerialEcho()</a>, <a class="el" href="MotorController_8h_source.html#l00337">echoEnabled</a>, <a class="el" href="MotorController_8cpp_source.html#l00120">emergencyStop()</a>, <a class="el" href="MotorController_8cpp_source.html#l00508">enableSerialEcho()</a>, <a class="el" href="logging_8h_source.html#l00015">FATAL</a>, <a class="el" href="MotorController_8cpp_source.html#l00027">instance()</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, <a class="el" href="MotorController_8h_source.html#l00345">mixingMode</a>, <a class="el" href="MotorController_8h_source.html#l00340">motor1SpeedMax</a>, <a class="el" href="MotorController_8h_source.html#l00342">motor1SpeedMin</a>, <a class="el" href="MotorController_8h_source.html#l00341">motor2SpeedMax</a>, <a class="el" href="MotorController_8h_source.html#l00343">motor2SpeedMin</a>, <a class="el" href="MotorController_8h_source.html#l00347">operatingMode</a>, <a class="el" href="MotorController_8h_source.html#l00336">serialPort</a>, <a class="el" href="MotorController_8h_source.html#l00349">serialPortSem</a>, <a class="el" href="MotorController_8cpp_source.html#l00196">setMixingMode()</a>, <a class="el" href="MotorController_8cpp_source.html#l00216">setOperatingMode()</a>, and <a class="el" href="logging_8h_source.html#l00017">WARNING</a>.</p>
 
 </div>
 </div>
@@ -305,7 +301,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true if the value is in range </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00355">355</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00440">440</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
 </div>
 </div>
@@ -324,9 +320,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>assertValidVoltage - shuts off the motor controller if the voltage is out of safe operating parameters </p>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00359">359</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00444">444</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00015">FATAL</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
 </div>
 </div>
@@ -346,7 +342,11 @@ Private Attributes</h2></td></tr>
 <p>clearBufferHistory - clears the command history buffer </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00410">410</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00533">533</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="logging_8h_source.html#l00022">DEBUG4</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
+
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00035">MotorController()</a>.</p>
 
 </div>
 </div>
@@ -366,11 +366,9 @@ Private Attributes</h2></td></tr>
 <p>clearEmergencyStop - clears the emergency stop state </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon successful transmission </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00110">110</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00125">125</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="logging_8h_source.html#l00022">DEBUG4</a>, <a class="el" href="logging_8h_source.html#l00061">LOG</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>.</p>
-
-<p>Referenced by <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00038">MotorController()</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
 </div>
 </div>
@@ -389,11 +387,11 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>disableSerialEcho - turns off the echo of commands from the motor controller </p>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00390">390</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00513">513</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="logging_8h_source.html#l00022">DEBUG4</a>, <a class="el" href="logging_8h_source.html#l00061">LOG</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00022">DEBUG4</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00038">MotorController()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00035">MotorController()</a>.</p>
 
 </div>
 </div>
@@ -412,11 +410,11 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>doProcess - sends the current speed command to the motor controller </p>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00087">87</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00102">102</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8h_source.html#l00345">motor1Speed</a>, <a class="el" href="MotorController_8h_source.html#l00346">motor2Speed</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>.</p>
+<p>References <a class="el" href="MotorController_8h_source.html#l00338">motor1Speed</a>, <a class="el" href="MotorController_8h_source.html#l00339">motor2Speed</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2MotorControllerResponseParsing_2MotorCommandInterface_8cpp_source.html#l00049">DualMotorCommand::doProcess()</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorCommandInterface_8cpp_source.html#l00032">MotorCommand::doProcess()</a>.</p>
+<p>Referenced by <a class="el" href="MotorCommandInterface_8cpp_source.html#l00054">DualMotorCommand::doProcess()</a>, and <a class="el" href="MotorCommandInterface_8cpp_source.html#l00034">MotorCommand::doProcess()</a>.</p>
 
 </div>
 </div>
@@ -436,11 +434,11 @@ Private Attributes</h2></td></tr>
 <p>emergencyStop - sends the emergency stop command to the motor controller the motor controller will not start until it is power cycled or the clearEmergencyStop function is called. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon successful transmission </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00105">105</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00120">120</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="logging_8h_source.html#l00022">DEBUG4</a>, <a class="el" href="logging_8h_source.html#l00061">LOG</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00038">MotorController()</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00333">setLoopMode()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00035">MotorController()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00418">setLoopMode()</a>.</p>
 
 </div>
 </div>
@@ -459,11 +457,11 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>enableSerialEcho - turns on the echo of commands from the motor controller </p>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00385">385</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00508">508</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="logging_8h_source.html#l00022">DEBUG4</a>, <a class="el" href="logging_8h_source.html#l00061">LOG</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00022">DEBUG4</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00038">MotorController()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00035">MotorController()</a>.</p>
 
 </div>
 </div>
@@ -482,24 +480,26 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>failSafeReset - power cycles the motor controller and resets values to their default factory settings </p>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00268">268</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00337">337</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="MotorController_8h_source.html#l00029">MOTOR_SECRET_KEY</a>, <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>, and <a class="el" href="MotorController_8h_source.html#l00336">serialPort</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a1b02202db30a5f11852280ee04ca3fd7"></a><!-- doxytag: member="MotorController::getAbsoluteEncoderCount" ref="a1b02202db30a5f11852280ee04ca3fd7" args="(int *ch1, int *ch2)" -->
+<a class="anchor" id="a61460f27210358518164ce7833480d9d"></a><!-- doxytag: member="MotorController::getAbsoluteEncoderCount" ref="a61460f27210358518164ce7833480d9d" args="(int &amp;ch1, int &amp;ch2)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">bool MotorController::getAbsoluteEncoderCount </td>
           <td>(</td>
-          <td class="paramtype">int *&#160;</td>
+          <td class="paramtype">int &amp;&#160;</td>
           <td class="paramname"><em>ch1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int *&#160;</td>
+          <td class="paramtype">int &amp;&#160;</td>
           <td class="paramname"><em>ch2</em>&#160;</td>
         </tr>
         <tr>
@@ -510,19 +510,20 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>getAbsoluteEncoderCount - gets the absolute number of encoder counts as a 32bit signed number </p>
+
+<p>gets the absolute number of encoder counts as a 32bit signed number </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">channel1Count</td><td>- reference to the encoder count for channel 1 </td></tr>
-    <tr><td class="paramname">channel2Count</td><td>- reference to the encoder count for channel 2 </td></tr>
+    <tr><td class="paramname">ch1</td><td>reference to the encoder count for channel 1 </td></tr>
+    <tr><td class="paramname">ch2</td><td>reference to the encoder count for channel 2 </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>bool true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00226">226</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00275">275</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00022">DEBUG4</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, <a class="el" href="MotorController_8h_source.html#l00409">responseParser()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
 <p>Referenced by <a class="el" href="WheelEncoder_8cpp_source.html#l00038">WheelEncoder::sensorProcess()</a>.</p>
 
@@ -562,7 +563,9 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00208">208</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00255">255</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="logging_8h_source.html#l00015">FATAL</a>, and <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>.</p>
 
 </div>
 </div>
@@ -600,9 +603,9 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00213">213</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00260">260</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, <a class="el" href="MotorController_8h_source.html#l00409">responseParser()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
 </div>
 </div>
@@ -622,7 +625,9 @@ Private Attributes</h2></td></tr>
 <p>getControlUnitType - checks to see if the attached roboteq control unit is supported </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon supported control unit </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00405">405</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00528">528</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="logging_8h_source.html#l00015">FATAL</a>, and <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>.</p>
 
 </div>
 </div>
@@ -650,19 +655,20 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>getEncoderSpeed - returns the speed of the encoder for the given channel </p>
+
+<p>returns the speed of the encoder speeds </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">channel</td><td>- the motor channel to query </td></tr>
-    <tr><td class="paramname">speed</td><td>- the speed of the encoder in RPMs </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">speed1</td><td>The motor controller channel 1 speed </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">speed2</td><td>The motor controller channel 2 speed </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>- true upon success </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>bool true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html#l00293">293</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00293">293</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, <a class="el" href="MotorController_8h_source.html#l00414">responseParser()</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, <a class="el" href="MotorController_8h_source.html#l00409">responseParser()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
 <p>Referenced by <a class="el" href="WheelEncoder_8cpp_source.html#l00038">WheelEncoder::sensorProcess()</a>.</p>
 
@@ -683,7 +689,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>getFaultFlags returns the status of any faults that may occour in the motor controller </p>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00395">395</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00518">518</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="logging_8h_source.html#l00015">FATAL</a>, and <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>.</p>
 
 </div>
 </div>
@@ -721,9 +729,9 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00193">193</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00240">240</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8h_source.html#l00343">serialPort</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, <a class="el" href="MotorController_8h_source.html#l00409">responseParser()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
 </div>
 </div>
@@ -775,9 +783,9 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00325">325</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00410">410</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8h_source.html#l00347">motor1SpeedMax</a>, <a class="el" href="MotorController_8h_source.html#l00349">motor1SpeedMin</a>, <a class="el" href="MotorController_8h_source.html#l00348">motor2SpeedMax</a>, and <a class="el" href="MotorController_8h_source.html#l00350">motor2SpeedMin</a>.</p>
+<p>References <a class="el" href="MotorController_8h_source.html#l00340">motor1SpeedMax</a>, <a class="el" href="MotorController_8h_source.html#l00342">motor1SpeedMin</a>, <a class="el" href="MotorController_8h_source.html#l00341">motor2SpeedMax</a>, and <a class="el" href="MotorController_8h_source.html#l00343">motor2SpeedMin</a>.</p>
 
 </div>
 </div>
@@ -815,9 +823,9 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true if successful </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00231">231</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00286">286</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, <a class="el" href="MotorController_8h_source.html#l00409">responseParser()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
 <p>Referenced by <a class="el" href="WheelEncoder_8cpp_source.html#l00038">WheelEncoder::sensorProcess()</a>.</p>
 
@@ -838,7 +846,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>getStatusFlags returns the status of the motor controller as a bit vector </p>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00400">400</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00523">523</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="logging_8h_source.html#l00015">FATAL</a>, and <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>.</p>
 
 </div>
 </div>
@@ -872,20 +882,21 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>getTemperature - gets the temperature of the heatsinks of the motor controller </p>
+
+<p>gets the temperature of the heatsinks of the motor controller </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">ch1</td><td>- the temperature in degrees C for the first channel </td></tr>
-    <tr><td class="paramname">ch2</td><td>- the temperature in degrees C for the second channel </td></tr>
-    <tr><td class="paramname">ic</td><td>- the temperature in degrees C of the internal IC </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">ch1</td><td>the temperature in degrees C for the first channel </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">ch2</td><td>the temperature in degrees C for the second channel </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">ic</td><td>the temperature in degrees C of the internal IC </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>true if successful </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>bool true if successful </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00241">241</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00302">302</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, <a class="el" href="MotorController_8h_source.html#l00409">responseParser()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
 </div>
 </div>
@@ -919,20 +930,21 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>getTime - returns the time of the motor controller </p>
+
+<p>returns the time of the motor controller </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">hours</td><td>- reference to the number of hours </td></tr>
-    <tr><td class="paramname">minutes</td><td>- reference to the number of minutes </td></tr>
-    <tr><td class="paramname">seconds</td><td>- reference to the number of seconds </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">hours</td><td>reference to the number of hours </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">minutes</td><td>reference to the number of minutes </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">seconds</td><td>reference to the number of seconds </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>bool true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00246">246</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00309">309</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, <a class="el" href="MotorController_8h_source.html#l00409">responseParser()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
 </div>
 </div>
@@ -966,20 +978,21 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>getVoltages - gets the voltages from the battery, internal motor driver and the 5 volt usb out. </p>
+
+<p>gets the voltages from the battery, internal motor driver and the 5 volt usb out. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">driverVolt</td><td>- the motor driver output voltages as measured in volts </td></tr>
-    <tr><td class="paramname">batteryVolt</td><td>- the battery voltage as measured in volts </td></tr>
-    <tr><td class="paramname">v5out</td><td>- the voltage of the usb as measured in volts </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">driverVolt</td><td>the motor driver output voltages as measured in volts </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">batteryVolt</td><td>the battery voltage as measured in volts </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">v5out</td><td>the voltage of the usb as measured in volts </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>true upon success. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>bool true upon success. </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00251">251</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00316">316</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, <a class="el" href="MotorController_8h_source.html#l00409">responseParser()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
 </div>
 </div>
@@ -997,11 +1010,11 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00026">26</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00027">27</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="logging_8h_source.html#l00022">DEBUG4</a>, <a class="el" href="logging_8h_source.html#l00061">LOG</a>, and <a class="el" href="MotorController_8h_source.html#l00358">mc</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00020">DEBUG2</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, and <a class="el" href="MotorController_8h_source.html#l00351">mc</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2MotorControllerResponseParsing_2MotorCommandInterface_8cpp_source.html#l00049">DualMotorCommand::doProcess()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorCommandInterface_8cpp_source.html#l00032">MotorCommand::doProcess()</a>, <a class="el" href="WheelEncoder_8cpp_source.html#l00026">WheelEncoder::init()</a>, and <a class="el" href="WheelEncoder_8cpp_source.html#l00038">WheelEncoder::sensorProcess()</a>.</p>
+<p>Referenced by <a class="el" href="MotorCommandInterface_8cpp_source.html#l00054">DualMotorCommand::doProcess()</a>, <a class="el" href="MotorCommandInterface_8cpp_source.html#l00034">MotorCommand::doProcess()</a>, <a class="el" href="MotorCommandInterface_8cpp_source.html#l00047">DualMotorCommand::DualMotorCommand()</a>, <a class="el" href="MotorCommandInterface_8cpp_source.html#l00073">DummyMotorCommand::DummyMotorCommand()</a>, <a class="el" href="WheelEncoder_8cpp_source.html#l00026">WheelEncoder::init()</a>, <a class="el" href="MotorCommandInterface_8cpp_source.html#l00029">MotorCommand::MotorCommand()</a>, <a class="el" href="MotorController_8cpp_source.html#l00035">MotorController()</a>, and <a class="el" href="WheelEncoder_8cpp_source.html#l00038">WheelEncoder::sensorProcess()</a>.</p>
 
 </div>
 </div>
@@ -1021,9 +1034,9 @@ Private Attributes</h2></td></tr>
 <p>loadEEPROMSettings - loads setting set in the eeprom back into ram and activates the settings </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00264">264</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00331">331</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
 </div>
 </div>
@@ -1043,9 +1056,9 @@ Private Attributes</h2></td></tr>
 <p>reset - power cycles the motor controller </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon successful transmission </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00278">278</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00351">351</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8h_source.html#l00029">MOTOR_SECRET_KEY</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>.</p>
+<p>References <a class="el" href="MotorController_8h_source.html#l00029">MOTOR_SECRET_KEY</a>, <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>, and <a class="el" href="MotorController_8h_source.html#l00336">serialPort</a>.</p>
 
 </div>
 </div>
@@ -1080,9 +1093,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00414">414</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00409">409</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html#l00293">getEncoderSpeeds()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00275">getAbsoluteEncoderCount()</a>, <a class="el" href="MotorController_8cpp_source.html#l00260">getBatteryAmps()</a>, <a class="el" href="MotorController_8cpp_source.html#l00293">getEncoderSpeeds()</a>, <a class="el" href="MotorController_8cpp_source.html#l00240">getMotorAmps()</a>, <a class="el" href="MotorController_8cpp_source.html#l00286">getRelativeEncoderCount()</a>, <a class="el" href="MotorController_8cpp_source.html#l00302">getTemperature()</a>, <a class="el" href="MotorController_8cpp_source.html#l00309">getTime()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00316">getVoltages()</a>.</p>
 
 </div>
 </div>
@@ -1100,9 +1113,11 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html#l00211">211</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00211">211</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, <a class="el" href="MotorController_8h_source.html#l00352">mixingMode</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html#l00196">setMixingMode()</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, <a class="el" href="MotorController_8h_source.html#l00345">mixingMode</a>, and <a class="el" href="MotorController_8cpp_source.html#l00196">setMixingMode()</a>.</p>
+
+<p>Referenced by <a class="el" href="MotorCommandInterface_8cpp_source.html#l00073">DummyMotorCommand::DummyMotorCommand()</a>, and <a class="el" href="MotorCommandInterface_8cpp_source.html#l00029">MotorCommand::MotorCommand()</a>.</p>
 
 </div>
 </div>
@@ -1120,9 +1135,11 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html#l00235">235</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00235">235</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, <a class="el" href="MotorController_8h_source.html#l00354">operatingMode</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html#l00216">setOperatingMode()</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, <a class="el" href="MotorController_8h_source.html#l00347">operatingMode</a>, and <a class="el" href="MotorController_8cpp_source.html#l00216">setOperatingMode()</a>.</p>
+
+<p>Referenced by <a class="el" href="MotorCommandInterface_8cpp_source.html#l00073">DummyMotorCommand::DummyMotorCommand()</a>, and <a class="el" href="MotorCommandInterface_8cpp_source.html#l00029">MotorCommand::MotorCommand()</a>.</p>
 
 </div>
 </div>
@@ -1142,7 +1159,9 @@ Private Attributes</h2></td></tr>
 <p>saveConfigSettings - saves the current settings in ram to the EEPROM DON'T Save while motors are running </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00273">273</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00346">346</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="logging_8h_source.html#l00015">FATAL</a>, and <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>.</p>
 
 </div>
 </div>
@@ -1182,20 +1201,23 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>sendCommand - low level function call to send a command to the motor controller </p>
+
+<p>low level function call to send a command to the motor controller </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">command</td><td>- the carriage return ended command to send to the motor controller </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">command</td><td>the carriage return ended command to send to the motor controller </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">expectedResponse</td><td></td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">response</td><td>the response of the motor controller </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>true upon successful transmission of the command </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>bool true upon successful transmission of the command </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">365</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00450">450</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="logging_8h_source.html#l00022">DEBUG4</a>, <a class="el" href="MotorController_8h_source.html#l00344">echoEnabled</a>, <a class="el" href="logging_8h_source.html#l00061">LOG</a>, and <a class="el" href="MotorController_8h_source.html#l00343">serialPort</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00022">DEBUG4</a>, <a class="el" href="logging_8h_source.html#l00016">ERROR</a>, <a class="el" href="logging_8h_source.html#l00015">FATAL</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, <a class="el" href="MotorController_8h_source.html#l00030">MOTOR_BAD_COMMAND</a>, <a class="el" href="MotorController_8h_source.html#l00336">serialPort</a>, and <a class="el" href="MotorController_8h_source.html#l00349">serialPortSem</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00359">assertValidVoltage()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00110">clearEmergencyStop()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00390">disableSerialEcho()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00087">doProcess()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00105">emergencyStop()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00385">enableSerialEcho()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00226">getAbsoluteEncoderCount()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00213">getBatteryAmps()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html#l00293">getEncoderSpeeds()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00231">getRelativeEncoderCount()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00241">getTemperature()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00246">getTime()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00251">getVoltages()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00264">loadEEPROMSettings()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00038">MotorController()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00278">reset()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html#l00182">setEncoderUsage()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00333">setLoopMode()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html#l00196">setMixingMode()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html#l00216">setOperatingMode()</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00284">setTime()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00444">assertValidVoltage()</a>, <a class="el" href="MotorController_8cpp_source.html#l00533">clearBufferHistory()</a>, <a class="el" href="MotorController_8cpp_source.html#l00125">clearEmergencyStop()</a>, <a class="el" href="MotorController_8cpp_source.html#l00513">disableSerialEcho()</a>, <a class="el" href="MotorController_8cpp_source.html#l00102">doProcess()</a>, <a class="el" href="MotorController_8cpp_source.html#l00120">emergencyStop()</a>, <a class="el" href="MotorController_8cpp_source.html#l00508">enableSerialEcho()</a>, <a class="el" href="MotorController_8cpp_source.html#l00337">failSafeReset()</a>, <a class="el" href="MotorController_8cpp_source.html#l00275">getAbsoluteEncoderCount()</a>, <a class="el" href="MotorController_8cpp_source.html#l00260">getBatteryAmps()</a>, <a class="el" href="MotorController_8cpp_source.html#l00293">getEncoderSpeeds()</a>, <a class="el" href="MotorController_8cpp_source.html#l00240">getMotorAmps()</a>, <a class="el" href="MotorController_8cpp_source.html#l00286">getRelativeEncoderCount()</a>, <a class="el" href="MotorController_8cpp_source.html#l00302">getTemperature()</a>, <a class="el" href="MotorController_8cpp_source.html#l00309">getTime()</a>, <a class="el" href="MotorController_8cpp_source.html#l00316">getVoltages()</a>, <a class="el" href="MotorController_8cpp_source.html#l00331">loadEEPROMSettings()</a>, <a class="el" href="MotorController_8cpp_source.html#l00351">reset()</a>, <a class="el" href="MotorController_8cpp_source.html#l00154">setEncoderCounter()</a>, <a class="el" href="MotorController_8cpp_source.html#l00383">setEncoderPPR()</a>, <a class="el" href="MotorController_8cpp_source.html#l00182">setEncoderUsage()</a>, <a class="el" href="MotorController_8cpp_source.html#l00418">setLoopMode()</a>, <a class="el" href="MotorController_8cpp_source.html#l00196">setMixingMode()</a>, <a class="el" href="MotorController_8cpp_source.html#l00216">setOperatingMode()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00360">setTime()</a>.</p>
 
 </div>
 </div>
@@ -1233,7 +1255,9 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00095">95</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00110">110</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="logging_8h_source.html#l00015">FATAL</a>, and <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>.</p>
 
 </div>
 </div>
@@ -1253,7 +1277,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>SetCommandLinearity - This parameter is used for applying an exponential or a logarithmic transformation on the command input, regardless of its source (serial, pulse or analog). There are 3 exponential and 3 logarithmic choices. Exponential correction make the commands change less at the beginning and become stronger at the end of the command input range. The logarithmic correction will have a stronger effect near the start and lesser effect near the end. The linear selection causes no change to the input. A linearity transform is also available for all analog and pulse inputs. Both can be enabled although in most cases, it is best to use the Command Linearity parameter for modifying command profiles. 0 : linear (no change) 1 : exp weak 2 : exp medium 3 : exp strong 4 : log weak 5 : log medium 6 : log strong </p>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00290">290</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00367">367</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="logging_8h_source.html#l00015">FATAL</a>, and <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>.</p>
 
 </div>
 </div>
@@ -1291,11 +1317,13 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00295">295</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00372">372</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="logging_8h_source.html#l00015">FATAL</a>, and <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a7d09ab0272d8729997dc073d86e104f6"></a><!-- doxytag: member="MotorController::setDeceleration" ref="a7d09ab0272d8729997dc073d86e104f6" args="(MotorChannel channel, double deceration)" -->
+<a class="anchor" id="af79ad2663399e28215a696efa0c2b3c6"></a><!-- doxytag: member="MotorController::setDeceleration" ref="af79ad2663399e28215a696efa0c2b3c6" args="(MotorChannel channel, double deceleration)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1309,7 +1337,7 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>deceration</em>&#160;</td>
+          <td class="paramname"><em>deceleration</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1319,17 +1347,20 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>SetDeceleration - sets a limit for how fast the motor controller will slow down a channel </p>
+
+<p>sets a limit for how fast the motor controller will slow down a channel </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">channel</td><td>- the motor channel for which to set the acceleration </td></tr>
-    <tr><td class="paramname">deceleration</td><td>- the number of rpms per second of deceleration precise to one tenth of an rpm </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">channel</td><td>the motor channel for which to set the acceleration </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">deceleration</td><td>- the number of rpms per second of deceleration precise to one tenth of an rpm </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>bool true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00100">100</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00115">115</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="logging_8h_source.html#l00015">FATAL</a>, and <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>.</p>
 
 </div>
 </div>
@@ -1367,9 +1398,9 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00167">167</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00154">154</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8h_source.html#l00040">BothChannels</a>, <a class="el" href="MotorController_8h_source.html#l00038">Channel1</a>, <a class="el" href="MotorController_8h_source.html#l00039">Channel2</a>, and <a class="el" href="MotorController_8h_source.html#l00343">serialPort</a>.</p>
+<p>References <a class="el" href="MotorController_8h_source.html#l00040">BothChannels</a>, <a class="el" href="MotorController_8h_source.html#l00038">Channel1</a>, <a class="el" href="MotorController_8h_source.html#l00039">Channel2</a>, <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00016">ERROR</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
 <p>Referenced by <a class="el" href="WheelEncoder_8cpp_source.html#l00026">WheelEncoder::init()</a>.</p>
 
@@ -1398,7 +1429,9 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00305">305</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00383">383</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
 <p>Referenced by <a class="el" href="WheelEncoder_8cpp_source.html#l00026">WheelEncoder::init()</a>.</p>
 
@@ -1419,9 +1452,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html#l00182">182</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00182">182</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
 <p>Referenced by <a class="el" href="WheelEncoder_8cpp_source.html#l00026">WheelEncoder::init()</a>.</p>
 
@@ -1452,11 +1485,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00333">333</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00418">418</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="logging_8h_source.html#l00022">DEBUG4</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00105">emergencyStop()</a>, <a class="el" href="logging_8h_source.html#l00015">FATAL</a>, <a class="el" href="logging_8h_source.html#l00061">LOG</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>.</p>
-
-<p>Referenced by <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00038">MotorController()</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00022">DEBUG4</a>, <a class="el" href="MotorController_8cpp_source.html#l00120">emergencyStop()</a>, <a class="el" href="logging_8h_source.html#l00015">FATAL</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
 </div>
 </div>
@@ -1475,11 +1506,11 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html#l00196">196</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00196">196</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8h_source.html#l00353">currentMixingMode</a>, <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>.</p>
+<p>References <a class="el" href="MotorController_8h_source.html#l00346">currentMixingMode</a>, <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
-<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html#l00211">restoreMixingMode()</a>.</p>
+<p>Referenced by <a class="el" href="MotorCommandInterface_8cpp_source.html#l00047">DualMotorCommand::DualMotorCommand()</a>, <a class="el" href="MotorController_8cpp_source.html#l00035">MotorController()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00211">restoreMixingMode()</a>.</p>
 
 </div>
 </div>
@@ -1498,11 +1529,11 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html#l00216">216</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00216">216</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8h_source.html#l00355">currentOperatingMode</a>, <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00016">ERROR</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>.</p>
+<p>References <a class="el" href="MotorController_8h_source.html#l00348">currentOperatingMode</a>, <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00016">ERROR</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
-<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html#l00235">restoreOperatingMode()</a>.</p>
+<p>Referenced by <a class="el" href="MotorCommandInterface_8cpp_source.html#l00047">DualMotorCommand::DualMotorCommand()</a>, <a class="el" href="MotorController_8cpp_source.html#l00035">MotorController()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00235">restoreOperatingMode()</a>.</p>
 
 </div>
 </div>
@@ -1529,7 +1560,9 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00310">310</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00395">395</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="logging_8h_source.html#l00015">FATAL</a>, and <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>.</p>
 
 </div>
 </div>
@@ -1556,7 +1589,9 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00300">300</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00377">377</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="logging_8h_source.html#l00015">FATAL</a>, and <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>.</p>
 
 </div>
 </div>
@@ -1583,7 +1618,9 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00320">320</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00405">405</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="logging_8h_source.html#l00015">FATAL</a>, and <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>.</p>
 
 </div>
 </div>
@@ -1621,11 +1658,11 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00115">115</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00130">130</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="MotorController_8h_source.html#l00040">BothChannels</a>, <a class="el" href="MotorController_8h_source.html#l00038">Channel1</a>, <a class="el" href="MotorController_8h_source.html#l00039">Channel2</a>, <a class="el" href="MotorController_8h_source.html#l00345">motor1Speed</a>, <a class="el" href="MotorController_8h_source.html#l00347">motor1SpeedMax</a>, <a class="el" href="MotorController_8h_source.html#l00349">motor1SpeedMin</a>, <a class="el" href="MotorController_8h_source.html#l00346">motor2Speed</a>, <a class="el" href="MotorController_8h_source.html#l00348">motor2SpeedMax</a>, and <a class="el" href="MotorController_8h_source.html#l00350">motor2SpeedMin</a>.</p>
+<p>References <a class="el" href="MotorController_8h_source.html#l00038">Channel1</a>, <a class="el" href="MotorController_8h_source.html#l00039">Channel2</a>, <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00015">FATAL</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, <a class="el" href="MotorController_8h_source.html#l00338">motor1Speed</a>, <a class="el" href="MotorController_8h_source.html#l00340">motor1SpeedMax</a>, <a class="el" href="MotorController_8h_source.html#l00342">motor1SpeedMin</a>, <a class="el" href="MotorController_8h_source.html#l00339">motor2Speed</a>, <a class="el" href="MotorController_8h_source.html#l00341">motor2SpeedMax</a>, and <a class="el" href="MotorController_8h_source.html#l00343">motor2SpeedMin</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2MotorControllerResponseParsing_2MotorCommandInterface_8cpp_source.html#l00049">DualMotorCommand::doProcess()</a>.</p>
+<p>Referenced by <a class="el" href="MotorCommandInterface_8cpp_source.html#l00054">DualMotorCommand::doProcess()</a>.</p>
 
 </div>
 </div>
@@ -1670,9 +1707,9 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon successful transmission </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00284">284</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00360">360</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
 
-<p>References <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00021">DEBUG3</a>, <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
 </div>
 </div>
@@ -1699,7 +1736,9 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true upon success </dd></dl>
 
-<p>Definition at line <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00315">315</a> of file <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8cpp_source.html#l00400">400</a> of file <a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a>.</p>
+
+<p>References <a class="el" href="logging_8h_source.html#l00015">FATAL</a>, and <a class="el" href="logging_8h_source.html#l00051">LOG_MOTOR</a>.</p>
 
 </div>
 </div>
@@ -1717,9 +1756,9 @@ Private Attributes</h2></td></tr>
 
 <p>The how a !M command is interpreted. </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00353">353</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00346">346</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html#l00196">setMixingMode()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00196">setMixingMode()</a>.</p>
 
 </div>
 </div>
@@ -1736,9 +1775,9 @@ Private Attributes</h2></td></tr>
 
 <p>The configuration for the operating mode (open, closed, position) </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00355">355</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00348">348</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html#l00216">setOperatingMode()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00216">setOperatingMode()</a>.</p>
 
 </div>
 </div>
@@ -1755,9 +1794,9 @@ Private Attributes</h2></td></tr>
 
 <p>the serial port to communicate to the motor controller </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00344">344</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00337">337</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00038">MotorController()</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00035">MotorController()</a>.</p>
 
 </div>
 </div>
@@ -1774,7 +1813,7 @@ Private Attributes</h2></td></tr>
 
 <p>The hard lower limit for the second channel motor speed. </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00351">351</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00344">344</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
 </div>
 </div>
@@ -1791,9 +1830,9 @@ Private Attributes</h2></td></tr>
 
 <p>A semaphore to protect the serialPort. </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00358">358</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00351">351</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00026">instance()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00027">instance()</a>.</p>
 
 </div>
 </div>
@@ -1810,9 +1849,9 @@ Private Attributes</h2></td></tr>
 
 <p>The fault flag status for the motor controller. </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00352">352</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00345">345</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html#l00211">restoreMixingMode()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00035">MotorController()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00211">restoreMixingMode()</a>.</p>
 
 </div>
 </div>
@@ -1829,9 +1868,9 @@ Private Attributes</h2></td></tr>
 
 <p>true if the motor controller is set to echo serial commands </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00345">345</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00338">338</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00087">doProcess()</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00115">setSpeed()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00102">doProcess()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00130">setSpeed()</a>.</p>
 
 </div>
 </div>
@@ -1848,9 +1887,9 @@ Private Attributes</h2></td></tr>
 
 <p>the current speed for the second channel motor </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00347">347</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00340">340</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00325">getMotorLimits()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00038">MotorController()</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00115">setSpeed()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00410">getMotorLimits()</a>, <a class="el" href="MotorController_8cpp_source.html#l00035">MotorController()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00130">setSpeed()</a>.</p>
 
 </div>
 </div>
@@ -1867,9 +1906,9 @@ Private Attributes</h2></td></tr>
 
 <p>The hard upper limit for the second channel motor speed. </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00349">349</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00342">342</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00325">getMotorLimits()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00038">MotorController()</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00115">setSpeed()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00410">getMotorLimits()</a>, <a class="el" href="MotorController_8cpp_source.html#l00035">MotorController()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00130">setSpeed()</a>.</p>
 
 </div>
 </div>
@@ -1886,9 +1925,9 @@ Private Attributes</h2></td></tr>
 
 <p>the current speed for the first channel motor </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00346">346</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00339">339</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00087">doProcess()</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00115">setSpeed()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00102">doProcess()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00130">setSpeed()</a>.</p>
 
 </div>
 </div>
@@ -1905,9 +1944,9 @@ Private Attributes</h2></td></tr>
 
 <p>The hard upper limit for the first channel motor speed. </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00348">348</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00341">341</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00325">getMotorLimits()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00038">MotorController()</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00115">setSpeed()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00410">getMotorLimits()</a>, <a class="el" href="MotorController_8cpp_source.html#l00035">MotorController()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00130">setSpeed()</a>.</p>
 
 </div>
 </div>
@@ -1924,9 +1963,9 @@ Private Attributes</h2></td></tr>
 
 <p>The hard lower limit for the first channel motor speed (lower limit would be the reverse speed) </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00350">350</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00343">343</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00325">getMotorLimits()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00038">MotorController()</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00115">setSpeed()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00410">getMotorLimits()</a>, <a class="el" href="MotorController_8cpp_source.html#l00035">MotorController()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00130">setSpeed()</a>.</p>
 
 </div>
 </div>
@@ -1945,6 +1984,8 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="MotorController_8h_source.html#l00030">30</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a805d5fc65cf6a1f0e105fac0506b81f3"></a><!-- doxytag: member="MotorController::MOTOR_SECRET_KEY" ref="a805d5fc65cf6a1f0e105fac0506b81f3" args="" -->
@@ -1960,7 +2001,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="MotorController_8h_source.html#l00029">29</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00278">reset()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00337">failSafeReset()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00351">reset()</a>.</p>
 
 </div>
 </div>
@@ -1977,9 +2018,9 @@ Private Attributes</h2></td></tr>
 
 <p>How the !M command is currently interpreted. </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00354">354</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00347">347</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html#l00235">restoreOperatingMode()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00035">MotorController()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00235">restoreOperatingMode()</a>.</p>
 
 </div>
 </div>
@@ -1994,9 +2035,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00343">343</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00336">336</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00193">getMotorAmps()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00038">MotorController()</a>, <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00365">sendCommand()</a>, and <a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html#l00167">setEncoderCounter()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00337">failSafeReset()</a>, <a class="el" href="MotorController_8cpp_source.html#l00035">MotorController()</a>, <a class="el" href="MotorController_8cpp_source.html#l00351">reset()</a>, and <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>.</p>
 
 </div>
 </div>
@@ -2013,16 +2054,15 @@ Private Attributes</h2></td></tr>
 
 <p>The current mode the controller is set to. </p>
 
-<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00356">356</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
+<p>Definition at line <a class="el" href="MotorController_8h_source.html#l00349">349</a> of file <a class="el" href="MotorController_8h_source.html">MotorController.h</a>.</p>
 
-<p>Referenced by <a class="el" href="MotorController_8h_source.html#l00046">~MotorController()</a>.</p>
+<p>Referenced by <a class="el" href="MotorController_8cpp_source.html#l00035">MotorController()</a>, <a class="el" href="MotorController_8cpp_source.html#l00450">sendCommand()</a>, and <a class="el" href="MotorController_8h_source.html#l00046">~MotorController()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/tallred3/ecen493/SeniorProject/trunk/Code/YClopsLib/inc/<a class="el" href="MotorController_8h_source.html">MotorController.h</a></li>
-<li>MotorControllerResponseParsing/<a class="el" href="branches_2MotorControllerResponseParsing_2MotorController_8cpp_source.html">MotorController.cpp</a></li>
-<li>/home/tallred3/ecen493/SeniorProject/trunk/Code/YClopsLib/src/<a class="el" href="trunk_2Code_2YClopsLib_2src_2MotorController_8cpp_source.html">MotorController.cpp</a></li>
+<li><a class="el" href="MotorController_8h_source.html">MotorController.h</a></li>
+<li><a class="el" href="MotorController_8cpp_source.html">MotorController.cpp</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -2039,7 +2079,7 @@ Private Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Mar 15 2011 for YClops by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Mar 16 2011 for YClops by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

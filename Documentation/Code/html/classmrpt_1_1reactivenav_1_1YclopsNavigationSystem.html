@@ -77,7 +77,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="mrpt::reactivenav::YclopsNavigationSystem" -->
-<p><code>#include &lt;<a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>&gt;</code></p>
 
 <p><a href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem-members.html">List of all members.</a></p>
 <table class="memberdecls">
@@ -152,13 +152,18 @@ Public Types</h2></td></tr>
  }</td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a4d53ba9139dd5c9c4ded7febd1b5d016">YclopsNavigationSystem</a> (CReactiveInterfaceImplementation &amp;react_iterf_impl, bool <a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a45918ce2f6f74ec3e8fd574169a38d59">enableConsoleOutput</a>=true, bool enableLogFile=false)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">EIGEN_MAKE_ALIGNED_OPERATOR_NEW&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a4d53ba9139dd5c9c4ded7febd1b5d016">YclopsNavigationSystem</a> (CReactiveInterfaceImplementation &amp;react_iterf_impl, bool <a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a45918ce2f6f74ec3e8fd574169a38d59">enableConsoleOutput</a>=true, bool enableLogFile=false)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ae7020d8b8a5c7f3bab1875e3e23dff77">~YclopsNavigationSystem</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a8dbf91c9c8aa4e5f2885173d3b8335ae">loadConfigFile</a> (const mrpt::utils::CConfigFileBase &amp;ini, const mrpt::utils::CConfigFileBase &amp;robotIni)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a76315330b3bb102e73038faba2d83ecb">initialize</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a9af724cfeb88571e96767b41abbb8cb3">evaluate</a> (TNavigationParams *params)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ab0626f9e2abd57a804137740e7f36b3e">navigate</a> (TNavigationParams *params)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a39e28e25420588e01627fac0609f5616">setParams</a> (TNavigationParams *params)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a47f17a5dc3e8cc92d6d0b605e9a62cb5">setFileName</a> (std::string &amp;<a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#accc4a56252b3c260fc198a821b94d038">fileName</a>, bool <a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ab7fe44961809203c745ce4e9cb251b8b">inMeters</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a2b8a18a37fc4bac095ea3d3d94d5112e">setup</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a826dd0fec51ec37284dee3436e0477a0">stop</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#af5d840569bfd31d228cb12b751ef3dda">setChallenge</a> (bool c)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a70c2c2920b5ce4c18bcee4e55e724efa">getTarget</a> (mrpt::poses::TPoint2D *target)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ae2f945c34d6c0dc6382b8005133b5f44">setHolonomicMethod</a> (THolonomicMethod method, const char *config_INIfile=&quot;./CONFIG_ReactiveNavigator.ini&quot;)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a848360a1886b7cd29c9c6df935d4ef56">changeRobotShape</a> (math::CPolygon &amp;shape)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a127b7abf44e67077105f6d06cd8511bd">getLastLogRecord</a> (CLogFileRecord &amp;o)</td></tr>
@@ -174,24 +179,20 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ae2f91f1b3d9dea0f6941e9c12c94a82b">changeRobotShape</a> (math::CPolygon &amp;shape)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a736b8920dc07c9ebaaa386d20bd22a86">getLastLogRecord</a> (CLogFileRecord &amp;o)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a68c625c2b4fbc57b02659efd04cc570f">enableLogFile</a> (bool enable)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">EIGEN_MAKE_ALIGNED_OPERATOR_NEW&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a2796ae9059c1f4277936b280712a2a11">YclopsNavigationSystem</a> (CReactiveInterfaceImplementation &amp;react_iterf_impl, bool <a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a45918ce2f6f74ec3e8fd574169a38d59">enableConsoleOutput</a>=true, bool enableLogFile=false)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#aa1f49638277e8c8175138f0ef7f3ca88">YclopsNavigationSystem</a> (CReactiveInterfaceImplementation &amp;react_iterf_impl, bool <a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a45918ce2f6f74ec3e8fd574169a38d59">enableConsoleOutput</a>=true, bool enableLogFile=false)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a2adfaecb14c386d2f8901f0e82d1a366">~YclopsNavigationSystem</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a5d2db2f0b92295f2e02b585aa01f19d5">loadConfigFile</a> (const mrpt::utils::CConfigFileBase &amp;ini, const mrpt::utils::CConfigFileBase &amp;robotIni)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a4762a40d27ca1fee82a1b9398e45181a">initialize</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a30df50e9e326e44e320a019a077201f0">evaluate</a> (TNavigationParams *params)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ab0626f9e2abd57a804137740e7f36b3e">navigate</a> (TNavigationParams *params)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a39e28e25420588e01627fac0609f5616">setParams</a> (TNavigationParams *params)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a47f17a5dc3e8cc92d6d0b605e9a62cb5">setFileName</a> (std::string &amp;<a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#accc4a56252b3c260fc198a821b94d038">fileName</a>, bool <a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ab7fe44961809203c745ce4e9cb251b8b">inMeters</a>)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a2b8a18a37fc4bac095ea3d3d94d5112e">setup</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a826dd0fec51ec37284dee3436e0477a0">stop</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#af5d840569bfd31d228cb12b751ef3dda">setChallenge</a> (bool c)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a70c2c2920b5ce4c18bcee4e55e724efa">getTarget</a> (mrpt::poses::TPoint2D *target)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ae2f945c34d6c0dc6382b8005133b5f44">setHolonomicMethod</a> (THolonomicMethod method, const char *config_INIfile=&quot;./CONFIG_ReactiveNavigator.ini&quot;)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ae2f91f1b3d9dea0f6941e9c12c94a82b">changeRobotShape</a> (math::CPolygon &amp;shape)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a736b8920dc07c9ebaaa386d20bd22a86">getLastLogRecord</a> (CLogFileRecord &amp;o)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a68c625c2b4fbc57b02659efd04cc570f">enableLogFile</a> (bool enable)</td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#aa5006934d9faa59d8ab43bd2439e1546">gotoNextPoint</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a5138bedcd4bb64d953b000e61725f828">performNavigationStep</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a50189b55a6cb105c0a2df15bc2e5a640">STEP1_CollisionGridsBuilder</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ad3076cd24dc4aacbbab3e0a2ee7af3cb">STEP2_Sense</a> (mrpt::slam::CSimplePointsMap &amp;out_obstacles)</td></tr>
@@ -210,7 +211,6 @@ Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a15f5c3401dbc3b8c3c5add9f01093e7f">STEP6_Selector</a> (std::vector&lt; <a class="el" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html">THolonomicMovement</a> &gt; &amp;in_holonomicMovements, <a class="el" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html">THolonomicMovement</a> &amp;out_selectedHolonomicMovement, int &amp;out_nSelectedPTG)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a00a2cd73c081d7ebcb0ec45447a3a2a0">STEP7_NonHolonomicMovement</a> (<a class="el" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html">THolonomicMovement</a> &amp;in_movement, float &amp;out_v, float &amp;out_w)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a407fe235f2e5018e8846919cb491e235">Error_ParadaDeEmergencia</a> (const char *msg)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#aa5006934d9faa59d8ab43bd2439e1546">gotoNextPoint</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ac1d5755be7c4e39142d16439349cd1db">performNavigationStep</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ae49a7c7279f5da452cf2573869cc7465">STEP1_CollisionGridsBuilder</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ae1da0746e4df2dd5a5f7a5194d19f456">STEP2_Sense</a> (mrpt::slam::CSimplePointsMap &amp;out_obstacles)</td></tr>
@@ -222,9 +222,16 @@ Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a407fe235f2e5018e8846919cb491e235">Error_ParadaDeEmergencia</a> (const char *msg)</td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a0c281e546dc01896f4fd25b1e17512e8">NavChallenge</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a2578c5eea80bd9db7850cc0b726d3235">targetAllowedDistance</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">mrpt::aligned_containers<br class="typebreak"/>
+&lt; mrpt::poses::CPoint2D &gt;<br class="typebreak"/>
+::vector_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#abddc90f0706eb8b30a55255c28ce531b">points</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a53df3608d184757397fe3f8dab6f674e">TNavigatorBehavior</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#afb074fd13ce2a8d5b592d43e5d576b45">navigatorBehavior</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ac3f5395e78debab87eaca1cc16e30106">m_beHeadDirection_rad</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">CPoint2D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ae3935e576f76c110cb009d1147793d62">m_beAuxTarget</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#accc4a56252b3c260fc198a821b94d038">fileName</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ab7fe44961809203c745ce4e9cb251b8b">inMeters</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">CPoint2D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#aa9ef4d28e986171bc5eff89faeb6b5da">m_bePassPoint1</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">CPoint2D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a4e623cd3284f9bb12980f036c4b4ef76">m_bePassPoint2</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">CLogFileRecord&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a5b3d49bd39bea49b135fd440961a2d42">lastLogRecord</a></td></tr>
@@ -268,16 +275,9 @@ Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::vector<br class="typebreak"/>
 &lt; CParameterizedTrajectoryGenerator * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#af277137d9296f37fbbfe5879868dba01">PTGs</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a2fc9dff742b95487ee96815866da7046">CerrandoHilo</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a0c281e546dc01896f4fd25b1e17512e8">NavChallenge</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a2578c5eea80bd9db7850cc0b726d3235">targetAllowedDistance</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">mrpt::aligned_containers<br class="typebreak"/>
-&lt; mrpt::poses::CPoint2D &gt;<br class="typebreak"/>
-::vector_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#abddc90f0706eb8b30a55255c28ce531b">points</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#accc4a56252b3c260fc198a821b94d038">fileName</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ab7fe44961809203c745ce4e9cb251b8b">inMeters</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>The implemented reactive navigation methods Implements a reactive navigation system based on TP-Space, with an arbitrary holonomic reactive method running on it, and any desired number of PTG for transforming the navigation space. Both, the holonomic method and the PTGs can be customized by the apropriate user derived classes. For running it, the method NavigateStep must be invoked periodically.</p>
+<div class="textblock"><p>This namespace contains classes for building a TP-Space Reactive Navigation System. The implemented reactive navigation methods Implements a reactive navigation system based on TP-Space, with an arbitrary holonomic reactive method running on it, and any desired number of PTG for transforming the navigation space. Both, the holonomic method and the PTGs can be customized by the apropriate user derived classes. For running it, the method NavigateStep must be invoked periodically.</p>
 <ul>
 <li>17/JUN/2004: First design.</li>
 <li>16/SEP/2004: Totally redesigned, according to document "MultiParametric Based Space
@@ -286,7 +286,7 @@ Private Attributes</h2></td></tr>
 <li>17/OCT/2007: Whole code updated to accomodate to MRPT 0.5 and make it portable to Linux.</li>
 </ul>
 <dl class="see"><dt><b>See also:</b></dt><dd>CAbstractReactiveNavigationSystem, CParameterizedTrajectoryGenerator, CAbstractHolonomicReactiveMethod</dd></dl>
-<p>This namespace contains classes for building a TP-Space Reactive Navigation System. The implemented reactive navigation methods Implements a reactive navigation system based on TP-Space, with an arbitrary holonomic reactive method running on it, and any desired number of PTG for transforming the navigation space. Both, the holonomic method and the PTGs can be customized by the apropriate user derived classes. For running it, the method NavigateStep must be invoked periodically.</p>
+<p>The implemented reactive navigation methods Implements a reactive navigation system based on TP-Space, with an arbitrary holonomic reactive method running on it, and any desired number of PTG for transforming the navigation space. Both, the holonomic method and the PTGs can be customized by the apropriate user derived classes. For running it, the method NavigateStep must be invoked periodically.</p>
 <ul>
 <li>17/JUN/2004: First design.</li>
 <li>16/SEP/2004: Totally redesigned, according to document "MultiParametric Based Space
@@ -296,7 +296,7 @@ Private Attributes</h2></td></tr>
 </ul>
 <dl class="see"><dt><b>See also:</b></dt><dd>CAbstractReactiveNavigationSystem, CParameterizedTrajectoryGenerator, CAbstractHolonomicReactiveMethod </dd></dl>
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00040">40</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00042">42</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 </div><hr/><h2>Member Enumeration Documentation</h2>
 <a class="anchor" id="a53df3608d184757397fe3f8dab6f674e"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::TNavigatorBehavior" ref="a53df3608d184757397fe3f8dab6f674e" args="" -->
 <div class="memitem">
@@ -359,7 +359,7 @@ Private Attributes</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00103">103</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00131">131</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
 </div>
 </div>
@@ -424,7 +424,7 @@ Private Attributes</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00136">136</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
+<p>Definition at line <a class="el" href="Sim_2Yclopsnav_8h_source.html#l00103">103</a> of file <a class="el" href="Sim_2Yclopsnav_8h_source.html">Sim/Yclopsnav.h</a>.</p>
 
 </div>
 </div>
@@ -489,7 +489,7 @@ Private Attributes</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="Sim_2Yclopsnav_8h_source.html#l00103">103</a> of file <a class="el" href="Sim_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00103">103</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">ReactiveNavInterface/YclopsReactiveNavigationSimulator/Yclopsnav.h</a>.</p>
 
 </div>
 </div>
@@ -527,21 +527,16 @@ Private Attributes</h2></td></tr>
 <p>Constructor </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">configINIFile</td><td>The file to load the configuration from. See loadConfigFile </td></tr>
-    <tr><td class="paramname">robotConfigFile</td><td>The file to load the robot specific configuration from. </td></tr>
-    <tr><td class="paramname">rmc</td><td>A set of wrappers that must be filled in. </td></tr>
-    <tr><td class="paramname">sensors</td><td>A set of wrappers that must be filled in. </td></tr>
-    <tr><td class="paramname">dbg</td><td>A set of wrappers that must be filled in. </td></tr>
-    <tr><td class="paramname">evnts</td><td>A set of wrappers that must be filled in. </td></tr>
-    <tr><td class="paramname">enableConsoleOutput</td><td>Set to false if console output is not desired. </td></tr>
-    <tr><td class="paramname">enableLogFile</td><td>Set to true to enable logging to file. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">react_interf_impl</td><td>Robot implementation </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">enableConsoleOutput</td><td>Set to false if console output is not desired. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">enableLogFile</td><td>Set to true to enable logging to file. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00027">27</a> of file <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00030">30</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">trunk/Code/YClopsLib/src/YclopsNavigationSystem.cpp</a>.</p>
 
-<p>References <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00107">beNormalNavigation</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00279">CerrandoHilo</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00190">enableConsoleOutput</a>, <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00266">enableLogFile()</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00184">holonomicMethod</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00161">last_cmd_v</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00161">last_cmd_w</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00187">logFile</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00221">meanExecutionPeriod</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00133">navigatorBehavior</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00217">nIteration</a>, and <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00238">PTGs</a>.</p>
+<p>References <a class="el" href="YclopsNavigationSystem_8h_source.html#l00135">beNormalNavigation</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00318">CerrandoHilo</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00229">enableConsoleOutput</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00272">enableLogFile()</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00223">holonomicMethod</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00200">last_cmd_v</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00200">last_cmd_w</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00226">logFile</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00260">meanExecutionPeriod</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00169">navigatorBehavior</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00256">nIteration</a>, and <a class="el" href="YclopsNavigationSystem_8h_source.html#l00277">PTGs</a>.</p>
 
 </div>
 </div>
@@ -560,9 +555,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Destructor </p>
 
-<p>Definition at line <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01218">1218</a> of file <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01213">1213</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">trunk/Code/YClopsLib/src/YclopsNavigationSystem.cpp</a>.</p>
 
-<p>References <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00279">CerrandoHilo</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00184">holonomicMethod</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00187">logFile</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00169">m_critZoneNavigating</a>, and <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00238">PTGs</a>.</p>
+<p>References <a class="el" href="YclopsNavigationSystem_8h_source.html#l00318">CerrandoHilo</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00223">holonomicMethod</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00226">logFile</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00208">m_critZoneNavigating</a>, and <a class="el" href="YclopsNavigationSystem_8h_source.html#l00277">PTGs</a>.</p>
 
 </div>
 </div>
@@ -630,12 +625,12 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2796ae9059c1f4277936b280712a2a11"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::YclopsNavigationSystem" ref="a2796ae9059c1f4277936b280712a2a11" args="(CReactiveInterfaceImplementation &amp;react_iterf_impl, bool enableConsoleOutput=true, bool enableLogFile=false)" -->
+<a class="anchor" id="aa1f49638277e8c8175138f0ef7f3ca88"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::YclopsNavigationSystem" ref="aa1f49638277e8c8175138f0ef7f3ca88" args="(CReactiveInterfaceImplementation &amp;react_iterf_impl, bool enableConsoleOutput=true, bool enableLogFile=false)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">EIGEN_MAKE_ALIGNED_OPERATOR_NEW mrpt::reactivenav::YclopsNavigationSystem::YclopsNavigationSystem </td>
+          <td class="memname">mrpt::reactivenav::YclopsNavigationSystem::YclopsNavigationSystem </td>
           <td>(</td>
           <td class="paramtype">CReactiveInterfaceImplementation &amp;&#160;</td>
           <td class="paramname"><em>react_iterf_impl</em>, </td>
@@ -711,11 +706,29 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Change the robot shape, which is taken into account for collision grid building. </p>
 
-<p>Definition at line <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00064">64</a> of file <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00067">67</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">trunk/Code/YClopsLib/src/YclopsNavigationSystem.cpp</a>.</p>
 
-<p>References <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00234">collisionGridsMustBeUpdated</a>, and <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00233">robotShape</a>.</p>
+<p>References <a class="el" href="YclopsNavigationSystem_8h_source.html#l00273">collisionGridsMustBeUpdated</a>, and <a class="el" href="YclopsNavigationSystem_8h_source.html#l00272">robotShape</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae2f91f1b3d9dea0f6941e9c12c94a82b"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::changeRobotShape" ref="ae2f91f1b3d9dea0f6941e9c12c94a82b" args="(math::CPolygon &amp;shape)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::changeRobotShape </td>
+          <td>(</td>
+          <td class="paramtype">math::CPolygon &amp;&#160;</td>
+          <td class="paramname"><em>shape</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Change the robot shape, which is taken into account for collision grid building. </p>
 
 </div>
 </div>
@@ -737,21 +750,39 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae2f91f1b3d9dea0f6941e9c12c94a82b"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::changeRobotShape" ref="ae2f91f1b3d9dea0f6941e9c12c94a82b" args="(math::CPolygon &amp;shape)" -->
+<a class="anchor" id="a68c625c2b4fbc57b02659efd04cc570f"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::enableLogFile" ref="a68c625c2b4fbc57b02659efd04cc570f" args="(bool enable)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::changeRobotShape </td>
+          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::enableLogFile </td>
           <td>(</td>
-          <td class="paramtype">math::CPolygon &amp;&#160;</td>
-          <td class="paramname"><em>shape</em></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Change the robot shape, which is taken into account for collision grid building. </p>
+<p>Enables / disables the logging into a file. </p>
+
+</div>
+</div>
+<a class="anchor" id="a68c625c2b4fbc57b02659efd04cc570f"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::enableLogFile" ref="a68c625c2b4fbc57b02659efd04cc570f" args="(bool enable)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::enableLogFile </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Enables / disables the logging into a file. </p>
 
 </div>
 </div>
@@ -771,47 +802,28 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Enables / disables the logging into a file. </p>
 
-<p>Definition at line <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00266">266</a> of file <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00272">272</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">trunk/Code/YClopsLib/src/YclopsNavigationSystem.cpp</a>.</p>
 
-<p>References <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00187">logFile</a>.</p>
+<p>References <a class="el" href="YclopsNavigationSystem_8h_source.html#l00226">logFile</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00027">YclopsNavigationSystem()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00030">YclopsNavigationSystem()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a68c625c2b4fbc57b02659efd04cc570f"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::enableLogFile" ref="a68c625c2b4fbc57b02659efd04cc570f" args="(bool enable)" -->
+<a class="anchor" id="a407fe235f2e5018e8846919cb491e235"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::Error_ParadaDeEmergencia" ref="a407fe235f2e5018e8846919cb491e235" args="(const char *msg)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::enableLogFile </td>
+          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::Error_ParadaDeEmergencia </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>enable</em></td><td>)</td>
-          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td><code> [private]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Enables / disables the logging into a file. </p>
-
-</div>
-</div>
-<a class="anchor" id="a68c625c2b4fbc57b02659efd04cc570f"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::enableLogFile" ref="a68c625c2b4fbc57b02659efd04cc570f" args="(bool enable)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::enableLogFile </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>enable</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Enables / disables the logging into a file. </p>
 
 </div>
 </div>
@@ -830,26 +842,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01313">1313</a> of file <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01315">1315</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">trunk/Code/YClopsLib/src/YclopsNavigationSystem.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a407fe235f2e5018e8846919cb491e235"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::Error_ParadaDeEmergencia" ref="a407fe235f2e5018e8846919cb491e235" args="(const char *msg)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::Error_ParadaDeEmergencia </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>msg</em></td><td>)</td>
-          <td><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>.</p>
 
 </div>
 </div>
@@ -922,7 +917,31 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Evaluate navigation hardness: </p>
 
-<p>Definition at line <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01256">1256</a> of file <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01251">1251</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">trunk/Code/YClopsLib/src/YclopsNavigationSystem.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a736b8920dc07c9ebaaa386d20bd22a86"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::getLastLogRecord" ref="a736b8920dc07c9ebaaa386d20bd22a86" args="(CLogFileRecord &amp;o)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::getLastLogRecord </td>
+          <td>(</td>
+          <td class="paramtype">CLogFileRecord &amp;&#160;</td>
+          <td class="paramname"><em>o</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Provides a copy of the last log record with information about execution. On any unexpected error "*o" will be NULL. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">o</td><td>An object where the log will be stored into. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -948,33 +967,9 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00079">79</a> of file <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00082">82</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">trunk/Code/YClopsLib/src/YclopsNavigationSystem.cpp</a>.</p>
 
-<p>References <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00157">lastLogRecord</a>, and <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00169">m_critZoneLastLog</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a736b8920dc07c9ebaaa386d20bd22a86"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::getLastLogRecord" ref="a736b8920dc07c9ebaaa386d20bd22a86" args="(CLogFileRecord &amp;o)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::getLastLogRecord </td>
-          <td>(</td>
-          <td class="paramtype">CLogFileRecord &amp;&#160;</td>
-          <td class="paramname"><em>o</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Provides a copy of the last log record with information about execution. On any unexpected error "*o" will be NULL. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">o</td><td>An object where the log will be stored into. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>References <a class="el" href="YclopsNavigationSystem_8h_source.html#l00196">lastLogRecord</a>, and <a class="el" href="YclopsNavigationSystem_8h_source.html#l00208">m_critZoneLastLog</a>.</p>
 
 </div>
 </div>
@@ -1017,7 +1012,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01525">1525</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01525">1525</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">trunk/Code/YClopsLib/src/YclopsNavigationSystem.cpp</a>.</p>
+
+<p>Referenced by <a class="el" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp_source.html#l00727">ReactiveNavigationDemoFrame::OntimSimulateTrigger()</a>.</p>
 
 </div>
 </div>
@@ -1036,11 +1033,11 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>starts navigating to next point in ordered list </p>
 
-<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01453">1453</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01453">1453</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">trunk/Code/YClopsLib/src/YclopsNavigationSystem.cpp</a>.</p>
 
-<p>References <a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ab0626f9e2abd57a804137740e7f36b3e">navigate()</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00167">points</a>, and <a class="el" href="YclopsNavigationSystem_8h_source.html#l00165">targetAllowedDistance</a>.</p>
+<p>References <a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ab0626f9e2abd57a804137740e7f36b3e">navigate()</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00162">points</a>, and <a class="el" href="YclopsNavigationSystem_8h_source.html#l00160">targetAllowedDistance</a>.</p>
 
-<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01479">setup()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01479">setup()</a>.</p>
 
 </div>
 </div>
@@ -1093,9 +1090,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Must be called for loading collision grids, or the first navigation command may last a long time to be executed. </p>
 
-<p>Definition at line <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00054">54</a> of file <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00057">57</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">trunk/Code/YClopsLib/src/YclopsNavigationSystem.cpp</a>.</p>
 
-<p>References <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00799">STEP1_CollisionGridsBuilder()</a>.</p>
+<p>References <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00792">STEP1_CollisionGridsBuilder()</a>.</p>
 
 </div>
 </div>
@@ -1125,11 +1122,11 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Reload the configuration from a file </p>
 
-<p>Definition at line <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">92</a> of file <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">95</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">trunk/Code/YClopsLib/src/YclopsNavigationSystem.cpp</a>.</p>
 
-<p>References <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00228">badNavAlarm_AlarmTimeout</a>, <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00064">changeRobotShape()</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00197">colGridRes_x</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00197">colGridRes_y</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00234">collisionGridsMustBeUpdated</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00207">DISABLE_PERIOD_AFTER_FAIL</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00203">DIST_TO_TARGET_FOR_SENDING_EVENT</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00212">DOOR_CROOSING_BEH3_TIMEOUT</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00211">DOOR_CROSSING_DIST_TO_AUX_TARGETS</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00213">DOOR_CROSSING_MAXIMUM_DOORWAY_SIZE</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00205">DOOR_CROSSING_SEARCH_TARGET_DISTANCEx2</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00209">DOORCROSSING_HEADING_ACCURACY_DEG</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00210">DOORCROSSING_ROTATION_CTE_DEG</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00184">holonomicMethod</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00202">maxObstaclesHeight</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00202">minObstaclesHeight</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00238">PTGs</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00196">refDistance</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00198">robotMax_V_mps</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00199">robotMax_W_degps</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00200">ROBOTMODEL_DELAY</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00200">ROBOTMODEL_TAU</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00195">robotName</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00233">robotShape</a>, <a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ae2f945c34d6c0dc6382b8005133b5f44">setHolonomicMethod()</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00206">VORONOI_MINIMUM_CLEARANCE</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00208">VORONOI_PATH_DIST_FROM_DOORWAY</a>, and <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00201">weights</a>.</p>
+<p>References <a class="el" href="YclopsNavigationSystem_8h_source.html#l00267">badNavAlarm_AlarmTimeout</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00067">changeRobotShape()</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00236">colGridRes_x</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00236">colGridRes_y</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00273">collisionGridsMustBeUpdated</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00246">DISABLE_PERIOD_AFTER_FAIL</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00242">DIST_TO_TARGET_FOR_SENDING_EVENT</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00251">DOOR_CROOSING_BEH3_TIMEOUT</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00250">DOOR_CROSSING_DIST_TO_AUX_TARGETS</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00252">DOOR_CROSSING_MAXIMUM_DOORWAY_SIZE</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00244">DOOR_CROSSING_SEARCH_TARGET_DISTANCEx2</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00248">DOORCROSSING_HEADING_ACCURACY_DEG</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00249">DOORCROSSING_ROTATION_CTE_DEG</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00223">holonomicMethod</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00241">maxObstaclesHeight</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00241">minObstaclesHeight</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00277">PTGs</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00235">refDistance</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00237">robotMax_V_mps</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00238">robotMax_W_degps</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00239">ROBOTMODEL_DELAY</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00239">ROBOTMODEL_TAU</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00234">robotName</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00272">robotShape</a>, <a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ae2f945c34d6c0dc6382b8005133b5f44">setHolonomicMethod()</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00160">targetAllowedDistance</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00245">VORONOI_MINIMUM_CLEARANCE</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00247">VORONOI_PATH_DIST_FROM_DOORWAY</a>, and <a class="el" href="YclopsNavigationSystem_8h_source.html#l00240">weights</a>.</p>
 
-<p>Referenced by <a class="el" href="NavigationChallenge_8cpp_source.html#l00021">NavigationChallenge::AutonomousMode()</a>, <a class="el" href="branches_2Mechanical_2WiiDriver_2main_8cpp_source.html#l00038">main()</a>, and <a class="el" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp_source.html#l00531">ReactiveNavigationDemoFrame::tryConstructReactiveNavigator()</a>.</p>
+<p>Referenced by <a class="el" href="NavigationChallenge_8cpp_source.html#l00021">NavigationChallenge::AutonomousMode()</a>, <a class="el" href="branches_2Mechanical_2WiiDriver_2main_8cpp_source.html#l00038">main()</a>, and <a class="el" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp_source.html#l00565">ReactiveNavigationDemoFrame::tryConstructReactiveNavigator()</a>.</p>
 
 </div>
 </div>
@@ -1205,7 +1202,7 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Start navigation: </p>
 
-<p>Referenced by <a class="el" href="NavigationChallenge_8cpp_source.html#l00021">NavigationChallenge::AutonomousMode()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01453">gotoNextPoint()</a>, and <a class="el" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp_source.html#l00569">ReactiveNavigationDemoFrame::OnbtnNavigateClick()</a>.</p>
+<p>Referenced by <a class="el" href="NavigationChallenge_8cpp_source.html#l00021">NavigationChallenge::AutonomousMode()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01453">gotoNextPoint()</a>, and <a class="el" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp_source.html#l00603">ReactiveNavigationDemoFrame::OnbtnNavigateClick()</a>.</p>
 
 </div>
 </div>
@@ -1260,9 +1257,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>The main method for the navigator </p>
 
-<p>Definition at line <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">323</a> of file <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">329</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">trunk/Code/YClopsLib/src/YclopsNavigationSystem.cpp</a>.</p>
 
-<p>References <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00228">badNavAlarm_AlarmTimeout</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00227">badNavAlarm_lastMinDistTime</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00226">badNavAlarm_minDistTarget</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00113">beDoorCrosing1</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00116">beDoorCrosing2</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00119">beDoorCrosing3</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00107">beNormalNavigation</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00279">CerrandoHilo</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00151">mrpt::reactivenav::YclopsNavigationSystem::THolonomicMovement::direction</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00203">DIST_TO_TARGET_FOR_SENDING_EVENT</a>, <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01313">Error_ParadaDeEmergencia()</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00152">mrpt::reactivenav::YclopsNavigationSystem::THolonomicMovement::evaluation</a>, <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01346">mrpt::reactivenav::YclopsNavigationSystem::CDynamicWindow::findBestApproximation()</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00161">last_cmd_v</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00161">last_cmd_w</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00157">lastLogRecord</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00187">logFile</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00145">m_bePassPoint1</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00145">m_bePassPoint2</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00169">m_critZoneLastLog</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00169">m_critZoneNavigating</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00202">maxObstaclesHeight</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00221">meanExecutionPeriod</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00202">minObstaclesHeight</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00165">navigationEndEventSent</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00133">navigatorBehavior</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00217">nIteration</a>, <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00022">PREVIOUS_VALUES_IN_LOG</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00150">mrpt::reactivenav::YclopsNavigationSystem::THolonomicMovement::PTG</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00238">PTGs</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00196">refDistance</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00233">robotShape</a>, <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00799">STEP1_CollisionGridsBuilder()</a>, <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00828">STEP2_Sense()</a>, <a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ad00cb0bcf3d54fd6582ae39cabcd47da">STEP3_SpaceTransformer()</a>, <a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ad82e88e861c4e4d83155ccdcabd2825f">STEP4_HolonomicMethod()</a>, <a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a4b0795ab931f55c6f6b880b2df0175e1">STEP5_Evaluator()</a>, <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01127">STEP6_Selector()</a>, <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01158">STEP7_NonHolonomicMovement()</a>, and <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00192">timerForExecutionPeriod</a>.</p>
+<p>References <a class="el" href="YclopsNavigationSystem_8h_source.html#l00267">badNavAlarm_AlarmTimeout</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00266">badNavAlarm_lastMinDistTime</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00265">badNavAlarm_minDistTarget</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00141">beDoorCrosing1</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00144">beDoorCrosing2</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00147">beDoorCrosing3</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00135">beNormalNavigation</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00318">CerrandoHilo</a>, <a class="el" href="logging_8h_source.html#l00019">DEBUG</a>, <a class="el" href="logging_8h_source.html#l00022">DEBUG4</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00190">mrpt::reactivenav::YclopsNavigationSystem::THolonomicMovement::direction</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01315">Error_ParadaDeEmergencia()</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00191">mrpt::reactivenav::YclopsNavigationSystem::THolonomicMovement::evaluation</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01453">gotoNextPoint()</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00200">last_cmd_v</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00200">last_cmd_w</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00196">lastLogRecord</a>, <a class="el" href="logging_8h_source.html#l00061">LOG</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00226">logFile</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00184">m_bePassPoint1</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00184">m_bePassPoint2</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00208">m_critZoneLastLog</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00208">m_critZoneNavigating</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00241">maxObstaclesHeight</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00260">meanExecutionPeriod</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00241">minObstaclesHeight</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00204">navigationEndEventSent</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00169">navigatorBehavior</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00256">nIteration</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00162">points</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00025">PREVIOUS_VALUES_IN_LOG</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00189">mrpt::reactivenav::YclopsNavigationSystem::THolonomicMovement::PTG</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00277">PTGs</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00235">refDistance</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00272">robotShape</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00792">STEP1_CollisionGridsBuilder()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00821">STEP2_Sense()</a>, <a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ad00cb0bcf3d54fd6582ae39cabcd47da">STEP3_SpaceTransformer()</a>, <a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ad82e88e861c4e4d83155ccdcabd2825f">STEP4_HolonomicMethod()</a>, <a class="el" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a4b0795ab931f55c6f6b880b2df0175e1">STEP5_Evaluator()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01122">STEP6_Selector()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01153">STEP7_NonHolonomicMovement()</a>, and <a class="el" href="YclopsNavigationSystem_8h_source.html#l00231">timerForExecutionPeriod</a>.</p>
 
 </div>
 </div>
@@ -1315,9 +1312,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01520">1520</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01520">1520</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">trunk/Code/YClopsLib/src/YclopsNavigationSystem.cpp</a>.</p>
 
-<p>References <a class="el" href="YclopsNavigationSystem_8h_source.html#l00164">NavChallenge</a>.</p>
+<p>References <a class="el" href="YclopsNavigationSystem_8h_source.html#l00159">NavChallenge</a>.</p>
 
 <p>Referenced by <a class="el" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp_source.html#l00877">ReactiveNavigationDemoFrame::OnLoadPointsFileClick()</a>, and <a class="el" href="branches_2Mechanical_2WiiDriver_2main_8cpp_source.html#l00108">signal_handler()</a>.</p>
 
@@ -1383,6 +1380,8 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Selects which one from the set of available holonomic methods will be used into transformed TP-Space, and sets its configuration from a configuration file. </p>
 
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="ae2f945c34d6c0dc6382b8005133b5f44"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::setHolonomicMethod" ref="ae2f945c34d6c0dc6382b8005133b5f44" args="(THolonomicMethod method, const char *config_INIfile=&quot;./CONFIG_ReactiveNavigator.ini&quot;)" -->
@@ -1410,8 +1409,6 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 <p>Selects which one from the set of available holonomic methods will be used into transformed TP-Space, and sets its configuration from a configuration file. </p>
-
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>.</p>
 
 </div>
 </div>
@@ -1512,27 +1509,11 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>loads waypoints from file and plans navigation order, and starts navigating, so that it will navigate from the first point to the second until the last. </p>
 
-<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01479">1479</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01479">1479</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">trunk/Code/YClopsLib/src/YclopsNavigationSystem.cpp</a>.</p>
 
-<p>References <a class="el" href="YclopsNavigationSystem_8h_source.html#l00184">fileName</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01453">gotoNextPoint()</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00185">inMeters</a>, <a class="el" href="WaypointPlanner_8cpp_source.html#l00030">AbstractNavigationInterface::loadPoints()</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00164">NavChallenge</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00167">points</a>, and <a class="el" href="classAbstractNavigationInterface.html#aa14ae6fbca5713d79a7542253eac50bc">AbstractNavigationInterface::solve()</a>.</p>
+<p>References <a class="el" href="YclopsNavigationSystem_8h_source.html#l00179">fileName</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01453">gotoNextPoint()</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00180">inMeters</a>, <a class="el" href="WaypointPlanner_8cpp_source.html#l00030">AbstractNavigationInterface::loadPoints()</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00159">NavChallenge</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00162">points</a>, and <a class="el" href="classAbstractNavigationInterface.html#aa14ae6fbca5713d79a7542253eac50bc">AbstractNavigationInterface::solve()</a>.</p>
 
 <p>Referenced by <a class="el" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp_source.html#l00877">ReactiveNavigationDemoFrame::OnLoadPointsFileClick()</a>, and <a class="el" href="branches_2Mechanical_2WiiDriver_2main_8cpp_source.html#l00108">signal_handler()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae49a7c7279f5da452cf2573869cc7465"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::STEP1_CollisionGridsBuilder" ref="ae49a7c7279f5da452cf2573869cc7465" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::STEP1_CollisionGridsBuilder </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
 
 </div>
 </div>
@@ -1550,11 +1531,27 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00799">799</a> of file <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00792">792</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">trunk/Code/YClopsLib/src/YclopsNavigationSystem.cpp</a>.</p>
 
-<p>References <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00234">collisionGridsMustBeUpdated</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00238">PTGs</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00195">robotName</a>, and <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00233">robotShape</a>.</p>
+<p>References <a class="el" href="YclopsNavigationSystem_8h_source.html#l00273">collisionGridsMustBeUpdated</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00277">PTGs</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00234">robotName</a>, and <a class="el" href="YclopsNavigationSystem_8h_source.html#l00272">robotShape</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00054">initialize()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00057">initialize()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae49a7c7279f5da452cf2573869cc7465"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::STEP1_CollisionGridsBuilder" ref="ae49a7c7279f5da452cf2573869cc7465" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::STEP1_CollisionGridsBuilder </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
 
 </div>
 </div>
@@ -1589,26 +1586,11 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00828">828</a> of file <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00821">821</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">trunk/Code/YClopsLib/src/YclopsNavigationSystem.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>.</p>
+<p>References <a class="el" href="logging_8h_source.html#l00022">DEBUG4</a>, and <a class="el" href="logging_8h_source.html#l00061">LOG</a>.</p>
 
-</div>
-</div>
-<a class="anchor" id="ae1da0746e4df2dd5a5f7a5194d19f456"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::STEP2_Sense" ref="ae1da0746e4df2dd5a5f7a5194d19f456" args="(mrpt::slam::CSimplePointsMap &amp;out_obstacles)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool mrpt::reactivenav::YclopsNavigationSystem::STEP2_Sense </td>
-          <td>(</td>
-          <td class="paramtype">mrpt::slam::CSimplePointsMap &amp;&#160;</td>
-          <td class="paramname"><em>out_obstacles</em></td><td>)</td>
-          <td><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>.</p>
 
 </div>
 </div>
@@ -1629,32 +1611,16 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ad00cb0bcf3d54fd6582ae39cabcd47da"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::STEP3_SpaceTransformer" ref="ad00cb0bcf3d54fd6582ae39cabcd47da" args="(poses::CPointsMap &amp;in_obstacles, CParameterizedTrajectoryGenerator *in_PTG, vector_double &amp;out_TPObstacles)" -->
+<a class="anchor" id="ae1da0746e4df2dd5a5f7a5194d19f456"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::STEP2_Sense" ref="ae1da0746e4df2dd5a5f7a5194d19f456" args="(mrpt::slam::CSimplePointsMap &amp;out_obstacles)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::STEP3_SpaceTransformer </td>
+          <td class="memname">bool mrpt::reactivenav::YclopsNavigationSystem::STEP2_Sense </td>
           <td>(</td>
-          <td class="paramtype">poses::CPointsMap &amp;&#160;</td>
-          <td class="paramname"><em>in_obstacles</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">CParameterizedTrajectoryGenerator *&#160;</td>
-          <td class="paramname"><em>in_PTG</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">vector_double &amp;&#160;</td>
-          <td class="paramname"><em>out_TPObstacles</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [private]</code></td>
+          <td class="paramtype">mrpt::slam::CSimplePointsMap &amp;&#160;</td>
+          <td class="paramname"><em>out_obstacles</em></td><td>)</td>
+          <td><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1693,7 +1659,40 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>.</p>
+</div>
+</div>
+<a class="anchor" id="ad00cb0bcf3d54fd6582ae39cabcd47da"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::STEP3_SpaceTransformer" ref="ad00cb0bcf3d54fd6582ae39cabcd47da" args="(poses::CPointsMap &amp;in_obstacles, CParameterizedTrajectoryGenerator *in_PTG, vector_double &amp;out_TPObstacles)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::STEP3_SpaceTransformer </td>
+          <td>(</td>
+          <td class="paramtype">poses::CPointsMap &amp;&#160;</td>
+          <td class="paramname"><em>in_obstacles</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CParameterizedTrajectoryGenerator *&#160;</td>
+          <td class="paramname"><em>in_PTG</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector_double &amp;&#160;</td>
+          <td class="paramname"><em>out_TPObstacles</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>.</p>
 
 </div>
 </div>
@@ -1818,6 +1817,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="ad82e88e861c4e4d83155ccdcabd2825f"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::STEP4_HolonomicMethod" ref="ad82e88e861c4e4d83155ccdcabd2825f" args="(vector_double &amp;in_Obstacles, poses::CPoint2D &amp;in_Target, float in_maxRobotSpeed, THolonomicMovement &amp;out_selectedMovement, CHolonomicLogFileRecordPtr &amp;in_HLFR)" -->
@@ -1863,8 +1864,6 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a4b0795ab931f55c6f6b880b2df0175e1"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::STEP5_Evaluator" ref="a4b0795ab931f55c6f6b880b2df0175e1" args="(THolonomicMovement &amp;in_holonomicMovement, vector_double &amp;in_TPObstacles, poses::CPoint2D &amp;WS_Target, poses::CPoint2D &amp;TP_Target, bool wasSelectedInLast, CLogFileRecord::TInfoPerPTG &amp;log)" -->
@@ -1967,6 +1966,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a4b0795ab931f55c6f6b880b2df0175e1"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::STEP5_Evaluator" ref="a4b0795ab931f55c6f6b880b2df0175e1" args="(THolonomicMovement &amp;in_holonomicMovement, vector_double &amp;in_TPObstacles, poses::CPoint2D &amp;WS_Target, poses::CPoint2D &amp;TP_Target, bool wasSelectedInLast, CLogFileRecord::TInfoPerPTG &amp;log)" -->
@@ -2018,7 +2019,71 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>.</p>
+</div>
+</div>
+<a class="anchor" id="a15f5c3401dbc3b8c3c5add9f01093e7f"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::STEP6_Selector" ref="a15f5c3401dbc3b8c3c5add9f01093e7f" args="(std::vector&lt; THolonomicMovement &gt; &amp;in_holonomicMovements, THolonomicMovement &amp;out_selectedHolonomicMovement, int &amp;out_nSelectedPTG)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::STEP6_Selector </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html">THolonomicMovement</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>in_holonomicMovements</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html">THolonomicMovement</a> &amp;&#160;</td>
+          <td class="paramname"><em>out_selectedHolonomicMovement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>out_nSelectedPTG</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a15f5c3401dbc3b8c3c5add9f01093e7f"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::STEP6_Selector" ref="a15f5c3401dbc3b8c3c5add9f01093e7f" args="(std::vector&lt; THolonomicMovement &gt; &amp;in_holonomicMovements, THolonomicMovement &amp;out_selectedHolonomicMovement, int &amp;out_nSelectedPTG)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::STEP6_Selector </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html">THolonomicMovement</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>in_holonomicMovements</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html">THolonomicMovement</a> &amp;&#160;</td>
+          <td class="paramname"><em>out_selectedHolonomicMovement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>out_nSelectedPTG</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
 
 </div>
 </div>
@@ -2053,68 +2118,35 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01127">1127</a> of file <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01122">1122</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">trunk/Code/YClopsLib/src/YclopsNavigationSystem.cpp</a>.</p>
 
-<p>References <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00151">mrpt::reactivenav::YclopsNavigationSystem::THolonomicMovement::direction</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00152">mrpt::reactivenav::YclopsNavigationSystem::THolonomicMovement::evaluation</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00150">mrpt::reactivenav::YclopsNavigationSystem::THolonomicMovement::PTG</a>, and <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00151">mrpt::reactivenav::YclopsNavigationSystem::THolonomicMovement::speed</a>.</p>
+<p>References <a class="el" href="YclopsNavigationSystem_8h_source.html#l00190">mrpt::reactivenav::YclopsNavigationSystem::THolonomicMovement::direction</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00191">mrpt::reactivenav::YclopsNavigationSystem::THolonomicMovement::evaluation</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00189">mrpt::reactivenav::YclopsNavigationSystem::THolonomicMovement::PTG</a>, and <a class="el" href="YclopsNavigationSystem_8h_source.html#l00190">mrpt::reactivenav::YclopsNavigationSystem::THolonomicMovement::speed</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a15f5c3401dbc3b8c3c5add9f01093e7f"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::STEP6_Selector" ref="a15f5c3401dbc3b8c3c5add9f01093e7f" args="(std::vector&lt; THolonomicMovement &gt; &amp;in_holonomicMovements, THolonomicMovement &amp;out_selectedHolonomicMovement, int &amp;out_nSelectedPTG)" -->
+<a class="anchor" id="a00a2cd73c081d7ebcb0ec45447a3a2a0"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::STEP7_NonHolonomicMovement" ref="a00a2cd73c081d7ebcb0ec45447a3a2a0" args="(THolonomicMovement &amp;in_movement, float &amp;out_v, float &amp;out_w)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::STEP6_Selector </td>
+          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::STEP7_NonHolonomicMovement </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html">THolonomicMovement</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>in_holonomicMovements</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype"><a class="el" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html">THolonomicMovement</a> &amp;&#160;</td>
-          <td class="paramname"><em>out_selectedHolonomicMovement</em>, </td>
+          <td class="paramname"><em>in_movement</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int &amp;&#160;</td>
-          <td class="paramname"><em>out_nSelectedPTG</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a15f5c3401dbc3b8c3c5add9f01093e7f"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::STEP6_Selector" ref="a15f5c3401dbc3b8c3c5add9f01093e7f" args="(std::vector&lt; THolonomicMovement &gt; &amp;in_holonomicMovements, THolonomicMovement &amp;out_selectedHolonomicMovement, int &amp;out_nSelectedPTG)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::STEP6_Selector </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html">THolonomicMovement</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>in_holonomicMovements</em>, </td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>out_v</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html">THolonomicMovement</a> &amp;&#160;</td>
-          <td class="paramname"><em>out_selectedHolonomicMovement</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int &amp;&#160;</td>
-          <td class="paramname"><em>out_nSelectedPTG</em>&#160;</td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>out_w</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2158,44 +2190,11 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01158">1158</a> of file <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01153">1153</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">trunk/Code/YClopsLib/src/YclopsNavigationSystem.cpp</a>.</p>
 
-<p>References <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00151">mrpt::reactivenav::YclopsNavigationSystem::THolonomicMovement::direction</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00150">mrpt::reactivenav::YclopsNavigationSystem::THolonomicMovement::PTG</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00198">robotMax_V_mps</a>, <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00199">robotMax_W_degps</a>, and <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00151">mrpt::reactivenav::YclopsNavigationSystem::THolonomicMovement::speed</a>.</p>
+<p>References <a class="el" href="YclopsNavigationSystem_8h_source.html#l00190">mrpt::reactivenav::YclopsNavigationSystem::THolonomicMovement::direction</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00189">mrpt::reactivenav::YclopsNavigationSystem::THolonomicMovement::PTG</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00237">robotMax_V_mps</a>, <a class="el" href="YclopsNavigationSystem_8h_source.html#l00238">robotMax_W_degps</a>, and <a class="el" href="YclopsNavigationSystem_8h_source.html#l00190">mrpt::reactivenav::YclopsNavigationSystem::THolonomicMovement::speed</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a00a2cd73c081d7ebcb0ec45447a3a2a0"></a><!-- doxytag: member="mrpt::reactivenav::YclopsNavigationSystem::STEP7_NonHolonomicMovement" ref="a00a2cd73c081d7ebcb0ec45447a3a2a0" args="(THolonomicMovement &amp;in_movement, float &amp;out_v, float &amp;out_w)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void mrpt::reactivenav::YclopsNavigationSystem::STEP7_NonHolonomicMovement </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html">THolonomicMovement</a> &amp;&#160;</td>
-          <td class="paramname"><em>in_movement</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float &amp;&#160;</td>
-          <td class="paramname"><em>out_v</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float &amp;&#160;</td>
-          <td class="paramname"><em>out_w</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>.</p>
 
 </div>
 </div>
@@ -2247,9 +2246,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>stops the current navigation process. </p>
 
-<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01473">1473</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a>.</p>
+<p>Definition at line <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01473">1473</a> of file <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">trunk/Code/YClopsLib/src/YclopsNavigationSystem.cpp</a>.</p>
 
-<p>References <a class="el" href="YclopsNavigationSystem_8h_source.html#l00167">points</a>.</p>
+<p>References <a class="el" href="YclopsNavigationSystem_8h_source.html#l00162">points</a>.</p>
 
 <p>Referenced by <a class="el" href="branches_2Mechanical_2WiiDriver_2main_8cpp_source.html#l00108">signal_handler()</a>.</p>
 
@@ -2267,9 +2266,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00228">228</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00267">267</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>.</p>
 
 </div>
 </div>
@@ -2284,9 +2283,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00227">227</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00266">266</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>.</p>
 
 </div>
 </div>
@@ -2302,9 +2301,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>For sending an alarm (error event) when it seems that we are not approaching toward the target in a while... </p>
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00226">226</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00265">265</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>.</p>
 
 </div>
 </div>
@@ -2319,9 +2318,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00279">279</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00318">318</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>, <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00027">YclopsNavigationSystem()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01218">~YclopsNavigationSystem()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00030">YclopsNavigationSystem()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01213">~YclopsNavigationSystem()</a>.</p>
 
 </div>
 </div>
@@ -2336,9 +2335,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00197">197</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00236">236</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>.</p>
 
 </div>
 </div>
@@ -2353,9 +2352,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00197">197</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00236">236</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>.</p>
 
 </div>
 </div>
@@ -2370,9 +2369,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00234">234</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00273">273</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00064">changeRobotShape()</a>, <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00799">STEP1_CollisionGridsBuilder()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00067">changeRobotShape()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00792">STEP1_CollisionGridsBuilder()</a>.</p>
 
 </div>
 </div>
@@ -2387,9 +2386,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00207">207</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00246">246</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>.</p>
 
 </div>
 </div>
@@ -2404,9 +2403,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00203">203</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00242">242</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>.</p>
 
 </div>
 </div>
@@ -2421,9 +2420,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00212">212</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00251">251</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>.</p>
 
 </div>
 </div>
@@ -2438,9 +2437,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00211">211</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00250">250</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>.</p>
 
 </div>
 </div>
@@ -2455,9 +2454,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00213">213</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00252">252</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>.</p>
 
 </div>
 </div>
@@ -2472,9 +2471,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00205">205</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00244">244</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>.</p>
 
 </div>
 </div>
@@ -2489,9 +2488,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00209">209</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00248">248</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>.</p>
 
 </div>
 </div>
@@ -2506,9 +2505,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00210">210</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00249">249</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>.</p>
 
 </div>
 </div>
@@ -2524,9 +2523,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Enables / disables the console debug output. </p>
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00190">190</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00229">229</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00027">YclopsNavigationSystem()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00030">YclopsNavigationSystem()</a>.</p>
 
 </div>
 </div>
@@ -2541,7 +2540,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00184">184</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00179">179</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
 <p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01479">setup()</a>.</p>
 
@@ -2559,9 +2558,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>The current log file stream, or NULL if not being used </p>
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00184">184</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00223">223</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>, <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00027">YclopsNavigationSystem()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01218">~YclopsNavigationSystem()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00030">YclopsNavigationSystem()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01213">~YclopsNavigationSystem()</a>.</p>
 
 </div>
 </div>
@@ -2576,7 +2575,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00185">185</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00180">180</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
 <p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01479">setup()</a>.</p>
 
@@ -2594,9 +2593,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>For the histeresis: </p>
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00161">161</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00200">200</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00027">YclopsNavigationSystem()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00030">YclopsNavigationSystem()</a>.</p>
 
 </div>
 </div>
@@ -2611,9 +2610,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00161">161</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00200">200</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00027">YclopsNavigationSystem()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00030">YclopsNavigationSystem()</a>.</p>
 
 </div>
 </div>
@@ -2629,9 +2628,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>The last log. </p>
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00157">157</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00196">196</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00079">getLastLogRecord()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00082">getLastLogRecord()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>.</p>
 
 </div>
 </div>
@@ -2647,9 +2646,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>The current log file stream, or NULL if not being used </p>
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00187">187</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00226">226</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00266">enableLogFile()</a>, <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>, <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00027">YclopsNavigationSystem()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01218">~YclopsNavigationSystem()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00272">enableLogFile()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00030">YclopsNavigationSystem()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01213">~YclopsNavigationSystem()</a>.</p>
 
 </div>
 </div>
@@ -2665,7 +2664,7 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Auxiliary target position, for behaviors 'beDoorCrosing1' and 'beDoorCrosing3'. </p>
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00141">141</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00177">177</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
 </div>
 </div>
@@ -2681,7 +2680,7 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>The desired heading direction (in rads), for behaviors 'beHeadDirection' and 'beDoorCrosing2'. </p>
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00137">137</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00173">173</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
 </div>
 </div>
@@ -2697,9 +2696,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>This is the desired "path" for passing a door (in GLOBAL coordinates!) </p>
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00145">145</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00184">184</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>.</p>
 
 </div>
 </div>
@@ -2714,9 +2713,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00145">145</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00184">184</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>.</p>
 
 </div>
 </div>
@@ -2732,9 +2731,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Critical zones: </p>
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00169">169</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00208">208</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00079">getLastLogRecord()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00082">getLastLogRecord()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>.</p>
 
 </div>
 </div>
@@ -2749,9 +2748,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00169">169</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00208">208</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01218">~YclopsNavigationSystem()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01213">~YclopsNavigationSystem()</a>.</p>
 
 </div>
 </div>
@@ -2766,9 +2765,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00202">202</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00241">241</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>.</p>
 
 </div>
 </div>
@@ -2784,9 +2783,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Runtime estimation of execution period of the method. </p>
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00221">221</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00260">260</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00027">YclopsNavigationSystem()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00030">YclopsNavigationSystem()</a>.</p>
 
 </div>
 </div>
@@ -2801,9 +2800,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00202">202</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00241">241</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>.</p>
 
 </div>
 </div>
@@ -2818,7 +2817,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00164">164</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00159">159</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
 <p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01520">setChallenge()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01479">setup()</a>.</p>
 
@@ -2836,9 +2835,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Will be false until the navigation end is sent, and it is reset with each new command </p>
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00165">165</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00204">204</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>.</p>
 
 </div>
 </div>
@@ -2854,9 +2853,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>This defines the 'behavior' of the navigator (see posible values in TNavigatorBehavior) </p>
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00133">133</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00169">169</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00027">YclopsNavigationSystem()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00030">YclopsNavigationSystem()</a>.</p>
 
 </div>
 </div>
@@ -2872,9 +2871,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>The iterations count. </p>
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00217">217</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00256">256</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00027">YclopsNavigationSystem()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00030">YclopsNavigationSystem()</a>.</p>
 
 </div>
 </div>
@@ -2889,9 +2888,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00167">167</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00162">162</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01453">gotoNextPoint()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01479">setup()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01473">stop()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01453">gotoNextPoint()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01479">setup()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01473">stop()</a>.</p>
 
 </div>
 </div>
@@ -2907,9 +2906,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>The set of transformations to be used: </p>
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00238">238</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00277">277</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>, <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>, <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00799">STEP1_CollisionGridsBuilder()</a>, <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00027">YclopsNavigationSystem()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01218">~YclopsNavigationSystem()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00792">STEP1_CollisionGridsBuilder()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00030">YclopsNavigationSystem()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01213">~YclopsNavigationSystem()</a>.</p>
 
 </div>
 </div>
@@ -2924,9 +2923,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00196">196</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00235">235</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>.</p>
 
 </div>
 </div>
@@ -2941,9 +2940,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00198">198</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00237">237</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01158">STEP7_NonHolonomicMovement()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01153">STEP7_NonHolonomicMovement()</a>.</p>
 
 </div>
 </div>
@@ -2958,9 +2957,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00199">199</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00238">238</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l01158">STEP7_NonHolonomicMovement()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01153">STEP7_NonHolonomicMovement()</a>.</p>
 
 </div>
 </div>
@@ -2975,9 +2974,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00200">200</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00239">239</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>.</p>
 
 </div>
 </div>
@@ -2992,9 +2991,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00200">200</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00239">239</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>.</p>
 
 </div>
 </div>
@@ -3009,9 +3008,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00195">195</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00234">234</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00799">STEP1_CollisionGridsBuilder()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00792">STEP1_CollisionGridsBuilder()</a>.</p>
 
 </div>
 </div>
@@ -3027,9 +3026,9 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>The robot 2D shape model </p>
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00233">233</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00272">272</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00064">changeRobotShape()</a>, <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>, <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>, and <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00799">STEP1_CollisionGridsBuilder()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00067">changeRobotShape()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>, <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00792">STEP1_CollisionGridsBuilder()</a>.</p>
 
 </div>
 </div>
@@ -3044,9 +3043,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00165">165</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00160">160</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01453">gotoNextPoint()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l01453">gotoNextPoint()</a>, and <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>.</p>
 
 </div>
 </div>
@@ -3061,9 +3060,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00192">192</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00231">231</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00323">performNavigationStep()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00329">performNavigationStep()</a>.</p>
 
 </div>
 </div>
@@ -3078,9 +3077,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00206">206</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00245">245</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>.</p>
 
 </div>
 </div>
@@ -3095,9 +3094,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00208">208</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00247">247</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>.</p>
 
 </div>
 </div>
@@ -3112,20 +3111,20 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html#l00201">201</a> of file <a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a>.</p>
+<p>Definition at line <a class="el" href="YclopsNavigationSystem_8h_source.html#l00240">240</a> of file <a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a>.</p>
 
-<p>Referenced by <a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html#l00092">loadConfigFile()</a>.</p>
+<p>Referenced by <a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html#l00095">loadConfigFile()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>AI/ReactiveNavInterface/YclopsReactiveNavigationSimulator/<a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">Yclopsnav.h</a></li>
-<li>AI/Sim/<a class="el" href="Sim_2Yclopsnav_8h_source.html">Yclopsnav.h</a></li>
-<li>/home/tallred3/ecen493/SeniorProject/trunk/Code/YClopsLib/inc/<a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a></li>
-<li>AI/ReactiveNavInterface/YclopsReactiveNavigationSimulator/<a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a></li>
-<li>AI/Sim/<a class="el" href="branches_2AI_2Sim_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a></li>
-<li>/home/tallred3/ecen493/SeniorProject/trunk/Code/YClopsLib/src/<a class="el" href="SimpleNavigation_8cpp_source.html">SimpleNavigation.cpp</a></li>
-<li>/home/tallred3/ecen493/SeniorProject/trunk/Code/YClopsLib/src/<a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">YclopsNavigationSystem.cpp</a></li>
+<li><a class="el" href="YclopsNavigationSystem_8h_source.html">YclopsNavigationSystem.h</a></li>
+<li><a class="el" href="ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2Yclopsnav_8h_source.html">ReactiveNavInterface/YclopsReactiveNavigationSimulator/Yclopsnav.h</a></li>
+<li><a class="el" href="Sim_2Yclopsnav_8h_source.html">Sim/Yclopsnav.h</a></li>
+<li><a class="el" href="SimpleNavigation_8cpp_source.html">SimpleNavigation.cpp</a></li>
+<li><a class="el" href="trunk_2Code_2YClopsLib_2src_2YclopsNavigationSystem_8cpp_source.html">trunk/Code/YClopsLib/src/YclopsNavigationSystem.cpp</a></li>
+<li><a class="el" href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp_source.html">branches/AI/ReactiveNavInterface/YclopsReactiveNavigationSimulator/YclopsNavigationSystem.cpp</a></li>
+<li><a class="el" href="branches_2AI_2Sim_2YclopsNavigationSystem_8cpp_source.html">branches/AI/Sim/YclopsNavigationSystem.cpp</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -3142,7 +3141,7 @@ Private Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Mar 15 2011 for YClops by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Mar 16 2011 for YClops by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>
