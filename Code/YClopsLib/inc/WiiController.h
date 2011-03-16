@@ -2,6 +2,7 @@
  * @file WiiController.h
  * @date Feb 4, 2011
  * @author Thomas Eldon Allred
+ * @brief Header file for interfacing with the Wii Controller
  */
 
 #ifndef WIICONTROLLER_H_
@@ -39,45 +40,114 @@
 #define MOTE_D_UP		(0x0800)
 #define MOTE_PLUS		(0x1000)
 
-extern cwiid_mesg_callback_t cwiid_callback;
+extern cwiid_mesg_callback_t cwiid_callback; //!call back handler for interfacing messages from the wii controller
 
+/**
+ * @brief Interfaces with a single wii controller
+ * @todo Support multiple wii controllers
+ */
 class WiiController {
 public:
+
+	/**
+	 * @brief Creates a wii controller reference
+	 * @return WiiController pointer
+	 */
 	static WiiController * create();
+
+	/**
+	 * @brief returns a pointer to the requested wii controller doesn't check if the wii controller has been created
+	 * @param[in] index the index of the wii controller to request
+	 * @return a wii controller pointer
+	 */
 	static WiiController * getReference( int index = 0 );
+
+	/**
+	 * @brief deletes a reference to a wii controller
+	 * @param[in] the index of the wii controller to delete
+	 */
 	static void destroyReference( int index = 0 );
+
+	/**
+	 * @brief gets the number of initialized wii controllers
+	 * @return int the number of initialized wii controllers
+	 */
 	static int getControllerCount();
 
+	/**
+	 * @brief get the state of the mote buttons
+	 * @param[out] mButtons boolean state of the mote buttons
+	 */
 	void getMoteButtons( uint16_t & mButtons ) { mButtons = this->moteButtons; }
+
+	/**
+	 * @brief get the state of the classic controller buttons
+	 * @param[out] cButtons boolean state of the classic controller buttons
+	 */
 	void getClassicButtons( uint16_t & cButtons ) { cButtons = this->classicButtons; }
+
+	/**
+	 * @brief returns the state of the left analog stick on the classic controller
+	 * @param[out] xAxis the value of the x axis, range of 0 to 63 with 32 at center
+	 * @param[out] yAxis the value of the y axis, range of 0 to 63 with 32 at center
+	 */
 	void getLeftStick( uint16_t & xAxis, uint16_t & yAxis ) { xAxis = this->lXaxis; yAxis = this->lYaxis; }
+
+	/**
+	 * @brief returns the state of the right analog stick on the classic controller
+	 * @param[out] xAxis the value of the x axis, range 0 to 31 with 16 at center
+	 * @param[out] yAxis the value of the y axis, range 0 to 31 with 16 at cetner
+	 */
 	void getRightStick( uint16_t & xAxis, uint16_t & yAxis ) { xAxis = this->rXaxis; yAxis = this->rYaxis; }
+
+	/**
+	 * @brief returns the state of the left analog button
+	 * @param[out] left the current analog value
+	 */
 	void getLeftAnalog( uint16_t & left ) { left = this->lAnalog; }
+
+	/**
+	 * @brief returns the state of the right analog button
+	 * @param[out] right the current analog value
+	 */
 	void getRightAnalog( uint16_t & right ) { right = this->rAnalog; }
 
 private:
 	virtual ~WiiController();
 	WiiController();
-	static WiiController* controller;
+	static WiiController* controller;	//!Pointer to the current controller
 
-	cwiid_wiimote_t * wiiMote;
+	cwiid_wiimote_t * wiiMote;			//!pointer to the wiiMote struct of the cwiid library
 
+	/**
+	 * @brief processes a button bluetooth message
+	 * @param[in] mesg button message
+	 */
 	void process_btn_mesg(struct cwiid_btn_mesg *mesg);
+
+	/**
+	 * @brief processes a classic controller message
+	 * @param[in] mesg a classic controller message
+	 */
 	void process_classic_mesg(struct cwiid_classic_mesg *mesg);
+
+	/**
+	 * @brief allows us to call process_btn_mesg and process_classic_mesg which shouldn't be public
+	 */
 	friend cwiid_mesg_callback_t cwiid_callback;
 
-	uint16_t motePrevButtons;
-	uint16_t moteButtonsPressed;
-	uint16_t moteButtonsReleased;
-	uint16_t moteButtons;
+	uint16_t motePrevButtons;		//!The previous state of the mote buttons
+	uint16_t moteButtonsPressed;	//!The true for which buttons were just pressed
+	uint16_t moteButtonsReleased;	//!True for which buttons were just released
+	uint16_t moteButtons;			//!true for which buttons are pressed
 
-	uint16_t classicButtonsPressed;
-	uint16_t classicButtonsReleased;
-	uint16_t classicButtons;
+	uint16_t classicButtonsPressed;	//!True for which buttons were just pressed
+	uint16_t classicButtonsReleased;//!True for which buttons were just released
+	uint16_t classicButtons;		//!True for the state of the pressed buttons
 
-	uint16_t lXaxis, lYaxis;
-	uint16_t rXaxis, rYaxis;
-	uint16_t lAnalog, rAnalog;
+	uint16_t lXaxis, lYaxis;		//!classic controller left stick state
+	uint16_t rXaxis, rYaxis;		//!classic controller right stick state
+	uint16_t lAnalog, rAnalog;		//!classic controller analog state
 
 };
 

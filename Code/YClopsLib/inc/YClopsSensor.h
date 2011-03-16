@@ -1,8 +1,8 @@
-/*
- * YClopsSensor.h
- *
- *  Created on: Feb 24, 2011
- *      Author: tallred3
+/**
+ * @file YClopsSensor.h
+ * @date Feb 24, 2011
+ * @author tallred3
+ * @brief YClops Sensor Base Class
  */
 
 #ifndef YCLOPSSENSOR_H_
@@ -16,33 +16,36 @@ public:
 	YClopsSensor();
 
 	/**
-	 * load sensor specific values from the configuration file
+	 * @brief load sensor specific values from the configuration file
+	 * @param[in] config the input configuration
+	 * @param[in] sectionName The configuration section to parse
 	 */
 	virtual void loadConfiguration( const mrpt::utils::CConfigFileBase & config, const std::string & sectionName) = 0;
 
 	/**
-	 * initialize the sensor
+	 * @brief initialize the sensor
 	 */
 	virtual void init() = 0;
 
 	/**
-	 * collect data from the sensor and cache it
+	 * @brief collect data from the sensor and cache it
 	 */
 	virtual void sensorProcess() = 0;
 
 	/**
-	 * SensorData needs to be allocated on the heap to avoid splicing when we cast it to be a various sensor type
+	 * @brief SensorData needs to be allocated on the heap to avoid splicing when we cast it to be a various sensor type
+	 * @return SensorData * allocated on the heap
 	 */
 	virtual SensorData * getData() = 0;
 
 	/**
-	 * dumps data out to the parameter out
-	 * @param out - the stream to which to write the data
+	 * @brief dumps data out to the parameter out
+	 * @param[out] out The stream to which to write the data
 	 */
 	void dumpData( std::ostream & out ) const;
 
 	/**
-	 * class destructor
+	 * @brief class destructor
 	 */
 	virtual ~YClopsSensor();
 };

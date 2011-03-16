@@ -1,8 +1,8 @@
-/*
- * UnitTest.h
- *
- *  Created on: Feb 22, 2011
- *      Author: tallred3
+/**
+ * @file UnitTest.h
+ * @date Feb 22, 2011
+ * @author tallred3
+ * @brief Unit test base class
  */
 
 #ifndef UNITTEST_H_

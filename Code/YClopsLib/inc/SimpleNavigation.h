@@ -1,8 +1,8 @@
-/*
- * SimpleNavigation.h
- *
- *  Created on: Feb 1, 2011
- *      Author: quincyj2
+/**
+ * @file SimpleNavigation.h
+ * @date Feb 1, 2011
+ * @author quincyj2
+ * @brief Simple Navigation Header
  */
 
 #ifndef SIMPLENAVIGATION_H_

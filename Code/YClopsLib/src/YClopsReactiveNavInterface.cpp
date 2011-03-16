@@ -19,7 +19,7 @@ using namespace std;
 
 YClopsReactiveNavInterface::YClopsReactiveNavInterface()
 : isGpsDataShown(false), isCompassDataShown(false), isLidarDataShown(false), isCameraDataShown(false), isEncoderDataShown(false),
-  motor(NULL), compass(NULL), gps(NULL), camera(NULL), lidar(NULL), encoder(NULL), poseEst(NULL), robotPose(NULL), nav(NULL),
+  motor(NULL), compass(NULL), gps(NULL), camera(NULL), lidar(NULL), encoder(NULL), poseEst(NULL), robotPose(NULL),
   curV(0), curW(0)
 {
 	this->motor = new DummyMotorCommand();
@@ -135,8 +135,6 @@ YClopsReactiveNavInterface::~YClopsReactiveNavInterface() {
 	delete this->poseEst;
 	LOG(DEBUG4) << "Deleting robotPose" << endl;
 	delete this->robotPose;
-	LOG(DEBUG4) << "Deleting nav interface" << endl;
-	delete this->nav;
 }
 
 bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &curPose, float &curV, float &curW)
@@ -257,7 +255,7 @@ bool YClopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap &o
 	return true;
 }
 
-void YClopsReactiveNavInterface::setAutonomusMode() {
+void YClopsReactiveNavInterface::setAutonomousMode() {
 //	this->useYclopsMotorCommand();
 	LOG(WARNING) << "REMOVED call to useYclopsMotorCommand in setAutonomusMode" << endl;
 	if(NULL != this->nav ) delete this->nav;

@@ -1,8 +1,8 @@
-/*
- * Compass.h
- *
- *  Created on: Nov 4, 2010
- *      Author: igvcbyu
+/**
+ * @file Compass.h
+ * @date Nov 4, 2010
+ * @author igvcbyu
+ * @brief Compass sensor header file
  */
 
 #ifndef COMPASS_H_
@@ -28,7 +28,7 @@ public:
 	void sensorProcess();
 
 	/**
-	 * SensorData needs to be allocated on the heap to avoid splicing when we cast it to be a various sensor type
+	 * @brief SensorData needs to be allocated on the heap to avoid splicing when we cast it to be a various sensor type
 	 */
 	SensorData * getData();
 	void dumpData( std::ostream & out ) const;
@@ -36,37 +36,44 @@ public:
 	virtual ~Compass();
 
 	/**
-	 * @return The last received Yaw value in degrees
+	 * @brief gets the yaw value from the compass
+	 * @return double The last received Yaw value
 	 */
 	double getYaw() const { return (this->degrees?this->yaw:mrpt::utils::DEG2RAD(this->yaw)); };
 
 	/**
-	 * @return The last received Pitch value in degrees
+	 * @brief gets the pitch value from the compass
+	 * @return double The last received Pitch value
 	 */
 	double getPitch() const { return (this->degrees?this->pitch:mrpt::utils::DEG2RAD(this->pitch)); };
 
 	/**
-	 * @return the last received Roll value in degrees
+	 * @brief gets the roll value from the compass
+	 * @return double the last received Roll value in degrees
 	 */
 	double getRoll() const { return (this->degrees?this->roll:mrpt::utils::DEG2RAD(this->roll)); };
 
 	/**
-	 * returns true if the compass returned a valid yaw value
+	 * @brief gets the validity of the yaw observation
+	 * @returns true if the compass returned a valid yaw value
 	 */
 	bool isYawValid() const { return "N" == this->yawStatus.substr(0,1); };
 
 	/**
-	 * returns true if the compass returned a valid pitch value
+	 * @brief gets the validity of the pitch observation
+	 * @returns true if the compass returned a valid pitch value
 	 */
 	bool isPitchValid() const { return "N" == this->pitchStatus.substr(0,1); };
 
 	/**
-	 * returns true if the compass returned a valid roll value
+	 * @brief gets the validity of the roll observation
+	 * @returns true if the compass returned a valid roll value
 	 */
 	bool isRollValid() const { return "N" == this->rollStatus.substr(0,1); };
 
 	/**
-	 * returns true if the compass was set to output degrees
+	 * @brief gets the state of the output of the compass
+	 * @returns bool true if the compass was set to output degrees
 	 */
 	bool isDegrees() const { return this->degrees; };
 
@@ -81,11 +88,11 @@ private:
 	double pitch;
 	double roll;
 
-	std::string yawStatus;
-	std::string pitchStatus;
-	std::string rollStatus;
+	std::string yawStatus;	//!the current status of the yaw of compass 'N'
+	std::string pitchStatus;//!the current status of the pitch of the compass 'N'
+	std::string rollStatus;	//!the current status of the roll of the compass 'N'
 
-	mrpt::hwdrivers::CSerialPort serialPort;
+	mrpt::hwdrivers::CSerialPort serialPort;//!hardware interface to the compass serial port
 
 	/**
 	 * parses a response from the HMR3000 Compass Module

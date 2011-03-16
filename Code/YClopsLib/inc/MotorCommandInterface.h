@@ -19,19 +19,23 @@ public:
 	MotorCommandInterface();
 
 	/**
-	 * setVelocity - sets the speed for the robot
-	 * @param linearVelocity - the linear speed of the robot
-	 * @param angularVelocity - the angular speed of the robot follows
+	 * @brief sets the speed for the robot
+	 * @param[in] linearVelocity the linear speed of the robot
+	 * @param[in] angularVelocity the angular speed of the robot follows
 	 * directions on the unit circle eg. left is positive right is negative
-	 * @return true upon success
+	 * @return bool true upon success
 	 */
 	bool setVelocity( double linearVelocity, double angularVelocity );
 
 	/**
-	 * doProcess - abstract function implements the functionality of the command
+	 * @brief abstract function implements the functionality of the command
 	 */
 	virtual void doProcess() = 0;
 
+	/**
+	 * @brief tells us if the command was successful
+	 * @return bool true if command was successful
+	 */
 	bool getSuccess();
 
 	virtual ~MotorCommandInterface();
@@ -41,6 +45,10 @@ protected:
 	bool success;				//!Whether the last command was successful
 };
 
+/**
+ * @brief interfaces with the roboteq motor controller when it is in mixed mode
+ * @todo change this class so the linear and angular gain constants are in the config file
+ */
 class MotorCommand: public MotorCommandInterface {
 public:
 	MotorCommand( double lC=100, double aC=60 );
@@ -52,6 +60,9 @@ private:
 	double linearConst, angConst;
 };
 
+/**
+ * @brief interfaces with the roboteq motor controller when it is in tank or separate mode
+ */
 class DualMotorCommand: public MotorCommandInterface {
 public:
 	DualMotorCommand();
@@ -60,7 +71,7 @@ public:
 };
 
 /**
- * Dummy class does nothing but is a place holder when you want to send commands some other way.
+ * @brief Dummy class separates the roboteq motor controller from the software
  */
 class DummyMotorCommand: public MotorCommandInterface {
 public:

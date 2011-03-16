@@ -1,10 +1,9 @@
-/*
- * GpsDevice.h.  Regard
- * http://www.gpsinformation.org/dale/nmea.htm for further information
- * on GPGGA and GPRMC qualities.
- *
- *  Created on: Nov 3, 2010
- *      Author: igvcbyu
+/**
+ * @file GpsDevice.h.
+ * @link http://www.gpsinformation.org/dale/nmea.htm for further information on GPGGA and GPRMC qualities.
+ * @date Nov 3, 2010
+ * @author igvcbyu
+ * @brief GPS Sensor Header
  */
 
 #ifndef GPSDEVICE_H_

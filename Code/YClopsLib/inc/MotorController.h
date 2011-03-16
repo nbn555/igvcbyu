@@ -19,20 +19,25 @@
 #include "logging.h"
 #include <semaphore.h>
 
-//TODO implement PID controller constants commands in initialization
+
 
 /**
  * MotorController - interface class to the RoboteQ 2440 motor controller
+ * @TODO implement PID controller constants commands in initialization
  */
 class MotorController {
 public:
-	static const int MOTOR_SECRET_KEY = 321654987;//!Motor reset key used for sensitive operations
-	static const std::string MOTOR_BAD_COMMAND;
+	static const int MOTOR_SECRET_KEY = 321654987;	//!Motor reset key used for sensitive operations
+	static const std::string MOTOR_BAD_COMMAND;		//!used in error checking currently should be '-'
 
+	/**
+	 * @brief returns a reference to the motor controller
+	 * @return a pointer to the motor controller
+	 */
 	static MotorController * instance();
 
 	/**
-	 * Abstract representation for a channel in the motor controller
+	 * @brief Abstract representation for a channel in the motor controller
 	 */
 	enum MotorChannel{
 		Channel1 = 1,
@@ -41,14 +46,14 @@ public:
 	};
 
 	/**
-	 * Class destructor
+	 * @brief Class destructor
 	 */
 	virtual ~MotorController() {
-		sem_destroy(&(this->serialPortSem));
+		sem_destroy(&(this->serialPortSem)); //!release the the pthread semaphore
 	};
 
 	/**
-	 * doProcess - sends the current speed command to the motor controller
+	 * @brief sends the current speed command to the motor controller
 	 */
 	void doProcess();
 
@@ -57,53 +62,57 @@ public:
 	//////////////////////////////////////////////////////////////////
 
 	/**
-	 * SetAcceleration - sets a limit to the acceleration for the motor controller
-	 * @param channel - the motor channel for which to set the acceleration
-	 * @param acceleration - the number of rpms per second of acceleration precise
+	 * @brief sets a limit to the acceleration for the motor controller
+	 * @param[in] channel the motor channel for which to set the acceleration
+	 * @param[in] acceleration the number of rpms per second of acceleration precise
 	 * enough to one tenth of an rpm
-	 * @return true upon success
+	 * @return bool true upon success
+	 * @todo implement this function
 	 */
 	bool setAcceleration(MotorChannel channel, double acceleration);
 
 	/**
-	 * SetDeceleration - sets a limit for how fast the motor controller will slow down
+	 * @brief sets a limit for how fast the motor controller will slow down
 	 * a channel
-	 * @param channel - the motor channel for which to set the acceleration
-	 * @param deceleration - the number of rpms per second of deceleration precise to one
+	 * @param[in] channel the motor channel for which to set the acceleration
+	 * @param[in] deceleration the number of rpms per second of deceleration precise to one
 	 * tenth of an rpm
-	 * @return true upon success
+	 * @return bool true upon success
+	 * @todo implement this function
 	 */
 	bool setDeceleration(MotorChannel channel, double deceration);
 
 	/**
-	 * emergencyStop - sends the emergency stop command to the motor controller
+	 * @brief sends the emergency stop command to the motor controller
 	 * the motor controller will not start until it is power cycled or the clearEmergencyStop
 	 * function is called.
-	 * @returns true upon successful transmission
+	 * @return bool true upon successful transmission
 	 */
 	bool emergencyStop();
 
 	/**
-	 * clearEmergencyStop - clears the emergency stop state
-	 * @returns true upon successful transmission
+	 * @brief clears the emergency stop state
+	 * @return true upon successful transmission
 	 */
 	bool clearEmergencyStop();
 
 	/**
-	 * setSpeed - sets the speed for the motor control channel
-	 * @param channel - the channel to change the speed { Channel1, Channel2, BothChannels }
-	 * @param value - the speed at which to set the channel
-	 * @return true upon success
+	 * @brief sets the speed for the motor control channel
+	 * @param[in] channel the channel to change the speed { Channel1, Channel2, BothChannels }
+	 * @param[in] value the speed at which to set the channel
+	 * @return bool true upon success
 	 */
 	bool setSpeed( MotorChannel channel, int value );
 
 	/**
-	 * setEncoderCounter - sets the wheel encoder count to a specific value
-	 * @param channel - the channel of the wheel encoder count to set
-	 * @param value - the value to set the encoder count
+	 * @brief sets the wheel encoder count to a specific value
+	 * @param[in] channel the channel of the wheel encoder count to set
+	 * @param[in] value the value to set the encoder count
 	 * @return true upon success
 	 */
 	bool setEncoderCounter( MotorChannel channel, int value = 0 );
+
+
 	bool setEncoderUsage( int value = 1 ); //0 don't use the encoder, 1 use for feedback, 2 use for command, don't know what command does
 	bool setMixingMode( int value );
 	bool restoreMixingMode();
