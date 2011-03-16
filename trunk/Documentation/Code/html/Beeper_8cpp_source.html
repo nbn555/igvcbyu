@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>YClops: /home/tallred3/ecen493/SeniorProject/trunk/Code/YClopsLib/src/Beeper.cpp Source File</title>
+<title>YClops: Beeper.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -57,7 +57,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 <div class="header">
   <div class="headertitle">
-<h1>/home/tallred3/ecen493/SeniorProject/trunk/Code/YClopsLib/src/Beeper.cpp</h1>  </div>
+<h1>Beeper.cpp</h1>  </div>
 </div>
 <div class="contents">
 <a href="Beeper_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
@@ -81,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00019"></a>00019 
 <a name="l00020"></a>00020 <span class="keyword">using namespace </span>std;
 <a name="l00021"></a>00021 
-<a name="l00022"></a>00022 <a class="code" href="structBeeper_1_1beep__struct.html">Beeper::beep_t</a> <a class="code" href="classBeeper.html#a397b6e46ced9bb4ae8976da94d1c35cf">Beeper::buffer</a> = <a class="code" href="structBeeper_1_1beep__struct.html">Beeper::beep_struct</a>(0,0);
+<a name="l00022"></a>00022 <a class="code" href="structBeeper_1_1beep__struct.html" title="An internal structure to contain data that needs to be passed into the beepi function.">Beeper::beep_t</a> <a class="code" href="classBeeper.html#a397b6e46ced9bb4ae8976da94d1c35cf">Beeper::buffer</a> = <a class="code" href="structBeeper_1_1beep__struct.html" title="An internal structure to contain data that needs to be passed into the beepi function.">Beeper::beep_struct</a>(0,0);
 <a name="l00023"></a>00023 
 <a name="l00024"></a><a class="code" href="classBeeper.html#aa40a0979ceb8981426033098d6715f4d">00024</a> <a class="code" href="classBeeper.html#aa40a0979ceb8981426033098d6715f4d">Beeper::Beeper</a>() {
 <a name="l00025"></a>00025 }
@@ -89,19 +89,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00027"></a><a class="code" href="classBeeper.html#a7f87e6369c82383c37a9c977f81c3eff">00027</a> <a class="code" href="classBeeper.html#a7f87e6369c82383c37a9c977f81c3eff">Beeper::~Beeper</a>() {
 <a name="l00028"></a>00028 }
 <a name="l00029"></a>00029 
-<a name="l00030"></a><a class="code" href="classBeeper.html#aa840561593c7632ffb465ef9c4edeb75">00030</a> <span class="keywordtype">void</span> <a class="code" href="classBeeper.html#aa840561593c7632ffb465ef9c4edeb75">Beeper::beep</a>( <span class="keywordtype">int</span> frequency, <span class="keywordtype">int</span> length ) {
+<a name="l00030"></a><a class="code" href="classBeeper.html#aa840561593c7632ffb465ef9c4edeb75">00030</a> <span class="keywordtype">void</span> <a class="code" href="classBeeper.html#aa840561593c7632ffb465ef9c4edeb75" title="play a beep through the pc_spkr">Beeper::beep</a>( <span class="keywordtype">int</span> frequency, <span class="keywordtype">int</span> length ) {
 <a name="l00031"></a>00031         pthread_t t;
-<a name="l00032"></a>00032         <a class="code" href="structBeeper_1_1beep__struct.html">beep_t</a> buffer = <a class="code" href="structBeeper_1_1beep__struct.html">beep_t</a>(frequency,length);<span class="comment">//This may be a problem taking the address of a local</span>
-<a name="l00033"></a>00033         pthread_create( &amp;t, NULL, <a class="code" href="classBeeper.html#a4b304db97b60db69020ef963c3cdcd23">Beeper::beepi</a>, &amp;buffer );
+<a name="l00032"></a>00032         <a class="code" href="structBeeper_1_1beep__struct.html" title="An internal structure to contain data that needs to be passed into the beepi function.">beep_t</a> buffer = <a class="code" href="structBeeper_1_1beep__struct.html" title="An internal structure to contain data that needs to be passed into the beepi function.">beep_t</a>(frequency,length);<span class="comment">//This may be a problem taking the address of a local</span>
+<a name="l00033"></a>00033         pthread_create( &amp;t, NULL, <a class="code" href="classBeeper.html#afa23e1decf1cd4db0f94c29490b700bf" title="Internal static method that writes values to the pc speaker.">Beeper::beepi</a>, &amp;buffer );
 <a name="l00034"></a>00034         pthread_detach( t );
 <a name="l00035"></a>00035 
 <a name="l00036"></a>00036 }
 <a name="l00037"></a>00037 
-<a name="l00038"></a><a class="code" href="classBeeper.html#a4b304db97b60db69020ef963c3cdcd23">00038</a> <span class="keywordtype">void</span> * <a class="code" href="classBeeper.html#a4b304db97b60db69020ef963c3cdcd23">Beeper::beepi</a>( <span class="keywordtype">void</span> * data ) {
+<a name="l00038"></a><a class="code" href="classBeeper.html#afa23e1decf1cd4db0f94c29490b700bf">00038</a> <span class="keywordtype">void</span> * <a class="code" href="classBeeper.html#afa23e1decf1cd4db0f94c29490b700bf" title="Internal static method that writes values to the pc speaker.">Beeper::beepi</a>( <span class="keywordtype">void</span> * data ) {
 <a name="l00039"></a>00039         fprintf(stdout, <span class="stringliteral">&quot;beep\n&quot;</span>);
 <a name="l00040"></a>00040         <span class="comment">//system(&quot;beep&quot;);</span>
 <a name="l00041"></a>00041         <span class="keywordtype">int</span> fd = open( <span class="stringliteral">&quot;/dev/console&quot;</span>, O_RDONLY );
-<a name="l00042"></a>00042         <a class="code" href="structBeeper_1_1beep__struct.html">beep_t</a> * thisBeep = ((<a class="code" href="structBeeper_1_1beep__struct.html">beep_t</a>*)data);
+<a name="l00042"></a>00042         <a class="code" href="structBeeper_1_1beep__struct.html" title="An internal structure to contain data that needs to be passed into the beepi function.">beep_t</a> * thisBeep = ((<a class="code" href="structBeeper_1_1beep__struct.html" title="An internal structure to contain data that needs to be passed into the beepi function.">beep_t</a>*)data);
 <a name="l00043"></a>00043         <span class="keywordtype">int</span> arg = ((thisBeep-&gt;<a class="code" href="structBeeper_1_1beep__struct.html#a615288680acc8a57d87b4ef59d71ccf8">length</a>)&lt;&lt;16)+(1193180/(thisBeep-&gt;<a class="code" href="structBeeper_1_1beep__struct.html#aec2f0dceb1dd1eb3ea75390b66df04a0">frequency</a>));
 <a name="l00044"></a>00044         ioctl(fd, KDMKTONE,arg);
 <a name="l00045"></a>00045         fprintf(stdout, <span class="stringliteral">&quot;beep done\n&quot;</span>);
@@ -124,7 +124,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Mar 15 2011 for YClops by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Mar 16 2011 for YClops by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

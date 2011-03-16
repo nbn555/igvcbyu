@@ -1259,23 +1259,23 @@ float  YclopsNavigationSystem::evaluate( TNavigationParams *params )
 }
 
 /*************************************************************************
-			 Iniciar navegacion:
+			 Start Navigation:
 *************************************************************************/
 void  YclopsNavigationSystem::navigate(YclopsNavigationSystem::TNavigationParams *params )
 {
 	navigationEndEventSent = false;
 
-	// Copiar datos:
+	// Copy parameters:
 	m_navigationParams = *params;
 
 	// Reset behavior:
 	navigatorBehavior = beNormalNavigation;
 
-	// Si se piden coordenadas relativas, transformar a absolutas:
+	// If relative coordinates are requested, change them to absolute
 	if ( m_navigationParams.targetIsRelative )
 	{
 		std::cout << format("TARGET COORDS. ARE RELATIVE!! -> Translating them...\n");
-		// Obtener posicion actual:
+		// Obtain current position:
 		poses::CPose2D		currentPose;
 		float				velLineal_actual,velAngular_actual;
 
@@ -1300,7 +1300,7 @@ void  YclopsNavigationSystem::navigate(YclopsNavigationSystem::TNavigationParams
 }
 
 /*************************************************************************
-        Cambiar params. de la navegacion actual
+        Change the parameters to the current navigation parameters
 *************************************************************************/
 void  YclopsNavigationSystem::setParams( YclopsNavigationSystem::TNavigationParams  *params )
 {
@@ -1308,11 +1308,11 @@ void  YclopsNavigationSystem::setParams( YclopsNavigationSystem::TNavigationPara
 }
 
 /*************************************************************************
-                Para la silla y muestra un mensaje de error.
+                Stop the robot and show an error
 *************************************************************************/
 void YclopsNavigationSystem::Error_ParadaDeEmergencia( const char *msg )
 {
-	// Mostrar mensaje y parar navegacion si estamos moviendonos:
+	// Show a message and stop if we are moving
 	printf_debug( msg );
 	printf_debug( "\n");
 
@@ -1447,7 +1447,3 @@ bool  YclopsNavigationSystem::CDynamicWindow::findClosestCut( float cmd_v, float
 
 	return true;
 }
-
-
-
-

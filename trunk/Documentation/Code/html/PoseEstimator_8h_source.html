@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>YClops: /home/tallred3/ecen493/SeniorProject/trunk/Code/YClopsLib/inc/PoseEstimator.h Source File</title>
+<title>YClops: PoseEstimator.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -57,7 +57,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 <div class="header">
   <div class="headertitle">
-<h1>/home/tallred3/ecen493/SeniorProject/trunk/Code/YClopsLib/inc/PoseEstimator.h</h1>  </div>
+<h1>PoseEstimator.h</h1>  </div>
 </div>
 <div class="contents">
 <a href="PoseEstimator_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
@@ -74,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00017"></a>00017         <a class="code" href="classAbstractPoseEstimator.html#a2e414937bfd3a1c3790fd29c6f0ab297">AbstractPoseEstimator</a>();
 <a name="l00018"></a>00018         <span class="keyword">virtual</span> <a class="code" href="classAbstractPoseEstimator.html#aea2aa5ba74d45d28786cb484affd910e">~AbstractPoseEstimator</a>();
 <a name="l00019"></a>00019 
-<a name="l00026"></a>00026         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAbstractPoseEstimator.html#adfdbe50cee9fb3686a6dd4b19fa37193">update</a>( <span class="keyword">const</span> <a class="code" href="classGPSData.html">GPSData</a> * <a class="code" href="branches_2Sensors_2GPSandCompassUnitTest_2main_8cpp.html#a2cea241b1cb0ed880d8df9c40e582a11">gpsData</a>, <span class="keyword">const</span> <a class="code" href="classCompassData.html">CompassData</a> * compassData, <span class="keyword">const</span> <a class="code" href="classEncoderData.html">EncoderData</a> * encoderData ) = 0;
+<a name="l00026"></a>00026         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAbstractPoseEstimator.html#adfdbe50cee9fb3686a6dd4b19fa37193" title="updates the estimate of the position">update</a>( <span class="keyword">const</span> <a class="code" href="classGPSData.html">GPSData</a> * <a class="code" href="branches_2Sensors_2GPSandCompassUnitTest_2main_8cpp.html#a2cea241b1cb0ed880d8df9c40e582a11">gpsData</a>, <span class="keyword">const</span> <a class="code" href="classCompassData.html">CompassData</a> * compassData, <span class="keyword">const</span> <a class="code" href="classEncoderData.html">EncoderData</a> * encoderData ) = 0;
 <a name="l00027"></a><a class="code" href="classAbstractPoseEstimator.html#ac35cedab3c828ab0f03f61814e3c2563">00027</a>         <span class="keywordtype">double</span> <a class="code" href="classAbstractPoseEstimator.html#ac35cedab3c828ab0f03f61814e3c2563">getYaw</a>(<span class="keywordtype">void</span>){ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classAbstractPoseEstimator.html#adfe4bd343f43e8b5a93801865def2864">poseEstimate</a>.yaw(); }
 <a name="l00028"></a>00028         <span class="keywordtype">bool</span> <a class="code" href="classAbstractPoseEstimator.html#af0589958fc1b0dae010292b1fdf8c34a">getPose</a>( mrpt::poses::CPose3D &amp; pose );
 <a name="l00029"></a>00029 <span class="keyword">protected</span>:
@@ -110,7 +110,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Mar 15 2011 for YClops by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Mar 16 2011 for YClops by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

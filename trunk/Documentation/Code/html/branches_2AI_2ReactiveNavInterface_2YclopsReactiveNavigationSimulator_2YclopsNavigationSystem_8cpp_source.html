@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>YClops: AI/ReactiveNavInterface/YclopsReactiveNavigationSimulator/YclopsNavigationSystem.cpp Source File</title>
+<title>YClops: YclopsNavigationSystem.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -57,7 +57,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 <div class="header">
   <div class="headertitle">
-<h1>AI/ReactiveNavInterface/YclopsReactiveNavigationSimulator/YclopsNavigationSystem.cpp</h1>  </div>
+<h1>YclopsNavigationSystem.cpp</h1>  </div>
 </div>
 <div class="contents">
 <a href="branches_2AI_2ReactiveNavInterface_2YclopsReactiveNavigationSimulator_2YclopsNavigationSystem_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
@@ -86,7 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00024"></a>00024 <span class="comment">/*---------------------------------------------------------------</span>
 <a name="l00025"></a>00025 <span class="comment">                                        Constructor</span>
 <a name="l00026"></a>00026 <span class="comment">  ---------------------------------------------------------------*/</span>
-<a name="l00027"></a><a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a4d53ba9139dd5c9c4ded7febd1b5d016">00027</a> YclopsNavigationSystem::YclopsNavigationSystem(
+<a name="l00027"></a>00027 YclopsNavigationSystem::YclopsNavigationSystem(
 <a name="l00028"></a>00028         CReactiveInterfaceImplementation   &amp;react_iterf_impl,
 <a name="l00029"></a>00029     <span class="keywordtype">bool</span>                                        enableConsoleOutput,
 <a name="l00030"></a>00030     <span class="keywordtype">bool</span>                                        enableLogToFile)
@@ -94,26 +94,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00032"></a>00032         CAbstractReactiveNavigationSystem(react_iterf_impl)
 <a name="l00033"></a>00033 {
 <a name="l00034"></a>00034         <span class="comment">// Initialize some members:</span>
-<a name="l00035"></a>00035         <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a7aa921ed8f143f60347c02cfff877304">logFile</a>                         = NULL;
-<a name="l00036"></a>00036         <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#af3ab0ad564e236f8267c0ecc5679495a">holonomicMethod</a>         = NULL;
-<a name="l00037"></a>00037         enableConsoleOutput = <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a45918ce2f6f74ec3e8fd574169a38d59">enableConsoleOutput</a>;
-<a name="l00038"></a>00038         <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a2fc9dff742b95487ee96815866da7046">CerrandoHilo</a>            = <span class="keyword">false</span>;
-<a name="l00039"></a>00039         <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#adf8c48199f2777ea50a7f7a4044ddf43">nIteration</a>                      = 0;
-<a name="l00040"></a>00040         <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#afc4cd625eda3e91fbd0edfcbf7a6a997">meanExecutionPeriod</a>     = 0.1f;
-<a name="l00041"></a>00041         <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a03b9246f33f3e9275ce947b3ef0bfd68">last_cmd_v</a>                      = 0;
-<a name="l00042"></a>00042         <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a727f3a25797bcb3949a2e6fec805e917">last_cmd_w</a>                      = 0;
+<a name="l00035"></a>00035         logFile                         = NULL;
+<a name="l00036"></a>00036         holonomicMethod         = NULL;
+<a name="l00037"></a>00037         enableConsoleOutput = enableConsoleOutput;
+<a name="l00038"></a>00038         CerrandoHilo            = <span class="keyword">false</span>;
+<a name="l00039"></a>00039         nIteration                      = 0;
+<a name="l00040"></a>00040         meanExecutionPeriod     = 0.1f;
+<a name="l00041"></a>00041         last_cmd_v                      = 0;
+<a name="l00042"></a>00042         last_cmd_w                      = 0;
 <a name="l00043"></a>00043 
-<a name="l00044"></a>00044         <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#af277137d9296f37fbbfe5879868dba01">PTGs</a>.resize(0);
-<a name="l00045"></a>00045         <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a3f73247b23641ee8b479732fd100483a">enableLogFile</a>( enableLogToFile );
+<a name="l00044"></a>00044         PTGs.resize(0);
+<a name="l00045"></a>00045         enableLogFile( enableLogToFile );
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047         <span class="comment">// Reset behavior:</span>
-<a name="l00048"></a>00048         <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#afb074fd13ce2a8d5b592d43e5d576b45">navigatorBehavior</a> = <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a53df3608d184757397fe3f8dab6f674ea6200a6610175097a71e37e2d55f2b051">beNormalNavigation</a>;
+<a name="l00048"></a>00048         navigatorBehavior = beNormalNavigation;
 <a name="l00049"></a>00049 }
 <a name="l00050"></a>00050 
 <a name="l00051"></a>00051 <span class="comment">/*---------------------------------------------------------------</span>
 <a name="l00052"></a>00052 <span class="comment">                                                initialize</span>
 <a name="l00053"></a>00053 <span class="comment">  ---------------------------------------------------------------*/</span>
-<a name="l00054"></a><a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a76315330b3bb102e73038faba2d83ecb">00054</a> <span class="keywordtype">void</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a76315330b3bb102e73038faba2d83ecb">YclopsNavigationSystem::initialize</a>()
+<a name="l00054"></a>00054 <span class="keywordtype">void</span> YclopsNavigationSystem::initialize()
 <a name="l00055"></a>00055 {
 <a name="l00056"></a>00056         <span class="comment">// Compute collision grids:</span>
 <a name="l00057"></a>00057         <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a50189b55a6cb105c0a2df15bc2e5a640">STEP1_CollisionGridsBuilder</a>();
@@ -123,7 +123,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00061"></a>00061 <span class="comment">/*---------------------------------------------------------------</span>
 <a name="l00062"></a>00062 <span class="comment">                                                changeRobotShape</span>
 <a name="l00063"></a>00063 <span class="comment">  ---------------------------------------------------------------*/</span>
-<a name="l00064"></a><a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a848360a1886b7cd29c9c6df935d4ef56">00064</a> <span class="keywordtype">void</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a848360a1886b7cd29c9c6df935d4ef56">YclopsNavigationSystem::changeRobotShape</a>( math::CPolygon &amp;shape )
+<a name="l00064"></a>00064 <span class="keywordtype">void</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a848360a1886b7cd29c9c6df935d4ef56">YclopsNavigationSystem::changeRobotShape</a>( math::CPolygon &amp;shape )
 <a name="l00065"></a>00065 {
 <a name="l00066"></a>00066         <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#af068d302a382ad18b36ee08e5f26434d">collisionGridsMustBeUpdated</a> = <span class="keyword">true</span>;
 <a name="l00067"></a>00067 
@@ -138,7 +138,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00076"></a>00076 <span class="comment">        Provides a copy of the last log record with information</span>
 <a name="l00077"></a>00077 <span class="comment">                about execution.</span>
 <a name="l00078"></a>00078 <span class="comment">  ---------------------------------------------------------------*/</span>
-<a name="l00079"></a><a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a127b7abf44e67077105f6d06cd8511bd">00079</a> <span class="keywordtype">void</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a127b7abf44e67077105f6d06cd8511bd">YclopsNavigationSystem::getLastLogRecord</a>( CLogFileRecord &amp;o )
+<a name="l00079"></a>00079 <span class="keywordtype">void</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a127b7abf44e67077105f6d06cd8511bd">YclopsNavigationSystem::getLastLogRecord</a>( CLogFileRecord &amp;o )
 <a name="l00080"></a>00080 {
 <a name="l00081"></a>00081         mrpt::synch::CCriticalSectionLocker lock(&amp;<a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a2aa5d966314514dec6be11cc6a2ab077">m_critZoneLastLog</a>);
 <a name="l00082"></a>00082         <span class="keywordflow">try</span> {
@@ -151,7 +151,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00089"></a>00089 <span class="comment">/*---------------------------------------------------------------</span>
 <a name="l00090"></a>00090 <span class="comment">                                                loadConfigFile</span>
 <a name="l00091"></a>00091 <span class="comment">  ---------------------------------------------------------------*/</span>
-<a name="l00092"></a><a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a8dbf91c9c8aa4e5f2885173d3b8335ae">00092</a> <span class="keywordtype">void</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a8dbf91c9c8aa4e5f2885173d3b8335ae">YclopsNavigationSystem::loadConfigFile</a>(<span class="keyword">const</span> mrpt::utils::CConfigFileBase &amp;ini, <span class="keyword">const</span> mrpt::utils::CConfigFileBase &amp;robotIni )
+<a name="l00092"></a>00092 <span class="keywordtype">void</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a8dbf91c9c8aa4e5f2885173d3b8335ae">YclopsNavigationSystem::loadConfigFile</a>(<span class="keyword">const</span> mrpt::utils::CConfigFileBase &amp;ini, <span class="keyword">const</span> mrpt::utils::CConfigFileBase &amp;robotIni )
 <a name="l00093"></a>00093 {
 <a name="l00094"></a>00094         <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#af068d302a382ad18b36ee08e5f26434d">collisionGridsMustBeUpdated</a> = <span class="keyword">true</span>;
 <a name="l00095"></a>00095 
@@ -325,7 +325,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00263"></a>00263 <span class="comment">/*---------------------------------------------------------------</span>
 <a name="l00264"></a>00264 <span class="comment">                                                enableLogFile</span>
 <a name="l00265"></a>00265 <span class="comment">  ---------------------------------------------------------------*/</span>
-<a name="l00266"></a><a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a3f73247b23641ee8b479732fd100483a">00266</a> <span class="keywordtype">void</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a3f73247b23641ee8b479732fd100483a">YclopsNavigationSystem::enableLogFile</a>(<span class="keywordtype">bool</span> enable)
+<a name="l00266"></a>00266 <span class="keywordtype">void</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a3f73247b23641ee8b479732fd100483a">YclopsNavigationSystem::enableLogFile</a>(<span class="keywordtype">bool</span> enable)
 <a name="l00267"></a>00267 {
 <a name="l00268"></a>00268         <span class="keywordflow">try</span>
 <a name="l00269"></a>00269         {
@@ -382,7 +382,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00320"></a>00320 <span class="comment">  Este metodo se ejecuta periodicamente solo si se está en el estado</span>
 <a name="l00321"></a>00321 <span class="comment">   NAVIGATING. Aqui se implementa el algoritmo de navegacion reactiva</span>
 <a name="l00322"></a>00322 <span class="comment">  ---------------------------------------------------------------*/</span>
-<a name="l00323"></a><a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a5138bedcd4bb64d953b000e61725f828">00323</a> <span class="keywordtype">void</span>  <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a5138bedcd4bb64d953b000e61725f828">YclopsNavigationSystem::performNavigationStep</a>()
+<a name="l00323"></a>00323 <span class="keywordtype">void</span>  <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a5138bedcd4bb64d953b000e61725f828">YclopsNavigationSystem::performNavigationStep</a>()
 <a name="l00324"></a>00324 {
 <a name="l00325"></a>00325         <span class="keyword">static</span> utils::CTicTac                                           totalExecutionTime, executionTime, tictac;
 <a name="l00326"></a>00326         <span class="keyword">static</span> mrpt::slam::CSimplePointsMap                     WS_Obstacles;
@@ -396,7 +396,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00334"></a>00334         <span class="keywordtype">float</span>                                                                           curVL;                  <span class="comment">// en metros/seg</span>
 <a name="l00335"></a>00335         <span class="keywordtype">float</span>                                                                           curW;                   <span class="comment">// en rad/segundo</span>
 <a name="l00336"></a>00336         <span class="keyword">static</span> std::vector&lt;THolonomicMovement&gt;          holonomicMovements;
-<a name="l00337"></a>00337         <a class="code" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html">THolonomicMovement</a>                                                      selectedHolonomicMovement;
+<a name="l00337"></a>00337         THolonomicMovement                                                      selectedHolonomicMovement;
 <a name="l00338"></a>00338         <span class="keywordtype">float</span>                                                                           cmd_v=0,cmd_w=0;        <span class="comment">// The non-holonomic command</span>
 <a name="l00339"></a>00339         <span class="keywordtype">float</span>                                                                           desired_cmd_v, desired_cmd_w;
 <a name="l00340"></a>00340         std::vector&lt;CHolonomicLogFileRecordPtr&gt;         HLFRs;
@@ -407,7 +407,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00345"></a>00345         <span class="keywordtype">int</span>                                                                                     nSelectedPTG;
 <a name="l00346"></a>00346         <span class="keyword">static</span> vector_float                                                     prevV,prevW,prevSelPTG;
 <a name="l00347"></a>00347         <span class="keyword">static</span> <span class="keywordtype">int</span>                                                                      nLastSelectedPTG = -1;
-<a name="l00348"></a>00348         <span class="keyword">static</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html">CDynamicWindow</a>                                           DW;
+<a name="l00348"></a>00348         <span class="keyword">static</span> CDynamicWindow                                           DW;
 <a name="l00349"></a>00349 <span class="comment">//      static TNavigatorBehavior                                       lastStepBehavior;</span>
 <a name="l00350"></a>00350 <span class="comment">//      TNavigatorBehavior                                                      saveLastBehavior;</span>
 <a name="l00351"></a>00351 
@@ -643,7 +643,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00581"></a>00581                                         <span class="keywordtype">float</span> x=1;
 <a name="l00582"></a>00582                                         <span class="keywordtype">float</span> y=0;
 <a name="l00583"></a>00583                                         <span class="keywordtype">float</span> p,t;
-<a name="l00584"></a>00584                                         selectedHolonomicMovement.<a class="code" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html#a887e290875573534653512f6e8e3b642">PTG</a>-&gt;getCPointWhen_d_Is(2.0, selectedHolonomicMovement.<a class="code" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html#a887e290875573534653512f6e8e3b642">PTG</a>-&gt;alfa2index(selectedHolonomicMovement.<a class="code" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html#aca172a27f54ad25c743b38f128e23a21" title="The associated PTG.">direction</a>),x,y,p,t);
+<a name="l00584"></a>00584                                         selectedHolonomicMovement.PTG-&gt;getCPointWhen_d_Is(2.0, selectedHolonomicMovement.PTG-&gt;alfa2index(selectedHolonomicMovement.direction),x,y,p,t);
 <a name="l00585"></a>00585 
 <a name="l00586"></a>00586                                         cur_approx_heading_dir = atan2(y,x);
 <a name="l00587"></a>00587                                         m_robot.notifyHeadingDirection(cur_approx_heading_dir);
@@ -685,7 +685,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00623"></a>00623                                 <span class="comment">//     Find cuts of constant curvature line with DW:</span>
 <a name="l00624"></a>00624                                 <span class="comment">// 3) Desired curvature out of reachability: Only an</span>
 <a name="l00625"></a>00625                                 <span class="comment">//     approximation can be found:</span>
-<a name="l00626"></a>00626                                 DW.<a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#ae53c78488151f7344c99a91b7cfb7489">findBestApproximation</a>(
+<a name="l00626"></a>00626                                 DW.findBestApproximation(
 <a name="l00627"></a>00627                                     desired_cmd_v, desired_cmd_w,       <span class="comment">// IN</span>
 <a name="l00628"></a>00628                                     cmd_v, cmd_w        <span class="comment">// OUT</span>
 <a name="l00629"></a>00629                                 );
@@ -734,7 +734,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00672"></a>00672 
 <a name="l00673"></a>00673                 <span class="keywordflow">if</span> (!skipNormalReactiveNavigation)
 <a name="l00674"></a>00674                 {
-<a name="l00675"></a>00675                         printf_debug(<span class="stringliteral">&quot;E=%.01lf &quot;</span>, (<span class="keywordtype">double</span>)selectedHolonomicMovement.<a class="code" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html#ad2d200f1ee4ce99231697b9548751a8d" title="The holonomic movement.">evaluation</a> );
+<a name="l00675"></a>00675                         printf_debug(<span class="stringliteral">&quot;E=%.01lf &quot;</span>, (<span class="keywordtype">double</span>)selectedHolonomicMovement.evaluation );
 <a name="l00676"></a>00676                         printf_debug(<span class="stringliteral">&quot;PTG#%i &quot;</span>, nSelectedPTG);
 <a name="l00677"></a>00677                 }
 <a name="l00678"></a>00678                 <span class="keywordflow">else</span>
@@ -760,9 +760,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00698"></a>00698                 newLogRec.nPTGs                                 = <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#af277137d9296f37fbbfe5879868dba01">PTGs</a>.size();
 <a name="l00699"></a>00699                 newLogRec.navigatorBehavior             = <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#afb074fd13ce2a8d5b592d43e5d576b45">navigatorBehavior</a>;
 <a name="l00700"></a>00700 
-<a name="l00701"></a>00701                 <span class="keywordflow">if</span> ( navigatorBehavior==<a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a53df3608d184757397fe3f8dab6f674ea77607a225be588da4b0955f6b5bcb279">beDoorCrosing1</a> ||
-<a name="l00702"></a>00702                         navigatorBehavior==<a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a53df3608d184757397fe3f8dab6f674ea58d45d59d3f4a976fc5a2c42d608e16c">beDoorCrosing2</a> ||
-<a name="l00703"></a>00703                         navigatorBehavior==<a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a53df3608d184757397fe3f8dab6f674ea92c10203d2b27f05b5b1838002ad6ded">beDoorCrosing3</a> )
+<a name="l00701"></a>00701                 <span class="keywordflow">if</span> ( <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#afb074fd13ce2a8d5b592d43e5d576b45">navigatorBehavior</a>==<a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a53df3608d184757397fe3f8dab6f674ea77607a225be588da4b0955f6b5bcb279">beDoorCrosing1</a> ||
+<a name="l00702"></a>00702                         <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#afb074fd13ce2a8d5b592d43e5d576b45">navigatorBehavior</a>==<a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a53df3608d184757397fe3f8dab6f674ea58d45d59d3f4a976fc5a2c42d608e16c">beDoorCrosing2</a> ||
+<a name="l00703"></a>00703                         <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#afb074fd13ce2a8d5b592d43e5d576b45">navigatorBehavior</a>==<a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a53df3608d184757397fe3f8dab6f674ea92c10203d2b27f05b5b1838002ad6ded">beDoorCrosing3</a> )
 <a name="l00704"></a>00704                 {
 <a name="l00705"></a>00705                         newLogRec.doorCrossing_P1 = <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#aa9ef4d28e986171bc5eff89faeb6b5da">m_bePassPoint1</a> - curPose;
 <a name="l00706"></a>00706                         newLogRec.doorCrossing_P2 = <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a4e623cd3284f9bb12980f036c4b4ef76">m_bePassPoint2</a> - curPose;
@@ -858,7 +858,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00796"></a>00796 <span class="comment">          del robot</span>
 <a name="l00797"></a>00797 <span class="comment"></span>
 <a name="l00798"></a>00798 <span class="comment">*************************************************************************/</span>
-<a name="l00799"></a><a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a50189b55a6cb105c0a2df15bc2e5a640">00799</a> <span class="keywordtype">void</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a50189b55a6cb105c0a2df15bc2e5a640">YclopsNavigationSystem::STEP1_CollisionGridsBuilder</a>()
+<a name="l00799"></a>00799 <span class="keywordtype">void</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a50189b55a6cb105c0a2df15bc2e5a640">YclopsNavigationSystem::STEP1_CollisionGridsBuilder</a>()
 <a name="l00800"></a>00800 {
 <a name="l00801"></a>00801         <span class="keywordflow">try</span>
 <a name="l00802"></a>00802         {
@@ -887,7 +887,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00825"></a>00825 <span class="comment">     Sensors adquisition and obstacle points fusion</span>
 <a name="l00826"></a>00826 <span class="comment"></span>
 <a name="l00827"></a>00827 <span class="comment">*************************************************************************/</span>
-<a name="l00828"></a><a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ad3076cd24dc4aacbbab3e0a2ee7af3cb">00828</a> <span class="keywordtype">bool</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ad3076cd24dc4aacbbab3e0a2ee7af3cb">YclopsNavigationSystem::STEP2_Sense</a>(
+<a name="l00828"></a>00828 <span class="keywordtype">bool</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ad3076cd24dc4aacbbab3e0a2ee7af3cb">YclopsNavigationSystem::STEP2_Sense</a>(
 <a name="l00829"></a>00829         mrpt::slam::CSimplePointsMap                            &amp;out_obstacles)
 <a name="l00830"></a>00830 {
 <a name="l00831"></a>00831         <span class="keywordflow">try</span>
@@ -1186,16 +1186,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l01124"></a>01124 <span class="comment">                                                        STEP6_Selector</span>
 <a name="l01125"></a>01125 <span class="comment"></span>
 <a name="l01126"></a>01126 <span class="comment">*************************************************************************/</span>
-<a name="l01127"></a><a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a0840d3872235aef55aaa7b869962d3c2">01127</a> <span class="keywordtype">void</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a0840d3872235aef55aaa7b869962d3c2">YclopsNavigationSystem::STEP6_Selector</a>(
+<a name="l01127"></a>01127 <span class="keywordtype">void</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a0840d3872235aef55aaa7b869962d3c2">YclopsNavigationSystem::STEP6_Selector</a>(
 <a name="l01128"></a>01128     std::vector&lt;THolonomicMovement&gt;             &amp;in_holonomicMovements,
-<a name="l01129"></a>01129     <a class="code" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html">THolonomicMovement</a>                                  &amp;out_selected,
+<a name="l01129"></a>01129     THolonomicMovement                                  &amp;out_selected,
 <a name="l01130"></a>01130     <span class="keywordtype">int</span>                                                                 &amp;out_nSelectedPTG)
 <a name="l01131"></a>01131 {
 <a name="l01132"></a>01132         <span class="comment">// Si no encontramos nada mejor, es que no hay movimiento posible:</span>
-<a name="l01133"></a>01133         out_selected.<a class="code" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html#aca172a27f54ad25c743b38f128e23a21" title="The associated PTG.">direction</a>= 0;
-<a name="l01134"></a>01134         out_selected.<a class="code" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html#a4a274d40296bd0eabd15da818411271a">speed</a> = 0;
-<a name="l01135"></a>01135         out_selected.<a class="code" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html#a887e290875573534653512f6e8e3b642">PTG</a> = NULL;
-<a name="l01136"></a>01136         out_selected.<a class="code" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html#ad2d200f1ee4ce99231697b9548751a8d" title="The holonomic movement.">evaluation</a>= 0;             <span class="comment">// Anotacion pa mi: Don&#39;t modify this 0 and the &quot;&gt;&quot; comparison</span>
+<a name="l01133"></a>01133         out_selected.direction= 0;
+<a name="l01134"></a>01134         out_selected.speed = 0;
+<a name="l01135"></a>01135         out_selected.PTG = NULL;
+<a name="l01136"></a>01136         out_selected.evaluation= 0;             <span class="comment">// Anotacion pa mi: Don&#39;t modify this 0 and the &quot;&gt;&quot; comparison</span>
 <a name="l01137"></a>01137         out_nSelectedPTG = 0;
 <a name="l01138"></a>01138 
 <a name="l01139"></a>01139         <span class="comment">// Coger la trayectoria con mejor evaluacion, mientras no produzca</span>
@@ -1203,10 +1203,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l01141"></a>01141         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i=0;i&lt;in_holonomicMovements.size();i++)
 <a name="l01142"></a>01142         {
 <a name="l01143"></a>01143                 <span class="keywordtype">float</span> ev = in_holonomicMovements[i].evaluation;
-<a name="l01144"></a>01144                 <span class="keywordflow">if</span> ( ev &gt; out_selected.<a class="code" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html#ad2d200f1ee4ce99231697b9548751a8d" title="The holonomic movement.">evaluation</a> )
+<a name="l01144"></a>01144                 <span class="keywordflow">if</span> ( ev &gt; out_selected.evaluation )
 <a name="l01145"></a>01145                 {
 <a name="l01146"></a>01146                         out_selected = in_holonomicMovements[i];
-<a name="l01147"></a>01147                         out_selected.<a class="code" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html#ad2d200f1ee4ce99231697b9548751a8d" title="The holonomic movement.">evaluation</a> = ev;
+<a name="l01147"></a>01147                         out_selected.evaluation = ev;
 <a name="l01148"></a>01148                         out_nSelectedPTG = i;
 <a name="l01149"></a>01149                 }
 <a name="l01150"></a>01150         }
@@ -1217,14 +1217,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l01155"></a>01155 <span class="comment">                                                STEP7_NonHolonomicMovement</span>
 <a name="l01156"></a>01156 <span class="comment"></span>
 <a name="l01157"></a>01157 <span class="comment">*************************************************************************/</span>
-<a name="l01158"></a><a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ad9f13c3576cd4c01cf3dfdd2fa4d9b18">01158</a> <span class="keywordtype">void</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ad9f13c3576cd4c01cf3dfdd2fa4d9b18">YclopsNavigationSystem::STEP7_NonHolonomicMovement</a>(
-<a name="l01159"></a>01159     <a class="code" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html">THolonomicMovement</a>                                  &amp;in_movement,
+<a name="l01158"></a>01158 <span class="keywordtype">void</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ad9f13c3576cd4c01cf3dfdd2fa4d9b18">YclopsNavigationSystem::STEP7_NonHolonomicMovement</a>(
+<a name="l01159"></a>01159     THolonomicMovement                                  &amp;in_movement,
 <a name="l01160"></a>01160     <span class="keywordtype">float</span>                                                               &amp;out_v,
 <a name="l01161"></a>01161     <span class="keywordtype">float</span>                                                               &amp;out_w)
 <a name="l01162"></a>01162 {
 <a name="l01163"></a>01163         <span class="keywordflow">try</span>
 <a name="l01164"></a>01164         {
-<a name="l01165"></a>01165                 <span class="keywordflow">if</span> (in_movement.<a class="code" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html#a4a274d40296bd0eabd15da818411271a">speed</a>==0)
+<a name="l01165"></a>01165                 <span class="keywordflow">if</span> (in_movement.speed==0)
 <a name="l01166"></a>01166                 {
 <a name="l01167"></a>01167                         <span class="comment">// The robot will stop:</span>
 <a name="l01168"></a>01168                         out_v = out_w = 0;
@@ -1232,13 +1232,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l01170"></a>01170                 <span class="keywordflow">else</span>
 <a name="l01171"></a>01171                 {
 <a name="l01172"></a>01172                         <span class="comment">// Take the normalized movement command:</span>
-<a name="l01173"></a>01173                         in_movement.<a class="code" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html#a887e290875573534653512f6e8e3b642">PTG</a>-&gt;directionToMotionCommand(
-<a name="l01174"></a>01174                             in_movement.<a class="code" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html#a887e290875573534653512f6e8e3b642">PTG</a>-&gt;alfa2index( in_movement.<a class="code" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html#aca172a27f54ad25c743b38f128e23a21" title="The associated PTG.">direction</a> ),
+<a name="l01173"></a>01173                         in_movement.PTG-&gt;directionToMotionCommand(
+<a name="l01174"></a>01174                             in_movement.PTG-&gt;alfa2index( in_movement.direction ),
 <a name="l01175"></a>01175                             out_v,
 <a name="l01176"></a>01176                             out_w );
 <a name="l01177"></a>01177 
 <a name="l01178"></a>01178                         <span class="comment">// Scale holonomic speeds to real-world one:</span>
-<a name="l01179"></a>01179                         <span class="keyword">const</span> <span class="keywordtype">double</span> reduction = min(1.0, in_movement.<a class="code" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html#a4a274d40296bd0eabd15da818411271a">speed</a> / in_movement.<a class="code" href="structmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1THolonomicMovement.html#a887e290875573534653512f6e8e3b642">PTG</a>-&gt;getMax_V_inTPSpace());
+<a name="l01179"></a>01179                         <span class="keyword">const</span> <span class="keywordtype">double</span> reduction = min(1.0, in_movement.speed / in_movement.PTG-&gt;getMax_V_inTPSpace());
 <a name="l01180"></a>01180 
 <a name="l01181"></a>01181                         <span class="comment">// To scale:</span>
 <a name="l01182"></a>01182                         out_v*=reduction;
@@ -1277,7 +1277,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l01215"></a>01215 <span class="comment">/*************************************************************************</span>
 <a name="l01216"></a>01216 <span class="comment">                        Destructor</span>
 <a name="l01217"></a>01217 <span class="comment">*************************************************************************/</span>
-<a name="l01218"></a><a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ae7020d8b8a5c7f3bab1875e3e23dff77">01218</a> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ae7020d8b8a5c7f3bab1875e3e23dff77">YclopsNavigationSystem::~YclopsNavigationSystem</a>()
+<a name="l01218"></a>01218 <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ae7020d8b8a5c7f3bab1875e3e23dff77">YclopsNavigationSystem::~YclopsNavigationSystem</a>()
 <a name="l01219"></a>01219 {
 <a name="l01220"></a>01220         <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a2fc9dff742b95487ee96815866da7046">CerrandoHilo</a> = <span class="keyword">true</span>;
 <a name="l01221"></a>01221 
@@ -1315,7 +1315,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l01253"></a>01253 <span class="comment">/*************************************************************************</span>
 <a name="l01254"></a>01254 <span class="comment">                         Evaluar navegacion:</span>
 <a name="l01255"></a>01255 <span class="comment">*************************************************************************/</span>
-<a name="l01256"></a><a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a9af724cfeb88571e96767b41abbb8cb3">01256</a> <span class="keywordtype">float</span>  <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a9af724cfeb88571e96767b41abbb8cb3">YclopsNavigationSystem::evaluate</a>( TNavigationParams *params )
+<a name="l01256"></a>01256 <span class="keywordtype">float</span>  <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a9af724cfeb88571e96767b41abbb8cb3">YclopsNavigationSystem::evaluate</a>( TNavigationParams *params )
 <a name="l01257"></a>01257 {
 <a name="l01258"></a>01258         <span class="keywordflow">return</span> 0.5f;
 <a name="l01259"></a>01259 }
@@ -1372,7 +1372,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l01310"></a>01310 <span class="comment">/*************************************************************************</span>
 <a name="l01311"></a>01311 <span class="comment">                Para la silla y muestra un mensaje de error.</span>
 <a name="l01312"></a>01312 <span class="comment">*************************************************************************/</span>
-<a name="l01313"></a><a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a5554fb3176cc4c31f22c356aed0586ab">01313</a> <span class="keywordtype">void</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a5554fb3176cc4c31f22c356aed0586ab">YclopsNavigationSystem::Error_ParadaDeEmergencia</a>( <span class="keyword">const</span> <span class="keywordtype">char</span> *msg )
+<a name="l01313"></a>01313 <span class="keywordtype">void</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a5554fb3176cc4c31f22c356aed0586ab">YclopsNavigationSystem::Error_ParadaDeEmergencia</a>( <span class="keyword">const</span> <span class="keywordtype">char</span> *msg )
 <a name="l01314"></a>01314 {
 <a name="l01315"></a>01315         <span class="comment">// Mostrar mensaje y parar navegacion si estamos moviendonos:</span>
 <a name="l01316"></a>01316         printf_debug( msg );
@@ -1387,7 +1387,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l01325"></a>01325 
 <a name="l01326"></a>01326 <span class="comment">/* -------------------------------------------------------------</span>
 <a name="l01327"></a>01327 <span class="comment">   ------------------------------------------------------------- */</span>
-<a name="l01328"></a><a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#a78108e8819076df022d2e936f39ad8b9">01328</a> <span class="keywordtype">void</span>  <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#a78108e8819076df022d2e936f39ad8b9">YclopsNavigationSystem::CDynamicWindow::findMinMaxCurvatures</a>(<span class="keywordtype">float</span> &amp;minCurv, <span class="keywordtype">float</span> &amp;maxCurv)
+<a name="l01328"></a>01328 <span class="keywordtype">void</span>  <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#a78108e8819076df022d2e936f39ad8b9">YclopsNavigationSystem::CDynamicWindow::findMinMaxCurvatures</a>(<span class="keywordtype">float</span> &amp;minCurv, <span class="keywordtype">float</span> &amp;maxCurv)
 <a name="l01329"></a>01329 {
 <a name="l01330"></a>01330         <span class="keywordflow">if</span> (fabs(<a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#a3d25dbbaa071d1d2f2e6564908e541f2">v_min</a>)&lt;0.005f) <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#a3d25dbbaa071d1d2f2e6564908e541f2">v_min</a>=0.005f*sign(<a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#a3d25dbbaa071d1d2f2e6564908e541f2">v_min</a>);
 <a name="l01331"></a>01331         <span class="keywordflow">if</span> (fabs(<a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#adeb6826ed33e796669dd847d76a7c247">v_max</a>)&lt;0.005f) <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#adeb6826ed33e796669dd847d76a7c247">v_max</a>=0.005f*sign(<a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#adeb6826ed33e796669dd847d76a7c247">v_max</a>);
@@ -1405,7 +1405,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l01343"></a>01343 
 <a name="l01344"></a>01344 <span class="comment">/* -------------------------------------------------------------</span>
 <a name="l01345"></a>01345 <span class="comment">   ------------------------------------------------------------- */</span>
-<a name="l01346"></a><a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#ae53c78488151f7344c99a91b7cfb7489">01346</a> <span class="keywordtype">void</span>  <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#ae53c78488151f7344c99a91b7cfb7489">YclopsNavigationSystem::CDynamicWindow::findBestApproximation</a>(<span class="keywordtype">float</span> desV,<span class="keywordtype">float</span> desW, <span class="keywordtype">float</span> &amp;outV,<span class="keywordtype">float</span> &amp;outW)
+<a name="l01346"></a>01346 <span class="keywordtype">void</span>  <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#ae53c78488151f7344c99a91b7cfb7489">YclopsNavigationSystem::CDynamicWindow::findBestApproximation</a>(<span class="keywordtype">float</span> desV,<span class="keywordtype">float</span> desW, <span class="keywordtype">float</span> &amp;outV,<span class="keywordtype">float</span> &amp;outW)
 <a name="l01347"></a>01347 {
 <a name="l01348"></a>01348         <span class="comment">// Try to find a &quot;cut&quot;, if not, find just the closest corner.</span>
 <a name="l01349"></a>01349         <span class="keywordflow">if</span> (findClosestCut(desV,desW,outV,outW))
@@ -1452,7 +1452,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l01390"></a>01390 
 <a name="l01391"></a>01391 <span class="comment">/* -------------------------------------------------------------</span>
 <a name="l01392"></a>01392 <span class="comment">   ------------------------------------------------------------- */</span>
-<a name="l01393"></a><a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#a40a25c5692d1d1c7cb132a398f608352">01393</a> <span class="keywordtype">bool</span>  <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#a40a25c5692d1d1c7cb132a398f608352">YclopsNavigationSystem::CDynamicWindow::findClosestCut</a>( <span class="keywordtype">float</span> cmd_v, <span class="keywordtype">float</span> cmd_w, <span class="comment">// IN</span>
+<a name="l01393"></a>01393 <span class="keywordtype">bool</span>  <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem_1_1CDynamicWindow.html#a40a25c5692d1d1c7cb132a398f608352">YclopsNavigationSystem::CDynamicWindow::findClosestCut</a>( <span class="keywordtype">float</span> cmd_v, <span class="keywordtype">float</span> cmd_w, <span class="comment">// IN</span>
 <a name="l01394"></a>01394         <span class="keywordtype">float</span> &amp;out_v,<span class="keywordtype">float</span> &amp;out_w)      <span class="comment">// OUT</span>
 <a name="l01395"></a>01395 {
 <a name="l01396"></a>01396         <span class="keywordflow">if</span> (fabs(cmd_v)&lt;0.005f) cmd_v = 0.005f * sign(cmd_v);
@@ -1529,7 +1529,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Mar 15 2011 for YClops by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Mar 16 2011 for YClops by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

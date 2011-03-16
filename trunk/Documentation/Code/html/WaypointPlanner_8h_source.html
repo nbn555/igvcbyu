@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>YClops: /home/tallred3/ecen493/SeniorProject/trunk/Code/YClopsLib/inc/WaypointPlanner.h Source File</title>
+<title>YClops: WaypointPlanner.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -57,7 +57,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 <div class="header">
   <div class="headertitle">
-<h1>/home/tallred3/ecen493/SeniorProject/trunk/Code/YClopsLib/inc/WaypointPlanner.h</h1>  </div>
+<h1>WaypointPlanner.h</h1>  </div>
 </div>
 <div class="contents">
 <a href="WaypointPlanner_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
@@ -81,47 +81,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00040"></a>00040         <span class="keyword">virtual</span> mrpt::aligned_containers&lt;mrpt::poses::CPoint2D&gt;::vector_t <a class="code" href="classAbstractNavigationInterface.html#aa14ae6fbca5713d79a7542253eac50bc">solve</a>(<span class="keywordtype">bool</span> inMeters) = 0;
 <a name="l00041"></a>00041 
 <a name="l00046"></a>00046         <span class="keywordtype">void</span> <a class="code" href="classAbstractNavigationInterface.html#ac7900b0a4c199e3b3d9d36b905eadd36">convertPointToMeters</a>(mrpt::poses::CPoint2D&amp; point);
-<a name="l00053"></a>00053         <span class="keywordtype">void</span> <a class="code" href="classAbstractNavigationInterface.html#ac83502b1269e7fe9ff0f58f6ef039a20">loadPoints</a>(std::string filename, <span class="keywordtype">bool</span> convertToMeters = <span class="keyword">false</span>);
-<a name="l00054"></a>00054 
-<a name="l00059"></a>00059         <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code" href="classAbstractNavigationInterface.html#a74b18af90bad0bc1219327ae9ede672b">haversineDistance</a>( <span class="keywordtype">double</span> lat1, <span class="keywordtype">double</span> lon1, <span class="keywordtype">double</span> lat2, <span class="keywordtype">double</span> lon2 );
-<a name="l00060"></a>00060 
-<a name="l00065"></a>00065         <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code" href="classAbstractNavigationInterface.html#a371f1b8d303303ccd3971e6a2bad2ea5">calcBearing</a>( <span class="keywordtype">double</span> lat1, <span class="keywordtype">double</span> lon1, <span class="keywordtype">double</span> lat2, <span class="keywordtype">double</span> lon2, <span class="keywordtype">bool</span> isDegrees = <span class="keyword">false</span> );
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067 <span class="keyword">protected</span>:
-<a name="l00068"></a><a class="code" href="classAbstractNavigationInterface.html#a0def3a7056e1a09d7d98c027b20a50c2">00068</a>         mrpt::aligned_containers&lt;mrpt::poses::CPoint2D&gt;::vector_t <a class="code" href="classAbstractNavigationInterface.html#a0def3a7056e1a09d7d98c027b20a50c2">toVisit</a>; 
-<a name="l00069"></a><a class="code" href="classAbstractNavigationInterface.html#ab0b7222153e1d1e0da7a14eb3166ec17">00069</a>         mrpt::aligned_containers&lt;mrpt::poses::CPoint2D&gt;::vector_t <a class="code" href="classAbstractNavigationInterface.html#ab0b7222153e1d1e0da7a14eb3166ec17" title="Vector of points that haven&amp;#39;t been visited by the planning.">visited</a>; 
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071 };
-<a name="l00072"></a>00072 
-<a name="l00076"></a><a class="code" href="classSequentialNavigation.html">00076</a> <span class="keyword">class </span><a class="code" href="classSequentialNavigation.html">SequentialNavigation</a>: <span class="keyword">public</span> <a class="code" href="classAbstractNavigationInterface.html" title="AbstractNavigationInterface.h - This file defines the classes relating to path planning.">AbstractNavigationInterface</a> {
-<a name="l00077"></a>00077 <span class="keyword">public</span>:
-<a name="l00078"></a>00078         <a class="code" href="classSequentialNavigation.html#a8092a340d94a2edabbeb0ee725230d81">SequentialNavigation</a>( <span class="keywordtype">double</span> lat, <span class="keywordtype">double</span> lon );
-<a name="l00079"></a>00079         <span class="keyword">virtual</span> <a class="code" href="classSequentialNavigation.html#ae6ca19d3d08e850b87b3922300260807">~SequentialNavigation</a>();
-<a name="l00080"></a>00080 
-<a name="l00086"></a>00086          mrpt::aligned_containers&lt;mrpt::poses::CPoint2D&gt;::vector_t <a class="code" href="classSequentialNavigation.html#a54c82396f713d32040c6c66d85a4e055">solve</a>(<span class="keywordtype">bool</span> inMeters);
-<a name="l00087"></a>00087 
-<a name="l00088"></a>00088 };
-<a name="l00089"></a>00089 
-<a name="l00090"></a><a class="code" href="classTSPNavigation.html">00090</a> <span class="keyword">class </span><a class="code" href="classTSPNavigation.html">TSPNavigation</a> : <span class="keyword">public</span> <a class="code" href="classAbstractNavigationInterface.html" title="AbstractNavigationInterface.h - This file defines the classes relating to path planning.">AbstractNavigationInterface</a>{
-<a name="l00091"></a>00091 <span class="keyword">public</span>:
-<a name="l00092"></a>00092 
-<a name="l00093"></a>00093         <a class="code" href="classTSPNavigation.html#a33f1802085e43351738a2ab74f1ae55b">TSPNavigation</a>( <span class="keywordtype">double</span> initLat, <span class="keywordtype">double</span> initLon );
-<a name="l00094"></a><a class="code" href="classTSPNavigation.html#a58c3e18c6268985150e6d9ab767734b5">00094</a>         <span class="keyword">virtual</span> <a class="code" href="classTSPNavigation.html#a58c3e18c6268985150e6d9ab767734b5">~TSPNavigation</a>() {};
-<a name="l00095"></a>00095 
-<a name="l00100"></a>00100         mrpt::aligned_containers&lt;mrpt::poses::CPoint2D&gt;::vector_t <a class="code" href="classTSPNavigation.html#a3944363ab05421f1d27bd14aeae3ff2c">solve</a>(<span class="keywordtype">bool</span> inMeters);
-<a name="l00101"></a>00101 
-<a name="l00102"></a>00102 <span class="keyword">private</span>:
-<a name="l00103"></a>00103 
-<a name="l00114"></a>00114         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classTSPNavigation.html#a84505a765e62769332aeff3067c69a0e">nieveTSPSolution</a>( mrpt::aligned_containers&lt;mrpt::poses::CPoint2D&gt;::vector_t &amp; <a class="code" href="classAbstractNavigationInterface.html#a0def3a7056e1a09d7d98c027b20a50c2">toVisit</a>,
-<a name="l00115"></a>00115                         mrpt::aligned_containers&lt;mrpt::poses::CPoint2D&gt;::vector_t &amp; <a class="code" href="classAbstractNavigationInterface.html#ab0b7222153e1d1e0da7a14eb3166ec17" title="Vector of points that haven&amp;#39;t been visited by the planning.">visited</a>, <span class="keywordtype">bool</span> inMeters );
-<a name="l00116"></a>00116 
+<a name="l00054"></a>00054         <span class="keywordtype">void</span> <a class="code" href="classAbstractNavigationInterface.html#ac83502b1269e7fe9ff0f58f6ef039a20" title="reads in a stream of ascii whitespace delimited gps points from a file where the first one is the sta...">loadPoints</a>(std::string filename, <span class="keywordtype">bool</span> convertToMeters = <span class="keyword">false</span>);
+<a name="l00055"></a>00055 
+<a name="l00060"></a>00060         <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code" href="classAbstractNavigationInterface.html#a74b18af90bad0bc1219327ae9ede672b">haversineDistance</a>( <span class="keywordtype">double</span> lat1, <span class="keywordtype">double</span> lon1, <span class="keywordtype">double</span> lat2, <span class="keywordtype">double</span> lon2 );
+<a name="l00061"></a>00061 
+<a name="l00066"></a>00066         <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code" href="classAbstractNavigationInterface.html#a371f1b8d303303ccd3971e6a2bad2ea5">calcBearing</a>( <span class="keywordtype">double</span> lat1, <span class="keywordtype">double</span> lon1, <span class="keywordtype">double</span> lat2, <span class="keywordtype">double</span> lon2, <span class="keywordtype">bool</span> isDegrees = <span class="keyword">false</span> );
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068 <span class="keyword">protected</span>:
+<a name="l00069"></a><a class="code" href="classAbstractNavigationInterface.html#a0def3a7056e1a09d7d98c027b20a50c2">00069</a>         mrpt::aligned_containers&lt;mrpt::poses::CPoint2D&gt;::vector_t <a class="code" href="classAbstractNavigationInterface.html#a0def3a7056e1a09d7d98c027b20a50c2">toVisit</a>; 
+<a name="l00070"></a><a class="code" href="classAbstractNavigationInterface.html#ab0b7222153e1d1e0da7a14eb3166ec17">00070</a>         mrpt::aligned_containers&lt;mrpt::poses::CPoint2D&gt;::vector_t <a class="code" href="classAbstractNavigationInterface.html#ab0b7222153e1d1e0da7a14eb3166ec17" title="Vector of points that haven&amp;#39;t been visited by the planning.">visited</a>; 
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072 };
+<a name="l00073"></a>00073 
+<a name="l00077"></a><a class="code" href="classSequentialNavigation.html">00077</a> <span class="keyword">class </span><a class="code" href="classSequentialNavigation.html">SequentialNavigation</a>: <span class="keyword">public</span> <a class="code" href="classAbstractNavigationInterface.html" title="AbstractNavigationInterface.h - This file defines the classes relating to path planning.">AbstractNavigationInterface</a> {
+<a name="l00078"></a>00078 <span class="keyword">public</span>:
+<a name="l00079"></a>00079         <a class="code" href="classSequentialNavigation.html#a8092a340d94a2edabbeb0ee725230d81">SequentialNavigation</a>( <span class="keywordtype">double</span> lat, <span class="keywordtype">double</span> lon );
+<a name="l00080"></a>00080         <span class="keyword">virtual</span> <a class="code" href="classSequentialNavigation.html#ae6ca19d3d08e850b87b3922300260807">~SequentialNavigation</a>();
+<a name="l00081"></a>00081 
+<a name="l00087"></a>00087          mrpt::aligned_containers&lt;mrpt::poses::CPoint2D&gt;::vector_t <a class="code" href="classSequentialNavigation.html#a54c82396f713d32040c6c66d85a4e055">solve</a>(<span class="keywordtype">bool</span> inMeters);
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089 };
+<a name="l00090"></a>00090 
+<a name="l00091"></a><a class="code" href="classTSPNavigation.html">00091</a> <span class="keyword">class </span><a class="code" href="classTSPNavigation.html">TSPNavigation</a> : <span class="keyword">public</span> <a class="code" href="classAbstractNavigationInterface.html" title="AbstractNavigationInterface.h - This file defines the classes relating to path planning.">AbstractNavigationInterface</a>{
+<a name="l00092"></a>00092 <span class="keyword">public</span>:
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094         <a class="code" href="classTSPNavigation.html#a33f1802085e43351738a2ab74f1ae55b">TSPNavigation</a>( <span class="keywordtype">double</span> initLat, <span class="keywordtype">double</span> initLon );
+<a name="l00095"></a><a class="code" href="classTSPNavigation.html#a58c3e18c6268985150e6d9ab767734b5">00095</a>         <span class="keyword">virtual</span> <a class="code" href="classTSPNavigation.html#a58c3e18c6268985150e6d9ab767734b5">~TSPNavigation</a>() {};
+<a name="l00096"></a>00096 
+<a name="l00101"></a>00101         mrpt::aligned_containers&lt;mrpt::poses::CPoint2D&gt;::vector_t <a class="code" href="classTSPNavigation.html#a3944363ab05421f1d27bd14aeae3ff2c">solve</a>(<span class="keywordtype">bool</span> inMeters);
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103 <span class="keyword">private</span>:
+<a name="l00104"></a>00104 
+<a name="l00115"></a>00115         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classTSPNavigation.html#a84505a765e62769332aeff3067c69a0e" title="a nieve solution to the traveling salesman problem this implementation is greedy in that it simply go...">nieveTSPSolution</a>( mrpt::aligned_containers&lt;mrpt::poses::CPoint2D&gt;::vector_t &amp; <a class="code" href="classAbstractNavigationInterface.html#a0def3a7056e1a09d7d98c027b20a50c2">toVisit</a>,
+<a name="l00116"></a>00116                         mrpt::aligned_containers&lt;mrpt::poses::CPoint2D&gt;::vector_t &amp; <a class="code" href="classAbstractNavigationInterface.html#ab0b7222153e1d1e0da7a14eb3166ec17" title="Vector of points that haven&amp;#39;t been visited by the planning.">visited</a>, <span class="keywordtype">bool</span> inMeters );
 <a name="l00117"></a>00117 
-<a name="l00118"></a>00118         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classTSPNavigation.html#a34d8351860a68291b29cb9a80ab58b3e">acoTSPSolution</a>( mrpt::aligned_containers&lt;mrpt::poses::CPoint2D&gt;::vector_t &amp; <a class="code" href="classAbstractNavigationInterface.html#a0def3a7056e1a09d7d98c027b20a50c2">toVisit</a>,
-<a name="l00119"></a>00119                         mrpt::aligned_containers&lt;mrpt::poses::CPoint2D&gt;::vector_t &amp; <a class="code" href="classAbstractNavigationInterface.html#ab0b7222153e1d1e0da7a14eb3166ec17" title="Vector of points that haven&amp;#39;t been visited by the planning.">visited</a>, <span class="keywordtype">bool</span> inMeters);
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121 };
-<a name="l00122"></a>00122 
-<a name="l00123"></a>00123 <span class="preprocessor">#endif </span><span class="comment">/* WAYPOINTPLANNER_H_ */</span>
+<a name="l00118"></a>00118 
+<a name="l00119"></a>00119         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classTSPNavigation.html#a34d8351860a68291b29cb9a80ab58b3e">acoTSPSolution</a>( mrpt::aligned_containers&lt;mrpt::poses::CPoint2D&gt;::vector_t &amp; <a class="code" href="classAbstractNavigationInterface.html#a0def3a7056e1a09d7d98c027b20a50c2">toVisit</a>,
+<a name="l00120"></a>00120                         mrpt::aligned_containers&lt;mrpt::poses::CPoint2D&gt;::vector_t &amp; <a class="code" href="classAbstractNavigationInterface.html#ab0b7222153e1d1e0da7a14eb3166ec17" title="Vector of points that haven&amp;#39;t been visited by the planning.">visited</a>, <span class="keywordtype">bool</span> inMeters);
+<a name="l00121"></a>00121 
+<a name="l00122"></a>00122 };
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124 <span class="preprocessor">#endif </span><span class="comment">/* WAYPOINTPLANNER_H_ */</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -138,7 +138,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Mar 15 2011 for YClops by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Mar 16 2011 for YClops by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

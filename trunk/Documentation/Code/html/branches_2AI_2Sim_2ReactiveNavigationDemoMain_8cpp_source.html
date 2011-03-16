@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>YClops: AI/Sim/ReactiveNavigationDemoMain.cpp Source File</title>
+<title>YClops: ReactiveNavigationDemoMain.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -57,7 +57,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 <div class="header">
   <div class="headertitle">
-<h1>AI/Sim/ReactiveNavigationDemoMain.cpp</h1>  </div>
+<h1>ReactiveNavigationDemoMain.cpp</h1>  </div>
 </div>
 <div class="contents">
 <a href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* +---------------------------------------------------------------------------+</span>
@@ -134,10 +134,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00072"></a>00072 
 <a name="l00073"></a>00073 
 <a name="l00074"></a>00074 <span class="comment">// The default configuration strings:</span>
-<a name="l00075"></a><a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a144025aba506bbaa8ff525e4d7343194">00075</a> std::string <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a144025aba506bbaa8ff525e4d7343194">EDIT_internalCfgReactive</a>;
-<a name="l00076"></a><a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a6cf8e31cebca2d227038b9e24cd4249b">00076</a> std::string <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a6cf8e31cebca2d227038b9e24cd4249b">EDIT_internalCfgRobot</a>;
+<a name="l00075"></a><a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a144025aba506bbaa8ff525e4d7343194">00075</a> std::string <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a144025aba506bbaa8ff525e4d7343194">EDIT_internalCfgReactive</a>;
+<a name="l00076"></a><a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a6cf8e31cebca2d227038b9e24cd4249b">00076</a> std::string <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a6cf8e31cebca2d227038b9e24cd4249b">EDIT_internalCfgRobot</a>;
 <a name="l00077"></a>00077 
-<a name="l00078"></a><a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a9a5bb39c00a1ed12e548e7fae09e96f7">00078</a> <a class="code" href="classCIniEditor.html">CIniEditor</a>    *<a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a9a5bb39c00a1ed12e548e7fae09e96f7">iniEditorRobot</a>=NULL, *<a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a6f79ad4836589b0b1cc39f40ac9594b6">iniEditoreactivenav</a>=NULL;
+<a name="l00078"></a><a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a9a5bb39c00a1ed12e548e7fae09e96f7">00078</a> <a class="code" href="classCIniEditor.html">CIniEditor</a>    *<a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a9a5bb39c00a1ed12e548e7fae09e96f7">iniEditorRobot</a>=NULL, *<a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a6f79ad4836589b0b1cc39f40ac9594b6">iniEditoreactivenav</a>=NULL;
 <a name="l00079"></a>00079 
 <a name="l00080"></a>00080 <span class="preprocessor">#include &quot;imgs/main_icon.xpm&quot;</span>
 <a name="l00081"></a>00081 <span class="preprocessor">#include &quot;../wx-common/mrpt_logo.xpm&quot;</span>
@@ -145,7 +145,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00083"></a>00083 <span class="preprocessor">#include &quot;DEFAULT_GRIDMAP_DATA.h&quot;</span>
 <a name="l00084"></a>00084 
 <a name="l00085"></a>00085 <span class="comment">// A custom Art provider for customizing the icons:</span>
-<a name="l00086"></a><a class="code" href="classMyArtProvider.html">00086</a> <span class="keyword">class </span><a class="code" href="classMyArtProvider.html">MyArtProvider</a> : <span class="keyword">public</span> wxArtProvider
+<a name="l00086"></a>00086 <span class="keyword">class </span><a class="code" href="classMyArtProvider.html">MyArtProvider</a> : <span class="keyword">public</span> wxArtProvider
 <a name="l00087"></a>00087 {
 <a name="l00088"></a>00088 <span class="keyword">protected</span>:
 <a name="l00089"></a>00089     <span class="keyword">virtual</span> wxBitmap <a class="code" href="classMyArtProvider.html#a4f06bcde38b57c560d5d9ec79ebd35dc">CreateBitmap</a>(<span class="keyword">const</span> wxArtID&amp; <span class="keywordtype">id</span>,
@@ -154,7 +154,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00092"></a>00092 };
 <a name="l00093"></a>00093 
 <a name="l00094"></a>00094 <span class="comment">// CreateBitmap function</span>
-<a name="l00095"></a><a class="code" href="classMyArtProvider.html#a4f06bcde38b57c560d5d9ec79ebd35dc">00095</a> wxBitmap <a class="code" href="classMyArtProvider.html#a4f06bcde38b57c560d5d9ec79ebd35dc">MyArtProvider::CreateBitmap</a>(<span class="keyword">const</span> wxArtID&amp; <span class="keywordtype">id</span>,
+<a name="l00095"></a>00095 wxBitmap <a class="code" href="classMyArtProvider.html#a4f06bcde38b57c560d5d9ec79ebd35dc">MyArtProvider::CreateBitmap</a>(<span class="keyword">const</span> wxArtID&amp; <span class="keywordtype">id</span>,
 <a name="l00096"></a>00096                                      <span class="keyword">const</span> wxArtClient&amp; client,
 <a name="l00097"></a>00097                                      <span class="keyword">const</span> wxSize&amp; size)
 <a name="l00098"></a>00098 {
@@ -182,27 +182,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00120"></a>00120 <span class="preprocessor">#include &lt;mrpt/reactivenav/CReactiveNavigationSystem.h&gt;</span>
 <a name="l00121"></a>00121 <span class="keyword">using namespace </span>mrpt::reactivenav;
 <a name="l00122"></a>00122 
-<a name="l00123"></a><a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">00123</a> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html">YclopsNavigationSystem</a>          *<a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>=NULL;
+<a name="l00123"></a><a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">00123</a> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html">YclopsNavigationSystem</a>          *<a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>=NULL;
 <a name="l00124"></a>00124 
 <a name="l00125"></a>00125 <span class="comment">// The obstacles map:</span>
-<a name="l00126"></a><a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">00126</a> COccupancyGridMap2D             <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>;
-<a name="l00127"></a>00127 CRobotSimulator                 <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>(1e-9f,0);
-<a name="l00128"></a><a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a402b4b888868731e4ec0c17fd38dadf4">00128</a> TPoint2D                                <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a402b4b888868731e4ec0c17fd38dadf4">curCursorPos</a>;
+<a name="l00126"></a><a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">00126</a> COccupancyGridMap2D             <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>;
+<a name="l00127"></a>00127 CRobotSimulator                 <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>(1e-9f,0);
+<a name="l00128"></a><a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a402b4b888868731e4ec0c17fd38dadf4">00128</a> TPoint2D                                <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a402b4b888868731e4ec0c17fd38dadf4">curCursorPos</a>;
 <a name="l00129"></a>00129 
-<a name="l00130"></a><a class="code" href="classCMyReactInterface.html">00130</a> <span class="keyword">class </span><a class="code" href="classCMyReactInterface.html">CMyReactInterface</a> : <span class="keyword">public</span> CReactiveInterfaceImplementation
+<a name="l00130"></a>00130 <span class="keyword">class </span><a class="code" href="classCMyReactInterface.html">CMyReactInterface</a> : <span class="keyword">public</span> CReactiveInterfaceImplementation
 <a name="l00131"></a>00131 {
 <a name="l00132"></a>00132 <span class="keyword">public</span>:
 <a name="l00133"></a><a class="code" href="classCMyReactInterface.html#a475591e4f79bed0c2b4f2e3c896f5433">00133</a>         <span class="keywordtype">bool</span> getCurrentPoseAndSpeeds( mrpt::poses::CPose2D &amp;curPose, <span class="keywordtype">float</span> &amp;curV, <span class="keywordtype">float</span> &amp;curW)
 <a name="l00134"></a>00134         {
-<a name="l00135"></a>00135                 <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getRealPose( curPose );
-<a name="l00136"></a>00136                 curV = <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getV();
-<a name="l00137"></a>00137                 curW = <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getW();
+<a name="l00135"></a>00135                 <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getRealPose( curPose );
+<a name="l00136"></a>00136                 curV = <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getV();
+<a name="l00137"></a>00137                 curW = <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getW();
 <a name="l00138"></a>00138                 <span class="keywordflow">return</span> <span class="keyword">true</span>;
 <a name="l00139"></a>00139         }
 <a name="l00140"></a>00140 
 <a name="l00141"></a><a class="code" href="classCMyReactInterface.html#aede3cbd123e445daeb5b9d4eb5d39be5">00141</a>         <span class="keywordtype">bool</span> changeSpeeds( <span class="keywordtype">float</span> v, <span class="keywordtype">float</span> w )
 <a name="l00142"></a>00142         {
-<a name="l00143"></a>00143                 <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.movementCommand(v,w);
+<a name="l00143"></a>00143                 <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.movementCommand(v,w);
 <a name="l00144"></a>00144                 <span class="keywordflow">return</span> <span class="keyword">true</span>;
 <a name="l00145"></a>00145         }
 <a name="l00146"></a>00146 
@@ -210,7 +210,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00148"></a>00148         {
 <a name="l00149"></a>00149                 CPose2D  robotPose;
 <a name="l00150"></a>00150 
-<a name="l00151"></a>00151                 <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getRealPose(robotPose);
+<a name="l00151"></a>00151                 <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getRealPose(robotPose);
 <a name="l00152"></a>00152 
 <a name="l00153"></a>00153                 CObservation2DRangeScan    laserScan;
 <a name="l00154"></a>00154                 laserScan.aperture = M_2PIf;
@@ -219,7 +219,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00157"></a>00157                 laserScan.stdError  = 0.003f;
 <a name="l00158"></a>00158 
 <a name="l00159"></a>00159 
-<a name="l00160"></a>00160                 <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>.laserScanSimulator(
+<a name="l00160"></a>00160                 <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>.laserScanSimulator(
 <a name="l00161"></a>00161                         laserScan,
 <a name="l00162"></a>00162                         robotPose,
 <a name="l00163"></a>00163                         0.5f, <span class="comment">// grid cell threshold</span>
@@ -243,7 +243,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00181"></a>00181         }
 <a name="l00182"></a>00182 };
 <a name="l00183"></a>00183 
-<a name="l00184"></a><a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a6190e0da4d7cdac7c55e1b8c17f41970">00184</a> <a class="code" href="classCMyReactInterface.html">CMyReactInterface</a>  <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a6190e0da4d7cdac7c55e1b8c17f41970">myReactiveInterface</a>;
+<a name="l00184"></a><a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a6190e0da4d7cdac7c55e1b8c17f41970">00184</a> <a class="code" href="classCMyReactInterface.html">CMyReactInterface</a>  <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a6190e0da4d7cdac7c55e1b8c17f41970">myReactiveInterface</a>;
 <a name="l00185"></a>00185 
 <a name="l00186"></a>00186 <span class="comment">//(*IdInit(ReactiveNavigationDemoFrame)</span>
 <a name="l00187"></a>00187 <span class="keyword">const</span> <span class="keywordtype">long</span> <a class="code" href="classReactiveNavigationDemoFrame.html#a89352ec63ee6f4134676eedb156c4cc5">ReactiveNavigationDemoFrame::ID_BUTTON1</a> = wxNewId();
@@ -281,12 +281,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00219"></a>00219 END_EVENT_TABLE()
 <a name="l00220"></a>00220 
 <a name="l00221"></a>00221 
-<a name="l00222"></a><a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a98f6c3bb265d6fc2403604dd79be6403">00222</a> <span class="keywordtype">void</span> <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a98f6c3bb265d6fc2403604dd79be6403">emul_printf</a>(const <span class="keywordtype">char</span>* s)
+<a name="l00222"></a><a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a98f6c3bb265d6fc2403604dd79be6403">00222</a> <span class="keywordtype">void</span> <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a98f6c3bb265d6fc2403604dd79be6403">emul_printf</a>(const <span class="keywordtype">char</span>* s)
 <a name="l00223"></a>00223 {
 <a name="l00224"></a>00224     cout &lt;&lt; s;
 <a name="l00225"></a>00225 }
 <a name="l00226"></a>00226 
-<a name="l00227"></a><a class="code" href="classReactiveNavigationDemoFrame.html#a7499a02a8271dae2ba916069c1f549e7">00227</a> <a class="code" href="classReactiveNavigationDemoFrame.html#a7499a02a8271dae2ba916069c1f549e7">ReactiveNavigationDemoFrame::ReactiveNavigationDemoFrame</a>(wxWindow* parent,wxWindowID <span class="keywordtype">id</span>)
+<a name="l00227"></a>00227 <a class="code" href="classReactiveNavigationDemoFrame.html#a7499a02a8271dae2ba916069c1f549e7">ReactiveNavigationDemoFrame::ReactiveNavigationDemoFrame</a>(wxWindow* parent,wxWindowID <span class="keywordtype">id</span>)
 <a name="l00228"></a>00228 {
 <a name="l00229"></a>00229     <span class="comment">// Load my custom icons:</span>
 <a name="l00230"></a>00230 <span class="preprocessor">#if wxCHECK_VERSION(2, 8, 0)</span>
@@ -478,17 +478,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00416"></a>00416 
 <a name="l00417"></a>00417         <span class="comment">// Create dialogs:</span>
 <a name="l00418"></a>00418         iniEditorRobot = <span class="keyword">new</span> <a class="code" href="classCIniEditor.html">CIniEditor</a>(<span class="keyword">this</span>);
-<a name="l00419"></a>00419         <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a6f79ad4836589b0b1cc39f40ac9594b6">iniEditoreactivenav</a> = <span class="keyword">new</span> <a class="code" href="classCIniEditor.html">CIniEditor</a>(<span class="keyword">this</span>);
+<a name="l00419"></a>00419         <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a6f79ad4836589b0b1cc39f40ac9594b6">iniEditoreactivenav</a> = <span class="keyword">new</span> <a class="code" href="classCIniEditor.html">CIniEditor</a>(<span class="keyword">this</span>);
 <a name="l00420"></a>00420 
 <a name="l00421"></a>00421         iniEditorRobot-&gt;<a class="code" href="classCIniEditor.html#a1c5a9bbfa524a0b9ed59bba7cf221c3c">edText</a>-&gt;SetValue( wxT(<span class="stringliteral">&quot;; ---------------------------------------------------------------\n; FILE: CONFIG_RobotDescription.ini\n;\n;  All robot dependant modules should look here to determine\n;   the actual running platform. The posibilities are:\n;\t-&gt; \&quot;Sancho\&quot;\n;\t-&gt; \&quot;Sena\&quot;\n;  Some physical description parameters are stored for each \n;    robot.\n;\n;  JLBC @ OCT-2005\n; ---------------------------------------------------------------\n[ROBOT_NAME]\nName=SYMCAR\n\n; -------------------------------\n;\t       SYMCAR\n; -------------------------------\n[SYMCAR]\nPLS_Pose_x=0 ; Laser range scaner 3D position in the robot\nPLS_Pose_y=0\nPLS_Pose_z=0.31\nPLS_Pose_yaw=0\t\t; Angles in degrees\nPLS_Pose_pitch=0\nPLS_Pose_roll=0\n\n&quot;</span>) );
 <a name="l00422"></a>00422 
 <a name="l00423"></a>00423         <span class="comment">// VC2003 complains about the too big string:</span>
 <a name="l00424"></a>00424         wxString        auxStr = wxT(<span class="stringliteral">&quot;; ---------------------------------------------------------------\n; FILE: CONFIG_ReactiveNavigator.ini\n;\n;  In this file there are parameters to the reactive navigation\n;   module.\n;\n;  JLBC @ OCT-2005\n; ---------------------------------------------------------------\n\n\n[GLOBAL_CONFIG]\n; 0: VFF,  1: ND\nHOLONOMIC_METHOD=1\nALARM_SEEMS_NOT_APPROACHING_TARGET_TIMEOUT=100\n\n; ----------------------------------------------------\n;\tParameters for the \&quot;Nearness diagram\&quot; Holonomic method\n; ----------------------------------------------------\n[ND_CONFIG]\nfactorWeights=1.0 0.5 2.0 0.4\n; 1: Free space\n; 2: Dist. in sectors\n; 3: Closer to target (euclidean)\n; 4: Hysteresis\nWIDE_GAP_SIZE_PERCENT=0.50\nMAX_SECTOR_DIST_FOR_D2_PERCENT=0.25\n&quot;</span>);
 <a name="l00425"></a>00425         auxStr &lt;&lt; wxT(<span class="stringliteral">&quot;RISK_EVALUATION_SECTORS_PERCENT=0.25\nRISK_EVALUATION_DISTANCE=0.15\t\t; In normalized ps-meters [0,1]\nTARGET_SLOW_APPROACHING_DISTANCE=1.00\t; For stop gradually\nTOO_CLOSE_OBSTACLE=0.02\t\t\t; In normalized ps-meters\n\n\n; ----------------------------------------------------\n;\tParameters for the navigation on ROBOT: \&quot;SYM_CAR\&quot;\n; ----------------------------------------------------\n[SYMCAR]\nweights=0.5 0.05 0.5 2.0 0.5 0.1\n; 1: Free space\n; 2: Dist. in sectors\t\t\t\n; 3: Heading toward target\n; 4: Closer to target (euclidean)\n; 5: Hysteresis\n; 6: Security Distance\n\nDIST_TO_TARGET_FOR_SENDING_EVENT=1.25\t; Minimum. distance to target for sending the end event. Set to 0 to send it just on navigation end\n\nMinObstaclesHeight=0.0 \t\t; Minimum coordinate in the \&quot;z\&quot; axis for an obstacle to be taken into account.\nMaxObstaclesHeight=1.40 \t\t; Maximum coordinate in the \&quot;z\&quot; axis for an obstacle to be taken into account.\n\nrobotMax_V_mps=0.70\t\t\t; Speed limits\nrobotMax_W_degps=50\nROBOTMODEL_DELAY=0\t\t\t; The delay until motor reaction\nROBOTMODEL_TAU=0\t\t\t; The \&quot;TAU\&quot; time constant of a first order lowpass filter\n\nMAX_REFERENCE_DISTANCE=3.50\nWIDE_GAP_SIZE_PERCENT=0.40\nRISK_EVALUATION_DISTANCE=0.5\nRISK_EVALUATION_SECTORS_PERCENT=0.20\nMAX_SECTOR_DIST_FOR_D2_PERCENT=0.25\nRESOLUCION_REJILLA_X=0.03\nRESOLUCION_REJILLA_Y=0.03\n\nPTG_COUNT=3\n\n; \t\tC-PTGs:\n; ------------------------------------\nPTG0_Type=1\nPTG0_nAlfas=300\nPTG0_v_max_mps=0.7\nPTG0_w_max_gps=50\nPTG0_K=1.0\n\nPTG1_Type=1\nPTG1_nAlfas=300\nPTG1_v_max_mps=0.7\nPTG1_w_max_gps=20\nPTG1_K=1.0\n\n; \t     a-A type PTGs:\n; ------------------------------------\nPTG2_Type=2\nPTG2_nAlfas=300\nPTG2_v_max_mps=0.7\nPTG2_w_max_gps=50\nPTG2_cte_a0v_deg=10\nPTG2_cte_a0w_deg=40\n\n\nRobotModel_shape2D_xs=-0.2 0.5 0.5 -0.2\nRobotModel_shape2D_ys=0.3 0.3 -0.3 -0.3\n&quot;</span>);
-<a name="l00426"></a>00426         <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a6f79ad4836589b0b1cc39f40ac9594b6">iniEditoreactivenav</a>-&gt;<a class="code" href="classCIniEditor.html#a1c5a9bbfa524a0b9ed59bba7cf221c3c">edText</a>-&gt;SetValue( auxStr );
+<a name="l00426"></a>00426         <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a6f79ad4836589b0b1cc39f40ac9594b6">iniEditoreactivenav</a>-&gt;<a class="code" href="classCIniEditor.html#a1c5a9bbfa524a0b9ed59bba7cf221c3c">edText</a>-&gt;SetValue( auxStr );
 <a name="l00427"></a>00427 
-<a name="l00428"></a>00428         <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a6cf8e31cebca2d227038b9e24cd4249b">EDIT_internalCfgRobot</a> = string( iniEditorRobot-&gt;<a class="code" href="classCIniEditor.html#a1c5a9bbfa524a0b9ed59bba7cf221c3c">edText</a>-&gt;GetValue().mb_str() );
-<a name="l00429"></a>00429         <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a144025aba506bbaa8ff525e4d7343194">EDIT_internalCfgReactive</a> = string( <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a6f79ad4836589b0b1cc39f40ac9594b6">iniEditoreactivenav</a>-&gt;<a class="code" href="classCIniEditor.html#a1c5a9bbfa524a0b9ed59bba7cf221c3c">edText</a>-&gt;GetValue().mb_str() );
+<a name="l00428"></a>00428         <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a6cf8e31cebca2d227038b9e24cd4249b">EDIT_internalCfgRobot</a> = string( iniEditorRobot-&gt;<a class="code" href="classCIniEditor.html#a1c5a9bbfa524a0b9ed59bba7cf221c3c">edText</a>-&gt;GetValue().mb_str() );
+<a name="l00429"></a>00429         <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a144025aba506bbaa8ff525e4d7343194">EDIT_internalCfgReactive</a> = string( <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a6f79ad4836589b0b1cc39f40ac9594b6">iniEditoreactivenav</a>-&gt;<a class="code" href="classCIniEditor.html#a1c5a9bbfa524a0b9ed59bba7cf221c3c">edText</a>-&gt;GetValue().mb_str() );
 <a name="l00430"></a>00430 
 <a name="l00431"></a>00431 
 <a name="l00432"></a>00432         <span class="comment">// Try to load the map:</span>
@@ -499,34 +499,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00437"></a>00437     plot-&gt;Fit();
 <a name="l00438"></a>00438 }
 <a name="l00439"></a>00439 
-<a name="l00440"></a><a class="code" href="classReactiveNavigationDemoFrame.html#a0c18e3b15ffb70d6da18a27c8d0e874c">00440</a> <a class="code" href="classReactiveNavigationDemoFrame.html#a0c18e3b15ffb70d6da18a27c8d0e874c">ReactiveNavigationDemoFrame::~ReactiveNavigationDemoFrame</a>()
+<a name="l00440"></a>00440 <a class="code" href="classReactiveNavigationDemoFrame.html#a0c18e3b15ffb70d6da18a27c8d0e874c">ReactiveNavigationDemoFrame::~ReactiveNavigationDemoFrame</a>()
 <a name="l00441"></a>00441 {
 <a name="l00442"></a>00442     <span class="comment">//(*Destroy(ReactiveNavigationDemoFrame)</span>
 <a name="l00443"></a>00443     <span class="comment">//*)</span>
 <a name="l00444"></a>00444 
-<a name="l00445"></a>00445     <span class="keyword">delete</span> <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>; <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a> = NULL;
+<a name="l00445"></a>00445     <span class="keyword">delete</span> <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>; <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a> = NULL;
 <a name="l00446"></a>00446         <span class="keyword">delete</span> myRedirector; myRedirector = NULL;
 <a name="l00447"></a>00447 
-<a name="l00448"></a>00448         <span class="keyword">delete</span> <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a9a5bb39c00a1ed12e548e7fae09e96f7">iniEditorRobot</a>;
-<a name="l00449"></a>00449         <span class="keyword">delete</span> <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a6f79ad4836589b0b1cc39f40ac9594b6">iniEditoreactivenav</a>;
+<a name="l00448"></a>00448         <span class="keyword">delete</span> <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a9a5bb39c00a1ed12e548e7fae09e96f7">iniEditorRobot</a>;
+<a name="l00449"></a>00449         <span class="keyword">delete</span> <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a6f79ad4836589b0b1cc39f40ac9594b6">iniEditoreactivenav</a>;
 <a name="l00450"></a>00450 }
 <a name="l00451"></a>00451 
-<a name="l00452"></a><a class="code" href="classReactiveNavigationDemoFrame.html#afadb78f1c18d9c37fa2e908b7ebdcdd9">00452</a> <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#afadb78f1c18d9c37fa2e908b7ebdcdd9">ReactiveNavigationDemoFrame::OnQuit</a>(wxCommandEvent&amp; event)
+<a name="l00452"></a>00452 <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#afadb78f1c18d9c37fa2e908b7ebdcdd9">ReactiveNavigationDemoFrame::OnQuit</a>(wxCommandEvent&amp; event)
 <a name="l00453"></a>00453 {
 <a name="l00454"></a>00454     Close();
 <a name="l00455"></a>00455 }
 <a name="l00456"></a>00456 
-<a name="l00457"></a><a class="code" href="classReactiveNavigationDemoFrame.html#a0b525e1777495b632991b14222eb47b8">00457</a> <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#a0b525e1777495b632991b14222eb47b8">ReactiveNavigationDemoFrame::OnAbout</a>(wxCommandEvent&amp; event)
+<a name="l00457"></a>00457 <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#a0b525e1777495b632991b14222eb47b8">ReactiveNavigationDemoFrame::OnAbout</a>(wxCommandEvent&amp; event)
 <a name="l00458"></a>00458 {
 <a name="l00459"></a>00459 }
 <a name="l00460"></a>00460 
-<a name="l00461"></a><a class="code" href="classReactiveNavigationDemoFrame.html#a3bde6676e681d9fe0f69e0f7e067606c">00461</a> <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#a3bde6676e681d9fe0f69e0f7e067606c">ReactiveNavigationDemoFrame::OnbtnStartClick</a>(wxCommandEvent&amp; event)
+<a name="l00461"></a>00461 <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#a3bde6676e681d9fe0f69e0f7e067606c">ReactiveNavigationDemoFrame::OnbtnStartClick</a>(wxCommandEvent&amp; event)
 <a name="l00462"></a>00462 {
 <a name="l00463"></a>00463         <span class="keywordflow">if</span> (!reloadMap()) <span class="keywordflow">return</span>;
 <a name="l00464"></a>00464 
 <a name="l00465"></a>00465         tryConstructReactiveNavigator();
 <a name="l00466"></a>00466 
-<a name="l00467"></a>00467         <span class="keywordflow">if</span> (!<a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>)
+<a name="l00467"></a>00467         <span class="keywordflow">if</span> (!<a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>)
 <a name="l00468"></a>00468         {
 <a name="l00469"></a>00469                 wxMessageBox( _(<span class="stringliteral">&quot;Could not create the reactive navigation object! Check the log output for error messages.&quot;</span>), wxT(<span class="stringliteral">&quot;Error&quot;</span>), wxOK, <span class="keyword">this</span>);
 <a name="l00470"></a>00470                 <span class="keywordflow">return</span>;
@@ -542,7 +542,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00480"></a>00480     timSimulate.Start(<a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a487914d9883a51e1fd9b79c4679b796a">SIMULATION_TIME_STEPS</a>, <span class="keyword">false</span>); <span class="comment">// No One-shot</span>
 <a name="l00481"></a>00481 }
 <a name="l00482"></a>00482 
-<a name="l00483"></a><a class="code" href="classReactiveNavigationDemoFrame.html#af390d5bc663873aa02c3a92b8bdbcb46">00483</a> <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#af390d5bc663873aa02c3a92b8bdbcb46">ReactiveNavigationDemoFrame::OnbtnPauseClick</a>(wxCommandEvent&amp; event)
+<a name="l00483"></a>00483 <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#af390d5bc663873aa02c3a92b8bdbcb46">ReactiveNavigationDemoFrame::OnbtnPauseClick</a>(wxCommandEvent&amp; event)
 <a name="l00484"></a>00484 {
 <a name="l00485"></a>00485         <span class="comment">// Enable buttons:</span>
 <a name="l00486"></a>00486         btnPause-&gt;Enable(<span class="keyword">false</span>);
@@ -550,13 +550,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00488"></a>00488 
 <a name="l00489"></a>00489 }
 <a name="l00490"></a>00490 
-<a name="l00491"></a><a class="code" href="classReactiveNavigationDemoFrame.html#adb084bd5de06254e95384deab4af273f">00491</a> <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#adb084bd5de06254e95384deab4af273f">ReactiveNavigationDemoFrame::OnbtnExitClick</a>(wxCommandEvent&amp; event)
+<a name="l00491"></a>00491 <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#adb084bd5de06254e95384deab4af273f">ReactiveNavigationDemoFrame::OnbtnExitClick</a>(wxCommandEvent&amp; event)
 <a name="l00492"></a>00492 {
 <a name="l00493"></a>00493     Close();
 <a name="l00494"></a>00494 }
 <a name="l00495"></a>00495 
 <a name="l00496"></a>00496 <span class="comment">// both objects must be DELETED by the caller!</span>
-<a name="l00497"></a><a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#ab3cb8c398760b6dbc5074396b8f59598">00497</a> <span class="keywordtype">void</span> <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#ab3cb8c398760b6dbc5074396b8f59598">createConfigSources</a>(
+<a name="l00497"></a><a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#ab3cb8c398760b6dbc5074396b8f59598">00497</a> <span class="keywordtype">void</span> <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#ab3cb8c398760b6dbc5074396b8f59598">createConfigSources</a>(
 <a name="l00498"></a>00498         <a class="code" href="classReactiveNavigationDemoFrame.html">ReactiveNavigationDemoFrame</a> *frame,
 <a name="l00499"></a>00499         CConfigFileBase    *&amp; iniReactive,
 <a name="l00500"></a>00500         CConfigFileBase    *&amp; configRobotIni )
@@ -585,32 +585,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00523"></a>00523         <span class="keywordflow">else</span>
 <a name="l00524"></a>00524         {
 <a name="l00525"></a>00525                 <span class="comment">// Use internal strings:</span>
-<a name="l00526"></a>00526                 iniReactive = <span class="keyword">new</span> CConfigFileMemory( <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a144025aba506bbaa8ff525e4d7343194">EDIT_internalCfgReactive</a> );
-<a name="l00527"></a>00527                 configRobotIni = <span class="keyword">new</span> CConfigFileMemory( <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a6cf8e31cebca2d227038b9e24cd4249b">EDIT_internalCfgRobot</a> );
+<a name="l00526"></a>00526                 iniReactive = <span class="keyword">new</span> CConfigFileMemory( EDIT_internalCfgReactive );
+<a name="l00527"></a>00527                 configRobotIni = <span class="keyword">new</span> CConfigFileMemory( <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a6cf8e31cebca2d227038b9e24cd4249b">EDIT_internalCfgRobot</a> );
 <a name="l00528"></a>00528         }
 <a name="l00529"></a>00529 }
 <a name="l00530"></a>00530 
-<a name="l00531"></a><a class="code" href="classReactiveNavigationDemoFrame.html#a89ae80d8e81c36ed3fccd79e044301e3">00531</a> <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#a89ae80d8e81c36ed3fccd79e044301e3">ReactiveNavigationDemoFrame::tryConstructReactiveNavigator</a>()
+<a name="l00531"></a>00531 <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#a89ae80d8e81c36ed3fccd79e044301e3">ReactiveNavigationDemoFrame::tryConstructReactiveNavigator</a>()
 <a name="l00532"></a>00532 {
 <a name="l00533"></a>00533         <span class="keywordflow">try</span>
 <a name="l00534"></a>00534         {
 <a name="l00535"></a>00535                 CConfigFileBase    *iniReactive=NULL, *configRobotIni=NULL;
 <a name="l00536"></a>00536 
 <a name="l00537"></a>00537                 <span class="comment">// Get ini-data:</span>
-<a name="l00538"></a>00538                 <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#ab3cb8c398760b6dbc5074396b8f59598">createConfigSources</a>(<span class="keyword">this</span>, iniReactive, configRobotIni );
+<a name="l00538"></a>00538                 <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#ab3cb8c398760b6dbc5074396b8f59598">createConfigSources</a>(<span class="keyword">this</span>, iniReactive, configRobotIni );
 <a name="l00539"></a>00539                 <span class="keywordflow">if</span> (!iniReactive || !configRobotIni) <span class="keywordflow">return</span>;
 <a name="l00540"></a>00540 
-<a name="l00541"></a>00541                 <span class="keywordflow">if</span> (!<a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>)
+<a name="l00541"></a>00541                 <span class="keywordflow">if</span> (!<a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>)
 <a name="l00542"></a>00542                 {
 <a name="l00543"></a>00543                         <span class="comment">// Create reactive nav. object:</span>
-<a name="l00544"></a>00544                         <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a> = <span class="keyword">new</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html">YclopsNavigationSystem</a>(
-<a name="l00545"></a>00545                                 <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a6190e0da4d7cdac7c55e1b8c17f41970">myReactiveInterface</a>,
+<a name="l00544"></a>00544                         <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a> = <span class="keyword">new</span> <a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html">YclopsNavigationSystem</a>(
+<a name="l00545"></a>00545                                 <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a6190e0da4d7cdac7c55e1b8c17f41970">myReactiveInterface</a>,
 <a name="l00546"></a>00546                                 <span class="keyword">true</span>,
 <a name="l00547"></a>00547                                 <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a2b130f688ad5cd50942446c256ff5f9c">ENABLE_reactivenav_LOG_FILES</a> );
 <a name="l00548"></a>00548                 }
 <a name="l00549"></a>00549 
 <a name="l00550"></a>00550                 <span class="comment">// Reload config:</span>
-<a name="l00551"></a>00551                 <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>-&gt;<a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a8dbf91c9c8aa4e5f2885173d3b8335ae">loadConfigFile</a>(
+<a name="l00551"></a>00551                 <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>-&gt;<a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#a8dbf91c9c8aa4e5f2885173d3b8335ae">loadConfigFile</a>(
 <a name="l00552"></a>00552                         *iniReactive,
 <a name="l00553"></a>00553                         *configRobotIni );
 <a name="l00554"></a>00554 
@@ -628,15 +628,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00566"></a>00566         }
 <a name="l00567"></a>00567 }
 <a name="l00568"></a>00568 
-<a name="l00569"></a><a class="code" href="classReactiveNavigationDemoFrame.html#a190defe9e9785858875a7f0cc535c533">00569</a> <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#a190defe9e9785858875a7f0cc535c533">ReactiveNavigationDemoFrame::OnbtnNavigateClick</a>(wxCommandEvent&amp; event)
+<a name="l00569"></a>00569 <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#a190defe9e9785858875a7f0cc535c533">ReactiveNavigationDemoFrame::OnbtnNavigateClick</a>(wxCommandEvent&amp; event)
 <a name="l00570"></a>00570 {
 <a name="l00571"></a>00571 
-<a name="l00572"></a>00572         <span class="keywordflow">if</span> (!<a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>)
+<a name="l00572"></a>00572         <span class="keywordflow">if</span> (!<a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>)
 <a name="l00573"></a>00573         {
 <a name="l00574"></a>00574                 <span class="comment">// Initialized ok?</span>
 <a name="l00575"></a>00575                 tryConstructReactiveNavigator();
 <a name="l00576"></a>00576 
-<a name="l00577"></a>00577                 <span class="keywordflow">if</span> (!<a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>)
+<a name="l00577"></a>00577                 <span class="keywordflow">if</span> (!<a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>)
 <a name="l00578"></a>00578                 {
 <a name="l00579"></a>00579                         wxMessageBox( _(<span class="stringliteral">&quot;Could not create the reactive navigation object! Check the log output for error messages.&quot;</span>), wxT(<span class="stringliteral">&quot;Error&quot;</span>), wxOK, <span class="keyword">this</span>);
 <a name="l00580"></a>00580                         <span class="keywordflow">return</span>;
@@ -654,7 +654,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00592"></a>00592         lyTarget-&gt;SetCoordinateBase( x,y );
 <a name="l00593"></a>00593         plot-&gt;Refresh();
 <a name="l00594"></a>00594 
-<a name="l00595"></a>00595         <span class="keywordflow">if</span> (<a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>)
+<a name="l00595"></a>00595         <span class="keywordflow">if</span> (<a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>)
 <a name="l00596"></a>00596         {
 <a name="l00597"></a>00597                 CAbstractReactiveNavigationSystem::TNavigationParams   navParams;
 <a name="l00598"></a>00598                 navParams.target.x = x ;
@@ -662,12 +662,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00600"></a>00600                 navParams.targetAllowedDistance = 0.40f;
 <a name="l00601"></a>00601                 navParams.targetIsRelative = <span class="keyword">false</span>;
 <a name="l00602"></a>00602 
-<a name="l00603"></a>00603                 <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>-&gt;<a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ab0626f9e2abd57a804137740e7f36b3e">navigate</a>( &amp;navParams );
+<a name="l00603"></a>00603                 <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>-&gt;<a class="code" href="classmrpt_1_1reactivenav_1_1YclopsNavigationSystem.html#ab0626f9e2abd57a804137740e7f36b3e">navigate</a>( &amp;navParams );
 <a name="l00604"></a>00604         }
 <a name="l00605"></a>00605 }
 <a name="l00606"></a>00606 
 <a name="l00607"></a>00607 
-<a name="l00608"></a><a class="code" href="classReactiveNavigationDemoFrame.html#ace6595608578535a345180b358f5f00a">00608</a> <span class="keywordtype">bool</span> <a class="code" href="classReactiveNavigationDemoFrame.html#ace6595608578535a345180b358f5f00a">ReactiveNavigationDemoFrame::reloadMap</a>()
+<a name="l00608"></a>00608 <span class="keywordtype">bool</span> <a class="code" href="classReactiveNavigationDemoFrame.html#ace6595608578535a345180b358f5f00a">ReactiveNavigationDemoFrame::reloadMap</a>()
 <a name="l00609"></a>00609 {
 <a name="l00610"></a>00610     <span class="keywordflow">try</span>
 <a name="l00611"></a>00611         {
@@ -676,7 +676,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00614"></a>00614                 {
 <a name="l00615"></a>00615                         <span class="comment">// Internal:</span>
 <a name="l00616"></a>00616                         CMemoryStream  s( DEFAULT_GRIDMAP_DATA, <span class="keyword">sizeof</span>(DEFAULT_GRIDMAP_DATA) );
-<a name="l00617"></a>00617                         s &gt;&gt; <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>;
+<a name="l00617"></a>00617                         s &gt;&gt; <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>;
 <a name="l00618"></a>00618                 }
 <a name="l00619"></a>00619                 <span class="keywordflow">else</span>
 <a name="l00620"></a>00620                 {
@@ -689,19 +689,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00627"></a>00627                         }
 <a name="l00628"></a>00628 
 <a name="l00629"></a>00629                         CFileGZInputStream  f( filName  );
-<a name="l00630"></a>00630                         f &gt;&gt; <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>;
+<a name="l00630"></a>00630                         f &gt;&gt; <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>;
 <a name="l00631"></a>00631                 }
 <a name="l00632"></a>00632 
 <a name="l00633"></a>00633                 <span class="comment">// Set the map image:</span>
 <a name="l00634"></a>00634                 CImage imgGrid;
-<a name="l00635"></a>00635                 <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>.getAsImage(imgGrid);
+<a name="l00635"></a>00635                 <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>.getAsImage(imgGrid);
 <a name="l00636"></a>00636                 wxImage *newBmp = mrpt::gui::MRPTImage2wxImage( imgGrid );
-<a name="l00637"></a>00637                 <span class="keywordtype">double</span> lx = <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>.getXMax()-<a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>.getXMin();
-<a name="l00638"></a>00638                 <span class="keywordtype">double</span> ly = <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>.getYMax()-<a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>.getYMin();
+<a name="l00637"></a>00637                 <span class="keywordtype">double</span> lx = <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>.getXMax()-<a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>.getXMin();
+<a name="l00638"></a>00638                 <span class="keywordtype">double</span> ly = <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>.getYMax()-<a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>.getYMin();
 <a name="l00639"></a>00639                 lyGridmap-&gt;SetBitmap(
 <a name="l00640"></a>00640                         *newBmp,
-<a name="l00641"></a>00641                         <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>.getXMin(),
-<a name="l00642"></a>00642                         <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>.getYMin(),
+<a name="l00641"></a>00641                         <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>.getXMin(),
+<a name="l00642"></a>00642                         <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#ace44f90768adeb18fa76dcc5055dc135">gridMap</a>.getYMin(),
 <a name="l00643"></a>00643                         lx,
 <a name="l00644"></a>00644                         ly );
 <a name="l00645"></a>00645                 <span class="keyword">delete</span> newBmp;
@@ -724,28 +724,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00662"></a>00662     }
 <a name="l00663"></a>00663 }
 <a name="l00664"></a>00664 
-<a name="l00665"></a><a class="code" href="classReactiveNavigationDemoFrame.html#a3de11accb2d9c61bda74b9b386d4749b">00665</a> <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#a3de11accb2d9c61bda74b9b386d4749b">ReactiveNavigationDemoFrame::OnplotMouseMove</a>(wxMouseEvent&amp; event)
+<a name="l00665"></a>00665 <span class="keywordtype">void</span> ReactiveNavigationDemoFrame::OnplotMouseMove(wxMouseEvent&amp; event)
 <a name="l00666"></a>00666 {
 <a name="l00667"></a>00667         <span class="keywordtype">int</span> X, Y;
 <a name="l00668"></a>00668         <span class="keyword">event</span>.GetPosition(&amp;X,&amp;Y);
-<a name="l00669"></a>00669     <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a402b4b888868731e4ec0c17fd38dadf4">curCursorPos</a>.x = plot-&gt;p2x(X);
-<a name="l00670"></a>00670     <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a402b4b888868731e4ec0c17fd38dadf4">curCursorPos</a>.y = plot-&gt;p2y(Y);
+<a name="l00669"></a>00669     <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a402b4b888868731e4ec0c17fd38dadf4">curCursorPos</a>.x = plot-&gt;p2x(X);
+<a name="l00670"></a>00670     <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a402b4b888868731e4ec0c17fd38dadf4">curCursorPos</a>.y = plot-&gt;p2y(Y);
 <a name="l00671"></a>00671 
-<a name="l00672"></a>00672         StatusBar1-&gt;SetStatusText(_U(format(<span class="stringliteral">&quot;X=%.03f Y=%.04f&quot;</span>,<a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a402b4b888868731e4ec0c17fd38dadf4">curCursorPos</a>.x,<a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a402b4b888868731e4ec0c17fd38dadf4">curCursorPos</a>.y).c_str()), 0);
+<a name="l00672"></a>00672         StatusBar1-&gt;SetStatusText(_U(format(<span class="stringliteral">&quot;X=%.03f Y=%.04f&quot;</span>,<a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a402b4b888868731e4ec0c17fd38dadf4">curCursorPos</a>.x,<a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a402b4b888868731e4ec0c17fd38dadf4">curCursorPos</a>.y).c_str()), 0);
 <a name="l00673"></a>00673 
 <a name="l00674"></a>00674     <span class="keyword">event</span>.Skip();
 <a name="l00675"></a>00675 }
 <a name="l00676"></a>00676 
 <a name="l00677"></a>00677 
-<a name="l00678"></a><a class="code" href="classReactiveNavigationDemoFrame.html#a0cfb1f56e6f3fa32e0360f2a63e20705">00678</a> <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#a0cfb1f56e6f3fa32e0360f2a63e20705">ReactiveNavigationDemoFrame::OnreactivenavTargetMenu</a>(wxCommandEvent&amp; event)
+<a name="l00678"></a>00678 <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#a0cfb1f56e6f3fa32e0360f2a63e20705">ReactiveNavigationDemoFrame::OnreactivenavTargetMenu</a>(wxCommandEvent&amp; event)
 <a name="l00679"></a>00679 {
-<a name="l00680"></a>00680         edX-&gt;SetValue( _U( format(<span class="stringliteral">&quot;%.03f&quot;</span>, <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a402b4b888868731e4ec0c17fd38dadf4">curCursorPos</a>.x ).c_str() ) );
-<a name="l00681"></a>00681         edY-&gt;SetValue( _U( format(<span class="stringliteral">&quot;%.03f&quot;</span>, <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a402b4b888868731e4ec0c17fd38dadf4">curCursorPos</a>.y ).c_str() ) );
+<a name="l00680"></a>00680         edX-&gt;SetValue( _U( format(<span class="stringliteral">&quot;%.03f&quot;</span>, <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a402b4b888868731e4ec0c17fd38dadf4">curCursorPos</a>.x ).c_str() ) );
+<a name="l00681"></a>00681         edY-&gt;SetValue( _U( format(<span class="stringliteral">&quot;%.03f&quot;</span>, <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a402b4b888868731e4ec0c17fd38dadf4">curCursorPos</a>.y ).c_str() ) );
 <a name="l00682"></a>00682 
 <a name="l00683"></a>00683         OnbtnNavigateClick( event );
 <a name="l00684"></a>00684 }
 <a name="l00685"></a>00685 
-<a name="l00686"></a><a class="code" href="classReactiveNavigationDemoFrame.html#a85c940484401842cefc950a1e9e03eed">00686</a> <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#a85c940484401842cefc950a1e9e03eed">ReactiveNavigationDemoFrame::OntimSimulateTrigger</a>(wxTimerEvent&amp; event)
+<a name="l00686"></a>00686 <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#a85c940484401842cefc950a1e9e03eed">ReactiveNavigationDemoFrame::OntimSimulateTrigger</a>(wxTimerEvent&amp; event)
 <a name="l00687"></a>00687 {
 <a name="l00688"></a>00688         <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a682342b0e1fbe49eb782696d57f77d24">WX_START_TRY</a>
 <a name="l00689"></a>00689 
@@ -768,8 +768,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00706"></a>00706         }
 <a name="l00707"></a>00707 
 <a name="l00708"></a>00708         <span class="comment">// Navigation end?</span>
-<a name="l00709"></a>00709         ASSERT_(<a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>!=NULL);
-<a name="l00710"></a>00710         <span class="keywordflow">if</span> (<a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>-&gt;getCurrentState() != CAbstractReactiveNavigationSystem::NAVIGATING )
+<a name="l00709"></a>00709         ASSERT_(<a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>!=NULL);
+<a name="l00710"></a>00710         <span class="keywordflow">if</span> (<a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>-&gt;getCurrentState() != CAbstractReactiveNavigationSystem::NAVIGATING )
 <a name="l00711"></a>00711         {
 <a name="l00712"></a>00712                 cout &lt;&lt; <span class="stringliteral">&quot;NAVIGATION FINISHED - Select a new target and press &#39;Start&#39; again.&quot;</span> &lt;&lt; endl;
 <a name="l00713"></a>00713                 wxCommandEvent dummy;
@@ -786,27 +786,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00724"></a>00724 
 <a name="l00725"></a>00725         <span class="comment">// Go on, simulate one time step:</span>
 <a name="l00726"></a>00726         <span class="comment">// Robot sim:</span>
-<a name="l00727"></a>00727         <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.simulateInterval( 0.001 * <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a487914d9883a51e1fd9b79c4679b796a">SIMULATION_TIME_STEPS</a> );
+<a name="l00727"></a>00727         <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.simulateInterval( 0.001 * <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a487914d9883a51e1fd9b79c4679b796a">SIMULATION_TIME_STEPS</a> );
 <a name="l00728"></a>00728 
-<a name="l00729"></a>00729         <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>-&gt;navigationStep();
+<a name="l00729"></a>00729         <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#acaa86feb78d77bd0494deaa60bc5a510">reacNavObj</a>-&gt;navigationStep();
 <a name="l00730"></a>00730 
 <a name="l00731"></a>00731         <span class="comment">// Update the target &amp; robot pose &amp; redraw:</span>
 <a name="l00732"></a>00732 
 <a name="l00733"></a>00733         lyVehicle-&gt;SetCoordinateBase(
-<a name="l00734"></a>00734                 <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getX(),
-<a name="l00735"></a>00735                 <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getY(),
-<a name="l00736"></a>00736                 <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getPHI() );
+<a name="l00734"></a>00734                 <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getX(),
+<a name="l00735"></a>00735                 <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getY(),
+<a name="l00736"></a>00736                 <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getPHI() );
 <a name="l00737"></a>00737 
 <a name="l00738"></a>00738 
 <a name="l00739"></a>00739         plot-&gt;Refresh();
 <a name="l00740"></a>00740 
 <a name="l00741"></a>00741         StatusBar1-&gt;SetStatusText(
 <a name="l00742"></a>00742                 _U(format(<span class="stringliteral">&quot;Pose=(%.03f,%.03f,%.02fdeg) (v,w)=(%.03f,%.02f)&quot;</span>,
-<a name="l00743"></a>00743                 <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getX(),
-<a name="l00744"></a>00744                 <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getY(),
-<a name="l00745"></a>00745                 RAD2DEG(<a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getPHI()),
-<a name="l00746"></a>00746                 <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getV(),
-<a name="l00747"></a>00747                 RAD2DEG(<a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getW()) ).c_str() ), 1 );
+<a name="l00743"></a>00743                 <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getX(),
+<a name="l00744"></a>00744                 <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getY(),
+<a name="l00745"></a>00745                 RAD2DEG(<a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getPHI()),
+<a name="l00746"></a>00746                 <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getV(),
+<a name="l00747"></a>00747                 RAD2DEG(<a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a3196ac4a84516996acd896daf3d472a1">robotSim</a>.getW()) ).c_str() ), 1 );
 <a name="l00748"></a>00748 
 <a name="l00749"></a>00749 
 <a name="l00750"></a>00750         <span class="comment">// Set timer to continue simulation:</span>
@@ -818,13 +818,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00756"></a>00756         <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a0a61e637326b93048191edb71b1c56b9">WX_END_TRY</a>
 <a name="l00757"></a>00757 }
 <a name="l00758"></a>00758 
-<a name="l00759"></a><a class="code" href="classReactiveNavigationDemoFrame.html#a94b3344ff98e68e77f399b10e3f11c6a">00759</a> <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#a94b3344ff98e68e77f399b10e3f11c6a">ReactiveNavigationDemoFrame::reloadRobotShape</a>()
+<a name="l00759"></a>00759 <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#a94b3344ff98e68e77f399b10e3f11c6a">ReactiveNavigationDemoFrame::reloadRobotShape</a>()
 <a name="l00760"></a>00760 {
 <a name="l00761"></a>00761         <span class="keywordflow">try</span>
 <a name="l00762"></a>00762         {
 <a name="l00763"></a>00763                 <span class="comment">// Get ini-data:</span>
 <a name="l00764"></a>00764                 CConfigFileBase    *iniReactive=NULL, *configRobotIni=NULL;
-<a name="l00765"></a>00765                 <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#ab3cb8c398760b6dbc5074396b8f59598">createConfigSources</a>(<span class="keyword">this</span>, iniReactive, configRobotIni );
+<a name="l00765"></a>00765                 <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#ab3cb8c398760b6dbc5074396b8f59598">createConfigSources</a>(<span class="keyword">this</span>, iniReactive, configRobotIni );
 <a name="l00766"></a>00766                 <span class="keywordflow">if</span> (!iniReactive || !configRobotIni) <span class="keywordflow">return</span>;
 <a name="l00767"></a>00767 
 <a name="l00768"></a>00768                 <span class="keywordtype">string</span> robotName = configRobotIni-&gt;read_string(<span class="stringliteral">&quot;ROBOT_NAME&quot;</span>,<span class="stringliteral">&quot;Name&quot;</span>,<span class="stringliteral">&quot;SENA&quot;</span>);
@@ -845,30 +845,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00783"></a>00783         }
 <a name="l00784"></a>00784 }
 <a name="l00785"></a>00785 
-<a name="l00786"></a><a class="code" href="classReactiveNavigationDemoFrame.html#ad9ed00366f378d67c6e5029c339dca50">00786</a> <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#ad9ed00366f378d67c6e5029c339dca50">ReactiveNavigationDemoFrame::OnbtnResetClick</a>(wxCommandEvent&amp; event)
+<a name="l00786"></a>00786 <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#ad9ed00366f378d67c6e5029c339dca50">ReactiveNavigationDemoFrame::OnbtnResetClick</a>(wxCommandEvent&amp; event)
 <a name="l00787"></a>00787 {
 <a name="l00788"></a>00788 }
 <a name="l00789"></a>00789 
-<a name="l00790"></a><a class="code" href="classReactiveNavigationDemoFrame.html#a4eb32343ddaaca3949c4f855fc4cddaa">00790</a> <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#a4eb32343ddaaca3949c4f855fc4cddaa">ReactiveNavigationDemoFrame::OnbtnEditRobotParamsClick</a>(wxCommandEvent&amp; event)
+<a name="l00790"></a>00790 <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#a4eb32343ddaaca3949c4f855fc4cddaa">ReactiveNavigationDemoFrame::OnbtnEditRobotParamsClick</a>(wxCommandEvent&amp; event)
 <a name="l00791"></a>00791 {
 <a name="l00792"></a>00792         iniEditorRobot-&gt;Center();
 <a name="l00793"></a>00793     <span class="keywordflow">if</span> (iniEditorRobot-&gt;ShowModal())
-<a name="l00794"></a>00794                 <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a6cf8e31cebca2d227038b9e24cd4249b">EDIT_internalCfgRobot</a> = <span class="keywordtype">string</span>( iniEditorRobot-&gt;<a class="code" href="classCIniEditor.html#a1c5a9bbfa524a0b9ed59bba7cf221c3c">edText</a>-&gt;GetValue().mb_str() );
+<a name="l00794"></a>00794                 <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a6cf8e31cebca2d227038b9e24cd4249b">EDIT_internalCfgRobot</a> = <span class="keywordtype">string</span>( iniEditorRobot-&gt;<a class="code" href="classCIniEditor.html#a1c5a9bbfa524a0b9ed59bba7cf221c3c">edText</a>-&gt;GetValue().mb_str() );
 <a name="l00795"></a>00795 }
 <a name="l00796"></a>00796 
-<a name="l00797"></a><a class="code" href="classReactiveNavigationDemoFrame.html#a4be8a7edfdafdc1835f8becb5360cd4e">00797</a> <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#a4be8a7edfdafdc1835f8becb5360cd4e">ReactiveNavigationDemoFrame::OnbtnEditNavParamsClick</a>(wxCommandEvent&amp; event)
+<a name="l00797"></a>00797 <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#a4be8a7edfdafdc1835f8becb5360cd4e">ReactiveNavigationDemoFrame::OnbtnEditNavParamsClick</a>(wxCommandEvent&amp; event)
 <a name="l00798"></a>00798 {
-<a name="l00799"></a>00799         <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a6f79ad4836589b0b1cc39f40ac9594b6">iniEditoreactivenav</a>-&gt;Center();
-<a name="l00800"></a>00800     <span class="keywordflow">if</span> (<a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a6f79ad4836589b0b1cc39f40ac9594b6">iniEditoreactivenav</a>-&gt;ShowModal())
-<a name="l00801"></a>00801                 <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a144025aba506bbaa8ff525e4d7343194">EDIT_internalCfgReactive</a> = <span class="keywordtype">string</span>( <a class="code" href="branches_2AI_2Sim_2ReactiveNavigationDemoMain_8cpp.html#a6f79ad4836589b0b1cc39f40ac9594b6">iniEditoreactivenav</a>-&gt;<a class="code" href="classCIniEditor.html#a1c5a9bbfa524a0b9ed59bba7cf221c3c">edText</a>-&gt;GetValue().mb_str() );
+<a name="l00799"></a>00799         <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a6f79ad4836589b0b1cc39f40ac9594b6">iniEditoreactivenav</a>-&gt;Center();
+<a name="l00800"></a>00800     <span class="keywordflow">if</span> (<a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a6f79ad4836589b0b1cc39f40ac9594b6">iniEditoreactivenav</a>-&gt;ShowModal())
+<a name="l00801"></a>00801                 EDIT_internalCfgReactive = <span class="keywordtype">string</span>( <a class="code" href="trunk_2Code_2Simulator_2Simulator_2ReactiveNavigationDemoMain_8cpp.html#a6f79ad4836589b0b1cc39f40ac9594b6">iniEditoreactivenav</a>-&gt;<a class="code" href="classCIniEditor.html#a1c5a9bbfa524a0b9ed59bba7cf221c3c">edText</a>-&gt;GetValue().mb_str() );
 <a name="l00802"></a>00802 }
 <a name="l00803"></a>00803 
-<a name="l00804"></a><a class="code" href="classReactiveNavigationDemoFrame.html#aed60d0754e82f6638c65d7542f4c43c0">00804</a> <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#aed60d0754e82f6638c65d7542f4c43c0">ReactiveNavigationDemoFrame::OnrbExtMapSelect</a>(wxCommandEvent&amp; event)
+<a name="l00804"></a>00804 <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#aed60d0754e82f6638c65d7542f4c43c0">ReactiveNavigationDemoFrame::OnrbExtMapSelect</a>(wxCommandEvent&amp; event)
 <a name="l00805"></a>00805 {
 <a name="l00806"></a>00806     edMapFile-&gt;Enable( ! cbExtMap-&gt;GetValue() );
 <a name="l00807"></a>00807 }
 <a name="l00808"></a>00808 
-<a name="l00809"></a><a class="code" href="classReactiveNavigationDemoFrame.html#af419cdab49d0727b9a5947018d6e494a">00809</a> <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#af419cdab49d0727b9a5947018d6e494a">ReactiveNavigationDemoFrame::OncbInternalParamsClick</a>(wxCommandEvent&amp; event)
+<a name="l00809"></a>00809 <span class="keywordtype">void</span> <a class="code" href="classReactiveNavigationDemoFrame.html#af419cdab49d0727b9a5947018d6e494a">ReactiveNavigationDemoFrame::OncbInternalParamsClick</a>(wxCommandEvent&amp; event)
 <a name="l00810"></a>00810 {
 <a name="l00811"></a>00811     btnEditRobotParams-&gt;Enable( ! cbInternalParams-&gt;GetValue() );
 <a name="l00812"></a>00812     btnEditNavParams-&gt;Enable( ! cbInternalParams-&gt;GetValue() );
@@ -950,7 +950,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Mar 15 2011 for YClops by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Mar 16 2011 for YClops by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

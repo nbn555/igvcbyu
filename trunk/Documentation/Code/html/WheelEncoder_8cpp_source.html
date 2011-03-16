@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>YClops: /home/tallred3/ecen493/SeniorProject/trunk/Code/YClopsLib/src/WheelEncoder.cpp Source File</title>
+<title>YClops: WheelEncoder.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -57,7 +57,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 <div class="header">
   <div class="headertitle">
-<h1>/home/tallred3/ecen493/SeniorProject/trunk/Code/YClopsLib/src/WheelEncoder.cpp</h1>  </div>
+<h1>WheelEncoder.cpp</h1>  </div>
 </div>
 <div class="contents">
 <a href="WheelEncoder_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
@@ -95,13 +95,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00038"></a><a class="code" href="classWheelEncoder.html#a8a17a1d5432a7f6fe45ed1b1fe1dd0db">00038</a> <span class="keywordtype">void</span> <a class="code" href="classWheelEncoder.html#a8a17a1d5432a7f6fe45ed1b1fe1dd0db">WheelEncoder::sensorProcess</a>() {
 <a name="l00039"></a>00039         <span class="keywordtype">int</span> tmp1 = 0, tmp2 = 0;
 <a name="l00040"></a>00040         <a class="code" href="logging_8h.html#abb9cf0532817c9e2eeb8ed7385ce6b64">LOG_ENCODER</a>(<a class="code" href="logging_8h.html#aa5a9053636a30269210c54e734e0d583ab03d2afd0c05cf9e3b1a3f60c2545b67">DEBUG4</a>) &lt;&lt; <span class="stringliteral">&quot;Getting Absolute Encoder Values&quot;</span> &lt;&lt; endl;
-<a name="l00041"></a>00041         <a class="code" href="classMotorController.html#aec7a1e340e34f948c255d9c9687ad5bc">MotorController::instance</a>()-&gt;<a class="code" href="classMotorController.html#a1b02202db30a5f11852280ee04ca3fd7">getAbsoluteEncoderCount</a>(&amp;(this-&gt;<a class="code" href="classWheelEncoder.html#a36e45ebed52b775dd0d95212ab8eb563">leftCountAbsolute</a>), &amp;(this-&gt;<a class="code" href="classWheelEncoder.html#a10c84fa2240769d687f049640af9fad7">rightCountAbsolute</a>));
+<a name="l00041"></a>00041         <a class="code" href="classMotorController.html#aec7a1e340e34f948c255d9c9687ad5bc">MotorController::instance</a>()-&gt;<a class="code" href="classMotorController.html#a61460f27210358518164ce7833480d9d" title="gets the absolute number of encoder counts as a 32bit signed number">getAbsoluteEncoderCount</a>(&amp;(this-&gt;<a class="code" href="classWheelEncoder.html#a36e45ebed52b775dd0d95212ab8eb563">leftCountAbsolute</a>), &amp;(this-&gt;<a class="code" href="classWheelEncoder.html#a10c84fa2240769d687f049640af9fad7">rightCountAbsolute</a>));
 <a name="l00042"></a>00042         <a class="code" href="logging_8h.html#abb9cf0532817c9e2eeb8ed7385ce6b64">LOG_ENCODER</a>(<a class="code" href="logging_8h.html#aa5a9053636a30269210c54e734e0d583ab03d2afd0c05cf9e3b1a3f60c2545b67">DEBUG4</a>) &lt;&lt; <span class="stringliteral">&quot;Getting Relative Encoder Values&quot;</span> &lt;&lt; endl;
 <a name="l00043"></a>00043         <a class="code" href="classMotorController.html#aec7a1e340e34f948c255d9c9687ad5bc">MotorController::instance</a>()-&gt;<a class="code" href="classMotorController.html#aab2c14c9ef9f08bb1036ca0b071415c7">getRelativeEncoderCount</a>(tmp1,tmp2);
 <a name="l00044"></a>00044         this-&gt;<a class="code" href="classWheelEncoder.html#a484750760354157081f19425294a9380">leftCount</a> += tmp1;
 <a name="l00045"></a>00045         this-&gt;<a class="code" href="classWheelEncoder.html#af3087f79d08d7d0e6c68300e6d0f9e59">rightCount</a> += tmp2;
 <a name="l00046"></a>00046         <a class="code" href="logging_8h.html#abb9cf0532817c9e2eeb8ed7385ce6b64">LOG_ENCODER</a>(<a class="code" href="logging_8h.html#aa5a9053636a30269210c54e734e0d583ab03d2afd0c05cf9e3b1a3f60c2545b67">DEBUG4</a>) &lt;&lt; <span class="stringliteral">&quot;Getting Encoder Speed&quot;</span> &lt;&lt; endl;
-<a name="l00047"></a>00047         <a class="code" href="classMotorController.html#aec7a1e340e34f948c255d9c9687ad5bc">MotorController::instance</a>()-&gt;<a class="code" href="classMotorController.html#a5f5029758d6b467ed803c4acd4c64cbf">getEncoderSpeeds</a>(this-&gt;<a class="code" href="classWheelEncoder.html#ae26efee844ff2409147d58d716ced9f4">leftEncoderSpeed</a>, this-&gt;<a class="code" href="classWheelEncoder.html#ac1d43d81a960e67a9ce63125c17ac4a6">rightEncoderSpeed</a>);
+<a name="l00047"></a>00047         <a class="code" href="classMotorController.html#aec7a1e340e34f948c255d9c9687ad5bc">MotorController::instance</a>()-&gt;<a class="code" href="classMotorController.html#a5f5029758d6b467ed803c4acd4c64cbf" title="returns the speed of the encoder speeds">getEncoderSpeeds</a>(this-&gt;<a class="code" href="classWheelEncoder.html#ae26efee844ff2409147d58d716ced9f4">leftEncoderSpeed</a>, this-&gt;<a class="code" href="classWheelEncoder.html#ac1d43d81a960e67a9ce63125c17ac4a6">rightEncoderSpeed</a>);
 <a name="l00048"></a>00048 
 <a name="l00049"></a>00049         <a class="code" href="logging_8h.html#abb9cf0532817c9e2eeb8ed7385ce6b64">LOG_ENCODER</a>(<a class="code" href="logging_8h.html#aa5a9053636a30269210c54e734e0d583ab03d2afd0c05cf9e3b1a3f60c2545b67">DEBUG4</a>) &lt;&lt; <span class="stringliteral">&quot;Encoder values in sensorProcess: LA &quot;</span> &lt;&lt; this-&gt;<a class="code" href="classWheelEncoder.html#a36e45ebed52b775dd0d95212ab8eb563">leftCountAbsolute</a> &lt;&lt; <span class="stringliteral">&quot; RA &quot;</span> &lt;&lt; this-&gt;<a class="code" href="classWheelEncoder.html#a10c84fa2240769d687f049640af9fad7">rightCountAbsolute</a> &lt;&lt; <span class="stringliteral">&quot; L &quot;</span> &lt;&lt; this-&gt;<a class="code" href="classWheelEncoder.html#a484750760354157081f19425294a9380">leftCount</a> &lt;&lt; <span class="stringliteral">&quot; R &quot;</span> &lt;&lt; this-&gt;<a class="code" href="classWheelEncoder.html#af3087f79d08d7d0e6c68300e6d0f9e59">rightCount</a> &lt;&lt; <span class="stringliteral">&quot; LS &quot;</span> &lt;&lt; this-&gt;<a class="code" href="classWheelEncoder.html#ae26efee844ff2409147d58d716ced9f4">leftEncoderSpeed</a> &lt;&lt; <span class="stringliteral">&quot; RS &quot;</span> &lt;&lt; this-&gt;<a class="code" href="classWheelEncoder.html#ac1d43d81a960e67a9ce63125c17ac4a6">rightEncoderSpeed</a> &lt;&lt; endl;
 <a name="l00050"></a>00050 }
@@ -141,7 +141,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Mar 15 2011 for YClops by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Mar 16 2011 for YClops by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

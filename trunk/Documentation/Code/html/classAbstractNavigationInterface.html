@@ -97,6 +97,7 @@ mrpt::aligned_containers<br class="typebreak"/>
 ::vector_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractNavigationInterface.html#aa14ae6fbca5713d79a7542253eac50bc">solve</a> (bool inMeters)=0</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractNavigationInterface.html#ac7900b0a4c199e3b3d9d36b905eadd36">convertPointToMeters</a> (mrpt::poses::CPoint2D &amp;point)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractNavigationInterface.html#ac83502b1269e7fe9ff0f58f6ef039a20">loadPoints</a> (std::string filename, bool convertToMeters=false)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">reads in a stream of ascii whitespace delimited gps points from a file where the first one is the starting location and all subsequent are weighpoints to travel to.  <a href="#ac83502b1269e7fe9ff0f58f6ef039a20"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractNavigationInterface.html#a74b18af90bad0bc1219327ae9ede672b">haversineDistance</a> (double lat1, double lon1, double lat2, double lon2)</td></tr>
@@ -322,10 +323,12 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>loadRawGPSPointFile - reads in a stream of ascii whitespace delimited gps points from a file where the first one is the starting location and all subsequent are weighpoints to travel to. </p>
+
+<p>reads in a stream of ascii whitespace delimited gps points from a file where the first one is the starting location and all subsequent are weighpoints to travel to. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">filename</td><td>- the name of the raw gps point file </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">filename</td><td>the name of the raw gps point file </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">convertToMeters</td><td>true if we want to convert the file directly to relative meters </td></tr>
   </table>
   </dd>
 </dl>
@@ -407,7 +410,7 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="WaypointPlanner_8h_source.html#l00068">68</a> of file <a class="el" href="WaypointPlanner_8h_source.html">WaypointPlanner.h</a>.</p>
+<p>Definition at line <a class="el" href="WaypointPlanner_8h_source.html#l00069">69</a> of file <a class="el" href="WaypointPlanner_8h_source.html">WaypointPlanner.h</a>.</p>
 
 <p>Referenced by <a class="el" href="WaypointPlanner_8cpp_source.html#l00135">TSPNavigation::solve()</a>, and <a class="el" href="WaypointPlanner_8cpp_source.html#l00122">SequentialNavigation::solve()</a>.</p>
 
@@ -426,15 +429,15 @@ Protected Attributes</h2></td></tr>
 
 <p>Vector of points that haven't been visited by the planning. </p>
 
-<p>Definition at line <a class="el" href="WaypointPlanner_8h_source.html#l00069">69</a> of file <a class="el" href="WaypointPlanner_8h_source.html">WaypointPlanner.h</a>.</p>
+<p>Definition at line <a class="el" href="WaypointPlanner_8h_source.html#l00070">70</a> of file <a class="el" href="WaypointPlanner_8h_source.html">WaypointPlanner.h</a>.</p>
 
 <p>Referenced by <a class="el" href="WaypointPlanner_8cpp_source.html#l00135">TSPNavigation::solve()</a>, and <a class="el" href="WaypointPlanner_8cpp_source.html#l00122">SequentialNavigation::solve()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/tallred3/ecen493/SeniorProject/trunk/Code/YClopsLib/inc/<a class="el" href="WaypointPlanner_8h_source.html">WaypointPlanner.h</a></li>
-<li>/home/tallred3/ecen493/SeniorProject/trunk/Code/YClopsLib/src/<a class="el" href="WaypointPlanner_8cpp_source.html">WaypointPlanner.cpp</a></li>
+<li><a class="el" href="WaypointPlanner_8h_source.html">WaypointPlanner.h</a></li>
+<li><a class="el" href="WaypointPlanner_8cpp_source.html">WaypointPlanner.cpp</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -451,7 +454,7 @@ Protected Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Mar 15 2011 for YClops by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Mar 16 2011 for YClops by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

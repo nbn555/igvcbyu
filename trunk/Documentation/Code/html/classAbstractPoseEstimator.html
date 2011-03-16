@@ -85,6 +85,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractPoseEstimator.html#a2e414937bfd3a1c3790fd29c6f0ab297">AbstractPoseEstimator</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractPoseEstimator.html#aea2aa5ba74d45d28786cb484affd910e">~AbstractPoseEstimator</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractPoseEstimator.html#adfdbe50cee9fb3686a6dd4b19fa37193">update</a> (const <a class="el" href="classGPSData.html">GPSData</a> *<a class="el" href="branches_2Sensors_2GPSandCompassUnitTest_2main_8cpp.html#a2cea241b1cb0ed880d8df9c40e582a11">gpsData</a>, const <a class="el" href="classCompassData.html">CompassData</a> *compassData, const <a class="el" href="classEncoderData.html">EncoderData</a> *encoderData)=0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">updates the estimate of the position  <a href="#adfdbe50cee9fb3686a6dd4b19fa37193"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractPoseEstimator.html#ac35cedab3c828ab0f03f61814e3c2563">getYaw</a> (void)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractPoseEstimator.html#af0589958fc1b0dae010292b1fdf8c34a">getPose</a> (mrpt::poses::CPose3D &amp;pose)</td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
@@ -206,12 +207,13 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
 <p>updates the estimate of the position </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">yaw</td><td>- the rotation about the y axis measured in radians </td></tr>
-    <tr><td class="paramname">pitch</td><td>- the rotation about the x axis measured in radians </td></tr>
-    <tr><td class="paramname">roll</td><td>- the rotation about the z axis measured in radians </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gpsData</td><td>The gps sensor observation </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">compassData</td><td>The compass sensor observation </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">encoderData</td><td>The wheel encoder sensor observation </td></tr>
   </table>
   </dd>
 </dl>
@@ -241,8 +243,8 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/tallred3/ecen493/SeniorProject/trunk/Code/YClopsLib/inc/<a class="el" href="PoseEstimator_8h_source.html">PoseEstimator.h</a></li>
-<li>/home/tallred3/ecen493/SeniorProject/trunk/Code/YClopsLib/src/<a class="el" href="PoseEstimator_8cpp_source.html">PoseEstimator.cpp</a></li>
+<li><a class="el" href="PoseEstimator_8h_source.html">PoseEstimator.h</a></li>
+<li><a class="el" href="PoseEstimator_8cpp_source.html">PoseEstimator.cpp</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -259,7 +261,7 @@ Protected Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Mar 15 2011 for YClops by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Mar 16 2011 for YClops by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>
