@@ -118,24 +118,24 @@ public:
 	void useNullMotorCommand();
 
 private:
-	bool isGpsDataShown;	//<if gps is showing data
-	bool isCompassDataShown;//<if compass is showing data
-	bool isLidarDataShown;	//<if lidar is showing data
-	bool isCameraDataShown;	//<if camera is showing data
-	bool isEncoderDataShown;//<if encoder is showing data
+	bool isGpsDataShown;	//!<if gps is showing data
+	bool isCompassDataShown;//!<if compass is showing data
+	bool isLidarDataShown;	//!<if lidar is showing data
+	bool isCameraDataShown;	//!<if camera is showing data
+	bool isEncoderDataShown;//!<if encoder is showing data
 
-	MotorCommandInterface * motor;	//<Motor interface
-	Compass * compass;				//<Compass Sensor
-	GPS * gps;						//<GPS sensor
-	Camera * camera;				//<Camera sensor
-	Lidar * lidar;					//<Lidar Sensor
-	WheelEncoder * encoder;			//<Wheel Encoder Sensor
+	MotorCommandInterface * motor;	//!<Motor interface
+	Compass * compass;				//!<Compass Sensor
+	GPS * gps;						//!<GPS sensor
+	Camera * camera;				//!<Camera sensor
+	Lidar * lidar;					//!<Lidar Sensor
+	WheelEncoder * encoder;			//!<Wheel Encoder Sensor
 
-	AbstractPoseEstimator* poseEst;	//<Pose Estimator Interface class
-	mrpt::poses::CPose3D* robotPose;//<The current belief of the robot pose
+	AbstractPoseEstimator* poseEst;	//!<Pose Estimator Interface class
+	mrpt::poses::CPose3D* robotPose;//!<The current belief of the robot pose
 
-	float curV;	//<The current linear velocity
-	float curW;	//<The current angular velocity
+	float curV;	//!<The current linear velocity
+	float curW;	//!<The current angular velocity
 };
 
 #endif /* YCLOPSREACTIVENAVINTERFACE_H_ */
