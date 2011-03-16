@@ -1,8 +1,8 @@
-/*
- * Camera.h
- *
- *  Created on: Jan 27, 2011
- *      Author: philiplundrigan
+/**
+ * @file Camera.h
+ * @date Jan 27, 2011
+ * @author philiplundrigan
+ * @brief Camera Sensor Header File
  */
 
 #ifndef CAMERA_H_
@@ -12,16 +12,8 @@
 #include <stdlib.h>
 #include <iostream>
 #include <pthread.h>
-//#include <mrpt/base.h>
 #include <mrpt/slam.h>
 #include "YClopsSensor.h"
-
-/*
-#include "opencv2/core/core.hpp"
-#include "opencv2/imgproc/imgproc.hpp"
-#include "opencv2/highgui/highgui.hpp"
-*/
-
 
 #include <opencv/cv.h>
 #include <opencv/cxcore.h>

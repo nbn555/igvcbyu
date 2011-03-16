@@ -2,6 +2,7 @@
  * @file logging.h
  * @date Feb 17, 2011
  * @author Thomas Eldon Allred
+ * @brief Logging Header
  */
 
 #ifndef LOGGING_H_
@@ -11,12 +12,12 @@
 #include <iostream>
 
 typedef enum LOG_LEVEL{
-	DISABLE = 8,//Turn off logging completely
-	FATAL 	= 7,//Fatal or irrecoverable errors
-	ERROR 	= 6,//Error Conditions
-	WARNING	= 5,//Potential problems
-	INFO	= 4,//Standard output
-	DEBUG	= 3,//The general idea is the more function calls to get there the higher the debug level
+	DISABLE = 8,//!Turn off logging completely
+	FATAL 	= 7,//!Fatal or irrecoverable errors
+	ERROR 	= 6,//!Error Conditions
+	WARNING	= 5,//!Potential problems
+	INFO	= 4,//!Standard output
+	DEBUG	= 3,//!The general idea is the more function calls to get there the higher the debug level
 	DEBUG2	= 2,
 	DEBUG3	= 1,
 	DEBUG4	= 0
@@ -33,9 +34,12 @@ typedef enum LOG_LEVEL{
 #define AI_LOG		(0x00000100)
 #define GENERIC_LOG	(0x80000000)
 #define ALL_LOG		(0xFFFFFFFF)
+
 /**
- * LOG(level) macro allows us to not have to dump data into a stream if we aren't the log level is to low
- * Don't put non trivial function calls in the output stream or they wont be called when the logging isn't output
+ * @brief macro allows us to not have to dump data into a stream if we aren't the log level is to low
+ * @warning Don't put non trivial function calls in the output stream or they wont be called when the logging isn't output
+ * @param[in] level the level at which to print the output
+ * @param[in] stream the input steam
  */
 #define LOG_STREAM(level,stream) \
 ((level < Log::ReportingLevel()) || (stream & Log::GetReportStreamBits())) ? : Log().Get(level)
@@ -67,28 +71,54 @@ public:
 	virtual ~Log();
 	std::stringstream & Get(LOG_LEVEL level = INFO);
 public:
+
+	/**
+	 * @brief returns a reference to the current reporting level
+	 * @return LOG_LEVEL& a reference of the current logging level
+	 */
 	static LOG_LEVEL & ReportingLevel();
+
+	/**
+	 * @brief returns the current of the logging output streams
+	 * @return unsigned int which is a bit string of the logging streams I don't remember the logic levels of the bits
+	 */
 	static unsigned int GetReportStreamBits();
 	static void SetReportStreamBits( unsigned int s );
 	static void SetTimeStampDisplay( bool ts );
 	static void SetReportLevel( LOG_LEVEL level = INFO );
+
+	/**
+	 * @brief sets the output of the logging stream
+	 * @param[in] out the output stream pointer use &cout for console
+	 */
 	static void SetLogFile( std::ostream * out );
+
+	/**
+	 * @brief returns a pointer to the current output stream
+	 * @return std::ostream* a pointer to the current output stream
+	 */
 	static std::ostream * GetOStream() { return outputStream; };
+
+	/**
+	 * @brief converst the log level to a string
+	 * @param[in] level the logging level to convert to a string
+	 * @return a string representation of the level
+	 */
 	static std::string ToString( LOG_LEVEL level );
 protected:
-	std::stringstream os;
+	std::stringstream os; //! The output stream where to write the log data
 protected:
-	static std::string GetTime();
+	static std::string GetTime();		//!returns a string formatted with of the time stamp
 private:
 	Log(const Log&);
 	Log & operator = (const Log&);
 private:
-	LOG_LEVEL messageLevel;
+	LOG_LEVEL messageLevel;				//!The log level of the current message
 private:
-	static LOG_LEVEL logLevel;
-	static unsigned int streamBits;
-	static bool timestamp;
-	static std::ostream * outputStream;
+	static LOG_LEVEL logLevel;			//!The current logging threshold
+	static unsigned int streamBits;		//!A bit string for which logs we are using
+	static bool timestamp;				//!if we are using time stamps or not
+	static std::ostream * outputStream;	//! a pointer to the output stream we are using
 
 };
 

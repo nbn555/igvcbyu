@@ -1,9 +1,8 @@
-
-/*
- * Yclopsnav.h
- *
- *  Created on: Dec 9, 2010
- *      Author: igvcbyu
+/**
+ * @file Yclopsnav.h
+ * @date Dec 9, 2010
+ * @author igvcbyu
+ * @brief Higher Level Artificial Navigation Class
  */
 
 #ifndef YCLOPSNAV_H_

@@ -1,8 +1,8 @@
-/*
- * Beeper.h
- *
- *  Created on: Feb 6, 2011
- *      Author: tallred3
+/**
+ * @file Beeper.h
+ * @date Feb 6, 2011
+ * @author tallred3
+ * @brief This is a header file to play the system spkr
  */
 
 #ifndef BEEPER_H_
@@ -25,7 +25,7 @@ public:
 private:
 
 	/**
-	 * An internal structure to contain data that needs to be passed into the beepi function
+	 * @brief An internal structure to contain data that needs to be passed into the beepi function
 	 */
 	typedef struct beep_struct {
 		int frequency;
@@ -37,19 +37,12 @@ private:
 	static beep_t buffer;
 
 	/**
-	 * Internal static method that writes values to the pc speaker
+	 * @brief Internal static method that writes values to the pc speaker
 	 * @param void pointer to the location of the beep_struct that contains the sound to play
 	 */
 	static void * beepi( void * );
 
-	/**
-	 * Class Constructor - not used
-	 */
 	Beeper();
-
-	/**
-	 * Class Destructor - not used
-	 */
 	virtual ~Beeper();
 
 };

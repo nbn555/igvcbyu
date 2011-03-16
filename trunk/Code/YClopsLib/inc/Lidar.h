@@ -1,8 +1,8 @@
-/*
- * Lidar.h
- *
- *  Created on: Feb 25, 2011
- *      Author: tallred3
+/**
+ * @file Lidar.h
+ * @date Feb 25, 2011
+ * @author tallred3
+ * @brief Lidar Sensor Code
  */
 
 #ifndef LIDAR_H_

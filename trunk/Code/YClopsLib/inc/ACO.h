@@ -1,10 +1,8 @@
-//============================================================================
-// Name        : ACO.h
-// Author      : Tobias
-// Version     :
-// Copyright   :
-// Description : use ACO slove TSP
-//============================================================================
+/**
+* @file ACO.h
+* @author Tobias
+* @brief use ACO solve TSP
+*/
 #include <iostream>
 #include <fstream>
 #include <stdlib.h>
@@ -16,8 +14,8 @@ using namespace mrpt::poses;
 
 namespace tkhl{
 	const int iAntCount=34;
-	const int iCityCount=5; // total city count
-	const int iItCount=50; // cycle count
+	const int iCityCount=5;	//! total city count
+	const int iItCount=50; 	//! cycle count
 	const double Q=100;
 	const double alpha=1;
 	const double beta=5;

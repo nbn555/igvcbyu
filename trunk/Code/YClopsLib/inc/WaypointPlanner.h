@@ -1,5 +1,6 @@
 /**
- * @brief AbstractNavigationInterface.h - This file defines the classes relating to path planning
+ * @file WaypointPlanner.h
+ * @brief Defines the classes relating to path planning
  * @date Dec 27, 2010
  * @author Thomas Eldon Allred
  */
@@ -12,7 +13,7 @@
 #include <mrpt/poses/CPoint2D.h>
 
 /**
- * @brief This class is an abstract interface for path planning for the robot
+ * @brief Abstract interface for path planning for the robot
  */
 class AbstractNavigationInterface {
 public:
@@ -21,31 +22,32 @@ public:
 	static const int LON = 1; //!Index for the Longitude in a CPoint2D
 
 	/**
-	 * Abstract Navigation class constructor
-	 * @param lat - representing the initial latitude
-	 * @param lon - representing the initial longitude
+	 * @brief Abstract Navigation class constructor
+	 * @param[in] lat representing the initial latitude
+	 * @param[in] lon representing the initial longitude
 	 */
 	AbstractNavigationInterface( double lat, double lon );
 
 	/**
-	 * Class destructor
+	 * @brief Class destructor
 	 */
 	virtual ~AbstractNavigationInterface();
 
 	/**
-	 * solve - solves the navigation problem
-	 * @return - a list of gps weighpoints that need to be visited
+	 * @brief solve solves the navigation problem
+	 * @return a list of gps weighpoints that need to be visited
 	 * index 0 is the first then 1 then 2 ect.
 	 */
 	virtual mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t solve(bool inMeters) = 0;
 
 	/**
-	 * convertToMeters - changes a point from latitude and longitude to meters in x (positive direction is north) and y (positive direction is east) from the
+	 * @brief changes a point from latitude and longitude to meters in x (positive direction is north) and y (positive direction is east) from the
 	 * starting position
 	 */
 	void convertPointToMeters(mrpt::poses::CPoint2D& point);
+
 	/**
-	 * loadRawGPSPointFile - reads in a stream of ascii whitespace delimited gps
+	 * @brief reads in a stream of ascii whitespace delimited gps
 	 * 		points from a file where the first one is the starting location and
 	 * 		all subsequent are weighpoints to travel to.
 	 * @param filename - the name of the raw gps point file
@@ -53,13 +55,13 @@ public:
 	void loadPoints(std::string filename, bool convertToMeters = false);
 
 	/**
-	 * "Haver Sine" Distance - is a function that computes the great circle distance of two points measured in degrees
+	 * @brief a function that computes the great circle distance of two points measured in degrees
 	 * @returns The distance between two points in meters
 	 */
 	static double haversineDistance( double lat1, double lon1, double lat2, double lon2 );
 
 	/**
-	 * Bearing Calculator - is a function that computes the bearing (angle) between two points measured in degrees
+	 * @brief a function that computes the bearing (angle) between two points measured in degrees
 	 * @returns the bearing between two points in degrees
 	 */
 	static double calcBearing( double lat1, double lon1, double lat2, double lon2, bool isDegrees = false );

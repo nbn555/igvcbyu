@@ -10,12 +10,34 @@
 #include <iostream>
 #include <exception>
 
+#define LOG_COLORS
+
 LOG_LEVEL Log::logLevel = INFO;
 std::ostream * Log::outputStream = &(std::cerr);
 unsigned int Log::streamBits = ~ALL_LOG;
 bool Log::timestamp = true;
 
 using namespace std;
+
+#ifdef LOG_COLORS
+#define LOG_BLACK			"\e[0;30m"
+#define LOG_BLUE			"\e[0;34m"
+#define LOG_GREEN			"\e[0;32m"
+#define LOG_CYAN	        "\e[0;36m"
+#define LOG_RED				"\e[0;31m"
+#define LOG_PURPLE			"\e[0;35m"
+#define LOG_BROWN			"\e[0;33m"
+#define LOG_GRAY			"\e[0;37m"
+#define LOG_DARK_GRAY		"\e[1;30m"
+#define LOG_LIGHT_BLUE		"\e[1;34m"
+#define LOG_LIGHT_GREEN		"\e[1;32m"
+#define LOG_LIGHT_CYAN		"\e[1;36m"
+#define LOG_LIGHT_RED		"\e[1;31m"
+#define LOG_LIGHT_PURPLE	"\e[1;35m"
+#define LOG_YELLOW			"\e[1;33m"
+#define LOG_WHITE			"\e[1;37m"
+#define LOG_END_COLOR		"\e[m"
+#endif
 
 std::string Log::GetTime() {
 	time_t t = time(NULL);
@@ -60,6 +82,37 @@ std::stringstream& Log::Get(LOG_LEVEL level) {
 		this->os << "- " << Log::GetTime();
 	}
 
+#ifdef LOG_COLORS
+	switch(level) {
+	case DISABLE:
+		break;
+	case FATAL:
+		this->os << LOG_RED;
+		break;
+	case ERROR:
+		break;
+	case WARNING:
+		break;
+	case INFO:
+		this->os << LOG_WHITE;
+		break;
+	case DEBUG:
+		this->os << LOG_DARK_GRAY;
+		break;
+	case DEBUG2:
+		this->os << LOG_GRAY;
+		break;
+	case DEBUG3:
+		this->os << LOG_BLUE;
+		break;
+	case DEBUG4:
+		this->os << LOG_LIGHT_BLUE;
+		break;
+	default:
+		break;
+	}
+#endif
+
 	this->os << " " << Log::ToString(level) << ": ";
 	this->os << std::string(level > DEBUG ? 1 :  DEBUG - level, '\t' ); //Set increasing number of tabs for higher debug levels
 	messageLevel = level;
@@ -81,6 +134,10 @@ Log::~Log() {
 	if (messageLevel >= Log::ReportingLevel())
 	{
 		(*Log::GetOStream()) << os.str();
+
+#ifdef LOG_COLORS
+		(*Log::GetOStream()) << LOG_END_COLOR;
+#endif
 		Log::GetOStream()->flush();
 	}
 
