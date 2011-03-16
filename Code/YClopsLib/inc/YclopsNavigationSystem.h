@@ -103,8 +103,9 @@ namespace mrpt
 			 */
 			void stop();
 
-			/*
+			/**
 			 * choose which challenge to run, TRUE is Navigation, FALSE is Autonomous
+			 * \param c The boolean to set which challenge to run, TRUE is Navigation, FALSE is Autonomous
 			 */
 			void setChallenge(bool c);
 
