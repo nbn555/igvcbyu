@@ -130,10 +130,6 @@ private:
 	bool * array;							//! represents if there is an obstacle at a certain part of the grid
 	mrpt::slam::CSimplePointsMap * map;		//! points where obstacles are located (x+ is forward, y+ is left)
 
-	static bool killThread;
-	pthread_t dataDumpThread;
-	pthread_attr_t dataDumpThreadAttr;
-
 	double PERCENT_FILLED;					//! sets how much of a cell in the grid needs to be filled to be an obstacle
 	int GRID_SIZE;							//! how big the grid should be (GRID_SIZE * GRID_SIZE)
 	int THRESHOLD;							//! what the whit threshold should be set at
