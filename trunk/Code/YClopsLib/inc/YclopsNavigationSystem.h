@@ -138,18 +138,10 @@ namespace mrpt
             	/** The robot tries to get to the given target point
                   */
             	beNormalNavigation = 0,
-            	/** The robot rotates to head the direction "m_beHeadDirection_rad", then goes into normal behavior
-                  */
-            	beHeadDirection,
-            	/** The robot tries to get to a given auxiliar target "m_beAuxTarget", then goes into behavior 'beDoorCrosing2'
-                  */
-                beDoorCrosing1,
-            	/** The robot rotates to head the direction "m_beHeadDirection_rad", then goes into behavior 'beDoorCrosing3'
-                  */
-                beDoorCrosing2,
-            	/** The robot rotates tries to get to a given auxiliar target "m_beAuxTarget", then goes into normal behavior
-                  */
-                beDoorCrosing3
+            	/**
+            	 * timed out try to move away
+            	 */
+            	goAround,
             };
 
 			/** Enables / disables the logging into a file.
@@ -180,6 +172,10 @@ namespace mrpt
             /** Auxiliary target position, for behaviors 'beDoorCrosing1' and 'beDoorCrosing3'.
               */
             CPoint2D				m_beAuxTarget;
+
+            /** Generates a CPoint2D to try to get too
+             */
+            CPoint2D makeAuxTarget(CPose2D& curPose);
 
             std::string fileName;
             bool inMeters;

@@ -17,7 +17,8 @@ MotorCommandInterface::MotorCommandInterface() { }
 MotorCommandInterface::~MotorCommandInterface() { }
 
 bool MotorCommandInterface::setVelocity( double linearVelocity, double angularVelocity ) {
-	this->linearVelocity = linearVelocity;
+
+	this->linearVelocity = linearVelocity == 0 && angularVelocity != 0 ? -.2 : linearVelocity;
 	this->angularVelocity = angularVelocity;
 	return true;
 }

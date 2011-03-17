@@ -153,7 +153,7 @@ void YclopsNavigationSystem::loadConfigFile(const mrpt::utils::CConfigFileBase &
 	ASSERT_(xs.size()==ys.size());
 
 	// Add to polygon
-	for ( unsigned size_t i=0;((unsigned)(i))<xs.size();i++)
+	for ( size_t i=0;((unsigned)(i))<xs.size();i++)
 		shape.AddVertex(xs[i],ys[i]);
 
 	changeRobotShape( shape );
@@ -395,8 +395,7 @@ void  YclopsNavigationSystem::performNavigationStep()
 		cout << "Range to target: " << targetDist << endl;
 		
 
-		if ( targetDist < m_navigationParams.targetAllowedDistance &&
-		        navigatorBehavior == beNormalNavigation )
+		if ( targetDist < m_navigationParams.targetAllowedDistance )
 		{
 
 			LOG_AI(INFO) << "Reached Way Point" << endl;
@@ -431,11 +430,19 @@ void  YclopsNavigationSystem::performNavigationStep()
 		else
 		{
 			// Too much time have passed?
-			if ( system::timeDifference( badNavAlarm_lastMinDistTime, system::getCurrentTime() ) > badNavAlarm_AlarmTimeout)
+			if ( badNavAlarm_AlarmTimeout && system::timeDifference( badNavAlarm_lastMinDistTime, system::getCurrentTime() ) > badNavAlarm_AlarmTimeout)
 			{
-				LOG_AI(ERROR) << "\n--------------------------------------------\nWARNING: Timeout for approaching toward the target expired!! Aborting navigation!! \n---------------------------------" << endl;
 
-				m_navigationState = NAV_ERROR;
+				LOG_AI(ERROR) << "\n--------------------------------------------\n Timed out trying new Target \n---------------------------------" << endl;
+				if(navigatorBehavior == goAround)
+				{
+					points.erase(points.begin());
+				}
+
+				points.insert(points.begin(), makeAuxTarget(curPose));
+
+				gotoNextPoint();
+				navigatorBehavior = goAround;
 				return;
 			}
 		}
@@ -698,14 +705,6 @@ void  YclopsNavigationSystem::performNavigationStep()
 		newLogRec.estimatedExecutionPeriod = meanExecutionPeriod;
 		newLogRec.nPTGs					= PTGs.size();
 		newLogRec.navigatorBehavior		= navigatorBehavior;
-
-		if ( navigatorBehavior==beDoorCrosing1 ||
-		        navigatorBehavior==beDoorCrosing2 ||
-		        navigatorBehavior==beDoorCrosing3 )
-		{
-			newLogRec.doorCrossing_P1 = m_bePassPoint1 - curPose;
-			newLogRec.doorCrossing_P2 = m_bePassPoint2 - curPose;
-		}
 
 		const size_t nVerts = robotShape.size();
 		if (newLogRec.robotShape_x.size() != ((unsigned)(nVerts)))
@@ -1506,7 +1505,16 @@ void YclopsNavigationSystem::setChallenge(bool c)
 {
 	NavChallenge = c;
 }
-
+CPoint2D YclopsNavigationSystem::makeAuxTarget(CPose2D& curPose)
+{
+	const double angle_off = M_PI/4; // angle away to go
+	const double distance = 1.5;// distance to go down that path
+	CPoint2D target;
+	double angle = curPose.phi();
+	target.x(curPose.x() + sin(angle + angle_off)*distance);
+	target.y(curPose.y() - cos(angle + angle_off)*distance);
+	return target;
+}
 void YclopsNavigationSystem::getTarget(mrpt::poses::TPoint2D *target)
 {
 	*target = m_navigationParams.target;
