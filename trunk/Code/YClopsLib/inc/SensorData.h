@@ -62,7 +62,14 @@ public:
  */
 class EncoderData: public SensorData {
 public:
-	EncoderData( int leftCount, int rightCount, int leftCountAbsolute, int rightCountAbsolute, int leftSpeed, int rightSpeed ): leftCount(leftCount), rightCount(rightCount), leftCountAbsolute(leftCountAbsolute), rightCountAbsolute(rightCountAbsolute), leftSpeed(leftSpeed), rightSpeed(rightSpeed) {};
+	EncoderData( int leftCount, int rightCount,
+			int leftCountAbsolute, int rightCountAbsolute,
+			int leftSpeed, int rightSpeed,
+			double distanceLeft, double distanceRight ):
+				leftCount(leftCount), rightCount(rightCount),
+				leftCountAbsolute(leftCountAbsolute), rightCountAbsolute(rightCountAbsolute),
+				leftSpeed(leftSpeed), rightSpeed(rightSpeed),
+				distanceLeft(distanceLeft), distanceRight(distanceRight) {};
 	virtual ~EncoderData() {};
 
 	int leftCount;			//!<The current count of the left encoder
@@ -71,6 +78,9 @@ public:
 	int rightCountAbsolute;	//!<The total count of the right encoder
 	int leftSpeed;			//!<The current rate of change in the count of the left encoder
 	int rightSpeed;			//!<The current rate of change in the count of the right encoder
+	double distanceLeft;	//!<The total distance traveled by the left wheel since last reading
+	double distanceRight;	//!<The total distance traveled by the right wheel since last reading
+
 };
 
 /**

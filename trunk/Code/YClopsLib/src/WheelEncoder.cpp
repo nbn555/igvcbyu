@@ -12,14 +12,17 @@
 
 using namespace std;
 
-WheelEncoder::WheelEncoder(): leftCount(0), rightCount(0), leftCountAbsolute(0), rightCountAbsolute(0), leftEncoderSpeed(0), rightEncoderSpeed(0), encoderPPR(0) { }
+WheelEncoder::WheelEncoder(): leftCount(0), rightCount(0), leftCountAbsolute(0), rightCountAbsolute(0), leftEncoderSpeed(0), rightEncoderSpeed(0), encoderPPR(0), wheelDiameter(0), pprPiDiameter(0) { }
 
 void WheelEncoder::loadConfiguration( const mrpt::utils::CConfigFileBase & config, const std::string & sectionName) {
 
-	this->encoderPPR = config.read_int( sectionName, "ENCODER_PPR", 400 );
+	this->encoderPPR = config.read_int( sectionName, "ENCODER_PPR", 440 );
 
 	this->leftCountAbsolute = config.read_int( sectionName, "ABSOLUTE_COUNTS_INIT", this->leftCountAbsolute);
 	this->rightCountAbsolute = config.read_int( sectionName, "ABSOLUTE_COUNTS_INIT", this->rightCountAbsolute);
+	this->wheelDiameter = config.read_double( sectionName, "WHEEL_DIAMETER", .30 );
+
+	this->pprPiDiameter = this->encoderPPR * M_PI * this->wheelDiameter;
 
 }
 
@@ -50,7 +53,7 @@ void WheelEncoder::sensorProcess() {
 }
 
 SensorData * WheelEncoder::getData() {
-	EncoderData* data = new EncoderData(this->leftCount, this->rightCount, this->leftCountAbsolute, this->rightCountAbsolute, this->leftEncoderSpeed, this->rightEncoderSpeed);
+	EncoderData* data = new EncoderData(this->leftCount, this->rightCount, this->leftCountAbsolute, this->rightCountAbsolute, this->leftEncoderSpeed, this->rightEncoderSpeed, this->pprPiDiameter * this->leftCount, this->pprPiDiameter * this->rightCount );
 	this->leftCount = 0;
 	this->rightCount = 0;
 	return data;
@@ -64,6 +67,8 @@ void WheelEncoder::dumpData( std::ostream & out ) const {
 	out << "Right Absolute value: " << this->rightCountAbsolute << endl;
 	out << "Left Encoder Speed: " << this->leftEncoderSpeed << endl;
 	out << "Right Encoder Speed: " << this->rightEncoderSpeed << endl;
+	out << "Left Distance: " << this->pprPiDiameter * this->leftCount << endl;
+	out << "Right Distance: " << this->pprPiDiameter * this->rightCount << endl;
 	out << "*******************************" << endl;
 }
 

@@ -49,7 +49,8 @@ protected:
 	int leftEncoderSpeed;	//!<The current rate of change in the count of the left encoder
 	int rightEncoderSpeed;	//!<The current rate of change in the count of the right encoder
 	int encoderPPR;			//!<The configured pulses per revolution in the encoder
-
+	double wheelDiameter;	//!<The wheel average wheel diameter
+	double pprPiDiameter;	//!<A constant to compute
 };
 
 #endif /* WHEELENCODER_H_ */
