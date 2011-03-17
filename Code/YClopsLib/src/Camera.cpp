@@ -16,8 +16,6 @@ using namespace cv;
 using namespace mrpt;
 using namespace mrpt::utils;
 
-
-bool Camera::killThread = false;
 Camera::Camera() : capture(0), array(NULL), map(NULL) {
 }
 
@@ -26,9 +24,6 @@ Camera::~Camera(){
 	//delete capture;
 	delete map;
 
-	Camera::killThread = true;
-	void * status;
-	pthread_join(this->dataDumpThread,&status);
 	LOG_CAMERA(DEBUG3) << "Deleted array and image capture..." << endl;
 }
 
@@ -68,9 +63,6 @@ void Camera::init(){
 	}
 
 	getFrame(this->image);
-	pthread_attr_init(&dataDumpThreadAttr);
-	pthread_attr_setdetachstate(&dataDumpThreadAttr, PTHREAD_CREATE_JOINABLE);
-	pthread_create( &dataDumpThread, &dataDumpThreadAttr, Camera::cameraDataShow, &image );
 
 	LOG_CAMERA(DEBUG3) << "Started camera..." << endl;
 }
