@@ -340,22 +340,22 @@ void  YclopsNavigationSystem::performNavigationStep()
 	float										curVL;			// en metros/seg
 	float										curW;			// en rad/segundo
 	static std::vector<THolonomicMovement>		holonomicMovements;
-//	THolonomicMovement							selectedHolonomicMovement;
+	THolonomicMovement							selectedHolonomicMovement;
 	float										cmd_v=0,cmd_w=0;	// The non-holonomic command
-//	float 										desired_cmd_v, desired_cmd_w;
+	float 										desired_cmd_v, desired_cmd_w;
 	std::vector<CHolonomicLogFileRecordPtr>		HLFRs;
 	static std::vector<float>					times_TP_transformations, times_HoloNav;
 	static std::vector<bool>					valid_TP;
-//	static float								meanExecutionTime = 0.1f;
-//	static float								meanTotalExecutionTime= 0.1f;
-//	int											nSelectedPTG;
+	static float								meanExecutionTime = 0.1f;
+	static float								meanTotalExecutionTime= 0.1f;
+	int											nSelectedPTG;
 	static vector_float							prevV,prevW,prevSelPTG;
-//	static int									nLastSelectedPTG = -1;
-	//static CDynamicWindow						DW;
-//	static TNavigatorBehavior					lastStepBehavior;
-//	TNavigatorBehavior							saveLastBehavior;
+	static int									nLastSelectedPTG = -1;
+	static CDynamicWindow						DW;
+	static TNavigatorBehavior					lastStepBehavior;
+	TNavigatorBehavior							saveLastBehavior;
 
-//	float cur_approx_heading_dir = 0;
+	float cur_approx_heading_dir = 0;
 
 	// Already closing??
 	if (CerrandoHilo) return;
@@ -380,14 +380,20 @@ void  YclopsNavigationSystem::performNavigationStep()
 			Error_ParadaDeEmergencia("ERROR calling m_robot.getCurrentPoseAndSpeeds, stopping robot and finishing navigation");
 			return;
 		}
-		LOG(DEBUG) << "CurPose: (" << curPose.x() << "," << curPose.y() << "," << curPose.phi()*180./M_PI << ")" << endl;
+		cout << "CurPose: (" << curPose.x() << "," << curPose.y() << "," << curPose.phi()*180./M_PI << ")" << endl;
+		 
+		cout << "Target: (" << m_navigationParams.target.x << "," << m_navigationParams.target.y << ")" << endl;
+		 
 		LOG(DEBUG) << "Cur Velocity: Linear " << curVL << " Angular " << curW << endl;
 		// ----------------------------------------------------------------
 		// 	  Have we reached the target location?
 		// ----------------------------------------------------------------
 		targetDist = curPose.distance2DTo( m_navigationParams.target.x, m_navigationParams.target.y );
 
-		LOG_AI(DEBUG) << "Range to target: " << targetDist << endl;
+		
+
+		cout << "Range to target: " << targetDist << endl;
+		
 
 		if ( targetDist < m_navigationParams.targetAllowedDistance &&
 		        navigatorBehavior == beNormalNavigation )
@@ -440,7 +446,7 @@ void  YclopsNavigationSystem::performNavigationStep()
 		relTarget = CPoint2D(m_navigationParams.target) - curPose;
 		LOG_AI(INFO) << "at: " << curPose.x() << "," << curPose.y() << " looking for " << m_navigationParams.target.x << "," << m_navigationParams.target.y << endl;
 
-/*		// STEP1: Collision Grids Builder.
+		// STEP1: Collision Grids Builder.
 		// -----------------------------------------------------------------------------
 		STEP1_CollisionGridsBuilder();
 
@@ -454,10 +460,10 @@ void  YclopsNavigationSystem::performNavigationStep()
 			return;
 		}
 
-*/
+
 		// Start timer
 		executionTime.Tic();
-/*
+
 		// For some behaviors:
 		//  If set to true, "cmd_v" & "cmd_w" must be set to the desired values:
 		bool		skipNormalReactiveNavigation = false;
@@ -620,21 +626,27 @@ void  YclopsNavigationSystem::performNavigationStep()
 
 		} // end of "!skipNormalReactiveNavigation"
 
-*/
+
+
+		//double cmd_w = atan2(m_navigationParams.target.y - curPose.y(), m_navigationParams.target.x - curPose.x());
+		//double cmd_v = targetDist;
+
 		// ---------------------------------------------------------------------
 		//				SEND MOVEMENT COMMAND TO THE ROBOT
 		// ---------------------------------------------------------------------
+		
+		cout << "CMD: " << cmd_v << "\t" << cmd_w << endl; 
+		LOG(DEBUG4) << "\n\n\n\n\n\n\nRunning change speeds to: Linear " << cmd_v << " Angular " << cmd_w << "\n\n\n\n\n\n\n\n" << endl;
 		if ( cmd_v == 0.0 && cmd_w == 0.0 ) {
 			m_robot.stop();
 		} else {
-			LOG(DEBUG4) << "Running change speeds to: Linear " << cmd_v << " Angular " << cmd_w << endl;
 			if ( !m_robot.changeSpeeds( cmd_v, cmd_w ) )
 			{
 				Error_ParadaDeEmergencia("\nERROR calling RobotMotionControl::changeSpeeds!! Stopping robot and finishing navigation\n");
 				return;
 			}
 		}
-/*
+
 		// Statistics:
 		// ----------------------------------------------------
 		float	executionTimeValue = (float) executionTime.Tac();
@@ -645,14 +657,15 @@ void  YclopsNavigationSystem::performNavigationStep()
 		meanExecutionPeriod = 0.3f * meanExecutionPeriod +
 		                      0.7f * min(1.0f, (float)timerForExecutionPeriod.Tac());
 
-*/
+
 		timerForExecutionPeriod.Tic();
 
-		printf("CMD:%.02lfm/s,%.02lfd/s \t",
-		           (double)cmd_v,
-		           (double)RAD2DEG( cmd_w ));
+		//printf("%c[%d;%dmCMD:%.02lfm/s,%.02lfd/s \t", 27, 1, 31,
+		//           (double)cmd_v,
+		//           (double)RAD2DEG( cmd_w ));
+		//printf("%c[%dm", 27, 0);
 		LOG_AI(INFO) << "CMD:" << (double)cmd_v << "m/s, " << (double)RAD2DEG( cmd_w ) << "d/s \t" << endl;
-/*
+
 		printf_debug(" T=%.01lfms Exec:%.01lfms|%.01lfms \t",
 		           1000.0*meanExecutionPeriod,
 		           1000.0*meanExecutionTime,
@@ -747,7 +760,7 @@ void  YclopsNavigationSystem::performNavigationStep()
 		{
 			newLogRec.infoPerPTG.clear();
 		}
-*/
+
 		// --------------------------------------
 		//  Save to log file:
 		// --------------------------------------
