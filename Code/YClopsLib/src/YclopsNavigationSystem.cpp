@@ -153,7 +153,7 @@ void YclopsNavigationSystem::loadConfigFile(const mrpt::utils::CConfigFileBase &
 	ASSERT_(xs.size()==ys.size());
 
 	// Add to polygon
-	for ( size_t i=0;((unsigned)(i))<xs.size();i++)
+	for ( unsigned size_t i=0;((unsigned)(i))<xs.size();i++)
 		shape.AddVertex(xs[i],ys[i]);
 
 	changeRobotShape( shape );
@@ -351,9 +351,9 @@ void  YclopsNavigationSystem::performNavigationStep()
 	int											nSelectedPTG;
 	static vector_float							prevV,prevW,prevSelPTG;
 	static int									nLastSelectedPTG = -1;
-	static CDynamicWindow						DW;
-	static TNavigatorBehavior					lastStepBehavior;
-	TNavigatorBehavior							saveLastBehavior;
+//	static CDynamicWindow						DW;
+//	static TNavigatorBehavior					lastStepBehavior;
+//	TNavigatorBehavior							saveLastBehavior;
 
 	float cur_approx_heading_dir = 0;
 
