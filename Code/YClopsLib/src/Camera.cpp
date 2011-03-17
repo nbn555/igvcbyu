@@ -152,16 +152,6 @@ void Camera::dumpData( std::ostream & out ) const {
 	*/
 }
 
-void* Camera::cameraDataShow(void*dataShow) {
-
-	while(!Camera::killThread) {
-		//For some reason this causes a segfault --Eldonty\                                                                                           b
-		//imshow("debug", *((cv::Mat*)(dataShow)));
-	}
-
-	return NULL;
-}
-
 void Camera::insertObstacles(mrpt::slam::CSimplePointsMap & map, int size, bool * array){
 	int pixel_x;
 	int pixel_y;
