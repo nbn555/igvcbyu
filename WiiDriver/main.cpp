@@ -1,7 +1,7 @@
 /**
- * WiiDriver for the BYU IGVC YClops submission
- * /date: Oct 21, 2010
- * /Author: Thomas Eldon Allred
+ * @brief WiiDriver for the BYU IGVC YClops submission
+ * /date Oct 21, 2010
+ * /Author Thomas Eldon Allred
  */
 
 #include <iostream>
@@ -158,7 +158,7 @@ void signal_handler( int signum ) {
 
 		if( cbuttons & CLASSIC_A ) {
 			LOG(INFO) << "Going into Autonomous Mode" << endl;
-			yclops->setAutonomusMode();
+			yclops->setAutonomousMode();
 			ai->setChallenge(false);
 			string pointsFile = YClopsConfiguration::instance().read_string("GLOBAL_CONFIG","POINTS_FILE","points.txt");
 			ai->setFileName(pointsFile,false);
