@@ -124,7 +124,7 @@ std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2
 	this->visited.insert(this->visited.end(), this->toVisit.begin(),this->toVisit.end());
 	/*if(inMeters)
 	{
-		//TODO convert all points to meters from start point
+		//!@TODO convert all points to meters from start point
 	}*/
 	this->visited.push_back(this->visited.front());
 	visited.erase(visited.begin());

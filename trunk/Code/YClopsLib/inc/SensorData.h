@@ -32,7 +32,7 @@ public:
 	double latitude;	//!<the read latitude of the gps observation
 	double longitude;	//!<the read longitude of the gps observation
 	bool valid;			//!<If the gps observation is valid or not
-	//!<TODO have the gps support the altitude too
+	//!<@TODO have the gps support the altitude too
 
 };
 

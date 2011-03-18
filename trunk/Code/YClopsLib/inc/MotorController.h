@@ -67,7 +67,7 @@ public:
 	 * @param[in] acceleration the number of rpms per second of acceleration precise
 	 * enough to one tenth of an rpm
 	 * @return bool true upon success
-	 * @todo implement this function
+	 * @todo implement setAcceleration
 	 */
 	bool setAcceleration(MotorChannel channel, double acceleration);
 
@@ -78,7 +78,7 @@ public:
 	 * @param[in] deceleration the number of rpms per second of deceleration precise to one
 	 * tenth of an rpm
 	 * @return bool true upon success
-	 * @todo implement this function
+	 * @todo implement setDeceleration
 	 */
 	bool setDeceleration(MotorChannel channel, double deceration);
 

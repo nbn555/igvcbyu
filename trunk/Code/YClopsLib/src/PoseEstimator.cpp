@@ -80,7 +80,7 @@ void NoFilterPoseEstimator::update( const GPSData * gpsData, const CompassData *
 	}
 
 	if( NULL != encoderData ) {
-		//!TODO Implement encoderData in pose estimators
+		//!@TODO Implement encoderData in pose estimators
 	} else {
 		LOG_POSE(ERROR) << "Encoder Data pointer NULL" << endl;
 	}

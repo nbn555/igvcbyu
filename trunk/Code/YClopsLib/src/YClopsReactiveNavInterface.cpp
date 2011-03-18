@@ -108,10 +108,10 @@ YClopsReactiveNavInterface::YClopsReactiveNavInterface()
 
 	this->robotPose = new CPose3D();				//!create a new robot pose
 	this->robotPose->setFromValues(0,0,0,0,0,0);	//!Initialize the robot pose
-	LOG(DEBUG2) << "Robot Pose Configured" << endl;	//!TODO initialize the robot pose with values from the config file
+	LOG(DEBUG2) << "Robot Pose Configured" << endl;	//!@TODO initialize the robot pose with values from the config file
 
 	this->poseEst = new NoFilterPoseEstimator(true);//!Use a no filter pose estimator
-	LOG(DEBUG2) << "Using NoFilterPoseEstimator" << endl;	//!TODO be able to initialize the pose estimator from the config file
+	LOG(DEBUG2) << "Using NoFilterPoseEstimator" << endl;	//!@TODO be able to initialize the pose estimator from the config file
 
 	this->curV = 0;
 	this->curW = 0;
@@ -248,7 +248,7 @@ bool YClopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap &o
 		lidarData = (LidarData*)this->lidar->getData();
 	}
 
-	//!TODO implement obstacle avoidance
+	//!@TODO implement obstacle avoidance
 
 	//clean up
 	delete cameraData;

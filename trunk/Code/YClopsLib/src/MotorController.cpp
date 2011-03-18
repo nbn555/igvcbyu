@@ -109,12 +109,12 @@ void MotorController::doProcess() {
 }
 
 bool MotorController::setAcceleration(MotorChannel channel, double acceleration) {
-	LOG_MOTOR(FATAL) << "MotorController: Set Acceleration" << endl;//TODO Set Acceleration
+	LOG_MOTOR(FATAL) << "MotorController: Set Acceleration" << endl;//!@TODO Set Acceleration
 	return false;
 }
 
 bool MotorController::setDeceleration(MotorChannel channel, double deceration) {
-	LOG_MOTOR(FATAL) << "MotorController: Set Deceleration" << endl;//TODO Set Deceleration
+	LOG_MOTOR(FATAL) << "MotorController: Set Deceleration" << endl;//!@TODO Set Deceleration
 	return false;
 }
 
@@ -254,7 +254,7 @@ bool MotorController::getMotorAmps( double & motor1Amps, double & motor2Amps ) {
 }
 
 bool MotorController::getAnalogInputs( int input, int & value ) {
-	LOG_MOTOR(FATAL) << "MotorController: getAnalogInputs" << endl;//TODO getAnalogInputs
+	LOG_MOTOR(FATAL) << "MotorController: getAnalogInputs" << endl;//!@TODO getAnalogInputs
 	return false;
 }
 
@@ -331,7 +331,7 @@ bool MotorController::getVoltages( double & driverVolt, double & batteryVolt, do
 
 bool MotorController::loadEEPROMSettings() {
 	LOG_MOTOR(DEBUG3) << "MotorController: Load EEPROM settings" << endl;
-	//TODO check the timing on this function
+	//!@TODO check the timing on this function
 	return this->sendCommand("%EELD\r", "+", NULL, this->permissiveMode);
 }
 
@@ -345,7 +345,7 @@ bool MotorController::failSafeReset() {
 }
 
 bool MotorController::saveConfigSettings() {
-	LOG_MOTOR(FATAL) << "MotorController: saveConfigSettings" << endl;//TODO saveConfigSettings
+	LOG_MOTOR(FATAL) << "MotorController: saveConfigSettings" << endl;//!@TODO saveConfigSettings
 	return false;
 }
 
@@ -366,17 +366,17 @@ bool MotorController::setTime( int hours, int minutes, int seconds) {
 }
 
 bool MotorController::setCommandLinearity(int linearity ) {
-	LOG_MOTOR(FATAL) << "MotorController: setCommandLinearity" << endl;//TODO setCommandLinearity
+	LOG_MOTOR(FATAL) << "MotorController: setCommandLinearity" << endl;//!@TODO setCommandLinearity
 	return false;
 }
 
 bool MotorController::setCommandPriority( int signal, int priority ) {
-	LOG_MOTOR(FATAL) << "MotorController: setCommandPriority" << endl;//TODO setCommandPriority
+	LOG_MOTOR(FATAL) << "MotorController: setCommandPriority" << endl;//!@TODO setCommandPriority
 	return false;
 }
 
 bool MotorController::setSerialWatchDogTimer( int time ) {
-	LOG_MOTOR(FATAL) << "MotorController: setSerialWatchDogTimer" << endl;//TODO setSerialWatchDogTimer
+	LOG_MOTOR(FATAL) << "MotorController: setSerialWatchDogTimer" << endl;//!@TODO setSerialWatchDogTimer
 
 	return false;
 }
@@ -394,17 +394,17 @@ bool MotorController::setEncoderPPR( int ppr ) {
 }
 
 bool MotorController::setOverVoltageLimit( double limit ) {
-	LOG_MOTOR(FATAL) << "MotorController: setOverVoltageLimit" << endl;//TODO setOverVoltageLimit
+	LOG_MOTOR(FATAL) << "MotorController: setOverVoltageLimit" << endl;//!@TODO setOverVoltageLimit
 	return false;
 }
 
 bool MotorController::setUnderVoltageLimit( double limit ) {
-	LOG_MOTOR(FATAL) << "MotorController: setUnderVoltageLimit" << endl;//TODO setUnderVoltageLimit
+	LOG_MOTOR(FATAL) << "MotorController: setUnderVoltageLimit" << endl;//!@TODO setUnderVoltageLimit
 	return false;
 }
 
 bool MotorController::setShortCircuitDetectionThreshold( int value ) {
-	LOG_MOTOR(FATAL) << "MotorController: setShortCircuitDetectionThreshold" << endl;//TODO setShortCircuitDetectionThreshold
+	LOG_MOTOR(FATAL) << "MotorController: setShortCircuitDetectionThreshold" << endl;//!@TODO setShortCircuitDetectionThreshold
 	return false;
 }
 
@@ -443,7 +443,7 @@ bool MotorController::assertValidMotorRange( int max, int min, int value ) const
 }
 
 bool MotorController::assertValidVoltage() {
-	this->sendCommand("?V\r", "", NULL, this->permissiveMode);//TODO parse the voltage command and check it is safe
+	this->sendCommand("?V\r", "", NULL, this->permissiveMode);//!@TODO parse the voltage command and check it is safe
 	LOG_MOTOR(FATAL) << "MotorController: assertValidVoltage not implemented" << endl;
 	return false;
 }
@@ -517,17 +517,17 @@ void MotorController::disableSerialEcho() {
 }
 
 bool MotorController::getFaultFlags() {
-	LOG_MOTOR(FATAL) << "MotorController: getFaultFlags" << endl;//TODO getFaultFlags
+	LOG_MOTOR(FATAL) << "MotorController: getFaultFlags" << endl;//!@TODO getFaultFlags
 	return false;
 }
 
 bool MotorController::getStatusFlags() {
-	LOG_MOTOR(FATAL) << "MotorController: getStatusFlags not implemented" << endl;//TODO getStatusFlags
+	LOG_MOTOR(FATAL) << "MotorController: getStatusFlags not implemented" << endl;//!@TODO getStatusFlags
 	return false;
 }
 
 bool MotorController::getControlUnitType() {
-	LOG_MOTOR(FATAL) << "MotorController: getControlUnitType not implemented" << endl;//TODO getControlUnitType
+	LOG_MOTOR(FATAL) << "MotorController: getControlUnitType not implemented" << endl;//!@TODO getControlUnitType
 	return false;
 }
 
