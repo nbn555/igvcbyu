@@ -86,7 +86,7 @@ public:
 
 	/**
 	 * @brief KalmanFilter update
-	 * @todo implement this class
+	 * @todo implement this function
 	 */
 	void update( const GPSData * gpsData, const CompassData * compassData, const EncoderData * encoderData );
 
