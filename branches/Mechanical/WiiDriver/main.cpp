@@ -51,8 +51,8 @@ int main( int argc, char** argv ) {
 		of.open("dump.txt");
 
 		//Set up logging
-		//Log::SetLogFile(&of);
-		Log::SetLogFile(&cout);
+		Log::SetLogFile(&of);
+		//Log::SetLogFile(&cout);
 		Log::SetReportLevel(loggingLevel);
 		Log::SetTimeStampDisplay(false);
 		Log::SetReportStreamBits(ALL_LOG&(~(WII_LOG)));
