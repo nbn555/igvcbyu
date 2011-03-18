@@ -11,6 +11,9 @@
 #include <mrpt/hwdrivers/CSickLaserSerial.h>
 #include "YClopsSensor.h"
 
+/**
+ * @brief Interfaces with the SICK 290 laser range finder
+ */
 class Lidar: protected mrpt::hwdrivers::CSickLaserSerial, public YClopsSensor {
 public:
 	Lidar();

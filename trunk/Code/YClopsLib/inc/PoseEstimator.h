@@ -13,6 +13,9 @@
 #include "SensorData.h"
 #include "logging.h"
 
+/**
+ * @brief Pose Estimator parent class interface
+ */
 class AbstractPoseEstimator {
 public:
 	AbstractPoseEstimator();
