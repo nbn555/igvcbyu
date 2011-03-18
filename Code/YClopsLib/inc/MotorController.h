@@ -22,7 +22,7 @@
 
 
 /**
- * MotorController - interface class to the RoboteQ 2440 motor controller
+ * @brief Interface class to the RoboteQ 2440 motor controller
  * @TODO implement PID controller constants commands in initialization
  */
 class MotorController {

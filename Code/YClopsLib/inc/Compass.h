@@ -17,6 +17,9 @@
 #include <string>
 #include <iostream>
 
+/**
+ * @brief Interface to the Honeywell HMR3000 digital compass
+ */
 class Compass: public YClopsSensor {
 
 public:

@@ -11,8 +11,7 @@
 #include <cstdlib>
 
 /**
- * This class is an empty class used only for a grouping of static functions to make the internal pc
- * speaker beep
+ * @brief An empty class used only for a grouping of static functions to make the internal pc speaker beep
  */
 class Beeper {
 public:

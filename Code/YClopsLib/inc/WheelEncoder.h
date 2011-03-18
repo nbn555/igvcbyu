@@ -10,6 +10,10 @@
 
 #include "YClopsSensor.h"
 
+/**
+ * @brief Implements an interface with wheel encoders through the motor controller, will
+ * allow us to additionally generate higher level data such as turning speed and linear speed
+ */
 class WheelEncoder: public YClopsSensor {
 public:
 	WheelEncoder();

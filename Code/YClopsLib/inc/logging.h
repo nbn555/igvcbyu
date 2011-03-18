@@ -64,7 +64,9 @@ typedef enum LOG_LEVEL{
 
 #define LOG(level)			LOG_STREAM(level,GENERIC_LOG)
 
-
+/**
+ * @brief Implementes logging functionality
+ */
 class Log {
 public:
 	Log() {};

@@ -11,6 +11,9 @@
 #include <mrpt/utils/CConfigFile.h>
 #include "SensorData.h"
 
+/**
+ * @brief An abstract sensor class that unifies the sensor interfaces
+ */
 class YClopsSensor {
 public:
 	YClopsSensor() {};
