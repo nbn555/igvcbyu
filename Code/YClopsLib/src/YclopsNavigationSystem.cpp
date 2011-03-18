@@ -642,7 +642,7 @@ void  YclopsNavigationSystem::performNavigationStep()
 		//				SEND MOVEMENT COMMAND TO THE ROBOT
 		// ---------------------------------------------------------------------
 		
-		cout << "CMD: " << cmd_v << "\t" << cmd_w << endl; 
+		LOG_AI(INFO) << "CMD: " << cmd_v << "\t" << cmd_w << endl;
 		LOG(DEBUG4) << "\n\n\n\n\n\n\nRunning change speeds to: Linear " << cmd_v << " Angular " << cmd_w << "\n\n\n\n\n\n\n\n" << endl;
 		if ( cmd_v == 0.0 && cmd_w == 0.0 ) {
 			m_robot.stop();
