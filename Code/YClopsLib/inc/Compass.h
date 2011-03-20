@@ -42,7 +42,7 @@ public:
 	 * @brief gets the yaw value from the compass
 	 * @return double The last received Yaw value
 	 */
-	double getYaw() const { return (this->degrees?this->yaw:mrpt::utils::DEG2RAD(this->yaw)); };
+	double getYaw() const { return (this->degrees ? this->yaw : mrpt::utils::DEG2RAD(this->yaw)); };
 
 	/**
 	 * @brief gets the pitch value from the compass
@@ -106,6 +106,11 @@ private:
 	 * clears out the data for parsing
 	 */
 	void reset();
+
+	/*
+	 * offers compensation for yaw.  within about 10 degrees at worst.
+	 */
+	double CompensateYaw(double deg);
 };
 
 #endif /* COMPASS_H_ */
