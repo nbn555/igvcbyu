@@ -3,7 +3,6 @@
 	<name>CompassDriver</name>
 	<comment></comment>
 	<projects>
-		<project>MultiSensorLib</project>
 		<project>YClopsLib</project>
 	</projects>
 	<buildSpec>

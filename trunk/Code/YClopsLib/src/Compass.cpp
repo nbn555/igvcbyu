@@ -88,12 +88,15 @@ void Compass::parseResponse( const std::string& data ) {
 
 	string buffer = data;
 	string header = "";
+	//! preYaw for yaw compensation
+	double preYaw = 0;
 
 	boost::replace_all( buffer, ",", " " );//replace the commas with spaces so the stringstream parser will parse how we want
 	stringstream s(buffer);
 
 	s >> header;
-	s >> this->yaw;
+	s >> preYaw;
+	this->yaw = CompensateYaw(preYaw);
 	s >> this->yawStatus;
 	s >> this->pitch;
 	s >> this->pitchStatus;
@@ -139,4 +142,16 @@ std::string Compass::computeChecksum( const std::string & sentence ) {
 	stream << high;
 	stream << low;
 	return stream.str();
+}
+
+double Compass::CompensateYaw(double deg) {
+	double piToD = 3.14159265/180;
+	const double OFFSET = 7.4;
+	if (deg == 0) return deg;
+	if (deg < 200)
+		deg = deg + 34*sin(.93*piToD*deg - 0.15) - OFFSET;
+	else
+		deg = deg + 18 * sin(deg*piToD - .3);
+
+	return deg;
 }
