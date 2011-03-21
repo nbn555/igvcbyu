@@ -35,6 +35,8 @@ void Compass::loadConfiguration( const mrpt::utils::CConfigFileBase & config, co
 
 	this->serialPort.setConfig( baudRate, 0, 8, 1 );
 
+	this->offset = config.read_int(sectionName, "offset", 0 );
+
 	this->degrees = config.read_bool(sectionName,"degrees",false);
 
 	LOG_COMPASS(DEBUG3) << "Using degrees mode: " << (this->degrees ? "TRUE" : "FALSE") << endl;
@@ -106,7 +108,7 @@ void Compass::parseResponse( const std::string& data ) {
 }
 
 void Compass::reset() {
-	this->yaw = 0;
+	this->yaw = 999;
 	this->pitch = 0;
 	this->roll = 0;
 	this->yawStatus = "";
@@ -146,12 +148,12 @@ std::string Compass::computeChecksum( const std::string & sentence ) {
 
 double Compass::CompensateYaw(double deg) {
 	double piToD = 3.14159265/180;
-	const double OFFSET = 7.4;
-	if (deg == 0) return deg;
+	//const double OFFSET = 7.4;
+	if (deg == 0) return deg; // is defaults to zero if not found
 	if (deg < 200)
-		deg = deg + 34*sin(.93*piToD*deg - 0.15) - OFFSET;
+		deg = deg + 34*sin(.93*piToD*deg - 0.15) + (double)this->offset;
 	else
-		deg = deg + 18 * sin(deg*piToD - .3);
+		deg = deg + 18 * sin(deg*piToD - .3) + (double)this->offset;
 
 	return deg;
 }

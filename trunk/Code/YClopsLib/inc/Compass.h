@@ -59,8 +59,10 @@ public:
 	/**
 	 * @brief gets the validity of the yaw observation
 	 * @returns true if the compass returned a valid yaw value
+	 * and if that value was less than 999 -> just an impossible degree number
+	 * if not reset.
 	 */
-	bool isYawValid() const { return "N" == this->yawStatus.substr(0,1); };
+	bool isYawValid() const { return "N" == this->yawStatus.substr(0,1) && this->yaw < 999; };
 
 	/**
 	 * @brief gets the validity of the pitch observation
@@ -86,6 +88,9 @@ protected:
 	void loadConfig_sensorSpecific(const mrpt::utils::CConfigFileBase&, const std::string& = "COMPASS" );
 
 private:
+
+	//! int offset is for compass if we decide to offset it to true north instead of magnetic north. Configurable in .ini file
+	int offset;
 	bool degrees;
 	double yaw;
 	double pitch;
