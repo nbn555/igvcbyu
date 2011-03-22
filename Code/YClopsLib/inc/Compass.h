@@ -62,7 +62,7 @@ public:
 	 * and if that value was less than 999 -> just an impossible degree number
 	 * if not reset.
 	 */
-	bool isYawValid() const { return "N" == this->yawStatus.substr(0,1) && this->yaw < 999; };
+	bool isYawValid() const { return "N" == this->yawStatus.substr(0,1); };
 
 	/**
 	 * @brief gets the validity of the pitch observation
@@ -90,8 +90,10 @@ protected:
 private:
 
 	//! int offset is for compass if we decide to offset it to true north instead of magnetic north. Configurable in .ini file
+	//! prevYaw is for case where compass returns an invalid yaw, it will return the prevYaw value instead
 	int offset;
 	bool degrees;
+	double prevYawDeg;
 	double yaw;
 	double pitch;
 	double roll;
