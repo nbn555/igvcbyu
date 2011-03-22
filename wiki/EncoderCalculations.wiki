@@ -1,0 +1,8 @@
+#summary Calculations to get linear and angular speed from encoder countsn
+#labels encoder,calculations
+
+= Pulses/second -> m/s =
+
+440 pulses/revolution
+
+pulse/second x revolution/pulses x circumference of wheel/revolution = m/s
