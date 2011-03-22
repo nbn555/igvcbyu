@@ -18,7 +18,7 @@ using namespace mrpt::hwdrivers;
 using namespace mrpt::utils;
 using namespace boost;
 
-Compass::Compass(): degrees(false), yaw(0), pitch(0), roll(0), yawStatus(""), pitchStatus(""), rollStatus(""), serialPort() {
+Compass::Compass(): degrees(false), prevYawDeg(0), yaw(0), pitch(0), roll(0), yawStatus(""), pitchStatus(""), rollStatus(""), serialPort() {
 
 }
 
@@ -149,11 +149,15 @@ std::string Compass::computeChecksum( const std::string & sentence ) {
 double Compass::CompensateYaw(double deg) {
 	double piToD = 3.14159265/180;
 	//const double OFFSET = 7.4;
-	if (deg == 0) return deg; // is defaults to zero if not found
-	if (deg < 200)
+	if (deg == 0)
+		deg = prevYawDeg; // returns zero sometimes, parse error?
+
+	else if (deg < 200)
 		deg = deg + 34*sin(.93*piToD*deg - 0.15) + (double)this->offset;
 	else
 		deg = deg + 18 * sin(deg*piToD - .3) + (double)this->offset;
+
+	prevYawDeg = deg;
 
 	return deg;
 }
