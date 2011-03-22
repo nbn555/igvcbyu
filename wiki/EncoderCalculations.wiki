@@ -14,4 +14,4 @@ pulse/second x revolution/pulses x circumference of wheel/revolution = m/s
 
 = Pulses/second -> rad/s =
 
-<img src="http://igvcbyu.googlecode.com/files/encoder_angular_speed.png"/>
+<img src="http://igvcbyu.googlecode.com/files/encoder_angular_speed.png" width="300"/>
