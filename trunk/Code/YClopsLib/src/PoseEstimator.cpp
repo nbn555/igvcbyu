@@ -39,19 +39,21 @@ NoFilterPoseEstimator::~NoFilterPoseEstimator() {
 // the first time it will return stuff in lat and lon for the
 // TSPSolver after that it returns things in meters from the start point
 void NoFilterPoseEstimator::update( const GPSData * gpsData, const CompassData * compassData, const EncoderData * encoderData ) {
-	double lat;
-	double lon;
+	double lat = this->poseEstimate.x();
+	double lon = this->poseEstimate.y();
 	double x;
 	double y;
 	double z 		= 0;
 	double yaw		= 0;
 	double pitch	= 0;
 	double roll		= 0;
+	bool gpsValid = false;
 
 	if( NULL != gpsData ) {
 		if(gpsData->valid) {
 			lat = gpsData->latitude;
 			lon = gpsData->longitude;
+			gpsValid = true;
 		} else {
 			LOG_POSE(ERROR) << "No valid data found in gps observation" << endl;
 		}
@@ -93,7 +95,7 @@ void NoFilterPoseEstimator::update( const GPSData * gpsData, const CompassData *
 		started = true;
 		return;
 	}
-	if(convertToMeters){
+	if(convertToMeters && gpsValid){
 		double length = AbstractNavigationInterface::haversineDistance(StartLat, StartLon,
 				lat, lon);
 		double direction = AbstractNavigationInterface::calcBearing(StartLat, StartLon,
