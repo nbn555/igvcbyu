@@ -112,7 +112,9 @@ protected:
 				const std::string clearCommandResponse, const std::string ggaCommand,
 				const std::string rmcCommand ): portName(port), vendor(vendor), clearCommand(clearCommand),
 				clearCommandResponse(clearCommandResponse), ggaCommand(ggaCommand), rmcCommand(rmcCommand) { };
-	};
+
+
+};
 
 	/**
 	 * @brief A class initialized with the Novatel command strings
@@ -138,12 +140,19 @@ private:
 	int processRate;
 	double testLat;		//!<For testing waypoints to make sure they are valid (must be within 10000 meters of point)
 	double testLon;		//!<For testing waypoints for validity
+	std::string vendor; //!<To give proper commands for intialize com
 	GPSStringer * gpsStrings; //!<The string set the gps interface uses
 	// Needed for the doProcess function call of the mrpt GPS
 	CGenericSensor::TListObservations				lstObs;
 	CGenericSensor::TListObservations::iterator 	itObs;
 	mrpt::slam::CObservationGPSPtr 					gpsData;
 
+	/*
+	 * pre communication to serial port at baud 9600.  Sets to desired baudrate found in .ini file
+	 */
+
+	void preComInitialize(mrpt::hwdrivers::CSerialPort * myCom);
+	void preComInitialize();
 	/**
 	 *  @brief Initializes the serial port with nmea commands to turn on continuous GPS data flow
 	 */
