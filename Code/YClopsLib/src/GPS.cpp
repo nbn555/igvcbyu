@@ -106,11 +106,11 @@ SensorData * GPS::getData() {
 	double lon;
 	bool valid = false;
 
-	if(gpsData.pointer()->has_GGA_datum) {
+	if(IsGGADataValid()) {
 		lat = gpsData.pointer()->GGA_datum.latitude_degrees;
 		lon = gpsData.pointer()->GGA_datum.longitude_degrees;
 		valid = true;
-	} else if(gpsData.pointer()->has_RMC_datum) {
+	} else if(IsRMCDataValid()) {
 		lat = gpsData.pointer()->RMC_datum.latitude_degrees;
 		lon = gpsData.pointer()->RMC_datum.longitude_degrees;
 		valid = true;
@@ -140,13 +140,15 @@ void GPS::dumpData(std::ostream & out ) const {
 	streamsize p = out.precision();
 	out.precision(10);
 	if(isValid) {
-		if( gpsData->has_GGA_datum ) {
+		if( IsGGADataValid() ) {
 			out << "GGA: " << gpsData->GGA_datum.latitude_degrees << ", " << gpsData->GGA_datum.longitude_degrees << endl;
 		}
+		else out << "GGA: InValid" << endl;
 
-		if( gpsData->has_RMC_datum ) {
+		if( IsRMCDataValid() ) {
 			out << "RMC: " << gpsData->RMC_datum.latitude_degrees << ", " << gpsData->RMC_datum.longitude_degrees << endl;
 		}
+		else out << "RMC: InValid" << endl;
 
 		out << "GetGpsLatitude() = " << GetGpsLatitude() << " GetGpsLongitude() = " << GetGpsLongitude() << endl;
 		out << "test lat = " << testLat << " test lon = " << testLon << endl;
@@ -173,14 +175,14 @@ double GPS::GetDistanceToWaypoint (double lat1, double lon1, double lat2, double
 
 double GPS::GetGpsSpeed() const{
 	const double knotToMph = 0.868976242;
-	if (gpsData->has_RMC_datum)
+	if (IsRMCDataValid())
 		return (gpsData->RMC_datum.speed_knots * knotToMph);
 	else return 0.0;
 }
 
 double GPS::GetGpsDirection() const{
 
-	if (gpsData->has_RMC_datum)
+	if (IsRMCDataValid())
 		return gpsData->RMC_datum.direction_degrees;
 
 	else
@@ -210,7 +212,13 @@ CPoint2D GPS::GetCurrentGpsLocation() const{
 	return curPos;
 }
 
+bool GPS::IsGGADataValid() const {
+	return gpsData->has_GGA_datum  && GetDistanceToWaypoint(testLat, testLon) < 10000;
+}
 
+bool GPS::IsRMCDataValid() const {
+	return gpsData->has_RMC_datum && GetDistanceToWaypoint(testLat, testLon) < 10000;
+}
 
 //**************  PRIVATE  *****************************
 
@@ -258,3 +266,5 @@ void GPS::initializeCom() {
 
 	myCom.close();
 }
+
+

@@ -85,6 +85,13 @@ public:
 	 */
 	mrpt::poses::CPoint2D GetCurrentGpsLocation() const;
 
+	/*
+	 * IsDataValid functions tests to ensure the returned gps point is within a certain distance
+	 * of the testLat and testLon given in the .ini file.
+	 */
+	bool IsGGADataValid() const;
+	bool IsRMCDataValid() const;
+
 protected:
 	/**
 	 * @brief A class to abstract the specific GPS command strings from the rest of the code
@@ -129,8 +136,8 @@ private:
 	bool isGprmcUsed;	//!<If we use data from the rmc datum
 	int baudRate;		//!<The baud rate the gps uses
 	int processRate;
-	double testLat;
-	double testLon;
+	double testLat;		//!<For testing waypoints to make sure they are valid (must be within 10000 meters of point)
+	double testLon;		//!<For testing waypoints for validity
 	GPSStringer * gpsStrings; //!<The string set the gps interface uses
 	// Needed for the doProcess function call of the mrpt GPS
 	CGenericSensor::TListObservations				lstObs;
