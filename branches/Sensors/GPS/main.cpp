@@ -52,7 +52,7 @@ void accuracyTest(GPS * gps) {
 	double preLon = gps->GetGpsLongitude();
 	for (int i = 0; i < reps; i++) {
 		mrpt::system::sleep(1000);
-		gps->doGPSProcess();
+		gps->sensorProcess();
 		fout.precision(14);
 		distance = gps->GetDistanceToWaypoint(preLat, preLon);
 
@@ -83,10 +83,12 @@ void accuracyTest(GPS * gps) {
 int main() {
 
 	GPS gps;
-	CConfigFile * config = new CConfigFile("GPS.ini");
-	gps.initialize(config);
+	CConfigFile config("GPS.ini");
+	gps.loadConfiguration(config, "GPS");
+	gps.init();
+	gps.dumpData(cout);
 
-	accuracyTest(&gps);
+	//accuracyTest(&gps);
 
 	return 0;
 }
