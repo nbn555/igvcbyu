@@ -24,7 +24,7 @@ GPS::GPS(const int Buffer_Length):CGPSInterface(Buffer_Length), isGpggaUsed(fals
 void GPS::loadConfiguration( const mrpt::utils::CConfigFileBase & config, const std::string & sectionName) {
 
 	std::string portName = config.read_string(sectionName,"COM_port_LIN","/dev/ttyS0");
-	std::string vendor = config.read_string(sectionName, "GPS_TYPE", "Novatel" );
+	vendor = config.read_string(sectionName, "GPS_TYPE", "Novatel" );
 
 	if( GPSStringer::NOVATEL == vendor ) {
 		this->gpsStrings = new NovatelGPSStringer( portName );
@@ -225,12 +225,26 @@ bool GPS::IsRMCDataValid() const {
 void GPS::initializeCom() {
 	// check if connection is already established, if not, reconnect
 	//if (this->isGPS_connected()) {return; }
-
-	LOG_GPS(DEBUG3) << "Connecting to GPS ... (./YClopsLib/GPS)" << endl;
-
+	preComInitialize();
+	sleep(2000);
 	CSerialPort myCom(this->gpsStrings->portName);
+	if (myCom.isOpen())
+		LOG_GPS(DEBUG3) << "com is already open" << endl;
+	//Compass * compass = &comp;
+	//CSerialPort * preMyCom = &myCom;
+	//preComInitialize(preMyCom);
 
+
+	LOG_GPS(DEBUG3) << "Connecting to GPS at " << baudRate << " ... (./YClopsLib/GPS)" << endl;
+
+	myCom.purgeBuffers();
+
+	try {
 	myCom.setConfig(this->baudRate,0,8,1,false);
+	}
+	catch(...) {
+		cout << "problem with setConfig" << endl;
+	}
 
 	LOG_GPS(DEBUG3) << "Post open" << endl;
 
@@ -239,17 +253,24 @@ void GPS::initializeCom() {
 	//clear out the commands that constantly update the gps data
 	bool to = false;
 
+	try {
 	inputStream << this->gpsStrings->clearCommand << "\n\r";
 	myCom.Write(inputStream.str().c_str(),inputStream.str().length());
 	sleep(1);
 	myCom.purgeBuffers();
-
+	}
+	catch(...) {
+		LOG_GPS(DEBUG3) << "Could not write clearCommand" << endl;
+	}
 	string response = myCom.ReadString( 1000, &to, "\n\r" );
 
 	if( this->gpsStrings->clearCommandResponse != response.substr(0,this->gpsStrings->clearCommandResponse.length()) || to ) {
 		LOG_GPS(FATAL) << "Misconfigured " << this->gpsStrings->vendor << " GPS.\nRecieved: " << response << endl;
 	}
 
+
+
+	try {
 	if( this->isGpggaUsed ) {
 		LOG_GPS(DEBUG3) << "Using gpgga" << endl;
 		inputStream.str("");
@@ -263,8 +284,111 @@ void GPS::initializeCom() {
 		inputStream << this->gpsStrings->rmcCommand << this->processRate << "\n\r";
 		myCom.Write(inputStream.str().c_str(),inputStream.str().length());//this will tell the gps to run the nmea rmc command once a second
 	}
+	}
 
+	catch(...) {
+		LOG_GPS(DEBUG3) << "Could not write to GPS" << endl;
+	}
+
+	myCom.purgeBuffers();
 	myCom.close();
 }
 
+void GPS::preComInitialize() {
+	LOG_GPS(DEBUG3) << "Configuring GPS at 9600 baud rate ... (./YClopsLib/GPS)" << endl;
+
+	CSerialPort myCom(this->gpsStrings->portName);
+	try {
+	myCom.setConfig(9600,0,8,1,false);
+
+	stringstream inputStream;
+
+	//clear out the commands that constantly update the gps data
+	bool to = false;
+
+
+
+	inputStream << this->gpsStrings->clearCommand << "\n\r";
+	myCom.Write(inputStream.str().c_str(),inputStream.str().length());
+	sleep(1);
+	myCom.purgeBuffers();
+
+
+	string response = myCom.ReadString( 1000, &to, "\n\r" );
+
+	// configure for individual baudrates
+	if( this->gpsStrings->clearCommandResponse != response.substr(0,this->gpsStrings->clearCommandResponse.length()) || to ) {
+		LOG_GPS(FATAL) << "Misconfigured " << this->gpsStrings->vendor << " GPS at preCom.\nRecieved: " << response << endl;
+	}
+
+
+
+	if( GPSStringer::NOVATEL == vendor ) {
+		LOG_GPS(DEBUG3) << "Setting com to " << baudRate << endl;
+		inputStream.str("");
+		inputStream << "COM " << baudRate << "\n\r";
+		myCom.Write(inputStream.str().c_str(),inputStream.str().length());// tells gps to operate at desired baud
+	} else if( GPSStringer::POCKETMAX == vendor ) {
+		LOG_GPS(DEBUG3) << "Setting com to " << baudRate << endl;
+		inputStream.str("");
+		inputStream << "$jbaud," << baudRate << "\n\r";
+		myCom.Write(inputStream.str().c_str(),inputStream.str().length());// tells gps to operate at desired baud
+	}
+
+	}
+	catch(...) {
+		cout << "GPS already configured in correct baudRate" << endl;
+	}
+	myCom.close();
+
+}
+
+void GPS::preComInitialize(CSerialPort * myCom) {
+	LOG_GPS(DEBUG3) << "Configuring GPS at 9600 baud rate ... (./YClopsLib/GPS)" << endl;
+
+	//CSerialPort myCom(this->gpsStrings->portName);
+	try {
+	myCom->setConfig(9600,0,8,1,false);
+
+	stringstream inputStream;
+
+	//clear out the commands that constantly update the gps data
+	bool to = false;
+
+
+
+	inputStream << this->gpsStrings->clearCommand << "\n\r";
+	myCom->Write(inputStream.str().c_str(),inputStream.str().length());
+	sleep(1);
+	myCom->purgeBuffers();
+
+
+	string response = myCom->ReadString( 1000, &to, "\n\r" );
+
+	// configure for individual baudrates
+	//if( this->gpsStrings->clearCommandResponse != response.substr(0,this->gpsStrings->clearCommandResponse.length()) || to ) {
+	//	LOG_GPS(FATAL) << "Misconfigured " << this->gpsStrings->vendor << " GPS at preCom.\nRecieved: " << response << endl;
+	//}
+
+
+
+	if( GPSStringer::NOVATEL == vendor ) {
+		LOG_GPS(DEBUG3) << "Setting com to " << baudRate << endl;
+		inputStream.str("");
+		inputStream << "COM " << baudRate << "\n\r";
+		myCom->Write(inputStream.str().c_str(),inputStream.str().length());// tells gps to operate at desired baud
+	} else if( GPSStringer::POCKETMAX == vendor ) {
+		LOG_GPS(DEBUG3) << "Setting com to " << baudRate << endl;
+		inputStream.str("");
+		inputStream << "$jbaud," << baudRate << "\n\r";
+		myCom->Write(inputStream.str().c_str(),inputStream.str().length());// tells gps to operate at desired baud
+	}
+
+	}
+	catch(...) {
+		cout << "GPS already configured in correct baudRate" << endl;
+	}
+	//myCom.close();
+
+}
 
