@@ -89,11 +89,11 @@ protected:
 
 private:
 
-	//! int offset is for compass if we decide to offset it to true north instead of magnetic north. Configurable in .ini file
-	//! prevYaw is for case where compass returns an invalid yaw, it will return the prevYaw value instead
-	int offset;
+
+
+	int offset; //!< int offset is for compass if we decide to offset it to true north instead of magnetic north. Configurable in .ini file
 	bool degrees;
-	double prevYawDeg;
+	double prevYawDeg;//!< prevYawDeg is for case where compass returns an invalid yaw, it will return the prevYaw value instead in degrees (does not effect final output in radians or degrees)
 	double yaw;
 	double pitch;
 	double roll;
