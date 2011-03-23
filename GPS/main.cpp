@@ -82,11 +82,26 @@ void accuracyTest(GPS * gps) {
 
 int main() {
 
+	cout << "here" << endl;
 	GPS gps;
 	CConfigFile config("GPS.ini");
 	gps.loadConfiguration(config, "GPS");
 	gps.init();
 	gps.dumpData(cout);
+
+	while (1) {
+		gps.sensorProcess();
+		double lat = gps.GetGpsLatitude();
+		double lon = gps.GetGpsLongitude();
+
+		if (lat == 0.0 || lon == 0.0)
+			cout << "Invalid readings" << endl;
+		else {
+			cout << "good" << endl;
+			cout << "distance to TestPoint = " << gps.GetDistanceToWaypoint(40.24757, -111.6481) << endl;
+		}
+		mrpt::system::sleep(1000);
+	}
 
 	//accuracyTest(&gps);
 
