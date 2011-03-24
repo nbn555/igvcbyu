@@ -20,7 +20,7 @@
 using namespace mrpt::utils;
 using namespace std;
 
-double CompensateCompass(double deg) {
+/*double CompensateCompass(double deg) {
 	double piToD = 3.14159265/180;
 	const double OFFSET = 7.4;
 	if (deg == 0) return deg;
@@ -31,7 +31,7 @@ double CompensateCompass(double deg) {
 
 	return deg;
 }
-
+*/
 int main( int argc, char** argv ) {
 
 	ofstream fout("Compass Accuracy Testing.txt"); // to take GPS readings for testing
@@ -55,10 +55,6 @@ int main( int argc, char** argv ) {
 		cout << endl;
 
 		mrpt::system::sleep(200);
-
-
-
-
 	}
 
 	fout.close();
