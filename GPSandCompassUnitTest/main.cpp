@@ -53,6 +53,7 @@ const double metersToFeet = 3.2808399;
 
 /***************************Main****************************/
 
+/*
 bool testGPSInitialize(GPS * gps, CConfigFile * config) {
 	gps->loadConfig(*config, "GPS");
 	gps->initConfig(*config, "GPS");
@@ -146,33 +147,61 @@ bool testCompassAndGPSShowData(GPS * gps, Compass * compass){
 
 	return false;
 }
+*/
 
 int main( int argc, char** argv ) {
 	////////////////Configure GPS
-	CConfigFile * config = new CConfigFile("GPS.ini");
-	GPS * gps = new GPS();
+	GPS gps;
+	CConfigFile config1("GPS.ini");
+	gps.loadConfiguration(config1, "GPS");
+	gps.init();
+
 
 	//////////////////Configure COMPASS
 	Compass comp;
-	CConfigFile * compassConfig = new CConfigFile( "Compass.ini" );
+	CConfigFile config2( "Compass.ini" );
 
-	Compass * compass = &comp;
+	comp.loadConfiguration(config2, "COMPASS" );
+	comp.init();
+
+	//Compass * compass = &comp;
 
 	//Compass * compass = new Compass(string("Compass.ini"));
-	int showRecord = 3;
+	//int showRecord = 3;
 	cout << "Start GPS and Compass unit testing" << endl;
-	assert(testGPSInitialize(gps, config) == true);
+	//assert(testGPSInitialize(gps, config) == true);
 	//assert(testGPSConnection(gps) == true);
 	//assert(testGPSShowData(gps, showRecord) == true);
-	assert(testCompassInitialize(compass, compassConfig) == true);
-	assert(testCompassConnection(compass) == true);
-	assert(testCompassShowData(compass, showRecord) == true);
+	//assert(testCompassInitialize(compass, compassConfig) == true);
+	//assert(testCompassConnection(compass) == true);
+	//assert(testCompassShowData(compass, showRecord) == true);
 
 	while (1) {
 		//assert(testCompassAndGPSConnections(gps, compass) == true);
 		//assert(testCompassAndGPSShowData(gps, compass) == true);
-		testCompassShowData(compass, showRecord);
-		testGPSShowData(gps, showRecord);
+		gps.sensorProcess();
+		double lat = gps.GetGpsLatitude();
+		double lon = gps.GetGpsLongitude();
+
+		if (lat == 0.0 || lon == 0.0)
+			cout << "Invalid readings" << endl;
+		else {
+			cout << "good" << endl;
+			cout << "Lat: " << lat << "    Lon: " << lon << endl;
+			cout << "distance to TestPoint = " << gps.GetDistanceToWaypoint(40.24757, -111.6481) << endl;
+			cout << endl;
+		}
+
+
+		comp.sensorProcess();
+		if( comp.isYawValid() ) cout << "Yaw: " << comp.getYaw() * 180 / 3.14159265 << endl;
+		//if( comp.isYawValid() ) cout << "Correct Yaw: " << CompensateCompass(comp.getYaw() * 180 / 3.14159265) << endl;
+		if( comp.isPitchValid() ) cout << "Pitch: " << comp.getPitch() << endl;
+		if( comp.isRollValid() ) cout << "Roll: " << comp.getRoll() << endl;
+
+
+		cout << endl;
+
 		mrpt::system::sleep(500);
 	}
 

@@ -1,17 +1,19 @@
 main.d main.o: ../main.cpp \
- /usr/include/mrpt/base/include/mrpt/utils/CConfigFile.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGPSInterface.h \
+ /usr/include/mrpt/obs/include/mrpt/slam/CObservationGPS.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CSerializable.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CObject.h \
  /usr/include/mrpt/base/include/mrpt/utils/utils_defs.h \
  /usr/include/mrpt/mrpt-config/mrpt/config.h \
  /usr/include/mrpt/base/include/mrpt/system/os.h \
  /usr/include/mrpt/base/include/mrpt/base/link_pragmas.h \
  /usr/include/mrpt/base/include/mrpt/utils/boost_join.h \
  /usr/include/mrpt/base/include/mrpt/utils/types.h \
- /usr/include/mrpt/base/include/mrpt/utils/mrpt_stdint.h \
- /usr/include/mrpt/base/include/mrpt/utils/mrpt_inttypes.h \
+ /usr/include/mrpt/base/include/mrpt/utils/pstdint.h \
  /usr/include/mrpt/base/include/mrpt/math/math_frwds.h \
  /usr/include/mrpt/base/include/Eigen/Dense \
  /usr/include/mrpt/base/include/Eigen/Core \
- /usr/include/mrpt/base/include/Eigen/src/Core/util/DisableStupidWarnings.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/util/DisableMSVCWarnings.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/util/Macros.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/util/Constants.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/util/ForwardDeclarations.h \
@@ -22,9 +24,6 @@ main.d main.o: ../main.cpp \
  /usr/include/mrpt/base/include/Eigen/src/Core/NumTraits.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/MathFunctions.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/GenericPacketMath.h \
- /usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/PacketMath.h \
- /usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/MathFunctions.h \
- /usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/Complex.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/arch/Default/Settings.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/Functors.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/DenseCoeffsBase.h \
@@ -103,7 +102,7 @@ main.d main.o: ../main.cpp \
  /usr/include/mrpt/base/include/Eigen/src/Core/../plugins/ArrayCwiseBinaryOps.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/ArrayWrapper.h \
  /usr/include/mrpt/base/include/Eigen/src/Core/GlobalFunctions.h \
- /usr/include/mrpt/base/include/Eigen/src/Core/util/ReenableStupidWarnings.h \
+ /usr/include/mrpt/base/include/Eigen/src/Core/util/EnableMSVCWarnings.h \
  /usr/include/mrpt/base/include/Eigen/LU \
  /usr/include/mrpt/base/include/Eigen/src/misc/Solve.h \
  /usr/include/mrpt/base/include/Eigen/src/misc/Kernel.h \
@@ -112,7 +111,6 @@ main.d main.o: ../main.cpp \
  /usr/include/mrpt/base/include/Eigen/src/LU/PartialPivLU.h \
  /usr/include/mrpt/base/include/Eigen/src/LU/Determinant.h \
  /usr/include/mrpt/base/include/Eigen/src/LU/Inverse.h \
- /usr/include/mrpt/base/include/Eigen/src/LU/arch/Inverse_SSE.h \
  /usr/include/mrpt/base/include/Eigen/Cholesky \
  /usr/include/mrpt/base/include/Eigen/src/Cholesky/LLT.h \
  /usr/include/mrpt/base/include/Eigen/src/Cholesky/LDLT.h \
@@ -126,25 +124,6 @@ main.d main.o: ../main.cpp \
  /usr/include/mrpt/base/include/Eigen/src/QR/HouseholderQR.h \
  /usr/include/mrpt/base/include/Eigen/src/QR/FullPivHouseholderQR.h \
  /usr/include/mrpt/base/include/Eigen/src/QR/ColPivHouseholderQR.h \
- /usr/include/mrpt/base/include/Eigen/SVD \
- /usr/include/mrpt/base/include/Eigen/src/SVD/JacobiSVD.h \
- /usr/include/mrpt/base/include/Eigen/src/SVD/UpperBidiagonalization.h \
- /usr/include/mrpt/base/include/Eigen/Geometry \
- /usr/include/mrpt/base/include/Eigen/src/Geometry/OrthoMethods.h \
- /usr/include/mrpt/base/include/Eigen/src/Geometry/EulerAngles.h \
- /usr/include/mrpt/base/include/Eigen/src/Geometry/Homogeneous.h \
- /usr/include/mrpt/base/include/Eigen/src/Geometry/RotationBase.h \
- /usr/include/mrpt/base/include/Eigen/src/Geometry/Rotation2D.h \
- /usr/include/mrpt/base/include/Eigen/src/Geometry/Quaternion.h \
- /usr/include/mrpt/base/include/Eigen/src/Geometry/AngleAxis.h \
- /usr/include/mrpt/base/include/Eigen/src/Geometry/Transform.h \
- /usr/include/mrpt/base/include/Eigen/src/Geometry/Translation.h \
- /usr/include/mrpt/base/include/Eigen/src/Geometry/Scaling.h \
- /usr/include/mrpt/base/include/Eigen/src/Geometry/Hyperplane.h \
- /usr/include/mrpt/base/include/Eigen/src/Geometry/ParametrizedLine.h \
- /usr/include/mrpt/base/include/Eigen/src/Geometry/AlignedBox.h \
- /usr/include/mrpt/base/include/Eigen/src/Geometry/Umeyama.h \
- /usr/include/mrpt/base/include/Eigen/src/Geometry/arch/Geometry_SSE.h \
  /usr/include/mrpt/base/include/Eigen/Eigenvalues \
  /usr/include/mrpt/base/include/Eigen/src/Eigenvalues/Tridiagonalization.h \
  /usr/include/mrpt/base/include/Eigen/src/Eigenvalues/RealSchur.h \
@@ -160,6 +139,24 @@ main.d main.o: ../main.cpp \
  /usr/include/mrpt/base/include/Eigen/src/Eigenvalues/ComplexEigenSolver.h \
  /usr/include/mrpt/base/include/Eigen/src/Eigenvalues/./ComplexSchur.h \
  /usr/include/mrpt/base/include/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
+ /usr/include/mrpt/base/include/Eigen/SVD \
+ /usr/include/mrpt/base/include/Eigen/src/SVD/JacobiSVD.h \
+ /usr/include/mrpt/base/include/Eigen/src/SVD/UpperBidiagonalization.h \
+ /usr/include/mrpt/base/include/Eigen/Geometry \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/OrthoMethods.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/Homogeneous.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/RotationBase.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/Rotation2D.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/Quaternion.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/AngleAxis.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/EulerAngles.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/Transform.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/Translation.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/Scaling.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/Hyperplane.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/ParametrizedLine.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/AlignedBox.h \
+ /usr/include/mrpt/base/include/Eigen/src/Geometry/Umeyama.h \
  /usr/include/mrpt/base/include/Eigen/StdVector \
  /usr/include/mrpt/base/include/Eigen/src/StlSupport/StdVector.h \
  /usr/include/mrpt/base/include/Eigen/src/StlSupport/details.h \
@@ -174,33 +171,67 @@ main.d main.o: ../main.cpp \
  /usr/include/mrpt/base/include/mrpt/synch/atomic_incr.h \
  /usr/include/mrpt/base/include/mrpt/otherlibs/stlplus/smart_ptr.tpp \
  /usr/include/mrpt/base/include/mrpt/utils/bits.h \
- /usr/include/mrpt/base/include/mrpt/utils/CConfigFileBase.h \
- /usr/include/mrpt/base/include/mrpt/utils/TEnumType.h \
- /usr/include/mrpt/base/include/mrpt/utils/stl_extensions.h \
- /usr/include/mrpt/base/include/mrpt/utils/CSerializable.h \
- /usr/include/mrpt/base/include/mrpt/utils/CObject.h \
  /usr/include/mrpt/base/include/mrpt/utils/safe_pointers.h \
  /usr/include/mrpt/base/include/mrpt/utils/CStream.h \
  /usr/include/mrpt/base/include/mrpt/utils/CUncopiable.h \
  /usr/include/mrpt/base/include/mrpt/utils/exceptions.h \
+ /usr/include/mrpt/obs/include/mrpt/slam/CObservation.h \
+ /usr/include/mrpt/obs/include/mrpt/obs/link_pragmas.h \
+ /usr/include/mrpt/base/include/mrpt/system/datetime.h \
+ /usr/include/mrpt/base/include/mrpt/poses/CPose3D.h \
+ /usr/include/mrpt/base/include/mrpt/poses/CPose.h \
+ /usr/include/mrpt/base/include/mrpt/poses/CPoseOrPoint.h \
+ /usr/include/mrpt/base/include/mrpt/math/CMatrixFixedNumeric.h \
+ /usr/include/mrpt/base/include/mrpt/math/CArray.h \
+ /usr/include/mrpt/base/include/mrpt/math/ops_containers.h \
+ /usr/include/mrpt/base/include/mrpt/math/lightweight_geom_data.h \
+ /usr/include/mrpt/base/include/mrpt/utils/stl_extensions.h \
  /usr/include/mrpt/base/include/mrpt/utils/metaprogramming.h \
  /usr/include/mrpt/base/include/mrpt/utils/circular_buffer.h \
  /usr/include/mrpt/base/include/mrpt/utils/list_searchable.h \
  /usr/include/mrpt/base/include/mrpt/utils/bimap.h \
  /usr/include/mrpt/base/include/mrpt/utils/map_as_vector.h \
  /usr/include/mrpt/base/include/mrpt/utils/traits_map.h \
+ /usr/include/mrpt/base/include/mrpt/math/CHistogram.h \
+ /usr/include/mrpt/base/include/mrpt/math/ops_matrices.h \
+ /usr/include/mrpt/base/include/mrpt/math/CMatrix.h \
+ /usr/include/mrpt/base/include/mrpt/math/CMatrixTemplateNumeric.h \
  /usr/include/mrpt/base/include/mrpt/math/CMatrixTemplate.h \
  /usr/include/mrpt/base/include/mrpt/system/memory.h \
- /usr/include/mrpt/base/include/mrpt/system/datetime.h \
  /usr/include/mrpt/base/include/mrpt/math/matrix_adaptors.h \
- /usr/include/mrpt/base/include/mrpt/math/CArray.h \
- /usr/include/mrpt/base/include/mrpt/math/ops_containers.h \
- /usr/include/mrpt/base/include/mrpt/math/lightweight_geom_data.h \
- /usr/include/mrpt/base/include/mrpt/math/CHistogram.h \
+ /usr/include/mrpt/base/include/mrpt/math/matrix_iterators.h \
+ /usr/include/mrpt/base/include/mrpt/math/CMatrixD.h \
+ /usr/include/mrpt/base/include/mrpt/math/utils.h \
+ /usr/include/mrpt/base/include/mrpt/math/ops_vectors.h \
+ /usr/include/mrpt/base/include/mrpt/poses/CPoseOrPoint_detail.h \
+ /usr/include/mrpt/base/include/mrpt/math/CQuaternion.h \
+ /usr/include/mrpt/base/include/mrpt/poses/CPose2D.h \
+ /usr/include/mrpt/base/include/mrpt/poses/CPoint3D.h \
+ /usr/include/mrpt/base/include/mrpt/poses/CPoint.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CTicTac.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/link_pragmas.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CDebugOutputCapable.h \
+ /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGenericSensor.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CConfigFileBase.h \
+ /usr/include/mrpt/base/include/mrpt/utils/TEnumType.h \
  /usr/include/mrpt/base/include/mrpt/system/string_utils.h \
- /home/pedestrian/workspace/igvc/YClopsLib/inc/Compass.h \
- /home/pedestrian/workspace/igvc/YClopsLib/inc/YClopsSensor.h \
- /home/pedestrian/workspace/igvc/YClopsLib/inc/SensorData.h \
+ /usr/include/mrpt/base/include/mrpt/synch.h \
+ /usr/include/mrpt/base/include/mrpt/synch/atomic_incr.h \
+ /usr/include/mrpt/base/include/mrpt/synch/CCriticalSection.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CReferencedMemBlock.h \
+ /usr/include/mrpt/base/include/mrpt/synch/CEvent.h \
+ /usr/include/mrpt/base/include/mrpt/synch/CSemaphore.h \
+ /usr/include/mrpt/base/include/mrpt/synch/MT_buffer.h \
+ /usr/include/mrpt/base/include/mrpt/synch/CCriticalSection.h \
+ /usr/include/mrpt/base/include/mrpt/synch/CThreadSafeVariable.h \
+ /usr/include/mrpt/base/include/mrpt/system/threads.h \
+ /home/igvcbyu/workspace/YClopsLib/inc/GPS.h \
+ /usr/include/mrpt/base/include/mrpt/utils/CConfigFile.h \
+ /home/igvcbyu/workspace/YClopsLib/inc/WaypointPlanner.h \
+ /usr/include/mrpt/base/include/mrpt/poses/CPoint2D.h \
+ /home/igvcbyu/workspace/YClopsLib/inc/YClopsSensor.h \
+ /home/igvcbyu/workspace/YClopsLib/inc/SensorData.h \
  /usr/include/mrpt/slam/include/mrpt/slam.h \
  /usr/include/mrpt/vision/include/mrpt/vision.h \
  /usr/include/mrpt/obs/include/mrpt/obs.h \
@@ -211,39 +242,21 @@ main.d main.o: ../main.cpp \
  /usr/include/mrpt/base/include/mrpt/compress/zip.h \
  /usr/include/mrpt/base/include/mrpt/math.h \
  /usr/include/mrpt/base/include/mrpt/math/distributions.h \
- /usr/include/mrpt/base/include/mrpt/math/CMatrixTemplateNumeric.h \
- /usr/include/mrpt/base/include/mrpt/math/matrix_iterators.h \
- /usr/include/mrpt/base/include/mrpt/math/ops_matrices.h \
- /usr/include/mrpt/base/include/mrpt/math/CMatrix.h \
- /usr/include/mrpt/base/include/mrpt/math/CMatrixFixedNumeric.h \
- /usr/include/mrpt/base/include/mrpt/math/CMatrixD.h \
  /usr/include/mrpt/base/include/mrpt/math/transform_gaussian.h \
  /usr/include/mrpt/base/include/mrpt/math/jacobians.h \
- /usr/include/mrpt/base/include/mrpt/math/CQuaternion.h \
- /usr/include/mrpt/base/include/mrpt/math/utils.h \
- /usr/include/mrpt/base/include/mrpt/math/ops_vectors.h \
- /usr/include/mrpt/base/include/mrpt/poses/CPose3D.h \
- /usr/include/mrpt/base/include/mrpt/poses/CPose.h \
- /usr/include/mrpt/base/include/mrpt/poses/CPoseOrPoint.h \
- /usr/include/mrpt/base/include/mrpt/poses/CPoseOrPoint_detail.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPose3DPDFGaussian.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPose3DPDF.h \
  /usr/include/mrpt/base/include/mrpt/utils/CProbabilityDensityFunction.h \
  /usr/include/mrpt/base/include/mrpt/poses/opengl_frwd_decl.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPosePDF.h \
- /usr/include/mrpt/base/include/mrpt/poses/CPose2D.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPosePDFGaussian.h \
  /usr/include/mrpt/base/include/mrpt/random.h \
  /usr/include/mrpt/base/include/mrpt/random/RandomGenerators.h \
  /usr/include/mrpt/base/include/mrpt/math/fourier.h \
  /usr/include/mrpt/base/include/mrpt/math/CLevenbergMarquardt.h \
- /usr/include/mrpt/base/include/mrpt/utils/CDebugOutputCapable.h \
  /usr/include/mrpt/base/include/mrpt/math/ransac.h \
  /usr/include/mrpt/base/include/mrpt/math/ransac_applications.h \
  /usr/include/mrpt/base/include/mrpt/math/geometry.h \
- /usr/include/mrpt/base/include/mrpt/poses/CPoint2D.h \
- /usr/include/mrpt/base/include/mrpt/poses/CPoint.h \
- /usr/include/mrpt/base/include/mrpt/poses/CPoint3D.h \
  /usr/include/mrpt/base/include/mrpt/math/CSparseMatrixTemplate.h \
  /usr/include/mrpt/base/include/mrpt/math/dijkstra.h \
  /usr/include/mrpt/base/include/mrpt/math/graphs.h \
@@ -255,7 +268,6 @@ main.d main.o: ../main.cpp \
  /usr/include/mrpt/base/include/mrpt/math/CSparseMatrix.h \
  /usr/include/mrpt/base/include/mrpt/otherlibs/CSparse/cs.h \
  /usr/include/mrpt/base/include/mrpt/math/CAStarAlgorithm.h \
- /usr/include/mrpt/base/include/mrpt/utils/CTicTac.h \
  /usr/include/mrpt/base/include/mrpt/math/CBinaryRelation.h \
  /usr/include/mrpt/base/include/mrpt/math/CMonteCarlo.h \
  /usr/include/mrpt/base/include/mrpt/math/KDTreeCapable.h \
@@ -293,23 +305,13 @@ main.d main.o: ../main.cpp \
  /usr/include/mrpt/base/include/mrpt/utils/CFileGZInputStream.h \
  /usr/include/mrpt/base/include/mrpt/utils/CFileGZOutputStream.h \
  /usr/include/mrpt/base/include/mrpt/poses/CRobot2DPoseEstimator.h \
- /usr/include/mrpt/base/include/mrpt/synch/CCriticalSection.h \
- /usr/include/mrpt/base/include/mrpt/utils/CReferencedMemBlock.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPose3DQuatPDFGaussian.h \
  /usr/include/mrpt/base/include/mrpt/poses/CPose3DQuatPDF.h \
  /usr/include/mrpt/base/include/mrpt/poses/SE_traits.h \
  /usr/include/mrpt/base/include/mrpt/poses/helper_templates.h \
- /usr/include/mrpt/base/include/mrpt/synch.h \
- /usr/include/mrpt/base/include/mrpt/synch/atomic_incr.h \
- /usr/include/mrpt/base/include/mrpt/synch/CCriticalSection.h \
- /usr/include/mrpt/base/include/mrpt/synch/CEvent.h \
- /usr/include/mrpt/base/include/mrpt/synch/CSemaphore.h \
- /usr/include/mrpt/base/include/mrpt/synch/MT_buffer.h \
- /usr/include/mrpt/base/include/mrpt/synch/CThreadSafeVariable.h \
  /usr/include/mrpt/base/include/mrpt/system.h \
  /usr/include/mrpt/base/include/mrpt/system/CDirectoryExplorer.h \
  /usr/include/mrpt/base/include/mrpt/system/CFileSystemWatcher.h \
- /usr/include/mrpt/base/include/mrpt/system/threads.h \
  /usr/include/mrpt/base/include/mrpt/utils/CThreadSafeQueue.h \
  /usr/include/mrpt/base/include/mrpt/utils/CMessage.h \
  /usr/include/mrpt/base/include/mrpt/system/filesystem.h \
@@ -388,8 +390,6 @@ main.d main.o: ../main.cpp \
  /usr/include/mrpt/opengl/include/mrpt/opengl/stock_objects.h \
  /usr/include/mrpt/opengl/include/mrpt/opengl/pose_pdfs.h \
  /usr/include/mrpt/opengl/include/mrpt/opengl/graph_tools.h \
- /usr/include/mrpt/obs/include/mrpt/slam/CObservation.h \
- /usr/include/mrpt/obs/include/mrpt/obs/link_pragmas.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservation2DRangeScan.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CMetricMap.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CMetricMapEvents.h \
@@ -400,13 +400,11 @@ main.d main.o: ../main.cpp \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationStereoImagesFeatures.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationBeaconRanges.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationGasSensors.h \
- /usr/include/mrpt/obs/include/mrpt/slam/CObservationGPS.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationBatteryState.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationIMU.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationOdometry.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationBearingRange.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CObservationComment.h \
- /usr/include/mrpt/obs/include/mrpt/slam/CObservationReflectivity.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CSensoryFrame.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CAction.h \
  /usr/include/mrpt/obs/include/mrpt/slam/CActionCollection.h \
@@ -418,16 +416,16 @@ main.d main.o: ../main.cpp \
  /usr/include/mrpt/vision/include/mrpt/vision/utils.h \
  /usr/include/mrpt/vision/include/mrpt/vision/CFeature.h \
  /usr/include/mrpt/vision/include/mrpt/vision/link_pragmas.h \
+ /usr/include/mrpt/vision/include/mrpt/slam/CLandmarksMap.h \
+ /usr/include/mrpt/vision/include/mrpt/slam/CLandmark.h \
+ /usr/include/mrpt/vision/include/mrpt/slam/CObservationVisualLandmarks.h \
  /usr/include/mrpt/vision/include/mrpt/vision/types.h \
  /usr/include/mrpt/vision/include/mrpt/vision/chessboard_camera_calib.h \
  /usr/include/mrpt/vision/include/mrpt/vision/multiDesc_utils.h \
- /usr/include/mrpt/vision/include/mrpt/slam/CLandmarksMap.h \
- /usr/include/mrpt/vision/include/mrpt/vision/CFeatureExtraction.h \
- /usr/include/mrpt/vision/include/mrpt/slam/CLandmark.h \
- /usr/include/mrpt/vision/include/mrpt/slam/CObservationVisualLandmarks.h \
  /usr/include/mrpt/vision/include/mrpt/vision/chessboard_find_corners.h \
  /usr/include/mrpt/vision/include/mrpt/vision/pinhole.h \
  /usr/include/mrpt/vision/include/mrpt/vision/CCamModel.h \
+ /usr/include/mrpt/vision/include/mrpt/vision/CFeatureExtraction.h \
  /usr/include/mrpt/vision/include/mrpt/vision/CVideoFileWriter.h \
  /usr/include/mrpt/vision/include/mrpt/vision/tracking.h \
  /usr/include/mrpt/vision/include/mrpt/vision/bundle_adjustment.h \
@@ -441,8 +439,6 @@ main.d main.o: ../main.cpp \
  /usr/include/mrpt/obs/include/mrpt/slam/CSinCosLookUpTableFor2DScans.h \
  /usr/include/mrpt/maps/include/mrpt/slam/CGasConcentrationGridMap2D.h \
  /usr/include/mrpt/maps/include/mrpt/slam/CHeightGridMap2D.h \
- /usr/include/mrpt/maps/include/mrpt/slam/CReflectivityGridMap2D.h \
- /usr/include/mrpt/maps/include/mrpt/slam/CLogOddsGridMap2D.h \
  /usr/include/mrpt/maps/include/mrpt/slam/COccupancyGridMap2D.h \
  /usr/include/mrpt/maps/include/mrpt/slam/CSimplePointsMap.h \
  /usr/include/mrpt/maps/include/mrpt/opengl/CAngularObservationMesh.h \
@@ -477,13 +473,15 @@ main.d main.o: ../main.cpp \
  /usr/include/mrpt/slam/include/mrpt/slam/CRejectionSamplingRangeOnlyLocalization.h \
  /usr/include/mrpt/bayes/include/mrpt/bayes/CRejectionSamplingCapable.h \
  /usr/include/mrpt/slam/include/mrpt/slam/graph_slam.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGenericSensor.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/link_pragmas.h \
- /usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h \
- /home/pedestrian/workspace/igvc/YClopsLib/inc/MotorController.h \
- /home/pedestrian/workspace/igvc/YClopsLib/inc/logging.h
+ /home/igvcbyu/workspace/YClopsLib/inc/WaypointPlanner.h
 
-/usr/include/mrpt/base/include/mrpt/utils/CConfigFile.h:
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGPSInterface.h:
+
+/usr/include/mrpt/obs/include/mrpt/slam/CObservationGPS.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/CSerializable.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/CObject.h:
 
 /usr/include/mrpt/base/include/mrpt/utils/utils_defs.h:
 
@@ -497,9 +495,7 @@ main.d main.o: ../main.cpp \
 
 /usr/include/mrpt/base/include/mrpt/utils/types.h:
 
-/usr/include/mrpt/base/include/mrpt/utils/mrpt_stdint.h:
-
-/usr/include/mrpt/base/include/mrpt/utils/mrpt_inttypes.h:
+/usr/include/mrpt/base/include/mrpt/utils/pstdint.h:
 
 /usr/include/mrpt/base/include/mrpt/math/math_frwds.h:
 
@@ -507,7 +503,7 @@ main.d main.o: ../main.cpp \
 
 /usr/include/mrpt/base/include/Eigen/Core:
 
-/usr/include/mrpt/base/include/Eigen/src/Core/util/DisableStupidWarnings.h:
+/usr/include/mrpt/base/include/Eigen/src/Core/util/DisableMSVCWarnings.h:
 
 /usr/include/mrpt/base/include/Eigen/src/Core/util/Macros.h:
 
@@ -528,12 +524,6 @@ main.d main.o: ../main.cpp \
 /usr/include/mrpt/base/include/Eigen/src/Core/MathFunctions.h:
 
 /usr/include/mrpt/base/include/Eigen/src/Core/GenericPacketMath.h:
-
-/usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/PacketMath.h:
-
-/usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/MathFunctions.h:
-
-/usr/include/mrpt/base/include/Eigen/src/Core/arch/SSE/Complex.h:
 
 /usr/include/mrpt/base/include/Eigen/src/Core/arch/Default/Settings.h:
 
@@ -691,7 +681,7 @@ main.d main.o: ../main.cpp \
 
 /usr/include/mrpt/base/include/Eigen/src/Core/GlobalFunctions.h:
 
-/usr/include/mrpt/base/include/Eigen/src/Core/util/ReenableStupidWarnings.h:
+/usr/include/mrpt/base/include/Eigen/src/Core/util/EnableMSVCWarnings.h:
 
 /usr/include/mrpt/base/include/Eigen/LU:
 
@@ -708,8 +698,6 @@ main.d main.o: ../main.cpp \
 /usr/include/mrpt/base/include/Eigen/src/LU/Determinant.h:
 
 /usr/include/mrpt/base/include/Eigen/src/LU/Inverse.h:
-
-/usr/include/mrpt/base/include/Eigen/src/LU/arch/Inverse_SSE.h:
 
 /usr/include/mrpt/base/include/Eigen/Cholesky:
 
@@ -736,44 +724,6 @@ main.d main.o: ../main.cpp \
 /usr/include/mrpt/base/include/Eigen/src/QR/FullPivHouseholderQR.h:
 
 /usr/include/mrpt/base/include/Eigen/src/QR/ColPivHouseholderQR.h:
-
-/usr/include/mrpt/base/include/Eigen/SVD:
-
-/usr/include/mrpt/base/include/Eigen/src/SVD/JacobiSVD.h:
-
-/usr/include/mrpt/base/include/Eigen/src/SVD/UpperBidiagonalization.h:
-
-/usr/include/mrpt/base/include/Eigen/Geometry:
-
-/usr/include/mrpt/base/include/Eigen/src/Geometry/OrthoMethods.h:
-
-/usr/include/mrpt/base/include/Eigen/src/Geometry/EulerAngles.h:
-
-/usr/include/mrpt/base/include/Eigen/src/Geometry/Homogeneous.h:
-
-/usr/include/mrpt/base/include/Eigen/src/Geometry/RotationBase.h:
-
-/usr/include/mrpt/base/include/Eigen/src/Geometry/Rotation2D.h:
-
-/usr/include/mrpt/base/include/Eigen/src/Geometry/Quaternion.h:
-
-/usr/include/mrpt/base/include/Eigen/src/Geometry/AngleAxis.h:
-
-/usr/include/mrpt/base/include/Eigen/src/Geometry/Transform.h:
-
-/usr/include/mrpt/base/include/Eigen/src/Geometry/Translation.h:
-
-/usr/include/mrpt/base/include/Eigen/src/Geometry/Scaling.h:
-
-/usr/include/mrpt/base/include/Eigen/src/Geometry/Hyperplane.h:
-
-/usr/include/mrpt/base/include/Eigen/src/Geometry/ParametrizedLine.h:
-
-/usr/include/mrpt/base/include/Eigen/src/Geometry/AlignedBox.h:
-
-/usr/include/mrpt/base/include/Eigen/src/Geometry/Umeyama.h:
-
-/usr/include/mrpt/base/include/Eigen/src/Geometry/arch/Geometry_SSE.h:
 
 /usr/include/mrpt/base/include/Eigen/Eigenvalues:
 
@@ -805,6 +755,42 @@ main.d main.o: ../main.cpp \
 
 /usr/include/mrpt/base/include/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h:
 
+/usr/include/mrpt/base/include/Eigen/SVD:
+
+/usr/include/mrpt/base/include/Eigen/src/SVD/JacobiSVD.h:
+
+/usr/include/mrpt/base/include/Eigen/src/SVD/UpperBidiagonalization.h:
+
+/usr/include/mrpt/base/include/Eigen/Geometry:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/OrthoMethods.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/Homogeneous.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/RotationBase.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/Rotation2D.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/Quaternion.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/AngleAxis.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/EulerAngles.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/Transform.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/Translation.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/Scaling.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/Hyperplane.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/ParametrizedLine.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/AlignedBox.h:
+
+/usr/include/mrpt/base/include/Eigen/src/Geometry/Umeyama.h:
+
 /usr/include/mrpt/base/include/Eigen/StdVector:
 
 /usr/include/mrpt/base/include/Eigen/src/StlSupport/StdVector.h:
@@ -833,16 +819,6 @@ main.d main.o: ../main.cpp \
 
 /usr/include/mrpt/base/include/mrpt/utils/bits.h:
 
-/usr/include/mrpt/base/include/mrpt/utils/CConfigFileBase.h:
-
-/usr/include/mrpt/base/include/mrpt/utils/TEnumType.h:
-
-/usr/include/mrpt/base/include/mrpt/utils/stl_extensions.h:
-
-/usr/include/mrpt/base/include/mrpt/utils/CSerializable.h:
-
-/usr/include/mrpt/base/include/mrpt/utils/CObject.h:
-
 /usr/include/mrpt/base/include/mrpt/utils/safe_pointers.h:
 
 /usr/include/mrpt/base/include/mrpt/utils/CStream.h:
@@ -850,6 +826,28 @@ main.d main.o: ../main.cpp \
 /usr/include/mrpt/base/include/mrpt/utils/CUncopiable.h:
 
 /usr/include/mrpt/base/include/mrpt/utils/exceptions.h:
+
+/usr/include/mrpt/obs/include/mrpt/slam/CObservation.h:
+
+/usr/include/mrpt/obs/include/mrpt/obs/link_pragmas.h:
+
+/usr/include/mrpt/base/include/mrpt/system/datetime.h:
+
+/usr/include/mrpt/base/include/mrpt/poses/CPose3D.h:
+
+/usr/include/mrpt/base/include/mrpt/poses/CPose.h:
+
+/usr/include/mrpt/base/include/mrpt/poses/CPoseOrPoint.h:
+
+/usr/include/mrpt/base/include/mrpt/math/CMatrixFixedNumeric.h:
+
+/usr/include/mrpt/base/include/mrpt/math/CArray.h:
+
+/usr/include/mrpt/base/include/mrpt/math/ops_containers.h:
+
+/usr/include/mrpt/base/include/mrpt/math/lightweight_geom_data.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/stl_extensions.h:
 
 /usr/include/mrpt/base/include/mrpt/utils/metaprogramming.h:
 
@@ -863,29 +861,85 @@ main.d main.o: ../main.cpp \
 
 /usr/include/mrpt/base/include/mrpt/utils/traits_map.h:
 
+/usr/include/mrpt/base/include/mrpt/math/CHistogram.h:
+
+/usr/include/mrpt/base/include/mrpt/math/ops_matrices.h:
+
+/usr/include/mrpt/base/include/mrpt/math/CMatrix.h:
+
+/usr/include/mrpt/base/include/mrpt/math/CMatrixTemplateNumeric.h:
+
 /usr/include/mrpt/base/include/mrpt/math/CMatrixTemplate.h:
 
 /usr/include/mrpt/base/include/mrpt/system/memory.h:
 
-/usr/include/mrpt/base/include/mrpt/system/datetime.h:
-
 /usr/include/mrpt/base/include/mrpt/math/matrix_adaptors.h:
 
-/usr/include/mrpt/base/include/mrpt/math/CArray.h:
+/usr/include/mrpt/base/include/mrpt/math/matrix_iterators.h:
 
-/usr/include/mrpt/base/include/mrpt/math/ops_containers.h:
+/usr/include/mrpt/base/include/mrpt/math/CMatrixD.h:
 
-/usr/include/mrpt/base/include/mrpt/math/lightweight_geom_data.h:
+/usr/include/mrpt/base/include/mrpt/math/utils.h:
 
-/usr/include/mrpt/base/include/mrpt/math/CHistogram.h:
+/usr/include/mrpt/base/include/mrpt/math/ops_vectors.h:
+
+/usr/include/mrpt/base/include/mrpt/poses/CPoseOrPoint_detail.h:
+
+/usr/include/mrpt/base/include/mrpt/math/CQuaternion.h:
+
+/usr/include/mrpt/base/include/mrpt/poses/CPose2D.h:
+
+/usr/include/mrpt/base/include/mrpt/poses/CPoint3D.h:
+
+/usr/include/mrpt/base/include/mrpt/poses/CPoint.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/CTicTac.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/link_pragmas.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/CDebugOutputCapable.h:
+
+/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGenericSensor.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/CConfigFileBase.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/TEnumType.h:
 
 /usr/include/mrpt/base/include/mrpt/system/string_utils.h:
 
-/home/pedestrian/workspace/igvc/YClopsLib/inc/Compass.h:
+/usr/include/mrpt/base/include/mrpt/synch.h:
 
-/home/pedestrian/workspace/igvc/YClopsLib/inc/YClopsSensor.h:
+/usr/include/mrpt/base/include/mrpt/synch/atomic_incr.h:
 
-/home/pedestrian/workspace/igvc/YClopsLib/inc/SensorData.h:
+/usr/include/mrpt/base/include/mrpt/synch/CCriticalSection.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/CReferencedMemBlock.h:
+
+/usr/include/mrpt/base/include/mrpt/synch/CEvent.h:
+
+/usr/include/mrpt/base/include/mrpt/synch/CSemaphore.h:
+
+/usr/include/mrpt/base/include/mrpt/synch/MT_buffer.h:
+
+/usr/include/mrpt/base/include/mrpt/synch/CCriticalSection.h:
+
+/usr/include/mrpt/base/include/mrpt/synch/CThreadSafeVariable.h:
+
+/usr/include/mrpt/base/include/mrpt/system/threads.h:
+
+/home/igvcbyu/workspace/YClopsLib/inc/GPS.h:
+
+/usr/include/mrpt/base/include/mrpt/utils/CConfigFile.h:
+
+/home/igvcbyu/workspace/YClopsLib/inc/WaypointPlanner.h:
+
+/usr/include/mrpt/base/include/mrpt/poses/CPoint2D.h:
+
+/home/igvcbyu/workspace/YClopsLib/inc/YClopsSensor.h:
+
+/home/igvcbyu/workspace/YClopsLib/inc/SensorData.h:
 
 /usr/include/mrpt/slam/include/mrpt/slam.h:
 
@@ -907,35 +961,9 @@ main.d main.o: ../main.cpp \
 
 /usr/include/mrpt/base/include/mrpt/math/distributions.h:
 
-/usr/include/mrpt/base/include/mrpt/math/CMatrixTemplateNumeric.h:
-
-/usr/include/mrpt/base/include/mrpt/math/matrix_iterators.h:
-
-/usr/include/mrpt/base/include/mrpt/math/ops_matrices.h:
-
-/usr/include/mrpt/base/include/mrpt/math/CMatrix.h:
-
-/usr/include/mrpt/base/include/mrpt/math/CMatrixFixedNumeric.h:
-
-/usr/include/mrpt/base/include/mrpt/math/CMatrixD.h:
-
 /usr/include/mrpt/base/include/mrpt/math/transform_gaussian.h:
 
 /usr/include/mrpt/base/include/mrpt/math/jacobians.h:
-
-/usr/include/mrpt/base/include/mrpt/math/CQuaternion.h:
-
-/usr/include/mrpt/base/include/mrpt/math/utils.h:
-
-/usr/include/mrpt/base/include/mrpt/math/ops_vectors.h:
-
-/usr/include/mrpt/base/include/mrpt/poses/CPose3D.h:
-
-/usr/include/mrpt/base/include/mrpt/poses/CPose.h:
-
-/usr/include/mrpt/base/include/mrpt/poses/CPoseOrPoint.h:
-
-/usr/include/mrpt/base/include/mrpt/poses/CPoseOrPoint_detail.h:
 
 /usr/include/mrpt/base/include/mrpt/poses/CPose3DPDFGaussian.h:
 
@@ -947,8 +975,6 @@ main.d main.o: ../main.cpp \
 
 /usr/include/mrpt/base/include/mrpt/poses/CPosePDF.h:
 
-/usr/include/mrpt/base/include/mrpt/poses/CPose2D.h:
-
 /usr/include/mrpt/base/include/mrpt/poses/CPosePDFGaussian.h:
 
 /usr/include/mrpt/base/include/mrpt/random.h:
@@ -959,19 +985,11 @@ main.d main.o: ../main.cpp \
 
 /usr/include/mrpt/base/include/mrpt/math/CLevenbergMarquardt.h:
 
-/usr/include/mrpt/base/include/mrpt/utils/CDebugOutputCapable.h:
-
 /usr/include/mrpt/base/include/mrpt/math/ransac.h:
 
 /usr/include/mrpt/base/include/mrpt/math/ransac_applications.h:
 
 /usr/include/mrpt/base/include/mrpt/math/geometry.h:
-
-/usr/include/mrpt/base/include/mrpt/poses/CPoint2D.h:
-
-/usr/include/mrpt/base/include/mrpt/poses/CPoint.h:
-
-/usr/include/mrpt/base/include/mrpt/poses/CPoint3D.h:
 
 /usr/include/mrpt/base/include/mrpt/math/CSparseMatrixTemplate.h:
 
@@ -994,8 +1012,6 @@ main.d main.o: ../main.cpp \
 /usr/include/mrpt/base/include/mrpt/otherlibs/CSparse/cs.h:
 
 /usr/include/mrpt/base/include/mrpt/math/CAStarAlgorithm.h:
-
-/usr/include/mrpt/base/include/mrpt/utils/CTicTac.h:
 
 /usr/include/mrpt/base/include/mrpt/math/CBinaryRelation.h:
 
@@ -1071,10 +1087,6 @@ main.d main.o: ../main.cpp \
 
 /usr/include/mrpt/base/include/mrpt/poses/CRobot2DPoseEstimator.h:
 
-/usr/include/mrpt/base/include/mrpt/synch/CCriticalSection.h:
-
-/usr/include/mrpt/base/include/mrpt/utils/CReferencedMemBlock.h:
-
 /usr/include/mrpt/base/include/mrpt/poses/CPose3DQuatPDFGaussian.h:
 
 /usr/include/mrpt/base/include/mrpt/poses/CPose3DQuatPDF.h:
@@ -1083,27 +1095,11 @@ main.d main.o: ../main.cpp \
 
 /usr/include/mrpt/base/include/mrpt/poses/helper_templates.h:
 
-/usr/include/mrpt/base/include/mrpt/synch.h:
-
-/usr/include/mrpt/base/include/mrpt/synch/atomic_incr.h:
-
-/usr/include/mrpt/base/include/mrpt/synch/CCriticalSection.h:
-
-/usr/include/mrpt/base/include/mrpt/synch/CEvent.h:
-
-/usr/include/mrpt/base/include/mrpt/synch/CSemaphore.h:
-
-/usr/include/mrpt/base/include/mrpt/synch/MT_buffer.h:
-
-/usr/include/mrpt/base/include/mrpt/synch/CThreadSafeVariable.h:
-
 /usr/include/mrpt/base/include/mrpt/system.h:
 
 /usr/include/mrpt/base/include/mrpt/system/CDirectoryExplorer.h:
 
 /usr/include/mrpt/base/include/mrpt/system/CFileSystemWatcher.h:
-
-/usr/include/mrpt/base/include/mrpt/system/threads.h:
 
 /usr/include/mrpt/base/include/mrpt/utils/CThreadSafeQueue.h:
 
@@ -1261,10 +1257,6 @@ main.d main.o: ../main.cpp \
 
 /usr/include/mrpt/opengl/include/mrpt/opengl/graph_tools.h:
 
-/usr/include/mrpt/obs/include/mrpt/slam/CObservation.h:
-
-/usr/include/mrpt/obs/include/mrpt/obs/link_pragmas.h:
-
 /usr/include/mrpt/obs/include/mrpt/slam/CObservation2DRangeScan.h:
 
 /usr/include/mrpt/obs/include/mrpt/slam/CMetricMap.h:
@@ -1285,8 +1277,6 @@ main.d main.o: ../main.cpp \
 
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationGasSensors.h:
 
-/usr/include/mrpt/obs/include/mrpt/slam/CObservationGPS.h:
-
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationBatteryState.h:
 
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationIMU.h:
@@ -1296,8 +1286,6 @@ main.d main.o: ../main.cpp \
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationBearingRange.h:
 
 /usr/include/mrpt/obs/include/mrpt/slam/CObservationComment.h:
-
-/usr/include/mrpt/obs/include/mrpt/slam/CObservationReflectivity.h:
 
 /usr/include/mrpt/obs/include/mrpt/slam/CSensoryFrame.h:
 
@@ -1321,25 +1309,25 @@ main.d main.o: ../main.cpp \
 
 /usr/include/mrpt/vision/include/mrpt/vision/link_pragmas.h:
 
+/usr/include/mrpt/vision/include/mrpt/slam/CLandmarksMap.h:
+
+/usr/include/mrpt/vision/include/mrpt/slam/CLandmark.h:
+
+/usr/include/mrpt/vision/include/mrpt/slam/CObservationVisualLandmarks.h:
+
 /usr/include/mrpt/vision/include/mrpt/vision/types.h:
 
 /usr/include/mrpt/vision/include/mrpt/vision/chessboard_camera_calib.h:
 
 /usr/include/mrpt/vision/include/mrpt/vision/multiDesc_utils.h:
 
-/usr/include/mrpt/vision/include/mrpt/slam/CLandmarksMap.h:
-
-/usr/include/mrpt/vision/include/mrpt/vision/CFeatureExtraction.h:
-
-/usr/include/mrpt/vision/include/mrpt/slam/CLandmark.h:
-
-/usr/include/mrpt/vision/include/mrpt/slam/CObservationVisualLandmarks.h:
-
 /usr/include/mrpt/vision/include/mrpt/vision/chessboard_find_corners.h:
 
 /usr/include/mrpt/vision/include/mrpt/vision/pinhole.h:
 
 /usr/include/mrpt/vision/include/mrpt/vision/CCamModel.h:
+
+/usr/include/mrpt/vision/include/mrpt/vision/CFeatureExtraction.h:
 
 /usr/include/mrpt/vision/include/mrpt/vision/CVideoFileWriter.h:
 
@@ -1366,10 +1354,6 @@ main.d main.o: ../main.cpp \
 /usr/include/mrpt/maps/include/mrpt/slam/CGasConcentrationGridMap2D.h:
 
 /usr/include/mrpt/maps/include/mrpt/slam/CHeightGridMap2D.h:
-
-/usr/include/mrpt/maps/include/mrpt/slam/CReflectivityGridMap2D.h:
-
-/usr/include/mrpt/maps/include/mrpt/slam/CLogOddsGridMap2D.h:
 
 /usr/include/mrpt/maps/include/mrpt/slam/COccupancyGridMap2D.h:
 
@@ -1439,12 +1423,4 @@ main.d main.o: ../main.cpp \
 
 /usr/include/mrpt/slam/include/mrpt/slam/graph_slam.h:
 
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CGenericSensor.h:
-
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/link_pragmas.h:
-
-/usr/include/mrpt/hwdrivers/include/mrpt/hwdrivers/CSerialPort.h:
-
-/home/pedestrian/workspace/igvc/YClopsLib/inc/MotorController.h:
-
-/home/pedestrian/workspace/igvc/YClopsLib/inc/logging.h:
+/home/igvcbyu/workspace/YClopsLib/inc/WaypointPlanner.h:
