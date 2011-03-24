@@ -403,6 +403,7 @@ void  YclopsNavigationSystem::performNavigationStep()
 			if(points.size() != 0)//this->points)
 			{
 				gotoNextPoint();
+				return;
 			}
 			else
 			{
@@ -420,27 +421,30 @@ void  YclopsNavigationSystem::performNavigationStep()
 
 		}
 
+		cout << "Distance required to reset timer: " <<badNavAlarm_minDistTarget << endl;
+
 		// Check the "no approaching the target"-alarm:
 		// -----------------------------------------------------------
 		if (targetDist < badNavAlarm_minDistTarget )
 		{
 			badNavAlarm_minDistTarget = targetDist;
+			cout << "Reseting time." << endl;
 			badNavAlarm_lastMinDistTime =  system::getCurrentTime();
+
 		}
 		else
 		{
 			// Too much time have passed?
 			if ( badNavAlarm_AlarmTimeout && system::timeDifference( badNavAlarm_lastMinDistTime, system::getCurrentTime() ) > badNavAlarm_AlarmTimeout)
 			{
-
 				LOG_AI(ERROR) << "\n--------------------------------------------\n Timed out trying new Target \n---------------------------------" << endl;
+
 				if(navigatorBehavior == goAround)
 				{
 					points.erase(points.begin());
 				}
 
 				points.insert(points.begin(), makeAuxTarget(curPose));
-
 				gotoNextPoint();
 				navigatorBehavior = goAround;
 				return;
