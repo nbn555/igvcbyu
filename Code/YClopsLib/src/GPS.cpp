@@ -318,7 +318,7 @@ void GPS::preComInitialize() {
 
 	// configure for individual baudrates
 	if( this->gpsStrings->clearCommandResponse != response.substr(0,this->gpsStrings->clearCommandResponse.length()) || to ) {
-		LOG_GPS(FATAL) << "Misconfigured " << this->gpsStrings->vendor << " GPS at preCom.\nRecieved: " << response << endl;
+		LOG_GPS(DEBUG3) << "Misconfigured " << this->gpsStrings->vendor << " GPS at preCom.\nRecieved: " << response << endl;
 	}
 
 
