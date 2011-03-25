@@ -1,7 +1,7 @@
 /**
  * @file Camera.h
  * @date Jan 27, 2011
- * @author philiplundrigan
+ * @author philip lundrigan
  * @brief Camera Sensor Header File
  */
 
@@ -125,16 +125,16 @@ private:
 	 */
 	std::vector<cv::Mat> convertRGBtoHSV(cv::Mat & image);
 
-	cv::VideoCapture capture;				//! the object that has the video feed
-	cv::Mat image;							//! holds the current image being processed
-	bool * array;							//! represents if there is an obstacle at a certain part of the grid
-	mrpt::slam::CSimplePointsMap * map;		//! points where obstacles are located (x+ is forward, y+ is left)
+	cv::VideoCapture capture;				//!<the object that has the video feed
+	cv::Mat image;							//!<holds the current image being processed
+	bool * array;							//!<represents if there is an obstacle at a certain part of the grid
+	mrpt::slam::CSimplePointsMap * map;		//!<points where obstacles are located (x+ is forward, y+ is left)
 
-	double PERCENT_FILLED;					//! sets how much of a cell in the grid needs to be filled to be an obstacle
-	int GRID_SIZE;							//! how big the grid should be (GRID_SIZE * GRID_SIZE)
-	int THRESHOLD;							//! what the whit threshold should be set at
-	int ERODE_AMOUNT;						//! how many times the image is eroded to remove noise in image
-	int HSV_VECTOR;							//! which vector to pick from the hsv color space (vector[0] - hue, vector[1] - saturation, vector[2] - value)
+	double PERCENT_FILLED;					//!<sets how much of a cell in the grid needs to be filled to be an obstacle
+	int GRID_SIZE;							//!<how big the grid should be (GRID_SIZE * GRID_SIZE)
+	int THRESHOLD;							//!<what the whit threshold should be set at
+	int ERODE_AMOUNT;						//!<how many times the image is eroded to remove noise in image
+	int HSV_VECTOR;							//!<which vector to pick from the hsv color space (vector[0] - hue, vector[1] - saturation, vector[2] - value)
 
 };
 

@@ -1212,11 +1212,11 @@ YclopsNavigationSystem::~YclopsNavigationSystem()
 {
 	CerrandoHilo = true;
 
-	// Esperar a que termine la ejecucion actual, por si esta en otro hilo:
+	// Wait for the current execution to terminate, in case it is in the other thread:
 	m_critZoneNavigating.enter();
 	m_critZoneNavigating.leave();
 
-	// Por si acaso...
+	// just in case...
 	m_robot.stop();
 
 	if (logFile)

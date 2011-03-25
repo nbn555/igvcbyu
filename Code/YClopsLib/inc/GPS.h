@@ -42,40 +42,39 @@ public:
 	virtual ~GPS();
 
 	/**
-	 * Returns the distance to a waypoint with respect to current
-	 * location in meters.
-	 * Returns 0.0 if no data to return.
+	 * @brief computes the distance to a waypoint with respect to current location in meters.
+	 * @return double distance measured in meters or 0.0 if no data to return.
 	 */
 	double GetDistanceToWaypoint (double lat, double lon)const;
 
 	/**
-	 * Returns the distance between any two locations in meters.
-	 * Returns 0.0 if no data to return.
+	 * @brief computes the distance between two locations in meters.
+	 * @return double distance measured in meters returns 0.0 if no data to return.
 	 */
 	double GetDistanceToWaypoint (double lat1, double lon1,
 										double lat2, double lon2)const;
 
 	/**
-	 * Returns Speed if there is GPRMC data available. Returns 0
-	 * if not.
+	 * @brief gets speed if there is GPRMC data available. Returns 0 if not.
+	 * @return double speed in miles per hour
 	 */
 	double GetGpsSpeed()const;
 
 	/**
-	 * Returns directions if there is GPRMC data available. Returns 0.0
-	 * if not.
+	 * @brief gets current pose from the GPRMC data if available available. Returns 0.0 if not.
+	 * @return double direction as measured in radians
 	 */
 	double GetGpsDirection()const;
 
 	/**
-	 * Returns current latitude.  0.0 if information not currently
-	 * available.
+	 * @brief gets the current latitude.  0.0 if information not currently available.
+	 * @return double current latitude measured in degrees
 	 */
 	double GetGpsLatitude()const;
 
 	/**
-	 * Returns current longitude. 0.0 if information not currently
-	 * available.
+	 * @brief gets the current longitude. 0.0 if information not currently available.
+	 * @return double current longitude measured in degrees
 	 */
 	double GetGpsLongitude() const;
 
@@ -85,11 +84,18 @@ public:
 	 */
 	mrpt::poses::CPoint2D GetCurrentGpsLocation() const;
 
-	/*
-	 * IsDataValid functions tests to ensure the returned gps point is within a certain distance
+	/**
+	 * @brief IsGGADataValid functions tests to ensure the returned gps point is within a certain distance
 	 * of the testLat and testLon given in the .ini file.
+	 * @return bool true if data recieved is valid
 	 */
 	bool IsGGADataValid() const;
+
+	/**
+	 * @brief IsGGADataValid functions tests to ensure the returned gps point is within a certain distance
+	 * of the testLat and testLon given in the .ini file.
+	 * @return bool true if data recieved is valid
+	 */
 	bool IsRMCDataValid() const;
 
 protected:
@@ -106,12 +112,14 @@ protected:
 		const std::string clearCommandResponse;	//!< The acknoledge string after stopping data
 		const std::string ggaCommand;			//!< The command to get gga data
 		const std::string rmcCommand;			//!< The command to get rmc data
+		const std::string setComSpeed;			//!< The command string to set the baud rate
 		virtual ~GPSStringer() {};
 	protected:
 		GPSStringer( const std::string port, const std::string vendor, const std::string clearCommand,
 				const std::string clearCommandResponse, const std::string ggaCommand,
-				const std::string rmcCommand ): portName(port), vendor(vendor), clearCommand(clearCommand),
-				clearCommandResponse(clearCommandResponse), ggaCommand(ggaCommand), rmcCommand(rmcCommand) { };
+				const std::string rmcCommand, const std::string comSpeed ): portName(port), vendor(vendor), clearCommand(clearCommand),
+				clearCommandResponse(clearCommandResponse), ggaCommand(ggaCommand), rmcCommand(rmcCommand),
+				setComSpeed(comSpeed) { };
 
 
 };
@@ -121,7 +129,7 @@ protected:
 	 */
 	class NovatelGPSStringer: public GPSStringer {
 	public:
-		NovatelGPSStringer( std::string port ): GPSStringer(port, GPSStringer::NOVATEL, "unlogall", "", "log gpgga ontime ", "log gprmc ontime " ) {};
+		NovatelGPSStringer( std::string port ): GPSStringer(port, GPSStringer::NOVATEL, "unlogall", "", "log gpgga ontime ", "log gprmc ontime ", "COM " ) {};
 		virtual ~NovatelGPSStringer() { };
 	};
 
@@ -130,7 +138,7 @@ protected:
 	 */
 	class PocketMaxGPSStringer: public GPSStringer {
 	public:
-		PocketMaxGPSStringer( std::string port ): GPSStringer(port, GPSStringer::POCKETMAX, "$joff", "$>", "$jasc,gpgga,", "$jasc,gprmc,") {};
+		PocketMaxGPSStringer( std::string port ): GPSStringer(port, GPSStringer::POCKETMAX, "$joff", "$>", "$jasc,gpgga,", "$jasc,gprmc,", "$jbaud,") {};
 		virtual ~PocketMaxGPSStringer() { };
 	};
 private:
@@ -147,12 +155,11 @@ private:
 	CGenericSensor::TListObservations::iterator 	itObs;
 	mrpt::slam::CObservationGPSPtr 					gpsData;
 
-	/*
-	 * pre communication to serial port at baud 9600.  Sets to desired baudrate found in .ini file
+	/**
+	 * @brief pre communication to serial port at baud 9600.  Sets to desired baudrate found in .ini file
 	 */
-
-	void preComInitialize(mrpt::hwdrivers::CSerialPort * myCom);
 	void preComInitialize();
+
 	/**
 	 *  @brief Initializes the serial port with nmea commands to turn on continuous GPS data flow
 	 */
