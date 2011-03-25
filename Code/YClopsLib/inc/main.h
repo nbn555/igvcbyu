@@ -5,6 +5,16 @@
  * @brief This file shouldn't be included anywhere it is used for documentation purposes only
  */
 
+#ifndef MAIN_H_
+#define MAIN_H_
+
+/**
+ * @TODO make a compass calibrator program
+ * @TODO make a configuration file gui
+ * @TODO make a human input hardware interface layer to remove the necessity of using the wii controller
+ * @TODO create an serial port command interface to refactor the serial port sending and response sending
+ */
+
 /**
  * @mainpage YClops Documentation
  * @section intro_sec Introduction
@@ -14,14 +24,6 @@
  * @section code_install_sec Software Setup
  * Setting up the software
  *
- * @TODO make a compass calibrator program
- * @TODO make a configuration file gui
- * @TODO make a human input hardware interface layer to remove the necessity of using the wii controller
- * @TODO create an serial port command interface to refactor the serial port sending and response sending
- *
  */
 
-#ifndef MAIN_H_
-#define MAIN_H_
-#error "Don't include main.h in compilation."
 #endif /* MAIN_H_ */
