@@ -1,5 +1,5 @@
 /**
- * @file YclopsReactiveNavInterface.h
+ * @file YClopsReactiveNavInterface.h
  * @date Jan 20, 2011
  * @author igvcbyu
  * @brief YClops robot class, reactive artificial intelligence

@@ -1,8 +1,7 @@
-/*
- * Compass.cpp
- *
- *  Created on: Nov 4, 2010
- *      Author: igvcbyu
+/**
+ * @file Compass.cpp
+ * @date Nov 4, 2010
+ * @author igvcbyu
  */
 
 #include <cassert>
@@ -18,7 +17,10 @@ using namespace mrpt::hwdrivers;
 using namespace mrpt::utils;
 using namespace boost;
 
-Compass::Compass(): degrees(false), prevYawDeg(0), yaw(0), pitch(0), roll(0), yawStatus(""), pitchStatus(""), rollStatus(""), serialPort() {
+
+std::string Compass::setParameterResponse = "#!0000*21";
+
+Compass::Compass(): degrees(false), prevYawDeg(0), yaw(0), pitch(0), roll(0), deviation(0), variation(0), yawStatus(""), pitchStatus(""), rollStatus(""), serialPort() {
 
 }
 
@@ -35,6 +37,10 @@ void Compass::loadConfiguration( const mrpt::utils::CConfigFileBase & config, co
 
 	this->serialPort.setConfig( baudRate, 0, 8, 1 );
 
+	this->deviation = config.read_double( sectionName, "deviation", 0 );
+
+	this->variation = config.read_double( sectionName, "variation", 0 );
+
 	this->offset = config.read_int(sectionName, "offset", 0 );
 
 	this->degrees = config.read_bool(sectionName,"degrees",false);
@@ -45,23 +51,84 @@ void Compass::loadConfiguration( const mrpt::utils::CConfigFileBase & config, co
 
 void Compass::init() {
 
-	string writeValue = "#FA0.3=1*26\n\r";//Command to turn on the compass
+	LOG_COMPASS(DEBUG3) << "Sending command to turn off commands sending from the compass" << endl;
+	if( !this->sendCommand( string("#FA0.3=0*27\r\n"), string("#!0000*21")) ) {
+		LOG_COMPASS(FATAL) << "Error response coming from compass" << endl;
+	}
 
-	LOG_COMPASS(DEBUG3) << "Sending: " << writeValue << endl;
 
-	this->serialPort.WriteBuffer(writeValue.c_str(), writeValue.length());
+	LOG_COMPASS(DEBUG3) << "Sending command to set to Degrees mode" << endl;
+	if( !this->sendCommand( string("#FA0.4=1*21\r\n"), string("#!0000*21") ) ) {
+		LOG_COMPASS(FATAL) << "Error response coming from compass" << endl;
+	}
 
-	string readValue;
+	LOG_COMPASS(DEBUG3) << "Sending command to set to Decimal mode" << endl;
+	if( !this->sendCommand( string("#FA0.5=1*20\r\n"), string("#!0000*21") ) ) {
+		LOG_COMPASS(FATAL) << "Error response coming from compass" << endl;
+	}
 
-	bool to = false;
+	LOG_COMPASS(DEBUG3) << "Sending command to set sampling rate to 13.75Hz" << endl;
+	if( !this->sendCommand( string("#BA6=1*39\r\n"), string("#!0000*21") ) ) {
+		LOG_COMPASS(FATAL) << "Error response coming from compass" << endl;
+	}
 
-	readValue = this->serialPort.ReadString(1000,&to,"\n\r");
+	LOG_COMPASS(DEBUG3) << "Sending command to set the compass variation to " << this->variation << endl;
+	if( !this->setVariation( this->variation ) ) {
+		LOG_COMPASS(FATAL) << "Error sending variation to compass" << endl;
+	}
 
-	LOG_COMPASS(DEBUG3) << "Read: " << readValue << endl;
+	LOG_COMPASS(DEBUG3) << "Sending command to set the compass deviation to " << this->variation << endl;
+	if( !this->setDeviation( this->deviation ) ) {
+		LOG_COMPASS(FATAL) << "Error sending deviation to compass" << endl;
+	}
+
+	LOG_COMPASS(DEBUG3) << "Sending command to turn on the compass sending data" << endl;
+	if( !this->sendCommand( string("#FA0.3=1*26\r\n"), string("#!0000*21")) ) {
+		LOG_COMPASS(FATAL) << "Error response coming from compass" << endl;
+	}
 
 }
 
 Compass::~Compass() {
+	LOG_COMPASS(DEBUG3) << "Turning off the compass in compass destructor" << endl;
+	this->sendCommand( string("#FA0.3=0*27\r\n"), string("#!0000*21"));//!<TODO make the compass parser check if the return string was in the middle of another output
+	//Don't really care if it was put back into its turned off state for now
+}
+
+bool Compass::setDeviation( double deviation ) {
+	string header = "#IE2=";
+	stringstream s;
+	s.precision(1);
+	s << deviation;
+	string deviationString = s.str();
+	s.str("");
+	s << header << deviationString << "*";
+	s << this->computeChecksum(s.str()) << "\r\n";
+
+	stringstream expecteds;
+	expecteds << "#" << deviationString << "*";
+	expecteds << this->computeChecksum(expecteds.str()) << "\r\n";
+
+	return this->sendCommand( s.str(), "#!0000*21" );
+
+}
+
+bool Compass::setVariation( double variation ) {
+	//!<TODO refactor setDeviation with setVariation
+	string header = "#IE4=";
+	stringstream s;
+	s.precision(1);
+	s << deviation;
+	string deviationString = s.str();
+	s.str("");
+	s << header << deviationString << "*";
+	s << this->computeChecksum(s.str()) << "\r\n";
+
+	stringstream expecteds;
+	expecteds << "#" << deviationString << "*";
+	expecteds << this->computeChecksum(expecteds.str()) << "\r\n";
+
+	return this->sendCommand( s.str(), "#!0000*21" );
 
 }
 
@@ -97,6 +164,9 @@ void Compass::parseResponse( const std::string& data ) {
 	stringstream s(buffer);
 
 	s >> header;
+
+	cout << header << endl;
+
 	s >> preYaw;
 	this->yaw = CompensateYaw(preYaw);
 	s >> this->yawStatus;
@@ -105,15 +175,6 @@ void Compass::parseResponse( const std::string& data ) {
 	s >> this->roll;
 	s >> this->rollStatus;
 
-}
-
-void Compass::reset() {
-	this->yaw = 999;
-	this->pitch = 0;
-	this->roll = 0;
-	this->yawStatus = "";
-	this->pitchStatus = "";
-	this->rollStatus = "";
 }
 
 std::string Compass::computeChecksum( const std::string & sentence ) {
@@ -134,9 +195,11 @@ std::string Compass::computeChecksum( const std::string & sentence ) {
 	unsigned char high = (checksum & 0xF0) >> 4;
 	unsigned char low = checksum & 0x0F;
 
+	//Converting high bits to their ascii representation
 	if( 0 <= high && high <= 9 ) high += 0x30;
 	else if( 10 <= high && high <= 15 ) high += 0x40;
 
+	//Converting low bits to their ascii representation
 	if( 0 <= low && low <= 9 ) low += 0x30;
 	else if( 10 <= low && low <= 15 ) low += 0x40;
 
@@ -160,4 +223,30 @@ double Compass::CompensateYaw(double deg) {
 	prevYawDeg = deg;
 
 	return deg;
+}
+
+bool Compass::sendCommand( std::string command, std::string expectedResponse ) {
+
+	LOG_COMPASS(DEBUG4) << "Sending: " << command << endl;
+
+	this->serialPort.WriteBuffer(command.c_str(), command.length());
+
+	bool to = false;
+
+	string readValue = this->serialPort.ReadString(1000,&to,"\n\r");
+
+	usleep(500000);
+
+	LOG_COMPASS(DEBUG4) << "Read: " << readValue << endl;
+
+	bool rval = readValue == expectedResponse;
+
+	this->serialPort.purgeBuffers();
+
+	if( !rval ) {
+		LOG_COMPASS(ERROR) << "Expected: " << expectedResponse << "." << endl;
+		LOG_COMPASS(ERROR) << "Recieved: " << readValue << "." << endl;
+	}
+	return rval;
+
 }

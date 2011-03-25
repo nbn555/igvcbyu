@@ -27,9 +27,9 @@ private:
 	 * @brief An internal structure to contain data that needs to be passed into the beepi function
 	 */
 	typedef struct beep_struct {
-		int frequency;
-		int length;
-		struct beep_struct * next;
+		int frequency; 	//!<The frequency to play
+		int length;		//!<The length of the tone to play
+		struct beep_struct * next;	//!<The next tone to play
 		explicit beep_struct(int frequency = 0, int length = 0 ):frequency(frequency),length(length), next(NULL){};
 	}beep_t;
 

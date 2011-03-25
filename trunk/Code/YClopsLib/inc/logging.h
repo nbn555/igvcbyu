@@ -85,8 +85,22 @@ public:
 	 * @return unsigned int which is a bit string of the logging streams I don't remember the logic levels of the bits
 	 */
 	static unsigned int GetReportStreamBits();
+
+	/**
+	 * @brief sets which logging streams are actually used.  Eg if the corresponding bit value is high the log is used (I think).
+	 * @param s the string of bits to represent which logs are used
+	 */
 	static void SetReportStreamBits( unsigned int s );
+
+	/**
+	 * @brief toggles if the time stamp for a log is displayed or not
+	 * @param ts the boolean value if the time stamp is displayed or not
+	 */
 	static void SetTimeStampDisplay( bool ts );
+
+	/**
+	 * @brief sets which reporting level is displayed
+	 */
 	static void SetReportLevel( LOG_LEVEL level = INFO );
 
 	/**
