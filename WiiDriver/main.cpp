@@ -51,8 +51,8 @@ int main( int argc, char** argv ) {
 		of.open("dump.txt");
 
 		//Set up logging
-		Log::SetLogFile(&of);
-		//Log::SetLogFile(&cout);
+		//Log::SetLogFile(&of);
+		Log::SetLogFile(&cout);
 		Log::SetReportLevel(loggingLevel);
 		Log::SetTimeStampDisplay(false);
 		Log::SetReportStreamBits(ALL_LOG&(~(WII_LOG)));
@@ -65,7 +65,7 @@ int main( int argc, char** argv ) {
 		signal(SIGINT, signal_handler);
 
 		//Initialize the WiiController
-		LOG(DEBUG4) << "Creating the Wii Controller" << endl;
+		LOG(DEBUG4) << "Creating the new Wii Controller" << endl;
 		WiiController::create();
 
 		LOG(DEBUG4) << "Creating YClops Object" << endl;
@@ -89,7 +89,7 @@ int main( int argc, char** argv ) {
 			case mrpt::reactivenav::CAbstractReactiveNavigationSystem::NAV_ERROR:
 				LOG(DEBUG4) << "ai state: NAV_ERROR" << endl; break;
 			case mrpt::reactivenav::CAbstractReactiveNavigationSystem::SUSPENDED:
-				LOG(DEBUG4) << "ai state: NAV_ERROR" << endl; break;
+				LOG(DEBUG4) << "ai state: SUSPENDED" << endl; break;
 			default:
 				break;
 			}
@@ -297,11 +297,11 @@ void shutdown( int exitStatus ) {
 	LOG(INFO) << "Closing Wii Controller" << endl;
 	WiiController::destroyReference();
 
-	LOG(INFO) << "Deleting yclops" << endl;
-	delete yclops;	yclops = NULL;
-
 	LOG(INFO) << "Deleting ai" << endl;
 	delete ai;	ai = NULL;
+
+	LOG(INFO) << "Deleting yclops" << endl;
+	delete yclops;	yclops = NULL;
 
 	exit(exitStatus);
 }
