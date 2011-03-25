@@ -9,6 +9,7 @@
 #define MAIN_H_
 
 /**
+ * @mainpage
  * @TODO make a compass calibrator program
  * @TODO make a configuration file gui
  * @TODO make a human input hardware interface layer to remove the necessity of using the wii controller
