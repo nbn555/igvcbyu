@@ -6,7 +6,7 @@
  */
 
 #include "MotorCommandInterface.h"
-#include "WiiController.h"
+#include "HumanInputInterface.h"
 #include "logging.h"
 
 #include <iostream>
@@ -53,7 +53,7 @@ DualMotorCommand::DualMotorCommand() {
 DualMotorCommand::~DualMotorCommand() { }
 
 void DualMotorCommand::doProcess() {
-	WiiController * controller = WiiController::getReference();
+	HumanInputInterface * controller = HumanInputInterface::instance();
 	uint16_t lxaxis, lyaxis;
 	uint16_t rxaxis, ryaxis;
 	controller->getLeftStick( lxaxis, lyaxis );

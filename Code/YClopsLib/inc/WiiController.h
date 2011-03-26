@@ -11,6 +11,7 @@
 #include <cwiid.h>
 #include <vector>
 #include <iostream>
+#include "HumanInputInterface.h"
 
 #define CLASSIC_D_UP	(0x0001)
 #define CLASSIC_D_LEFT	(0x0002)
@@ -43,36 +44,10 @@
 extern cwiid_mesg_callback_t cwiid_callback; //!<call back handler for interfacing messages from the wii controller
 
 /**
- * @brief Interfaces with a single wii controller
- * @todo Support multiple wii controllers
+ * @brief Interfaces with a wii controller
  */
-class WiiController {
+class WiiController: public HumanInputInterface {
 public:
-
-	/**
-	 * @brief Creates a wii controller reference
-	 * @return WiiController pointer
-	 */
-	static WiiController * create();
-
-	/**
-	 * @brief returns a pointer to the requested wii controller doesn't check if the wii controller has been created
-	 * @param[in] index the index of the wii controller to request
-	 * @return a wii controller pointer
-	 */
-	static WiiController * getReference( int index = 0 );
-
-	/**
-	 * @brief deletes a reference to a wii controller
-	 * @param[in] the index of the wii controller to delete
-	 */
-	static void destroyReference( int index = 0 );
-
-	/**
-	 * @brief gets the number of initialized wii controllers
-	 * @return int the number of initialized wii controllers
-	 */
-	static int getControllerCount();
 
 	/**
 	 * @brief get the state of the mote buttons
@@ -115,7 +90,6 @@ public:
 private:
 	virtual ~WiiController();
 	WiiController();
-	static WiiController* controller;	//!<Pointer to the current controller
 
 	cwiid_wiimote_t * wiiMote;			//!<pointer to the wiiMote struct of the cwiid library
 
@@ -135,6 +109,7 @@ private:
 	 * @brief allows us to call process_btn_mesg and process_classic_mesg which shouldn't be public
 	 */
 	friend cwiid_mesg_callback_t cwiid_callback;
+	friend class HumanInputInterface;
 
 	uint16_t motePrevButtons;		//!<The previous state of the mote buttons
 	uint16_t moteButtonsPressed;	//!<The true for which buttons were just pressed
