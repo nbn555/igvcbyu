@@ -16,28 +16,7 @@
 
 using namespace std;
 
-WiiController * WiiController::controller = NULL; 	//!This should be a std::vector<WiiController*> to support more then one controller
 cwiid_mesg_callback_t cwiid_callback;
-
-WiiController * WiiController::create() {
-
-	if( NULL == WiiController::controller )
-		WiiController::controller = new WiiController();
-	return WiiController::controller;
-}
-
-WiiController * WiiController::getReference( int index ) {
-		return WiiController::create();
-}
-
-void WiiController::destroyReference( int index ) {
-	LOG_WII(DEBUG4) << "In destroy Reference about to delete WiiController::controller" << endl;
-	delete WiiController::controller;
-}
-
-int WiiController::getControllerCount() {
-	return 1;
-}
 
 WiiController::WiiController() {
 
@@ -82,21 +61,11 @@ WiiController::~WiiController() {
 void cwiid_callback(cwiid_wiimote_t *wiimote, int mesg_count,
 		union cwiid_mesg mesg[], struct timespec *timestamp) {
 
-	int index = 0;
-//	const int controllerCnt = WiiController::getControllerCount();
-//	for( int i = 0; i < controllerCnt; i++ ) {
-//		WiiController ref = WiiController::getReference(i);
-//		if(cwiid_get_id(wiimote) == cwiid_get_id(ref.wiiMote)) {
-//			index = i;
-//			break;
-//		}
-//	}
-
-	/**
+	/*
 	 * The wii controller passes multiple types of messages via bluetooth this switch
 	 * statement handles them all
 	 */
-	WiiController * control = WiiController::getReference(index);
+	WiiController * control = (WiiController*)HumanInputInterface::instance();
     for ( int i=0; i < mesg_count; i++) {
     	switch (mesg[i].type) {
     	case CWIID_MESG_BTN:
