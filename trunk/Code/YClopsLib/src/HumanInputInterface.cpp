@@ -20,8 +20,8 @@ using namespace std;
 
 LOG_LEVEL loggingLevel = DEBUG4;
 
-extern YClopsReactiveNavInterface * yclops;
-extern mrpt::reactivenav::YclopsNavigationSystem * ai;
+YClopsReactiveNavInterface * yclops = NULL;
+mrpt::reactivenav::YclopsNavigationSystem * ai = NULL;
 
 HumanInputInterface * HumanInputInterface::interface = NULL;
 bool HumanInputInterface::isClosing = false;
