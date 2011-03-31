@@ -28,8 +28,9 @@ void signal_handler( int signum );
 void shutdown( int exitStatus );
 void handleUserInput();
 
-YClopsReactiveNavInterface * yclops = NULL;
-mrpt::reactivenav::YclopsNavigationSystem * ai = NULL;
+extern YClopsReactiveNavInterface * yclops;
+extern mrpt::reactivenav::YclopsNavigationSystem * ai;
+
 ofstream of;
 const string DEFAULT_POINTS_FILE = "points.txt";
 
