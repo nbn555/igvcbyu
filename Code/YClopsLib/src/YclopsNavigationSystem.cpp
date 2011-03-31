@@ -1482,7 +1482,10 @@ void YclopsNavigationSystem::setup()
 	mrpt::poses::CPose2D pose = CPoint2D();
 	float v = 0;
 	float w = 0;
-	m_robot.getCurrentPoseAndSpeeds(pose, v,w);
+	while(pose.x() == 0)
+	{
+		m_robot.getCurrentPoseAndSpeeds(pose, v,w);
+	}
 	double lat = pose.x();
 	double lon = pose.y();
 	AbstractNavigationInterface *nav = NULL;
