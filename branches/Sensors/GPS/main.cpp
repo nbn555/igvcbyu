@@ -15,6 +15,7 @@
 #include <cstring>  /* String function definitions */
 #include <vector>
 
+
 #include <mrpt/hwdrivers/CGPSInterface.h>
 
 #include "GPS.h"
