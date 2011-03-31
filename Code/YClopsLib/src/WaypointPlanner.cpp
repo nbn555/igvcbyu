@@ -25,7 +25,7 @@ void AbstractNavigationInterface::convertPointToMeters(CPoint2D& point)
 	double direction = calcBearing(this->visited.front().m_coords[LAT], this->visited.front().m_coords[LON],
 			point.m_coords[LAT], point.m_coords[LON]);
 	point.m_coords[LAT] = sin(direction)*length;
-	point.m_coords[LON] = cos(direction)*length;
+	point.m_coords[LON] = -cos(direction)*length;
 }
 void AbstractNavigationInterface::loadPoints(std::string filename, bool convertToMeters) {
 
@@ -47,6 +47,7 @@ void AbstractNavigationInterface::loadPoints(std::string filename, bool convertT
 		}
 		if(datapointSet.good())
 		{
+			cout << "adding point"<<endl;
 			toVisit.push_back(tmp);
 		}
 	}
