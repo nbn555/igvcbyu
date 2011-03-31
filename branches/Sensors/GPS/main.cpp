@@ -100,26 +100,67 @@ void accuracyTest(GPS * gps) {
 void saveGPSpointsToFile(GPS * gps) {
 	ofstream fout("readings.txt"); // to take GPS readings for testing
 	fout.precision(12);
-	fout <<  setw(20) << "Latitude" << setw(20) << "Longitude" << endl;
+	fout 	<< setw(20)
+			<< "Latitude"
+			<< setw(20)
+			<< "Longitude"
+			<< setw(20)
+			<< "Distance from Last"
+			<< endl;
 
 	double prevLat = 0.0;
 	double prevLon = 0.0;
+	char answer = 'r';
 
-	while(1)//while (! mrpt::system::os::kbhit())
-
+	while (answer != 'y' && answer != 'n') {
 	{
-		cout << "press enter to get GPS reading" << endl;
-		getchar(); // waits for a command before proceeding
+		cout << "Get new GPS reading? (y/n)" << endl;
+		answer = getchar(); // waits for a command before proceeding
+		if (answer == 'n') break;
+		if (answer == '\n') continue;
+		if (answer != 'y' && answer != 'n') {
+			cout << "USAGE: please enter y/n" << endl;
+			continue;
+		}
 
-		gps->sensorProcess();
-		fout << setw(20) << gps->GetGpsLatitude() << setw(20) << gps->GetGpsLongitude << endl;
+		answer = 'r';
 
-		cout << "Please ensure the gps point is good" << endl;
-		getchar(); // waits for a command before proceeding
+		while (answer != 'y' && answer != 'n') {
+			gps->sensorProcess();
+			cout << "Lat: " << gps->GetGpsLatitude() << endl;
+			cout << "Lon: " << gps->GetGpsLongitude() << endl;
+			cout << "Distance from Last: " << GetDistanceToWaypoint(prevLat, prevLon) << endl;
 
+			cout <<endl<< "Is this GPS reading acceptable?(y/n)" << endl; // prints !!!Hello World!!!
+			answer = getchar();
+			if (answer == '\n') continue;
+			if (answer != 'y' && answer != 'n')
+				cout << "USAGE: please enter y/n" << endl;
+		}
+
+		cout << endl << "Writing point to file" << endl;
+
+		fout 	<< setw(20)
+				<< gps->GetGpsLatitude()
+				<< setw(20)
+				<< gps->GetGpsLongitude()
+				<< setw(20)
+				<< gps->GetDistanceToWaypoint(prevLat, prevLon)
+				<< endl;
+		answer = 'r';
 	}
 	fout.close();
 }
+
+void readGPSpointsFromFile(gps) {
+
+	string filename = "";
+	WaypointPlanner::loadPoints(filename, true);
+	vector<double> pList = WaypointPlanner::SequentialNavigation(0.0, 0.0);
+
+}
+
+
 
 
 int main() {
@@ -133,6 +174,7 @@ int main() {
 	//initializationTest(gps);
 	//accuracyTest(gps);
 	saveGPSpointsToFile(gps);
+	readGPSpointsFromFile(gps);
 
 
 
