@@ -36,6 +36,23 @@ using namespace mrpt::hwdrivers;
  * List of functions.  Should be helpful in finding information from GPS
  */
 
+void initializationTest(GPS * gps) {
+	//gps->dumpData(cout);
+	while (1) {
+		gps->sensorProcess();
+		double lat = gps->GetGpsLatitude();
+		double lon = gps->GetGpsLongitude();
+
+		if (lat == 0.0 || lon == 0.0)
+			cout << "Invalid readings" << endl;
+		else {
+			cout << "good" << endl;
+			cout << "distance to TestPoint = " << gps->GetDistanceToWaypoint(40.24757, -111.6481) << endl;
+		}
+		mrpt::system::sleep(1000);
+	}
+}
+
 void accuracyTest(GPS * gps) {
 	ofstream fout("Accuracy Testing.txt"); // to take GPS readings for testing
 	fout.precision(12);
@@ -80,30 +97,44 @@ void accuracyTest(GPS * gps) {
 	fout.close();
 }
 
+void saveGPSpointsToFile(GPS * gps) {
+	ofstream fout("readings.txt"); // to take GPS readings for testing
+	fout.precision(12);
+	fout <<  setw(20) << "Latitude" << setw(20) << "Longitude" << endl;
+
+	double prevLat = 0.0;
+	double prevLon = 0.0;
+
+	while(1)//while (! mrpt::system::os::kbhit())
+
+	{
+		cout << "press enter to get GPS reading" << endl;
+		getchar(); // waits for a command before proceeding
+
+		gps->sensorProcess();
+		fout << setw(20) << gps->GetGpsLatitude() << setw(20) << gps->GetGpsLongitude << endl;
+
+		cout << "Please ensure the gps point is good" << endl;
+		getchar(); // waits for a command before proceeding
+
+	}
+	fout.close();
+}
+
+
 int main() {
 
 	cout << "here" << endl;
-	GPS gps;
+	GPS * gps = new GPS();
 	CConfigFile config("GPS.ini");
-	gps.loadConfiguration(config, "GPS");
-	gps.init();
-	gps.dumpData(cout);
+	gps->loadConfiguration(config, "GPS");
+	gps->init();
 
-	while (1) {
-		gps.sensorProcess();
-		double lat = gps.GetGpsLatitude();
-		double lon = gps.GetGpsLongitude();
+	//initializationTest(gps);
+	//accuracyTest(gps);
+	saveGPSpointsToFile(gps);
 
-		if (lat == 0.0 || lon == 0.0)
-			cout << "Invalid readings" << endl;
-		else {
-			cout << "good" << endl;
-			cout << "distance to TestPoint = " << gps.GetDistanceToWaypoint(40.24757, -111.6481) << endl;
-		}
-		mrpt::system::sleep(1000);
-	}
 
-	//accuracyTest(&gps);
 
 	return 0;
 }
