@@ -15,13 +15,13 @@
 #include "Beeper.h"
 
 #include <iostream>
+#include "YClopsModel.h"
 
 using namespace std;
 
 LOG_LEVEL loggingLevel = DEBUG4;
 
-YClopsReactiveNavInterface * yclops = NULL;
-mrpt::reactivenav::YclopsNavigationSystem * ai = NULL;
+YClopsModel * yclopsModel;
 
 HumanInputInterface * HumanInputInterface::interface = NULL;
 bool HumanInputInterface::isClosing = false;
@@ -42,6 +42,7 @@ HumanInputInterface * HumanInputInterface::instance() {
 }
 
 void HumanInputInterface::destroyInterface() {
+	LOG(INFO) << "Closing Input Interface" << endl;
 	delete HumanInputInterface::interface;
 	HumanInputInterface::interface = NULL;
 }
@@ -66,53 +67,53 @@ void HumanInputInterface::handleUserInput() {
 
 	if( cbuttons & CLASSIC_D_UP ) {
 		LOG(INFO) << "Toggling camera data" << endl;
-		yclops->toggleCameraDump();
+		yclopsModel->yclops->toggleCameraDump();
 	}
 
 	if( cbuttons & CLASSIC_D_DOWN ) {
 		LOG(INFO) << "Toggling lidar data" << endl;
-		yclops->toggleLidarDump();
+		yclopsModel->yclops->toggleLidarDump();
 	}
 
 	if( cbuttons & CLASSIC_D_LEFT ) {
 		LOG(INFO) << "Toggling GPS data" << endl;
-		yclops->toggleGpsDump();
+		yclopsModel->yclops->toggleGpsDump();
 	}
 
 	if( cbuttons & CLASSIC_D_RIGHT ) {
 		LOG(INFO) << "Toggling Compass data" << endl;
-		yclops->toggleCompassDump();
+		yclopsModel->yclops->toggleCompassDump();
 	}
 
 	if( cbuttons & CLASSIC_A ) {
 		LOG(INFO) << "Going into Autonomous Mode" << endl;
-		yclops->setAutonomousMode();
-		ai->setChallenge(false);
+		yclopsModel->yclops->setAutonomousMode();
+		yclopsModel->ai->setChallenge(false);
 		string pointsFile = YClopsConfiguration::instance().read_string("GLOBAL_CONFIG","POINTS_FILE","points.txt");
-		ai->setFileName(pointsFile,false);
-		ai->setup();
+		yclopsModel->ai->setFileName(pointsFile,false);
+		yclopsModel->ai->setup();
 	}
 
 	if( cbuttons & CLASSIC_B ) {
 		LOG(INFO) << "Going into Navigation Mode" << endl;
-		yclops->setNavigationMode();
-		ai->setChallenge(true);
+		yclopsModel->yclops->setNavigationMode();
+		yclopsModel->ai->setChallenge(true);
 		string pointsFile = YClopsConfiguration::instance().read_string("GLOBAL_CONFIG","POINTS_FILE","points.txt");
-		ai->setFileName(pointsFile,false);
-		ai->setup();
+		yclopsModel->ai->setFileName(pointsFile,false);
+		yclopsModel->ai->setup();
 	}
 
 	if( cbuttons & CLASSIC_X ) {
 		LOG(INFO) << "Idling" << endl;
-		yclops->useNullMotorCommand();
-		yclops->setIdle();
-		ai->stop();
+		yclopsModel->yclops->useNullMotorCommand();
+		yclopsModel->yclops->setIdle();
+		yclopsModel->ai->stop();
 	}
 
 	if( cbuttons & CLASSIC_Y ) {
 		LOG(INFO) << "Wii Motor Control" << endl;
-		yclops->useWiiMotorCommand();
-		ai->stop();
+		yclopsModel->yclops->useWiiMotorCommand();
+		yclopsModel->ai->stop();
 	}
 
 	if( cbuttons & CLASSIC_L1 ) {
@@ -121,7 +122,7 @@ void HumanInputInterface::handleUserInput() {
 
 	if( cbuttons & CLASSIC_L2 ) {
 		LOG(INFO) << "Toggling Encoder data" << endl;
-		yclops->toggleEncoderDump();
+		yclopsModel->yclops->toggleEncoderDump();
 	}
 
 	if( cbuttons & CLASSIC_R1 ) {
@@ -134,7 +135,7 @@ void HumanInputInterface::handleUserInput() {
 
 	if( cbuttons & CLASSIC_SELECT ) {
 		switch(loggingLevel) {
-		case DISABLE:							break;
+		case OUT:								break;
 		case FATAL:		loggingLevel = ERROR; 	break;
 		case ERROR:		loggingLevel = WARNING;	break;
 		case WARNING:	loggingLevel = INFO;	break;
@@ -156,7 +157,7 @@ void HumanInputInterface::handleUserInput() {
 
 	if( cbuttons & CLASSIC_START ) {
 		switch(loggingLevel) {
-		case DISABLE:							break;
+		case OUT:								break;
 		case FATAL: 						 	break;
 		case ERROR:		loggingLevel = FATAL;	break;
 		case WARNING:	loggingLevel = ERROR;	break;
