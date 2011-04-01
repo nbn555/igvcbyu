@@ -10,12 +10,16 @@
 #include <iostream>
 #include <exception>
 
-#define LOG_COLORS
+//#define LOG_COLORS
 
 LOG_LEVEL Log::logLevel = INFO;
 std::ostream * Log::outputStream = &(std::cerr);
 unsigned int Log::streamBits = ~ALL_LOG;
 bool Log::timestamp = true;
+
+#ifdef NVIEW
+NView * Log::view;
+#endif
 
 using namespace std;
 
@@ -46,6 +50,9 @@ std::string Log::GetTime() {
 
 std::string Log::ToString( LOG_LEVEL level ) {
 	switch(level){
+	case OUT:
+		return std::string("OUT");
+		break;
 	case FATAL:
 		return std::string("FATAL");
 		break;
@@ -84,7 +91,7 @@ std::stringstream& Log::Get(LOG_LEVEL level) {
 
 #ifdef LOG_COLORS
 	switch(level) {
-	case DISABLE:
+	case OUT:
 		break;
 	case FATAL:
 		this->os << LOG_RED;
@@ -114,7 +121,7 @@ std::stringstream& Log::Get(LOG_LEVEL level) {
 #endif
 
 	this->os << " " << Log::ToString(level) << ": ";
-	this->os << std::string(level > DEBUG ? 1 :  DEBUG - level, '\t' ); //Set increasing number of tabs for higher debug levels
+	//this->os << std::string(level > DEBUG ? 1 :  DEBUG - level, '\t' ); //Set increasing number of tabs for higher debug levels
 	messageLevel = level;
 	return os;
 }
@@ -133,12 +140,19 @@ Log::~Log() {
 
 	if (messageLevel >= Log::ReportingLevel())
 	{
+#ifndef NVIEW
 		(*Log::GetOStream()) << os.str();
-
+#endif
 #ifdef LOG_COLORS
 		(*Log::GetOStream()) << LOG_END_COLOR;
 #endif
+#ifndef NVIEW
 		Log::GetOStream()->flush();
+#else
+		Log::view->log(os.str());
+
+#endif
+
 	}
 
 	if( FATAL == messageLevel ) {
