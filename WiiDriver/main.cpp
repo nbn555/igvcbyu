@@ -13,11 +13,9 @@
 #include "MotorCommandInterface.h"
 #include "Compass.h"
 #include "HumanInputInterface.h"
-#include "WiiController.h"
-#include "YClopsReactiveNavInterface.h"
-#include "YclopsNavigationSystem.h"
 #include "logging.h"
 #include "YClopsConfiguration.h"
+#include "YClopsModel.h"
 
 #include <mrpt/hwdrivers/CSerialPort.h>
 
@@ -25,11 +23,9 @@ using namespace mrpt::utils;
 using namespace std;
 
 void signal_handler( int signum );
-void shutdown( int exitStatus );
 void handleUserInput();
 
-extern YClopsReactiveNavInterface * yclops;
-extern mrpt::reactivenav::YclopsNavigationSystem * ai;
+extern YClopsModel * yclopsModel;
 
 ofstream of;
 const string DEFAULT_POINTS_FILE = "points.txt";
@@ -74,14 +70,8 @@ int main( int argc, char** argv ) {
 		LOG(DEBUG4) << "Creating the User Input Device" << endl;
 		HumanInputInterface::createWiiController();
 
-		LOG(DEBUG4) << "Creating YClops Object" << endl;
-		yclops = new YClopsReactiveNavInterface();
-
-		LOG(DEBUG4) << "Creating YClops Navigation System" << endl;
-		ai = new mrpt::reactivenav::YclopsNavigationSystem(*yclops, false,false);
-
-		LOG(DEBUG4) << "loading configuration for the Navigation System" << endl;
-		ai->loadConfigFile(YClopsConfiguration::instance(), YClopsConfiguration::instance());
+		LOG(DEBUG4) << "Creating YClops Model" << endl;
+		yclopsModel = new YClopsModel();
 
 		LOG(DEBUG4) << "Starting main loop" << endl;
 		while(!HumanInputInterface::getClosingFlag()) {
@@ -90,7 +80,7 @@ int main( int argc, char** argv ) {
 			if(HumanInputInterface::instance()->getInputFlag())
 				HumanInputInterface::instance()->handleUserInput();
 
-			switch(ai->getCurrentState()) {
+			switch(yclopsModel->ai->getCurrentState()) {
 			case mrpt::reactivenav::CAbstractReactiveNavigationSystem::IDLE:
 				LOG(DEBUG4) << "ai state: IDLE" << endl; break;
 			case mrpt::reactivenav::CAbstractReactiveNavigationSystem::NAVIGATING:
@@ -103,12 +93,12 @@ int main( int argc, char** argv ) {
 				break;
 			}
 
-			if (ai->getCurrentState() != mrpt::reactivenav::CAbstractReactiveNavigationSystem::NAVIGATING )
+			if (yclopsModel->ai->getCurrentState() != mrpt::reactivenav::CAbstractReactiveNavigationSystem::NAVIGATING )
 			{
 				usleep(1000000/20);
 				continue;
 			}
-			ai->navigationStep();
+			yclopsModel->ai->navigationStep();
 
 		}
 	} catch (...) {
@@ -116,35 +106,20 @@ int main( int argc, char** argv ) {
 		badClose = true; //We are closing with an error see the shutdown call below
 	}
 
-	shutdown((badClose?EXIT_FAILURE:EXIT_SUCCESS));
+	HumanInputInterface::destroyInterface();
+	of.close();
 
-	return EXIT_FAILURE;
+	delete yclopsModel;
+
+	return (badClose?EXIT_FAILURE:EXIT_SUCCESS);
 }
 
 void signal_handler( int signum ) {
 
 	if( SIGINT == signum ) {
 		LOG(DEBUG4) << " Signal Received " << signum << endl;
-		if( NULL != yclops ) {
-			shutdown(EXIT_FAILURE);
-		}
+		HumanInputInterface::setClosingFlag();
 	} else if( SIGUSR1 == signum ) {
 		HumanInputInterface::instance()->setInputFlag();
 	}
-}
-
-void shutdown( int exitStatus ) {
-	LOG(INFO) << "Shutting down YClops" << endl;
-
-	LOG(INFO) << "Closing Input Interface" << endl;
-	HumanInputInterface::destroyInterface();
-
-	//ai assumes yclops is still valid so it can't be deleted before ai
-	LOG(INFO) << "Deleting ai" << endl;
-	delete ai;	ai = NULL;
-
-	LOG(INFO) << "Deleting yclops" << endl;
-	delete yclops;	yclops = NULL;
-
-	exit(exitStatus);
 }
