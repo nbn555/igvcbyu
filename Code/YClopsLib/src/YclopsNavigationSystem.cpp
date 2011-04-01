@@ -34,6 +34,7 @@ YclopsNavigationSystem::YclopsNavigationSystem(
 	:
 	CAbstractReactiveNavigationSystem(react_iterf_impl)
 {
+	LOG(DEBUG4) << "Creating YClops Navigation System" << endl;
 	// Initialize some members:
 	logFile				= NULL;
 	holonomicMethod		= NULL;

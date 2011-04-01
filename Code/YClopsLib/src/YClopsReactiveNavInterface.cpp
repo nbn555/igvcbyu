@@ -23,6 +23,7 @@ YClopsReactiveNavInterface::YClopsReactiveNavInterface()
   motor(NULL), compass(NULL), gps(NULL), camera(NULL), lidar(NULL), encoder(NULL), poseEst(NULL), robotPose(NULL),
   curV(0), curW(0)
 {
+	LOG(DEBUG) << "Creating YClopsReactiveNavInterface" << endl;
 	this->motor = new DummyMotorCommand();	//!Initialize a motor controller that is disconnected
 
 	std::string compassName = "COMPASS";	//!Query the config file to see if we are using the compass
