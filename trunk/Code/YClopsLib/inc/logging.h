@@ -11,8 +11,14 @@
 #include <sstream>
 #include <iostream>
 
+//#define NVIEW
+
+#ifdef NVIEW
+#include "NView.h"
+#endif
+
 typedef enum LOG_LEVEL{
-	DISABLE = 8,//!<Turn off logging completely
+	OUT		= 8,//!<Always display this
 	FATAL 	= 7,//!<Fatal or irrecoverable errors
 	ERROR 	= 6,//!<Error Conditions
 	WARNING	= 5,//!<Potential problems
@@ -65,7 +71,7 @@ typedef enum LOG_LEVEL{
 #define LOG(level)			LOG_STREAM(level,GENERIC_LOG)
 
 /**
- * @brief Implementes logging functionality
+ * @brief Implements logging functionality
  */
 class Log {
 public:
@@ -116,11 +122,16 @@ public:
 	static std::ostream * GetOStream() { return outputStream; };
 
 	/**
-	 * @brief converst the log level to a string
+	 * @brief converts the log level to a string
 	 * @param[in] level the logging level to convert to a string
 	 * @return a string representation of the level
 	 */
 	static std::string ToString( LOG_LEVEL level );
+
+#ifdef NVIEW
+	static void setView( NView * nview ){ Log::view = nview; };
+	static NView * getView() { return Log::view; };
+#endif
 protected:
 	std::stringstream os; //!< The output stream where to write the log data
 protected:
@@ -135,6 +146,9 @@ private:
 	static unsigned int streamBits;		//!<A bit string for which logs we are using
 	static bool timestamp;				//!<if we are using time stamps or not
 	static std::ostream * outputStream;	//!< a pointer to the output stream we are using
+#ifdef NVIEW
+	static NView * view;
+#endif
 
 };
 
