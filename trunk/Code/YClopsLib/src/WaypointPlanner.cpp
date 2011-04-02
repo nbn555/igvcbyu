@@ -6,11 +6,13 @@
  */
 
 #include "WaypointPlanner.h"
-#include "ACO.h"
+#include "TSPSolver.h"
+#include "Tour.h"
 
 using namespace std;
 using namespace mrpt;
 using namespace mrpt::poses;
+using namespace lkinhou;
 
 AbstractNavigationInterface::AbstractNavigationInterface( double lat, double lon ) {
 	this->visited.push_back(CPoint2D(lat,lon));
@@ -180,18 +182,40 @@ void TSPNavigation::nieveTSPSolution(  mrpt::aligned_containers<mrpt::poses::CPo
 	visited.erase(visited.begin());
 }
 
+void convertInput( mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit,
+		vector<City> & inputCities){
+	inputCities.clear();
+	City c;
+	for(int i=0; i < toVisit.size(); i++){
+		c.x = toVisit[i].m_coords[LAT];
+		c.y = toVisit[i].m_coords[LON];
+		inputCities.push_back(c);
+	}
+}
+
+void convertOutput( mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit,
+		mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & visited,
+		Tour & bestTour){
+
+	visited.clear();
+	for (int t=0; t < toVisit.size(); t++){
+		visited.push_back(toVisit[bestTour.getCity(t)]);
+	}
+}
 void TSPNavigation::acoTSPSolution( mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit,
 		mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & visited , bool inMeters){
 
-	// Need to test getDistance method in TSPDriver.
+	// convert vectors of CPoint2D to vector<City> inCities;
+	vector<City> inputCities;
+	convertInput(toVisit, inputCities);
 
-	tkhl::TSPDriver TSP(toVisit, inMeters);
-	TSP.GetAnt();
-	TSP.StartSearch();
-	for (int t=0;t<tkhl::iCityCount;t++){
-		//printf(" %d ",tkhl::besttour[t]);
-		//cout << tkhl::besttour[t] << endl;
-		visited.push_back(toVisit[tkhl::besttour[t]]);
-	}
-	//printf("\n");
+	// solve it
+	TSPSolver solver(inputCities, inMeters);
+	solver.solveIt();
+
+	// get the best tour
+	Tour bestTour = solver.getBestTour();
+
+	// convert it back to  vectors of CPoint2D
+	convertOutput(visited, bestTour);
 }
