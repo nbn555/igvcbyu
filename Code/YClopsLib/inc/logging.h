@@ -11,11 +11,7 @@
 #include <sstream>
 #include <iostream>
 
-//#define NVIEW
-
-#ifdef NVIEW
-#include "NView.h"
-#endif
+#include "AbstractView.h"
 
 typedef enum LOG_LEVEL{
 	OUT		= 8,//!<Always display this
@@ -128,10 +124,9 @@ public:
 	 */
 	static std::string ToString( LOG_LEVEL level );
 
-#ifdef NVIEW
-	static void setView( NView * nview ){ Log::view = nview; };
-	static NView * getView() { return Log::view; };
-#endif
+	static void setView( MVC::AbstractView * view ){ Log::view = view; };
+	static MVC::AbstractView * getView() { return Log::view; };
+
 protected:
 	std::stringstream os; //!< The output stream where to write the log data
 protected:
@@ -146,9 +141,7 @@ private:
 	static unsigned int streamBits;		//!<A bit string for which logs we are using
 	static bool timestamp;				//!<if we are using time stamps or not
 	static std::ostream * outputStream;	//!< a pointer to the output stream we are using
-#ifdef NVIEW
-	static NView * view;
-#endif
+	static MVC::AbstractView * view;
 
 };
 

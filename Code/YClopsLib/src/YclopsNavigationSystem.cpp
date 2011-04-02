@@ -1211,6 +1211,7 @@ void YclopsNavigationSystem::STEP7_NonHolonomicMovement(
 *************************************************************************/
 YclopsNavigationSystem::~YclopsNavigationSystem()
 {
+
 	CerrandoHilo = true;
 
 	// Wait for the current execution to terminate, in case it is in the other thread:

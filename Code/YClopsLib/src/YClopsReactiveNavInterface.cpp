@@ -34,10 +34,10 @@ YClopsReactiveNavInterface::YClopsReactiveNavInterface()
 		this->compass = new Compass();		//!create a compass sensor
 
 		LOG(DEBUG2) << "Loading Compass Configuration" << endl;	//!Configure the compass sensor
-		this->compass->loadConfiguration(YClopsConfiguration::instance(), compassName );
+		this->compass->loadConfig(YClopsConfiguration::instance(), compassName);
 
 		LOG(DEBUG2) << "Initializing Compass" << endl;
-		this->compass->init();				//!Initialize the compass
+		this->compass->initialize();	//!Initialize the compass
 	} else {
 		LOG(INFO) << "Not using Compass" << endl;
 	}
@@ -50,10 +50,11 @@ YClopsReactiveNavInterface::YClopsReactiveNavInterface()
 		this->gps = new GPS();
 
 		LOG(DEBUG2) << "Loading GPS Configuration" << endl;
+		this->gps->loadConfig(YClopsConfiguration::instance(),gpsName);
 		this->gps->loadConfiguration(YClopsConfiguration::instance(),gpsName);
 
 		LOG(DEBUG2) << "Initializing GPS" << endl;
-		this->gps->init();
+		this->gps->initialize();
 	} else {
 		LOG(INFO) << "Not using GPS" << endl;
 	}
@@ -66,10 +67,10 @@ YClopsReactiveNavInterface::YClopsReactiveNavInterface()
 		this->camera = new Camera();
 
 		LOG(DEBUG2) << "Loading Camera Configuration" << endl;
-		this->camera->loadConfiguration(YClopsConfiguration::instance(),cameraName);
+		this->camera->loadConfig(YClopsConfiguration::instance(),cameraName);
 
 		LOG(DEBUG2) << "Initializing Camera" << endl;
-		this->camera->init();
+		this->camera->initialize();
 	} else {
 		LOG(INFO) << "Not using Camera" << endl;
 	}
@@ -98,10 +99,10 @@ YClopsReactiveNavInterface::YClopsReactiveNavInterface()
 		this->encoder = new WheelEncoder();
 
 		LOG(DEBUG2) << "Loading Encoder configuration" << endl;
-		this->encoder->loadConfiguration(YClopsConfiguration::instance(),encoderName);
+		this->encoder->loadConfig(YClopsConfiguration::instance(),encoderName);
 
 		LOG(DEBUG2) << "Initializing wheel encoder" << endl;
-		this->encoder->init();
+		this->encoder->initialize();
 
 	} else {
 		LOG(INFO) << "Not using wheel encoders" << endl;
@@ -141,7 +142,6 @@ YClopsReactiveNavInterface::~YClopsReactiveNavInterface() {
 
 bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &curPose, float &curV, float &curW)
 {
-	LOG(DEBUG2) << "." << endl;
 
 	CompassData * compassData	= NULL;
 	GPSData * gpsData			= NULL;
@@ -149,7 +149,7 @@ bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 
 	//Get get data from the compass
 	if( NULL != this->compass ) {
-		this->compass->sensorProcess();
+		this->compass->doProcess();
 
 		if( this->isCompassDataShown ) {
 			this->compass->dumpData(cout);
@@ -177,7 +177,7 @@ bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 	//Get data from the encoders
 	if( NULL != this->encoder ) {
 		LOG(DEBUG4) << "Running Encoder Sensor Process in getCurrentPoseAndSpeed" << endl;
-		this->encoder->sensorProcess();
+		this->encoder->doProcess();
 
 		if( this->isEncoderDataShown ) {
 			this->encoder->dumpData(cout);
@@ -230,7 +230,7 @@ bool YClopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap &o
 	//Get data out of the Camera
 	if( NULL != this->camera ) {
 
-		this->camera->sensorProcess();
+		this->camera->doProcess();
 
 		if( this->isCameraDataShown ) {
 			this->camera->dumpData(cout);
@@ -259,12 +259,12 @@ bool YClopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap &o
 }
 
 void YClopsReactiveNavInterface::setAutonomousMode() {
-//	this->useYclopsMotorCommand();
+	this->useYclopsMotorCommand();
 	LOG(WARNING) << "REMOVED call to useYclopsMotorCommand in setAutonomusMode" << endl;
 }
 
 void YClopsReactiveNavInterface::setNavigationMode() {
-//	this->useYclopsMotorCommand();
+	this->useYclopsMotorCommand();
 	LOG(WARNING) << "REMOVED call to useYclopsMotorCommand in setNavigationMode" << endl;
 }
 

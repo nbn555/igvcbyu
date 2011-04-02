@@ -11,10 +11,16 @@
 #include <iostream>
 
 using namespace std;
+using namespace mrpt;
+using namespace mrpt::hwdrivers;
 
-WheelEncoder::WheelEncoder(): left(0, 0), right(0, 0), encoderPPR(0) { }
+IMPLEMENTS_GENERIC_SENSOR(WheelEncoder, mrpt::hwdrivers);
 
-void WheelEncoder::loadConfiguration( const mrpt::utils::CConfigFileBase & config, const std::string & sectionName) {
+WheelEncoder::WheelEncoder(): left(0, 0), right(0, 0), encoderPPR(0) {
+	mrpt::hwdrivers::CGenericSensor::registerClass(SENSOR_CLASS_ID(WheelEncoder));
+}
+
+void WheelEncoder::loadConfig_sensorSpecific( const mrpt::utils::CConfigFileBase & config, const std::string & sectionName) {
 
 	double leftDiam = config.read_double( sectionName, "WHEEL_DIAMETER_LEFT", 0.30 );
 	double rightDiam = config.read_double( sectionName, "WHEEL_DIAMETER_RIGHT", 0.30 );
@@ -25,7 +31,7 @@ void WheelEncoder::loadConfiguration( const mrpt::utils::CConfigFileBase & confi
 
 }
 
-void WheelEncoder::init() {
+void WheelEncoder::initialize() {
 
 	LOG_ENCODER(DEBUG4) << "Setting encoder usage to feedback" << endl;
 	MotorController::instance()->setEncoderUsage();
@@ -37,7 +43,7 @@ void WheelEncoder::init() {
 	MotorController::instance()->setEncoderCounter(MotorController::BothChannels,0);
 }
 
-void WheelEncoder::sensorProcess() {
+void WheelEncoder::doProcess() {
 	int tmp1 = 0, tmp2 = 0;
 	LOG_ENCODER(DEBUG4) << "Getting Absolute Encoder Values" << endl;
 	MotorController::instance()->getAbsoluteEncoderCount(this->left.absoluteCount, this->right.absoluteCount);

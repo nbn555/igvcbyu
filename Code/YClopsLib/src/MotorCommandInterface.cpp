@@ -6,7 +6,6 @@
  */
 
 #include "MotorCommandInterface.h"
-#include "HumanInputInterface.h"
 #include "logging.h"
 
 #include <iostream>
@@ -47,17 +46,15 @@ MotorCommand::~MotorCommand() {
 
 DualMotorCommand::DualMotorCommand() {
 	MotorController::instance()->setMixingMode(0);  //Set the mixing mode to 0 so the controller is in separate mode or tank Mode
-	MotorController::instance()->setOperatingMode(1); //Set the operating mode so the robot is in open loop in dual motor command
+	MotorController::instance()->setOperatingMode(0); //Set the operating mode so the robot is in open loop in dual motor command
 }
 
 DualMotorCommand::~DualMotorCommand() { }
 
 void DualMotorCommand::doProcess() {
-	HumanInputInterface * controller = HumanInputInterface::instance();
-	uint16_t lxaxis, lyaxis;
-	uint16_t rxaxis, ryaxis;
-	controller->getLeftStick( lxaxis, lyaxis );
-	controller->getRightStick( rxaxis, ryaxis );
+	uint16_t lyaxis = this->linearVelocity;	//The wii controller uses separate mode so linear and angular velocities should really
+											//be thought of as left and right respectively
+	uint16_t ryaxis = this->angularVelocity;
 
 	double lspeed = ((lyaxis-32)/32.0)*1000; //need to divide by 32 because the l stick gives us 6 bits precision
 	double rspeed = ((ryaxis-16)/16.0)*1000; //need to divide by 16 because the r stick gives us 5 bits precision

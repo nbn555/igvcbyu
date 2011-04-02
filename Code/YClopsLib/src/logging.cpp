@@ -17,9 +17,7 @@ std::ostream * Log::outputStream = &(std::cerr);
 unsigned int Log::streamBits = ~ALL_LOG;
 bool Log::timestamp = true;
 
-#ifdef NVIEW
-NView * Log::view;
-#endif
+MVC::AbstractView * Log::view = NULL;
 
 using namespace std;
 
@@ -120,7 +118,7 @@ std::stringstream& Log::Get(LOG_LEVEL level) {
 	}
 #endif
 
-	this->os << " " << Log::ToString(level) << ": ";
+	if( OUT != level )	this->os << " " << Log::ToString(level) << ": ";
 	//this->os << std::string(level > DEBUG ? 1 :  DEBUG - level, '\t' ); //Set increasing number of tabs for higher debug levels
 	messageLevel = level;
 	return os;
@@ -140,19 +138,17 @@ Log::~Log() {
 
 	if (messageLevel >= Log::ReportingLevel())
 	{
-#ifndef NVIEW
-		(*Log::GetOStream()) << os.str();
-#endif
-#ifdef LOG_COLORS
-		(*Log::GetOStream()) << LOG_END_COLOR;
-#endif
-#ifndef NVIEW
-		Log::GetOStream()->flush();
-#else
-		Log::view->log(os.str());
+		if( NULL == Log::view ) {
+			(*Log::GetOStream()) << os.str();
 
-#endif
+			#ifdef LOG_COLORS
+					(*Log::GetOStream()) << LOG_END_COLOR;
+			#endif
 
+					Log::GetOStream()->flush();
+		} else {
+			Log::view->log(os.str());
+		}
 	}
 
 	if( FATAL == messageLevel ) {

@@ -20,11 +20,13 @@ using namespace boost;
 
 std::string Compass::setParameterResponse = "#!0000*21";
 
-Compass::Compass(): degrees(false), prevYawDeg(0), yaw(0), pitch(0), roll(0), deviation(0), variation(0), yawStatus(""), pitchStatus(""), rollStatus(""), serialPort() {
+IMPLEMENTS_GENERIC_SENSOR(Compass, mrpt::hwdrivers);
 
+Compass::Compass(): degrees(false), prevYawDeg(0), yaw(0), pitch(0), roll(0), deviation(0), variation(0), yawStatus(""), pitchStatus(""), rollStatus(""), serialPort()
+{
+	mrpt::hwdrivers::CGenericSensor::registerClass(SENSOR_CLASS_ID(Compass));
 }
-
-void Compass::loadConfiguration( const mrpt::utils::CConfigFileBase & config, const std::string & sectionName ) {
+void Compass::loadConfig_sensorSpecific(const mrpt::utils::CConfigFileBase & config, const std::string & sectionName ) {
 
 	string value = config.read_string(sectionName, "COM_port_LIN", "/dev/ttyS1" );
 	LOG_COMPASS(DEBUG3) << "Using " << value << " port for compass" << endl;
@@ -49,7 +51,7 @@ void Compass::loadConfiguration( const mrpt::utils::CConfigFileBase & config, co
 
 }
 
-void Compass::init() {
+void Compass::initialize() {
 
 	LOG_COMPASS(DEBUG3) << "Sending command to turn off commands sending from the compass" << endl;
 	if( !this->sendCommand( string("#FA0.3=0*27\r\n"), string("#!0000*21")) ) {
@@ -132,7 +134,42 @@ bool Compass::setVariation( double variation ) {
 
 }
 
-void Compass::sensorProcess() {
+bool Compass::setCalibrationMode() {
+	//!<TODO refactor serial port communication protocalls
+	string header = "#F33.4=0";
+	stringstream s;
+
+	s << header << "*";
+	s << this->computeChecksum(s.str()) << "\r\n";
+
+	return this->sendCommand( s.str(), "#!0000*21" );
+
+}
+
+bool Compass::saveCalibrationResults() {
+	string header = "#F33.4=1";
+	stringstream s;
+
+	s << header << "*";
+	s << this->computeChecksum(s.str()) << "\r\n";
+
+	return this->sendCommand( s.str(), "#!0000*21" );
+
+}
+
+double Compass::getCalibrationProgress() {
+	//!<todo parse the calibration response
+	const double MAX_ITERATIONS = 275; //see hmr3000 datasheet
+	string header = "#I26C?";
+	stringstream s;
+
+	s << header << "*";
+	s << this->computeChecksum(s.str()) << "\r\n";
+
+	return this->sendCommand( s.str(), "#!0000*21" );
+}
+
+void Compass::doProcess() {
 	string data;
 
 	bool booleanness = true;
