@@ -182,11 +182,11 @@ void TSPNavigation::nieveTSPSolution(  mrpt::aligned_containers<mrpt::poses::CPo
 	visited.erase(visited.begin());
 }
 
-void convertInput( mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit,
+void convertInput(const mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit,
 		vector<City> & inputCities){
 	inputCities.clear();
-	City c;
 	for(int i=0; i < toVisit.size(); i++){
+		City c;
 		c.x = toVisit[i].m_coords[LAT];
 		c.y = toVisit[i].m_coords[LON];
 		inputCities.push_back(c);
