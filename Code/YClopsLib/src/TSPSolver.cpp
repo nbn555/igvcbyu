@@ -72,7 +72,7 @@ TSPSolver::TSPSolver(vector<City> inputCities, bool inMeters){
 	srand((unsigned) time(0));
 
 	// init to a huge number
-	_curBestTour._cost = 10000000000000;
+	_curBestTour._cost = 10000000;
 
 	_changeCount = 0;
 
