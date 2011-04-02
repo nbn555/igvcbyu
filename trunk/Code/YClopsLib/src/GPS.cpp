@@ -18,7 +18,10 @@ using namespace mrpt::utils;
 const std::string GPS::GPSStringer::POCKETMAX = "PocketMAX";
 const std::string GPS::GPSStringer::NOVATEL = "Novatel";
 
+IMPLEMENTS_GENERIC_SENSOR(GPS, mrpt::hwdrivers);
+
 GPS::GPS(const int Buffer_Length):CGPSInterface(Buffer_Length), isGpggaUsed(false), isGprmcUsed(false) { //fixes potential default constructor problem
+	mrpt::hwdrivers::CGenericSensor::registerClass(SENSOR_CLASS_ID(GPS));
 }
 
 void GPS::loadConfiguration( const mrpt::utils::CConfigFileBase & config, const std::string & sectionName) {
@@ -63,7 +66,7 @@ void GPS::loadConfiguration( const mrpt::utils::CConfigFileBase & config, const 
 
 }
 
-void GPS::init() {
+void GPS::initialize() {
 	initializeCom();
 
 	while(!lstObs.size()) {

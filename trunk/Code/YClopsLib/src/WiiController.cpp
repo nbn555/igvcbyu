@@ -1,62 +1,254 @@
 /**
  * @file WiiController.cpp
- * @date Feb 4, 2011
- * @author Thomas Eldon Allred
+ * @date Mar 29, 2011
+ * @author tallred3
+ * @brief 
  */
+
+#include <cwiid.h>
+#include <bluetooth/hci.h>
+#include <bluetooth/hci_lib.h>
+#include <string>
+#include <sstream>
 
 #include "WiiController.h"
 #include "logging.h"
 
-#include <iostream>
-#include <signal.h>
-#include <cstdlib>
-#include <unistd.h>
-#include <bluetooth/hci.h>
-#include <bluetooth/hci_lib.h>
-
-using namespace std;
-
 cwiid_mesg_callback_t cwiid_callback;
 
-WiiController::WiiController() {
+using namespace util;
+using namespace std;
 
+static bool toCopy = false;
+static uint16_t mButtonsPressed;	//!<The true for which buttons were just pressed
+static uint16_t mButtonsReleased;	//!<True for which buttons were just released
+static uint16_t mButtons;			//!<true for which buttons are pressed
+
+static uint16_t cButtonsPressed;	//!<True for which buttons were just pressed
+static uint16_t cButtonsReleased;	//!<True for which buttons were just released
+static uint16_t cButtons;			//!<True for the state of the pressed buttons
+
+static uint16_t lXa, lYa;			//!<classic controller left stick state
+static uint16_t rXa, rYa;			//!<classic controller right stick state
+static uint16_t lA, rA;				//!<classic controller analog state
+
+
+WiiController::WiiController(util::Observable * m, MVC::AbstractView * v):YClopsController(m) {
+	this->setView(v);
 	bdaddr_t bdaddr = *BDADDR_ANY;	//!Get the most unspecific bluetooth address
 
 	this->wiiMote = NULL;
-	static int sval = 0;
-	LOG_WII(DEBUG2) << "In constructor " << ++sval << endl;
 
 	int dev_id = -1;
 	bool isBluetoothFound = false;
 	while(!isBluetoothFound) {
-		LOG_WII(INFO) << "Searching for Bluetooth interface" << endl;
+		LOG_WII(DEBUG2) << "Searching for Bluetooth interface" << endl;
 		if((dev_id = hci_get_route(NULL)) == -1) {		//!Scan for bluetooth devices
-			LOG_WII(WARNING) << "Couldn't find Bluetooth interface" << endl;
+			LOG_WII(ERROR) << "Couldn't find Bluetooth Interface" << endl;
 		} else isBluetoothFound = true;					//!Once we find one we assume it's a wii mote
 	}
 
-	LOG_WII(INFO) << "Bluetooth found" << endl;
+	LOG_WII(DEBUG2) << "Bluetooth found" << endl;
 
-	cout << "Press buttons 1 + 2 to put WiiMote in Discoverable mode" << endl;//!keep this as cout or a console dump
+	LOG(OUT) << "Press buttons 1 + 2 to put WiiMote in Discoverable mode" << endl;
+
 	while(-1 ==  cwiid_find_wiimote(&bdaddr, 5)) {}
 
 	while(!this->wiiMote) {//Try to open the wii controller
-		this->wiiMote = cwiid_open(&(bdaddr),CWIID_FLAG_MESG_IFC);
-		if(!this->wiiMote)
-			LOG_WII(WARNING) << "Connect Fail Retrying" << endl;
+		this->wiiMote = cwiid_open(&bdaddr,CWIID_FLAG_MESG_IFC);
+		if(!this->wiiMote) {
+			LOG_WII(ERROR) << "Connect Fail Retrying" << endl;
+		}
 	}
 
-	cout << "Connected WiiMote" << endl;
+	LOG_WII(DEBUG2) << "Connected WiiMote" << endl;
 
 	cwiid_set_mesg_callback(this->wiiMote, &cwiid_callback);  //Set up the message call back handler
 	cwiid_command(this->wiiMote, CWIID_CMD_RPT_MODE, CWIID_RPT_BTN | CWIID_RPT_CLASSIC ); //Set up the messages we want reported
 
-	LOG_WII(DEBUG2) << "Initialization success" << endl;
+	LOG_WII(DEBUG2) << "Initialization Success" << endl;
+
 }
 
-WiiController::~WiiController() {
-	cwiid_close(this->wiiMote);
+WiiController::~WiiController() { }
+
+void WiiController::copyData() {
+	this->moteButtonsPressed = mButtonsPressed;
+	this->moteButtonsReleased = mButtonsReleased;
+	this->moteButtons = mButtons;
+	this->classicButtonsPressed = cButtonsPressed;
+	this->classicButtonsReleased = cButtonsReleased;
+	this->classicButtons = cButtons;
+
+	/* Classic.LStick.X */
+	this->lXaxis = lXa;
+
+	/* Classic.LStick.Y */
+	this->lYaxis = lYa;
+
+	/* Classic.RStick.X */
+	this->rXaxis = rXa;
+
+	/* Classic.RStick.Y */
+	this->rYaxis = rYa;
+
+	/* Classic.LAnalog */
+	this->lAnalog = lA;
+
+	/* Classic.RAnalog */
+	this->rAnalog = rA;
+	toCopy = false;
 }
+
+void WiiController::handleEvent() {
+
+	if(toCopy) {
+		this->copyData();
+
+		uint16_t cbuttons = this->classicButtons;
+		uint16_t lax = this->lXaxis, lay = this->lYaxis;
+		uint16_t rax = this->rXaxis, ray = this->rYaxis;
+		uint16_t la = this->lAnalog;
+		uint16_t ra = this->rAnalog;
+		uint16_t mbuttons = this->moteButtons;
+
+		//Set the speed parameters in the parent models
+		this->linearSpeed = lay;
+		this->angularSpeed = ray;
+
+		if( cbuttons & CLASSIC_D_UP ) {
+			LOG(INFO) << "Toggling camera data" << endl;
+			//yclops->toggleCameraDump();
+		}
+
+		if( cbuttons & CLASSIC_D_DOWN ) {
+			LOG(INFO) << "Toggling lidar data" << endl;
+			//yclops->toggleLidarDump();
+		}
+
+		if( cbuttons & CLASSIC_D_LEFT ) {
+			LOG(INFO) << "Toggling GPS data" << endl;
+			//yclops->toggleGpsDump();
+		}
+
+		if( cbuttons & CLASSIC_D_RIGHT ) {
+			LOG(INFO) << "Toggling Compass data" << endl;
+			//yclops->toggleCompassDump();
+		}
+
+		if( cbuttons & CLASSIC_A ) {
+			LOG(INFO) << "Going into Autonomous Mode" << endl;
+			//yclops->setAutonomousMode();
+			//ai->setChallenge(false);
+			//string pointsFile = YClopsConfiguration::instance().read_string("GLOBAL_CONFIG","POINTS_FILE","points.txt");
+			//ai->setFileName(pointsFile,false);
+			//ai->setup();
+		}
+
+		if( cbuttons & CLASSIC_B ) {
+			LOG(INFO) << "Going into Navigation Mode" << endl;
+			//yclops->setNavigationMode();
+			//ai->setChallenge(true);
+			//string pointsFile = YClopsConfiguration::instance().read_string("GLOBAL_CONFIG","POINTS_FILE","points.txt");
+			//ai->setFileName(pointsFile,false);
+			//ai->setup();
+		}
+
+		if( cbuttons & CLASSIC_X ) {
+			LOG(INFO) << "Idling" << endl;
+			//yclops->useNullMotorCommand();
+			//yclops->setIdle();
+			//ai->stop();
+		}
+
+		if( cbuttons & CLASSIC_Y ) {
+			LOG(INFO) << "Wii Motor Control" << endl;
+			//yclops->useWiiMotorCommand();
+			//ai->stop();
+		}
+
+		if( cbuttons & CLASSIC_L1 ) {
+			LOG_WII(DEBUG4) << "Classic L1" << endl;
+		}
+
+		if( cbuttons & CLASSIC_L2 ) {
+			LOG(INFO) << "Toggling Encoder data" << endl;
+			//yclops->toggleEncoderDump();
+		}
+
+		if( cbuttons & CLASSIC_R1 ) {
+			LOG_WII(DEBUG4) << "Classic R1" << endl;
+		}
+
+		if( cbuttons & CLASSIC_R2 ) {
+			LOG_WII(DEBUG4) << "Classic R2" << endl;
+		}
+
+		if( cbuttons & CLASSIC_SELECT ) {
+			this->increaseLogLevel();
+		}
+
+		if( cbuttons & CLASSIC_HOME ) {
+			LOG(DEBUG4) << "Shutdown button pressed" << endl;
+			isClosing = true;
+		}
+
+		if( cbuttons & CLASSIC_SELECT ) {
+			this->decreaseLogLevel();
+		}
+
+		if( mbuttons & MOTE_D_UP ) {
+			LOG_WII(DEBUG4) << "Mote D Up" << endl;
+		}
+
+		if( mbuttons & MOTE_D_LEFT ) {
+			LOG_WII(DEBUG4) << "Mote D Left" << endl;
+		}
+
+		if( mbuttons & MOTE_D_RIGHT ) {
+			LOG_WII(DEBUG4) << "Mote D Right" << endl;
+		}
+
+		if( mbuttons & MOTE_D_DOWN ) {
+			LOG_WII(DEBUG4) << "Mote D Down" << endl;
+		}
+
+		if( mbuttons & MOTE_1 ) {
+			LOG_WII(DEBUG4) << "Mote 1" << endl;
+		}
+
+		if( mbuttons & MOTE_2 ) {
+			LOG_WII(DEBUG4) << "Mote 2" << endl;
+		}
+
+		if( mbuttons & MOTE_PLUS ) {
+			LOG_WII(DEBUG4) << "Mote Plus" << endl;
+		}
+
+		if( mbuttons & MOTE_MINUS ) {
+			LOG_WII(DEBUG4) << "Mote Minus" << endl;
+		}
+
+		if( mbuttons & MOTE_HOME ) {
+			LOG(DEBUG4) << "Playing beep" << endl;
+			//Beeper::beep(440,1000);
+		}
+
+		if( mbuttons & MOTE_A ) {
+			LOG_WII(DEBUG4) << "Mote A" << endl;
+		}
+
+		if( mbuttons & MOTE_B ) {
+			LOG_WII(DEBUG4) << "Mote B" << endl;
+		}
+
+		this->model->notifyObservers();
+	}
+
+}
+
+void process_btn_mesg(struct cwiid_btn_mesg *mesg);
+void process_classic_mesg(struct cwiid_classic_mesg *mesg);
 
 void cwiid_callback(cwiid_wiimote_t *wiimote, int mesg_count,
 		union cwiid_mesg mesg[], struct timespec *timestamp) {
@@ -65,20 +257,19 @@ void cwiid_callback(cwiid_wiimote_t *wiimote, int mesg_count,
 	 * The wii controller passes multiple types of messages via bluetooth this switch
 	 * statement handles them all
 	 */
-	WiiController * control = (WiiController*)HumanInputInterface::instance();
     for ( int i=0; i < mesg_count; i++) {
     	switch (mesg[i].type) {
     	case CWIID_MESG_BTN:
     		LOG_WII(DEBUG4) << "CWIID_MESG_BTN" << endl;
 
-    		control->process_btn_mesg((struct cwiid_btn_mesg*) &mesg[i]);
-     		raise(SIGUSR1);
+    		process_btn_mesg((struct cwiid_btn_mesg*) &mesg[i]);
+    		toCopy = true;
     		break;
     	case CWIID_MESG_CLASSIC:
     		LOG_WII(DEBUG4) << "CWIID_MESG_CLASSIC" << endl;
 
-    		control->process_classic_mesg((struct cwiid_classic_mesg *) &mesg[i]);
-    		raise(SIGUSR1);
+    		process_classic_mesg((struct cwiid_classic_mesg *) &mesg[i]);
+    		toCopy = true;
     		break;
     	case CWIID_MESG_ERROR:
     		LOG_WII(ERROR) << "Unknown CWIID Message" << endl;
@@ -91,38 +282,37 @@ void cwiid_callback(cwiid_wiimote_t *wiimote, int mesg_count,
     }
 }
 
-void WiiController::process_btn_mesg(struct cwiid_btn_mesg *mesg) {
+void process_btn_mesg(struct cwiid_btn_mesg *mesg) {
 
 	/* Wiimote Button/Key Events */
-	this->moteButtonsPressed = mesg->buttons & ~this->moteButtons;
-	this->moteButtonsReleased = ~mesg->buttons & this->moteButtons;
-	this->moteButtons = mesg->buttons;
+	mButtonsPressed = mesg->buttons & ~mButtons;
+	mButtonsReleased = ~mesg->buttons & mButtons;
+	mButtons = mesg->buttons;
 
 }
 
-void WiiController::process_classic_mesg(struct cwiid_classic_mesg *mesg) {
+void process_classic_mesg(struct cwiid_classic_mesg *mesg) {
 
 	/* Classic Button/Key Events */
-	this->classicButtonsPressed = mesg->buttons & ~this->classicButtons;
-	this->classicButtonsReleased = ~mesg->buttons & this->classicButtons;
-	this->classicButtons = mesg->buttons;
+	cButtonsPressed = mesg->buttons & ~cButtons;
+	cButtonsReleased = ~mesg->buttons & cButtons;
+	cButtons = mesg->buttons;
 
 	/* Classic.LStick.X */
-	this->lXaxis = mesg->l_stick[CWIID_X];
+	lXa = mesg->l_stick[CWIID_X];
 
 	/* Classic.LStick.Y */
-	this->lYaxis = mesg->l_stick[CWIID_Y];
+	lYa = mesg->l_stick[CWIID_Y];
 
 	/* Classic.RStick.X */
-	this->rXaxis = mesg->r_stick[CWIID_X];
+	rXa = mesg->r_stick[CWIID_X];
 
 	/* Classic.RStick.Y */
-	this->rYaxis = mesg->r_stick[CWIID_Y];
+	rYa = mesg->r_stick[CWIID_Y];
 
 	/* Classic.LAnalog */
-	this->lAnalog = mesg->l;
+	lA = mesg->l;
 
 	/* Classic.RAnalog */
-	this->rAnalog = mesg->r;
-
+	rA = mesg->r;
 }

@@ -10,8 +10,9 @@
 
 #include "YClopsReactiveNavInterface.h"
 #include "YclopsNavigationSystem.h"
+#include "Observable.h"
 
-class YClopsModel {
+class YClopsModel: public util::Observable {
 public:
 	YClopsModel();
 	virtual ~YClopsModel();

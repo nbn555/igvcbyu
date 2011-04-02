@@ -1,17 +1,16 @@
 /**
  * @file WiiController.h
- * @date Feb 4, 2011
- * @author Thomas Eldon Allred
- * @brief Header file for interfacing with the Wii Controller
+ * @date Mar 29, 2011
+ * @author tallred3
+ * @brief 
  */
 
 #ifndef WIICONTROLLER_H_
 #define WIICONTROLLER_H_
 
 #include <cwiid.h>
-#include <vector>
-#include <iostream>
-#include "HumanInputInterface.h"
+
+#include "YClopsController.h"
 
 #define CLASSIC_D_UP	(0x0001)
 #define CLASSIC_D_LEFT	(0x0002)
@@ -43,73 +42,16 @@
 
 extern cwiid_mesg_callback_t cwiid_callback; //!<call back handler for interfacing messages from the wii controller
 
-/**
- * @brief Interfaces with a wii controller
- */
-class WiiController: public HumanInputInterface {
+class WiiController: public YClopsController {
 public:
-
-	/**
-	 * @brief get the state of the mote buttons
-	 * @param[out] mButtons boolean state of the mote buttons
-	 */
-	void getMoteButtons( uint16_t & mButtons ) { mButtons = this->moteButtons; }
-
-	/**
-	 * @brief get the state of the classic controller buttons
-	 * @param[out] cButtons boolean state of the classic controller buttons
-	 */
-	void getClassicButtons( uint16_t & cButtons ) { cButtons = this->classicButtons; }
-
-	/**
-	 * @brief returns the state of the left analog stick on the classic controller
-	 * @param[out] xAxis the value of the x axis, range of 0 to 63 with 32 at center
-	 * @param[out] yAxis the value of the y axis, range of 0 to 63 with 32 at center
-	 */
-	void getLeftStick( uint16_t & xAxis, uint16_t & yAxis ) { xAxis = this->lXaxis; yAxis = this->lYaxis; }
-
-	/**
-	 * @brief returns the state of the right analog stick on the classic controller
-	 * @param[out] xAxis the value of the x axis, range 0 to 31 with 16 at center
-	 * @param[out] yAxis the value of the y axis, range 0 to 31 with 16 at cetner
-	 */
-	void getRightStick( uint16_t & xAxis, uint16_t & yAxis ) { xAxis = this->rXaxis; yAxis = this->rYaxis; }
-
-	/**
-	 * @brief returns the state of the left analog button
-	 * @param[out] left the current analog value
-	 */
-	void getLeftAnalog( uint16_t & left ) { left = this->lAnalog; }
-
-	/**
-	 * @brief returns the state of the right analog button
-	 * @param[out] right the current analog value
-	 */
-	void getRightAnalog( uint16_t & right ) { right = this->rAnalog; }
+	WiiController(util::Observable * m, MVC::AbstractView * v);
+	virtual ~WiiController();
+	void handleEvent();
 
 private:
-	virtual ~WiiController();
-	WiiController();
-
+	void copyData();
 	cwiid_wiimote_t * wiiMote;			//!<pointer to the wiiMote struct of the cwiid library
-
-	/**
-	 * @brief processes a button bluetooth message
-	 * @param[in] mesg button message
-	 */
-	void process_btn_mesg(struct cwiid_btn_mesg *mesg);
-
-	/**
-	 * @brief processes a classic controller message
-	 * @param[in] mesg a classic controller message
-	 */
-	void process_classic_mesg(struct cwiid_classic_mesg *mesg);
-
-	/**
-	 * @brief allows us to call process_btn_mesg and process_classic_mesg which shouldn't be public
-	 */
 	friend cwiid_mesg_callback_t cwiid_callback;
-	friend class HumanInputInterface;
 
 	uint16_t motePrevButtons;		//!<The previous state of the mote buttons
 	uint16_t moteButtonsPressed;	//!<The true for which buttons were just pressed

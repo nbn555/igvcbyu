@@ -15,8 +15,12 @@ using namespace std;
 using namespace cv;
 using namespace mrpt;
 using namespace mrpt::utils;
+using namespace mrpt::hwdrivers;
+
+IMPLEMENTS_GENERIC_SENSOR(Camera, mrpt::hwdrivers);
 
 Camera::Camera() : capture(0), array(NULL), map(NULL) {
+	mrpt::hwdrivers::CGenericSensor::registerClass(SENSOR_CLASS_ID(Camera));
 }
 
 Camera::~Camera(){
@@ -27,7 +31,7 @@ Camera::~Camera(){
 	LOG_CAMERA(DEBUG3) << "Deleted array and image capture..." << endl;
 }
 
-void Camera::loadConfiguration(const mrpt::utils::CConfigFileBase & config, const std::string & sectionName) {
+void Camera::loadConfig_sensorSpecific(const mrpt::utils::CConfigFileBase & config, const std::string & sectionName) {
 	LOG_CAMERA(DEBUG3) << "Reading config file..." << endl;
 
 	GRID_SIZE = config.read_int(sectionName, "grid_size", 10);
@@ -52,7 +56,7 @@ void Camera::loadConfiguration(const mrpt::utils::CConfigFileBase & config, cons
 	if(HSV_VECTOR > 3) 			LOG_CAMERA(FATAL) << "hsv vector is too high, must be between 0 and 3" << endl;
 }
 
-void Camera::init(){
+void Camera::initialize(){
 	array = new bool[GRID_SIZE * GRID_SIZE];
 	map = new mrpt::slam::CSimplePointsMap;
 	//capture = new VideoCapture(0);
@@ -67,7 +71,7 @@ void Camera::init(){
 	LOG_CAMERA(DEBUG3) << "Started camera..." << endl;
 }
 
-void Camera::sensorProcess() {
+void Camera::doProcess() {
 	// clear out old map
 	if(map != NULL){
 		delete map;
