@@ -54,6 +54,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1603414288" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.libs.458943880" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="pthread"/>
+									<listOptionValue builtIn="false" value="ncurses"/>
 									<listOptionValue builtIn="false" value="bluetooth"/>
 									<listOptionValue builtIn="false" value="cwiid"/>
 									<listOptionValue builtIn="false" value="YClops"/>
