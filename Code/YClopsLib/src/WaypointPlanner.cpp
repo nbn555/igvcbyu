@@ -137,8 +137,8 @@ std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2
 TSPNavigation::TSPNavigation( double lat, double lon ): AbstractNavigationInterface(lat, lon) { }
 
 std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > TSPNavigation::solve(bool inMeters) {
-	TSPNavigation::nieveTSPSolution( this->toVisit, this->visited , inMeters);
-	//TSPNavigation::acoTSPSolution( this->toVisit, this->visited, inMeters);
+	//TSPNavigation::nieveTSPSolution( this->toVisit, this->visited , inMeters);
+	TSPNavigation::acoTSPSolution( this->toVisit, this->visited, inMeters);
 
 	cout << "toVisit input: " << endl;
 	for(unsigned int i = 0 ; i < this->toVisit.size(); i++)
@@ -187,12 +187,15 @@ void convertInput(const mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_
 	inputCities.clear();
 	for(int i=0; i < toVisit.size(); i++){
 		City c;
-		c.x = toVisit[i].m_coords[LAT];
-		c.y = toVisit[i].m_coords[LON];
+		//c.x = toVisit[i].m_coords[LAT];
+		c.x = toVisit[i].m_coords[0];
+		//c.y = toVisit[i].m_coords[LON];
+		c.y = toVisit[i].m_coords[1];
 		inputCities.push_back(c);
 	}
 }
 
+/*
 void convertOutput( mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit,
 		mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & visited,
 		Tour & bestTour){
@@ -202,6 +205,7 @@ void convertOutput( mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & 
 		visited.push_back(toVisit[bestTour.getCity(t)]);
 	}
 }
+*/
 void TSPNavigation::acoTSPSolution( mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & toVisit,
 		mrpt::aligned_containers<mrpt::poses::CPoint2D>::vector_t & visited , bool inMeters){
 
@@ -217,5 +221,9 @@ void TSPNavigation::acoTSPSolution( mrpt::aligned_containers<mrpt::poses::CPoint
 	Tour bestTour = solver.getBestTour();
 
 	// convert it back to  vectors of CPoint2D
-	convertOutput(visited, bestTour);
+	//convertOutput(visited, bestTour);
+	visited.clear();
+	for (int t=0; t < toVisit.size(); t++){
+		visited.push_back(toVisit[bestTour.getCity(t)]);
+	}
 }
