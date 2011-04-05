@@ -17,7 +17,9 @@ MotorCommandInterface::~MotorCommandInterface() { }
 
 bool MotorCommandInterface::setVelocity( double linearVelocity, double angularVelocity ) {
 
-	this->linearVelocity = linearVelocity == 0 && angularVelocity != 0 ? -.2 : linearVelocity;
+	const double zeroThreshold = .001;
+
+	this->linearVelocity = (abs(linearVelocity) < zeroThreshold) && (abs(angularVelocity) > zeroThreshold) ? -.2 : linearVelocity;
 	this->angularVelocity = angularVelocity;
 	return true;
 }
@@ -33,7 +35,7 @@ MotorCommand::MotorCommand( double lC, double aC): linearConst(lC), angConst(aC)
 
 void MotorCommand::doProcess() {
 	int rmp1= linearConst * this->linearVelocity;
-	int rmp2= angConst*this->angularVelocity;
+	int rmp2= angConst * this->angularVelocity;
 	if(!(MotorController::instance()->setSpeed(MotorController::Channel1, rmp1)&&MotorController::instance()->setSpeed(MotorController::Channel2, rmp2)))
 		this->success = false;
 	MotorController::instance()->doProcess();

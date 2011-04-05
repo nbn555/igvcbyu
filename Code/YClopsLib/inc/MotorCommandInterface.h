@@ -51,13 +51,13 @@ protected:
  */
 class MotorCommand: public MotorCommandInterface {
 public:
-	MotorCommand( double lC=100, double aC=60 );
+	MotorCommand( double lC=93.74, double aC=127.324 );
 	virtual ~MotorCommand();
 
 	void doProcess();
 
 private:
-	double linearConst, angConst;
+	const double linearConst, angConst;
 };
 
 /**
