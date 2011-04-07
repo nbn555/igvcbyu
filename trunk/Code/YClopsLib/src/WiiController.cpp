@@ -12,6 +12,7 @@
 #include <sstream>
 
 #include "WiiController.h"
+#include "YClopsConfiguration.h"
 #include "logging.h"
 
 cwiid_mesg_callback_t cwiid_callback;
@@ -105,6 +106,7 @@ void WiiController::handleEvent() {
 	if(toCopy) {
 		this->copyData();
 
+		YClopsModel * model = (YClopsModel *) this->getModel();
 		uint16_t cbuttons = this->classicButtons;
 		uint16_t lax = this->lXaxis, lay = this->lYaxis;
 		uint16_t rax = this->rXaxis, ray = this->rYaxis;
@@ -118,53 +120,53 @@ void WiiController::handleEvent() {
 
 		if( cbuttons & CLASSIC_D_UP ) {
 			LOG(INFO) << "Toggling camera data" << endl;
-			//yclops->toggleCameraDump();
+			model->yclops->toggleCameraDump();
 		}
 
 		if( cbuttons & CLASSIC_D_DOWN ) {
 			LOG(INFO) << "Toggling lidar data" << endl;
-			//yclops->toggleLidarDump();
+			model->yclops->toggleLidarDump();
 		}
 
 		if( cbuttons & CLASSIC_D_LEFT ) {
 			LOG(INFO) << "Toggling GPS data" << endl;
-			//yclops->toggleGpsDump();
+			model->yclops->toggleGpsDump();
 		}
 
 		if( cbuttons & CLASSIC_D_RIGHT ) {
 			LOG(INFO) << "Toggling Compass data" << endl;
-			//yclops->toggleCompassDump();
+			model->yclops->toggleCompassDump();
 		}
 
 		if( cbuttons & CLASSIC_A ) {
 			LOG(INFO) << "Going into Autonomous Mode" << endl;
-			//yclops->setAutonomousMode();
-			//ai->setChallenge(false);
-			//string pointsFile = YClopsConfiguration::instance().read_string("GLOBAL_CONFIG","POINTS_FILE","points.txt");
-			//ai->setFileName(pointsFile,false);
-			//ai->setup();
+			model->yclops->setAutonomousMode();
+			model->ai->setChallenge(false);
+			string pointsFile = YClopsConfiguration::instance().read_string("GLOBAL_CONFIG","POINTS_FILE","points.txt");
+			model->ai->setFileName(pointsFile,false);
+			model->ai->setup();
 		}
 
 		if( cbuttons & CLASSIC_B ) {
 			LOG(INFO) << "Going into Navigation Mode" << endl;
-			//yclops->setNavigationMode();
-			//ai->setChallenge(true);
-			//string pointsFile = YClopsConfiguration::instance().read_string("GLOBAL_CONFIG","POINTS_FILE","points.txt");
-			//ai->setFileName(pointsFile,false);
-			//ai->setup();
+			model->yclops->setNavigationMode();
+			model->ai->setChallenge(true);
+			string pointsFile = YClopsConfiguration::instance().read_string("GLOBAL_CONFIG","POINTS_FILE","points.txt");
+			model->ai->setFileName(pointsFile,false);
+			model->ai->setup();
 		}
 
 		if( cbuttons & CLASSIC_X ) {
 			LOG(INFO) << "Idling" << endl;
-			//yclops->useNullMotorCommand();
-			//yclops->setIdle();
-			//ai->stop();
+			model->yclops->useNullMotorCommand();
+			model->yclops->setIdle();
+			model->ai->stop();
 		}
 
 		if( cbuttons & CLASSIC_Y ) {
 			LOG(INFO) << "Wii Motor Control" << endl;
-			//yclops->useWiiMotorCommand();
-			//ai->stop();
+			model->yclops->useWiiMotorCommand();
+			model->ai->stop();
 		}
 
 		if( cbuttons & CLASSIC_L1 ) {
@@ -173,7 +175,7 @@ void WiiController::handleEvent() {
 
 		if( cbuttons & CLASSIC_L2 ) {
 			LOG(INFO) << "Toggling Encoder data" << endl;
-			//yclops->toggleEncoderDump();
+			model->yclops->toggleEncoderDump();
 		}
 
 		if( cbuttons & CLASSIC_R1 ) {
@@ -223,15 +225,17 @@ void WiiController::handleEvent() {
 
 		if( mbuttons & MOTE_PLUS ) {
 			LOG_WII(DEBUG4) << "Mote Plus" << endl;
+			this->decreaseLogLevel();
 		}
 
 		if( mbuttons & MOTE_MINUS ) {
 			LOG_WII(DEBUG4) << "Mote Minus" << endl;
+			this->increaseLogLevel();
 		}
 
 		if( mbuttons & MOTE_HOME ) {
-			LOG(DEBUG4) << "Playing beep" << endl;
-			//Beeper::beep(440,1000);
+			LOG(DEBUG4) << "Shutdown button pressed" << endl;
+			isClosing = true;
 		}
 
 		if( mbuttons & MOTE_A ) {
