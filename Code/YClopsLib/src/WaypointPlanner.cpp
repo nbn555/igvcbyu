@@ -86,34 +86,19 @@ double AbstractNavigationInterface::haversineDistance( double lat1, double lon1,
 }
 
 double AbstractNavigationInterface::calcBearing( double lat1, double lon1, double lat2, double lon2, bool isDegrees ) {
-	//convert inputs to radians
+	double deltalat = lat2 - lat1;
+		double deltalon = lon2 - lon1;
+
+		//convert from degree to radian
+		deltalat *= M_PI/180.0;
+		deltalon *= M_PI/180.0;
 	lat1 *= M_PI/180.0;
 	lon1 *= M_PI/180.0;
 	lat2 *= M_PI/180.0;
 	lon2 *= M_PI/180.0;
-	double radBearing;
-	double t1, t2, t3, t4, t5;
+	//atan2( 	sin(Δlong).cos(lat2),cos(lat1).sin(lat2) − sin(lat1).cos(lat2).cos(Δlong) )
+	double radBearing = atan2(sin(deltalon)*cos(lat2), cos(lat1)*sin(lat2) - sin(lat1)*cos(lat2)*cos(deltalon));
 
-	//Do a bunch of magic trig
-	t1 = sin(lat1) * sin(lat2);
-	t2 = cos(lat1) * cos(lat2);
-	t3 = cos(lon1 - lon2);
-	t4 = t2 * t3;
-	t5 = t1 + t4;
-	double rad_dist = atan(-t5/sqrt(-t5*t5+1))+2*atan(1);
-	t1 = sin(lat2) - sin(lat1) * cos(rad_dist);
-	t2 = cos(lat1) * sin(rad_dist);
-	t3 = t1/t2;
-
-	if(sin(lon2 - lon1) < 0 ) {
-		t4 = atan(-t3/sqrt(-t3*t3+1)) + 2 * atan(1);
-		radBearing = t4;
-	} else {
-		t4 = -t3 * t3 + 1;
-		t5 = 2 * M_PI - atan(-t3 / sqrt(-t3 * t3 + 1)) + 2 * atan(1);
-		radBearing = t5;
-	}
-	//convert outputs to degrees
 	if( isDegrees )	radBearing *= 180.0/M_PI;
 	return radBearing;
 }
