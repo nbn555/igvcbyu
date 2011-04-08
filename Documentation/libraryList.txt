@@ -13,3 +13,8 @@ mrpt-vision
 mrpt-obs
 mrpt-opengl
 mrpt-base
+list of libraries used by the y-clops code
+ncurses
+cwiid
+bluetooth
+pthread
