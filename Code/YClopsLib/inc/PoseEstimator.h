@@ -75,7 +75,7 @@ public:
  */
 class RangeBearingPoseEstimator: public AbstractPoseEstimator {
 protected:
-	class RangeBearing: public mrpt::bayes::CKalmanFilterCapable<4,2,2,1>{
+	class RangeBearing: public mrpt::bayes::CKalmanFilterCapable<3,2,2,3>{
 
 
 

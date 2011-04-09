@@ -10,6 +10,7 @@
 #include "logging.h"
 #include "SensorData.h"
 #include "YClopsConfiguration.h"
+#include <mrpt/slam/CSensoryFrame.h>
 
 using namespace mrpt;
 using namespace mrpt::utils;
@@ -146,6 +147,7 @@ bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 	CompassData * compassData	= NULL;
 	GPSData * gpsData			= NULL;
 	EncoderData * encoderData	= NULL;
+	CSensoryFrame sensorFrame;
 
 	//Get get data from the compass
 	if( NULL != this->compass ) {
@@ -162,7 +164,6 @@ bool YClopsReactiveNavInterface::getCurrentPoseAndSpeeds(mrpt::poses::CPose2D &c
 
 	//Get data from the gps
 	if( NULL != this->gps ) {
-
 		this->gps->sensorProcess();
 
 		if( this->isGpsDataShown ) {
