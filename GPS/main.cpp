@@ -15,7 +15,6 @@
 #include <cstring>  /* String function definitions */
 #include <vector>
 
-
 #include <mrpt/hwdrivers/CGPSInterface.h>
 
 #include "GPS.h"
@@ -130,7 +129,7 @@ void saveGPSpointsToFile(GPS * gps) {
 			gps->sensorProcess();
 			cout << "Lat: " << gps->GetGpsLatitude() << endl;
 			cout << "Lon: " << gps->GetGpsLongitude() << endl;
-			cout << "Distance from Last: " << GetDistanceToWaypoint(prevLat, prevLon) << endl;
+			cout << "Distance from Last: " << gps->GetDistanceToWaypoint(prevLat, prevLon) << endl;
 
 			cout <<endl<< "Is this GPS reading acceptable?(y/n)" << endl; // prints !!!Hello World!!!
 			answer = getchar();
@@ -152,15 +151,16 @@ void saveGPSpointsToFile(GPS * gps) {
 	}
 	fout.close();
 }
+}
 
-void readGPSpointsFromFile(gps) {
+/*void readGPSpointsFromFile(gps) {
 
 	string filename = "";
 	WaypointPlanner::loadPoints(filename, true);
 	vector<double> pList = WaypointPlanner::SequentialNavigation(0.0, 0.0);
 
 }
-
+*/
 
 
 
@@ -170,12 +170,12 @@ int main() {
 	GPS * gps = new GPS();
 	CConfigFile config("GPS.ini");
 	gps->loadConfiguration(config, "GPS");
-	gps->init();
+	gps->initialize();
 
 	//initializationTest(gps);
 	//accuracyTest(gps);
 	saveGPSpointsToFile(gps);
-	readGPSpointsFromFile(gps);
+	//readGPSpointsFromFile(gps);
 
 
 
