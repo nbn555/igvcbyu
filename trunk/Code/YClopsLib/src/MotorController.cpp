@@ -103,6 +103,7 @@ MotorController::MotorController():
 void MotorController::doProcess() {
 		stringstream parser;
 		parser << "!M " << this->motor1Speed << " " << this->motor2Speed << "\r";
+		LOG(INFO) << "!M " << this->motor1Speed << " " << this->motor2Speed << endl;
 		this->sendCommand(parser.str(), "+", NULL, this->permissiveMode);
 		this->motor1Speed = 0;
 		this->motor2Speed = 0;
@@ -194,6 +195,14 @@ bool MotorController::setEncoderUsage( int value ) {
 	return rval;
 }
 
+void MotorController::saveConfig()
+{
+	stringstream parser;
+	parser << "%eesav\r";
+
+	this->sendCommand(parser.str(), "+", NULL, this->permissiveMode);
+}
+
 bool MotorController::setMixingMode( int value ) {
 	LOG_MOTOR(DEBUG3) << "MotorController: setMixingMode" << endl;
 	bool rval = false;
@@ -218,18 +227,14 @@ bool MotorController::setOperatingMode( int value ) {
 	LOG_MOTOR(DEBUG3) << "MotorController: setOperatingMode" << endl;
 	bool rval = false;
 
-	if( (1 != value) && (2 != value) && (3 != value) ) LOG_MOTOR(ERROR) << "MotorController: Invalid Operating Mode Value:" << value << endl;
+	if( (0 != value) && (1 != value) && (2 != value) && (3 != value) ) LOG_MOTOR(ERROR) << "MotorController: Invalid Operating Mode Value:" << value << endl;
 
 	this->currentOperatingMode = value;
 
 	stringstream parser;
-	parser << "^MMOD 1 " << value << '\r';
+	parser << "^MMOD 0 " << value << '\r';
 	rval = this->sendCommand(parser.str(), "+", NULL, this->permissiveMode);
 
-	parser.str("");
-
-	parser << "^MMOD 2 " << value << '\r';
-	rval = rval && this->sendCommand(parser.str(), "+", NULL, this->permissiveMode);
 
 	return rval;
 }

@@ -122,8 +122,8 @@ std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2
 TSPNavigation::TSPNavigation( double lat, double lon ): AbstractNavigationInterface(lat, lon) { }
 
 std::vector<mrpt::poses::CPoint2D, Eigen::aligned_allocator<mrpt::poses::CPoint2D> > TSPNavigation::solve(bool inMeters) {
-	//TSPNavigation::nieveTSPSolution( this->toVisit, this->visited , inMeters);
-	TSPNavigation::acoTSPSolution( this->toVisit, this->visited, inMeters);
+	TSPNavigation::nieveTSPSolution( this->toVisit, this->visited , inMeters);
+	//TSPNavigation::acoTSPSolution( this->toVisit, this->visited, inMeters);
 
 	cout << "toVisit input: " << endl;
 	for(unsigned int i = 0 ; i < this->toVisit.size(); i++)

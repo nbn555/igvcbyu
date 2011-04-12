@@ -56,6 +56,7 @@ public:
 	 * @brief sends the current speed command to the motor controller
 	 */
 	void doProcess();
+	void saveConfig();
 
 	//////////////////////////////////////////////////////////////////
 	//Motor Controller Runtime commands
