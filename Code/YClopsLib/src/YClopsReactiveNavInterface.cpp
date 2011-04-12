@@ -20,7 +20,7 @@ using namespace mrpt::hwdrivers;
 using namespace std;
 
 YClopsReactiveNavInterface::YClopsReactiveNavInterface()
-: isGpsDataShown(false), isCompassDataShown(false), isLidarDataShown(false), isCameraDataShown(false), isEncoderDataShown(false),
+: isWii(false), isGpsDataShown(false), isCompassDataShown(false), isLidarDataShown(false), isCameraDataShown(false), isEncoderDataShown(false),
   motor(NULL), compass(NULL), gps(NULL), camera(NULL), lidar(NULL), encoder(NULL), poseEst(NULL), robotPose(NULL),
   curV(0), curW(0)
 {
@@ -227,7 +227,7 @@ bool YClopsReactiveNavInterface::senseObstacles( mrpt::slam::CSimplePointsMap &o
 {
 	CameraData * cameraData 	= NULL;
 	LidarData * lidarData 		= NULL;
-
+	obstacles.clear();
 	//Get data out of the Camera
 	if( NULL != this->camera ) {
 
@@ -310,17 +310,20 @@ bool YClopsReactiveNavInterface::toggleEncoderDump() {
 void YClopsReactiveNavInterface::useYclopsMotorCommand() {
 	MotorCommandInterface * tmp = this->motor;
 	this->motor = new MotorCommand();
+	this->isWii = false;
 	delete tmp;
 }
 
 void YClopsReactiveNavInterface::useWiiMotorCommand() {
 	MotorCommandInterface * tmp = this->motor;
 	this->motor = new DualMotorCommand();
+	this->isWii = true;
 	delete tmp;
 }
 
 void YClopsReactiveNavInterface::useNullMotorCommand() {
 	MotorCommandInterface * tmp = this->motor;
 	this->motor = new DummyMotorCommand();
+	this->isWii = false;
 	delete tmp;
 }

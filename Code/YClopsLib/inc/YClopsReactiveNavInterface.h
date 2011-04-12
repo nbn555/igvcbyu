@@ -117,9 +117,10 @@ public:
 	 */
 	void useNullMotorCommand();
 
-	bool isWiiMotorCommand() { return (NULL != dynamic_cast<DualMotorCommand*>(this->motor)); };
+	bool isWiiMotorCommand() { return isWii; };
 
 private:
+	bool isWii;
 	bool isGpsDataShown;	//!<if gps is showing data
 	bool isCompassDataShown;//!<if compass is showing data
 	bool isLidarDataShown;	//!<if lidar is showing data

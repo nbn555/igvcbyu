@@ -116,7 +116,7 @@ void WiiController::handleEvent() {
 
 		//Set the speed parameters in the parent models
 		this->linearSpeed = lay;
-		this->angularSpeed = ray;
+		this->angularSpeed = lax;
 
 		if( cbuttons & CLASSIC_D_UP ) {
 			LOG(INFO) << "Toggling camera data" << endl;
@@ -144,6 +144,7 @@ void WiiController::handleEvent() {
 			model->ai->setChallenge(false);
 			string pointsFile = YClopsConfiguration::instance().read_string("GLOBAL_CONFIG","POINTS_FILE","points.txt");
 			model->ai->setFileName(pointsFile,false);
+			LOG(INFO) << "Starting AI" << endl;
 			model->ai->setup();
 		}
 
@@ -153,6 +154,7 @@ void WiiController::handleEvent() {
 			model->ai->setChallenge(true);
 			string pointsFile = YClopsConfiguration::instance().read_string("GLOBAL_CONFIG","POINTS_FILE","points.txt");
 			model->ai->setFileName(pointsFile,false);
+			LOG(INFO) << "Starting AI" << endl;
 			model->ai->setup();
 		}
 
@@ -165,8 +167,9 @@ void WiiController::handleEvent() {
 
 		if( cbuttons & CLASSIC_Y ) {
 			LOG(INFO) << "Wii Motor Control" << endl;
-			model->yclops->useWiiMotorCommand();
 			model->ai->stop();
+			model->yclops->useWiiMotorCommand();
+
 		}
 
 		if( cbuttons & CLASSIC_L1 ) {

@@ -55,7 +55,7 @@ void NoFilterPoseEstimator::update( const GPSData * gpsData, const CompassData *
 			lon = gpsData->longitude;
 			gpsValid = true;
 		} else {
-			LOG_POSE(ERROR) << "No valid data found in gps observation" << endl;
+			LOG_POSE(DEBUG4) << "No valid data found in gps observation" << endl;
 		}
 	} else {
 		LOG_POSE(ERROR) << "GPS Data pointer NULL" << endl;
@@ -81,11 +81,11 @@ void NoFilterPoseEstimator::update( const GPSData * gpsData, const CompassData *
 		LOG_POSE(ERROR) << "Compass Data pointer NULL" << endl;
 	}
 
-	if( NULL != encoderData ) {
+	/*if( NULL != encoderData ) {
 		//!@TODO Implement encoderData in pose estimators
 	} else {
 		LOG_POSE(ERROR) << "Encoder Data pointer NULL" << endl;
-	}
+	}*/
 
 	if(!started)
 	{

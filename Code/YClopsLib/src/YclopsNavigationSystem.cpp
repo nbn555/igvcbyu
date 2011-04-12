@@ -1501,7 +1501,7 @@ void YclopsNavigationSystem::setup()
 	{
 		 nav =  new SequentialNavigation(lat, lon);
 	}
-
+	cout << "loading points file from position " << pose.x() << " " << pose.y() << endl;
 	nav->loadPoints(fileName, !inMeters);
 
 	//waypoints in the order we want to visit them
