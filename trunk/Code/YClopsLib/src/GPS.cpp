@@ -197,11 +197,11 @@ CPoint2D GPS::GetCurrentGpsLocation() const{
 }
 
 bool GPS::IsGGADataValid() const {
-	return gpsData->has_GGA_datum  && GetDistanceToWaypoint(testLat, testLon) < 10000;
+	return gpsData->has_GGA_datum  && GetDistanceToWaypoint(testLat, testLon) < 1000;
 }
 
 bool GPS::IsRMCDataValid() const {
-	return gpsData->has_RMC_datum && GetDistanceToWaypoint(testLat, testLon) < 10000;
+	return gpsData->has_RMC_datum && GetDistanceToWaypoint(testLat, testLon) < 1000;
 }
 
 //**************  PRIVATE  *****************************
@@ -209,11 +209,13 @@ bool GPS::IsRMCDataValid() const {
 void GPS::initializeCom() {
 	// check if connection is already established, if not, reconnect
 	//if (this->isGPS_connected()) {return; }
-	preComInitialize();
+	//preComInitialize();
 	sleep(2);
-	//CSerialPort myCom(this->gpsStrings->portName);
 
-	/*if (myCom.isOpen())
+
+	CSerialPort myCom(this->gpsStrings->portName);
+	/*
+	if (myCom.isOpen())
 		LOG_GPS(DEBUG3) << "com is already open" << endl;
 
 	LOG_GPS(DEBUG3) << "Connecting to GPS at " << baudRate << " ... (./YClopsLib/GPS)" << endl;
@@ -228,7 +230,49 @@ void GPS::initializeCom() {
 
 	LOG_GPS(DEBUG3) << "Post open" << endl;
 */
+	//stringstream inputStream;
+
+
+
+	//this->m_COM.setConfig(this->baudRate,0,8,1,false);
+	myCom.setConfig(9600,0,8,1,false);
+
 	stringstream inputStream;
+
+	//clear out the commands that constantly update the gps data
+	bool to = false;
+
+	inputStream << this->gpsStrings->clearCommand << "\n\r";
+	//this->m_COM.Write(inputStream.str().c_str(),inputStream.str().length());
+	myCom.Write(inputStream.str().c_str(),inputStream.str().length());
+	usleep(500000);
+	//this->m_COM.purgeBuffers();
+	myCom.purgeBuffers();
+
+	//string response = this->m_COM.ReadString(1000,&to, "\n\r");
+	string response = myCom.ReadString( 1000, &to, "\n\r" );
+
+	// configure for individual baudrates
+	if( this->gpsStrings->clearCommandResponse != response.substr(0,this->gpsStrings->clearCommandResponse.length()) || to ) {
+		LOG_GPS(DEBUG3) << "Misconfigured " << this->gpsStrings->vendor << " GPS at preCom.\nRecieved: " << response << endl;
+	}
+
+	LOG_GPS(DEBUG3) << "Setting com to " << baudRate << endl;
+	inputStream.str("");
+	inputStream << this->gpsStrings->setComSpeed << baudRate << "\n\r";
+	//this->m_COM.Write(inputStream.str().c_str(),inputStream.str().length());
+	myCom.Write(inputStream.str().c_str(),inputStream.str().length());
+
+
+
+
+
+
+
+
+
+
+
 
 	//clear out the commands that constantly update the gps data
 	//bool to = false;
@@ -238,33 +282,34 @@ void GPS::initializeCom() {
 			LOG_GPS(DEBUG3) << "Using gpgga" << endl;
 			inputStream.str("");
 			inputStream << this->gpsStrings->ggaCommand << this->processRate << "\n\r";
-			this->m_COM.Write(inputStream.str().c_str(),inputStream.str().length());
-			//myCom.Write(inputStream.str().c_str(),inputStream.str().length());//this will tell the gps to get a satellite reading once a second
+			//this->m_COM.Write(inputStream.str().c_str(),inputStream.str().length());
+			myCom.Write(inputStream.str().c_str(),inputStream.str().length());//this will tell the gps to get a satellite reading once a second
 		}
 
 		if( this->isGprmcUsed ) {
 			LOG_GPS(DEBUG3) << "Using gprmc" << endl;
 			inputStream.str("");
 			inputStream << this->gpsStrings->rmcCommand << this->processRate << "\n\r";
-			this->m_COM.Write(inputStream.str().c_str(),inputStream.str().length());
-			//myCom.Write(inputStream.str().c_str(),inputStream.str().length());//this will tell the gps to run the nmea rmc command once a second
+			//this->m_COM.Write(inputStream.str().c_str(),inputStream.str().length());
+			myCom.Write(inputStream.str().c_str(),inputStream.str().length());//this will tell the gps to run the nmea rmc command once a second
 		}
 	} catch(...) {
 		LOG_GPS(DEBUG3) << "Could not write to GPS" << endl;
 	}
 
-	this->m_COM.purgeBuffers();
-	this->m_COM.close();
-	//myCom.purgeBuffers();
-	//myCom.close();
+	//this->m_COM.purgeBuffers();
+	//this->m_COM.close();
+	myCom.purgeBuffers();
+	myCom.close();
 }
 
 void GPS::preComInitialize() {
 	LOG_GPS(DEBUG3) << "Configuring GPS at 9600 baud rate ... (./YClopsLib/GPS)" << endl;
 
-	CSerialPort myCom(this->gpsStrings->portName);
+	//CSerialPort myCom(this->gpsStrings->portName);
+	//this->m_COM.open(this->gpsStrings->portName);
 	try {
-		this->m_COM.setConfig(9600,0,8,1,false);
+		this->m_COM.setConfig(this->baudRate,0,8,1,false);
 		//myCom.setConfig(9600,0,8,1,false);
 
 		stringstream inputStream;

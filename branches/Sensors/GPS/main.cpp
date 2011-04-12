@@ -111,13 +111,18 @@ void saveGPSpointsToFile(GPS * gps) {
 	double prevLat = 0.0;
 	double prevLon = 0.0;
 	char answer = 'r';
+	char prevA = 'r';
 
 	while (answer != 'y' && answer != 'n') {
 	{
+
+
 		cout << "Get new GPS reading? (y/n)" << endl;
-		answer = getchar(); // waits for a command before proceeding
+		prevA = getchar();
+		getchar();
+		answer = prevA;
 		if (answer == 'n') break;
-		if (answer == '\n') continue;
+		//if (answer == '\n') continue;
 		if (answer != 'y' && answer != 'n') {
 			cout << "USAGE: please enter y/n" << endl;
 			continue;
@@ -125,32 +130,53 @@ void saveGPSpointsToFile(GPS * gps) {
 
 		answer = 'r';
 
-		while (answer != 'y' && answer != 'n') {
+		while (answer != 'y') {
+
 			gps->sensorProcess();
+			cout.precision(12);
 			cout << "Lat: " << gps->GetGpsLatitude() << endl;
 			cout << "Lon: " << gps->GetGpsLongitude() << endl;
 			cout << "Distance from Last: " << gps->GetDistanceToWaypoint(prevLat, prevLon) << endl;
 
-			cout <<endl<< "Is this GPS reading acceptable?(y/n)" << endl; // prints !!!Hello World!!!
-			answer = getchar();
-			if (answer == '\n') continue;
-			if (answer != 'y' && answer != 'n')
+			cout <<endl<< "Is this GPS reading acceptable?(y/n)" << endl;
+
+			// stupid return chars are counting
+			prevA = getchar();
+			getchar();
+			answer = prevA;
+
+			//if (answer == '\n') continue;
+			if (answer == 'n') {
+				prevLat = gps->GetGpsLatitude();
+				prevLon = gps->GetGpsLongitude();
+				cout << "getting new points..." << endl << endl;
+				continue;
+			}
+
+			if (answer == 'y') {
+				cout << endl << "Writing point to file" << endl << endl;
+
+				fout 	<< setw(20)
+						<< gps->GetGpsLatitude()
+						<< setw(20)
+						<< gps->GetGpsLongitude()
+						<< setw(20)
+						<< gps->GetDistanceToWaypoint(prevLat, prevLon)
+						<< endl;
+				break;
+			}
+
+			if (answer != 'y' && answer != 'n' && answer != '\n')
 				cout << "USAGE: please enter y/n" << endl;
 		}
+		prevLat = gps->GetGpsLatitude();
+		prevLon = gps->GetGpsLongitude();
 
-		cout << endl << "Writing point to file" << endl;
-
-		fout 	<< setw(20)
-				<< gps->GetGpsLatitude()
-				<< setw(20)
-				<< gps->GetGpsLongitude()
-				<< setw(20)
-				<< gps->GetDistanceToWaypoint(prevLat, prevLon)
-				<< endl;
 		answer = 'r';
 	}
+
+	}
 	fout.close();
-}
 }
 
 /*void readGPSpointsFromFile(gps) {
@@ -166,12 +192,20 @@ void saveGPSpointsToFile(GPS * gps) {
 
 int main() {
 
-	cout << "here" << endl;
 	GPS * gps = new GPS();
 	CConfigFile config("GPS.ini");
 	gps->loadConfiguration(config, "GPS");
 	gps->initialize();
 
+
+	/*while(1) {
+		gps->sensorProcess();
+		cout << "here" << endl;
+		//cout << "lat: " << gps->GetGpsLatitude() << "   lon: " << gps->GetGpsLongitude() << endl << endl;
+		gps->dumpData(cout);
+		sleep(1000);
+	}
+	*/
 	//initializationTest(gps);
 	//accuracyTest(gps);
 	saveGPSpointsToFile(gps);
