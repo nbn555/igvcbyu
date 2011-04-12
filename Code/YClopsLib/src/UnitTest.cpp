@@ -5,6 +5,3 @@
  *      Author: tallred3
  */
 
-#include "UnitTest.h"
-#include "logging.h"
-#include "GPS.h"
