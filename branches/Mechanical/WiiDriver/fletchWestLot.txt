@@ -1,0 +1,7 @@
+Latitude		Longitude		Where
+
+40.2475516667   -111.648213333		Flether, south of lot
+
+40.247575      	-111.648328333		Fletcher, north west
+
+40.2475583333   -111.648375		Fletchher, west
