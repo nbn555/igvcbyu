@@ -1,7 +1,0 @@
-Latitude		Longitude		Where
-
-40.1485693		-111.388902		Flether, south of lot
-
-40.148588		-111.388924		Fletcher, north west
-
-40.148549		-111.38898		Fletchher, west

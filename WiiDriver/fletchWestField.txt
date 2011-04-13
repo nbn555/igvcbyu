@@ -1,0 +1,10 @@
+Latitude:		Longitude:		where: 
+40.2473083333       -111.648625		east
+
+40.2472583333    	-111.64868		south east
+
+40.247385      		-111.648743333		north west
+
+40.24744      		-111.648708333		north northish
+
+40.2473416667     	-111.648713333		center field
