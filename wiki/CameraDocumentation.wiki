@@ -1,0 +1,13 @@
+#summary Information about how the camera code works
+
+= Calibrate =
+Location: branches->Sensors->Camera->Calibrate
+
+This is a python user interface that helps calibrate the camera. It uses pretty much the same code that Y-Clop uses to detect obstacles.  The user interface shows what the camera is seeing and allows you to adjust settings and see how they affect the video feed. This helps when you want to change the threshold and other parameters depending on the environment you are in (indoors, cloudy, sunny). This obviously requires python to be running on the computer. To set up the camera module you need to run the setup.py file in the command line like:
+
+{{{
+
+python setup.py build
+python setup.py install
+
+}}}
