@@ -11,3 +11,11 @@ python setup.py build
 python setup.py install
 
 }}}
+
+This will compile the "Camera.cpp" file and turn it into a module for python to use. The parameters values for the user interface are loaded from YClops.ini. This is where all the parameters should be saved for the whole project. When you click save on the user interface, the parameter values get saved to the YClops.ini file.
+
+To run the user interface:
+
+{{{
+python simpleGUI.py
+}}}
