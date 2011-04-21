@@ -19,3 +19,9 @@ To run the user interface:
 {{{
 python simpleGUI.py
 }}}
+
+
+= Camera =
+location: trunk->Code->YClopsLib->src->Camera.cpp
+
+Camera.cpp contains the code for finding obstacles. It uses openCV 2.2 libraries so make sure you have those installed. To start out the YClopsLib should only call doProcess and getData. When doProcess is called, the camera gets a frame from the video stream. It then thresholds the image to only show the white in the image. It then distorts the image by key-stoning it so that it is a true representation of the position of the camera. It then splits up the image into a grid. The grid size is determined by the YClops.ini file. It then goes through each cell in the grid and checks to see if an obstacle is in that part of the grid. It does this by measuring how much white is in that cell. If there is too much then it will be marked as containing an obstacle. Each cell corresponds to a different real valued x and y location in front of the robot. It then takes this grid and puts all the values into a map. This map is what is used by YClopsLib.
