@@ -1,4 +1,5 @@
 #summary Check list for starting up Yclops
+#labels Phase-Implementation,Phase-Deploy
 
 = Introduction =
 
@@ -17,3 +18,11 @@
  # Turn on Computer(Make sure she beeps)
  # Connect wireless Network Yclops(or wired network)
  # Connect to Y-Clops through SSH or VNC
+  * Connect laptop to yclops machine using crossover cable while monitor is still connected
+  * Find the ip address for yclops.  You can find this by typing ifconfig in the terminal
+  * open the terminal on the laptop and ssh into it 
+  * change directories to workspace/wiiDriver _cd workspace/wiiDriver/_
+  * This directory contains the overall configuration files and location files(.ini files)
+  * to run the program type _debug/wiiDriver (name of ini file)_
+  * when prompted, connect using the wiimote
+  * start the appropriate challenge with the a or b button
