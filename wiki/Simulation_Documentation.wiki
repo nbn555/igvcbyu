@@ -2,12 +2,16 @@
 
 = Introduction =
 
-Add your content here.
+The Goal of the Simulator was to provide an environment where all that is tested is the AI.  We create a simulated robot, which does exactly as told, and it always sees obstacles once it is close enough.  It also always returns exactly where it is and what way it is pointing.
 
 
-= Details =
+= Maps =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+==File Format and creation==
+
+The maps are a file format from mrpt that we have a tool made to simplify the creation process.  It's the map creator tool on svn.  It's a python program. Run it and it will allow you to open a picture file, most any will do.  than you can specify where you want the center(where the robot will start in simulation) to be than save it.  It will add a .ym extension for you.  
+
+===about the pictures===
+This is expecting a gray scale image.  With a consistent white background for no obstacle and black for obstacle.  It works with most common picture formats but we used png most of the time. To make the picture go into paint or something similar. We used gimp.
+
+=Way points File=
